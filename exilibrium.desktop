@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Exilibrium
+Comment=Exilibrium the EXCC wallet
+Exec=exilibrium %U
+Terminal=false
+Type=Application
+Icon=exilibrium
+MimeType=x-scheme-handler/exilibrium;
+Categories=Office;Finance;

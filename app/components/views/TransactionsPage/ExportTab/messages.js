@@ -39,7 +39,7 @@ export default {
       { name: "total", description: <T id="export.balances.fields.total" m="Total available balance." /> },
       { name: "stakeRewards", description: <T id="export.balances.fields.stakeRewards" m="Total stake rewards received." /> },
       { name: "stakeFees", description: <T id="export.balances.fields.stakeFees" m="Total stake fees paid." /> },
-      { name: "totalStake", description: <T id="export.balances.fields.totalStake" m="Total amount of DCR used on staking." /> },
+      { name: "totalStake", description: <T id="export.balances.fields.totalStake" m="Total amount of EXCC used on staking." /> },
     ]
   },
   voteTime: {

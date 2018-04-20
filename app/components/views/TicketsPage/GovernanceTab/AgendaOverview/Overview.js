@@ -17,7 +17,7 @@ const Overview = ({
   <div className="agenda">
     <div className="agenda-overview">
       <div className="agenda-overview-title-area">
-        <a className="agenda-overview-title-close" onClick={closeCurrentAgenda}></a>
+        <a className="agenda-overview-title-close" onClick={closeCurrentAgenda} />
         <div className="agenda-overview-title-name">{agendaId}</div>
       </div>
       <div className="agenda-overview-middle">
@@ -28,7 +28,10 @@ const Overview = ({
             : <span className="agenda-overview-agenda-id">{agendaId}</span>
           </div>
           <div className="agenda-overview-description">
-            <T id="agenda.overviewDescription" m="Once the majority of the PoW miners have upgraded (75% of the 100 most recent blocks are at the latest version) and the majority of the PoS miners have upgraded (75% of the votes in a 2016 block interval), the voting process begins." />
+            <T
+              id="agenda.overviewDescription"
+              m="Once the majority of the PoW miners have upgraded (75% of the 100 most recent blocks are at the latest version) and the majority of the PoS miners have upgraded (75% of the votes in a 2016 block interval), the voting process begins."
+            />
           </div>
         </div>
       </div>
@@ -41,7 +44,7 @@ const Overview = ({
       </div>
       <div className="agenda-overview-options-section-middle">
         {choices.map(({ choiceId }) => (
-          <div key={agendaId+choiceId}>
+          <div key={agendaId + choiceId}>
             <input
               disabled={disabled}
               className="agenda-options-radio"
@@ -50,11 +53,14 @@ const Overview = ({
               name="field"
               value={choiceId}
               checked={selectedChoiceId === choiceId}
-              onChange={(e) => setSelecedChoiceId(e.target.value)}
+              onChange={e => setSelecedChoiceId(e.target.value)}
             />
-            <label
-              className="agenda-options-radio-label"
-              htmlFor={choiceId}><span><span></span></span>{choiceId}</label>
+            <label className="agenda-options-radio-label" htmlFor={choiceId}>
+              <span>
+                <span />
+              </span>
+              {choiceId}
+            </label>
           </div>
         ))}
       </div>
@@ -71,8 +77,9 @@ const Overview = ({
         <KeyBlueButton
           disabled={!hasModifiedChoice || disabled}
           className="agenda-update-preferences-button"
-          onClick={updatePreferences}
-        ><T id="agenda.updatePreference" m="Update Preference" /></KeyBlueButton>
+          onClick={updatePreferences}>
+          <T id="agenda.updatePreference" m="Update Preference" />
+        </KeyBlueButton>
       </div>
     </div>
   </div>
@@ -83,4 +90,4 @@ const Overview = ({
 // needs to go below div.agenda-indicator-pending
 export default Overview;
 
-//<a target="_blank" href="http://decred.org" className="agenda-overview-read-more">Read more »</a>
+//<a target="_blank" href="http://excc.co" className="agenda-overview-read-more">Read more »</a>

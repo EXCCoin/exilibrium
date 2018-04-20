@@ -26,7 +26,7 @@ const rootReducer = combineReducers({
   routing,
   sidebar,
   snackbar,
-  statistics,
+  statistics
 });
 
 export default rootReducer;

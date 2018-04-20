@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2018-04-09T12:48:36.766Z\n"
+"POT-Creation-Date: 2018-04-20T15:15:36.775Z\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
@@ -248,11 +248,11 @@ msgid "About"
 msgstr ""
 
 #: app/i18n/extracted/static/menus.json
-#. [appMenu.aboutDecrediton]
+#. [appMenu.aboutExilibrium]
 #. defaultMessage is:
-#. About Decrediton
-msgctxt "appMenu.aboutDecrediton"
-msgid "About Decrediton"
+#. About Exilibrium
+msgctxt "appMenu.aboutExilibrium"
+msgid "About Exilibrium"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
@@ -1158,14 +1158,6 @@ msgctxt "tutorial.step.0.text.p3"
 msgid "Decred uses an innovative hybrid proof-of-work (PoW) proof-of-stake (PoS) for validating the transactions, keeping the network secure and making decisions on the consensus rules."
 msgstr ""
 
-#: app/i18n/extracted/static/menus.json
-#. [appMenu.decrediton]
-#. defaultMessage is:
-#. Decrediton
-msgctxt "appMenu.decrediton"
-msgid "Decrediton"
-msgstr ""
-
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.1.text.p2]
 #. defaultMessage is:
@@ -1544,6 +1536,14 @@ msgctxt "getStarted.chainLoading.syncEstimation"
 msgid "Estimated time left"
 msgstr ""
 
+#: app/i18n/extracted/static/menus.json
+#. [appMenu.exilibrium]
+#. defaultMessage is:
+#. Exilibrium
+msgctxt "appMenu.exilibrium"
+msgid "Exilibrium"
+msgstr ""
+
 #: app/i18n/extracted/app/components/TxHistory/TxHistoryRow/StakeTxRow.json
 #. [transaction.type.expired]
 #. defaultMessage is:
@@ -1844,6 +1844,22 @@ msgctxt "logs.goBack"
 msgid "Go back"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/HomePage/tables/TicketActivity.json
+#. [home.ticketActivityHistory]
+#. defaultMessage is:
+#. Go to all tickets
+msgctxt "home.ticketActivityHistory"
+msgid "Go to all tickets"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/HomePage/tables/RecentTransactions.json
+#. [home.recentTransactionsHistory]
+#. defaultMessage is:
+#. Go to all transactions
+msgctxt "home.recentTransactionsHistory"
+msgid "Go to all transactions"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TicketsPage/index.json
 #. [tickets.tab.governance]
 #. defaultMessage is:
@@ -1909,11 +1925,11 @@ msgid "Hide"
 msgstr ""
 
 #: app/i18n/extracted/static/menus.json
-#. [appMenu.hideDecrediton]
+#. [appMenu.hideExilibrium]
 #. defaultMessage is:
-#. Hide Decrediton
-msgctxt "appMenu.hideDecrediton"
-msgid "Hide Decrediton"
+#. Hide Exilibrium
+msgctxt "appMenu.hideExilibrium"
+msgid "Hide Exilibrium"
 msgstr ""
 
 #: app/i18n/extracted/static/menus.json
@@ -3764,14 +3780,6 @@ msgstr ""
 #. Stake Rewards
 msgctxt "charts.keys.stakeRewards"
 msgid "Stake Rewards"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
-#. [home.noTickets.purchase]
-#. defaultMessage is:
-#. Stake Your Idle DCR and Earn Rewards
-msgctxt "home.noTickets.purchase"
-msgid "Stake Your Idle DCR and Earn Rewards"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json

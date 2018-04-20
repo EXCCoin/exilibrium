@@ -6,7 +6,7 @@ const defaultOpts = {
   translationsDirectory: "app/i18n/translations/",
   jsonOptions: {
     space: 2,
-    trailingNewline: true,
+    trailingNewline: true
   }
 };
 
@@ -16,7 +16,7 @@ manageTranslations({
   // dev lang is used during development to test translated strings (can
   // be freely modified)
   // all other production languages are translated at transifex
-  languages: [ "dev" ],
+  languages: ["dev"]
 });
 
 manageTranslations({
@@ -25,11 +25,11 @@ manageTranslations({
 
   // original lang is the original, unmodified strings (needed when using english
   // strings but localized date/time/number/currency formats)
-  languages: [ "original" ],
+  languages: ["original"],
 
   overrideCoreMethods: {
     reportLanguage: () => {
       console.log("Updated original strings file.");
-    },
+    }
   }
 });

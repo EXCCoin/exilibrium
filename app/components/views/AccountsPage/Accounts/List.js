@@ -1,14 +1,14 @@
 import { FormattedMessage as T } from "react-intl";
 import { StandalonePage, StandaloneHeader } from "layout";
 import AccountRow from "./AccountRow";
-import { DecredLoading } from "indicators";
+import { ExccLoading } from "indicators";
 import { InfoModalButton, PassphraseModalButton } from "buttons";
 import { BalanceOverviewModalContent, AddAccountModal } from "modals";
 
 const AccountsListHeader = ({ onGetNextAccountAttempt }) =>
   <StandaloneHeader
     title={<T id="accounts.title" m="Accounts" />}
-    description={<T id="accounts.description" m={"Accounts allow you to keep separate records of your DCR funds.\nTransferring DCR across accounts will create a transaction on the blockchain."}/>}
+    description={<T id="accounts.description" m={"Accounts allow you to keep separate records of your EXCC funds.\nTransferring EXCC across accounts will create a transaction on the blockchain."}/>}
     iconClassName="accounts"
     actionButton={
       <PassphraseModalButton
@@ -31,7 +31,7 @@ const AccountsList = ({
   accountNumDetailsShown,
 }) => (
   <StandalonePage header={<AccountsListHeader {...{ onGetNextAccountAttempt }} />}>
-    { isLoading ? <DecredLoading/> :
+    { isLoading ? <ExccLoading/> :
       <Aux>
         <div className="account-content-title-buttons-area">
           <InfoModalButton

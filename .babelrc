@@ -1,12 +1,10 @@
 {
-  "presets": ["env", "stage-0", "react", "flow"],
+  "presets": ["env", "stage-0", "react"],
   "plugins": [
     "transform-object-rest-spread",
     "transform-decorators-legacy",
     "./scripts/aliasDefaultMessage.js",
-    ["react-intl", {"messagesDir": "app/i18n/extracted"}]
+    ["react-intl", { "messagesDir": "app/i18n/extracted" }]
   ],
-  "ignore": [
-    "app/middleware/walletrpc/*.js"
-  ]
+  "ignore": ["app/middleware/walletrpc/*.js"]
 }

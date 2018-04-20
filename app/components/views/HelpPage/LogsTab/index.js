@@ -1,5 +1,5 @@
 import Logs from "./Page";
-import { getDcrdLogs, getDcrwalletLogs, getDecreditonLogs } from "wallet";
+import { getExccdLogs, getExccwalletLogs, getExilibriumLogs } from "wallet";
 import { logging } from "connectors";
 import { DescriptionHeader } from "layout";
 import { FormattedMessage as T } from "react-intl";
@@ -17,34 +17,34 @@ class LogsTabBody extends React.Component {
 
   getInitialState() {
     return {
-      dcrdLogs: null,
-      dcrwalletLogs: null,
-      decreditonLogs: null,
+      exccdLogs: null,
+      exccwalletLogs: null,
+      exilibriumLogs: null,
     };
   }
 
   render() {
-    const { showDecreditonLogs, showDcrdLogs, showDcrwalletLogs,
-      hideDecreditonLogs, hideDcrdLogs, hideDcrwalletLogs
+    const { showExilibriumLogs, showExccdLogs, showExccwalletLogs,
+      hideExilibriumLogs, hideExccdLogs, hideExccwalletLogs
     } = this;
     const { isDaemonRemote, isDaemonStarted } = this.props;
     const {
-      dcrdLogs, dcrwalletLogs, decreditonLogs
+      exccdLogs, exccwalletLogs, exilibriumLogs
     } = this.state;
     return (
       <Logs
         {...{
           ...this.props, ...this.state }}
         {...{
-          showDecreditonLogs,
-          showDcrdLogs,
-          showDcrwalletLogs,
-          hideDecreditonLogs,
-          hideDcrdLogs,
-          hideDcrwalletLogs,
-          dcrdLogs,
-          dcrwalletLogs,
-          decreditonLogs,
+          showExilibriumLogs,
+          showExccdLogs,
+          showExccwalletLogs,
+          hideExilibriumLogs,
+          hideExccdLogs,
+          hideExccwalletLogs,
+          exccdLogs,
+          exccwalletLogs,
+          exilibriumLogs,
           isDaemonRemote,
           isDaemonStarted
         }}
@@ -52,40 +52,40 @@ class LogsTabBody extends React.Component {
     );
   }
 
-  showDecreditonLogs() {
-    getDecreditonLogs()
+  showExilibriumLogs() {
+    getExilibriumLogs()
       .then(logs => {
-        this.setState({ decreditonLogs: Buffer.from(logs).toString("utf8") });
+        this.setState({ exilibriumLogs: Buffer.from(logs).toString("utf8") });
       })
       .catch(err => console.error(err));
   }
 
-  hideDecreditonLogs() {
-    this.setState({ decreditonLogs: null });
+  hideExilibriumLogs() {
+    this.setState({ exilibriumLogs: null });
   }
 
-  showDcrdLogs() {
-    getDcrdLogs()
+  showExccdLogs() {
+    getExccdLogs()
       .then(logs => {
-        this.setState({ dcrdLogs: Buffer.from(logs).toString("utf8") });
+        this.setState({ exccdLogs: Buffer.from(logs).toString("utf8") });
       })
       .catch(err => console.error(err));
   }
 
-  hideDcrdLogs() {
-    this.setState({ dcrdLogs: null });
+  hideExccdLogs() {
+    this.setState({ exccdLogs: null });
   }
 
-  showDcrwalletLogs() {
-    getDcrwalletLogs()
+  showExccwalletLogs() {
+    getExccwalletLogs()
       .then(logs => {
-        this.setState({ dcrwalletLogs: Buffer.from(logs).toString("utf8") });
+        this.setState({ exccwalletLogs: Buffer.from(logs).toString("utf8") });
       })
       .catch(err => console.error(err));
   }
 
-  hideDcrwalletLogs() {
-    this.setState({ dcrwalletLogs: null });
+  hideExccwalletLogs() {
+    this.setState({ exccwalletLogs: null });
   }
 }
 

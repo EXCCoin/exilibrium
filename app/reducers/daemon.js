@@ -13,7 +13,7 @@ import {
   SHUTDOWN_REQUESTED,
   SET_CREDENTIALS_APPDATA_ERROR,
   AVAILABLE_WALLETS,
-  DECREDITON_VERSION
+  EXILIBRIUM_VERSION
 } from "../actions/DaemonActions";
 import {
   UPDATEHIDDENACCOUNTS
@@ -21,7 +21,7 @@ import {
 
 export default function version(state = {}, action) {
   switch (action.type) {
-  case DECREDITON_VERSION:
+  case EXILIBRIUM_VERSION:
     return { ...state,
       updateAvailable: action.msg,
     };

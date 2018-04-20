@@ -2,12 +2,24 @@
 @import (reference) "./Icons.less";
 
 @keyframes spin {
-  30% { transform: rotate(182deg); }
-  40% { transform: rotate(180deg); }
-  50% { transform: rotate(180deg); }
-  80% { transform: rotate(362deg); }
-  90% { transform: rotate(360deg); }
-  100% { transform: rotate(360deg); }
+  30% {
+    transform: rotate(182deg);
+  }
+  40% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  80% {
+    transform: rotate(362deg);
+  }
+  90% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loading {
@@ -97,11 +109,17 @@
 }
 
 @keyframes slide {
-  0% { opacity: 0.01; }
+  0% {
+    opacity: 0.01;
+  }
 
-  25% { opacity: 0.08; }
+  25% {
+    opacity: 0.08;
+  }
 
-  75% { opacity: 0.08; }
+  75% {
+    opacity: 0.08;
+  }
 
   100% {
     left: 59px;
@@ -127,7 +145,14 @@
 }
 
 .linear-progress-bar {
-  background: linear-gradient(270deg, rgb(110, 211, 243), rgb(41, 112, 255));
+  background: linear-gradient(
+    90deg,
+    #4143cd 20%,
+    #5956fc 40%,
+    #88a6fc 60%,
+    #fa78af 97%,
+    #fa5baa 110%
+  );
   border-radius: 8px;
   height: 100%;
   box-shadow: 0px 5px 13px rgba(41, 112, 255, 0.21);

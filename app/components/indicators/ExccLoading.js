@@ -1,9 +1,9 @@
 import "style/Loading.less";
 
-const DecredLoading = ({ hidden }) => (
+const ExccLoading = ({ hidden }) => (
   <div
     className={"new-logo-animation"}
     style={{ display: hidden ? "none" : "block" }}/>
 );
 
-export default DecredLoading;
+export default ExccLoading;

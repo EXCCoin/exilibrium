@@ -31,7 +31,7 @@ const Modal = ({ show, onCancelModal, onSubmit, copyConfirmationPhrase,
 
           If you are sure you understand the risks and still want to copy the seed to the clipboard, please type the phrase {confirmationPhrase} in the box below and the seed will be copied to the clipboard.`}
         values={{
-          seedFaqURL: <ExternalLink href="https://docs.decred.org/faq/wallets-and-seeds/">https://docs.decred.org/faq/wallets-and-seeds/</ExternalLink>,
+          seedFaqURL: <ExternalLink href="https://docs.excc.co/faq/wallets-and-seeds/">https://docs.excc.co/faq/wallets-and-seeds/</ExternalLink>,
           confirmationPhrase: <span className="mono confirm-seed-copy-phrase">'{copyConfirmationPhrase}'</span>,
         }}/>
       </p>

@@ -2,12 +2,12 @@ import { FormattedMessage as T } from "react-intl";
 import "style/Logs.less";
 
 const Logs = ({
-  showDcrdLogs,
-  showDcrwalletLogs,
-  hideDcrdLogs,
-  hideDcrwalletLogs,
-  dcrdLogs,
-  dcrwalletLogs,
+  showExccdLogs,
+  showExccwalletLogs,
+  hideExccdLogs,
+  hideExccwalletLogs,
+  exccdLogs,
+  exccwalletLogs,
   isDaemonRemote,
   isDaemonStarted,
   walletReady,
@@ -15,34 +15,34 @@ const Logs = ({
 ) => (
   <Aux>
     {!isDaemonRemote && isDaemonStarted ?
-      !dcrdLogs ?
+      !exccdLogs ?
         <div className="log-area hidden">
-          <div className="log-area-title hidden" onClick={showDcrdLogs}>
-            <T id="help.logs.dcrd" m="dcrd" />
+          <div className="log-area-title hidden" onClick={showExccdLogs}>
+            <T id="help.logs.exccd" m="exccd" />
           </div>
         </div>:
         <div className="log-area expanded">
-          <div className="log-area-title expanded" onClick={hideDcrdLogs}>
-            <T id="help.logs.dcrd" m="dcrd" />
+          <div className="log-area-title expanded" onClick={hideExccdLogs}>
+            <T id="help.logs.exccd" m="exccd" />
           </div>
           <div className="log-area-logs">
-            <textarea rows="30" value={dcrdLogs} disabled />
+            <textarea rows="30" value={exccdLogs} disabled />
           </div>
         </div> :
       <div/>
     }
-    {!walletReady ? null : !dcrwalletLogs ?
+    {!walletReady ? null : !exccwalletLogs ?
       <div className="log-area hidden">
-        <div className="log-area-title hidden" onClick={showDcrwalletLogs}>
-          <T id="help.logs.dcrwallet" m="dcrwallet" />
+        <div className="log-area-title hidden" onClick={showExccwalletLogs}>
+          <T id="help.logs.exccwallet" m="exccwallet" />
         </div>
       </div>:
       <div className="log-area expanded">
-        <div className="log-area-title expanded" onClick={hideDcrwalletLogs}>
-          <T id="help.logs.dcrwallet" m="dcrwallet" />
+        <div className="log-area-title expanded" onClick={hideExccwalletLogs}>
+          <T id="help.logs.exccwallet" m="exccwallet" />
         </div>
         <div className="log-area-logs">
-          <textarea rows="30" value={dcrwalletLogs} disabled />
+          <textarea rows="30" value={exccwalletLogs} disabled />
         </div>
       </div>
     }

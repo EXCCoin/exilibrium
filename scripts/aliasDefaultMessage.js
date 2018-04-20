@@ -9,20 +9,17 @@
  * <T id="an.id" m="the default message" />
  *
  */
-const COMPONENT_NAMES = [
-  "FormattedMessage",
-];
+const COMPONENT_NAMES = ["FormattedMessage"];
 
-const DESCRIPTOR_PROPS = new Set([ "m" ]);
+const DESCRIPTOR_PROPS = new Set(["m"]);
 
 function aliasDefaultMessagePlugin({ types: t }) {
-
   function referencesImport(path, mod, importedNames) {
     if (!(path.isIdentifier() || path.isJSXIdentifier())) {
       return false;
     }
 
-    return importedNames.some((name) => path.referencesImport(mod, name));
+    return importedNames.some(name => path.referencesImport(mod, name));
   }
 
   function getModuleSourceName(opts) {
@@ -49,7 +46,7 @@ function aliasDefaultMessagePlugin({ types: t }) {
   }
 
   function createMessageDescriptor(propPaths) {
-    return propPaths.reduce((hash, [ keyPath ]) => {
+    return propPaths.reduce((hash, [keyPath]) => {
       const key = getMessageDescriptorKey(keyPath);
 
       if (DESCRIPTOR_PROPS.has(key)) {
@@ -68,21 +65,16 @@ function aliasDefaultMessagePlugin({ types: t }) {
         const name = path.get("name");
 
         if (referencesImport(name, moduleSourceName, COMPONENT_NAMES)) {
-          const attributes = path.get("attributes")
-            .filter((attr) => attr.isJSXAttribute());
+          const attributes = path.get("attributes").filter(attr => attr.isJSXAttribute());
 
-          let descriptor = createMessageDescriptor(
-            attributes.map((attr) => [
-              attr.get("name"),
-              attr.get("value"),
-            ])
+          const descriptor = createMessageDescriptor(
+            attributes.map(attr => [attr.get("name"), attr.get("value")])
           );
 
           if (descriptor.m) {
             descriptor.m.replaceWith(t.JSXIdentifier("defaultMessage"));
           }
         }
-
       }
     }
   };

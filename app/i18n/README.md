@@ -1,6 +1,6 @@
-# Decrediton i18n & l12n
+# Exilibrium i18n & l12n
 
-This file explains the general layout of how internationalization (i18n) and localization (l12n) work in Decrediton.
+This file explains the general layout of how internationalization (i18n) and localization (l12n) work in Exilibrium.
 
 ## During Coding
 
@@ -18,7 +18,6 @@ import { FormattedMessage as T } from "react-intl";
 
 <T id="send.title" m="Send Funds" />
 ...
-
 ```
 
 The id string is meant to uniquely identify the string being translated. Don't repeat the id of an existing string if the message is/could be different.
@@ -32,8 +31,10 @@ If the string has a variable element within it (eg., a number, amount or a varia
   id="history.paginationPages"
   m="{current} of {total}"
   values={{
-    current: currentPage+1,
-    total: totalPages}} />
+    current: currentPage + 1,
+    total: totalPages
+  }}
+/>
 ```
 
 ### Input Placeholder
@@ -42,10 +43,10 @@ A placeholder can't use a jsx component as value, only a simple string. So you n
 
 The main steps to using a placeholder are:
 
-- Import `injectIntl` and `defineMessages`
-- Define a custom intl message (id and defaultMessage)
-- Get the translated string using `int.formatMessage()`
-- Inject the `intl` prop by using the `injectIntl` HOC
+* Import `injectIntl` and `defineMessages`
+* Define a custom intl message (id and defaultMessage)
+* Get the translated string using `int.formatMessage()`
+* Inject the `intl` prop by using the `injectIntl` HOC
 
 Simplified example:
 
@@ -86,9 +87,11 @@ Tooltips now accept embedded HTML safely. Use the `T` component described below.
 Use the plural format for values:
 
 ```javascript
-<T id="confirmSeed.wordsRemaining"
+<T
+  id="confirmSeed.wordsRemaining"
   m="{remainingSeedWords, plural, one {one word remaining} other {# words remaining} }"
-  values={{remainingSeedWords: remainingSeedWords}} />
+  values={{ remainingSeedWords: remainingSeedWords }}
+/>
 ```
 
 ### Strings with embedded HTML
@@ -121,51 +124,51 @@ Use the `date` and `time` formats on the values inside the translation string. C
 import { FormattedMessage as T } from "react-intl";
 import { tsToDate } from "../../helpers/dateFormat";
 
-
-<T id="transaction.timestamp"
+<T
+  id="transaction.timestamp"
   m="{timestamp, date, medium} {timestamp, time, medium}"
-  values={{timestamp: tsToDate(txTimestamp)}}/>
-
+  values={{ timestamp: tsToDate(txTimestamp) }}
+/>;
 ```
 
 **:exclamation: Note**: Due to how react-intl works, the date and time is only translated if the format string is translated (i.e. it can't rely on the `defaultMessage` string). So the translation must be filled, even if using the exact same date and time formats.
 
 **:exclamation: Note**: Also note that due to this quirk, locales that use the original english strings but a different date/time format need to get the translated strings as well. To provide a localization using the english strings, create a new locale using the `original.json` message file, which is also automatically maintained by the scripts.
 
-### DCR Amount
+### EXCC Amount
 
-To display an amount of DCR, use the `Balance` component:
+To display an amount of EXCC, use the `Balance` component:
 
 ```javascript
 import Balance from "../../Balance";
-<Balance amount={fee}/>
+<Balance amount={fee} />;
 ```
 
 ## Libraries
 
-Decrediton implements i18n by using the tools provided by the [react-intl](https://github.com/yahoo/react-intl) ecosystem.
+Exilibrium implements i18n by using the tools provided by the [react-intl](https://github.com/yahoo/react-intl) ecosystem.
 
 ## Filesystem Layout
 
 The following directories and files comprise the i18n subsystem:
 
-- **extracted/app**: Generated automatically by [babel-plugin-react-intl](https://github.com/yahoo/babel-plugin-react-intl)
-- **extract/static**: Static translation files (manually written)
-- **locales/index.js**: Entrypoint for all i18n data
-- **pot/**: source *.pot files to be sent to translation
-- **po/**: source *.po files received from translators
-- **translations/\*.json**: Translated files to be used by the app
+* **extracted/app**: Generated automatically by [babel-plugin-react-intl](https://github.com/yahoo/babel-plugin-react-intl)
+* **extract/static**: Static translation files (manually written)
+* **locales/index.js**: Entrypoint for all i18n data
+* **pot/**: source \*.pot files to be sent to translation
+* **po/**: source \*.po files received from translators
+* **translations/\*.json**: Translated files to be used by the app
 
 Inside the `translations/` directory, there are a few special files:
 
-- **dev.json**: All strings of the app but not maintained on transifex (mainly useful while developing the i18n system and to check if all strings are translated).
-- **whitelist_dev.json**: Created automatically by [react-intl-translations-manager](https://github.com/GertjanReynaert/react-intl-translations-manager)
+* **dev.json**: All strings of the app but not maintained on transifex (mainly useful while developing the i18n system and to check if all strings are translated).
+* **whitelist_dev.json**: Created automatically by [react-intl-translations-manager](https://github.com/GertjanReynaert/react-intl-translations-manager)
 
 The files inside the `po/` and `pot/` subdir are managed by the scripts and by transifex and shouldn't be manually updated.
 
 ## Generating files for translation
 
-Assuming all strings in the app have been properly recorded on the `extracted/` dir by the babel plugin, to generate the `decrediton.pot` file to be sent for translation, run the following:
+Assuming all strings in the app have been properly recorded on the `extracted/` dir by the babel plugin, to generate the `exilibrium.pot` file to be sent for translation, run the following:
 
 ```shell
 $ npm run i18n-prepare-untranslated
@@ -173,14 +176,13 @@ $ npm run i18n-prepare-untranslated
 
 ## Assembling translated files
 
-Transifex will generate a bunch of *.po files (one per language). Save them on the `po/` dir. To get back the json files that the app actually uses, execute the following:
+Transifex will generate a bunch of \*.po files (one per language). Save them on the `po/` dir. To get back the json files that the app actually uses, execute the following:
 
 ```shell
 $ npm run i18n-assemble-translated
 ```
 
-**:exclamation: Note**: Transifex generates files with a filename following the pattern `decrediton_(lang).po` but react-intl-po expects a filename with the pattern `decrediton.(lang).po`. The `i18n-assemble-translated` script deletes old and renames the files in the po dir accordingly, so just extract the zip with all translations in the appropriate directory and the script will take care of the rest.
-
+**:exclamation: Note**: Transifex generates files with a filename following the pattern `exilibrium_(lang).po` but react-intl-po expects a filename with the pattern `exilibrium.(lang).po`. The `i18n-assemble-translated` script deletes old and renames the files in the po dir accordingly, so just extract the zip with all translations in the appropriate directory and the script will take care of the rest.
 
 ## Adding a new locale
 
@@ -194,4 +196,4 @@ The "dev" locale ("Dev Locale for testing" in the app) is used mainly for testin
 
 Any developer can change any string, format or property of this locale as needed for testing and without risking to modify a locale actually used in production.
 
-**:exclamation: Note**: If you test a packaged version of decrediton locally while still using the `dev` locale, you'll get an error on the debug console saying _language is not defined_. Just edit your local `config.json` and change locale to "en".
+**:exclamation: Note**: If you test a packaged version of exilibrium locally while still using the `dev` locale, you'll get an error on the debug console saying _language is not defined_. Just edit your local `config.json` and change locale to "en".

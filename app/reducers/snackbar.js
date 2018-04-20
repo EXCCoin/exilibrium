@@ -2,39 +2,49 @@
 // we disable no-fallthrough rule in this file to simplify the select/case below.
 import * as wallet from "wallet";
 import { defineMessages } from "react-intl";
-import {
-  DECODERAWTXS_FAILED
-} from "../actions/DecodeMessageActions";
+import { DECODERAWTXS_FAILED } from "../actions/DecodeMessageActions";
 import {
   PUBLISHTX_FAILED,
-  SIGNTX_FAILED, CONSTRUCTTX_FAILED,
-  PURCHASETICKETS_SUCCESS, PURCHASETICKETS_FAILED,
-  STARTAUTOBUYER_SUCCESS, STARTAUTOBUYER_FAILED,
+  SIGNTX_FAILED,
+  CONSTRUCTTX_FAILED,
+  PURCHASETICKETS_SUCCESS,
+  PURCHASETICKETS_FAILED,
+  STARTAUTOBUYER_SUCCESS,
+  STARTAUTOBUYER_FAILED,
   STOPAUTOBUYER_SUCCESS,
-  REVOKETICKETS_SUCCESS, REVOKETICKETS_FAILED,
-  IMPORTSCRIPT_SUCCESS, IMPORTSCRIPT_FAILED,
-  RENAMEACCOUNT_SUCCESS, RENAMEACCOUNT_FAILED,
-  GETNEXTACCOUNT_SUCCESS, GETNEXTACCOUNT_FAILED,
-  CHANGEPASSPHRASE_SUCCESS, CHANGEPASSPHRASE_FAILED,
-  SIGNMESSAGE_FAILED, VERIFYMESSAGE_FAILED,
-  PUBLISHUNMINEDTRANSACTIONS_SUCCESS, PUBLISHUNMINEDTRANSACTIONS_FAILED,
+  REVOKETICKETS_SUCCESS,
+  REVOKETICKETS_FAILED,
+  IMPORTSCRIPT_SUCCESS,
+  IMPORTSCRIPT_FAILED,
+  RENAMEACCOUNT_SUCCESS,
+  RENAMEACCOUNT_FAILED,
+  GETNEXTACCOUNT_SUCCESS,
+  GETNEXTACCOUNT_FAILED,
+  CHANGEPASSPHRASE_SUCCESS,
+  CHANGEPASSPHRASE_FAILED,
+  SIGNMESSAGE_FAILED,
+  VERIFYMESSAGE_FAILED,
+  PUBLISHUNMINEDTRANSACTIONS_SUCCESS,
+  PUBLISHUNMINEDTRANSACTIONS_FAILED
 } from "../actions/ControlActions";
 import {
-  UPDATESTAKEPOOLCONFIG_SUCCESS, UPDATESTAKEPOOLCONFIG_FAILED,
-  SETSTAKEPOOLVOTECHOICES_SUCCESS, SETSTAKEPOOLVOTECHOICES_FAILED,
+  UPDATESTAKEPOOLCONFIG_SUCCESS,
+  UPDATESTAKEPOOLCONFIG_FAILED,
+  SETSTAKEPOOLVOTECHOICES_SUCCESS,
+  SETSTAKEPOOLVOTECHOICES_FAILED,
   REMOVESTAKEPOOLCONFIG
 } from "../actions/StakePoolActions";
 import {
   NEW_TRANSACTIONS_RECEIVED,
   GETSTARTUPWALLETINFO_FAILED,
-  SEEDCOPIEDTOCLIPBOARD,
+  SEEDCOPIEDTOCLIPBOARD
 } from "../actions/ClientActions";
 import { SNACKBAR_DISMISS_MESSAGES } from "../actions/SnackbarActions";
 import {
   EXPORT_ERROR,
   EXPORT_COMPLETED,
   GETSTARTUPSTATS_FAILED,
-  GETMYTICKETSSTATS_FAILED,
+  GETMYTICKETSSTATS_FAILED
 } from "actions/StatisticsActions";
 
 const messages = defineMessages({
@@ -123,19 +133,19 @@ const messages = defineMessages({
     id: "accounts.renameAccount",
     defaultMessage: "Successfully renamed account."
   },
-  RENAMEACCOUNT_FAILED:{
+  RENAMEACCOUNT_FAILED: {
     id: "accounts.errors.renameAccountFailed",
     defaultMessage: "{originalError}"
   },
-  GETNEXTACCOUNT_SUCCESS:{
+  GETNEXTACCOUNT_SUCCESS: {
     id: "accounts.nextAccount",
     defaultMessage: "Successfully created a new account."
   },
-  GETNEXTACCOUNT_FAILED:{
+  GETNEXTACCOUNT_FAILED: {
     id: "accounts.errors.getNextAccountFailed",
     defaultMessage: "{originalError}"
   },
-  CHANGEPASSPHRASE_SUCCESS:{
+  CHANGEPASSPHRASE_SUCCESS: {
     id: "settings.changePassphrase",
     defaultMessage: "Successfully changed private passphrase."
   },
@@ -165,95 +175,95 @@ const messages = defineMessages({
   },
   PUBLISHUNMINEDTRANSACTIONS_SUCCESS: {
     id: "send.publishUnminedTransactions.success",
-    defaultMessage: "Republished unmined transactions to the decred network."
+    defaultMessage: "Republished unmined transactions to the excc network."
   },
   EXPORT_COMPLETED: {
     id: "export.completed",
     defaultMessage: "Export of file '{filename}' completed!"
-  },
+  }
 });
 
 export default function snackbar(state = {}, action) {
   let values, type, message;
 
   switch (action.type) {
-  // snackbar management events
-  case SNACKBAR_DISMISS_MESSAGES:
-    return { ...state, messages: Array() };
+    // snackbar management events
+    case SNACKBAR_DISMISS_MESSAGES:
+      return { ...state, messages: Array() };
 
-  case NEW_TRANSACTIONS_RECEIVED: {
-    // TODO: show more notifications or a summary when receiving many transactions.
-    const tx = action.newlyMinedTransactions.length
-      ? action.newlyMinedTransactions[0]
-      : action.newlyUnminedTransactions[0];
+    case NEW_TRANSACTIONS_RECEIVED: {
+      // TODO: show more notifications or a summary when receiving many transactions.
+      const tx = action.newlyMinedTransactions.length
+        ? action.newlyMinedTransactions[0]
+        : action.newlyUnminedTransactions[0];
 
-    type = tx.direction || wallet.TRANSACTION_TYPES[tx.type];
-    message = { ...tx, type };
-    values = { message };
-    break;
-  }
+      type = tx.direction || wallet.TRANSACTION_TYPES[tx.type];
+      message = { ...tx, type };
+      values = { message };
+      break;
+    }
 
-  // all simple success notifications. Just add the type below and the message
-  // on the messages variable above if you need a simple message, without extra
-  // data.
-  case EXPORT_COMPLETED:
-    values = { filename: action.filename };
-  case RENAMEACCOUNT_SUCCESS:
-  case GETNEXTACCOUNT_SUCCESS:
-  case CHANGEPASSPHRASE_SUCCESS:
-  case REVOKETICKETS_SUCCESS:
-  case IMPORTSCRIPT_SUCCESS:
-    // willRescan will be false when importing just prior to a ticket purchase
-    if (action.willRescan === false) break;
-  case STOPAUTOBUYER_SUCCESS:
-  case STARTAUTOBUYER_SUCCESS:
-  case UPDATESTAKEPOOLCONFIG_SUCCESS:
-  case SETSTAKEPOOLVOTECHOICES_SUCCESS:
-  case REMOVESTAKEPOOLCONFIG:
-  case SEEDCOPIEDTOCLIPBOARD:
-  case PUBLISHUNMINEDTRANSACTIONS_SUCCESS:
-    type = "Success";
-    message = messages[action.type] || messages.defaultSuccessMessage;
-    break;
+    // all simple success notifications. Just add the type below and the message
+    // on the messages variable above if you need a simple message, without extra
+    // data.
+    case EXPORT_COMPLETED:
+      values = { filename: action.filename };
+    case RENAMEACCOUNT_SUCCESS:
+    case GETNEXTACCOUNT_SUCCESS:
+    case CHANGEPASSPHRASE_SUCCESS:
+    case REVOKETICKETS_SUCCESS:
+    case IMPORTSCRIPT_SUCCESS:
+      // willRescan will be false when importing just prior to a ticket purchase
+      if (action.willRescan === false) break;
+    case STOPAUTOBUYER_SUCCESS:
+    case STARTAUTOBUYER_SUCCESS:
+    case UPDATESTAKEPOOLCONFIG_SUCCESS:
+    case SETSTAKEPOOLVOTECHOICES_SUCCESS:
+    case REMOVESTAKEPOOLCONFIG:
+    case SEEDCOPIEDTOCLIPBOARD:
+    case PUBLISHUNMINEDTRANSACTIONS_SUCCESS:
+      type = "Success";
+      message = messages[action.type] || messages.defaultSuccessMessage;
+      break;
 
-  // all simple error messages. Note that the action *must* have an action.error
-  // attribute.
-  case RENAMEACCOUNT_FAILED:
-  case GETNEXTACCOUNT_FAILED:
-  case CHANGEPASSPHRASE_FAILED:
-  case CONSTRUCTTX_FAILED:
-  case SIGNTX_FAILED:
-  case PUBLISHTX_FAILED:
-  case PURCHASETICKETS_FAILED:
-  case REVOKETICKETS_FAILED:
-  case IMPORTSCRIPT_FAILED:
-  case STARTAUTOBUYER_FAILED:
-  case UPDATESTAKEPOOLCONFIG_FAILED:
-  case SETSTAKEPOOLVOTECHOICES_FAILED:
-  case DECODERAWTXS_FAILED:
-  case SIGNMESSAGE_FAILED:
-  case VERIFYMESSAGE_FAILED:
-  case GETSTARTUPWALLETINFO_FAILED:
-  case PUBLISHUNMINEDTRANSACTIONS_FAILED:
-  case EXPORT_ERROR:
-  case GETSTARTUPSTATS_FAILED:
-  case GETMYTICKETSSTATS_FAILED:
-    type = "Error";
-    message = messages[action.type] || messages.defaultErrorMessage;
-    values = { originalError: String(action.error) };
-    break;
+    // all simple error messages. Note that the action *must* have an action.error
+    // attribute.
+    case RENAMEACCOUNT_FAILED:
+    case GETNEXTACCOUNT_FAILED:
+    case CHANGEPASSPHRASE_FAILED:
+    case CONSTRUCTTX_FAILED:
+    case SIGNTX_FAILED:
+    case PUBLISHTX_FAILED:
+    case PURCHASETICKETS_FAILED:
+    case REVOKETICKETS_FAILED:
+    case IMPORTSCRIPT_FAILED:
+    case STARTAUTOBUYER_FAILED:
+    case UPDATESTAKEPOOLCONFIG_FAILED:
+    case SETSTAKEPOOLVOTECHOICES_FAILED:
+    case DECODERAWTXS_FAILED:
+    case SIGNMESSAGE_FAILED:
+    case VERIFYMESSAGE_FAILED:
+    case GETSTARTUPWALLETINFO_FAILED:
+    case PUBLISHUNMINEDTRANSACTIONS_FAILED:
+    case EXPORT_ERROR:
+    case GETSTARTUPSTATS_FAILED:
+    case GETMYTICKETSSTATS_FAILED:
+      type = "Error";
+      message = messages[action.type] || messages.defaultErrorMessage;
+      values = { originalError: String(action.error) };
+      break;
 
-  // success messages that add some context/interpolation/values.
-  case PURCHASETICKETS_SUCCESS:
-    type = "Success";
-    message = messages[PURCHASETICKETS_SUCCESS];
-    values = { numTickets: action.purchaseTicketsResponse.getTicketHashesList().length };
-    break;
+    // success messages that add some context/interpolation/values.
+    case PURCHASETICKETS_SUCCESS:
+      type = "Success";
+      message = messages[PURCHASETICKETS_SUCCESS];
+      values = { numTickets: action.purchaseTicketsResponse.getTicketHashesList().length };
+      break;
   }
 
   if (message && type) {
     const newMessage = { type, message, values };
-    return { ...state, messages: [ ...state.messages, newMessage ] };
+    return { ...state, messages: [...state.messages, newMessage] };
   }
 
   return { ...state };

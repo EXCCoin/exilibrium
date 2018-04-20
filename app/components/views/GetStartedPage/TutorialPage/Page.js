@@ -5,15 +5,15 @@ import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
 const messages = defineMessages({
   step0Title: {
     id: "tutorial.step.0.title",
-    defaultMessage: "What is the Decred Blockchain?",
+    defaultMessage: "What is the Exchange Coin Blockchain?",
   },
   step0TextBoldp1: {
     id: "tutorial.step.0.text.bold.p1",
-    defaultMessage: "The blockchain is the heart of Decred, "
+    defaultMessage: "The blockchain is the heart of EXCC, "
   },
   step0Textp1: {
     id: "tutorial.step.0.text.p1",
-    defaultMessage: " where all activity that takes place is stored. It is like a global, decentralised spreadsheet or ledger that records all the activity that happens when Decred funds are transferred, keeping track of how many tokens are sent, and what the balance of every account is.",
+    defaultMessage: " where all activity that takes place is stored. It is like a global, decentralised spreadsheet or ledger that records all the activity that happens when EXCC funds are transferred, keeping track of how many tokens are sent, and what the balance of every account is.",
   },
   step0Textp2: {
     id: "tutorial.step.0.text.p2",
@@ -21,11 +21,11 @@ const messages = defineMessages({
   },
   step0Textp3: {
     id: "tutorial.step.0.text.p3",
-    defaultMessage: "Decred uses an innovative hybrid proof-of-work (PoW) proof-of-stake (PoS) for validating the transactions, keeping the network secure and making decisions on the consensus rules.",
+    defaultMessage: "EXCC uses an innovative hybrid proof-of-work (PoW) proof-of-stake (PoS) for validating the transactions, keeping the network secure and making decisions on the consensus rules.",
   },
   step0Textp4: {
     id: "tutorial.step.0.text.p4",
-    defaultMessage: "In return for participation, miners (PoW) and stakers (PoS) are rewarded with newly generated Decred tokens.",
+    defaultMessage: "In return for participation, miners (PoW) and stakers (PoS) are rewarded with newly generated EXCC tokens.",
   },
   step1Title: {
     id: "tutorial.step.1.title",
@@ -37,11 +37,11 @@ const messages = defineMessages({
   },
   step1Textp1: {
     id: "tutorial.step.1.text.p1",
-    defaultMessage: "It can be used to send and receive Decred funds, and acts as a personal ledger of transactions.",
+    defaultMessage: "It can be used to send and receive EXCC funds, and acts as a personal ledger of transactions.",
   },
   step1Textp2: {
     id: "tutorial.step.1.text.p2",
-    defaultMessage: "Decrediton Wallet can also be used for participating in staking (PoS) and project governance by time-locking your funds in return for tickets.",
+    defaultMessage: "Exilibrium Wallet can also be used for participating in staking (PoS) and project governance by time-locking your funds in return for tickets.",
   },
   step2Title: {
     id: "tutorial.step.2.title",
@@ -65,7 +65,7 @@ const messages = defineMessages({
   },
   step2Textp3: {
     id: "tutorial.step.2.text.p3",
-    defaultMessage: "If the wallet encryption passphrase is forgotten or the wallet is destroyed (e.g. computer breaks), the seed can be used to recover the wallet. Same seed can also be used to export your wallet to other Decred wallet clients.",
+    defaultMessage: "If the wallet encryption passphrase is forgotten or the wallet is destroyed (e.g. computer breaks), the seed can be used to recover the wallet. Same seed can also be used to export your wallet to other EXCC wallet clients.",
   },
   step2Textp4: {
     id: "tutorial.step.2.text.p4",
@@ -77,7 +77,7 @@ const messages = defineMessages({
   },
   step3Textp1: {
     id: "tutorial.step.3.text.p1",
-    defaultMessage: "Participation in staking (PoS) requires only existing Decred funds."
+    defaultMessage: "Participation in staking (PoS) requires only existing EXCC funds."
   },
   step3TextLightp1: {
     id: "tutorial.step.3.text.light.p1",
@@ -105,11 +105,11 @@ const messages = defineMessages({
   },
   step3Textp3: {
     id: "tutorial.step.3.text.p3",
-    defaultMessage: "Changes are inevitable for all digital currencies, whether deciding on development matters or resolving unexpected problems. Decred’s innovative governance system is built into the blockchain. This allows for seamless adaption to changes while keeping the existing blockchain ecosystem safe. The same tickets are also used as voting power when deciding on consensus changes.",
+    defaultMessage: "Changes are inevitable for all digital currencies, whether deciding on development matters or resolving unexpected problems. EXCC’s innovative governance system is built into the blockchain. This allows for seamless adaption to changes while keeping the existing blockchain ecosystem safe. The same tickets are also used as voting power when deciding on consensus changes.",
   },
   step3Textp4: {
     id: "tutorial.step.3.text.p4",
-    defaultMessage: "Staking encourages long term investment in Decred by giving the stakeholders decision-making power in projects governance as well rewarding them for participation."
+    defaultMessage: "Staking encourages long term investment in  by giving the stakeholders decision-making power in projects governance as well rewarding them for participation."
   },
   step4Title: {
     id: "tutorial.step.4.title",

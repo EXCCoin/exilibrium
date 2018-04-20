@@ -67,27 +67,27 @@ msgstr "(o maior tempo possível é de 142 dias). "
 
 #. [autobuyer.invalidMaxFee]
 #. defaultMessage is:
-#. *Invalid max fee (0 - 0.1 DCR/KB)
+#. *Invalid max fee (0 - 0.1 EXCC/KB)
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/TicketAutoBuyer/Details.json
 msgctxt "autobuyer.invalidMaxFee"
-msgid "*Invalid max fee (0 - 0.1 DCR/KB)"
-msgstr "* Taxa máxima inválida (0-0.1 DCR/KB)"
+msgid "*Invalid max fee (0 - 0.1 EXCC/KB)"
+msgstr "* Taxa máxima inválida (0-0.1 EXCC/KB)"
 
 #. [purchaseTickets.errors.invalidTicketFee]
 #. defaultMessage is:
-#. *Invalid ticket fee (0 - 0.1 DCR/KB)
+#. *Invalid ticket fee (0 - 0.1 EXCC/KB)
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/PurchaseTicketsAdvanced.json
 msgctxt "purchaseTickets.errors.invalidTicketFee"
-msgid "*Invalid ticket fee (0 - 0.1 DCR/KB)"
-msgstr "* Taxa de ticket inválida (0-0.1 DCR/KB)"
+msgid "*Invalid ticket fee (0 - 0.1 EXCC/KB)"
+msgstr "* Taxa de ticket inválida (0-0.1 EXCC/KB)"
 
 #. [purchaseTickets.errors.invalidTxFee]
 #. defaultMessage is:
-#. *Invalid tx fee (0 - 0.1 DCR/KB)
+#. *Invalid tx fee (0 - 0.1 EXCC/KB)
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/PurchaseTicketsAdvanced.json
 msgctxt "purchaseTickets.errors.invalidTxFee"
-msgid "*Invalid tx fee (0 - 0.1 DCR/KB)"
-msgstr "* Taxa de transação inválida (0 - 0.1 DCR/KB)"
+msgid "*Invalid tx fee (0 - 0.1 EXCC/KB)"
+msgstr "* Taxa de transação inválida (0 - 0.1 EXCC/KB)"
 
 #. [changePassModal.confirmMismatch]
 #. defaultMessage is:
@@ -337,17 +337,17 @@ msgstr "Contas"
 
 #. [accounts.description]
 #. defaultMessage is:
-#. Accounts allow you to keep separate records of your DCR funds.
-#. Transferring DCR across accounts will create a transaction on the
+#. Accounts allow you to keep separate records of your EXCC funds.
+#. Transferring EXCC across accounts will create a transaction on the
 #. blockchain.
 #: app/i18n/extracted/app/components/views/AccountsPage/Accounts/List.json
 msgctxt "accounts.description"
 msgid ""
-"Accounts allow you to keep separate records of your DCR funds.\n"
-"Transferring DCR across accounts will create a transaction on the blockchain."
+"Accounts allow you to keep separate records of your EXCC funds.\n"
+"Transferring EXCC across accounts will create a transaction on the blockchain."
 msgstr ""
-"Contas permitem que você mantenha registros separados dos seus fundos DCR.\n"
-"Transferir DCR entre contas irá criar uma transação na blockchain."
+"Contas permitem que você mantenha registros separados dos seus fundos EXCC.\n"
+"Transferir EXCC entre contas irá criar uma transação na blockchain."
 
 #. [accounts.addNewButton]
 #. defaultMessage is:
@@ -2012,11 +2012,11 @@ msgstr "Geral"
 
 #. [home.noTransactions.receiveLink]
 #. defaultMessage is:
-#. Generate a DCR Address for receiving funds
+#. Generate a EXCC Address for receiving funds
 #: app/i18n/extracted/app/components/views/HomePage/tables/NoTransactionsLinks.json
 msgctxt "home.noTransactions.receiveLink"
-msgid "Generate a DCR Address for receiving funds"
-msgstr "Gerar endereço DCR para receber fundos"
+msgid "Generate a EXCC Address for receiving funds"
+msgstr "Gerar endereço EXCC para receber fundos"
 
 #. [receive.newAddressBtn]
 #. defaultMessage is:
@@ -4045,7 +4045,7 @@ msgstr "Assinatura"
 #. defaultMessage is:
 #. Signing a message with an address' private key allows you to prove that you
 #. are the owner of a given address to a possible counterparty.  For instance,
-#. let's say you sent 100 DCR to a merchant and you have yet to receive your
+#. let's say you sent 100 EXCC to a merchant and you have yet to receive your
 #. merchandise.  You contact the merchant and explain the situation, but need
 #. a way to prove you are, in fact, the owner of the address that the funds
 #. were sent from.  To do this you can generate a signature based on a message
@@ -4057,7 +4057,7 @@ msgctxt "sign.info.message"
 msgid ""
 "Signing a message with an address' private key allows you to prove that you "
 "are the owner of a given address to a possible counterparty.  For instance, "
-"let's say you sent 100 DCR to a merchant and you have yet to receive your "
+"let's say you sent 100 EXCC to a merchant and you have yet to receive your "
 "merchandise.  You contact the merchant and explain the situation, but need a"
 " way to prove you are, in fact, the owner of the address that the funds were"
 " sent from.  To do this you can generate a signature based on a message only"
@@ -4067,7 +4067,7 @@ msgid ""
 msgstr ""
 "Assinar uma mensagem com a chave privada de um endereço permite que você "
 "prove que você é o dono de um endereço para uma possível contraparte. Por "
-"exemplo, digamos que você envie 100 DCR para um vendedor e você não recebeu "
+"exemplo, digamos que você envie 100 EXCC para um vendedor e você não recebeu "
 "sua mercadoria. Você contacta o vendedor para explicar a situação mas "
 "precisa prova que você, de fator, é o dono do endereço de onde os fundos "
 "foram enviados. Para fazer isso, você pode gerar uma assinatura baseada em "
@@ -4165,11 +4165,11 @@ msgstr "Recompensas de Stake"
 
 #. [home.noTickets.purchase]
 #. defaultMessage is:
-#. Stake Your Idle DCR and Earn Rewards
+#. Stake Your Idle EXCC and Earn Rewards
 #: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
 msgctxt "home.noTickets.purchase"
-msgid "Stake Your Idle DCR and Earn Rewards"
-msgstr "Realize stake de seus DCR parados e ganha recompensas"
+msgid "Stake Your Idle EXCC and Earn Rewards"
+msgstr "Realize stake de seus EXCC parados e ganha recompensas"
 
 #. [tickets.info.poolPreference.header]
 #. defaultMessage is:
@@ -4594,19 +4594,19 @@ msgstr "Esse é o saldo total controlado por essa conta atualmente."
 #. This number sets the max price to purchase tickets based on the observed
 #. average price multiplied by this number.  e.g. If the average price is 100,
 #. and this was set to 1.25, then the max price to purchase tickets would be
-#. 125 DCR.
+#. 125 EXCC.
 #: app/i18n/extracted/app/components/modals/TicketAutoBuyerInfoModalContent.json
 msgctxt "ticketAutoBuyer.info.maxPriceRelative.message"
 msgid ""
 "This number sets the max price to purchase tickets based on the observed "
 "average price multiplied by this number.  e.g. If the average price is 100, "
 "and this was set to 1.25, then the max price to purchase tickets would be "
-"125 DCR."
+"125 EXCC."
 msgstr ""
 "Esse número estabelece o preço máximo para comprar tickets baseado na "
 "observação do preço médio multiplicado por esse número. Ex: se o preço médio"
 " é 100 e esse número é 1.25, então o preço máximo para comprar tickets seria"
-" 125 DCR."
+" 125 EXCC."
 
 #. [passphrase.info.message]
 #. defaultMessage is:
@@ -4802,11 +4802,11 @@ msgstr "O Ticket Buyer está parado."
 
 #. [tickets.info.ticketFee.header]
 #. defaultMessage is:
-#. Ticket fee (DCR/kB)
+#. Ticket fee (EXCC/kB)
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 msgctxt "tickets.info.ticketFee.header"
-msgid "Ticket fee (DCR/kB)"
-msgstr "Taxa de Ticket (DCR/kB)"
+msgid "Ticket fee (EXCC/kB)"
+msgstr "Taxa de Ticket (EXCC/kB)"
 
 #. [tickets.info.ticketPrice.header]
 #. defaultMessage is:
@@ -5024,11 +5024,11 @@ msgstr "Valor total dos tickets vivos"
 
 #. [export.balances.fields.totalStake]
 #. defaultMessage is:
-#. Total amount of DCR used on staking.
+#. Total amount of EXCC used on staking.
 #: app/i18n/extracted/app/components/views/TransactionsPage/ExportTab/messages.json
 msgctxt "export.balances.fields.totalStake"
-msgid "Total amount of DCR used on staking."
-msgstr "Valor total de DCR usado para staking."
+msgid "Total amount of EXCC used on staking."
+msgstr "Valor total de EXCC usado para staking."
 
 #. [export.dailyBalances.fields.received]
 #. defaultMessage is:
@@ -5256,11 +5256,11 @@ msgstr "Taxa de transação"
 
 #. [tickets.info.txFee.header]
 #. defaultMessage is:
-#. Tx fee (DCR/kB)
+#. Tx fee (EXCC/kB)
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 msgctxt "tickets.info.txFee.header"
-msgid "Tx fee (DCR/kB)"
-msgstr "Taxa de Transação (DCR/kB)"
+msgid "Tx fee (EXCC/kB)"
+msgstr "Taxa de Transação (EXCC/kB)"
 
 #. [export.tickets.fields.spenderHash]
 #. defaultMessage is:
@@ -5708,7 +5708,7 @@ msgstr ""
 #. then the ticketpool where they are drawn at random to vote. There is a
 #. 99.5% probability that a ticket will vote. The average ticket will vote in
 #. 28 days, but tickets still in the pool that have not been drawn after 142
-#. days will be revoked. The DCR used to purchase the ticket is released from
+#. days will be revoked. The EXCC used to purchase the ticket is released from
 #. lockup when it votes or when the ticket is revoked.
 #.   When a proposal is set for a vote in Politeia, a snapshot of the ticket
 #. pool will be taken at the time of voting. All tickets will have the right
@@ -5720,13 +5720,13 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/TutorialsPage/Staking/index.json
 msgctxt "tutorial.staking.page2"
 msgid ""
-"When a ticket is purchased, the cost of the ticket is locked in your wallet until the ticket is used to vote, or is revoked. Tickets enter the mempool, then the ticketpool where they are drawn at random to vote. There is a 99.5% probability that a ticket will vote. The average ticket will vote in 28 days, but tickets still in the pool that have not been drawn after 142 days will be revoked. The DCR used to purchase the ticket is released from lockup when it votes or when the ticket is revoked.\n"
+"When a ticket is purchased, the cost of the ticket is locked in your wallet until the ticket is used to vote, or is revoked. Tickets enter the mempool, then the ticketpool where they are drawn at random to vote. There is a 99.5% probability that a ticket will vote. The average ticket will vote in 28 days, but tickets still in the pool that have not been drawn after 142 days will be revoked. The EXCC used to purchase the ticket is released from lockup when it votes or when the ticket is revoked.\n"
 "\n"
 "  When a proposal is set for a vote in Politeia, a snapshot of the ticket pool will be taken at the time of voting. All tickets will have the right to vote on the proposal in an off chain process.\n"
 "\n"
 "  As block validation is immutable, decisions made on all voted tickets can be publicly tracked. Active participation in staking helps secure Decred network’s, network, ensure quality Proof-of-Work, and determine the future direction of Decred."
 msgstr ""
-"Quando um ticket é comprado, o custo do ticket é trancado em sua carteira até que o ticket seja usado para votar ou até que ele seja revogado. Tickets entram na mempool e então passam para a ticketpool onde são sorteados para votar de forma aleatória. Existe uma probabilidade de 99.5% de que um ticket irá votar. O ticket médio irá votar em 28 dias, mas tickets que não tenham sido sorteados após 142 dias serão revogados. Os fundos DCR usados para comprar o ticket são liberados depois deste ter sido votado ou revogado.\n"
+"Quando um ticket é comprado, o custo do ticket é trancado em sua carteira até que o ticket seja usado para votar ou até que ele seja revogado. Tickets entram na mempool e então passam para a ticketpool onde são sorteados para votar de forma aleatória. Existe uma probabilidade de 99.5% de que um ticket irá votar. O ticket médio irá votar em 28 dias, mas tickets que não tenham sido sorteados após 142 dias serão revogados. Os fundos EXCC usados para comprar o ticket são liberados depois deste ter sido votado ou revogado.\n"
 "\n"
 "Quando uma proposta é liberada para votação na Politeia, uma cópia da lista de tickets vivos é feita no momento do início da votação. Todos esses tickets terão direito a votar na proposta em um processo off-chain.\n"
 "\n"

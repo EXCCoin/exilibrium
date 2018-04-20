@@ -1,5 +1,5 @@
 import { home } from "connectors";
-import { DecredLoading } from "indicators";
+import { ExccLoading } from "indicators";
 import TxHistory from "TxHistory";
 import { FormattedMessage as T } from "react-intl";
 import "style/Fonts.less";
@@ -16,7 +16,7 @@ const RecentTransactions = ({
 }) => {
   const hasTxs = (transactions.length > 0) && (tickets.length > 0);
   return (
-    getTransactionsRequestAttempt ? <DecredLoading /> :
+    getTransactionsRequestAttempt ? <ExccLoading /> :
       <Aux>
         <div className="home-content-title">
           {hasTxs
