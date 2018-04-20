@@ -1,16 +1,16 @@
-# decrediton
+# Exquilibrium
 
 [![Build Status](https://travis-ci.org/decred/decrediton.png?branch=master)](https://travis-ci.org/decred/decrediton)
 [![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
 
-decrediton is a cross-platform GUI for decred written in node.js using
+exquilibrium is a cross-platform GUI for EXCC written in node.js using
 Electron.
 
 ## Installation
 
-Currently decrediton is available on Windows, Linux, and macOS.
+Currently exquilibrium is available on Windows, Linux, and macOS.
 
-Decrediton will NOT use or in any way disrupt the wallet file you may
+Exquilibrium will NOT use or in any way disrupt the wallet file you may
 already be using at this time.
 
 Download the decrediton release for your operating system on [decred/decred-binaries](https://github.com/decred/decred-binaries/releases).
@@ -93,13 +93,13 @@ yarn dev
 ```
 
 ## Setting up your development environment
-The following steps will help you configure your decrediton development environment and reduce future startup times.
+The following steps will help you configure your exquilibrium development environment and reduce future startup times.
 
 ### Wallet
-When you launch decrediton, you will be prompted to select a wallet to use. Select your wallet or create a new one using the in-app wizard. Be sure to save your seed and make your password memorable.
+When you launch exquilibrium, you will be prompted to select a wallet to use. Select your wallet or create a new one using the in-app wizard. Be sure to save your seed and make your password memorable.
 
-### Decred Node
-It will be helpful to you to run the Decred node in a separate process and simply attach to it between decrediton restarts. In order to see the advanced daemon configuration options you open your ```config.json``` and set the ```daemon_start_advanced``` flag to ```true``` as follows:
+### EXCC Node
+It will be helpful to you to run the EXCC node in a separate process and simply attach to it between exquilibrium restarts. In order to see the advanced daemon configuration options you open your ```config.json``` and set the ```daemon_start_advanced``` flag to ```true``` as follows:
 
 ```"daemon_start_advanced": true,```
 
@@ -148,7 +148,7 @@ You need to install dcrd, dcrwallet and dcrctl.
 - [dcrd/dcrctl installation instructions](https://github.com/decred/dcrd#updating)
 - [dcrwallet installation instructions](https://github.com/decred/dcrwallet#installation-and-updating)
 
-To build a packaged version of decrediton (including a dmg on OSX and
+To build a packaged version of exquilibrium (including a dmg on OSX and
 exe on Windows), follow the development steps above.  Then build the
 dcr command line tools:
 
@@ -179,7 +179,7 @@ After it is finished it will have the built rpm, deb and tar.gz in the releases/
 
 ## Docker
 
-A docker file for building decrediton is also provided.  With no options it builds for linux on amd64 although it is possible to attempt OSX or arm builds (neither of which have been tested).
+A docker file for building exquilibrium is also provided.  With no options it builds for linux on amd64 although it is possible to attempt OSX or arm builds (neither of which have been tested).
 
 ```
 $ ./build-docker.sh <OS> <ARCH>
