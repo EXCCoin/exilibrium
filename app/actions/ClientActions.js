@@ -1,4 +1,3 @@
-// @flow
 import * as wallet from "wallet";
 import * as sel from "selectors";
 import eq from "lodash/fp/eq";

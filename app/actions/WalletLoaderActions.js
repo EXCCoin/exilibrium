@@ -1,4 +1,3 @@
-// @flow
 import {
   getLoader, startRpc, getWalletExists, createWallet, openWallet, closeWallet, discoverAddresses,
   subscribeToBlockNotifications, fetchHeaders, getStakePoolInfo

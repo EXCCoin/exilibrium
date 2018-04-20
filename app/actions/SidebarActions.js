@@ -1,4 +1,3 @@
-// @flow
 
 export const SHOW_SIDEBAR_MENU = "SHOW_SIDEBAR_MENU";
 export const HIDE_SIDEBAR_MENU = "HIDE_SIDEBAR_MENU";

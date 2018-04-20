@@ -1,4 +1,3 @@
-// @flow
 import * as wallet from "wallet";
 import { getTicketPriceAttempt, updateAccount, getAccountNumbersBalances } from "./ClientActions";
 import { newTransactionsReceived } from "./ClientActions";

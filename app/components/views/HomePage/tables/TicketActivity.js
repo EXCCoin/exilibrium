@@ -1,4 +1,3 @@
-// @flow
 import { home } from "connectors";
 import { DecredLoading } from "indicators";
 import TxHistory from "TxHistory";

@@ -1,4 +1,3 @@
-// @flow
 import { FormattedMessage as T, FormattedRelative } from "react-intl";
 import { RescanProgress } from "indicators";
 import MenuLinks from "./MenuLinks";

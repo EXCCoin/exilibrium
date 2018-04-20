@@ -1,4 +1,3 @@
-// @flow
 import copy from "clipboard-copy";
 import { FormattedMessage as T } from "react-intl";
 import "style/MiscComponents.less";

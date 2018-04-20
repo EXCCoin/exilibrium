@@ -1,4 +1,3 @@
-// @flow
 import Promise from "promise";
 import {
   getPurchaseInfo, setStakePoolAddress, setVoteChoices, getNextAddress, getStakePoolInfo

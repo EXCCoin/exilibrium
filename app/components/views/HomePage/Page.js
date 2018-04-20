@@ -1,4 +1,3 @@
-// @flow
 import { rescan } from "connectors";
 import { FormattedMessage as T } from "react-intl";
 import { Balance, RoutedTabsHeader, RoutedTab } from "shared";

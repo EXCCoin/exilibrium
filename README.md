@@ -44,7 +44,7 @@ This will start dcrd and dcrwallet for you.
 On macOS, double-click the .dmg file, drag the .app to your
 Applications folder.  Double click on Decrediton.app to start.
 
-You can also install via [brew cask](https://caskroom.github.io): 
+You can also install via [brew cask](https://caskroom.github.io):
 ```bash
 brew cask install decrediton
 ```
@@ -105,7 +105,7 @@ It will be helpful to you to run the Decred node in a separate process and simpl
 
 Note: Your config.json file is located in the following directory(s)
 
-Windows - ```C:\Users\<your-username>\AppData\Local\Decrediton\config.json``` 
+Windows - ```C:\Users\<your-username>\AppData\Local\Decrediton\config.json```
 
 OSX - ```$HOME/Library/Application\ Support/Decrediton/config.json```
 
@@ -113,11 +113,11 @@ Linux - ```~/.config/decrediton/config.json```
 
 Run the following to start the Decred daemon in a standalone terminal window:
 
-Windows - ```dcrd --testnet -u USER -P PASSWORD --rpclisten=127.0.0.1:19119 --rpccert=C:\Users\<username>\AppData\Local\Dcrd\rpc.cert``` 
+Windows - ```dcrd --testnet -u USER -P PASSWORD --rpclisten=127.0.0.1:19119 --rpccert=C:\Users\<username>\AppData\Local\Dcrd\rpc.cert```
 
 OSX - ```dcrd --testnet -u USER -P PASSWORD --rpclisten=127.0.0.1:19119 --rpccert=$HOME/Library/Application\ Support/Dcrd/rpc.cert```
 
-Linux - ```dcrd --testnet -u USER -P PASSWORD --rpclisten=127.0.0.1:19119 --rpccert=~/.dcrd/rpc.cert```
+Linux - ```dcrd --testnet -u hello -P world --rpclisten=127.0.0.1:19119 --rpccert=$HOME/.dcrd/rpc.cert```
 
 You can connect to this daemon in ```Advanced Startup => Different Local Daemon Location``` and input the parameters requested. Note that all the parameters needed are present in the command you used to start the node for your respective system.
 

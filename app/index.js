@@ -1,4 +1,3 @@
-// @flow
 window.eval = () => { throw new Error("Do not import things that use eval()"); };
 import { render } from "react-dom";
 import { Provider } from "react-redux";
@@ -13,6 +12,7 @@ import "./style/main.less";
 import "./style/Global.less";
 import "./style/ReactSelectGlobal.less";
 import pkg from "./package.json";
+
 
 var globalCfg = getGlobalCfg();
 const locale = globalCfg.get("locale");

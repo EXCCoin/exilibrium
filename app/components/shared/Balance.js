@@ -1,4 +1,5 @@
 import "style/Balance.less";
+import PropTypes from "prop-types";
 import { FormattedNumber } from "react-intl";
 import { balance } from "connectors";
 
@@ -7,7 +8,7 @@ export const Balance = ({ currencyDisplay, amount, onClick, bold, large,
 }) => {
   const secondary = large ? "balance-tiny" : flat ? "balance-base" : title ? "balance-title" : "balance-small";
   if (currencyDisplay === "DCR") {
-    var totalDcr = 0;
+    let totalDcr = 0;
     if (typeof amount !== "undefined" && amount !== 0 && !isNaN(amount)) {
       totalDcr = preScaled ? parseFloat(amount) : parseInt(amount) / 100000000;
     }
@@ -26,7 +27,7 @@ export const Balance = ({ currencyDisplay, amount, onClick, bold, large,
             { tail + " " }
           </span> }
           <span className={ [ secondary,classNameUnit ].join(" ") }>
-            DCR
+            EXC
           </span>
         </span>
       </div>
@@ -46,5 +47,19 @@ export const Balance = ({ currencyDisplay, amount, onClick, bold, large,
     );
   }
 };
+
+Balance.propTypes = {
+  currencyDisplay: PropTypes.oneOf(["DCR", "atoms"]).isRequired,
+  amount: PropTypes.any,
+  onClick: PropTypes.func,
+  bold: PropTypes.bool,
+  large: PropTypes.bool,
+  flat: PropTypes.bool,
+  title: PropTypes.any,
+  noSmallAmount: PropTypes.any,
+  classNameWrapper: PropTypes.any,
+  classNameUnit: PropTypes.any,
+  preScaled: PropTypes.any
+}
 
 export default balance(Balance);

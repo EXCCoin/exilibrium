@@ -1,4 +1,3 @@
-// @flow
 import { injectIntl } from "react-intl";
 
 @autobind

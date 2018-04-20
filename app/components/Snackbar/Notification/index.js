@@ -1,4 +1,3 @@
-// @flow
 import Transaction from "./Transaction";
 import Message from "./Message";
 import {

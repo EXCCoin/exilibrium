@@ -1,4 +1,3 @@
-// @flow
 import { connect } from "react-redux";
 import { selectorMap } from "../fp";
 import { bindActionCreators } from "redux";

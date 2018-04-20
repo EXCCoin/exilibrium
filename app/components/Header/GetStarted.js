@@ -1,4 +1,3 @@
-// @flow
 import "style/Header.less";
 
 const GetStarted = ({

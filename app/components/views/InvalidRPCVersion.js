@@ -1,4 +1,3 @@
-// @flow
 import { FormattedMessage as T } from "react-intl";
 import { invalidRPCVersion } from "connectors";
 import { StandalonePageBody } from "layout";

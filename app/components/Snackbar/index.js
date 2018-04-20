@@ -1,4 +1,3 @@
-// @flow
 import { snackbar } from "connectors";
 import MUISnackbar from "material-ui/Snackbar";
 import Notification from "./Notification";

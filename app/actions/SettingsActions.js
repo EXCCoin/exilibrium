@@ -1,4 +1,3 @@
-// @flow
 import { getWalletCfg, getGlobalCfg } from "config";
 import { isTestNet } from "selectors";
 export const SETTINGS_SAVE = "SETTINGS_SAVE";
