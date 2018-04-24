@@ -9,6 +9,8 @@ import { MainNetParams, TestNetParams } from "wallet/constants";
 import { TicketTypes, decodeVoteScript } from "./helpers/tickets";
 
 const EMPTY_ARRAY = [];  // Maintaining identity (will) improve performance;
+
+export const appVersion = get([ "daemon", "appVersion" ]);
 export const updateAvailable = get([ "daemon", "updateAvailable" ]);
 export const openForm = get([ "daemon", "openForm" ]);
 export const isDaemonRemote = get([ "daemon", "daemonRemote" ]);
@@ -771,6 +773,18 @@ export const exportingData = get([ "control", "exportingData" ]);
 export const location = get([ "routing", "location" ]);
 
 export const voteTimeStats = get([ "statistics", "voteTime" ]);
+export const averageVoteTime = createSelector(
+  [ voteTimeStats ],
+  (voteTimeStats) => {
+    if (!voteTimeStats || !voteTimeStats.data.length) return 0;
+    const ticketCount = voteTimeStats.data.reduce((s, v) => s + v.series.count, 0);
+    let sum = 0;
+    for (let i = 0; i < voteTimeStats.data.length; i++) {
+      sum += voteTimeStats.data[i].series.count * i;
+    }
+    return sum / ticketCount;
+  }
+);
 export const medianVoteTime = createSelector(
   [ voteTimeStats ],
   (voteTimeStats) => {

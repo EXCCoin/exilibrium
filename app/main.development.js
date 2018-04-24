@@ -298,6 +298,7 @@ ipcMain.on("start-wallet", (event, walletPath, testnet) => {
     event.returnValue = dcrwPID;
     return;
   }
+  initWalletCfg(testnet, walletPath);
   try {
     dcrwPID = launchDCRWallet(walletPath, testnet);
   } catch (e) {
@@ -503,11 +504,13 @@ const launchDCRWallet = (walletPath, testnet) => {
 
   const cfg = getWalletCfg(testnet, walletPath);
 
+  args.push("--ticketbuyer.nospreadticketpurchases");
   args.push("--ticketbuyer.balancetomaintainabsolute=" + cfg.get("balancetomaintain"));
   args.push("--ticketbuyer.maxfee=" + cfg.get("maxfee"));
   args.push("--ticketbuyer.maxpricerelative=" + cfg.get("maxpricerelative"));
   args.push("--ticketbuyer.maxpriceabsolute=" + cfg.get("maxpriceabsolute"));
   args.push("--ticketbuyer.maxperblock=" + cfg.get("maxperblock"));
+  args.push("--addridxscanlen=" + cfg.get("gaplimit"));
 
   var dcrwExe = getExecutablePath("dcrwallet", argv.customBinPath);
   if (!fs.existsSync(dcrwExe)) {
