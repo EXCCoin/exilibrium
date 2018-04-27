@@ -16,7 +16,11 @@ import SideBar from "components/SideBar";
 import { BlurableContainer } from "layout";
 import { walletContainer } from "connectors";
 
-const pageAnimation = { atEnter: { opacity: 0 }, atLeave: { opacity: 0 }, atActive: { opacity: 1 } };
+const pageAnimation = {
+  atEnter: { opacity: 0 },
+  atLeave: { opacity: 0 },
+  atActive: { opacity: 1 }
+};
 
 @autobind
 class Wallet extends React.Component {
@@ -25,19 +29,21 @@ class Wallet extends React.Component {
     return (
       <BlurableContainer className="page-body">
         <SideBar />
-        <AnimatedSwitch {...pageAnimation} className={expandSideBar ? "page-view" : "page-view-reduced-bar"}>
-          <Route path="/home"                           component={HomePage} />
-          <Route path="/accounts"                       component={AccountsPage} />
-          <Route path="/settings"                       component={SettingsPage} />
-          <Route path="/walletError"                    component={WalletError} />
-          <Route path="/error"                          component={ErrorScreen} />
-          <Route path="/invalidRPCVersion"              component={InvalidRPCVersion} />
-          <Route path="/help"                           component={HelpPage} />
-          <Route path="/security"                       component={SecurityPage} />
-          <Route path="/transactions/history/:txHash"   component={TransactionPage} />
-          <Route path="/transactions"                   component={TransactionsPage} />
-          <Route path="/tickets"                        component={TicketsPage} />
-          <Route path="/tutorial"                       component={TutorialsPage} />
+        <AnimatedSwitch
+          {...pageAnimation}
+          className={expandSideBar ? "page-view" : "page-view-reduced-bar"}>
+          <Route path="/home" component={HomePage} />
+          <Route path="/accounts" component={AccountsPage} />
+          <Route path="/settings" component={SettingsPage} />
+          <Route path="/walletError" component={WalletError} />
+          <Route path="/error" component={ErrorScreen} />
+          <Route path="/invalidRPCVersion" component={InvalidRPCVersion} />
+          <Route path="/help" component={HelpPage} />
+          <Route path="/security" component={SecurityPage} />
+          <Route path="/transactions/history/:txHash" component={TransactionPage} />
+          <Route path="/transactions" component={TransactionsPage} />
+          <Route path="/tickets" component={TicketsPage} />
+          <Route path="/tutorial" component={TutorialsPage} />
         </AnimatedSwitch>
       </BlurableContainer>
     );

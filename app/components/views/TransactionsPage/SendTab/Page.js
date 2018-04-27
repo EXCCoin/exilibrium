@@ -97,7 +97,7 @@ const SendPage = ({
         buttonLabel={<T id="send.sendBtn" m="Send" />}
       />
       <Aux show={hasUnminedTransactions}>
-        <Tooltip md text={<T id="send.rebroadcastTooltip" m="Rebroadcasting transactions may help in situations when a transaction has been sent to a node that had poor connectivity to the general Decred network."/>}>
+        <Tooltip md text={<T id="send.rebroadcastTooltip" m="Rebroadcasting transactions may help in situations when a transaction has been sent to a node that had poor connectivity to the general EXCC network."/>}>
           <KeyBlueButton onClick={onRebroadcastUnmined}>
             <T id="send.rebroadcastUnmined" m="Rebroadcast"/>
           </KeyBlueButton>

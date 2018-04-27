@@ -9,56 +9,56 @@ const pad = (s, n) => {
 };
 
 // logTimestamp is a function to format current time as a string using a
-// format compatible to dcrd/dcrwallet logs. This function is meant to be
+// format compatible to exccd/exccwallet logs. This function is meant to be
 // installed in the winston loggers.
 const logTimestamp = () => {
-  let date = new Date();
-  let y = date.getFullYear();
-  let mo = pad(date.getMonth() + 1);
-  let d = pad(date.getDate());
-  let h = pad(date.getHours());
-  let mi = pad(date.getMinutes());
-  let s = pad(date.getSeconds());
-  let ms = pad(date.getMilliseconds(), 3);
+  const date = new Date();
+  const y = date.getFullYear();
+  const mo = pad(date.getMonth() + 1);
+  const d = pad(date.getDate());
+  const h = pad(date.getHours());
+  const mi = pad(date.getMinutes());
+  const s = pad(date.getSeconds());
+  const ms = pad(date.getMilliseconds(), 3);
   return `${y}-${mo}-${d} ${h}:${mi}:${s}.${ms}`;
 };
 
 // logLevelsPrintable are the printable strings for each log level, compatible
-// with the dcrd/dcrwallet logs.
+// with the exccd/exccwallet logs.
 const logLevelsPrintable = {
-  "error": "ERR",
-  "warn": "WRN",
-  "info": "INF",
-  "verbose": "VBS",
-  "debug": "DBG",
-  "silly": "TRC",
+  error: "ERR",
+  warn: "WRN",
+  info: "INF",
+  verbose: "VBS",
+  debug: "DBG",
+  silly: "TRC"
 };
 
-const logFormatter = (opts) => {
+const logFormatter = opts => {
   //console.log(opts);
-  const lvl = logLevelsPrintable[opts.level]||"UNK";
+  const lvl = logLevelsPrintable[opts.level] || "UNK";
   const time = opts.timestamp();
   const msg = opts.message;
   const subsys = "DCTN";
   return `${time} [${lvl}] ${subsys}: ${msg}`;
 };
 
-const logFormatterColorized = (opts) => {
-  const config = winston.config;
+const logFormatterColorized = opts => {
+  const { config } = winston;
   return config.colorize(opts.level, logFormatter(opts));
 };
 
 // createLogger creates the main app logger. This stores all logs into the
-// decrediton app data dir and sends to the console when debug == true.
+// exilibrium app data dir and sends to the console when debug == true.
 // This is meant to be called from the ipcMain thread.
 export function createLogger(debug) {
-  const logger = new (winston.Logger)({
+  const logger = new winston.Logger({
     transports: [
-      new (winston.transports.File)({
+      new winston.transports.File({
         json: false,
-        filename: path.join(app.getPath("userData"), "decrediton.log"),
+        filename: path.join(app.getPath("userData"), "exilibrium.log"),
         timestamp: logTimestamp,
-        formatter: logFormatter,
+        formatter: logFormatter
       })
     ]
   });
@@ -67,7 +67,7 @@ export function createLogger(debug) {
     logger.add(winston.transports.Console, {
       timestamp: logTimestamp,
       formatter: logFormatterColorized,
-      level: "debug",
+      level: "debug"
     });
   }
 

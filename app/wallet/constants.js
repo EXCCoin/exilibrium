@@ -1,4 +1,4 @@
-// Constants copied from dcrd/chaincfg/params.go
+// Constants copied from exccd/chaincfg/params.go
 
 export const TestNetParams = {
   TicketMaturity:          16,

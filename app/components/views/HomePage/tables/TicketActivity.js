@@ -1,5 +1,5 @@
 import { home } from "connectors";
-import { DecredLoading } from "indicators";
+import { ExccLoading } from "indicators";
 import TxHistory from "TxHistory";
 import { FormattedMessage as T } from "react-intl";
 import NoTicketsLinks from "./NoTicketsLinks";
@@ -15,7 +15,7 @@ const RecentTickets = ({
 }) => {
   const hasTickets = tickets.length > 0;
   return (
-    getTransactionsRequestAttempt ? <DecredLoading /> :
+    getTransactionsRequestAttempt ? <ExccLoading /> :
       <Aux>
         <div className="home-content-title">
           {hasTickets

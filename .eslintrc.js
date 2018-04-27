@@ -1,59 +1,54 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "node": true,
-    "jest": true,
-    "es6": true
+  env: {
+    browser: true,
+    node: true,
+    jest: true,
+    es6: true
   },
-  "plugins": [
-    "react"
-  ],
-  "parser": "babel-eslint",
-  "extends": "eslint:recommended",
-  "rules": {
-    "object-curly-spacing": [
-      "error", 
-      "always"
-    ],
-    "array-bracket-spacing": [
-      "error", 
-      "always"
-    ],
-    "indent": [
-      "error",
-      2
-    ],
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
-    "quotes": [
-      "error",
-      "double"
-    ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "no-trailing-spaces": [
-      "error"
-    ],
-    "no-console": [
-      "off"
-    ],
-    "eol-last": [
-      "error",
-      "always"
-    ],
-    "react/jsx-uses-vars":1,
-    "react/jsx-uses-react":1,
+  plugins: ["react", "prettier"],
+  parser: "babel-eslint",
+  extends: "eslint:recommended",
+  rules: {
+    semi: ["error", "always"],
+    "no-console": "off",
+    "no-debugger": "warn",
+    "no-unused-vars": "warn",
+    "require-yield": "warn",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "prettier/prettier": "warn",
+    "no-useless-return": "warn",
+    "no-return-await": "warn",
+    "no-with": "error",
+    "require-await": "warn",
+    yoda: "error",
+    "no-new": "error",
+    "no-loop-func": "error",
+    "no-multi-spaces": "warn",
+    "array-callback-return": "error",
+    complexity: "error",
+    "dot-notation": "error",
+    eqeqeq: "error",
+    "no-alert": "warn",
+    "no-else-return": "warn",
+    "prefer-rest-params": "error",
+    "prefer-template": "warn",
+    "prefer-spread": "warn",
+    "prefer-destructuring": "warn",
+    "prefer-const": "warn",
+    "prefer-arrow-callback": "warn",
+    "no-var": "error",
+    "no-duplicate-imports": "warn",
+    "no-useless-rename": "warn",
+    "object-shorthand": "warn",
+    "arrow-spacing": "warn"
   },
-  "globals": {
-    "Uint8Array": true,
-    "Map": true,
-    "React": true,
-    "PropTypes": true,
-    "autobind": true,
-    "Aux": true,
+  globals: {
+    Uint8Array: true,
+    Map: true,
+    React: true,
+    PropTypes: true,
+    autobind: true,
+    Aux: true
   }
 };

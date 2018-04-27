@@ -9,7 +9,7 @@ SEED_WORDS.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 export const SEED_LENGTH = {
   WORDS: 33,
   HEX_MAX: 128,
-  HEX_MIN: 32,
+  HEX_MIN: 32
 };
 
 export const getSeedService = createSelector(
@@ -20,21 +20,24 @@ export const getSeedService = createSelector(
     ({ grpc: { port } }) => port
   ],
   (network, walletName, address, port) =>
-    (new Promise((resolve, reject) =>
+    new Promise((resolve, reject) =>
       seederFactory(
-        network == "testnet",
+        network === "testnet",
         walletName,
         address,
         port,
-        (response, err) => err ? reject(err) : resolve(response)
+        (response, err) => (err ? reject(err) : resolve(response))
       )
-    )).then(seeder => ({
+    ).then(seeder => ({
       generate() {
         return new Promise((resolve, reject) => {
           try {
             const request = new GenerateRandomSeedRequest();
-            seeder.generateRandomSeed(request, (err, response) => err ? reject(err) : resolve(response));
-          } catch(err) {
+            seeder.generateRandomSeed(
+              request,
+              (err, response) => (err ? reject(err) : resolve(response))
+            );
+          } catch (err) {
             reject(err);
           }
         });
@@ -45,8 +48,8 @@ export const getSeedService = createSelector(
           try {
             const request = new DecodeSeedRequest();
             request.setUserInput(mnemonic);
-            seeder.decodeSeed(request, (err, response) => err ? reject(err) : resolve(response));
-          } catch(err) {
+            seeder.decodeSeed(request, (err, response) => (err ? reject(err) : resolve(response)));
+          } catch (err) {
             reject(err);
           }
         });

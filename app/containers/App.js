@@ -1,9 +1,11 @@
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "react-router-redux";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { IntlProvider } from "react-intl";
 import MUItheme from "materialUITheme";
 import { defaultFormats } from "i18n/locales";
 import app from "connectors/app";
-import { Redirect, Route, Switch } from "react-router-dom";
 import { AnimatedSwitch } from "react-router-transition";
 import GetStartedContainer from "./GetStarted";
 import WalletContainer from "./Wallet";
@@ -11,7 +13,11 @@ import ShutdownAppPage from "components/views/ShutdownAppPage";
 import Snackbar from "components/Snackbar";
 import "style/Layout.less";
 
-const topLevelAnimation = { atEnter: { opacity: 0 }, atLeave: { opacity: 0 }, atActive: { opacity: 1 } };
+const topLevelAnimation = {
+  atEnter: { opacity: 0 },
+  atLeave: { opacity: 0 },
+  atActive: { opacity: 1 }
+};
 
 @autobind
 class App extends React.Component {
@@ -20,10 +26,10 @@ class App extends React.Component {
     window: PropTypes.object.isRequired,
     shutdownApp: PropTypes.func.isRequired,
     shutdownRequested: PropTypes.bool.isRequired,
-    daemonStopped: PropTypes.bool.isRequired,
+    daemonStopped: PropTypes.bool.isRequired
   };
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     const { window } = props;
     window.addEventListener("beforeunload", this.beforeWindowUnload);
@@ -32,7 +38,7 @@ class App extends React.Component {
     props.listenForAppReloadRequest(this.onReloadRequested);
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.removeEventListener("beforeunload", this.beforeWindowUnload);
   }
 
@@ -68,12 +74,14 @@ class App extends React.Component {
           defaultFormats={defaultFormats}
           key={locale.key}>
           <Aux>
-            <Switch><Redirect from="/" exact to="/getStarted" /></Switch>
-            <Snackbar/>
+            <Switch>
+              <Redirect from="/" exact to="/getStarted" />
+            </Switch>
+            <Snackbar />
             <AnimatedSwitch {...topLevelAnimation} className="top-level-container">
-              <Route path="/getStarted"  component={GetStartedContainer} />
-              <Route path="/shutdown"    component={ShutdownAppPage} />
-              <Route path="/"            component={WalletContainer} />
+              <Route path="/getStarted" component={GetStartedContainer} />
+              <Route path="/shutdown" component={ShutdownAppPage} />
+              <Route path="/" component={WalletContainer} />
             </AnimatedSwitch>
             <div id="modal-portal" />
           </Aux>
@@ -83,4 +91,18 @@ class App extends React.Component {
   }
 }
 
-export default app(App);
+const ConnectedApp = app(App);
+
+export default class extends React.Component {
+  render() {
+    return (
+      <Provider store={this.props.store}>
+        <ConnectedRouter history={this.props.history}>
+          <Switch>
+            <Route path="/" component={ConnectedApp} />
+          </Switch>
+        </ConnectedRouter>
+      </Provider>
+    );
+  }
+}

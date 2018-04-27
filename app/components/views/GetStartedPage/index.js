@@ -15,25 +15,31 @@ import { FormattedMessage as T } from "react-intl";
 
 @autobind
 class GetStartedPage extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = { showSettings: false, showLogs: false, showReleaseNotes: false };
   }
 
   componentDidMount() {
-    const { getWalletReady, getDaemonStarted, getNeededBlocks, onGetAvailableWallets, onStartWallet, prepStartDaemon, determineNeededBlocks } = this.props;
+    const {
+      getWalletReady,
+      getDaemonStarted,
+      getNeededBlocks,
+      onGetAvailableWallets,
+      onStartWallet,
+      prepStartDaemon,
+      determineNeededBlocks
+    } = this.props;
     if (!getWalletReady) {
-      onGetAvailableWallets()
-        .then(({ previousWallet }) => {
-          previousWallet && onStartWallet(previousWallet);
-        });
+      onGetAvailableWallets().then(({ previousWallet }) => {
+        previousWallet && onStartWallet(previousWallet);
+      });
     }
     if (!getNeededBlocks) {
       determineNeededBlocks();
     }
     if (!getDaemonStarted) {
-      setTimeout(()=>prepStartDaemon(), 1000);
+      setTimeout(() => prepStartDaemon(), 1000);
     }
   }
 
@@ -46,7 +52,7 @@ class GetStartedPage extends React.Component {
   }
 
   onShowSettings() {
-    this.setState({ showSettings: true, showLogs: false, showReleaseNotes: false   });
+    this.setState({ showSettings: true, showLogs: false, showReleaseNotes: false });
   }
 
   onHideSettings() {
@@ -54,7 +60,7 @@ class GetStartedPage extends React.Component {
   }
 
   onShowLogs() {
-    this.setState({ showLogs: true, showSettings: false, showReleaseNotes: false  });
+    this.setState({ showLogs: true, showSettings: false, showReleaseNotes: false });
   }
 
   onHideLogs() {
@@ -74,12 +80,7 @@ class GetStartedPage extends React.Component {
       ...props
     } = this.props;
 
-    const {
-      showSettings,
-      showLogs,
-      showReleaseNotes,
-      ...state
-    } = this.state;
+    const { showSettings, showLogs, showReleaseNotes, ...state } = this.state;
 
     const {
       onShowReleaseNotes,
@@ -97,7 +98,13 @@ class GetStartedPage extends React.Component {
       return <Logs {...{ onShowSettings, onHideLogs, ...props }} />;
     } else if (showReleaseNotes) {
       return <ReleaseNotes {...{ onShowSettings, onShowLogs, onHideReleaseNotes, ...props }} />;
-    } else if (isAdvancedDaemon && openForm && !remoteAppdataError && !isPrepared && getWalletReady) {
+    } else if (
+      isAdvancedDaemon &&
+      openForm &&
+      !remoteAppdataError &&
+      !isPrepared &&
+      getWalletReady
+    ) {
       Form = AdvancedStartupBody;
     } else if (remoteAppdataError && !isPrepared && getWalletReady) {
       Form = RemoteAppdataError;
@@ -105,55 +112,64 @@ class GetStartedPage extends React.Component {
       Form = WalletSelectionBody;
     } else {
       switch (startStepIndex || 0) {
-      case 1:
-        text = startupError ? startupError :
-          <T id="getStarted.header.checkingWalletState.meta" m="Checking wallet state" />;
-        break;
-      case 2:
-        if (hasExistingWallet) {
-          Form = OpenWallet;
-        } else {
-          return <CreateWallet {...props} />;
-        }
-        break;
-      case 3:
-      case 4:
-        text = <T id="getStarted.header.startrpc.meta" m="Establishing RPC connection" />;
-        Form = StartRPCBody;
-        break;
-      case 5:
-        text = <T id="getStarted.header.discoveringAddresses.meta" m="Discovering addresses" />;
-        Form = DiscoverAddressesBody;
-        break;
-      case 6:
-        text = <T id="getStarted.header.fetchingBlockHeaders.meta" m="Fetching block headers" />;
-        Form = FetchBlockHeadersBody;
-        break;
-      case 7:
-        text = <T id="getStarted.header.rescanWallet.meta" m="Scanning blocks for transactions" />;
-        Form = RescanWalletBody;
-        break;
-      default:
-        text = <T id="getStarted.header.finalizingSetup.meta" m="Finalizing setup" />;
+        case 1:
+          text = startupError ? (
+            startupError
+          ) : (
+            <T id="getStarted.header.checkingWalletState.meta" m="Checking wallet state" />
+          );
+          break;
+        case 2:
+          if (hasExistingWallet) {
+            Form = OpenWallet;
+          } else {
+            return <CreateWallet {...props} />;
+          }
+          break;
+        case 3:
+        case 4:
+          text = <T id="getStarted.header.startrpc.meta" m="Establishing RPC connection" />;
+          Form = StartRPCBody;
+          break;
+        case 5:
+          text = <T id="getStarted.header.discoveringAddresses.meta" m="Discovering addresses" />;
+          Form = DiscoverAddressesBody;
+          break;
+        case 6:
+          text = <T id="getStarted.header.fetchingBlockHeaders.meta" m="Fetching block headers" />;
+          Form = FetchBlockHeadersBody;
+          break;
+        case 7:
+          text = (
+            <T id="getStarted.header.rescanWallet.meta" m="Scanning blocks for transactions" />
+          );
+          Form = RescanWalletBody;
+          break;
+        default:
+          text = <T id="getStarted.header.finalizingSetup.meta" m="Finalizing setup" />;
       }
     }
 
-    return <DaemonLoading Form={Form}
-      {...{
-        ...props,
-        ...state,
-        text,
-        getWalletReady,
-        startupError,
-        showSettings,
-        showLogs,
-        onShowReleaseNotes,
-        onHideReleaseNotes,
-        onShowSettings,
-        onHideSettings,
-        onShowLogs,
-        onHideLogs
-      }} />;
+    return (
+      <DaemonLoading
+        Form={Form}
+        {...{
+          ...props,
+          ...state,
+          text,
+          getWalletReady,
+          startupError,
+          showSettings,
+          showLogs,
+          onShowReleaseNotes,
+          onHideReleaseNotes,
+          onShowSettings,
+          onHideSettings,
+          onShowLogs,
+          onHideLogs
+        }}
+      />
+    );
   }
 }
 

@@ -6,13 +6,12 @@ import os from "os";
 // that was available when using the standalone node but not there when using
 // electron in production mode.
 export function appDataDirectory() {
-  if (os.platform() == "win32") {
+  if (os.platform() === "win32") {
     return path.join(os.homedir(), "AppData", "Local", "Decrediton");
   } else if (process.platform === "darwin") {
-    return path.join(os.homedir(), "Library","Application Support","decrediton");
-  } else {
-    return path.join(os.homedir(),".config","decrediton");
+    return path.join(os.homedir(), "Library", "Application Support", "decrediton");
   }
+  return path.join(os.homedir(), ".config", "decrediton");
 }
 
 export function getGlobalCfgPath() {
@@ -47,45 +46,49 @@ export function getWalletDBPathFromWallets(testnet, walletPath) {
   return path.join(getWalletsDirectoryPath(), network, walletPath, networkFolder, "wallet.db");
 }
 
-export function getDecreditonWalletDBPath(testnet) {
+export function getExilibriumWalletDBPath(testnet) {
   return path.join(appDataDirectory(), testnet ? "testnet2" : "mainnet", "wallet.db");
 }
 
-export function dcrctlCfg(configPath) {
+export function exccctlCfg(configPath) {
   return path.resolve(configPath, "dcrctl.conf");
 }
 
-export function dcrdCfg(configPath) {
+export function exccdCfg(configPath) {
   return path.resolve(configPath, "dcrd.conf");
 }
 
-export function dcrwalletCfg(configPath) {
+export function exccwalletCfg(configPath) {
   return path.resolve(configPath, "dcrwallet.conf");
 }
 
-export function getDcrdPath() {
-  if (os.platform() == "win32") {
+export function getExccdPath() {
+  if (os.platform() === "win32") {
     return path.join(os.homedir(), "AppData", "Local", "Dcrd");
   } else if (process.platform === "darwin") {
-    return path.join(os.homedir(), "Library","Application Support","dcrd");
-  } else {
-    return path.join(os.homedir(),".dcrd");
+    return path.join(os.homedir(), "Library", "Application Support", "dcrd");
   }
+  return path.join(os.homedir(), ".dcrd");
 }
 
-export function getDcrdRpcCert (appDataPath) {
-  return path.resolve(appDataPath ? appDataPath : getDcrdPath(), "rpc.cert");
+export function getExccdRpcCert(appDataPath) {
+  return path.resolve(appDataPath ? appDataPath : getExccdPath(), "rpc.cert");
 }
 
 export function getExecutablePath(name, customBinPath) {
-  let binPath = customBinPath ? customBinPath :
-    process.env.NODE_ENV === "development"
+  const binPath = customBinPath
+    ? customBinPath
+    : process.env.NODE_ENV === "development"
       ? path.join(__dirname, "..", "..", "bin")
       : path.join(process.resourcesPath, "bin");
-  let execName = os.platform() !== "win32" ? name :
-    os.arch() == "x64" ? name + "64.exe" :
-      os.arch() == "ia32" ? name + "32.exe" :
-        name + ".exe";
+  let execName =
+    os.platform() !== "win32"
+      ? name
+      : os.arch() === "x64"
+        ? name + "64.exe"
+        : os.arch() === "ia32"
+          ? name + "32.exe"
+          : name + ".exe";
 
   return path.join(binPath, execName);
 }

@@ -4,21 +4,21 @@ import { strToDcrAtoms } from "helpers/strings";
 import balanceConnector from "connectors/balance";
 
 /**
- * FixedDcrInput is a simple numeric input that is assumed to **always** hold
- * a floating point number representing a DCR amount (ie, an amount that
+ * FixedExccInput is a simple numeric input that is assumed to **always** hold
+ * a floating point number representing a EXCC amount (ie, an amount that
  * will be mutiplied by 1e8 to get to the actual atoms value).
  *
  * This is **not** affected by the global currencyDisplay state.
  *
- * Whenever possible, use the DcrInput component, as it is more flexible and
+ * Whenever possible, use the ExccInput component, as it is more flexible and
  * already manages the underlying input value in atoms.
  */
-export const FixedDcrInput = ({ currencyDisplay, ...props }) =>
+export const FixedExccInput = ({ currencyDisplay, ...props }) =>
   <FloatInput {...{ ...props, unit: currencyDisplay, maxFracDigits: 8 }} />;
 
 /**
- * DcrInput provides a way to receive decred amount inputs. Instead of the usual
- * value/onChange pair, it uses amount/onChangeAmount to track values in decred
+ * ExccInput provides a way to receive excc amount inputs. Instead of the usual
+ * value/onChange pair, it uses amount/onChangeAmount to track values in excc
  * atoms, correctly accounting for the currently used currencyDisplay, floating
  * convertions, etc.
  *
@@ -27,7 +27,7 @@ export const FixedDcrInput = ({ currencyDisplay, ...props }) =>
  * amount in **ATOMS** (as required by various wallet operations).
  */
 @autobind
-class DcrInput extends React.Component {
+class ExccInput extends React.Component {
 
   constructor(props) {
     super(props);
@@ -91,4 +91,4 @@ class DcrInput extends React.Component {
   }
 }
 
-export default balanceConnector(DcrInput);
+export default balanceConnector(ExccInput);

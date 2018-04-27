@@ -60,7 +60,7 @@
   display: inline-block;
   padding: 16px;
   border-radius: 5px;
-  background-color: #2971ff;
+  background-color: #5956fc;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   border: 1px solid transparent;
   color: #fff;
@@ -73,7 +73,7 @@
 }
 
 .key-blue-button:hover {
-  background-color: #1b58ff;
+  background-color: #4143cd;
 }
 
 .key-blue-button:active {
@@ -81,8 +81,10 @@
   background-color: #0025cc;
 }
 
-.key-blue-button-disabled, .key-blue-button[disabled],
-  .danger-button-disabled, .danger-button[disabled] {
+.key-blue-button-disabled,
+.key-blue-button[disabled],
+.danger-button-disabled,
+.danger-button[disabled] {
   cursor: default;
   display: inline-block;
   padding: 16px;
@@ -342,7 +344,7 @@
   position: absolute;
   height: 52px;
   width: 100%;
-  border-left: 5px solid #FF00A5;
+  border-left: 5px solid #ff00a5;
 }
 
 .sidebar-mainnet .menu-caret {
@@ -496,8 +498,12 @@
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .rescan-button.spin {

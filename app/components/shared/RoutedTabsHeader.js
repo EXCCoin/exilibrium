@@ -7,7 +7,6 @@ export const RoutedTab = (path, link) => ({ path, link });
 
 @autobind
 class RoutedTabsHeader extends React.Component {
-
   _nodes = new Map();
   state = { caretLeft: null, caretWidth: null, selectedTab: null };
 
@@ -46,24 +45,26 @@ class RoutedTabsHeader extends React.Component {
   render() {
     const { tabs } = this.props;
 
-    const tabLinks = tabs.map(t =>
+    const tabLinks = tabs.map(t => (
       <span className="tab" key={t.path} ref={ref => this._nodes.set(t.path, ref)}>
-        <Link to={t.path}>
-          {t.link}
-        </Link>
+        <Link to={t.path}>{t.link}</Link>
       </span>
-    );
+    ));
 
     const caretStyle = {
       left: spring(this.state.caretLeft, theme("springs.tab")),
-      width: spring(this.state.caretWidth, theme("springs.tab")),
+      width: spring(this.state.caretWidth, theme("springs.tab"))
     };
 
     return (
       <div className="tabs">
         {tabLinks}
         <Motion style={caretStyle}>
-          { style => <div className="tabs-caret"><div className="active" style={style}></div></div> }
+          {style => (
+            <div className="tabs-caret">
+              <div className="active" style={style} />
+            </div>
+          )}
         </Motion>
       </div>
     );
@@ -71,7 +72,7 @@ class RoutedTabsHeader extends React.Component {
 }
 
 RoutedTabsHeader.propTypes = {
-  tabs: PropTypes.array.isRequired,
+  tabs: PropTypes.array.isRequired
 };
 
 export default routing(RoutedTabsHeader);

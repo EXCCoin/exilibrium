@@ -40,27 +40,31 @@ const mapStateToProps = selectorMap({
   updateAvailable: sel.updateAvailable
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  determineNeededBlocks: wla.determineNeededBlocks,
-  prepStartDaemon: da.prepStartDaemon,
-  onShowTutorial: da.showTutorial,
-  onShowLanguage: da.showLanguage,
-  onShowGetStarted: da.showGetStarted,
-  onSelectLanguage: da.selectLanguage,
-  finishTutorial: da.finishTutorial,
-  onReturnToNewSeed: wla.createWalletGoBackNewSeed,
-  onReturnToExistingOrNewScreen: wla.createWalletGoBackExistingOrNew,
-  onSetCreateWalletFromExisting: wla.createWalletExistingToggle,
-  onDiscoverAddresses: wla.discoverAddressAttempt,
-  onOpenWallet: wla.openWalletAttempt,
-  onRetryStartRPC: wla.startRpcRequestFunc,
-  doVersionCheck: wla.versionCheckAction,
-  onStartDaemon: da.startDaemon,
-  onStartWallet: da.startWallet,
-  onCreateWallet: da.createWallet,
-  onRemoveWallet: da.removeWallet,
-  setCredentialsAppdataError: da.setCredentialsAppdataError,
-  onGetAvailableWallets: da.getAvailableWallets
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      determineNeededBlocks: wla.determineNeededBlocks,
+      prepStartDaemon: da.prepStartDaemon,
+      onShowTutorial: da.showTutorial,
+      onShowLanguage: da.showLanguage,
+      onShowGetStarted: da.showGetStarted,
+      onSelectLanguage: da.selectLanguage,
+      finishTutorial: da.finishTutorial,
+      onReturnToNewSeed: wla.createWalletGoBackNewSeed,
+      onReturnToExistingOrNewScreen: wla.createWalletGoBackExistingOrNew,
+      onSetCreateWalletFromExisting: wla.createWalletExistingToggle,
+      onDiscoverAddresses: wla.discoverAddressAttempt,
+      onOpenWallet: wla.openWalletAttempt,
+      onRetryStartRPC: wla.startRpcRequestFunc,
+      doVersionCheck: wla.versionCheckAction,
+      onStartDaemon: da.startDaemon,
+      onStartWallet: da.startWallet,
+      onCreateWallet: da.createWallet,
+      onRemoveWallet: da.removeWallet,
+      setCredentialsAppdataError: da.setCredentialsAppdataError,
+      onGetAvailableWallets: da.getAvailableWallets
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

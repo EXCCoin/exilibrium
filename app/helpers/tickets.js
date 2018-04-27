@@ -18,7 +18,7 @@ export const TicketTypes = new Map([
 // Testing whether the provided script is a vote script is really basic right
 // now.
 // Reference for what a voting script looks like (as of this writing):
-// https://github.com/decred/dcrd/blob/3f3174c987091b03bb34f1fdf4614d10ce6fbfc5/blockchain/stake/staketx.go#L458
+// https://github.com/EXCCoin/exccd/blob/3f3174c987091b03bb34f1fdf4614d10ce6fbfc5/blockchain/stake/staketx.go#L458
 export function decodeVoteScript(network, outputScript) {
   if ((outputScript.length < 4) || (outputScript[0] !== 0x6a)) { // 0x6a == OP_RETURN
     return null;
@@ -31,7 +31,7 @@ export function decodeVoteScript(network, outputScript) {
   let vote = outputScript.slice(2, 4).reduce((a,v,i) => a|(v<<(i*8), 0));
   let version = outputScript.length > 4 ? outputScript.slice(4,8).reduce((a,v,i) => a|(v<<(i*8)), 0) : 0;
 
-  // TODO: currently hard coded because dcrwallet doesn't return all
+  // TODO: currently hard coded because exccwallet doesn't return all
   // agendas (only the active ones). All agendas are needed for historical
   // votes.
   let agendas = {

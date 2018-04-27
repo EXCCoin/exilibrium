@@ -9,12 +9,16 @@ const mapStateToProps = selectorMap({
   locale: sel.locale,
   window: sel.mainWindow,
   daemonStopped: sel.daemonStopped,
-  shutdownRequested: sel.shutdownRequested,
+  shutdownRequested: sel.shutdownRequested
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  shutdownApp: da.shutdownApp,
-  listenForAppReloadRequest: ca.listenForAppReloadRequest,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      shutdownApp: da.shutdownApp,
+      listenForAppReloadRequest: ca.listenForAppReloadRequest
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

@@ -3,27 +3,27 @@
   <head>
     <meta charset="utf-8">
     <script>
-      (function() {
-        if (!process.env.HOT) {
-          const link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.href = './dist/style.css';
-          document.write(link.outerHTML);
-        }
-      }());
-    </script>
+    (function() {
+  if (!process.env.HOT) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "./dist/style.css";
+    document.write(link.outerHTML);
+  }
+})();
+</script>
   </head>
-  <body class="decrediton">
+  <body class="exilibrium">
     <div id="root"></div>
     <script>
-      {
-        const script = document.createElement('script');
-        const port = process.env.PORT || 3000;
-        script.src = (process.env.HOT)
-          ? 'http://localhost:' + port + '/dist/bundle.js'
-          : './dist/bundle.js';
-        document.write(script.outerHTML);
-      }
-    </script>
+    {
+  const script = document.createElement("script");
+  const port = process.env.PORT || 3000;
+  script.src = process.env.HOT
+    ? "http://localhost:" + port + "/dist/bundle.js"
+    : "./dist/bundle.js";
+  document.write(script.outerHTML);
+}
+</script>
   </body>
 </html>

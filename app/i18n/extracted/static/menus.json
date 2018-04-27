@@ -96,20 +96,20 @@
     "defaultMessage": "Select All"
   },
   {
-    "id": "appMenu.decrediton",
-    "defaultMessage": "Decrediton"
+    "id": "appMenu.exilibrium",
+    "defaultMessage": "Exilibrium"
   },
   {
-    "id": "appMenu.aboutDecrediton",
-    "defaultMessage": "About Decrediton"
+    "id": "appMenu.aboutExilibrium",
+    "defaultMessage": "About Exilibrium"
   },
   {
     "id": "appMenu.services",
     "defaultMessage": "Services"
   },
   {
-    "id": "appMenu.hideDecrediton",
-    "defaultMessage": "Hide Decrediton"
+    "id": "appMenu.hideExilibrium",
+    "defaultMessage": "Hide Exilibrium"
   },
   {
     "id": "appMenu.hideOthers",

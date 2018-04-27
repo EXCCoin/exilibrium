@@ -39,7 +39,7 @@ const Page5 = StandardPage(
 
 const Page6 = StandardPage(
   "lifecycle-06",
-  <T id="tutorial.ticketLifecycle.page6" m={`You should now understand a bit better the lifecycle of a ticket, so start staking your Decred and participate on the community!
+  <T id="tutorial.ticketLifecycle.page6" m={`You should now understand a bit better the lifecycle of a ticket, so start staking your EXCC and participate on the community!
 `}/>);
 
 export default (props) => (

@@ -136,11 +136,11 @@ const PurchaseTicketsAdvanced = ({
     <div className="stakepool-purchase-ticket-row">
       <div className="stakepool-purchase-advanced-error">
         {!ticketFeeError ? null :
-          <T id="purchaseTickets.errors.invalidTicketFee" m="*Invalid ticket fee (0 - 0.1 DCR/KB)" />}
+          <T id="purchaseTickets.errors.invalidTicketFee" m="*Invalid ticket fee (0 - 0.1 EXCC/KB)" />}
         {!expiryError ? null :
           <T id="purchaseTickets.errors.expiryRequred" m="Expiry is required" />}
         {!txFeeError ? null :
-          <T id="purchaseTickets.errors.invalidTxFee" m="*Invalid tx fee (0 - 0.1 DCR/KB)" />}
+          <T id="purchaseTickets.errors.invalidTxFee" m="*Invalid tx fee (0 - 0.1 EXCC/KB)" />}
       </div>
     </div>
   </Aux>);

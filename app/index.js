@@ -1,33 +1,34 @@
-window.eval = () => { throw new Error("Do not import things that use eval()"); };
+// window.eval = () => {
+//   throw new Error("Do not import things that use eval()");
+// };
 import { render } from "react-dom";
-import { Provider } from "react-redux";
-import { ConnectedRouter } from "react-router-redux";
-import { Switch, Route } from "react-router-dom";
-import { createMemoryHistory } from "history";
+import { AppContainer, setConfig } from "react-hot-loader";
 import { App } from "containers";
+import { createMemoryHistory } from "history";
 import configureStore from "./store/configureStore";
 import { getGlobalCfg } from "config";
 import locales from "./i18n/locales";
+import pkg from "./package.json";
 import "./style/main.less";
 import "./style/Global.less";
 import "./style/ReactSelectGlobal.less";
-import pkg from "./package.json";
 
+setConfig({ logLevel: "debug" });
 
-var globalCfg = getGlobalCfg();
+const globalCfg = getGlobalCfg();
 const locale = globalCfg.get("locale");
 
-var initialState = {
+const initialState = {
   settings: {
     currentSettings: {
-      locale: locale,
-      daemonStartAdvanced: globalCfg.get("daemon_start_advanced"),
+      locale,
+      daemonStartAdvanced: globalCfg.get("daemon_start_advanced")
     },
     tempSettings: {
-      locale: locale,
-      daemonStartAdvanced: globalCfg.get("daemon_start_advanced"),
+      locale,
+      daemonStartAdvanced: globalCfg.get("daemon_start_advanced")
     },
-    settingsChanged: false,
+    settingsChanged: false
   },
   stakepool: {
     currentStakePoolConfig: null,
@@ -35,13 +36,13 @@ var initialState = {
     currentStakePoolConfigError: null,
     currentStakePoolConfigSuccessMessage: "",
     activeStakePoolConfig: false,
-    selectedStakePool: null,
+    selectedStakePool: null
   },
   daemon: {
     appVersion: pkg.version,
     daemonRemote: false,
     network: globalCfg.get("network"),
-    locale: locale,
+    locale,
     tutorial: globalCfg.get("show_tutorial"),
     setLanguage: globalCfg.get("set_language"),
     daemonStarted: false,
@@ -60,7 +61,7 @@ var initialState = {
     remoteAppdataError: false,
     previousWallet: null,
     selectCreateWalletInputRequest: true,
-    hiddenAccounts: Array(),
+    hiddenAccounts: Array()
   },
   version: {
     // RequiredVersion
@@ -74,7 +75,7 @@ var initialState = {
     // Balance
     getWalletRPCVersionError: null,
     getWalletRPCVersionRequestAttempt: false,
-    getWalletRPCVersionResponse: null,
+    getWalletRPCVersionResponse: null
   },
   grpc: {
     // WalletService
@@ -145,7 +146,7 @@ var initialState = {
       search: null, // The freeform text in the Search box
       listDirection: "desc", // asc = oldest -> newest, desc => newest -> oldest
       types: [], // desired transaction types (code). All if blank.
-      direction: null, // direction of desired transactions (sent/received/transfer)
+      direction: null // direction of desired transactions (sent/received/transfer)
     },
     lastTransaction: null, //last transaction obtained
 
@@ -173,7 +174,7 @@ var initialState = {
     // Map that stores the accounts that should be updated at future block
     // heights, due to maturing stake transactions. Keys are the heights,
     // values are arrays of account numbers.
-    maturingBlockHeights: {},
+    maturingBlockHeights: {}
   },
   walletLoader: {
     existingOrNew: true,
@@ -219,13 +220,13 @@ var initialState = {
     // FetchHeaders
     fetchHeadersRequestAttempt: false,
     fetchHeadersResponse: null,
-    fetchHeadersError: null,
+    fetchHeadersError: null
   },
   notifications: {
     transactionNtfns: null,
     transactionNtfnsError: null,
     accountNtfnsRequestAttempt: false,
-    accountNtfnsResponse: null,
+    accountNtfnsResponse: null
   },
   control: {
     // NextAddress
@@ -318,7 +319,7 @@ var initialState = {
     validateAddressError: null,
 
     exportingData: false,
-    modalVisible: false,
+    modalVisible: false
   },
   snackbar: {
     messages: Array()
@@ -326,26 +327,35 @@ var initialState = {
   sidebar: {
     showingSidebar: !globalCfg.get("show_tutorial"),
     showingSidebarMenu: false,
-    expandSideBar: true,
+    expandSideBar: true
   },
   statistics: {
     dailyBalances: Array(),
     voteTime: null,
-    getMyTicketsStatsRequest: false,
+    getMyTicketsStatsRequest: false
   },
-  locales: locales
+  locales
 };
 
 const history = createMemoryHistory();
 const store = configureStore(initialState, history);
 
 render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Switch>
-        <Route path="/" component={App} />
-      </Switch>
-    </ConnectedRouter>
-  </Provider>,
+  <AppContainer>
+    <App store={store} history={history} />
+  </AppContainer>,
   document.getElementById("root")
 );
+
+// Hot Module Replacement API
+if (module.hot) {
+  module.hot.accept("./containers", () => {
+    const { App: NextApp } = require("./containers"); // eslint-disable-line global-require
+    render(
+      <AppContainer>
+        <NextApp store={store} history={history} />
+      </AppContainer>,
+      document.getElementById("root")
+    );
+  });
+}

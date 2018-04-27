@@ -127,7 +127,7 @@ class TicketAutoBuyer extends React.Component {
 
   getValueInAtoms(value) {
     const { currencyDisplay } = this.props;
-    if (currencyDisplay === "DCR")
+    if (currencyDisplay === "EXCC")
       return value * 100000000;
     return value;
   }

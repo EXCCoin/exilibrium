@@ -5,13 +5,12 @@ import { app } from "electron";
 // to make this fatal, it must be for production mode only.
 function unknownFn(arg) {
   console.log("%s is not a valid option!", arg);
-  return;
 }
 
 // Allowed cmd line options are defined here.
 export const OPTIONS = {
-  boolean: [ "debug", "testnet", "mainnet", "help", "version" ],
-  string: [ "extrawalletargs", "customBinPath" ],
+  boolean: ["debug", "testnet", "mainnet", "help", "version"],
+  string: ["extrawalletargs", "customBinPath"],
   default: { debug: false },
   alias: { d: "debug" },
   unknown: unknownFn
@@ -34,6 +33,6 @@ Options
   --debug  -d        Debug daemon/wallet messages
   --testnet          Connect to testnet
   --mainnet          Connect to mainnet
-  --extrawalletargs  Pass extra arguments to dcrwallet
-  --customBinPath    Custom path for dcrd/dcrwallet/dcrctl binaries
+  --extrawalletargs  Pass extra arguments to exccwallet
+  --customBinPath    Custom path for exccd/exccwallet/exccctl binaries
 `;
