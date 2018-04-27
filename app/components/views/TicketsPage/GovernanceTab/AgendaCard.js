@@ -5,24 +5,29 @@ import "style/AgendaCard.less";
 // Currently removing percent progress until a solution to populate is found
 // <div style={styles.agendaCardPercent}><span style={styles.agendaPercentNumber}>XX</span>%</div>
 // should go UNDER agendaCarBottomCfg div
-const AgendaCard = ({
-  agenda, onClick, selectedChoice
-}) => (
-  <div {...(
-    agenda.finished
-      ? ({ className: "agenda-card-disabled" })
-      : ({ className: "agenda-card", onClick })
-  )}>
+const AgendaCard = ({ agenda, onClick, selectedChoice }) => (
+  <div
+    {...(agenda.finished
+      ? { className: "agenda-card-disabled" }
+      : { className: "agenda-card", onClick })}>
     <div className="agenda-card-bottom">
-      <Tooltip text={<T id="agenda.card.finishedTooltip" m="This agenda has finished voting and PASSED.  You may still toggle your vote choices, but they will no longer be tallied." />}>
+      <Tooltip
+        text={
+          <T
+            id="agenda.card.finishedTooltip"
+            m="This agenda has finished voting and PASSED.  You may still toggle your vote choices, but they will no longer be tallied."
+          />
+        }>
         <div className="agenda-card-indicator-finished">
           <T id="agenda.card.finishedIndicator" m="Finished" />
         </div>
       </Tooltip>
       <div className="agenda-card-bottom-cfg">
-        {agenda.getDescription()} <span className="agenda-card-bottom-cfg-last">
+        {agenda.getDescription()}{" "}
+        <span className="agenda-card-bottom-cfg-last">
           <T id="agenda.overview.idLabel" m="Agenda ID" />:
-          <span className="agenda-card-bottom-cfg-last-bold">{agenda.getId()}</span></span>
+          <span className="agenda-card-bottom-cfg-last-bold">{agenda.getId()}</span>
+        </span>
       </div>
     </div>
     <div className="agenda-card-top">

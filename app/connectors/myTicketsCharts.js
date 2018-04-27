@@ -12,11 +12,15 @@ const mapStateToProps = selectorMap({
   medianVoteTime: sel.medianVoteTime,
   averageVoteTime: sel.averageVoteTime,
   ninetyFifthPercentileVoteTime: sel.ninetyFifthPercentileVoteTime,
-  allTickets: sel.allTickets,
+  allTickets: sel.allTickets
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  getMyTicketsStats: sta.getMyTicketsStats,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      getMyTicketsStats: sta.getMyTicketsStats
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

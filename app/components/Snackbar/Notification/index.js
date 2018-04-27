@@ -4,7 +4,7 @@ import {
   TRANSACTION_DIR_SENT,
   TRANSACTION_DIR_RECEIVED,
   TRANSACTION_DIR_TRANSFERED,
-  TRANSACTION_TYPES,
+  TRANSACTION_TYPES
 } from "wallet/service";
 
 const transactionTypes = [
@@ -15,8 +15,10 @@ const transactionTypes = [
 ];
 
 const Notification = ({ type, ...message }) =>
-  (transactionTypes.indexOf(type) > -1)
-    ? <Transaction {...{ type, ...message } } />
-    : <Message {...{ ...message, type } } />;
+  transactionTypes.indexOf(type) > -1 ? (
+    <Transaction {...{ type, ...message }} />
+  ) : (
+    <Message {...{ ...message, type }} />
+  );
 
 export default Notification;

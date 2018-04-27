@@ -7,8 +7,8 @@ const RescanWalletFormBody = ({
   rescanStartBlock,
   rescanCurrentBlock,
   showLongWaitMessage
-}) => (
-  showLongWaitMessage &&
+}) =>
+  showLongWaitMessage && (
     <Aux>
       <LinearProgress
         mode="determinate"
@@ -21,13 +21,12 @@ const RescanWalletFormBody = ({
         id="getStarted.walletRescan.progress"
         m="Rescan Progress ({rescanCurrentBlock} / {rescanEndBlock})"
         values={{
-          rescanCurrentBlock: rescanCurrentBlock > rescanStartBlock
-            ? rescanCurrentBlock
-            : rescanStartBlock,
+          rescanCurrentBlock:
+            rescanCurrentBlock > rescanStartBlock ? rescanCurrentBlock : rescanStartBlock,
           rescanEndBlock: rescanEndBlock
         }}
       />
     </Aux>
-);
+  );
 
 export { RescanWalletFormBody };

@@ -6,7 +6,6 @@ import "style/MiscComponents.less";
 
 @autobind
 class EyeFilterMenu extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = { menuOpen: false };
@@ -24,12 +23,11 @@ class EyeFilterMenu extends React.Component {
 
   render() {
     //<span className="eye-filter-menu-button-icon-arrow" />
-    const options = this.props.options;
+    const { options, selected } = this.props;
     const labelKey = this.props.labelKey || "label";
     const keyField = this.props.keyField || labelKey;
     const { menuOpen } = this.state;
-    const extraClassName = " " + this.props.className || "";
-    const selected = this.props.selected;
+    const extraClassName = ` this.props.className` || "";
 
     return (
       <IconMenu
@@ -41,17 +39,19 @@ class EyeFilterMenu extends React.Component {
           <IconButton
             className="eye-filter-menu-button"
             iconClassName="eye-filter-menu-button-icon"
-            style={{ padding: null, height: null, width: null }}/> }
+            style={{ padding: null, height: null, width: null }}
+          />
+        }
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-        targetOrigin={{ horizontal: "right", vertical: "top" }}
-      >
+        targetOrigin={{ horizontal: "right", vertical: "top" }}>
         {options.map(opt => (
           <MenuItem
             className={"context-menu-item " + (selected === opt[keyField] ? "selected" : "")}
             key={opt[keyField]}
             value={opt}
             style={{ fontSize: null, lineHeight: null, minHeight: null, padding: null }}
-            primaryText={opt[labelKey]} />
+            primaryText={opt[labelKey]}
+          />
         ))}
       </IconMenu>
     );

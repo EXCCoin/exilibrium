@@ -1,9 +1,8 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
-import { injectIntl } from "react-intl";
+import { injectIntl, FormattedMessage as T } from "react-intl";
 import messages from "./messages";
 import { yAxisStyle, xAxisStyle, myTicketsChartSize, padding, radiusFull } from "./Styles";
 import { isArray } from "util";
-import { FormattedMessage as T } from "react-intl";
 
 const ChartTooltip = ({ payload }) => {
   if (!payload || !isArray(payload) || !payload.length) {
@@ -19,25 +18,30 @@ const ChartTooltip = ({ payload }) => {
 
   return (
     <div className="chart-tooltip">
-      <T id="charts.voteTime.daysToVoteCount"
+      <T
+        id="charts.voteTime.daysToVoteCount"
         m="{count, plural, =0 {zero tickets} one {# ticket} other {# tickets} } voted {days, plural, =0 {in the same day} one {within one day} other {within # days} } of purchase"
-        values={{ count, days }} />
+        values={{ count, days }}
+      />
     </div>
   );
 };
 
 const VoteTimeChart = ({ data, intl }) => {
-
   const countKey = intl.formatMessage(messages.ticketCountByDay);
 
   const displayData = data.data.map(s => ({
     name: s.series.daysToVote,
     legendName: messages.day,
-    [countKey]: s.series.count,
+    [countKey]: s.series.count
   }));
 
   return (
-    <BarChart stackOffset="sign" width={myTicketsChartSize.width} height={myTicketsChartSize.height} data={displayData}>
+    <BarChart
+      stackOffset="sign"
+      width={myTicketsChartSize.width}
+      height={myTicketsChartSize.height}
+      data={displayData}>
       <XAxis dataKey="name" style={yAxisStyle} />
       <YAxis orientation="right" style={xAxisStyle} padding={padding} />
       <Tooltip content={<ChartTooltip />} />

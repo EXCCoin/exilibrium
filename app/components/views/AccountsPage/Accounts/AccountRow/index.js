@@ -14,7 +14,7 @@ class AccountRow extends React.Component {
       renameAccountName: null,
       renameAccountNameError: null,
       renameAccountNumber: this.props.account.accountNumber,
-      hidden: this.props.account.hidden,
+      hidden: this.props.account.hidden
     };
   }
 
@@ -56,72 +56,74 @@ class AccountRow extends React.Component {
   }
 
   getDefaultStyles() {
-    return [ { key: "output_0",style: { height: 0, opacity: 0 } } ];
+    return [{ key: "output_0", style: { height: 0, opacity: 0 } }];
   }
 
-  getNullStyles () {
-    return [ {
-      data: <div />,
-      key: "output_0",
-      style: {
-        height: spring(0, { stiffness: 90, damping: 16 }),
-        opacity: spring(0, { stiffness: 30, damping: 15 }),
+  getNullStyles() {
+    return [
+      {
+        data: <div />,
+        key: "output_0",
+        style: {
+          height: spring(0, { stiffness: 90, damping: 16 }),
+          opacity: spring(0, { stiffness: 30, damping: 15 })
+        }
       }
-    } ];
+    ];
   }
 
-  getRenameAccountStyles () {
+  getRenameAccountStyles() {
     const { account, intl } = this.props;
-    const {
-      updateRenameAccountName,
-      renameAccount,
-      hideRenameAccount,
-    } = this;
+    const { updateRenameAccountName, renameAccount, hideRenameAccount } = this;
     const { renameAccountNameError, renameAccountName } = this.state;
-    return [ {
-      data: <RenameAccount
-        {...{
-          account,
-          updateRenameAccountName,
-          renameAccountName,
-          renameAccount,
-          hideRenameAccount,
-          intl,
-          renameAccountNameError,
-        }}
-      />,
-      key: "output_0",
-      style: {
-        height: spring(140, { stiffness: 110, damping: 14 }),
-        opacity: spring(1, { stiffness: 65, damping: 35 }),
+    return [
+      {
+        data: (
+          <RenameAccount
+            {...{
+              account,
+              updateRenameAccountName,
+              renameAccountName,
+              renameAccount,
+              hideRenameAccount,
+              intl,
+              renameAccountNameError
+            }}
+          />
+        ),
+        key: "output_0",
+        style: {
+          height: spring(140, { stiffness: 110, damping: 14 }),
+          opacity: spring(1, { stiffness: 65, damping: 35 })
+        }
       }
-    } ];
+    ];
   }
 
   getAccountDetailsStyles() {
     const { account } = this.props;
-    const {
-      showRenameAccount,
-      showAccount,
-      hideAccount,
-    } = this;
+    const { showRenameAccount, showAccount, hideAccount } = this;
     const { hidden } = this.state;
-    return [ {
-      data: <AccountDetails
-        {...{
-          account,
-          showRenameAccount,
-          hidden,
-          hideAccount,
-          showAccount,
-        }}
-      />,
-      key: "output_0",
-      style: {
-        height: spring(280, { stiffness: 110, damping: 14 }),
-        opacity: spring(1, { stiffness: 65, damping: 35 }),
+    return [
+      {
+        data: (
+          <AccountDetails
+            {...{
+              account,
+              showRenameAccount,
+              hidden,
+              hideAccount,
+              showAccount
+            }}
+          />
+        ),
+        key: "output_0",
+        style: {
+          height: spring(280, { stiffness: 110, damping: 14 }),
+          opacity: spring(1, { stiffness: 65, damping: 35 })
+        }
       }
-    } ];
+    ];
   }
 
   render() {
@@ -133,17 +135,10 @@ class AccountRow extends React.Component {
       willLeave,
       getRenameAccountStyles
     } = this;
-    const {
-      account,
-      accountNumDetailsShown,
-      hideAccountDetails,
-      showAccountDetails
-    } = this.props;
-    const {
-      isShowingRenameAccount,
-      hidden
-    } = this.state;
-    const isShowingAccountDetails = accountNumDetailsShown !== null && accountNumDetailsShown == account.accountNumber ;
+    const { account, accountNumDetailsShown, hideAccountDetails, showAccountDetails } = this.props;
+    const { isShowingRenameAccount, hidden } = this.state;
+    const isShowingAccountDetails =
+      accountNumDetailsShown !== null && accountNumDetailsShown == account.accountNumber;
 
     return (
       <Row

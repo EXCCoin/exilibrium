@@ -20,14 +20,15 @@ const VotingPrefsPage = ({
       <div className="stakepool-voting-title-area-name">
         <T id="votingPreferences.title" m="Voting Preferences" />
       </div>
-      {configuredStakePools.length > 0 &&
-      <div className="stakepool-unconfigured-select">
-        <StakePoolSelect
-          options={configuredStakePools}
-          value={stakePool}
-          onChange={onChangeStakePool}
-        />
-      </div>}
+      {configuredStakePools.length > 0 && (
+        <div className="stakepool-unconfigured-select">
+          <StakePoolSelect
+            options={configuredStakePools}
+            value={stakePool}
+            onChange={onChangeStakePool}
+          />
+        </div>
+      )}
     </div>
     <div className="stakepool-voting-agenda-area">
       {selectedAgenda ? (
@@ -39,21 +40,23 @@ const VotingPrefsPage = ({
           disabled={!stakePool || !stakePool.isVersionValid}
         />
       ) : null}
-      {(agendas.length > 0) ?
-        agendas.map(agenda =>
-          (!selectedAgenda || selectedAgenda.getId() !== agenda.getId()) &&
-            <AgendaCard
-              key={agenda.getId()}
-              agenda={agenda}
-              selectedChoice={getAgendaSelectedChoice(agenda)}
-              onClick={() => onShowAgenda(agenda)}
-            />
+      {agendas.length > 0 ? (
+        agendas.map(
+          agenda =>
+            (!selectedAgenda || selectedAgenda.getId() !== agenda.getId()) && (
+              <AgendaCard
+                key={agenda.getId()}
+                agenda={agenda}
+                selectedChoice={getAgendaSelectedChoice(agenda)}
+                onClick={() => onShowAgenda(agenda)}
+              />
+            )
         )
-        : (
-          <div className="stakepool-no-agendas-message">
-            <T id="votingPreferences.noAgenda" m="There are currently no agendas for voting." />
-          </div>
-        )}
+      ) : (
+        <div className="stakepool-no-agendas-message">
+          <T id="votingPreferences.noAgenda" m="There are currently no agendas for voting." />
+        </div>
+      )}
     </div>
   </Aux>
 );

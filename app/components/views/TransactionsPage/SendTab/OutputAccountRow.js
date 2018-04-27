@@ -16,20 +16,21 @@ const SendOutputAccountRow = ({
   getOnChangeOutputAmount,
   isSendAll,
   totalSpent,
-  intl,
+  intl
 }) => (
   <div className="send-row">
     <div className="send-output-row">
-      <div className="send-label"><T id="send.to" m="To" />:</div>
+      <div className="send-label">
+        <T id="send.to" m="To" />:
+      </div>
       <div className="send-address">
-        <ReceiveAccountsSelect
-          getAddressForSelected={true}
-          showAccountsButton={false}
-        />
+        <ReceiveAccountsSelect getAddressForSelected={true} showAccountsButton={false} />
       </div>
 
       <div className="send-amount">
-        <div className="send-amount-label"><T id="send.amount" m="Amount" />:</div>
+        <div className="send-amount-label">
+          <T id="send.amount" m="Amount" />:
+        </div>
         <div className="send-address-amount-sum-and-currency">
           <ExccInput
             showErrors={true}

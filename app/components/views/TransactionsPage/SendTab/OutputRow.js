@@ -31,7 +31,13 @@ const SendOutputRow = ({
 }) => (
   <div className="send-row">
     <div className="send-output-row">
-      <div className="send-label">{index === 0 && <span><T id="send.to" m="To" />:</span>}</div>
+      <div className="send-label">
+        {index === 0 && (
+          <span>
+            <T id="send.to" m="To" />:
+          </span>
+        )}
+      </div>
       <div className="send-address">
         <div className="send-input-form">
           <AddressInput
@@ -46,16 +52,20 @@ const SendOutputRow = ({
           />
         </div>
         {index === 0 && !isSendAll ? (
-          <div className="send-address-wallet-icon" onClick={onAddOutput}></div>
-        ) : (index === 0 && isSendAll) ? (
-          <div className="send-address-icon-spacer"></div>
-        ) : (index === (outputs.length - 1)) && !isSendAll ? (
-          <div className="send-address-delete-icon" onClick={getOnRemoveOutput}></div>
-        ) : ( null ) }
+          <div className="send-address-wallet-icon" onClick={onAddOutput} />
+        ) : index === 0 && isSendAll ? (
+          <div className="send-address-icon-spacer" />
+        ) : index === outputs.length - 1 && !isSendAll ? (
+          <div className="send-address-delete-icon" onClick={getOnRemoveOutput} />
+        ) : null}
       </div>
       <div className="send-amount">
         <div className="send-amount-label">
-          {index === 0 ? <span><T id="send.amount" m="Amount" />:</span> : null}
+          {index === 0 ? (
+            <span>
+              <T id="send.amount" m="Amount" />:
+            </span>
+          ) : null}
         </div>
         <div className="send-address-amount-sum-and-currency">
           <ExccInput

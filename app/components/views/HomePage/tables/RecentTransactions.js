@@ -14,25 +14,35 @@ const RecentTransactions = ({
   rowNumber,
   goToTransactionHistory
 }) => {
-  const hasTxs = (transactions.length > 0) && (tickets.length > 0);
-  return (
-    getTransactionsRequestAttempt ? <ExccLoading /> :
-      <Aux>
-        <div className="home-content-title">
-          {hasTxs
-            ? <T id="home.recentTransactionsTitle" m="Recent Transactions" />
-            : <T id="home.noTransactions.title" m="No transactions yet" /> }
-        </div>
-        <div className="home-content-nest">
-          {transactions.length > 0 ? tickets.length > 0 ?
-            <TxHistory overview limit={rowNumber} {...{ getAccountsResponse, transactions }} /> :
-            <TxHistory limit={6} {...{ getAccountsResponse, transactions }} /> :
-            <NoTransactionsLinks />}
-        </div>
-        <div className="home-content-link">
-          <a onClick={goToTransactionHistory}><T id="home.recentTransactionsHistory" m="Go to all transactions" /> ></a>
-        </div>
-      </Aux>
+  const hasTxs = transactions.length > 0 && tickets.length > 0;
+  return getTransactionsRequestAttempt ? (
+    <ExccLoading />
+  ) : (
+    <Aux>
+      <div className="home-content-title">
+        {hasTxs ? (
+          <T id="home.recentTransactionsTitle" m="Recent Transactions" />
+        ) : (
+          <T id="home.noTransactions.title" m="No transactions yet" />
+        )}
+      </div>
+      <div className="home-content-nest">
+        {transactions.length > 0 ? (
+          tickets.length > 0 ? (
+            <TxHistory overview limit={rowNumber} {...{ getAccountsResponse, transactions }} />
+          ) : (
+            <TxHistory limit={6} {...{ getAccountsResponse, transactions }} />
+          )
+        ) : (
+          <NoTransactionsLinks />
+        )}
+      </div>
+      <div className="home-content-link">
+        <a onClick={goToTransactionHistory}>
+          <T id="home.recentTransactionsHistory" m="Go to all transactions" /> >
+        </a>
+      </div>
+    </Aux>
   );
 };
 

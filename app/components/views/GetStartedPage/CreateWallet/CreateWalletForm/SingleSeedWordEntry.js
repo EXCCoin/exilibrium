@@ -9,14 +9,13 @@ class SingleSeedWordEntry extends React.Component {
     super(props);
     this.getSeedWords = this.getSeedWords.bind(this);
   }
-  render () {
+  render() {
     const value = { name: this.props.value.name };
     return (
       <div
         className={this.props.className}
         onKeyDown={this.handleKeyDown}
-        onPaste={this.props.onPaste}
-      >
+        onPaste={this.props.onPaste}>
         <Select.Async
           autoFocus
           simpleValue
@@ -25,7 +24,7 @@ class SingleSeedWordEntry extends React.Component {
           multi={false}
           filterOptions={false}
           value={value}
-          onChange={(value) => this.props.onChange(this.props.seedWord, value)}
+          onChange={value => this.props.onChange(this.props.seedWord, value)}
           valueKey="name"
           labelKey="name"
           loadOptions={this.getSeedWords}
@@ -35,20 +34,21 @@ class SingleSeedWordEntry extends React.Component {
     );
   }
 
-  getSeedWords (input, callback) {
+  getSeedWords(input, callback) {
     input = input.toLowerCase();
-    const options = SEED_WORD_OPTIONS
-      .filter(i => i.name.toLowerCase().substr(0, input.length) === input);
+    const options = SEED_WORD_OPTIONS.filter(
+      i => i.name.toLowerCase().substr(0, input.length) === input
+    );
     callback(null, {
       options: options.slice(0, 5)
     });
   }
 
-  selectKeyDown (e) {
-    switch(e.keyCode) {
-    case 32:
-      e.keyCode = 9;
-      break;
+  selectKeyDown(e) {
+    switch (e.keyCode) {
+      case 32:
+        e.keyCode = 9;
+        break;
     }
   }
 }

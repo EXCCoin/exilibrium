@@ -11,12 +11,13 @@ const PurchasePage = ({
   isShowingStakePools,
   onHideStakePoolConfig,
   ...props
-}) => (
-  (isSavingStakePoolConfig || isPurchasingTickets || isImportingScript)
-    ? <StakeyBounce center/>
-    : (isShowingStakePools)
-      ? <StakePools {...{ onHideStakePoolConfig }} />
-      : <Tickets {...{ stakePool, ...props }} />
-);
+}) =>
+  isSavingStakePoolConfig || isPurchasingTickets || isImportingScript ? (
+    <StakeyBounce center />
+  ) : isShowingStakePools ? (
+    <StakePools {...{ onHideStakePoolConfig }} />
+  ) : (
+    <Tickets {...{ stakePool, ...props }} />
+  );
 
 export default PurchasePage;

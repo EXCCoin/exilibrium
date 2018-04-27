@@ -33,10 +33,7 @@ class ChangePassphraseModal extends React.Component {
   }
 
   isValid() {
-    return (
-      !!this.state.privPass &&
-      this.state.privPass === this.state.confirmPrivPass
-    );
+    return !!this.state.privPass && this.state.privPass === this.state.confirmPrivPass;
   }
 
   onSubmit(passPhrase) {

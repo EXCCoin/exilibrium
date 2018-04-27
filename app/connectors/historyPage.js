@@ -10,12 +10,16 @@ const mapStateToProps = selectorMap({
   transactions: sel.transactions,
   transactionsFilter: sel.transactionsFilter,
   noMoreTransactions: sel.noMoreTransactions,
-  window: sel.mainWindow,
+  window: sel.mainWindow
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  getTransactions: ca.getTransactions,
-  changeTransactionsFilter: ca.changeTransactionsFilter,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      getTransactions: ca.getTransactions,
+      changeTransactionsFilter: ca.changeTransactionsFilter
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

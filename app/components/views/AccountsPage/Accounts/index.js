@@ -3,10 +3,10 @@ import { accountsPageAccounts } from "connectors";
 
 @autobind
 class Accounts extends React.Component {
-  constructor(props)  {
+  constructor(props) {
     super(props);
     this.state = {
-      accountNumDetailsShown: null,
+      accountNumDetailsShown: null
     };
   }
 
@@ -22,7 +22,7 @@ class Accounts extends React.Component {
           onRenameAccount: this.props.onRenameAccount,
           accountNumDetailsShown: this.state.accountNumDetailsShown,
           onShowAccountDetails: this.onShowAccountDetails,
-          onHideAccountDetails: this.onHideAccountDetails,
+          onHideAccountDetails: this.onHideAccountDetails
         }}
       />
     );

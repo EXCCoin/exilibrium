@@ -8,21 +8,17 @@ const propTypes = {
   tempSettings: PropTypes.object.isRequired,
   currencies: PropTypes.array.isRequired,
   locales: PropTypes.array.isRequired,
-  onChangeTempSettings: PropTypes.func.isRequired,
+  onChangeTempSettings: PropTypes.func.isRequired
 };
 
 // Do **not** add stuff that depends on the wallet here, as this is also used
 // for startup config.
-const GeneralSettings = ({
-  tempSettings,
-  currencies,
-  locales,
-  onChangeTempSettings
-}) => (
+const GeneralSettings = ({ tempSettings, currencies, locales, onChangeTempSettings }) => (
   <div className="settings-general">
-    <div className="settings-column-title"><T id="settings.general.title" m="General" /></div>
+    <div className="settings-column-title">
+      <T id="settings.general.title" m="General" />
+    </div>
     <div className="settings-column-content">
-
       <div className="settings-row">
         <div className="settings-label">
           <T id="settings.displayedUnits" m="Displayed Units" />
@@ -30,8 +26,9 @@ const GeneralSettings = ({
         <SettingsInput
           className="settings-input"
           value={tempSettings.currencyDisplay}
-          onChange={(newCurrency) => onChangeTempSettings({ currencyDisplay: newCurrency.name })}
-          valueKey="name" labelKey="name"
+          onChange={newCurrency => onChangeTempSettings({ currencyDisplay: newCurrency.name })}
+          valueKey="name"
+          labelKey="name"
           options={currencies}
         />
       </div>
@@ -43,8 +40,9 @@ const GeneralSettings = ({
         <LanguageSelect
           className="language-select-input"
           value={tempSettings.locale}
-          onChange={(newLocale) => onChangeTempSettings({ locale: newLocale.key })}
-          valueKey="key" labelKey="description"
+          onChange={newLocale => onChangeTempSettings({ locale: newLocale.key })}
+          valueKey="key"
+          labelKey="description"
           options={locales}
         />
       </div>
@@ -56,19 +54,31 @@ const GeneralSettings = ({
         <SettingsInput
           className="settings-input"
           value={tempSettings.daemonStartAdvanced ? "true" : "false"}
-          onChange={(opt) => onChangeTempSettings({ daemonStartAdvanced: opt.value })}
+          onChange={opt => onChangeTempSettings({ daemonStartAdvanced: opt.value })}
           valueKey="key"
           labelKey="description"
           options={[
-            { key: "true", value: true, description: <T id="settings.advancedDaemon.true" m="Enabled" /> },
-            { key: "false", value: false, description: <T id="settings.advancedDaemon.false" m="Disabled" /> },
+            {
+              key: "true",
+              value: true,
+              description: <T id="settings.advancedDaemon.true" m="Enabled" />
+            },
+            {
+              key: "false",
+              value: false,
+              description: <T id="settings.advancedDaemon.false" m="Disabled" />
+            }
           ]}
         />
       </div>
       <div className="settings-row">
         <div className="settings-label">
           <InfoModalButton
-            modalTitle={<h1><T id="settings.gapLimit.information" m="Gap Limit information" /></h1>}
+            modalTitle={
+              <h1>
+                <T id="settings.gapLimit.information" m="Gap Limit information" />
+              </h1>
+            }
             modalContent={<GapLimitInfoModalContent />}
           />
           <T id="settings.gapLimit.label" m="Gap Limit" />
@@ -76,7 +86,7 @@ const GeneralSettings = ({
         <div className="settings-input">
           <NumericInput
             value={tempSettings.gapLimit}
-            onChange={(e) => onChangeTempSettings({ gapLimit: e.target.value })}
+            onChange={e => onChangeTempSettings({ gapLimit: e.target.value })}
           />
         </div>
       </div>

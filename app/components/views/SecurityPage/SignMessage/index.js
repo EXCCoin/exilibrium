@@ -17,7 +17,7 @@ class SignMessage extends React.Component {
       address: "",
       addressError: null,
       message: "",
-      messageError: null,
+      messageError: null
     };
   }
 
@@ -40,10 +40,11 @@ class SignMessage extends React.Component {
       result = (
         <div className="message-nest">
           <div className="message-content">
-            <div>
-              {signMessageSuccess.signature}
-            </div>
-            <CopyToClipboard textToCopy={signMessageSuccess.signature} className="message-content-nest-copy-to-clipboard-icon" />
+            <div>{signMessageSuccess.signature}</div>
+            <CopyToClipboard
+              textToCopy={signMessageSuccess.signature}
+              className="message-content-nest-copy-to-clipboard-icon"
+            />
           </div>
         </div>
       );
@@ -51,27 +52,46 @@ class SignMessage extends React.Component {
 
     return (
       <div className="message message-sign">
-        <SignMessageForm {...{ onSubmit, onChangeAddress, onChangeMessage, address, addressError, message, messageError, formatMessage: intl.formatMessage, isSigningMessage } }/>
+        <SignMessageForm
+          {...{
+            onSubmit,
+            onChangeAddress,
+            onChangeMessage,
+            address,
+            addressError,
+            message,
+            messageError,
+            formatMessage: intl.formatMessage,
+            isSigningMessage
+          }}
+        />
         {result}
       </div>
     );
   }
 
-  onChangeAddress(address){
+  onChangeAddress(address) {
     if (address == "") this.setState({ address: "", addressError: "Please enter an address" });
     else {
-      this.props.validateAddress(address)
+      this.props
+        .validateAddress(address)
         .then(resp => {
-          this.setState({ address, addressError: !resp.getIsValid() ? "Please enter a valid address" : null });
+          this.setState({
+            address,
+            addressError: !resp.getIsValid() ? "Please enter a valid address" : null
+          });
         })
         .catch(error => {
           console.error(error);
-          this.setState({ address, addressError: "Error: Address validation failed, please try again." });
+          this.setState({
+            address,
+            addressError: "Error: Address validation failed, please try again."
+          });
         });
     }
   }
 
-  onChangeMessage(message){
+  onChangeMessage(message) {
     if (message == "") this.setState({ message: "", messageError: "Please enter a message" });
     else this.setState({ message, messageError: null });
   }
@@ -88,12 +108,12 @@ SignMessage.propTypes = {
   walletService: PropTypes.object,
   signMessageCleanStore: PropTypes.func.isRequired,
   signMessageSuccess: PropTypes.shape({
-    signature: PropTypes.string,
-  }),
+    signature: PropTypes.string
+  })
 };
 
 SignMessage.contextTypes = {
-  router: PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired
 };
 
 export default signMessagePage(injectIntl(SignMessage));

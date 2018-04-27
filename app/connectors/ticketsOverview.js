@@ -6,11 +6,15 @@ import * as ca from "../actions/ClientActions";
 
 const mapStateToProps = selectorMap({
   ticketsPerStatus: sel.ticketsPerStatus,
-  allTickets: sel.allTickets,
+  allTickets: sel.allTickets
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  showTicketList: ca.showTicketList
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      showTicketList: ca.showTicketList
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

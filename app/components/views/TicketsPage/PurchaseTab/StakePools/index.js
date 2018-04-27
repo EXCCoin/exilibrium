@@ -31,32 +31,45 @@ class StakePools extends React.Component {
         id="stake.noAvailableStakepools"
         m="No stakepool found. Check your internet connection or {link} to see if the StakePool API is down."
         values={{
-          link: (<a className="stakepool-link" onClick={() => shell.openExternal("https://api.excc.co/?c=gsd")}><T id="stake.discoverStakeOoolsAPILink" m="this link" /></a>)
-        }} />
+          link: (
+            <a
+              className="stakepool-link"
+              onClick={() => shell.openExternal("https://api.excc.co/?c=gsd")}>
+              <T id="stake.discoverStakeOoolsAPILink" m="this link" />
+            </a>
+          )
+        }}
+      />
     ) : this.getIsAdding() ? (
       <StakePoolsAddForm
         {...{
           ...this.props,
           ...this.state,
           selectedUnconfigured: this.getSelectedUnconfigured(),
-          ...substruct({
-            onChangeApiKey: null,
-            onSaveStakePool: null,
-            onSetStakePoolInfo: null,
-            onChangeSelectedUnconfigured: null,
-            onCancelPassphraseRequest: null,
-            onCancelAddStakePool: null,
-            onRemoveStakePool: null
-          }, this),
+          ...substruct(
+            {
+              onChangeApiKey: null,
+              onSaveStakePool: null,
+              onSetStakePoolInfo: null,
+              onChangeSelectedUnconfigured: null,
+              onCancelPassphraseRequest: null,
+              onCancelAddStakePool: null,
+              onRemoveStakePool: null
+            },
+            this
+          )
         }}
       />
     ) : (
       <StakePoolsList
         {...{
           ...this.props,
-          ...substruct({
-            onShowAddStakePool: null
-          }, this)
+          ...substruct(
+            {
+              onShowAddStakePool: null
+            },
+            this
+          )
         }}
       />
     );
@@ -67,7 +80,9 @@ class StakePools extends React.Component {
   }
 
   getNoAvailableStakepools() {
-    return (this.props.unconfiguredStakePools.length === 0) && (this.props.configuredStakePools.length === 0);
+    return (
+      this.props.unconfiguredStakePools.length === 0 && this.props.configuredStakePools.length === 0
+    );
   }
 
   getSelectedUnconfigured() {
@@ -98,7 +113,9 @@ class StakePools extends React.Component {
   onSetStakePoolInfo(privpass) {
     const { apiKey } = this.state;
     const onSetInfo = this.props.onSetStakePoolInfo;
-    apiKey ? (onSetInfo && onSetInfo(privpass, this.getSelectedUnconfigured().Host, apiKey, 0)) : null;
+    apiKey
+      ? onSetInfo && onSetInfo(privpass, this.getSelectedUnconfigured().Host, apiKey, 0)
+      : null;
   }
 
   onRemoveStakePool(host) {

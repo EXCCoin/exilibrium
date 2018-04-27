@@ -6,7 +6,7 @@ const messages = defineMessages({
   newNamePlaceholder: {
     id: "accounts.rename.newNamePlaceholder",
     defaultMessage: "New Account Name"
-  },
+  }
 });
 
 const RenameAccount = ({
@@ -16,7 +16,7 @@ const RenameAccount = ({
   renameAccount,
   hideRenameAccount,
   intl,
-  renameAccountNameError,
+  renameAccountNameError
 }) => (
   <div className="account-row-details-bottom" key={"details" + account.accountNumber}>
     <div className="account-row-details-bottom-title">
@@ -38,23 +38,17 @@ const RenameAccount = ({
             placeholder={intl.formatMessage(messages.newNamePlaceholder)}
             maxLength="50"
             value={renameAccountName}
-            onChange={(e) => updateRenameAccountName(e.target.value)}
+            onChange={e => updateRenameAccountName(e.target.value)}
           />
         </div>
       </div>
-      <div className="account-form-input-error">
-        {renameAccountNameError}
-      </div>
+      <div className="account-form-input-error">{renameAccountNameError}</div>
     </div>
     <div className="account-form-buttons">
-      <KeyBlueButton
-        className="content-confirm-new-account"
-        onClick={renameAccount}>
+      <KeyBlueButton className="content-confirm-new-account" onClick={renameAccount}>
         <T id="accounts.renameBtn" m="Rename" />
       </KeyBlueButton>
-      <SlateGrayButton
-        className="content-confirm-new-account"
-        onClick={hideRenameAccount}>
+      <SlateGrayButton className="content-confirm-new-account" onClick={hideRenameAccount}>
         <T id="accounts.cancelRenameBtn" m="Cancel" />
       </SlateGrayButton>
     </div>

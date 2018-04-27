@@ -4,10 +4,11 @@ import LanguageSelectPage from "components/views/GetStartedPage/LanguageSelectPa
 import TutorialPage from "components/views/GetStartedPage/TutorialPage";
 import { Route, Switch } from "react-router-dom";
 
-export default () =>
+export default () => (
   <Switch>
-    <Route path="/getstarted/language"  component={LanguageSelectPage} />
-    <Route path="/getstarted/tutorial"  component={TutorialPage} />
-    <Route path="/getstarted/initial"   component={GetStartedPage} />
-    <Route path="/getstarted"           component={GetStartedPosition} />
-  </Switch>;
+    <Route path="/getstarted/language" component={LanguageSelectPage} />
+    <Route path="/getstarted/tutorial" component={TutorialPage} />
+    <Route path="/getstarted/initial" component={GetStartedPage} />
+    <Route path="/getstarted" component={GetStartedPosition} />
+  </Switch>
+);

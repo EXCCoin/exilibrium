@@ -19,13 +19,17 @@ const mapStateToProps = selectorMap({
   hasUnminedTransactions: sel.hasUnminedTransactions
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  onAttemptConstructTransaction: ca.constructTransactionAttempt,
-  onAttemptSignTransaction: ca.signTransactionAttempt,
-  onClearTransaction: ca.clearTransaction,
-  getNextAddressAttempt: ca.getNextAddressAttempt,
-  validateAddress: ca.validateAddress,
-  publishUnminedTransactions: ca.publishUnminedTransactionsAttempt
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      onAttemptConstructTransaction: ca.constructTransactionAttempt,
+      onAttemptSignTransaction: ca.signTransactionAttempt,
+      onClearTransaction: ca.clearTransaction,
+      getNextAddressAttempt: ca.getNextAddressAttempt,
+      validateAddress: ca.validateAddress,
+      publishUnminedTransactions: ca.publishUnminedTransactionsAttempt
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

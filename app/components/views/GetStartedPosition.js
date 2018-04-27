@@ -1,7 +1,7 @@
 import { walletStartup } from "connectors";
 
 @autobind
-class GetStartedPosition extends React.Component{
+class GetStartedPosition extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -16,7 +16,7 @@ class GetStartedPosition extends React.Component{
     }
   }
   render() {
-    return (<Aux>sadfsdf</Aux>);
+    return <Aux>sadfsdf</Aux>;
   }
 }
 

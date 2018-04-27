@@ -18,7 +18,7 @@ class VerifyMessage extends React.Component {
       message: "",
       messageError: null,
       signature: "",
-      signatureError: null,
+      signatureError: null
     };
   }
 
@@ -47,16 +47,29 @@ class VerifyMessage extends React.Component {
 
       result = (
         <div className="message-nest">
-          <div className={`message-content ${isValid ? "valid" : "invalid"}`}>
-            {isValidDisplay}
-          </div>
+          <div className={`message-content ${isValid ? "valid" : "invalid"}`}>{isValidDisplay}</div>
         </div>
       );
     }
 
     return (
       <div className="message message-verify">
-        <VerifyMessageForm {...{ onSubmit, address, message, signature, addressError, messageError, signatureError, onChangeAddress, onChangeMessage, onChangeSignature, formatMessage: intl.formatMessage, isVerifyingMessage }} />
+        <VerifyMessageForm
+          {...{
+            onSubmit,
+            address,
+            message,
+            signature,
+            addressError,
+            messageError,
+            signatureError,
+            onChangeAddress,
+            onChangeMessage,
+            onChangeSignature,
+            formatMessage: intl.formatMessage,
+            isVerifyingMessage
+          }}
+        />
         {result}
       </div>
     );
@@ -71,24 +84,32 @@ class VerifyMessage extends React.Component {
   onChangeAddress(address) {
     if (address == "") this.setState({ address: "", addressError: "Please enter an address" });
     else {
-      this.props.validateAddress(address)
-        .then( resp => {
-          this.setState({ address, addressError: resp.getIsValid() ? "" : "Please enter a valid address" });
+      this.props
+        .validateAddress(address)
+        .then(resp => {
+          this.setState({
+            address,
+            addressError: resp.getIsValid() ? "" : "Please enter a valid address"
+          });
         })
-        .catch( (error) => {
+        .catch(error => {
           console.log(error);
-          this.setState({ address, addressError: "Error: Address validation failed, please try again." });
+          this.setState({
+            address,
+            addressError: "Error: Address validation failed, please try again."
+          });
         });
     }
   }
 
-  onChangeMessage(message){
+  onChangeMessage(message) {
     if (message == "") this.setState({ message: "", messageError: "Please enter a message" });
     else this.setState({ message, messageError: null });
   }
 
   onChangeSignature(signature) {
-    if (signature == "") this.setState({ signature: "", signatureError: "Please enter a signature" });
+    if (signature == "")
+      this.setState({ signature: "", signatureError: "Please enter a signature" });
     else this.setState({ signature, signatureError: null });
   }
 }
@@ -99,8 +120,8 @@ VerifyMessage.propTypes = {
   verifyMessageCleanStore: PropTypes.func.isRequired,
   verifyMessageError: PropTypes.string,
   verifyMessageSuccess: PropTypes.shape({
-    signature: PropTypes.string,
-  }),
+    signature: PropTypes.string
+  })
 };
 
 export default verifyMessagePage(injectIntl(VerifyMessage));

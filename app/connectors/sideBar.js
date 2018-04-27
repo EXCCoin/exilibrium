@@ -13,13 +13,17 @@ const mapStateToProps = selectorMap({
   totalBalance: sel.totalBalance,
   showingSidebar: sel.showingSidebar,
   showingSidebarMenu: sel.showingSidebarMenu,
-  expandSideBar: sel.expandSideBar,
+  expandSideBar: sel.expandSideBar
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  updateBlockTimeSince: ca.updateBlockTimeSince,
-  onExpandSideBar: sba.expandSideBar,
-  onReduceSideBar: sba.reduceSideBar,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      updateBlockTimeSince: ca.updateBlockTimeSince,
+      onExpandSideBar: sba.expandSideBar,
+      onReduceSideBar: sba.reduceSideBar
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

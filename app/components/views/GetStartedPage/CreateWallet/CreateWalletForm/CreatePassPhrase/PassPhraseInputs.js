@@ -18,8 +18,15 @@ const messages = defineMessages({
 const PassPhraseInputs = ({
   passPhraseLabel = <T id="createWallet.passhraseInput.label" m="Private passphrase" />,
   passPhraseVerificationLabel = <T id="createWallet.passphraseInput.verifyLabel" m="Confirm" />,
-  blankPassPhraseError = <T id="createWallet.passphraseInput.errors.noPassPhrase" m="*Please enter your private passphrase" />,
-  passPhraseVerificationError = <T id="createWallet.passphraseInput.errors.noMatch" m="*Passwords do not match" />,
+  blankPassPhraseError = (
+    <T
+      id="createWallet.passphraseInput.errors.noPassPhrase"
+      m="*Please enter your private passphrase"
+    />
+  ),
+  passPhraseVerificationError = (
+    <T id="createWallet.passphraseInput.errors.noMatch" m="*Passwords do not match" />
+  ),
   passPhrase,
   passPhraseVerification,
   isBlank,
@@ -33,7 +40,11 @@ const PassPhraseInputs = ({
     <div className="confirm-seed-row passphrase">
       <div className="confirm-seed-label-text passphrase">
         <InfoModalButton
-          modalTitle={<h1><T id="confirmSeed.passphraseInformation" m="Private passphrase information" /></h1>}
+          modalTitle={
+            <h1>
+              <T id="confirmSeed.passphraseInformation" m="Private passphrase information" />
+            </h1>
+          }
           modalContent={<PassphraseInfoModalContent />}
         />
         {passPhraseLabel}
@@ -46,7 +57,7 @@ const PassPhraseInputs = ({
               placeholder={intl.formatMessage(messages.passphrasePlaceholder)}
               value={passPhrase}
               onKeyDown={onKeyDown}
-              onChange={(e) => setPassPhrase(e.target.value)}
+              onChange={e => setPassPhrase(e.target.value)}
             />
           </form>
         </div>
@@ -63,11 +74,12 @@ const PassPhraseInputs = ({
               placeholder={intl.formatMessage(messages.verifyPassphrasePlaceholder)}
               value={passPhraseVerification}
               onKeyDown={onKeyDown}
-              onChange={(e) => setPassPhraseVerification(e.target.value)}
+              onChange={e => setPassPhraseVerification(e.target.value)}
             />
           </form>
         </div>
-        {(!isBlank && !isMatching) && <div className="input-form-error">{passPhraseVerificationError}</div>}
+        {!isBlank &&
+          !isMatching && <div className="input-form-error">{passPhraseVerificationError}</div>}
       </div>
     </div>
   </Aux>

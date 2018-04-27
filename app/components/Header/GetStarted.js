@@ -1,11 +1,6 @@
 import "style/Header.less";
 
-const GetStarted = ({
-  headerTop,
-  headerTitleOverview,
-  headerMetaOverview,
-  children
-}) => (
+const GetStarted = ({ headerTop, headerTitleOverview, headerMetaOverview, children }) => (
   <div className="header-get-started">
     <div className="header-top-get-started">{headerTop}</div>
     <div className="header-title-overview-get-started">{headerTitleOverview}</div>

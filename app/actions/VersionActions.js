@@ -10,8 +10,12 @@ export const GETVERSIONSERVICE_SUCCESS = "GETVERSIONSERVICE_SUCCESS";
 
 export const getVersionServiceAttempt = () => (dispatch, getState) => {
   dispatch({ type: GETVERSIONSERVICE_ATTEMPT });
-  const { grpc: { address, port } } = getState();
-  const { daemon: { walletName } } = getState();
+  const {
+    grpc: { address, port }
+  } = getState();
+  const {
+    daemon: { walletName }
+  } = getState();
   return getVersionService(isTestNet(getState()), walletName, address, port)
     .then(versionService => {
       dispatch({ versionService, type: GETVERSIONSERVICE_SUCCESS });
@@ -27,11 +31,15 @@ export const VERSION_NOT_VALID = "VERSION_NOT_VALID";
 
 export const getWalletRPCVersionAttempt = () => (dispatch, getState) => {
   dispatch({ type: WALLETRPCVERSION_ATTEMPT });
-  const { version: { versionService } }= getState();
+  const {
+    version: { versionService }
+  } = getState();
   return getVersionResponse(versionService)
     .then(getWalletRPCVersionResponse => {
       dispatch({ getWalletRPCVersionResponse, type: WALLETRPCVERSION_SUCCESS });
-      const { version: { requiredVersion } } = getState();
+      const {
+        version: { requiredVersion }
+      } = getState();
       let versionErr = null;
       let walletVersion = getWalletRPCVersionResponse.getVersionString();
       ipcRenderer.send("grpc-versions-determined", { requiredVersion, walletVersion });
@@ -39,10 +47,13 @@ export const getWalletRPCVersionAttempt = () => (dispatch, getState) => {
         versionErr = "Unable to obtain Dcrwallet API version";
       } else {
         if (!semverCompatible(requiredVersion, walletVersion)) {
-          versionErr = "API versions not compatible..  Exilibrium requires "
-            + requiredVersion + " but wallet " + walletVersion
-            + " does not satisfy the requirement. Please check your"
-            + " installation, Exilibrium and Exccwallet versions should match.";
+          versionErr =
+            "API versions not compatible..  Exilibrium requires " +
+            requiredVersion +
+            " but wallet " +
+            walletVersion +
+            " does not satisfy the requirement. Please check your" +
+            " installation, Exilibrium and Exccwallet versions should match.";
         }
       }
       if (versionErr) {
@@ -50,19 +61,20 @@ export const getWalletRPCVersionAttempt = () => (dispatch, getState) => {
         dispatch(pushHistory("/invalidRPCVersion"));
       } else {
         const { address, port } = getState().grpc;
-        dispatch(loaderRequest(address,port));
+        dispatch(loaderRequest(address, port));
       }
     })
     .catch(error => dispatch({ error, type: WALLETRPCVERSION_FAILED }));
 };
 
 export function semverCompatible(req, act) {
-  var required = req.split("."), actual = act.split(".");
+  var required = req.split("."),
+    actual = act.split(".");
 
   var version = {
     MAJOR: 0,
     MINOR: 1,
-    PATCH: 2,
+    PATCH: 2
   };
 
   if (required.length != 3 || actual.length != 3) {
@@ -75,8 +87,10 @@ export function semverCompatible(req, act) {
   if (required[version.MINOR] > actual[version.MINOR]) {
     return false;
   }
-  if (required[version.MINOR] == actual[version.MINOR]
-   && required[version.PATCH] > actual[version.PATCH]) {
+  if (
+    required[version.MINOR] == actual[version.MINOR] &&
+    required[version.PATCH] > actual[version.PATCH]
+  ) {
     return false;
   }
   return true;

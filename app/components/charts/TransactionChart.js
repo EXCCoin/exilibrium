@@ -17,9 +17,13 @@ const BalanceChart = ({ data, intl }) => {
   }));
 
   return (
-    <BarChart stackOffset="sign" width={homeChartSize.width} height={homeChartSize.height} data={displayData}>
+    <BarChart
+      stackOffset="sign"
+      width={homeChartSize.width}
+      height={homeChartSize.height}
+      data={displayData}>
       <XAxis dataKey="name" style={xAxisStyle} />
-      <YAxis orientation="right" style={yAxisStyle} padding={padding}/>
+      <YAxis orientation="right" style={yAxisStyle} padding={padding} />
       <Tooltip content={<ChartTooltip />} />
       <ReferenceLine y={0} />
       <Bar dataKey={sentKey} stackId="a" fill="#fd704a" barSize={8} radius={radiusFull} />

@@ -1,48 +1,61 @@
 import exportPage from "connectors/exportPage";
 import {
-  transactionStats, dailyBalancesStats, balancesStats, voteTimeStats,
-  ticketStats,
+  transactionStats,
+  dailyBalancesStats,
+  balancesStats,
+  voteTimeStats,
+  ticketStats
 } from "actions/StatisticsActions";
 import Page from "./Page";
 import messages from "./messages";
 import { DescriptionHeader } from "layout";
 import { FormattedMessage as T } from "react-intl";
 
-export const ExportTabHeader = () =>
+export const ExportTabHeader = () => (
   <DescriptionHeader
-    description={<T id="transactions.description.export" m="Export different types of statistics from your wallet." />}
-  />;
+    description={
+      <T
+        id="transactions.description.export"
+        m="Export different types of statistics from your wallet."
+      />
+    }
+  />
+);
 
 const AvailableExports = [
-  { ...messages.transactions,
+  {
+    ...messages.transactions,
     key: "transactions",
-    calcFunction: transactionStats,
+    calcFunction: transactionStats
   },
-  { ...messages.dailyBalances,
+  {
+    ...messages.dailyBalances,
     key: "dailyBalances",
-    calcFunction: dailyBalancesStats,
+    calcFunction: dailyBalancesStats
   },
-  { ...messages.balances,
+  {
+    ...messages.balances,
     key: "balances",
-    calcFunction: balancesStats,
+    calcFunction: balancesStats
   },
-  { ...messages.voteTime,
+  {
+    ...messages.voteTime,
     key: "votetime",
-    calcFunction: voteTimeStats,
+    calcFunction: voteTimeStats
   },
-  { ...messages.tickets,
+  {
+    ...messages.tickets,
     key: "tickets",
-    calcFunction: ticketStats,
+    calcFunction: ticketStats
   }
 ];
 @autobind
 class ExportTab extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       selectedExport: AvailableExports[0],
-      destinationFile: "",
+      destinationFile: ""
     };
   }
 
@@ -54,7 +67,7 @@ class ExportTab extends React.Component {
     const { selectedExport, destinationFile } = this.state;
     const opts = {
       calcFunction: selectedExport.calcFunction,
-      csvFilename: destinationFile,
+      csvFilename: destinationFile
     };
     this.props.exportStatToCSV(opts);
   }
@@ -66,14 +79,16 @@ class ExportTab extends React.Component {
   render() {
     const { exportCSV, onChangeSelectedExport, setDestinationFile } = this;
 
-    return (<Page
-      {...this.props}
-      {...this.state}
-      availableExports={AvailableExports}
-      exportCSV={exportCSV}
-      onChangeSelectedExport={onChangeSelectedExport}
-      setDestinationFile={setDestinationFile}
-    />);
+    return (
+      <Page
+        {...this.props}
+        {...this.state}
+        availableExports={AvailableExports}
+        exportCSV={exportCSV}
+        onChangeSelectedExport={onChangeSelectedExport}
+        setDestinationFile={setDestinationFile}
+      />
+    );
   }
 }
 

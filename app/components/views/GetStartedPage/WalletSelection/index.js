@@ -1,6 +1,4 @@
-import {
-  WalletSelectionFormBody
-} from "./Form";
+import { WalletSelectionFormBody } from "./Form";
 
 @autobind
 class WalletSelectionBody extends React.Component {
@@ -17,7 +15,10 @@ class WalletSelectionBody extends React.Component {
     };
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.availableWallets && this.props.availableWallets.length !== nextProps.availableWallets.length) {
+    if (
+      nextProps.availableWallets &&
+      this.props.availableWallets.length !== nextProps.availableWallets.length
+    ) {
       this.setState({ selectedWallet: nextProps.availableWallets[0] });
     }
   }
@@ -40,7 +41,7 @@ class WalletSelectionBody extends React.Component {
       sideActive,
       newWalletName,
       newWalletNetwork,
-      createWalletForm,
+      createWalletForm
     } = this.state;
     return (
       <WalletSelectionFormBody
@@ -58,7 +59,7 @@ class WalletSelectionBody extends React.Component {
           newWalletNetwork,
           networkSelected: newWalletNetwork == "mainnet",
           ...this.props,
-          ...this.state,
+          ...this.state
         }}
       />
     );
@@ -78,12 +79,13 @@ class WalletSelectionBody extends React.Component {
   }
   createWallet() {
     const { newWalletName } = this.state;
-    if (newWalletName == "" ) {
+    if (newWalletName == "") {
       return;
     }
     this.props.onCreateWallet({
       label: newWalletName,
-      value: { wallet: newWalletName } });
+      value: { wallet: newWalletName }
+    });
   }
   startWallet() {
     this.props.onStartWallet(this.state.selectedWallet);
@@ -91,7 +93,6 @@ class WalletSelectionBody extends React.Component {
   resetState() {
     this.setState(this.getInitialState());
   }
-
 }
 
 export { WalletSelectionBody };

@@ -2,10 +2,13 @@ import { FormattedMessage as T } from "react-intl";
 import { DescriptionHeader } from "layout";
 import { Link } from "react-router-dom";
 
-export const TutorialsTabHeader = () =>
+export const TutorialsTabHeader = () => (
   <DescriptionHeader
-    description={<T id="help.description.tutorials" m="Learn about the various aspects of the EXCC network." />}
-  />;
+    description={
+      <T id="help.description.tutorials" m="Learn about the various aspects of the EXCC network." />
+    }
+  />
+);
 
 export const TutorialsTab = () => (
   <div className="overview-no-tickets">

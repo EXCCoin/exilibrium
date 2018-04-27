@@ -28,7 +28,6 @@ function _blake256x2(buffer) {
 }
 
 export function isValidAddress(addr, network) {
-
   if (!addr || !addr.trim().length) return ERR_INVALID_ADDR_EMPTY;
   if (addr.length < 25) return ERR_INVALID_ADDR_TOOSHORT;
   if (addr.length > 36) return ERR_INVALID_ADDR_TOOLONG;

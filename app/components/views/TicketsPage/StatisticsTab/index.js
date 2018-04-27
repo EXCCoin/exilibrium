@@ -2,8 +2,7 @@ import StatisticsPage from "./Page";
 import { myTicketsCharts } from "connectors";
 
 @autobind
-class Statistics extends React.Component{
-
+class Statistics extends React.Component {
   constructor(props) {
     super(props);
     if (!props.voteTimeStats && !props.getMyTicketsStatsRequest && props.allTickets.length > 0) {
@@ -17,10 +16,14 @@ class Statistics extends React.Component{
   }
 
   render() {
-    return <StatisticsPage {...{
-      ...this.props,
-      ...this.state
-    }} />;
+    return (
+      <StatisticsPage
+        {...{
+          ...this.props,
+          ...this.state
+        }}
+      />
+    );
   }
 }
 

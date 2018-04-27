@@ -13,8 +13,9 @@ import balanceConnector from "connectors/balance";
  * Whenever possible, use the ExccInput component, as it is more flexible and
  * already manages the underlying input value in atoms.
  */
-export const FixedExccInput = ({ currencyDisplay, ...props }) =>
-  <FloatInput {...{ ...props, unit: currencyDisplay, maxFracDigits: 8 }} />;
+export const FixedExccInput = ({ currencyDisplay, ...props }) => (
+  <FloatInput {...{ ...props, unit: currencyDisplay, maxFracDigits: 8 }} />
+);
 
 /**
  * ExccInput provides a way to receive excc amount inputs. Instead of the usual
@@ -28,7 +29,6 @@ export const FixedExccInput = ({ currencyDisplay, ...props }) =>
  */
 @autobind
 class ExccInput extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = { value: this.amountToDisplayStr(props.amount) };
@@ -60,7 +60,7 @@ class ExccInput extends React.Component {
   }
 
   onChange(e) {
-    const value = e.target.value;
+    const { value } = e.target;
     if (value) {
       // pre-validate if <= max supply
       const { unitDivisor } = this.props;
@@ -81,13 +81,15 @@ class ExccInput extends React.Component {
     const maxFracDigits = Math.log10(unitDivisor);
 
     const Comp = unitDivisor !== 1 ? FloatInput : IntegerInput;
-    return <Comp
-      {...this.props}
-      unit={currencyDisplay}
-      value={value}
-      onChange={onChange}
-      maxFracDigits={maxFracDigits}
-    />;
+    return (
+      <Comp
+        {...this.props}
+        unit={currencyDisplay}
+        value={value}
+        onChange={onChange}
+        maxFracDigits={maxFracDigits}
+      />
+    );
   }
 }
 

@@ -9,11 +9,11 @@ const messages = defineMessages({
 });
 
 const WalletSelect = ({
-  valueKey="value",
-  labelKey="label",
-  multi=false,
-  clearable=false,
-  style={ zIndex:"9" },
+  valueKey = "value",
+  labelKey = "label",
+  multi = false,
+  clearable = false,
+  style = { zIndex: "9" },
   intl,
   ...props
 }) => (

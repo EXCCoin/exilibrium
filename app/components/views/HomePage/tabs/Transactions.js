@@ -5,11 +5,7 @@ import { transactionsHome } from "connectors";
 import "style/Fonts.less";
 import "style/HomePage.less";
 
-const HomePage = ({
-  balanceReceived,
-  balanceSent,
-  sentAndReceivedTransactions
-}) => {
+const HomePage = ({ balanceReceived, balanceSent, sentAndReceivedTransactions }) => {
   return (
     <div className="overview-content-wrapper">
       <div className="overview-spendable-locked-wrapper">
@@ -17,21 +13,23 @@ const HomePage = ({
           <Balance
             classNameWrapper="overview-balance-spendable-locked"
             classNameUnit="overview-balance-spendable-locked-unit"
-            amount={balanceSent} />
+            amount={balanceSent}
+          />
           <div className="overview-balance-spendable-locked-label">
             <T id="home.currentTotalSpendableBalanceLabel" m="Sent" />
           </div>
           <Balance
             classNameWrapper="overview-balance-spendable-locked"
             classNameUnit="overview-balance-spendable-locked-unit"
-            amount={balanceReceived} />
+            amount={balanceReceived}
+          />
           <div className="overview-balance-spendable-locked-label">
             <T id="home.currentTotalLockedBalanceLabel" m="Received" />
           </div>
         </div>
       </div>
       <div className="overview-chart-wrapper">
-        <TransactionChart data={sentAndReceivedTransactions}/>
+        <TransactionChart data={sentAndReceivedTransactions} />
       </div>
     </div>
   );

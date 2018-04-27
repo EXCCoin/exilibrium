@@ -4,14 +4,17 @@ import { tsToDate } from "helpers/dateFormat";
 import { Tooltip } from "shared";
 
 const StatusSmall = ({ pending, txTimestamp, daysToVote, onClick }) => {
-
   const daysToVoteLabel = <T id="ticket.daysToVoteLabel" m="Ticket Days To Vote" />;
-  const daysToVoteMessage = <T id="ticket.daysToVoteMessage"
-    m={"{daysToVoteLabel}: {daysToVote}"}
-    values={{
-      daysToVoteLabel: daysToVoteLabel,
-      daysToVote: daysToVote || 0,
-    }} />;
+  const daysToVoteMessage = (
+    <T
+      id="ticket.daysToVoteMessage"
+      m={"{daysToVoteLabel}: {daysToVote}"}
+      values={{
+        daysToVoteLabel,
+        daysToVote: daysToVote || 0
+      }}
+    />
+  );
 
   return (
     <Aux>
@@ -24,19 +27,23 @@ const StatusSmall = ({ pending, txTimestamp, daysToVote, onClick }) => {
               day: <FormattedDate value={tsToDate(txTimestamp)} day="2-digit" />,
               month: <FormattedDate value={tsToDate(txTimestamp)} month="short" />,
               year: <FormattedDate value={tsToDate(txTimestamp)} year="numeric" />,
-              time: <FormattedTime value={tsToDate(txTimestamp)} hour12={false} />,
+              time: <FormattedTime value={tsToDate(txTimestamp)} hour12={false} />
             }}
           />
-          {daysToVote !== null && !isNaN(daysToVote) && (
-            <div className="transaction-info-overview-days-to-vote">
-              <Tooltip text={daysToVoteMessage}>
-                <div className="transaction-info-overview-lock-icon"></div>
-                <span className="transaction-info-overview-days-to-vote-number">{daysToVote}</span>
-                <T id="statusSmall.daysToVote" m="days" />
-              </Tooltip>
-            </div>
-          )}
-        </div>) : (
+          {daysToVote !== null &&
+            !isNaN(daysToVote) && (
+              <div className="transaction-info-overview-days-to-vote">
+                <Tooltip text={daysToVoteMessage}>
+                  <div className="transaction-info-overview-lock-icon" />
+                  <span className="transaction-info-overview-days-to-vote-number">
+                    {daysToVote}
+                  </span>
+                  <T id="statusSmall.daysToVote" m="days" />
+                </Tooltip>
+              </div>
+            )}
+        </div>
+      ) : (
         <Tooltip text={<T id="txHistory.Pending" m="Pending" />}>
           <div className="pending-overview-details" onClick={onClick}>
             ...

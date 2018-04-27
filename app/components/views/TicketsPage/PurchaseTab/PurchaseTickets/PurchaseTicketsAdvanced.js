@@ -4,16 +4,16 @@ import { FormattedMessage as T, defineMessages } from "react-intl";
 const messages = defineMessages({
   txFeePlaceholder: {
     id: "purchaseTickets.txFeePlaceholder",
-    defaultMessage: "Tx Fee",
+    defaultMessage: "Tx Fee"
   },
   ticketFeePlaceholder: {
     id: "purchaseTickets.ticketFeePlaceholder",
-    defaultMessage: "Ticket Fee",
+    defaultMessage: "Ticket Fee"
   },
   expiryPlaceholder: {
     id: "purchaseTickets.expiryPlaceholder",
-    defaultMessage: "Expiry",
-  },
+    defaultMessage: "Expiry"
+  }
 });
 
 const PurchaseTicketsAdvanced = ({
@@ -31,7 +31,7 @@ const PurchaseTicketsAdvanced = ({
   onChangeTxFee,
   onChangeExpiry,
   formatMessage,
-  ...props,
+  ...props
 }) => (
   <Aux>
     <div className="stakepool-purchase-ticket-row">
@@ -53,10 +53,12 @@ const PurchaseTicketsAdvanced = ({
       <div className="stakepool-purchase-ticket-row-thirds-first">
         <div className="stakepool-purchase-ticket-label">
           <T id="purchaseTickets.ticketFee" m="Ticket Fee" />
-            :</div>
+          :
+        </div>
         <div className="stakepool-purchase-ticket-thirds-input">
           <div className="stakepool-input-form-purchase-ticket">
-            <FeeInput {...{ ...props }}
+            <FeeInput
+              {...{ ...props }}
               name={"ticketFee"}
               placeholder={formatMessage(messages.ticketFeePlaceholder)}
               value={ticketFee}
@@ -67,7 +69,8 @@ const PurchaseTicketsAdvanced = ({
       </div>
       <div className="stakepool-purchase-ticket-row-thirds">
         <div className="stakepool-purchase-ticket-label-second">
-          <T id="purchaseTickets.txFee" m="Tx Fee" />:</div>
+          <T id="purchaseTickets.txFee" m="Tx Fee" />:
+        </div>
         <div className="stakepool-purchase-ticket-thirds-input">
           <div className="stakepool-input-form-purchase-ticket">
             <FeeInput
@@ -81,7 +84,8 @@ const PurchaseTicketsAdvanced = ({
       </div>
       <div className="stakepool-purchase-ticket-row-thirds">
         <div className="stakepool-purchase-ticket-label-second">
-          <T id="purchaseTickets.expiry" m="Expiry" />:</div>
+          <T id="purchaseTickets.expiry" m="Expiry" />:
+        </div>
         <div className="stakepool-purchase-ticket-thirds-input">
           <div className="stakepool-input-form-purchase-ticket">
             <BlocksInput
@@ -95,11 +99,13 @@ const PurchaseTicketsAdvanced = ({
     </div>
     <div className="stakepool-purchase-ticket-row">
       <div className="stakepool-purchase-ticket-label">
-        <T id="purchaseTickets.ticketAddress" m="Ticket Address" /> :</div>
+        <T id="purchaseTickets.ticketAddress" m="Ticket Address" /> :
+      </div>
       <div className="stakepool-purchase-ticket-address-input">
         <div className="stakepool-input-form-purchase-ticket">
           <AddressInput
-            disabled readOnly
+            disabled
+            readOnly
             className="stakepool-content-nest-purchase-ticket-form-disabled"
             value={stakePool ? stakePool.value.TicketAddress : null}
           />
@@ -109,11 +115,13 @@ const PurchaseTicketsAdvanced = ({
     <div className="stakepool-purchase-ticket-row">
       <div className="stakepool-purchase-ticket-label">
         <T id="purchaseTickets.poolAddress" m="Pool Address" />
-          :</div>
+        :
+      </div>
       <div className="stakepool-purchase-ticket-address-input">
         <div className="stakepool-input-form-purchase-ticket">
           <AddressInput
-            disabled readOnly
+            disabled
+            readOnly
             className="stakepool-content-nest-purchase-ticket-form-disabled"
             value={stakePool ? stakePool.value.PoolAddress : null}
           />
@@ -122,11 +130,13 @@ const PurchaseTicketsAdvanced = ({
     </div>
     <div className="stakepool-purchase-ticket-row">
       <div className="stakepool-purchase-ticket-label">
-        <T id="purchaseTickets.poolFees" m="Pool Fees" />:</div>
+        <T id="purchaseTickets.poolFees" m="Pool Fees" />:
+      </div>
       <div className="stakepool-purchase-ticket-num-input">
         <div className="stakepool-input-form-purchase-ticket">
           <PercentInput
-            disabled readOnly
+            disabled
+            readOnly
             className="stakepool-content-nest-purchase-ticket-form-disabled"
             value={stakePool ? stakePool.value.PoolFees : null}
           />
@@ -135,14 +145,21 @@ const PurchaseTicketsAdvanced = ({
     </div>
     <div className="stakepool-purchase-ticket-row">
       <div className="stakepool-purchase-advanced-error">
-        {!ticketFeeError ? null :
-          <T id="purchaseTickets.errors.invalidTicketFee" m="*Invalid ticket fee (0 - 0.1 EXCC/KB)" />}
-        {!expiryError ? null :
-          <T id="purchaseTickets.errors.expiryRequred" m="Expiry is required" />}
-        {!txFeeError ? null :
-          <T id="purchaseTickets.errors.invalidTxFee" m="*Invalid tx fee (0 - 0.1 EXCC/KB)" />}
+        {!ticketFeeError ? null : (
+          <T
+            id="purchaseTickets.errors.invalidTicketFee"
+            m="*Invalid ticket fee (0 - 0.1 EXCC/KB)"
+          />
+        )}
+        {!expiryError ? null : (
+          <T id="purchaseTickets.errors.expiryRequred" m="Expiry is required" />
+        )}
+        {!txFeeError ? null : (
+          <T id="purchaseTickets.errors.invalidTxFee" m="*Invalid tx fee (0 - 0.1 EXCC/KB)" />
+        )}
       </div>
     </div>
-  </Aux>);
+  </Aux>
+);
 
 export default PurchaseTicketsAdvanced;

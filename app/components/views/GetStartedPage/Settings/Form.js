@@ -29,10 +29,19 @@ export default ({
             <T id="getStarted.btnLogs" m="Logs" />
           </InvisibleButton>
         </div>
-        <Tooltip text={ <T id="logs.goBack" m="Go back" /> }><div className="go-back-screen-button" onClick={onHideSettings}/></Tooltip>
+        <Tooltip text={<T id="logs.goBack" m="Go back" />}>
+          <div className="go-back-screen-button" onClick={onHideSettings} />
+        </Tooltip>
       </div>
-      <GeneralSettings {...{ tempSettings, networks, currencies, locales,
-        onChangeTempSettings }} />
+      <GeneralSettings
+        {...{
+          tempSettings,
+          networks,
+          currencies,
+          locales,
+          onChangeTempSettings
+        }}
+      />
       <KeyBlueButton
         disabled={!areSettingsDirty}
         size="large"
@@ -40,7 +49,7 @@ export default ({
         onClick={() => onSaveSettings(tempSettings)}>
         <T id="settings.save" m="Save" />
       </KeyBlueButton>
-      <LoaderBarBottom  {...{ getCurrentBlockCount, getNeededBlocks, getEstimatedTimeLeft }}  />
+      <LoaderBarBottom {...{ getCurrentBlockCount, getNeededBlocks, getEstimatedTimeLeft }} />
     </div>
   </div>
 );

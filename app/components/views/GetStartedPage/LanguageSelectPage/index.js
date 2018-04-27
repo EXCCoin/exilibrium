@@ -2,7 +2,7 @@ import LanguageSelectPage from "./Page";
 import { walletStartup } from "connectors";
 
 @autobind
-class LanguageSelect extends React.Component{
+class LanguageSelect extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.getInitialState();
@@ -25,8 +25,9 @@ class LanguageSelect extends React.Component{
           availableLanguages,
           onChangeSelectedLang,
           onSelectLang
-        }
-        }/>);
+        }}
+      />
+    );
   }
   onChangeSelectedLang(newLang) {
     this.setState({ selectedLang: newLang });
@@ -34,7 +35,6 @@ class LanguageSelect extends React.Component{
   onSelectLang() {
     this.props.onSelectLanguage(this.state.selectedLang);
   }
-
 }
 
 export default walletStartup(LanguageSelect);

@@ -3,7 +3,7 @@ import { Balance, TransitionMotionWrapper } from "shared";
 import "style/Fonts.less";
 import "style/AccountRow.less";
 
-const wrapperComponent = props => <div className="account-wrapper" { ...props } />;
+const wrapperComponent = props => <div className="account-wrapper" {...props} />;
 
 const Row = ({
   account,
@@ -17,7 +17,7 @@ const Row = ({
   getAccountDetailsStyles,
   getRenameAccountStyles,
   getNullStyles,
-  getDefaultStyles,
+  getDefaultStyles
 }) => (
   <div
     className={
@@ -26,8 +26,7 @@ const Row = ({
           ? "account-row-rename"
           : "account-row-long"
         : "account-row-short"
-    }
-  >
+    }>
     <div
       className={
         isShowingAccountDetails
@@ -41,18 +40,16 @@ const Row = ({
         isShowingAccountDetails
           ? hideAccountDetails
           : () => showAccountDetails(account.accountNumber)
-      }
-    >
+      }>
       <div className="account-row-top-top">
         <div className="account-row-wallet-icon" />
-        <div className="account-row-top-account-name">{account.accountName}{
-          hidden
-            ? <span> (hidden)</span>
-            : <span></span>
-        }</div>
+        <div className="account-row-top-account-name">
+          {account.accountName}
+          {hidden ? <span> (hidden)</span> : <span />}
+        </div>
         <div className="account-row-top-account-funds">
           <Balance amount={account.total} />
-          <div className="account-row-top-last-tx"></div>
+          <div className="account-row-top-last-tx" />
           <div className="account-row-top-spendable">
             <div className="account-row-top-spendable-label">
               <T id="accounts.row.spendable" m="Spendable" />
@@ -64,16 +61,17 @@ const Row = ({
     </div>
     {
       <TransitionMotionWrapper
-        {
-        ...{
-          styles: !isShowingAccountDetails ?
-            getNullStyles() :
-            isShowingRenameAccount ? getRenameAccountStyles() :
-              getAccountDetailsStyles(),
+        {...{
+          styles: !isShowingAccountDetails
+            ? getNullStyles()
+            : isShowingRenameAccount
+              ? getRenameAccountStyles()
+              : getAccountDetailsStyles(),
           defaultStyles: getDefaultStyles(),
           wrapperComponent,
           willEnter,
-          willLeave }}
+          willLeave
+        }}
       />
     }
   </div>

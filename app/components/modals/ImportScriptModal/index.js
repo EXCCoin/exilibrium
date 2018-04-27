@@ -2,7 +2,6 @@ import Modal from "./Modal";
 
 @autobind
 class ImportScriptModal extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = this.getInitialState();
@@ -48,13 +47,7 @@ class ImportScriptModal extends React.Component {
   }
 
   render() {
-    const {
-      setScript,
-      onSubmit,
-      onCancelModal,
-      isValid,
-      validationFailed
-    } = this;
+    const { setScript, onSubmit, onCancelModal, isValid, validationFailed } = this;
 
     return (
       <Modal

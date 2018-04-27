@@ -25,17 +25,20 @@ const HomePage = ({
           <Balance
             classNameWrapper="overview-balance"
             classNameUnit="overview-balance-unit"
-            amount={totalBalance} />
+            amount={totalBalance}
+          />
           <div className="overview-balance-label">
             <T id="home.currentTotalBalanceLabel" m="Current Total Balance" />
           </div>
         </div>
 
-        <RoutedTabsHeader tabs={[
-          RoutedTab("/home/balance", <T id="home.tab.balance" m="Balance" />),
-          RoutedTab("/home/tickets", <T id="home.tab.tickets" m="Tickets" />),
-          RoutedTab("/home/transactions", <T id="home.tab.transactions" m="Transactions" />),
-        ]} />
+        <RoutedTabsHeader
+          tabs={[
+            RoutedTab("/home/balance", <T id="home.tab.balance" m="Balance" />),
+            RoutedTab("/home/tickets", <T id="home.tab.tickets" m="Tickets" />),
+            RoutedTab("/home/transactions", <T id="home.tab.transactions" m="Transactions" />)
+          ]}
+        />
       </div>
 
       <Switch>
@@ -47,10 +50,14 @@ const HomePage = ({
 
       <div className="overview-transactions-ticket-wrapper">
         <div className={"recent-transactions"}>
-          <RecentTransactions {...{ transactions, getTransactionsRequestAttempt, getAccountsResponse, rowNumber }} />
+          <RecentTransactions
+            {...{ transactions, getTransactionsRequestAttempt, getAccountsResponse, rowNumber }}
+          />
         </div>
         <div className="recent-transactions">
-          <TicketActivity {...{ tickets, getTransactionsRequestAttempt, getAccountsResponse, rowNumber }} />
+          <TicketActivity
+            {...{ tickets, getTransactionsRequestAttempt, getAccountsResponse, rowNumber }}
+          />
         </div>
       </div>
     </Aux>

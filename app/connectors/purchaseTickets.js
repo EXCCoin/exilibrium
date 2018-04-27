@@ -11,8 +11,12 @@ const mapStateToProps = selectorMap({
   hasTicketsToRevoke: sel.hasTicketsToRevoke
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  onPurchaseTickets: ca.purchaseTicketsAttempt
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      onPurchaseTickets: ca.purchaseTicketsAttempt
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

@@ -2,7 +2,7 @@ import OpenWalletDecryptFormBody from "./DecryptForm";
 
 @autobind
 class OpenWallet extends React.Component {
-  constructor(props)  {
+  constructor(props) {
     super(props);
     this.state = this.getInitialState();
   }
@@ -13,16 +13,13 @@ class OpenWallet extends React.Component {
 
   getInitialState() {
     return {
-      publicPassPhrase: "",
+      publicPassPhrase: ""
     };
   }
 
   render() {
     const { publicPassPhrase, onKeyDown } = this.state;
-    const {
-      onSetPublicPassPhrase,
-      onOpenWallet,
-    } = this;
+    const { onSetPublicPassPhrase, onOpenWallet } = this;
     const { isInputRequest, isOpeningWallet } = this.props;
     return (
       <OpenWalletDecryptFormBody
@@ -58,12 +55,11 @@ class OpenWallet extends React.Component {
   }
 
   onKeyDown(e) {
-    if(e.keyCode == 13) {
+    if (e.keyCode == 13) {
       e.preventDefault();
       this.onOpenWallet();
     }
   }
-
 }
 
 export default OpenWallet;

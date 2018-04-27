@@ -47,13 +47,7 @@ class AddAccountModal extends React.Component {
   }
 
   render() {
-    const {
-      setName,
-      onSubmit,
-      onCancelModal,
-      isValid,
-      validationFailed
-    } = this;
+    const { setName, onSubmit, onCancelModal, isValid, validationFailed } = this;
 
     return (
       <Modal

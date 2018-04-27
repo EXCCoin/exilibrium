@@ -19,8 +19,8 @@ const NumTicketsInput = ({
       />
     </div>
     <div className="num-tickets-more-less">
-      <a key="more" className="num-tickets-more" onClick={incrementNumTickets}></a>
-      <a key="less" className="num-tickets-less" onClick={decrementNumTickets}></a>
+      <a key="more" className="num-tickets-more" onClick={incrementNumTickets} />
+      <a key="less" className="num-tickets-less" onClick={decrementNumTickets} />
     </div>
   </div>
 );

@@ -4,30 +4,27 @@ import "style/Input.less";
 
 @autobind
 class SettingsInput extends React.Component {
-
   static propTypes = {
     intl: intlShape.isRequired,
-    className: PropTypes.string,
+    className: PropTypes.string
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      value: null,
+      value: null
     };
   }
 
   componentWillMount() {
     const { value } = this.props;
-    if(value) {
-      this.setState({ value: value });
+    if (value) {
+      this.setState({ value });
     }
   }
 
   render() {
-    const {
-      className, valueKey, labelKey, options
-    } = this.props;
+    const { className, valueKey, labelKey, options } = this.props;
 
     return (
       <div className={className}>
@@ -44,11 +41,10 @@ class SettingsInput extends React.Component {
     );
   }
 
-  onChangeSelect(value){
-    this.setState({ value: value });
+  onChangeSelect(value) {
+    this.setState({ value });
     this.props.onChange(value);
   }
-
 }
 
 export default injectIntl(SettingsInput);

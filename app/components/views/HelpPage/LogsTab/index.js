@@ -4,10 +4,16 @@ import { logging } from "connectors";
 import { DescriptionHeader } from "layout";
 import { FormattedMessage as T } from "react-intl";
 
-export const LogsTabHeader = () =>
+export const LogsTabHeader = () => (
   <DescriptionHeader
-    description={<T id="help.description.logs" m="Please find your current logs below to look for any issue or error you are having." />}
-  />;
+    description={
+      <T
+        id="help.description.logs"
+        m="Please find your current logs below to look for any issue or error you are having."
+      />
+    }
+  />
+);
 @autobind
 class LogsTabBody extends React.Component {
   constructor(props) {
@@ -19,22 +25,27 @@ class LogsTabBody extends React.Component {
     return {
       exccdLogs: null,
       exccwalletLogs: null,
-      exilibriumLogs: null,
+      exilibriumLogs: null
     };
   }
 
   render() {
-    const { showExilibriumLogs, showExccdLogs, showExccwalletLogs,
-      hideExilibriumLogs, hideExccdLogs, hideExccwalletLogs
+    const {
+      showExilibriumLogs,
+      showExccdLogs,
+      showExccwalletLogs,
+      hideExilibriumLogs,
+      hideExccdLogs,
+      hideExccwalletLogs
     } = this;
     const { isDaemonRemote, isDaemonStarted } = this.props;
-    const {
-      exccdLogs, exccwalletLogs, exilibriumLogs
-    } = this.state;
+    const { exccdLogs, exccwalletLogs, exilibriumLogs } = this.state;
     return (
       <Logs
         {...{
-          ...this.props, ...this.state }}
+          ...this.props,
+          ...this.state
+        }}
         {...{
           showExilibriumLogs,
           showExccdLogs,
