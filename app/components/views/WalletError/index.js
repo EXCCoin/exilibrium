@@ -5,23 +5,27 @@ const styles = {
     width: "880px",
     height: "100%",
     float: "right",
-    backgroundColor: "#f3f6f6",
+    backgroundColor: "#f3f6f6"
   },
   content: {
     overflow: "auto",
     height: "556px",
-    padding: "54px 60px 54px 80px",
-  },
+    padding: "54px 60px 54px 80px"
+  }
 };
 
 const WalletError = ({ getNetworkError }) => (
   <div style={styles.view}>
     <div style={styles.content}>
-      { getNetworkError ?
-        <p>{getNetworkError} Please verify that your exccd is configured correctly and restart.</p> :
-        <p> We have detected that your wallet has disconnected.
-          Please reload Exilibrium to fix this problem. </p>
-      }
+      {getNetworkError ? (
+        <p>{getNetworkError} Please verify that your exccd is configured correctly and restart.</p>
+      ) : (
+        <p>
+          {" "}
+          We have detected that your wallet has disconnected. Please reload Exilibrium to fix this
+          problem.{" "}
+        </p>
+      )}
     </div>
   </div>
 );

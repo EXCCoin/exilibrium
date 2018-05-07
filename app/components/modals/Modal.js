@@ -5,7 +5,6 @@ import "style/Modals.less";
 
 @autobind
 class Modal extends React.Component {
-
   constructor(props) {
     super(props);
   }
@@ -24,13 +23,12 @@ class Modal extends React.Component {
 
     return ReactDOM.createPortal(
       <Aux>
-        <div className="app-modal-overlay"></div>
-        <div className={"app-modal " + (className||"")}>
-          {children}
-        </div>
-      </Aux>
+        <div className="app-modal-overlay" />
+        <div className={"app-modal " + (className || "")}>{children}</div>
+      </Aux>,
 
-      , domNode);
+      domNode
+    );
   }
 }
 

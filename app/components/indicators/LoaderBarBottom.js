@@ -3,7 +3,7 @@ import { LinearProgressSmall } from "indicators";
 
 @autobind
 class LoaderBarBottom extends React.Component {
-  constructor(props)  {
+  constructor(props) {
     super(props);
     this.state = this.getInitialState();
   }
@@ -11,7 +11,7 @@ class LoaderBarBottom extends React.Component {
   getInitialState() {
     return {
       showLongWaitMessage: false,
-      neededBlocksDeterminedAt: new Date(),
+      neededBlocksDeterminedAt: new Date()
     };
   }
 
@@ -20,24 +20,39 @@ class LoaderBarBottom extends React.Component {
   }
 
   render() {
-    const { getCurrentBlockCount, getNeededBlocks, getEstimatedTimeLeft, getDaemonSynced } = this.props;
+    const {
+      getCurrentBlockCount,
+      getNeededBlocks,
+      getEstimatedTimeLeft,
+      getDaemonSynced
+    } = this.props;
     let finishDateEstimation = null;
     if (getEstimatedTimeLeft !== null) {
       finishDateEstimation = new Date();
       finishDateEstimation.setSeconds(finishDateEstimation.getSeconds() + getEstimatedTimeLeft);
     }
-    return ( getCurrentBlockCount && !getDaemonSynced &&
-      <div className="loader-bar-bottom">
-        <div className="loader-bar-estimation">
-          <span className="normal"><T id="getStarted.chainLoading.syncEstimation.small" m="Loading EXCC blockchain, estimated time left"/></span>
-          <span className="bold"> {finishDateEstimation ? <FormattedRelative value={finishDateEstimation}/> : "--"} ({getCurrentBlockCount} / {getNeededBlocks})</span>
+    return (
+      getCurrentBlockCount &&
+      !getDaemonSynced && (
+        <div className="loader-bar-bottom">
+          <div className="loader-bar-estimation">
+            <span className="normal">
+              <T
+                id="getStarted.chainLoading.syncEstimation.small"
+                m="Loading EXCC blockchain, estimated time left"
+              />
+            </span>
+            <span className="bold">
+              {" "}
+              {finishDateEstimation ? <FormattedRelative value={finishDateEstimation} /> : "--"} ({
+                getCurrentBlockCount
+              }{" "}
+              / {getNeededBlocks})
+            </span>
+          </div>
+          <LinearProgressSmall min={0} max={getNeededBlocks} value={getCurrentBlockCount} />
         </div>
-        <LinearProgressSmall
-          min={0}
-          max={getNeededBlocks}
-          value={getCurrentBlockCount}
-        />
-      </div>
+      )
     );
   }
 }

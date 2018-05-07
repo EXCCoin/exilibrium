@@ -1,15 +1,15 @@
-module.exports = {
-  env: {
-    browser: true,
-    node: true,
-    jest: true,
-    es6: true
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+    "es6": true
   },
-  plugins: ["react", "prettier"],
-  parser: "babel-eslint",
-  extends: "eslint:recommended",
-  rules: {
-    semi: ["error", "always"],
+  "plugins": ["react", "prettier"],
+  "parser": "babel-eslint",
+  "extends": "eslint:recommended",
+  "rules": {
+    "semi": ["error", "always"],
     "no-console": "off",
     "no-debugger": "warn",
     "no-unused-vars": "warn",
@@ -21,14 +21,14 @@ module.exports = {
     "no-return-await": "warn",
     "no-with": "error",
     "require-await": "warn",
-    yoda: "error",
+    "yoda": "error",
     "no-new": "error",
     "no-loop-func": "error",
     "no-multi-spaces": "warn",
     "array-callback-return": "error",
-    complexity: "error",
+    "complexity": "error",
     "dot-notation": "error",
-    eqeqeq: "error",
+    "eqeqeq": "error",
     "no-alert": "warn",
     "no-else-return": "warn",
     "prefer-rest-params": "error",
@@ -43,12 +43,12 @@ module.exports = {
     "object-shorthand": "warn",
     "arrow-spacing": "warn"
   },
-  globals: {
-    Uint8Array: true,
-    Map: true,
-    React: true,
-    PropTypes: true,
-    autobind: true,
-    Aux: true
+  "globals": {
+    "Uint8Array": true,
+    "Map": true,
+    "React": true,
+    "PropTypes": true,
+    "autobind": true,
+    "Aux": true
   }
-};
+}

@@ -13,10 +13,14 @@ const mapStateToProps = selectorMap({
   areSettingsDirty: sel.settingsChanged
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  onAttemptChangePassphrase: ca.changePassphraseAttempt,
-  onChangeTempSettings: sa.updateStateSettingsChanged,
-  onSaveSettings: sa.saveSettings,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      onAttemptChangePassphrase: ca.changePassphraseAttempt,
+      onChangeTempSettings: sa.updateStateSettingsChanged,
+      onSaveSettings: sa.saveSettings
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

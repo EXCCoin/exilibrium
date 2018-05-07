@@ -55,25 +55,49 @@ const StakePoolsAddForm = ({
             />
           </div>
           <div className="stakepool-field-value-error">
-            {apiKey ? null : <T id="stake.addPool.errors.noApiKey" m="*Please enter your API key" /> }
+            {apiKey ? null : (
+              <T id="stake.addPool.errors.noApiKey" m="*Please enter your API key" />
+            )}
           </div>
         </div>
       </div>
       <div className="stakepool-add-area-right">
         <div className="stakepool-add-instructions">
-          <T id="stake.addPool.info" m={
-            "Create an account or login to your existing account at {stakePoolLink} Once logged in, select the ‘Settings’ tab, copy and paste your API KEY into the field."
-          }
-          values={{
-            stakePoolLink: <ExternalLink href={selectedUnconfigured.label}>{selectedUnconfigured.label}</ExternalLink>
-          }}/>
+          <T
+            id="stake.addPool.info"
+            m={
+              "Create an account or login to your existing account at {stakePoolLink} Once logged in, select the ‘Settings’ tab, copy and paste your API KEY into the field."
+            }
+            values={{
+              stakePoolLink: (
+                <ExternalLink href={selectedUnconfigured.label}>
+                  {selectedUnconfigured.label}
+                </ExternalLink>
+              )
+            }}
+          />
           <ScriptRedeemableButton
             modalTitle={<T id="stake.notRedeemed" m="Script not redeemable?" />}
             modalContent={
               <Aux>
-                <span className="stakepool-add-not-redeemable-content"><T id="stake.notRedeemed.content1" m="If you receive an error about the script not being redeemable when attempting to add your stakepool, you can try the following:"/></span>
-                <span className="stakepool-add-not-redeemable-content"><T id="stake.notRedeemed.content2" m="1. Each stakepool account you create can only be associated with 1 wallet. If you have previously created this stakepool account with a different wallet (different seed), then you must create a new account. "/></span>
-                <span className="stakepool-add-not-redeemable-content"><T id="stake.notRedeemed.content3" m="2. If you had previously used a ‘voting account’, for your ticket purchases, please go to the Accounts page and create a new account. This may now allow you to successfully import your script for your stakepool."/></span>
+                <span className="stakepool-add-not-redeemable-content">
+                  <T
+                    id="stake.notRedeemed.content1"
+                    m="If you receive an error about the script not being redeemable when attempting to add your stakepool, you can try the following:"
+                  />
+                </span>
+                <span className="stakepool-add-not-redeemable-content">
+                  <T
+                    id="stake.notRedeemed.content2"
+                    m="1. Each stakepool account you create can only be associated with 1 wallet. If you have previously created this stakepool account with a different wallet (different seed), then you must create a new account. "
+                  />
+                </span>
+                <span className="stakepool-add-not-redeemable-content">
+                  <T
+                    id="stake.notRedeemed.content3"
+                    m="2. If you had previously used a ‘voting account’, for your ticket purchases, please go to the Accounts page and create a new account. This may now allow you to successfully import your script for your stakepool."
+                  />
+                </span>
               </Aux>
             }
             className="stakepool-add-not-redeemable"
@@ -91,10 +115,9 @@ const StakePoolsAddForm = ({
         buttonLabel={<T id="stake.addPool.addBtn" m="Continue" />}
       />
       {configuredStakePools.length ? (
-        <SlateGrayButton
-          className="stakepool-hide-config"
-          onClick={onCancelAddStakePool}
-        ><T id="stake.addPool.cancelBtn" m="Cancel" /></SlateGrayButton>
+        <SlateGrayButton className="stakepool-hide-config" onClick={onCancelAddStakePool}>
+          <T id="stake.addPool.cancelBtn" m="Cancel" />
+        </SlateGrayButton>
       ) : null}
     </div>
   </Aux>

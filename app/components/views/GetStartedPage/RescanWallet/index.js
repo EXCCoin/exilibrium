@@ -1,11 +1,7 @@
-import {
-  RescanWalletFormHeader as RescanWalletHeader,
-  RescanWalletFormBody
-} from "./Form";
+import { RescanWalletFormHeader as RescanWalletHeader, RescanWalletFormBody } from "./Form";
 
 class RescanWalletBody extends React.Component {
-
-  constructor(props)  {
+  constructor(props) {
     super(props);
     this.state = this.getInitialState();
   }
@@ -13,7 +9,7 @@ class RescanWalletBody extends React.Component {
   componentWillUnmount() {
     this.mounted = false;
     this.resetState();
-    if(this.timeoutId) {
+    if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
   }
@@ -40,7 +36,7 @@ class RescanWalletBody extends React.Component {
   componentDidMount() {
     this.mounted = true;
     this.timeoutId = setTimeout(() => {
-      if(this.mounted) {
+      if (this.mounted) {
         this.setState({ showLongWaitMessage: true });
       }
       delete this.timeoutId;
@@ -50,6 +46,5 @@ class RescanWalletBody extends React.Component {
   resetState() {
     this.setState(this.getInitialState());
   }
-
 }
 export { RescanWalletHeader, RescanWalletBody };

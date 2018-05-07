@@ -22,29 +22,33 @@ const ContinueWalletCreation = ({
   ...props
 }) => (
   <div className="getstarted content">
-    {createWalletExisting ?
-      <ExistingSeed {...props} onChange={setSeed} /> :
-      <ConfirmSeed  {...props} onChange={setSeed} /> }
+    {createWalletExisting ? (
+      <ExistingSeed {...props} onChange={setSeed} />
+    ) : (
+      <ConfirmSeed {...props} onChange={setSeed} />
+    )}
     <CreatePassPhrase onChange={setPassPhrase} onSubmit={onCreateWallet} />
 
     <div className="create-wallet-button-container">
-      <div className="create-wallet-label"></div>
+      <div className="create-wallet-label" />
       <div className="create-wallet-field">
         <KeyBlueButton
           className="wallet-key-blue-button"
           disabled={!isValid || isCreatingWallet}
           loading={isCreatingWallet}
-          onClick={onCreateWallet}
-        >
+          onClick={onCreateWallet}>
           <T id="createWallet.createWalletBtn" m="Create Wallet" />
         </KeyBlueButton>
         <InvisibleButton
           className="go-back-button"
-          onClick={createWalletExisting ? onReturnToExistingOrNewScreen : onReturnToNewSeed}
-        ><T id="getStarted.backBtn" m="Cancel" /> </InvisibleButton>
+          onClick={createWalletExisting ? onReturnToExistingOrNewScreen : onReturnToNewSeed}>
+          <T id="getStarted.backBtn" m="Cancel" />{" "}
+        </InvisibleButton>
       </div>
     </div>
-    <LoaderBarBottom  {...{ getCurrentBlockCount, getNeededBlocks, getEstimatedTimeLeft, getDaemonSynced }}  />
+    <LoaderBarBottom
+      {...{ getCurrentBlockCount, getNeededBlocks, getEstimatedTimeLeft, getDaemonSynced }}
+    />
   </div>
 );
 

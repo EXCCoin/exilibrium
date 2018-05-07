@@ -2,7 +2,7 @@ import TutorialPage from "./Page";
 import { walletStartup } from "connectors";
 
 @autobind
-class Tutorial extends React.Component{
+class Tutorial extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.getInitialState();
@@ -26,8 +26,9 @@ class Tutorial extends React.Component{
           onPrevTutorialStep,
           onGoToStep,
           finishTutorial
-        }
-        }/>);
+        }}
+      />
+    );
   }
 
   onGoToStep(step) {
@@ -47,7 +48,6 @@ class Tutorial extends React.Component{
       this.setState({ tutorialStep: tutorialStep - 1 });
     }
   }
-
 }
 
 export default walletStartup(Tutorial);

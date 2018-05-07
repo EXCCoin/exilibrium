@@ -28,7 +28,8 @@ const rawBaseTheme = {
   },
 
   paper: {
-    zDepthShadows: [ //original values on material-ui's styles/getMuiTheme.js
+    zDepthShadows: [
+      //original values on material-ui's styles/getMuiTheme.js
       "0px 3px 5px rgba(0, 0, 0, 0.16)",
       "0px 6px 5px rgba(0, 0, 0, 0.16)",
       "0px 9px 5px rgba(0, 0, 0, 0.16)",

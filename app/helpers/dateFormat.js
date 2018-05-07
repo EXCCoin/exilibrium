@@ -3,7 +3,7 @@ import { format } from "util";
 // tsToDate converts a transaction timestamp into a date
 // object
 export function tsToDate(txTimestamp) {
-  return new Date(txTimestamp*1000);
+  return new Date(txTimestamp * 1000);
 }
 
 // endOfDay returns a new date pointing to the end of the day (last second)
@@ -15,7 +15,7 @@ export function endOfDay(dt) {
   res.setMinutes(0);
   res.setHours(0);
   res.setSeconds(-1);
-  res.setDate(res.getDate()+1);
+  res.setDate(res.getDate() + 1);
   return res;
 }
 
@@ -28,7 +28,7 @@ export function formatLocalISODate(d) {
     return s.substring(s.length - n);
   };
 
-  let tzOffset =  d.getTimezoneOffset();
+  let tzOffset = d.getTimezoneOffset();
   let tzOffsetSign = "-";
   if (tzOffset < 0) {
     tzOffset = -tzOffset;
@@ -37,18 +37,26 @@ export function formatLocalISODate(d) {
   let tzOffsetHours = Math.trunc(tzOffset / 60);
   let tzOffsetMinutes = Math.trunc(tzOffset % 60);
 
-  return format("%s-%s-%sT%s:%s:%s.%s%s%s%s",
-    d.getFullYear(), pad(d.getMonth()+1, 2), pad(d.getDate(), 2),
-    pad(d.getHours(), 2), pad(d.getMinutes(), 2),
-    pad(d.getSeconds(), 2), pad(d.getMilliseconds(), 3),
-    tzOffsetSign, pad(tzOffsetHours, 2), pad(tzOffsetMinutes, 2));
+  return format(
+    "%s-%s-%sT%s:%s:%s.%s%s%s%s",
+    d.getFullYear(),
+    pad(d.getMonth() + 1, 2),
+    pad(d.getDate(), 2),
+    pad(d.getHours(), 2),
+    pad(d.getMinutes(), 2),
+    pad(d.getSeconds(), 2),
+    pad(d.getMilliseconds(), 3),
+    tzOffsetSign,
+    pad(tzOffsetHours, 2),
+    pad(tzOffsetMinutes, 2)
+  );
 }
 
 // calculate the difference between two timestamps and return an int
 // represent number of days
 export function diffBetweenTwoTs(date1, date2) {
-  const oneDay = 24*60*60*1000;
+  const oneDay = 24 * 60 * 60 * 1000;
   const firstDate = tsToDate(date1);
   const secondDate = tsToDate(date2);
-  return Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+  return Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / oneDay));
 }

@@ -15,14 +15,18 @@ const mapStateToProps = selectorMap({
   currencyDisplay: sel.currencyDisplay
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  clearStartAutoBuyerSuccess: ca.clearStartAutoBuyerSuccess,
-  clearStartAutoBuyerError: ca.clearStartAutoBuyerError,
-  clearStopAutoBuyerSuccess: ca.clearStopAutoBuyerSuccess,
-  clearStopAutoBuyerError: ca.clearStopAutoBuyerError,
-  onEnableTicketAutoBuyer: ca.startAutoBuyerAttempt,
-  onDisableTicketAutoBuyer: ca.stopAutoBuyerAttempt,
-  onUpdateTicketAutoBuyerConfig: ca.setTicketBuyerConfigAttempt
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      clearStartAutoBuyerSuccess: ca.clearStartAutoBuyerSuccess,
+      clearStartAutoBuyerError: ca.clearStartAutoBuyerError,
+      clearStopAutoBuyerSuccess: ca.clearStopAutoBuyerSuccess,
+      clearStopAutoBuyerError: ca.clearStopAutoBuyerError,
+      onEnableTicketAutoBuyer: ca.startAutoBuyerAttempt,
+      onDisableTicketAutoBuyer: ca.stopAutoBuyerAttempt,
+      onUpdateTicketAutoBuyerConfig: ca.setTicketBuyerConfigAttempt
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

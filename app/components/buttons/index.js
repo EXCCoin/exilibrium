@@ -16,31 +16,45 @@ import NetworkSwitch from "./NetworkSwitch";
 import DangerButton from "./DangerButton";
 import CloseButton from "./CloseButton";
 import InvisibleButton from "./InvisibleButton";
-export { ModalButton, AutoBuyerSwitch, KeyBlueButton, DangerButton,
-  CloseButton, NetworkSwitch, InvisibleButton };
+export {
+  ModalButton,
+  AutoBuyerSwitch,
+  KeyBlueButton,
+  DangerButton,
+  CloseButton,
+  NetworkSwitch,
+  InvisibleButton
+};
 
 /***************************************************
  * Custom Modal Buttons
  ***************************************************/
 import {
-  InfoModal, PassphraseModal, ChangePassphraseModal,
-  ConfirmModal, InfoConfirmModal
+  InfoModal,
+  PassphraseModal,
+  ChangePassphraseModal,
+  ConfirmModal,
+  InfoConfirmModal
 } from "modals";
 
 // mbb = ModalButtonBuilder (func to build a functional ModalButton component
 // with extra fixed props)
-const mbb = (className, modalComponent, buttonComponent) => p =>
+const mbb = (className, modalComponent, buttonComponent) => p => (
   <ModalButton
     {...{
       ...p,
       buttonComponent,
       modalComponent: p.modalComponent || modalComponent,
-      className: [ className || "", p.className || "" ].join(" "),
+      className: [className || "", p.className || ""].join(" ")
     }}
-  />;
+  />
+);
 
-const helpLinkButton = ({ className, onClick, buttonLabel }) =>
-  <div className={className} onClick={onClick}>{buttonLabel}</div>;
+const helpLinkButton = ({ className, onClick, buttonLabel }) => (
+  <div className={className} onClick={onClick}>
+    {buttonLabel}
+  </div>
+);
 
 export const HelpLinkInfoModal = mbb("help-icon", InfoModal, helpLinkButton);
 export const InfoModalButton = mbb("info-modal-button", InfoModal);

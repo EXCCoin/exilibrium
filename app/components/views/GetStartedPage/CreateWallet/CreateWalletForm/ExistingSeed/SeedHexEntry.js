@@ -21,28 +21,28 @@ class SeedHexEntry extends React.Component {
     this.isHexValid = this.isHexValid.bind(this);
   }
 
-  getInitialState () {
+  getInitialState() {
     return {
-      currentHex: "",
+      currentHex: ""
     };
   }
 
-  render () {
+  render() {
     const { formatMessage } = this.props.intl;
     return (
       <Input
         onChange={this.onChange}
         value={this.state.currentHex}
-        name='hexInput'
+        name="hexInput"
         placeholder={formatMessage(messages.enterHexSeedPlaceholder)}
       />
     );
   }
 
-  onChange (val) {
+  onChange(val) {
     if (!this.isHexValid(val.target.value)) return;
     this.setState({
-      currentHex: val.target.value,
+      currentHex: val.target.value
     });
     this.props.onChange(val.target.value);
   }
@@ -55,19 +55,19 @@ class SeedHexEntry extends React.Component {
     return seed.length <= SEED_LENGTH.HEX_MAX;
   }
 
-  selectKeyDown (e) {
-    switch(e.keyCode) {
-    case 32:
-      e.keyCode = 9;
-      break;
+  selectKeyDown(e) {
+    switch (e.keyCode) {
+      case 32:
+        e.keyCode = 9;
+        break;
     }
   }
 
-  handleKeyDown (e) {
-    switch(e.keyCode) {
-    case 13:  // ENTER
-      e.preventDefault();
-      break;
+  handleKeyDown(e) {
+    switch (e.keyCode) {
+      case 13: // ENTER
+        e.preventDefault();
+        break;
     }
   }
 }

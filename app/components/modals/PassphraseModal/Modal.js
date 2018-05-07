@@ -10,21 +10,17 @@ const propTypes = {
   description: PropTypes.object
 };
 
-const StandardPassphraseModal = (props) => {
-  const {
-    show,
-    modalDescription,
-    children,
-    prependPassphraseRow
-  } = props;
+const StandardPassphraseModal = props => {
+  const { show, modalDescription, children, prependPassphraseRow } = props;
 
-  const inputRow =
+  const inputRow = (
     <PassphraseInputRow
       {...{
         ...props,
         autoFocusPassword: prependPassphraseRow || !children
       }}
-    />;
+    />
+  );
 
   return (
     <Modal className="passphrase-modal" {...{ show }}>
@@ -32,9 +28,7 @@ const StandardPassphraseModal = (props) => {
         <div className="passphrase-modal-header-title">
           <T id="passphraseModal.confirmationRequired" m="Confirmation Required" />
         </div>
-        <div className="passphrase-modal-header-description">
-          {modalDescription}
-        </div>
+        <div className="passphrase-modal-header-description">{modalDescription}</div>
       </div>
       <div className="passphrase-modal-content">
         {prependPassphraseRow ? inputRow : null}

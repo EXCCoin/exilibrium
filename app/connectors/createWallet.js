@@ -14,11 +14,15 @@ const mapStateToProps = selectorMap({
   isTestNet: sel.isTestNet
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  createWalletConfirmNewSeed: wla.createWalletConfirmNewSeed,
-  createWalletGoBackNewSeed: wla.createWalletGoBackNewSeed,
-  createWalletRequest: wla.createWalletRequest,
-  copySeedToClipboard: ca.copySeedToClipboard,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      createWalletConfirmNewSeed: wla.createWalletConfirmNewSeed,
+      createWalletGoBackNewSeed: wla.createWalletGoBackNewSeed,
+      createWalletRequest: wla.createWalletRequest,
+      copySeedToClipboard: ca.copySeedToClipboard
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

@@ -1,10 +1,13 @@
 import { PurchaseTicketsInfoModalContent, ImportScriptModal } from "modals";
-import { TicketsCogs, InfoModalButton, PassphraseModalButton,
-  InvisiblePassphraseModalButton } from "buttons";
+import {
+  TicketsCogs,
+  InfoModalButton,
+  PassphraseModalButton,
+  InvisiblePassphraseModalButton
+} from "buttons";
 import { AccountsSelect, NumTicketsInput } from "inputs";
 import { FormattedMessage as T } from "react-intl";
-import { Tooltip } from "shared";
-import { TransitionMotionWrapper } from "shared";
+import { Tooltip, TransitionMotionWrapper } from "shared";
 
 import "style/StakePool.less";
 
@@ -26,9 +29,8 @@ const PurchaseTicketsForm = ({
   onToggleShowAdvanced,
   account,
   willEnter,
-  willLeave,
+  willLeave
 }) => {
-
   return (
     <Aux>
       <div className="stakepool-voting-title-area">
@@ -37,7 +39,11 @@ const PurchaseTicketsForm = ({
         </div>
         <div className="stakepool-purchase-ticket-input-buttons">
           <InfoModalButton
-            modalTitle={<h1><T id="purchaseInfoModal.title" m="Ticket Purchase Information" /></h1>}
+            modalTitle={
+              <h1>
+                <T id="purchaseInfoModal.title" m="Ticket Purchase Information" />
+              </h1>
+            }
             modalContent={<PurchaseTicketsInfoModalContent />}
           />
         </div>
@@ -45,15 +51,21 @@ const PurchaseTicketsForm = ({
       <div className="stakepool-purchase-ticket-row-wrapper">
         <div className="stakepool-purchase-ticket-row">
           <div className="stakepool-purchase-ticket-row-account-select">
-            <div className="stakepool-purchase-ticket-account-select-label"><T id="purchaseTickets.accountFrom" m="From" />:</div>
+            <div className="stakepool-purchase-ticket-account-select-label">
+              <T id="purchaseTickets.accountFrom" m="From" />:
+            </div>
             <div className="stakepool-purchase-ticket-input-select">
               <AccountsSelect
-                {...{ account }} onChange={onChangeAccount} showAccountsButton={true} />
+                {...{ account }}
+                onChange={onChangeAccount}
+                showAccountsButton={true}
+              />
             </div>
           </div>
           <div className="stakepool-purchase-ticket-row-num-tickets">
             <div className="stakepool-purchase-num-tickets-label">
-              <T id="purchaseTickets.ticketAmount" m="Amount" />:</div>
+              <T id="purchaseTickets.ticketAmount" m="Amount" />:
+            </div>
             <div className="stakepool-purchase-ticket-num-select">
               <NumTicketsInput
                 numTickets={numTicketsToBuy}
@@ -68,26 +80,36 @@ const PurchaseTicketsForm = ({
           <div className="stakepool-purchase-ticket-action-buttons">
             <TicketsCogs opened={!isShowingAdvanced} onClick={onToggleShowAdvanced} />
 
-            <Tooltip className="stakepool-content-import-script-button-tooltip-container"
+            <Tooltip
+              className="stakepool-content-import-script-button-tooltip-container"
               warning={!!rescanRequest}
-              text={!rescanRequest
-                ? <T id="purchaseTickets.import" m="Manually import a redeem script for tickets." />
-                : <T id="purchaseTickets.importDisabledRescan" m="Importing scripts is disabled during a rescan." />}
-            >
+              text={
+                !rescanRequest ? (
+                  <T id="purchaseTickets.import" m="Manually import a redeem script for tickets." />
+                ) : (
+                  <T
+                    id="purchaseTickets.importDisabledRescan"
+                    m="Importing scripts is disabled during a rescan."
+                  />
+                )
+              }>
               <InvisiblePassphraseModalButton
                 className="stakepool-content-import-script-button"
-                modalTitle={<T id="tickets.importScriptConfirmation" m="Import Script Confirmation" />}
+                modalTitle={
+                  <T id="tickets.importScriptConfirmation" m="Import Script Confirmation" />
+                }
                 modalComponent={ImportScriptModal}
                 disabled={rescanRequest}
                 onSubmit={onImportScript}
               />
             </Tooltip>
           </div>
-          <TransitionMotionWrapper {...{
-            styles: !isShowingAdvanced ? getQuickBarComponent : getAdvancedComponent,
-            willEnter: !isShowingAdvanced ? () => willEnter(270) : () => willEnter(80),
-            willLeave
-          }}
+          <TransitionMotionWrapper
+            {...{
+              styles: !isShowingAdvanced ? getQuickBarComponent : getAdvancedComponent,
+              willEnter: !isShowingAdvanced ? () => willEnter(270) : () => willEnter(80),
+              willLeave
+            }}
           />
         </div>
       </div>
@@ -99,20 +121,25 @@ const PurchaseTicketsForm = ({
           onSubmit={onPurchaseTickets}
           buttonLabel={<T id="purchaseTickets.purchaseBtn" m="Purchase" />}
         />
-        {!canAffordTickets &&
+        {!canAffordTickets && (
           <div className="stakepool-purchase-error">
-            <T id="purchaseTickets.errors.insufficientBalance" m="Insufficient spendable account balance to purchase tickets." />
-          </div>}
-        {hasTicketsToRevoke &&
+            <T
+              id="purchaseTickets.errors.insufficientBalance"
+              m="Insufficient spendable account balance to purchase tickets."
+            />
+          </div>
+        )}
+        {hasTicketsToRevoke && (
           <PassphraseModalButton
             modalTitle={<T id="tickets.revokeConfirmations" m="Revoke Tickets Confirmation" />}
             className="stakepool-content-revoke-button"
             onSubmit={onRevokeTickets}
             buttonLabel={<T id="purchaseTickets.revokeBtn" m="Revoke" />}
           />
-        }
+        )}
       </div>
-    </Aux>);
+    </Aux>
+  );
 };
 
 export default PurchaseTicketsForm;

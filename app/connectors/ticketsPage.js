@@ -28,17 +28,21 @@ const mapStateToProps = selectorMap({
   isImportingScript: sel.isImportingScript,
   isPurchasingTickets: sel.isPurchasingTickets,
   isSavingStakePoolConfig: sel.isSavingStakePoolConfig,
-  isTestNet: sel.isTestNet,
+  isTestNet: sel.isTestNet
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  onRevokeTickets: ca.revokeTicketsAttempt,
-  onImportScript: ca.importScriptAttempt,
-  onClearRevokeTicketsError: ca.clearRevokeTicketsError,
-  onClearRevokeTicketsSuccess: ca.clearRevokeTicketsSuccess,
-  onClearImportScriptError: ca.clearImportScriptError,
-  onClearImportScriptSuccess: ca.clearImportScriptSuccess,
-  onChangeStakePool: spa.changeSelectedStakePool,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      onRevokeTickets: ca.revokeTicketsAttempt,
+      onImportScript: ca.importScriptAttempt,
+      onClearRevokeTicketsError: ca.clearRevokeTicketsError,
+      onClearRevokeTicketsSuccess: ca.clearRevokeTicketsSuccess,
+      onClearImportScriptError: ca.clearImportScriptError,
+      onClearImportScriptSuccess: ca.clearImportScriptSuccess,
+      onChangeStakePool: spa.changeSelectedStakePool
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

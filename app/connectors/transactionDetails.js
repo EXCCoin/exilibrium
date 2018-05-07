@@ -8,8 +8,12 @@ const mapStateToProps = selectorMap({
   currentBlockHeight: sel.currentBlockHeight
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  goBackHistory: ca.goBackHistory,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      goBackHistory: ca.goBackHistory
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

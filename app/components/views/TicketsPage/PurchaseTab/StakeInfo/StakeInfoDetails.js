@@ -10,13 +10,13 @@ const StakeInfoDisplay = ({
   missedTicketsCount,
   revokedTicketsCount,
   expiredTicketsCount,
-  totalSubsidy,
+  totalSubsidy
 }) => (
   <div className="stakepool-stake-info-area">
     <Row>
       <Column
         label={<T id="stake.mempoolTickets" m="All Mempool Tickets" />}
-        value={<FormattedNumber value={allMempoolTicketsCount}/> }
+        value={<FormattedNumber value={allMempoolTicketsCount} />}
       />
       <Column
         label={<T id="stake.votedTickets" m="Voted Tickets" />}
@@ -24,7 +24,7 @@ const StakeInfoDisplay = ({
       />
       <Column
         label={<T id="stake.missedTickets" m="Missed Tickets" />}
-        value={<FormattedNumber value={missedTicketsCount}/>}
+        value={<FormattedNumber value={missedTicketsCount} />}
       />
     </Row>
 
@@ -35,7 +35,7 @@ const StakeInfoDisplay = ({
       />
       <Column
         label={<T id="stake.expiredTickets" m="Expired Tickets" />}
-        value={<FormattedNumber value={expiredTicketsCount}/>}
+        value={<FormattedNumber value={expiredTicketsCount} />}
       />
       <Column
         label={<T id="stake.revokedTickets" m="Revoked Tickets" />}
@@ -46,7 +46,7 @@ const StakeInfoDisplay = ({
     <LastRow>
       <Column
         label={<T id="stake.totalRewards" m="Total Rewards" />}
-        value={<Balance amount={totalSubsidy}/>}
+        value={<Balance amount={totalSubsidy} />}
       />
     </LastRow>
   </div>

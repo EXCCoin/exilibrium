@@ -22,13 +22,15 @@ export default ({
             <T id="getStarted.btnLogs" m="Logs" />
           </InvisibleButton>
         </div>
-        <Tooltip text={ <T id="logs.goBack" m="Go back" /> }><div className="go-back-screen-button" onClick={onHideLogs}/></Tooltip>
+        <Tooltip text={<T id="logs.goBack" m="Go back" />}>
+          <div className="go-back-screen-button" onClick={onHideLogs} />
+        </Tooltip>
         <T id="getStarted.logsTitle" m="Logs" />
       </div>
       <div className="log-container">
         <LogsTab />
       </div>
-      <LoaderBarBottom  {...{ getCurrentBlockCount, getNeededBlocks, getEstimatedTimeLeft }}  />
+      <LoaderBarBottom {...{ getCurrentBlockCount, getNeededBlocks, getEstimatedTimeLeft }} />
     </div>
   </div>
 );

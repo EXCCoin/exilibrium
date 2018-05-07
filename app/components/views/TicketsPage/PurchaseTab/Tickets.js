@@ -3,13 +3,11 @@ import TicketAutoBuyer from "./TicketAutoBuyer";
 import StakeInfo from "./StakeInfo";
 import "style/StakePool.less";
 
-const Tickets = ({
-  ...props
-}) => (
+const Tickets = ({ ...props }) => (
   <Aux>
     <StakeInfo />
     <PurchaseTickets {...{ ...props }} />
-    <div className="stakepool-area-spacing"></div>
+    <div className="stakepool-area-spacing" />
     <TicketAutoBuyer {...{ ...props }} />
   </Aux>
 );

@@ -6,16 +6,16 @@ import { VerifyMessageInfoModalContent } from "modals";
 const messages = defineMessages({
   addressFieldPlaceholder: {
     id: "securitycenter.form.field.address.placeholder",
-    defaultMessage: "Enter an address",
+    defaultMessage: "Enter an address"
   },
   messageFieldPlaceholder: {
     id: "securitycenter.form.field.message.placeholder",
-    defaultMessage: "Enter your message",
+    defaultMessage: "Enter your message"
   },
   signatureFieldPlaceholder: {
     id: "securitycenter.form.field.signature.placeholder",
-    defaultMessage: "Enter your signature",
-  },
+    defaultMessage: "Enter your signature"
+  }
 });
 
 const VerifyMessageForm = ({
@@ -37,13 +37,17 @@ const VerifyMessageForm = ({
       <div className="security-center-form">
         <div className="button-right">
           <InfoModalButton
-            modalTitle={<h1><T id="securitycenter.verifyInfo" m="Verify Message Information"/></h1>}
+            modalTitle={
+              <h1>
+                <T id="securitycenter.verifyInfo" m="Verify Message Information" />
+              </h1>
+            }
             modalContent={<VerifyMessageInfoModalContent />}
           />
         </div>
         <div className="security-center-form-row">
           <div className="security-center-form-row-label">
-            <T id="securitycenter.form.field.address.label" m="Address"/>:
+            <T id="securitycenter.form.field.address.label" m="Address" />:
           </div>
           <div className="security-center-form-row-field">
             <TextInput
@@ -58,7 +62,7 @@ const VerifyMessageForm = ({
         </div>
         <div className="security-center-form-row">
           <div className="security-center-form-row-label">
-            <T id="securitycenter.form.field.message.label" m="Message"/>:
+            <T id="securitycenter.form.field.message.label" m="Message" />:
           </div>
           <div className="security-center-form-row-field">
             <TextInput
@@ -73,7 +77,7 @@ const VerifyMessageForm = ({
         </div>
         <div className="security-center-form-row">
           <div className="security-center-form-row-label">
-            <T id="securitycenter.form.field.signature.label" m="Signature"/>:
+            <T id="securitycenter.form.field.signature.label" m="Signature" />:
           </div>
           <div className="security-center-form-row-field">
             <TextInput
@@ -89,7 +93,15 @@ const VerifyMessageForm = ({
       </div>
       <KeyBlueButton
         className="stakepool-content-purchase-button"
-        disabled={isVerifyingMessage || address == "" || message == "" || signature == "" || addressError || messageError || signatureError}
+        disabled={
+          isVerifyingMessage ||
+          address == "" ||
+          message == "" ||
+          signature == "" ||
+          addressError ||
+          messageError ||
+          signatureError
+        }
         onClick={onSubmit}
         loading={isVerifyingMessage}>
         <T id="securitycenter.verify.form.submit" m="Verify" />
@@ -101,7 +113,7 @@ const VerifyMessageForm = ({
 VerifyMessageForm.propTypes = {
   formatMessage: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  error: PropTypes.string,
+  error: PropTypes.string
 };
 
 export default VerifyMessageForm;

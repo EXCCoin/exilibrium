@@ -22,39 +22,58 @@ const Bar = ({
   showingSidebarMenu,
   expandSideBar,
   onExpandSideBar,
-  onReduceSideBar,
+  onReduceSideBar
 }) => (
-  <div className={(expandSideBar ? "sidebar-menu " : "sidebar-menu-reduced ") + (isTestNet ? "sidebar-testnet" : "sidebar-mainnet")}>
+  <div
+    className={
+      (expandSideBar ? "sidebar-menu " : "sidebar-menu-reduced ") +
+      (isTestNet ? "sidebar-testnet" : "sidebar-mainnet")
+    }>
     <Logo {...{ isTestNet, expandSideBar, onReduceSideBar, onExpandSideBar }} />
-    <Aux show={ showingSidebarMenu }>
+    <Aux show={showingSidebarMenu}>
       <div className="sidebar-main">
         <div className="sidebar-scroll">
-          <MenuLinks {...{ expandSideBar }}/>
+          <MenuLinks {...{ expandSideBar }} />
         </div>
-        <div className="sidebar-menu-total-balance-extended" style={{ display: isShowingAccounts ? "flex" : "none" }}>
+        <div
+          className="sidebar-menu-total-balance-extended"
+          style={{ display: isShowingAccounts ? "flex" : "none" }}>
           <div className="sidebar-menu-total-balance-extended-bottom">
-            { balances.map(({ hidden, total, accountName }) => !hidden &&
-            <div className="sidebar-menu-total-balance-extended-bottom-account" key={accountName}>
-              <div className="sidebar-menu-total-balance-extended-bottom-account-name">{accountName}</div>
-              <div className="sidebar-menu-total-balance-extended-bottom-account-number">{total / 100000000}</div>
-            </div> )}
+            {balances.map(
+              ({ hidden, total, accountName }) =>
+                !hidden && (
+                  <div
+                    className="sidebar-menu-total-balance-extended-bottom-account"
+                    key={accountName}>
+                    <div className="sidebar-menu-total-balance-extended-bottom-account-name">
+                      {accountName}
+                    </div>
+                    <div className="sidebar-menu-total-balance-extended-bottom-account-number">
+                      {total / 100000000}
+                    </div>
+                  </div>
+                )
+            )}
           </div>
         </div>
       </div>
-      {expandSideBar ?
+      {expandSideBar ? (
         <div className="sidebar-menu-bottom">
           <div
             className="sidebar-menu-bottom-total-balance-short"
             onMouseEnter={rescanRequest ? null : onShowAccounts}
-            onMouseLeave={rescanRequest ? null : onHideAccounts}
-          >
-            <div className="sidebar-menu-bottom-total-balance-short-separator"></div>
-            <div className="sidebar-menu-bottom-total-balance-short-name"><T id="sidebar.totalBalance" m="Total Balance"/>:</div>
-            <div className="sidebar-menu-bottom-total-balance-short-value"><Balance amount={totalBalance} /></div>
+            onMouseLeave={rescanRequest ? null : onHideAccounts}>
+            <div className="sidebar-menu-bottom-total-balance-short-separator" />
+            <div className="sidebar-menu-bottom-total-balance-short-name">
+              <T id="sidebar.totalBalance" m="Total Balance" />:
+            </div>
+            <div className="sidebar-menu-bottom-total-balance-short-value">
+              <Balance amount={totalBalance} />
+            </div>
           </div>
           <div className="sidebar-menu-bottom-latest-block">
-            { rescanRequest ? <RescanProgress/> : null }
-            <Aux show={ currentHeight && !rescanRequest }>
+            {rescanRequest ? <RescanProgress /> : null}
+            <Aux show={currentHeight && !rescanRequest}>
               <div className="rescan-button-area">
                 <RescanButton {...{ rescanRequest, rescanAttempt }} />
               </div>
@@ -63,25 +82,30 @@ const Bar = ({
                 <span className="sidebar-menu-bottom-latest-block-number"> {currentHeight}</span>
               </a>
               <div className="sidebar-menu-bottom-latest-block-time">
-                { lastBlockDate && lastBlockIsRecent ?
-                  <T id="sidebar.lastBlockIsRecent" m="< 1 minute ago" /> :
-                  lastBlockDate && <FormattedRelative value={lastBlockDate} updateInterval={1*1000}/> }
+                {lastBlockDate && lastBlockIsRecent ? (
+                  <T id="sidebar.lastBlockIsRecent" m="< 1 minute ago" />
+                ) : (
+                  lastBlockDate && (
+                    <FormattedRelative value={lastBlockDate} updateInterval={1 * 1000} />
+                  )
+                )}
               </div>
             </Aux>
           </div>
-        </div> :
+        </div>
+      ) : (
         <div className="sidebar-menu-bottom-latest-block">
           <div className="rescan-button-area">
             <RescanButton {...{ rescanRequest, rescanAttempt }} />
           </div>
         </div>
-      }
+      )}
     </Aux>
   </div>
 );
 
 Bar.propTypes = {
-  showingSidebarMenu: PropTypes.bool.isRequired,
+  showingSidebarMenu: PropTypes.bool.isRequired
 };
 
 export default Bar;

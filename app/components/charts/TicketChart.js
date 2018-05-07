@@ -1,12 +1,18 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 import messages from "./messages";
 import { injectIntl } from "react-intl";
-import { yAxisStyle, xAxisStyle, homeChartSize, padding, radiusMiddle,
-  radiusTop, radiusBottom } from "./Styles";
+import {
+  yAxisStyle,
+  xAxisStyle,
+  homeChartSize,
+  padding,
+  radiusMiddle,
+  radiusTop,
+  radiusBottom
+} from "./Styles";
 import ChartTooltip from "./ChartTooltip";
 
 const BalanceChart = ({ data, intl }) => {
-
   const lockedKey = intl.formatMessage(messages.lockedKey);
   const immatureKey = intl.formatMessage(messages.immatureKey);
   const votedKey = intl.formatMessage(messages.votedKey);
@@ -20,11 +26,15 @@ const BalanceChart = ({ data, intl }) => {
     [revokedKey]: s.revoked,
     [ticketKey]: s.ticket,
     [immatureKey]: s.immature,
-    [lockedKey]: s.locked,
+    [lockedKey]: s.locked
   }));
 
   return (
-    <BarChart stackOffset="sign" width={homeChartSize.width} height={homeChartSize.height} data={displayData}>
+    <BarChart
+      stackOffset="sign"
+      width={homeChartSize.width}
+      height={homeChartSize.height}
+      data={displayData}>
       <XAxis dataKey="name" style={yAxisStyle} />
       <YAxis orientation="right" style={xAxisStyle} padding={padding} />
       <Tooltip content={<ChartTooltip />} />

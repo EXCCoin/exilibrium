@@ -5,15 +5,11 @@ import "style/LoginForm.less";
 const messages = defineMessages({
   messageWalletNamePlaceholder: {
     id: "createwallet.walletname.placehlder",
-    defaultMessage: "Enter your wallet name here",
-  },
+    defaultMessage: "Enter your wallet name here"
+  }
 });
 
-const CreateWalletForm = ({
-  newWalletName,
-  onChangeCreateWalletName,
-  intl
-}) => {
+const CreateWalletForm = ({ newWalletName, onChangeCreateWalletName, intl }) => {
   return (
     <Aux>
       <div className="advanced-daemon-row">
@@ -25,7 +21,7 @@ const CreateWalletForm = ({
             type="text"
             required
             value={newWalletName}
-            onChange={(e) => onChangeCreateWalletName(e.target.value)}
+            onChange={e => onChangeCreateWalletName(e.target.value)}
             placeholder={intl.formatMessage(messages.messageWalletNamePlaceholder)}
             showErrors
           />

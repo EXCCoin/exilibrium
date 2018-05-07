@@ -2,12 +2,7 @@ import { Tooltip } from "shared";
 import { FormattedMessage as T } from "react-intl";
 import { addSpacingAroundText } from "helpers/strings";
 
-const PurchaseTicketsAdvanced = ({
-  stakePool,
-  ticketFee,
-  txFee,
-  expiry,
-}) => (
+const PurchaseTicketsAdvanced = ({ stakePool, ticketFee, txFee, expiry }) => (
   <div className="stakepool-purchase-ticket-quick-bar-row">
     <Tooltip text={<T id="purchaseTickets.currentStakepool" m="Current StakePool" />}>
       <div className="stakepool-icon">{stakePool && stakePool.value.Host}</div>
@@ -25,11 +20,16 @@ const PurchaseTicketsAdvanced = ({
       <div className="stakepool-pool-fee-icon">{stakePool && stakePool.value.PoolFees}%</div>
     </Tooltip>
     <Tooltip text={<T id="purchaseTickets.ticketAddress" m="Ticket Address" />}>
-      <div className="stakepool-ticket-address-icon">{stakePool && addSpacingAroundText(stakePool.value.TicketAddress)}</div>
+      <div className="stakepool-ticket-address-icon">
+        {stakePool && addSpacingAroundText(stakePool.value.TicketAddress)}
+      </div>
     </Tooltip>
     <Tooltip text={<T id="purchaseTickets.poolAddress" m="Pool Address" />}>
-      <div className="stakepool-fee-address-icon">{stakePool && addSpacingAroundText(stakePool.value.PoolAddress)}</div>
+      <div className="stakepool-fee-address-icon">
+        {stakePool && addSpacingAroundText(stakePool.value.PoolAddress)}
+      </div>
     </Tooltip>
-  </div>);
+  </div>
+);
 
 export default PurchaseTicketsAdvanced;

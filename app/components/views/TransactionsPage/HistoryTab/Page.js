@@ -3,7 +3,11 @@ import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
 import { Tooltip } from "shared";
 import { TextInput } from "../../../inputs";
 import TxHistory from "TxHistory";
-import { LoadingMoreTransactionsIndicator, NoMoreTransactionsIndicator, NoTransactions } from "indicators";
+import {
+  LoadingMoreTransactionsIndicator,
+  NoMoreTransactionsIndicator,
+  NoTransactions
+} from "indicators";
 import InfiniteScroll from "react-infinite-scroller";
 import "style/HistoryPage.less";
 
@@ -11,7 +15,7 @@ const messages = defineMessages({
   filterByAddrPlaceholder: {
     id: "txhistory.filterByAddrPlaceholder",
     defaultMessage: "Filter by Address"
-  },
+  }
 });
 
 const Page = ({
@@ -27,15 +31,14 @@ const Page = ({
   onChangeSelectedType,
   onChangeSortType,
   onChangeSearchText,
-  onLoadMoreTransactions,
+  onLoadMoreTransactions
 }) => (
   <InfiniteScroll
     hasMore={!noMoreTransactions}
     loadMore={onLoadMoreTransactions}
     initialLoad={loadMoreThreshold > 90}
     useWindow={false}
-    threshold={loadMoreThreshold}
-  >
+    threshold={loadMoreThreshold}>
     <div className="history-content-title">
       <div className="history-content-title-text">
         <T id="history.title" m="Recent Transactions" />
@@ -47,10 +50,10 @@ const Page = ({
               type="text"
               placeholder={intl.formatMessage(messages.filterByAddrPlaceholder)}
               value={searchText}
-              onChange={(e) => onChangeSearchText(e.target.value)}
+              onChange={e => onChangeSearchText(e.target.value)}
             />
           </div>
-          <Tooltip tipWidth={ 300 } text={<T id="transactions.sortby.tooltip" m="Sort By" />}>
+          <Tooltip tipWidth={300} text={<T id="transactions.sortby.tooltip" m="Sort By" />}>
             <EyeFilterMenu
               labelKey="label"
               keyField="value"
@@ -60,7 +63,9 @@ const Page = ({
               className="sort-by"
             />
           </Tooltip>
-          <Tooltip tipWidth={ 300 } text={<T id="transactions.txtypes.tooltip" m="Transaction Type" />}>
+          <Tooltip
+            tipWidth={300}
+            text={<T id="transactions.txtypes.tooltip" m="Transaction Type" />}>
             <EyeFilterMenu
               labelKey="label"
               keyField="key"
@@ -73,16 +78,15 @@ const Page = ({
       </div>
     </div>
     <div className="history-content-nest">
-      {transactions.length > 0
-        ? <TxHistory transactions={transactions} />
-        : null }
+      {transactions.length > 0 ? <TxHistory transactions={transactions} /> : null}
     </div>
-    {!noMoreTransactions
-      ? <LoadingMoreTransactionsIndicator />
-      : transactions.length > 0
-        ? <NoMoreTransactionsIndicator />
-        : <NoTransactions />
-    }
+    {!noMoreTransactions ? (
+      <LoadingMoreTransactionsIndicator />
+    ) : transactions.length > 0 ? (
+      <NoMoreTransactionsIndicator />
+    ) : (
+      <NoTransactions />
+    )}
   </InfiniteScroll>
 );
 

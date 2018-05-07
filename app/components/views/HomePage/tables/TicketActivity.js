@@ -14,23 +14,34 @@ const RecentTickets = ({
   goToMyTickets
 }) => {
   const hasTickets = tickets.length > 0;
-  return (
-    getTransactionsRequestAttempt ? <ExccLoading /> :
-      <Aux>
-        <div className="home-content-title">
-          {hasTickets
-            ? <T id="home.ticketActivityTitle" m="Recent Staking Activity" />
-            : <T id="home.noTickets.title" m="No tickets yet" /> }
-        </div>
-        <div className="home-content-nest">
-          {hasTickets
-            ? <TxHistory overview limit={rowNumber} {...{ getAccountsResponse, transactions: tickets }} />
-            : <NoTicketsLinks />}
-        </div>
-        <div className="home-content-link">
-          <a onClick={goToMyTickets}><T id="home.ticketActivityHistory" m="Go to all tickets" /> ></a>
-        </div>
-      </Aux>
+  return getTransactionsRequestAttempt ? (
+    <ExccLoading />
+  ) : (
+    <Aux>
+      <div className="home-content-title">
+        {hasTickets ? (
+          <T id="home.ticketActivityTitle" m="Recent Staking Activity" />
+        ) : (
+          <T id="home.noTickets.title" m="No tickets yet" />
+        )}
+      </div>
+      <div className="home-content-nest">
+        {hasTickets ? (
+          <TxHistory
+            overview
+            limit={rowNumber}
+            {...{ getAccountsResponse, transactions: tickets }}
+          />
+        ) : (
+          <NoTicketsLinks />
+        )}
+      </div>
+      <div className="home-content-link">
+        <a onClick={goToMyTickets}>
+          <T id="home.ticketActivityHistory" m="Go to all tickets" /> >
+        </a>
+      </div>
+    </Aux>
   );
 };
 

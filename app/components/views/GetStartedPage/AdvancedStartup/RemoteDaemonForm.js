@@ -5,24 +5,24 @@ import "style/LoginForm.less";
 const messages = defineMessages({
   messageLoginPlaceholder: {
     id: "login.form.rpcuser.placeholder",
-    defaultMessage: "Enter your RPC User here",
+    defaultMessage: "Enter your RPC User here"
   },
   passphraseFieldPlaceholder: {
     id: "login.form.rpcpassword.placeholder",
-    defaultMessage: "Enter your RPC Password here",
+    defaultMessage: "Enter your RPC Password here"
   },
   certFieldPlaceholder: {
     id: "login.form.rpccert.placeholder.",
-    defaultMessage: "Enter your RPC cert location here",
+    defaultMessage: "Enter your RPC cert location here"
   },
   hostFieldPlaceholder: {
     id: "login.form.rpchost.placeholder.",
-    defaultMessage: "Enter your RPC host here",
+    defaultMessage: "Enter your RPC host here"
   },
   portFieldPlaceholder: {
     id: "login.form.rpcport.placeholder.",
-    defaultMessage: "Enter your RPC port here",
-  },
+    defaultMessage: "Enter your RPC port here"
+  }
 });
 
 const RemoteDaemonForm = ({
@@ -49,7 +49,7 @@ const RemoteDaemonForm = ({
             type="text"
             required
             value={rpc_user}
-            onChange={(e) => setRpcUser(e.target.value)}
+            onChange={e => setRpcUser(e.target.value)}
             placeholder={intl.formatMessage(messages.messageLoginPlaceholder)}
             showErrors
           />
@@ -64,7 +64,7 @@ const RemoteDaemonForm = ({
             type="password"
             required
             value={rpc_password}
-            onChange={(e) => setRpcPass(e.target.value)}
+            onChange={e => setRpcPass(e.target.value)}
             placeholder={intl.formatMessage(messages.passphraseFieldPlaceholder)}
             showErrors
           />
@@ -78,7 +78,7 @@ const RemoteDaemonForm = ({
           <PathBrowseInput
             type="file"
             value={rpc_cert}
-            onChange={(value) => setRpcCert(value)}
+            onChange={value => setRpcCert(value)}
             placeholder={intl.formatMessage(messages.certFieldPlaceholder)}
           />
         </div>
@@ -92,7 +92,7 @@ const RemoteDaemonForm = ({
             type="text"
             required
             value={rpc_host}
-            onChange={(e) => setRpcHost(e.target.value)}
+            onChange={e => setRpcHost(e.target.value)}
             placeholder={intl.formatMessage(messages.hostFieldPlaceholder)}
             showErrors
           />
@@ -107,7 +107,7 @@ const RemoteDaemonForm = ({
             type="text"
             required
             value={rpc_port}
-            onChange={(e) => setRpcPort(e.target.value)}
+            onChange={e => setRpcPort(e.target.value)}
             placeholder={intl.formatMessage(messages.portFieldPlaceholder)}
             showErrors
           />

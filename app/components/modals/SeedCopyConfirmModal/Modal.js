@@ -8,11 +8,17 @@ const propTypes = {
   show: PropTypes.bool.isRequired,
   onCancelModal: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  copyConfirmationPhrase: PropTypes.string.isRequired,
+  copyConfirmationPhrase: PropTypes.string.isRequired
 };
 
-const Modal = ({ show, onCancelModal, onSubmit, copyConfirmationPhrase,
-  typedConfirmationPhrase, onTypedConfirmationPhraseChanged }) => (
+const Modal = ({
+  show,
+  onCancelModal,
+  onSubmit,
+  copyConfirmationPhrase,
+  typedConfirmationPhrase,
+  onTypedConfirmationPhraseChanged
+}) => (
   <DefaultModal className="confirm-seed-copy-modal" {...{ show }}>
     <div className="confirm-seed-copy-modal-header">
       <div className="confirm-seed-copy-modal-header-title">
@@ -21,7 +27,9 @@ const Modal = ({ show, onCancelModal, onSubmit, copyConfirmationPhrase,
     </div>
     <div className="confirm-seed-copy-modal-content">
       <p className="confirm-seed-copy-warning-text">
-        <T id="seedCopyConfirmModal.warningText" m={`Please note that copying the seed to the clipboard may be a security risk, as other applications may be able to monitor and copy the contents of the clipboard.
+        <T
+          id="seedCopyConfirmModal.warningText"
+          m={`Please note that copying the seed to the clipboard may be a security risk, as other applications may be able to monitor and copy the contents of the clipboard.
 
           It is also highly unadvised to maintain the seed on a computer file, specially without encryption, as that can lead to stealing of funds by anyone with access to the computer.
 
@@ -30,18 +38,29 @@ const Modal = ({ show, onCancelModal, onSubmit, copyConfirmationPhrase,
           If you want to learn more about seed security, please check our seed FAQ located at {seedFaqURL}.
 
           If you are sure you understand the risks and still want to copy the seed to the clipboard, please type the phrase {confirmationPhrase} in the box below and the seed will be copied to the clipboard.`}
-        values={{
-          seedFaqURL: <ExternalLink href="https://docs.excc.co/faq/wallets-and-seeds/">https://docs.excc.co/faq/wallets-and-seeds/</ExternalLink>,
-          confirmationPhrase: <span className="mono confirm-seed-copy-phrase">'{copyConfirmationPhrase}'</span>,
-        }}/>
+          values={{
+            seedFaqURL: (
+              <ExternalLink href="https://docs.excc.co/faq/wallets-and-seeds/">
+                https://docs.excc.co/faq/wallets-and-seeds/
+              </ExternalLink>
+            ),
+            confirmationPhrase: (
+              <span className="mono confirm-seed-copy-phrase">'{copyConfirmationPhrase}'</span>
+            )
+          }}
+        />
       </p>
       <TextInput
         autoFocus
         value={typedConfirmationPhrase}
-        onChange={(e) => onTypedConfirmationPhraseChanged(e.target.value)}/>
+        onChange={e => onTypedConfirmationPhraseChanged(e.target.value)}
+      />
     </div>
     <div className="confirm-seed-copy-modal-toolbar">
-      <DangerButton className="confirm-modal-confirm-button" onClick={onSubmit} disabled={typedConfirmationPhrase.toLowerCase() !== copyConfirmationPhrase.toLowerCase()}>
+      <DangerButton
+        className="confirm-modal-confirm-button"
+        onClick={onSubmit}
+        disabled={typedConfirmationPhrase.toLowerCase() !== copyConfirmationPhrase.toLowerCase()}>
         <T id="seedCopyConfirm.btnConfirm" m="Confirm Seed Copy" />
       </DangerButton>
       <InvisibleButton className="confirm-modal-close-button" onClick={onCancelModal}>

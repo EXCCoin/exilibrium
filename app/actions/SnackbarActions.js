@@ -1,6 +1,6 @@
 export const SNACKBAR_DISMISS_MESSAGES = "SNACKBAR_DISMISS_MESSAGES";
 export function dismissAllMessages() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({ type: SNACKBAR_DISMISS_MESSAGES });
   };
 }

@@ -4,8 +4,10 @@ export const SETTINGS_SAVE = "SETTINGS_SAVE";
 export const SETTINGS_CHANGED = "SETTINGS_CHANGED";
 export const SETTINGS_UNCHANGED = "SETTINGS_UNCHANGED";
 
-export const saveSettings = (settings) => (dispatch, getState) => {
-  const { daemon: { walletName } } = getState();
+export const saveSettings = settings => (dispatch, getState) => {
+  const {
+    daemon: { walletName }
+  } = getState();
 
   const config = getGlobalCfg();
   config.set("locale", settings.locale);
@@ -23,12 +25,16 @@ export function updateStateSettingsChanged(settings) {
     const { tempSettings, currentSettings } = getState().settings;
     const newSettings = { ...tempSettings, ...settings };
     const settingsFields = Object.keys(tempSettings);
-    const newDiffersFromTemp = settingsFields
-      .reduce((d, f) => (d || newSettings[f] !== tempSettings[f]), false);
+    const newDiffersFromTemp = settingsFields.reduce(
+      (d, f) => d || newSettings[f] !== tempSettings[f],
+      false
+    );
 
     if (newDiffersFromTemp) {
-      const newDiffersFromCurrent = settingsFields
-        .reduce((d, f) => (d || newSettings[f] !== currentSettings[f]), false);
+      const newDiffersFromCurrent = settingsFields.reduce(
+        (d, f) => d || newSettings[f] !== currentSettings[f],
+        false
+      );
       newDiffersFromCurrent
         ? dispatch({ tempSettings: newSettings, type: SETTINGS_CHANGED })
         : dispatch({ tempSettings: currentSettings, type: SETTINGS_UNCHANGED });
@@ -36,9 +42,13 @@ export function updateStateSettingsChanged(settings) {
   };
 }
 
-export const updateStateVoteSettingsChanged = (settings) => (dispatch, getState) => {
-  const { settings: { tempSettings, currentSettings } } = getState();
-  const { daemon: { walletName } } = getState();
+export const updateStateVoteSettingsChanged = settings => (dispatch, getState) => {
+  const {
+    settings: { tempSettings, currentSettings }
+  } = getState();
+  const {
+    daemon: { walletName }
+  } = getState();
   if (settings.enableTicketBuyer !== tempSettings.enableTicketBuyer) {
     const config = getWalletCfg(isTestNet(getState()), walletName);
     config.set("enableticketbuyer", settings.enableTicketBuyer);

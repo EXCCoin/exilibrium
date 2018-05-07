@@ -5,10 +5,17 @@ import { ExccLoading } from "indicators";
 import { InfoModalButton, PassphraseModalButton } from "buttons";
 import { BalanceOverviewModalContent, AddAccountModal } from "modals";
 
-const AccountsListHeader = ({ onGetNextAccountAttempt }) =>
+const AccountsListHeader = ({ onGetNextAccountAttempt }) => (
   <StandaloneHeader
     title={<T id="accounts.title" m="Accounts" />}
-    description={<T id="accounts.description" m={"Accounts allow you to keep separate records of your EXCC funds.\nTransferring EXCC across accounts will create a transaction on the blockchain."}/>}
+    description={
+      <T
+        id="accounts.description"
+        m={
+          "Accounts allow you to keep separate records of your EXCC funds.\nTransferring EXCC across accounts will create a transaction on the blockchain."
+        }
+      />
+    }
     iconClassName="accounts"
     actionButton={
       <PassphraseModalButton
@@ -16,8 +23,10 @@ const AccountsListHeader = ({ onGetNextAccountAttempt }) =>
         modalComponent={AddAccountModal}
         onSubmit={onGetNextAccountAttempt}
         buttonLabel={<T id="accounts.addNewButton" m="Add New" />}
-      />}
-  />;
+      />
+    }
+  />
+);
 
 const AccountsList = ({
   accounts,
@@ -28,14 +37,20 @@ const AccountsList = ({
   onRenameAccount,
   onShowAccountDetails,
   onHideAccountDetails,
-  accountNumDetailsShown,
+  accountNumDetailsShown
 }) => (
   <StandalonePage header={<AccountsListHeader {...{ onGetNextAccountAttempt }} />}>
-    { isLoading ? <ExccLoading/> :
+    {isLoading ? (
+      <ExccLoading />
+    ) : (
       <Aux>
         <div className="account-content-title-buttons-area">
           <InfoModalButton
-            modalTitle={<h1><T id="accounts.balanceInfo" m="Balance Information" /></h1>}
+            modalTitle={
+              <h1>
+                <T id="accounts.balanceInfo" m="Balance Information" />
+              </h1>
+            }
             modalContent={<BalanceOverviewModalContent />}
           />
         </div>
@@ -53,7 +68,8 @@ const AccountsList = ({
             />
           ))}
         </div>
-      </Aux> }
+      </Aux>
+    )}
   </StandalonePage>
 );
 
@@ -66,7 +82,7 @@ AccountsList.propTypes = {
   onRenameAccount: PropTypes.func.isRequired,
   onShowAccountDetails: PropTypes.func.isRequired,
   onHideAccountDetails: PropTypes.func.isRequired,
-  accountNumDetailsShown: PropTypes.number,
+  accountNumDetailsShown: PropTypes.number
 };
 
 export default AccountsList;

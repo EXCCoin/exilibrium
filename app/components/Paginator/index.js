@@ -12,7 +12,6 @@ const propTypes = {
 
 @autobind
 class Paginator extends React.Component {
-
   constructor(props) {
     super(props);
   }
@@ -22,37 +21,42 @@ class Paginator extends React.Component {
   }
 
   gotoNextPage() {
-    if (this.props.currentPage < this.props.totalPages-1) {
-      this.props.onPageChanged(this.props.currentPage +1, +1);
+    if (this.props.currentPage < this.props.totalPages - 1) {
+      this.props.onPageChanged(this.props.currentPage + 1, +1);
     }
   }
 
   gotoPreviousPage() {
     if (this.props.currentPage > 0) {
-      this.props.onPageChanged(this.props.currentPage -1, -1);
+      this.props.onPageChanged(this.props.currentPage - 1, -1);
     }
   }
 
   render() {
-    const Component = this.props.totalPages < 10
-      ? SmallPaginator
-      : this.props.totalPages == 11
-        ? MediumPaginator
-        : LargePaginator;
+    const Component =
+      this.props.totalPages < 10
+        ? SmallPaginator
+        : this.props.totalPages == 11
+          ? MediumPaginator
+          : LargePaginator;
 
     return (
-      this.props.totalPages > 1 &&
-      <Component
-        {...{
-          ...this.props,
-          ...this.state,
-          ...substruct({
-            gotoPage: null,
-            gotoNextPage: null,
-            gotoPreviousPage: null
-          }, this)
-        }}
-      />
+      this.props.totalPages > 1 && (
+        <Component
+          {...{
+            ...this.props,
+            ...this.state,
+            ...substruct(
+              {
+                gotoPage: null,
+                gotoNextPage: null,
+                gotoPreviousPage: null
+              },
+              this
+            )
+          }}
+        />
+      )
     );
   }
 }

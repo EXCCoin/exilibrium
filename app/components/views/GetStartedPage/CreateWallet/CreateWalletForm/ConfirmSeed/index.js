@@ -17,13 +17,13 @@ class ConfirmSeed extends React.Component {
         word: hideWord > randomThreshold ? splitMnemonic[i] : "",
         show: hideWord > randomThreshold,
         index: i,
-        match:  hideWord > randomThreshold
+        match: hideWord > randomThreshold
       });
     }
     return {
       seedWords: seedWords,
       seedError: "*Please confirm the missing words",
-      splitMnemoic: splitMnemonic,
+      splitMnemoic: splitMnemonic
     };
   }
 
@@ -36,16 +36,19 @@ class ConfirmSeed extends React.Component {
     const { seedWords } = this.state;
     const isEmpty = this.state.seedWords.length <= 1; // Weird errors with one word, better to count as empty
     const seedError = isEmpty ? null : this.state.seedError;
-    return (
-      <ConfirmSeedForm {...{ seedWords, seedError, isEmpty, onChangeSeedWord }} />
-    );
+    return <ConfirmSeedForm {...{ seedWords, seedError, isEmpty, onChangeSeedWord }} />;
   }
 
   onChangeSeedWord(seedWord, update) {
     const { seedWords, splitMnemoic } = this.state;
     const { mnemonic } = this.props;
     var updatedSeedWords = seedWords;
-    updatedSeedWords[seedWord.index] = { word: update, show: seedWord.show, index: seedWord.index, match: splitMnemoic[seedWord.index] == update };
+    updatedSeedWords[seedWord.index] = {
+      word: update,
+      show: seedWord.show,
+      index: seedWord.index,
+      match: splitMnemoic[seedWord.index] == update
+    };
     this.setState({ seedWords: updatedSeedWords });
 
     const seedWordStr = seedWords.map(seedWord => seedWord.word).join(" ");

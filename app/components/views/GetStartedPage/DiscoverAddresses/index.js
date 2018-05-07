@@ -5,7 +5,7 @@ import {
 
 @autobind
 class DiscoverAddressesBody extends React.Component {
-  constructor(props)  {
+  constructor(props) {
     super(props);
     this.state = this.getInitialState();
   }
@@ -57,12 +57,12 @@ class DiscoverAddressesBody extends React.Component {
   }
 
   onKeyDown(e) {
-    if(e.keyCode == 13) {   // Enter key
+    if (e.keyCode == 13) {
+      // Enter key
       e.preventDefault();
       this.onDiscoverAddresses();
     }
   }
-
 }
 
 export { DiscoverAddressesHeader, DiscoverAddressesBody };

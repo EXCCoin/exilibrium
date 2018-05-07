@@ -15,7 +15,7 @@ class CreateWalletForm extends React.Component {
       seed: "",
       passPhrase: "",
       decode: null,
-      showCopySeedConfirm: false,
+      showCopySeedConfirm: false
     };
   }
 
@@ -57,7 +57,7 @@ class CreateWalletForm extends React.Component {
       getCurrentBlockCount,
       getNeededBlocks,
       getEstimatedTimeLeft,
-      getDaemonSynced,
+      getDaemonSynced
     } = this.props;
     const {
       setSeed,
@@ -65,49 +65,48 @@ class CreateWalletForm extends React.Component {
       onCreateWallet,
       handleCopySeed,
       onSubmitCopySeedConfirm,
-      onCancelCopySeedConfirm,
+      onCancelCopySeedConfirm
     } = this;
     const { mnemonic, decode, showCopySeedConfirm } = this.state;
     const isValid = this.isValid();
 
-    return (confirmNewSeed || createWalletExisting)
-      ? (
-        <ContinueWalletCreation
-          {...{
-            mnemonic: createWalletExisting ? null : mnemonic,
-            setSeed,
-            createWalletExisting,
-            setPassPhrase,
-            onCreateWallet,
-            decode,
-            isValid,
-            onReturnToNewSeed,
-            onReturnToExistingOrNewScreen,
-            isCreatingWallet,
-            getCurrentBlockCount,
-            getNeededBlocks,
-            getEstimatedTimeLeft,
-            getDaemonSynced
-          }}
-        />
-      ) : (
-        <CreateWallet
-          {...{
-            mnemonic,
-            isValid,
-            createWalletConfirmNewSeed,
-            handleCopySeed,
-            showCopySeedConfirm,
-            onSubmitCopySeedConfirm,
-            onCancelCopySeedConfirm,
-            onReturnToExistingOrNewScreen,
-            getCurrentBlockCount,
-            getNeededBlocks,
-            getEstimatedTimeLeft,
-            getDaemonSynced
-          }}
-        />
-      );
+    return confirmNewSeed || createWalletExisting ? (
+      <ContinueWalletCreation
+        {...{
+          mnemonic: createWalletExisting ? null : mnemonic,
+          setSeed,
+          createWalletExisting,
+          setPassPhrase,
+          onCreateWallet,
+          decode,
+          isValid,
+          onReturnToNewSeed,
+          onReturnToExistingOrNewScreen,
+          isCreatingWallet,
+          getCurrentBlockCount,
+          getNeededBlocks,
+          getEstimatedTimeLeft,
+          getDaemonSynced
+        }}
+      />
+    ) : (
+      <CreateWallet
+        {...{
+          mnemonic,
+          isValid,
+          createWalletConfirmNewSeed,
+          handleCopySeed,
+          showCopySeedConfirm,
+          onSubmitCopySeedConfirm,
+          onCancelCopySeedConfirm,
+          onReturnToExistingOrNewScreen,
+          getCurrentBlockCount,
+          getNeededBlocks,
+          getEstimatedTimeLeft,
+          getDaemonSynced
+        }}
+      />
+    );
   }
 
   resetState() {
@@ -116,11 +115,13 @@ class CreateWalletForm extends React.Component {
 
   generateSeed() {
     return this.props.seedService.then(({ generate, decode }) =>
-      generate().then(response => this.setState({
-        decode,
-        mnemonic: response.getSeedMnemonic(),
-        seed: this.props.isTestNet ? response.getSeedBytes() : null // Allows verification skip in dev
-      }))
+      generate().then(response =>
+        this.setState({
+          decode,
+          mnemonic: response.getSeedMnemonic(),
+          seed: this.props.isTestNet ? response.getSeedBytes() : null // Allows verification skip in dev
+        })
+      )
     );
   }
 
@@ -133,10 +134,7 @@ class CreateWalletForm extends React.Component {
   }
 
   onCreateWallet() {
-    const {
-      createWalletExisting,
-      createWalletRequest
-    } = this.props;
+    const { createWalletExisting, createWalletRequest } = this.props;
     const { seed, passPhrase } = this.state;
     const pubpass = ""; // Temporarily disabled?
 

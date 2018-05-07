@@ -20,14 +20,16 @@ const HomePage = ({
             <Balance
               classNameWrapper="overview-balance-spendable-locked"
               classNameUnit="overview-balance-spendable-locked-unit"
-              amount={totalValueOfLiveTickets} />
+              amount={totalValueOfLiveTickets}
+            />
             <div className="overview-balance-spendable-locked-label">
               <T id="home.totalValueOfLiveTickets" m="Total Value Of Live Tickets" />
             </div>
             <Balance
               classNameWrapper="overview-balance-spendable-locked"
               classNameUnit="overview-balance-spendable-locked-unit"
-              amount={earnedStakingReward} />
+              amount={earnedStakingReward}
+            />
             <div className="overview-balance-spendable-locked-label">
               <T id="home.earnedStakingReward" m="Earned Staking Reward" />
             </div>
@@ -45,7 +47,7 @@ const HomePage = ({
         </div>
       </div>
       <div className="overview-ticket-chart-wrapper">
-        <TicketChart data={ticketDataChart}/>
+        <TicketChart data={ticketDataChart} />
       </div>
     </div>
   );

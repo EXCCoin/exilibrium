@@ -11,13 +11,13 @@ class ValidateAddress extends React.Component {
   }
 
   getInitialState() {
-    return ({
+    return {
       address: "",
-      error: null,
-    });
+      error: null
+    };
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.props.validateAddressCleanStore();
   }
 
@@ -32,14 +32,16 @@ class ValidateAddress extends React.Component {
 
     let result = null;
     if (validateAddressSuccess) {
-      const isValid = validateAddressSuccess.isValid;
+      const { isValid } = validateAddressSuccess;
       let isValidDisplay = null;
       if (isValid) {
-        const isMine = validateAddressSuccess.isMine;
+        const { isMine } = validateAddressSuccess;
         if (isMine) {
           isValidDisplay = <T id="securitycenter.validate.result.owned" m="Owned address!" />;
         } else {
-          isValidDisplay = <T id="securitycenter.validate.result.notOwned" m="Not owned address!" />;
+          isValidDisplay = (
+            <T id="securitycenter.validate.result.notOwned" m="Not owned address!" />
+          );
         }
       } else {
         isValidDisplay = <T id="securitycenter.validate.result.invalid" m="Invalid address!" />;
@@ -47,9 +49,7 @@ class ValidateAddress extends React.Component {
 
       result = (
         <div className="message-nest">
-          <div className={`message-content ${isValid ? "valid" : "invalid"}`}>
-            {isValidDisplay}
-          </div>
+          <div className={`message-content ${isValid ? "valid" : "invalid"}`}>{isValidDisplay}</div>
         </div>
       );
     } else if (error) {
@@ -59,18 +59,15 @@ class ValidateAddress extends React.Component {
             <div className="message-content-invalid-message">
               <T id="securitycenter.validate.result.invalid" m="Invalid address!" />
             </div>
-            <div className="message-content-invalid-message-error">
-              {error}
-            </div>
+            <div className="message-content-invalid-message-error">{error}</div>
           </div>
         </div>
       );
-
     }
 
     return (
       <div className="message message-verify">
-        <ValidateAddressForm {...{ onAddressChange, onAddressBlur, address, result }}/>
+        <ValidateAddressForm {...{ onAddressChange, onAddressBlur, address, result }} />
       </div>
     );
   }
@@ -80,9 +77,13 @@ class ValidateAddress extends React.Component {
       this.setState({ address, error: null });
       return;
     }
-    this.props.validateAddress(address)
+    this.props
+      .validateAddress(address)
       .then(resp => {
-        this.setState({ address, error: !resp.getIsValid() ? "Please enter a valid address" : null });
+        this.setState({
+          address,
+          error: !resp.getIsValid() ? "Please enter a valid address" : null
+        });
       })
       .catch(error => {
         console.error(error);

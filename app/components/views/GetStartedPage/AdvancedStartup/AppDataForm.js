@@ -5,16 +5,11 @@ import "style/LoginForm.less";
 const messages = defineMessages({
   appdataFieldPlaceholder: {
     id: "login.form.appdata.placeholder",
-    defaultMessage: "Enter your Path to application home directory",
-  },
+    defaultMessage: "Enter your Path to application home directory"
+  }
 });
 
-const AppDataForm = ({
-  setAppData,
-  appData,
-  intl
-}) => {
-
+const AppDataForm = ({ setAppData, appData, intl }) => {
   return (
     <Aux>
       <div className="advanced-daemon-row">
@@ -25,7 +20,7 @@ const AppDataForm = ({
           <PathBrowseInput
             type="directory"
             value={appData}
-            onChange={(value) => setAppData(value)}
+            onChange={value => setAppData(value)}
             placeholder={intl.formatMessage(messages.appdataFieldPlaceholder)}
           />
         </div>

@@ -6,10 +6,7 @@ import { FormattedMessage as T } from "react-intl";
 import "style/ReceivePage.less";
 import "style/MiscComponents.less";
 
-const ReceivePage = ({
-  nextAddress,
-  onRequestAddress,
-}) => (
+const ReceivePage = ({ nextAddress, onRequestAddress }) => (
   <Aux>
     <div className="receive-content-nest">
       <div className="receive-content-nest-for-address">
@@ -19,15 +16,18 @@ const ReceivePage = ({
         <div className="receive-select-account-input">
           <ReceiveAccountsSelect showAccountsButton />
         </div>
-        <div style={{ clear: "both" }}></div>
+        <div style={{ clear: "both" }} />
       </div>
       <div className="receive-content-nest-qr">
         <div className="receive-content-nest-qrhash">
           <span key="addressSpan">{nextAddress}</span>
-          <CopyToClipboard textToCopy={nextAddress} className="receive-content-nest-copy-to-clipboard-icon" />
+          <CopyToClipboard
+            textToCopy={nextAddress}
+            className="receive-content-nest-copy-to-clipboard-icon"
+          />
         </div>
         <QRCode addr={nextAddress} />
-        <div style={{ clear: "both" }}></div>
+        <div style={{ clear: "both" }} />
       </div>
     </div>
     <div className="receive-toolbar">

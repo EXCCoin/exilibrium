@@ -2,20 +2,25 @@ import ErrorScreen from "ErrorScreen";
 import TransactionPage from "./Page";
 import { transactionPage } from "connectors";
 
-const Transaction = ({ walletService, viewedTransaction, viewedDecodedTransaction,
-  decodeRawTransactions }) => {
-
+const Transaction = ({
+  walletService,
+  viewedTransaction,
+  viewedDecodedTransaction,
+  decodeRawTransactions
+}) => {
   if (!viewedDecodedTransaction) {
-    decodeRawTransactions([ viewedTransaction.rawTx ]);
+    decodeRawTransactions([viewedTransaction.rawTx]);
   }
 
-  return !walletService
-    ? <ErrorScreen />
-    : <TransactionPage
+  return !walletService ? (
+    <ErrorScreen />
+  ) : (
+    <TransactionPage
       {...{
         transactionDetails: viewedTransaction,
-        decodedTransaction: viewedDecodedTransaction,
+        decodedTransaction: viewedDecodedTransaction
       }}
-    />;
+    />
+  );
 };
 export default transactionPage(Transaction);

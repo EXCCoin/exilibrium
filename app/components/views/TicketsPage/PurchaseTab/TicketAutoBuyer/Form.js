@@ -17,25 +17,38 @@ const TicketAutoBuyerForm = ({
     <div className="stakepool-voting-title-area">
       <div className="stakepool-purchase-ticket-input-buttons">
         <InfoModalButton
-          modalTitle={<h1><T id="accounts.automaticPurchaseInfo" m="Automatic Purchase Information" /></h1>}
+          modalTitle={
+            <h1>
+              <T id="accounts.automaticPurchaseInfo" m="Automatic Purchase Information" />
+            </h1>
+          }
           modalContent={<TicketAutoBuyerInfoModalContent />}
         />
       </div>
     </div>
     <div className="stakepool-flex-height-auto-buyer-wrapper">
       <div className="stakepool-auto-buyer-row">
-        {isTicketAutoBuyerEnabled ?
-          <AutoBuyerSwitch enabled onClick={onDisableTicketAutoBuyer} /> :
+        {isTicketAutoBuyerEnabled ? (
+          <AutoBuyerSwitch enabled onClick={onDisableTicketAutoBuyer} />
+        ) : (
           <PassphraseModalSwitch
-            modalTitle={<T id="tickets.startAutoBuyerConfirmation" m="Start Ticket Buyer Confirmation" />}
+            modalTitle={
+              <T id="tickets.startAutoBuyerConfirmation" m="Start Ticket Buyer Confirmation" />
+            }
             modalDescription={
               <div>
-                <span className="orange-warning"><T id="tickets.startAutoBuyerConfirmation.attention" m="Attention!" /></span>
-                <T id="tickets.startAutoBuyerConfirmation.description" m="Exilibrium must remain running for tickets to be automatically purchased." />
-              </div>}
+                <span className="orange-warning">
+                  <T id="tickets.startAutoBuyerConfirmation.attention" m="Attention!" />
+                </span>
+                <T
+                  id="tickets.startAutoBuyerConfirmation.description"
+                  m="Exilibrium must remain running for tickets to be automatically purchased."
+                />
+              </div>
+            }
             onSubmit={onStartAutoBuyer}
           />
-        }
+        )}
         <div className="stakepool-auto-buyer-quick-bar-row">
           <T id="autobuyer.title2" m="Automatic Ticket Buyer" />
         </div>
@@ -44,9 +57,8 @@ const TicketAutoBuyerForm = ({
         </div>
       </div>
       <TransitionMotionWrapper
-        {
-        ...{
-          styles: isHidingDetails ? getNullStyles() : getDetailsComponent(),
+        {...{
+          styles: isHidingDetails ? getNullStyles() : getDetailsComponent()
         }}
       />
     </div>

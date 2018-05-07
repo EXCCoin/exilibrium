@@ -9,15 +9,16 @@ class Settings extends React.Component {
   }
 
   render() {
-    const {
-      onAttemptChangePassphrase,
-      onSaveSettings
-    } = this;
+    const { onAttemptChangePassphrase, onSaveSettings } = this;
 
-    return !this.props.walletService ? <ErrorScreen /> : (
+    return !this.props.walletService ? (
+      <ErrorScreen />
+    ) : (
       <SettingsPage
         {...{
-          ...this.props, ...this.state }}
+          ...this.props,
+          ...this.state
+        }}
         {...{
           onAttemptChangePassphrase,
           onSaveSettings

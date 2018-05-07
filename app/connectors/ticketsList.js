@@ -9,9 +9,13 @@ const mapStateToProps = selectorMap({
   tickets: sel.viewedTicketListing
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  decodeRawTransactions: dma.decodeRawTransactions,
-  goBackHistory: ca.goBackHistory,
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      decodeRawTransactions: dma.decodeRawTransactions,
+      goBackHistory: ca.goBackHistory
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

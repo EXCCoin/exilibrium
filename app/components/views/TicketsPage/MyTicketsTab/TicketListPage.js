@@ -7,8 +7,7 @@ import { SlateGrayButton } from "buttons";
 import "style/MyTickets.less";
 
 @autobind
-class TicketListPage extends React.Component{
-
+class TicketListPage extends React.Component {
   constructor(props) {
     super(props);
     const pagination = this.calcPagination(props.tickets);
@@ -76,12 +75,13 @@ class TicketListPage extends React.Component{
 
     return (
       <Aux>
-        {(visibleCards.length > 0
-          ? <Aux>
+        {visibleCards.length > 0 ? (
+          <Aux>
             <TicketsCardList>{visibleCards}</TicketsCardList>
             <Paginator {...{ totalPages, currentPage, onPageChanged: this.onPageChanged }} />
           </Aux>
-          : <T id="myTickets.noTicketsWithStatus" m="No tickets found" />
+        ) : (
+          <T id="myTickets.noTicketsWithStatus" m="No tickets found" />
         )}
         <SlateGrayButton key="back" className="ticket-list-back-btn" onClick={this.goBack}>
           <T id="ticketList.backBtn" m="Back" />

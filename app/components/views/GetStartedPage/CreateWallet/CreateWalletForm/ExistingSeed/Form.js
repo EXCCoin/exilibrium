@@ -8,16 +8,16 @@ import { SEED_LENGTH, SEED_WORDS } from "wallet/seed";
 const shoudShowNonSupportSeedSize = (seedWords, seedType) =>
   seedType === "hex" && seedWords.length !== 64 && seedWords.length > SEED_LENGTH.HEX_MIN;
 
-class ExistingSeedForm extends React.Component{
-  constructor(props){
+class ExistingSeedForm extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
-      showPasteWarning : false,
-      seedType: "words",
+      showPasteWarning: false,
+      seedType: "words"
     };
   }
 
-  handleOnPaste = (e) => {
+  handleOnPaste = e => {
     e.preventDefault();
     const lowercaseSeedWords = SEED_WORDS.map(w => w.toLowerCase());
     const clipboardData = e.clipboardData.getData("text");
@@ -29,42 +29,41 @@ class ExistingSeedForm extends React.Component{
     this.props.setSeedWords(words);
 
     this.setState({
-      showPasteWarning : true
+      showPasteWarning: true
     });
-  }
+  };
 
-  handleToggle = (side) => {
+  handleToggle = side => {
     this.props.resetSeedWords();
     this.setState({ seedType: side === "left" ? "words" : "hex" });
-  }
+  };
 
   mountSeedErrors = () => {
     const errors = [];
-    if(this.props.seedError) {
-      errors.push(
-        <div key={this.props.seedError}>
-          {this.props.seedError}
-        </div>
-      );
+    if (this.props.seedError) {
+      errors.push(<div key={this.props.seedError}>{this.props.seedError}</div>);
     }
-    if(shoudShowNonSupportSeedSize(this.props.seedWords, this.state.seedType)) {
+    if (shoudShowNonSupportSeedSize(this.props.seedWords, this.state.seedType)) {
       errors.push(
-        <div key='confirmSeed.errors.hexNot32Bytes'>
-          <T id="confirmSeed.errors.hexNot32Bytes" m="Error: seed is not 32 bytes, such comes from a non-supported software and may have unintended consequences." />
+        <div key="confirmSeed.errors.hexNot32Bytes">
+          <T
+            id="confirmSeed.errors.hexNot32Bytes"
+            m="Error: seed is not 32 bytes, such comes from a non-supported software and may have unintended consequences."
+          />
         </div>
       );
     }
     return errors;
-  }
+  };
 
-  render(){
-    const { onChangeSeedWord, seedWords, setSeedWords,  } = this.props;
+  render() {
+    const { onChangeSeedWord, seedWords, setSeedWords } = this.props;
     const { seedType } = this.state;
     const errors = this.mountSeedErrors();
     return (
       <Aux>
         <div className="content-title">
-          <T id="createWallet.restore.title" m={"Restore existing wallet"}/>
+          <T id="createWallet.restore.title" m={"Restore existing wallet"} />
         </div>
         <div className="seed-type-label">
           <TextToggle
@@ -78,13 +77,22 @@ class ExistingSeedForm extends React.Component{
           <div className="confirm-seed-label-text seed">
             <T id="confirmSeed.label" m="Confirm Seed" />
           </div>
-          {seedType == "words" && Array.isArray(seedWords) ?
+          {seedType == "words" && Array.isArray(seedWords) ? (
             <div className="seedArea">
-              {!this.state.showPasteWarning ? null : <div className="orange-warning">
-                <T id="confirmSeed.warnings.pasteExistingSeed" m="*Please make sure you also have a physical, written down copy of your seed." />
-              </div>}
-              {seedWords.map((seedWord) => {
-                const className = seedWord.word ? seedWord.error ? "seedWord error" : "seedWord populated" : "seedWord restore";
+              {!this.state.showPasteWarning ? null : (
+                <div className="orange-warning">
+                  <T
+                    id="confirmSeed.warnings.pasteExistingSeed"
+                    m="*Please make sure you also have a physical, written down copy of your seed."
+                  />
+                </div>
+              )}
+              {seedWords.map(seedWord => {
+                const className = seedWord.word
+                  ? seedWord.error
+                    ? "seedWord error"
+                    : "seedWord populated"
+                  : "seedWord restore";
                 return (
                   <SingleSeedWordEntry
                     className={className}
@@ -93,17 +101,16 @@ class ExistingSeedForm extends React.Component{
                     seedWord={seedWord}
                     value={{ name: seedWord.word }}
                     key={seedWord.index}
-                  />);
+                  />
+                );
               })}
-            </div> :
+            </div>
+          ) : (
             <div className="seedArea hex">
-              <SeedHexEntry
-                onChange={setSeedWords}
-              />
-            </div>}
-          <div className="input-form-error">
-            {errors.length > 0 && <div>{errors}</div>}
-          </div>
+              <SeedHexEntry onChange={setSeedWords} />
+            </div>
+          )}
+          <div className="input-form-error">{errors.length > 0 && <div>{errors}</div>}</div>
         </div>
       </Aux>
     );

@@ -7,14 +7,13 @@ const messages = defineMessages({
   placeholder: {
     id: "accountsSelect.placeholder",
     defaultMessage: "Select account"
-  },
+  }
 });
 
 @autobind
 class AccountsSelect extends React.Component {
-
   static propTypes = {
-    accountsType: PropTypes.oneOf([ "spending", "visible" ]),
+    accountsType: PropTypes.oneOf(["spending", "visible"]),
     intl: intlShape.isRequired,
     className: PropTypes.string,
     showAccountsButton: PropTypes.bool,
@@ -24,12 +23,12 @@ class AccountsSelect extends React.Component {
   constructor(props) {
     super(props);
     let accountsPerType = {
-      "spending": this.props.spendingAccounts,
-      "visible": this.props.visibleAccounts
+      spending: this.props.spendingAccounts,
+      visible: this.props.visibleAccounts
     };
     this.state = {
       account: props.account || props.defaultSpendingAccount,
-      accounts: accountsPerType[this.props.accountsType||"spending"]
+      accounts: accountsPerType[this.props.accountsType || "spending"]
     };
   }
 
@@ -46,7 +45,7 @@ class AccountsSelect extends React.Component {
       <div className={className}>
         <Select
           clearable={false}
-          style={{ zIndex:"9" }}
+          style={{ zIndex: "9" }}
           placeholder={formatMessage(messages.placeholder)}
           multi={false}
           value={this.state.account}
@@ -58,7 +57,7 @@ class AccountsSelect extends React.Component {
           onChange={this.onChangeAccount}
           className="accounts-select"
         />
-        { showAccountsButton && <LinkToAccounts /> }
+        {showAccountsButton && <LinkToAccounts />}
       </div>
     );
   }

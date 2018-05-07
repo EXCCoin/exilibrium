@@ -5,11 +5,15 @@ import * as ca from "../actions/SnackbarActions";
 import * as sel from "../selectors";
 
 const mapStateToProps = selectorMap({
-  messages: sel.snackbarMessages,
+  messages: sel.snackbarMessages
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  onDismissAllMessages: ca.dismissAllMessages
-}, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      onDismissAllMessages: ca.dismissAllMessages
+    },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps);

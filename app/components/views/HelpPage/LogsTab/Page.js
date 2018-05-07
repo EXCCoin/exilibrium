@@ -10,17 +10,17 @@ const Logs = ({
   exccwalletLogs,
   isDaemonRemote,
   isDaemonStarted,
-  walletReady,
-}
-) => (
+  walletReady
+}) => (
   <Aux>
-    {!isDaemonRemote && isDaemonStarted ?
-      !exccdLogs ?
+    {!isDaemonRemote && isDaemonStarted ? (
+      !exccdLogs ? (
         <div className="log-area hidden">
           <div className="log-area-title hidden" onClick={showExccdLogs}>
             <T id="help.logs.exccd" m="exccd" />
           </div>
-        </div>:
+        </div>
+      ) : (
         <div className="log-area expanded">
           <div className="log-area-title expanded" onClick={hideExccdLogs}>
             <T id="help.logs.exccd" m="exccd" />
@@ -28,15 +28,18 @@ const Logs = ({
           <div className="log-area-logs">
             <textarea rows="30" value={exccdLogs} disabled />
           </div>
-        </div> :
-      <div/>
-    }
-    {!walletReady ? null : !exccwalletLogs ?
+        </div>
+      )
+    ) : (
+      <div />
+    )}
+    {!walletReady ? null : !exccwalletLogs ? (
       <div className="log-area hidden">
         <div className="log-area-title hidden" onClick={showExccwalletLogs}>
           <T id="help.logs.exccwallet" m="exccwallet" />
         </div>
-      </div>:
+      </div>
+    ) : (
       <div className="log-area expanded">
         <div className="log-area-title expanded" onClick={hideExccwalletLogs}>
           <T id="help.logs.exccwallet" m="exccwallet" />
@@ -45,7 +48,7 @@ const Logs = ({
           <textarea rows="30" value={exccwalletLogs} disabled />
         </div>
       </div>
-    }
+    )}
   </Aux>
 );
 
