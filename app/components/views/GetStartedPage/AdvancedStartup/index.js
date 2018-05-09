@@ -29,17 +29,17 @@ class AdvancedStartupBody extends React.Component {
 
   getInitialState() {
     const { rpc_password, rpc_user, rpc_cert, rpc_host, rpc_port } = getRemoteCredentials(
-      this.props.network == "testnet",
+      this.props.network === "testnet",
       this.props.walletName
     );
     return {
       sideActive: true,
-      rpc_user: rpc_user,
-      rpc_password: rpc_password,
-      rpc_cert: rpc_cert,
-      rpc_host: rpc_host,
-      rpc_port: rpc_port,
-      appData: getAppdataPath(this.props.network == "testnet", this.props.walletName)
+      rpc_user,
+      rpc_password,
+      rpc_cert,
+      rpc_host,
+      rpc_port,
+      appData: getAppdataPath(this.props.network === "testnet", this.props.walletName)
     };
   }
 
@@ -88,7 +88,7 @@ class AdvancedStartupBody extends React.Component {
 
   setRpcUser(rpc_user) {
     setRemoteCredentials(
-      this.props.network == "testnet",
+      this.props.network === "testnet",
       this.props.walletName,
       "rpc_user",
       rpc_user
@@ -98,7 +98,7 @@ class AdvancedStartupBody extends React.Component {
 
   setRpcPass(rpc_password) {
     setRemoteCredentials(
-      this.props.network == "testnet",
+      this.props.network === "testnet",
       this.props.walletName,
       "rpc_password",
       rpc_password
@@ -108,7 +108,7 @@ class AdvancedStartupBody extends React.Component {
 
   setRpcHost(rpc_host) {
     setRemoteCredentials(
-      this.props.network == "testnet",
+      this.props.network === "testnet",
       this.props.walletName,
       "rpc_host",
       rpc_host
@@ -118,7 +118,7 @@ class AdvancedStartupBody extends React.Component {
 
   setRpcPort(rpc_port) {
     setRemoteCredentials(
-      this.props.network == "testnet",
+      this.props.network === "testnet",
       this.props.walletName,
       "rpc_port",
       rpc_port
@@ -128,7 +128,7 @@ class AdvancedStartupBody extends React.Component {
 
   setRpcCert(rpc_cert) {
     setRemoteCredentials(
-      this.props.network == "testnet",
+      this.props.network === "testnet",
       this.props.walletName,
       "rpc_cert",
       rpc_cert
@@ -137,19 +137,22 @@ class AdvancedStartupBody extends React.Component {
   }
 
   setAppData(appData) {
-    setAppdataPath(this.props.network == "testnet", appData, this.props.walletName);
+    setAppdataPath(this.props.network === "testnet", appData, this.props.walletName);
     this.setState({ appData });
   }
 
   onSubmitRemoteForm() {
-    if (!this.isRemoteValid()) return;
+    if (!this.isRemoteValid()) {
+      return;
+    }
     const { rpc_user, rpc_password, rpc_cert, rpc_host, rpc_port } = this.state;
-    let args = { rpc_user, rpc_password, rpc_cert, rpc_host, rpc_port };
-    this.props.onStartDaemon(args);
+    this.props.onStartDaemon({ rpc_user, rpc_password, rpc_cert, rpc_host, rpc_port });
   }
 
   onSubmitAppDataForm() {
-    if (!this.isAppDataValid()) return;
+    if (!this.isAppDataValid()) {
+      return;
+    }
     this.props.onStartDaemon(null, this.state.appData);
   }
 

@@ -1,149 +1,103 @@
-import { app, dialog } from "electron";
 import fs from "fs-extra";
-import os from "os";
-import path from "path";
 import parseArgs from "minimist";
-import { Buffer } from "buffer";
-
+import { app, BrowserWindow, Menu, shell, dialog } from "electron";
+import { initGlobalCfg, validateGlobalCfgFile, setMustOpenForm } from "./config";
+import { appLocaleFromElectronLocale, default as locales } from "./i18n/locales";
+import { createLogger, GetExccdLogs, GetExccwalletLogs } from "./main_dev/logging";
 import {
   OPTIONS,
   USAGE_MESSAGE,
   VERSION_MESSAGE,
   BOTH_CONNECTION_ERR_MESSAGE
 } from "./main_dev/constants";
-import * as paths from "./main_dev/paths";
-import * as ipc from "./main_dev/ipc";
-import * as application from "./main_dev/app";
-import { createLogger } from "./main_dev/logging";
-import * as config from "./config";
-import { eql } from "./fp";
+import {
+  getWalletsDirectoryPath,
+  getWalletsDirectoryPathNetwork,
+  appDataDirectory,
+  getGlobalCfgPath,
+  getDirectoryLogs,
+  checkAndInitWalletCfg,
+  getExccdPath,
+  getExccwalletPath
+} from "./main_dev/paths";
+import { readExesVersion, cleanShutdown, GetExccdPID, GetExccwPID } from "./main_dev/launch";
+import {
+  getAvailableWallets,
+  startDaemon,
+  createWallet,
+  removeWallet,
+  stopWallet,
+  startWallet,
+  checkDaemon
+} from "./main_dev/ipc";
 
 // setPath as exilibrium
-app.setPath("userData", paths.appDataDirectory());
+app.setPath("userData", appDataDirectory());
 
 const argv = parseArgs(process.argv.slice(1), OPTIONS);
 const debug = argv.debug || process.env.NODE_ENV === "development";
-const globalCfg = config.initGlobalCfg();
-
-const win32Equals = eql("win32");
-
-const state = {
-  menu: null,
-  template: null,
-  mainWindow: null,
-  versionWin: null,
-  grpcVersions: { requiredVersion: null, walletVersion: null },
-  exccdPID: null,
-  exccwPID: null,
-  exccwPort: null,
-  previousWallet: null,
-  exccdConfig: {},
-  currentBlockCount: null,
-  primaryInstance: null,
-  exccdLogs: Buffer.from(""),
-  exccwalletLogs: Buffer.from(""),
-  globalCfg,
-  logger: createLogger(debug),
-  argv,
-  daemonIsAdvanced: globalCfg.get("daemon_start_advanced"),
-  walletsDirectory: paths.getWalletsDirectoryPath(),
-  defaultTestnetWalletDirectory: paths.getDefaultWalletDirectory(true),
-  defaultMainnetWalletDirectory: paths.getDefaultWalletDirectory(false),
-  mainnetWalletsPath: paths.getWalletsDirectoryPathNetwork(false),
-  testnetWalletsPath: paths.getWalletsDirectoryPathNetwork(true)
-};
+const logger = createLogger(debug);
 
 // Verify that config.json is valid JSON before fetching it, because
 // it will silently fail when fetching.
-const err = config.validateGlobalCfgFile();
+const err = validateGlobalCfgFile();
 if (err !== null) {
-  const errMessage = `There was an error while trying to load the config file, the format is invalid.\n\nFile: ${paths.getGlobalCfgPath()}\nError: ${err}`;
+  const errMessage = `There was an error while trying to load the config file, the format is invalid.\n\nFile: ${getGlobalCfgPath()} \nError: ${err}`;
   dialog.showErrorBox("Config File Error", errMessage);
   app.quit();
 }
 
-if (state.argv.help) {
+let menu;
+let template;
+let mainWindow = null;
+let versionWin = null;
+let grpcVersions = { requiredVersion: null, walletVersion: null };
+let previousWallet = null;
+let primaryInstance; // eslint-disable-line prefer-const
+
+const globalCfg = initGlobalCfg();
+const daemonIsAdvanced = globalCfg.get("daemon_start_advanced");
+const walletsDirectory = getWalletsDirectoryPath();
+const mainnetWalletsPath = getWalletsDirectoryPathNetwork(false);
+const testnetWalletsPath = getWalletsDirectoryPathNetwork(true);
+
+if (argv.help) {
   console.log(USAGE_MESSAGE);
   app.exit(0);
 }
 
-if (state.argv.version) {
+if (argv.version) {
   console.log(VERSION_MESSAGE);
   app.exit(0);
 }
 
 // Check if network was set on command line (but only allow one!).
-if (state.argv.testnet && state.argv.mainnet) {
-  state.logger.log(BOTH_CONNECTION_ERR_MESSAGE);
+if (argv.testnet && argv.mainnet) {
+  logger.log(BOTH_CONNECTION_ERR_MESSAGE);
   app.quit();
 }
 
 if (process.env.NODE_ENV === "production") {
-  const sourceMapSupport = require("source-map-support"); // eslint-disable-line
+  const sourceMapSupport = require("source-map-support");
   sourceMapSupport.install();
 }
 
 if (process.env.NODE_ENV === "development") {
-  const path = require("path"); // eslint-disable-line
-  const p = path.join(__dirname, "..", "app", "node_modules"); // eslint-disable-line
-  require("module").globalPaths.push(p); // eslint-disable-line
+  const path = require("path");
+  const p = path.join(__dirname, "..", "app", "node_modules");
+  require("module").globalPaths.push(p);
 }
 
 // Check that wallets directory has been created, if not, make it.
-fs.pathExistsSync(state.walletsDirectory) || fs.mkdirsSync(state.walletsDirectory);
-fs.pathExistsSync(state.mainnetWalletsPath) || fs.mkdirsSync(state.mainnetWalletsPath);
-fs.pathExistsSync(state.testnetWalletsPath) || fs.mkdirsSync(state.testnetWalletsPath);
+fs.pathExistsSync(walletsDirectory) || fs.mkdirsSync(walletsDirectory);
+fs.pathExistsSync(mainnetWalletsPath) || fs.mkdirsSync(mainnetWalletsPath);
+fs.pathExistsSync(testnetWalletsPath) || fs.mkdirsSync(testnetWalletsPath);
 
-if (
-  !fs.pathExistsSync(state.defaultMainnetWalletDirectory) &&
-  fs.pathExistsSync(paths.getExilibriumWalletDBPath(false))
-) {
-  fs.mkdirsSync(state.defaultMainnetWalletDirectory);
+checkAndInitWalletCfg(true);
+checkAndInitWalletCfg(false);
 
-  // check for existing mainnet directories
-  if (fs.pathExistsSync(paths.getExilibriumWalletDBPath(false))) {
-    fs.copySync(
-      paths.getExilibriumWalletDBPath(false),
-      path.join(paths.getDefaultWalletDirectory(false, false), "wallet.db")
-    );
-  }
-
-  // copy over existing config.json if it exists
-  if (fs.pathExistsSync(paths.getGlobalCfgPath())) {
-    fs.copySync(paths.getGlobalCfgPath(), paths.getDefaultWalletFilesPath(false, "config.json"));
-  }
-
-  // create new configs for default mainnet wallet
-  config.initWalletCfg(false, "default-wallet");
-  config.newWalletConfigCreation(false, "default-wallet");
-}
-
-if (
-  !fs.pathExistsSync(state.defaultTestnetWalletDirectory) &&
-  fs.pathExistsSync(paths.getExilibriumWalletDBPath(true))
-) {
-  fs.mkdirsSync(state.defaultTestnetWalletDirectory);
-
-  // check for existing testnet2 directories
-  if (fs.pathExistsSync(paths.getExilibriumWalletDBPath(true))) {
-    fs.copySync(
-      paths.getExilibriumWalletDBPath(true),
-      path.join(paths.getDefaultWalletDirectory(true, true), "wallet.db")
-    );
-  }
-
-  // copy over existing config.json if it exists
-  if (fs.pathExistsSync(paths.getGlobalCfgPath())) {
-    fs.copySync(paths.getGlobalCfgPath(), paths.getDefaultWalletFilesPath(true, "config.json"));
-  }
-
-  // create new configs for default testnet wallet
-  config.initWalletCfg(true, "default-wallet");
-  config.newWalletConfigCreation(true, "default-wallet");
-}
-
-state.logger.log("info", `Using config/data from: ${app.getPath("userData")}`);
-state.logger.log(
+logger.log("info", `Using config/data from: ${app.getPath("userData")}`);
+logger.log(
   "info",
   "Versions: Exilibrium: %s, Electron: %s, Chrome: %s",
   app.getVersion(),
@@ -152,114 +106,435 @@ state.logger.log(
 );
 
 process.on("uncaughtException", err => {
-  state.logger.log("error", "UNCAUGHT EXCEPTION", err);
+  logger.log("error", "UNCAUGHT EXCEPTION", err);
   throw err;
 });
 
-function closeEXCCW() {
-  if (require("is-running")(state.exccwPID) && !win32Equals(os.platform())) {
-    state.logger.log("info", `Sending SIGINT to exccwallet at pid: ${state.exccwPID}`);
-    process.kill(state.exccwPID, "SIGINT");
-  }
-}
+const installExtensions = async () => {
+  if (process.env.NODE_ENV === "development") {
+    const installer = require("electron-devtools-installer");
 
-function closeEXCCD() {
-  if (require("is-running")(state.exccdPID) && !win32Equals(os.platform())) {
-    state.logger.log("info", `Sending SIGINT to exccd at pid: ${state.exccdPID}`);
-    process.kill(state.exccdPID, "SIGINT");
-  }
-}
-
-function closeClis() {
-  // shutdown daemon and wallet.
-  // Don't try to close if not running.
-  if (state.exccdPID && state.exccdPID !== -1) {
-    closeEXCCD();
-  }
-  if (state.exccwPID && state.exccwPID !== -1) {
-    closeEXCCW();
-  }
-}
-
-function cleanShutdown() {
-  // Attempt a clean shutdown.
-  return new Promise(resolve => {
-    const cliShutDownPause = 2; // in seconds.
-    const shutDownPause = 3; // in seconds.
-    closeClis();
-    // Sent shutdown message again as we have seen it missed in the past if they
-    // are still running.
-    setTimeout(() => {
-      closeClis();
-    }, cliShutDownPause * 1000);
-    state.logger.log("info", "Closing exilibrium.");
-
-    const shutdownTimer = setInterval(() => {
-      const stillRunning = require("is-running")(state.exccdPID) && !win32Equals(os.platform());
-
-      if (!stillRunning) {
-        state.logger.log("info", "Final shutdown pause. Quitting app.");
-        clearInterval(shutdownTimer);
-        if (state.mainWindow) {
-          state.mainWindow.webContents.send("daemon-stopped");
-          setTimeout(() => {
-            state.mainWindow.close();
-            app.quit();
-          }, 1000);
-        } else {
-          app.quit();
-        }
-        resolve(true);
+    const extensions = ["REACT_DEVELOPER_TOOLS", "REDUX_DEVTOOLS"];
+    const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+    for (const name of extensions) {
+      try {
+        await installer.default(installer[name], forceDownload);
+      } catch (e) {
+        logger.log("error", `Cannot install extensions: ${e}`);
       }
-      state.logger.log("info", "Daemon still running in final shutdown pause. Waiting.");
-    }, shutDownPause * 1000);
-  });
-}
+    }
+  }
+};
 
 const { ipcMain } = require("electron");
 
-function bindState(fn) {
-  // this will pass global state variable as a first function parameter
-  // no matter what other parameters are
-  return fn.bind(null, state);
-}
+ipcMain.on("get-available-wallets", (event, network) => {
+  event.returnValue = getAvailableWallets(network);
+});
 
-ipcMain.on("get-available-wallets", ipc.getAvailableWallets);
-ipcMain.on("start-daemon", bindState(ipc.startDaemon));
-ipcMain.on("create-wallet", ipc.createWallet);
-ipcMain.on("remove-wallet", ipc.removeWallet);
-ipcMain.on("start-wallet", bindState(ipc.startWallet));
-ipcMain.on("check-daemon", bindState(ipc.checkDaemon));
+ipcMain.on("start-daemon", (event, appData, testnet) => {
+  event.returnValue = startDaemon(mainWindow, daemonIsAdvanced, primaryInstance, appData, testnet);
+});
+
+ipcMain.on("create-wallet", (event, walletPath, testnet) => {
+  event.returnValue = createWallet(testnet, walletPath);
+});
+
+ipcMain.on("remove-wallet", (event, walletPath, testnet) => {
+  event.returnValue = removeWallet(testnet, walletPath);
+});
+
+ipcMain.on("stop-wallet", event => {
+  event.returnValue = stopWallet();
+});
+
+ipcMain.on("start-wallet", (event, walletPath, testnet) => {
+  event.returnValue = startWallet(mainWindow, daemonIsAdvanced, testnet, walletPath);
+});
+
+ipcMain.on("check-daemon", (event, rpcCreds, testnet) => {
+  checkDaemon(mainWindow, rpcCreds, testnet);
+});
+
 ipcMain.on("clean-shutdown", async event => {
-  const stopped = await cleanShutdown();
+  const stopped = await cleanShutdown(mainWindow, app, GetExccdPID(), GetExccwPID());
   event.sender.send("clean-shutdown-finished", stopped);
 });
 
 ipcMain.on("app-reload-ui", () => {
-  state.mainWindow.reload();
+  mainWindow.reload();
 });
 
-ipcMain.on("grpc-versions-determined", bindState(ipc.grpcVersionsDetermined));
-ipcMain.on("main-log", bindState(ipc.mainLog));
-ipcMain.on("get-exccd-logs", bindState(ipc.getExccdLogs));
-ipcMain.on("get-exilibrium-logs", ipc.getExilibriumLogs);
+ipcMain.on("grpc-versions-determined", (event, versions) => {
+  grpcVersions = { ...grpcVersions, ...versions };
+});
 
-ipcMain.on("get-exccwallet-logs", bindState(ipc.getExccwalletLogs));
-ipcMain.on("get-previous-wallet", bindState(ipc.getPreviousWallet));
-ipcMain.on("set-previous-wallet", bindState(ipc.setPreviousWallet));
+ipcMain.on("main-log", (event, ...args) => {
+  logger.log(...args);
+});
 
-state.primaryInstance = !app.makeSingleInstance(() => true);
-const stopSecondInstance = !state.primaryInstance && !state.daemonIsAdvanced;
+ipcMain.on("get-exccd-logs", event => {
+  event.returnValue = GetExccdLogs();
+});
+
+ipcMain.on("get-exccwallet-logs", event => {
+  event.returnValue = GetExccwalletLogs();
+});
+
+ipcMain.on("get-exilibrium-logs", event => {
+  event.returnValue = "exilibrium logs!";
+});
+
+ipcMain.on("get-previous-wallet", event => {
+  event.returnValue = previousWallet;
+});
+
+ipcMain.on("set-previous-wallet", (event, cfg) => {
+  previousWallet = cfg;
+  event.returnValue = true;
+});
+
+primaryInstance = !app.makeSingleInstance(() => true);
+const stopSecondInstance = !primaryInstance && !daemonIsAdvanced;
 if (stopSecondInstance) {
-  state.logger.log("error", "Preventing second instance from running.");
+  logger.log("error", "Preventing second instance from running.");
 }
 
-app.on("ready", application.ready.bind(null, state, cleanShutdown, stopSecondInstance));
+app.on("ready", async () => {
+  // when installing (on first run) locale will be empty. Determine the user's
+  // OS locale and set that as exilibrium's locale.
+  const cfgLocale = globalCfg.get("locale", "");
+  let locale = locales.find(value => value.key === cfgLocale);
+  if (!locale) {
+    const newCfgLocale = appLocaleFromElectronLocale(app.getLocale());
+    logger.log("error", `Locale ${cfgLocale} not found. Switching to locale ${newCfgLocale}.`);
+    globalCfg.set("locale", newCfgLocale);
+    locale = locales.find(value => value.key === newCfgLocale);
+  }
+
+  let windowOpts = {
+    show: false,
+    width: 1178,
+    height: 790,
+    page: "app.html",
+    webPreferences: {
+      webSecurity: false
+    }
+  };
+  if (stopSecondInstance) {
+    windowOpts = {
+      show: true,
+      width: 575,
+      height: 275,
+      autoHideMenuBar: true,
+      resizable: false,
+      page: "staticPages/secondInstance.html"
+    };
+  } else {
+    await installExtensions();
+  }
+  windowOpts.title = `Exilibrium - ${app.getVersion()}`;
+
+  mainWindow = new BrowserWindow(windowOpts);
+  mainWindow.loadURL(`file://${__dirname}/${windowOpts.page}`);
+
+  mainWindow.webContents.on("did-finish-load", () => {
+    mainWindow.show();
+    mainWindow.focus();
+  });
+  mainWindow.on("closed", () => {
+    mainWindow = null;
+    if (versionWin !== null) {
+      versionWin.close();
+    }
+    if (stopSecondInstance) {
+      app.quit();
+      setTimeout(() => {
+        app.quit();
+      }, 2000);
+    }
+  });
+
+  if (process.env.NODE_ENV === "development") {
+    mainWindow.openDevTools();
+  }
+  if (stopSecondInstance) {
+    return;
+  }
+
+  mainWindow.webContents.on("context-menu", (e, props) => {
+    const { selectionText, isEditable, x, y } = props;
+    const inputMenu = [
+      { role: "cut" },
+      { role: "copy" },
+      { role: "paste" },
+      { type: "separator" },
+      { role: "selectall" }
+    ];
+    const selectionMenu = [{ role: "copy" }, { type: "separator" }, { role: "selectall" }];
+    if (process.env.NODE_ENV === "development") {
+      const inspectElement = {
+        label: "Inspect element",
+        click: () => mainWindow.inspectElement(x, y)
+      };
+      inputMenu.push(inspectElement);
+      selectionMenu.push(inspectElement);
+    }
+    if (isEditable) {
+      Menu.buildFromTemplate(inputMenu).popup(mainWindow);
+    } else if (selectionText && selectionText.trim() !== "") {
+      Menu.buildFromTemplate(selectionMenu).popup(mainWindow);
+    } else if (process.env.NODE_ENV === "development") {
+      Menu.buildFromTemplate([
+        {
+          label: "Inspect element",
+          click: () => mainWindow.inspectElement(x, y)
+        }
+      ]).popup(mainWindow);
+    }
+  });
+
+  if (process.platform === "darwin") {
+    template = [
+      {
+        label: locale.messages["appMenu.exilibrium"],
+        submenu: [
+          {
+            label: locale.messages["appMenu.aboutExilibrium"],
+            selector: "orderFrontStandardAboutPanel:"
+          },
+          {
+            type: "separator"
+          },
+          {
+            label: locale.messages["appMenu.services"],
+            submenu: []
+          },
+          {
+            type: "separator"
+          },
+          {
+            label: locale.messages["appMenu.hideExilibrium"],
+            accelerator: "Command+H",
+            selector: "hide:"
+          },
+          {
+            label: locale.messages["appMenu.hideOthers"],
+            accelerator: "Command+Shift+H",
+            selector: "hideOtherApplications:"
+          },
+          {
+            label: locale.messages["appMenu.showAll"],
+            selector: "unhideAllApplications:"
+          },
+          {
+            type: "separator"
+          },
+          {
+            label: locale.messages["appMenu.quit"],
+            accelerator: "Command+Q",
+            click() {
+              cleanShutdown(mainWindow, app, GetExccdPID(), GetExccwPID());
+            }
+          }
+        ]
+      },
+      {
+        label: locale.messages["appMenu.edit"],
+        submenu: [
+          {
+            label: locale.messages["appMenu.undo"],
+            accelerator: "Command+Z",
+            selector: "undo:"
+          },
+          {
+            label: locale.messages["appMenu.redo"],
+            accelerator: "Shift+Command+Z",
+            selector: "redo:"
+          },
+          {
+            type: "separator"
+          },
+          {
+            label: locale.messages["appMenu.cut"],
+            accelerator: "Command+X",
+            selector: "cut:"
+          },
+          {
+            label: locale.messages["appMenu.copy"],
+            accelerator: "Command+C",
+            selector: "copy:"
+          },
+          {
+            label: locale.messages["appMenu.paste"],
+            accelerator: "Command+V",
+            selector: "paste:"
+          },
+          {
+            label: locale.messages["appMenu.selectAll"],
+            accelerator: "Command+A",
+            selector: "selectAll:"
+          }
+        ]
+      },
+      {
+        label: locale.messages["appMenu.view"],
+        submenu: [
+          {
+            label: "Toggle Full Screen",
+            accelerator: "Ctrl+Command+F",
+            click() {
+              mainWindow.setFullScreen(!mainWindow.isFullScreen());
+            }
+          }
+        ]
+      },
+      {
+        label: locale.messages["appMenu.window"],
+        submenu: [
+          {
+            label: locale.messages["appMenu.minimize"],
+            accelerator: "Command+M",
+            selector: "performMiniaturize:"
+          },
+          {
+            label: locale.messages["appMenu.close"],
+            accelerator: "Command+W",
+            selector: "performClose:"
+          },
+          {
+            type: "separator"
+          },
+          {
+            label: locale.messages["appMenu.bringAllFront"],
+            selector: "arrangeInFront:"
+          }
+        ]
+      }
+    ];
+  } else {
+    template = [
+      {
+        label: locale.messages["appMenu.file"],
+        submenu: [
+          {
+            label: "&Close",
+            accelerator: "Ctrl+W",
+            click() {
+              mainWindow.close();
+            }
+          }
+        ]
+      },
+      {
+        label: locale.messages["appMenu.view"],
+        submenu: [
+          {
+            label: locale.messages["appMenu.toggleFullScreen"],
+            accelerator: "F11",
+            click() {
+              mainWindow.setFullScreen(!mainWindow.isFullScreen());
+            }
+          },
+          {
+            label: locale.messages["appMenu.reloadUI"],
+            accelerator: "F5",
+            click() {
+              mainWindow.webContents.send("app-reload-requested", mainWindow);
+            }
+          }
+        ]
+      }
+    ];
+  }
+  template.push(
+    {
+      label: locale.messages["appMenu.advanced"],
+      submenu: [
+        {
+          label: locale.messages["appMenu.developerTools"],
+          accelerator: "Alt+Ctrl+I",
+          click() {
+            mainWindow.toggleDevTools();
+          }
+        },
+        {
+          label: locale.messages["appMenu.showWalletLog"],
+          click() {
+            shell.openItem(getDirectoryLogs(getExccwalletPath()));
+          }
+        },
+        {
+          label: locale.messages["appMenu.showDaemonLog"],
+          click() {
+            shell.openItem(getDirectoryLogs(getExccdPath()));
+          }
+        }
+      ]
+    },
+    {
+      label: locale.messages["appMenu.help"],
+      submenu: [
+        {
+          label: locale.messages["appMenu.learnMore"],
+          click() {
+            shell.openExternal("https://excc.co");
+          }
+        },
+        {
+          label: locale.messages["appMenu.documentation"],
+          click() {
+            shell.openExternal("https://github.com/EXCCoin/exilibrium");
+          }
+        },
+        {
+          label: locale.messages["appMenu.communityDiscussions"],
+          click() {
+            shell.openExternal("https://excc.co");
+          }
+        },
+        {
+          label: locale.messages["appMenu.searchIssues"],
+          click() {
+            shell.openExternal("https://github.com/EXCCoin/exilibrium/issues");
+          }
+        },
+        {
+          label: locale.messages["appMenu.about"],
+          click() {
+            if (!versionWin) {
+              versionWin = new BrowserWindow({
+                width: 575,
+                height: 325,
+                show: false,
+                autoHideMenuBar: true,
+                resizable: false
+              });
+              versionWin.on("closed", () => {
+                versionWin = null;
+              });
+
+              // Load a remote URL
+              versionWin.loadURL(`file://${__dirname}/staticPages/version.html`);
+
+              versionWin.once("ready-to-show", () => {
+                versionWin.webContents.send("exes-versions", readExesVersion(app, grpcVersions));
+                versionWin.show();
+              });
+            }
+          }
+        }
+      ]
+    }
+  );
+  menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+});
 
 app.on("before-quit", event => {
-  state.logger.log("info", "Caught before-quit. Set exilibrium as was closed");
+  logger.log("info", "Caught before-quit. Set exilibrium as was closed");
   event.preventDefault();
-  cleanShutdown();
-  config.setMustOpenForm(true);
+  cleanShutdown(mainWindow, app, GetExccdPID(), GetExccwPID());
+  setMustOpenForm(true);
   app.exit(0);
 });

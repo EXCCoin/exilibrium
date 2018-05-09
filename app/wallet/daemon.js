@@ -60,7 +60,7 @@ export const startWallet = withLog(
       // return of the sendSync call because we can't be certain which will happen first
       const resolveCheck = () => (pid && port ? resolve({ pid, port }) : null);
 
-      ipcRenderer.once("dcrwallet-port", (e, p) => {
+      ipcRenderer.once("exccwallet-port", (e, p) => {
         port = p;
         resolveCheck();
       });

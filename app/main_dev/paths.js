@@ -1,5 +1,7 @@
 import path from "path";
 import os from "os";
+import fs from "fs-extra";
+import { initWalletCfg, newWalletConfigCreation } from "../config";
 
 // In all the functions below the Windows path is constructed based on
 // os.homedir() rather than using process.env.LOCALAPPDATA because in my tests
@@ -71,6 +73,15 @@ export function getExccdPath() {
   return path.join(os.homedir(), ".dcrd");
 }
 
+export function getExccwalletPath() {
+  if (os.platform() === "win32") {
+    return path.join(os.homedir(), "AppData", "Local", "Dcrwallet");
+  } else if (process.platform === "darwin") {
+    return path.join(os.homedir(), "Library", "Application Support", "dcrwallet");
+  }
+  return path.join(os.homedir(), ".dcrwallet");
+}
+
 export function getExccdRpcCert(appDataPath) {
   return path.resolve(appDataPath ? appDataPath : getExccdPath(), "rpc.cert");
 }
@@ -81,18 +92,46 @@ export function getExecutablePath(name, customBinPath) {
     : process.env.NODE_ENV === "development"
       ? path.join(__dirname, "..", "..", "bin")
       : path.join(process.resourcesPath, "bin");
-  let execName =
+  const execName =
     os.platform() !== "win32"
       ? name
       : os.arch() === "x64"
-        ? name + "64.exe"
+        ? `${name}64.exe`
         : os.arch() === "ia32"
-          ? name + "32.exe"
-          : name + ".exe";
+          ? `${name}32.exe`
+          : `${name}32.exe`;
 
   return path.join(binPath, execName);
 }
 
 export function getDirectoryLogs(dir) {
   return path.join(dir, "logs");
+}
+
+export function checkAndInitWalletCfg(testnet) {
+  const walletDirectory = getDefaultWalletDirectory(testnet);
+
+  if (
+    !fs.pathExistsSync(walletDirectory) &&
+    fs.pathExistsSync(getExilibriumWalletDBPath(testnet))
+  ) {
+    fs.mkdirsSync(walletDirectory);
+
+    // check for existing mainnet directories
+    if (fs.pathExistsSync(getExilibriumWalletDBPath(testnet))) {
+      fs.copySync(
+        getExilibriumWalletDBPath(testnet),
+        path.join(getDefaultWalletDirectory(testnet, testnet), "wallet.db")
+      );
+    }
+
+    // copy over existing config.json if it exists
+    if (fs.pathExistsSync(getGlobalCfgPath())) {
+      fs.copySync(getGlobalCfgPath(), getDefaultWalletFilesPath(testnet, "config.json"));
+    }
+
+    // create new configs for default mainnet wallet
+    initWalletCfg(testnet, "default-wallet");
+    newWalletConfigCreation(testnet, "default-wallet");
+  }
 }

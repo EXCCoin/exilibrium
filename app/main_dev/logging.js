@@ -1,6 +1,11 @@
 import { app } from "electron";
 import winston from "winston";
 import path from "path";
+import { MAX_LOG_LENGTH } from "./constants";
+import os from "os";
+
+let exccdLogs = Buffer.from("");
+let exccwalletLogs = Buffer.from("");
 
 const pad = (s, n) => {
   n = n || 2;
@@ -12,14 +17,14 @@ const pad = (s, n) => {
 // format compatible to exccd/exccwallet logs. This function is meant to be
 // installed in the winston loggers.
 const logTimestamp = () => {
-  const date = new Date();
-  const y = date.getFullYear();
-  const mo = pad(date.getMonth() + 1);
-  const d = pad(date.getDate());
-  const h = pad(date.getHours());
-  const mi = pad(date.getMinutes());
-  const s = pad(date.getSeconds());
-  const ms = pad(date.getMilliseconds(), 3);
+  let date = new Date();
+  let y = date.getFullYear();
+  let mo = pad(date.getMonth() + 1);
+  let d = pad(date.getDate());
+  let h = pad(date.getHours());
+  let mi = pad(date.getMinutes());
+  let s = pad(date.getSeconds());
+  let ms = pad(date.getMilliseconds(), 3);
   return `${y}-${mo}-${d} ${h}:${mi}:${s}.${ms}`;
 };
 
@@ -73,3 +78,24 @@ export function createLogger(debug) {
 
   return logger;
 }
+
+const AddToLog = (destIO, destLogBuffer, data, debug) => {
+  const dataBuffer = Buffer.from(data);
+  if (destLogBuffer.length + dataBuffer.length > MAX_LOG_LENGTH) {
+    destLogBuffer = destLogBuffer.slice(destLogBuffer.indexOf(os.EOL, dataBuffer.length) + 1);
+  }
+  debug && destIO.write(data);
+  return Buffer.concat([destLogBuffer, dataBuffer]);
+};
+
+export const AddToExccdLog = (destIO, data, debug) => {
+  exccdLogs = AddToLog(destIO, exccdLogs, data, debug);
+};
+
+export const AddToExccwalletLog = (destIO, data, debug) => {
+  exccwalletLogs = AddToLog(destIO, exccwalletLogs, data, debug);
+};
+
+export const GetExccdLogs = () => exccdLogs;
+
+export const GetExccwalletLogs = () => exccwalletLogs;

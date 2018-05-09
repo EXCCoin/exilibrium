@@ -44,7 +44,7 @@ export const getWalletRPCVersionAttempt = () => (dispatch, getState) => {
       let walletVersion = getWalletRPCVersionResponse.getVersionString();
       ipcRenderer.send("grpc-versions-determined", { requiredVersion, walletVersion });
       if (!walletVersion) {
-        versionErr = "Unable to obtain Dcrwallet API version";
+        versionErr = "Unable to obtain Exccwallet API version";
       } else {
         if (!semverCompatible(requiredVersion, walletVersion)) {
           versionErr =

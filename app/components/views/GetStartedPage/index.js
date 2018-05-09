@@ -20,6 +20,18 @@ class GetStartedPage extends React.Component {
     this.state = { showSettings: false, showLogs: false, showReleaseNotes: false };
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { startStepIndex, getDaemonSynced, onRetryStartRPC } = this.props;
+    if (
+      startStepIndex !== nextProps.startStepIndex ||
+      getDaemonSynced !== nextProps.getDaemonSynced
+    ) {
+      if (nextProps.startStepIndex === 3 && nextProps.getDaemonSynced) {
+        onRetryStartRPC();
+      }
+    }
+  }
+
   componentDidMount() {
     const {
       getWalletReady,

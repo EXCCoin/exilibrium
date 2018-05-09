@@ -75,7 +75,6 @@ export const CREATEWALLET_FAILED = "CREATEWALLET_FAILED";
 export const CREATEWALLET_SUCCESS = "CREATEWALLET_SUCCESS";
 
 export const createWalletRequest = (pubPass, privPass, seed, existing) => (dispatch, getState) => {
-  const { daemonSynced } = getState().daemon;
   dispatch({ existing, type: CREATEWALLET_ATTEMPT });
   return wallet
     .createWallet(getState().walletLoader.loader, pubPass, privPass, seed)
@@ -89,7 +88,6 @@ export const createWalletRequest = (pubPass, privPass, seed, existing) => (dispa
       dispatch(clearStakePoolConfigNewWallet());
       dispatch({ complete: !existing, type: UPDATEDISCOVERACCOUNTS });
       config.set("discoveraccounts", !existing);
-      if (daemonSynced) dispatch(startRpcRequestFunc());
     })
     .catch(error => dispatch({ error, type: CREATEWALLET_FAILED }));
 };
@@ -101,18 +99,15 @@ export const OPENWALLET_FAILED = "OPENWALLET_FAILED";
 export const OPENWALLET_SUCCESS = "OPENWALLET_SUCCESS";
 
 export const openWalletAttempt = (pubPass, retryAttempt) => (dispatch, getState) => {
-  const { daemonSynced } = getState().daemon;
   dispatch({ type: OPENWALLET_ATTEMPT });
   return wallet
     .openWallet(getState().walletLoader.loader, pubPass)
     .then(() => {
       dispatch({ type: OPENWALLET_SUCCESS });
-      if (daemonSynced) dispatch(startRpcRequestFunc());
     })
     .catch(error => {
       if (error.message.includes("wallet already loaded")) {
         dispatch({ response: {}, type: OPENWALLET_SUCCESS });
-        if (daemonSynced) dispatch(startRpcRequestFunc());
       } else if (
         error.message.includes("invalid passphrase") &&
         error.message.includes("public key")
@@ -150,7 +145,6 @@ export const startRpcRequestFunc = isRetry => (dispatch, getState) => {
     daemon: { credentials, appData, walletName }
   } = getState();
   const cfg = getWalletCfg(isTestNet(getState()), walletName);
-  console.log(cfg);
   let rpcuser, rpccertPath, rpcpass, daemonhost, rpcport;
 
   if (credentials) {

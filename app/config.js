@@ -139,7 +139,9 @@ export function getWalletCert(certPath) {
 
 export function readExccdConfig(configPath, testnet) {
   try {
-    if (!fs.existsSync(exccdCfg(configPath))) return;
+    if (!fs.existsSync(exccdCfg(configPath))) {
+      return;
+    }
     const readCfg = ini.parse(Buffer.from(fs.readFileSync(exccdCfg(configPath))).toString());
     const newCfg = {};
     newCfg.rpc_host = "127.0.0.1";
