@@ -1,6 +1,6 @@
 import FloatInput from "./FloatInput";
 import IntegerInput from "./IntegerInput";
-import { strToDcrAtoms } from "helpers/strings";
+import { strToExccAtoms } from "helpers/strings";
 import balanceConnector from "connectors/balance";
 
 /**
@@ -53,7 +53,7 @@ class ExccInput extends React.Component {
 
   changeAmount(value) {
     const { unitDivisor } = this.props;
-    const amount = !value ? 0 : strToDcrAtoms(value, unitDivisor);
+    const amount = !value ? 0 : strToExccAtoms(value, unitDivisor);
     if (amount !== this.props.amount) {
       this.props.onChangeAmount && this.props.onChangeAmount(amount);
     }
@@ -63,10 +63,12 @@ class ExccInput extends React.Component {
     const { value } = e.target;
     if (value) {
       // pre-validate if <= max supply
-      const { unitDivisor } = this.props;
-      const amount = strToDcrAtoms(value, unitDivisor);
+
+      const amount = strToExccAtoms(value, this.props.unitDivisor);
       // TODO: move to a global constant
-      if (amount > 21e14) return;
+      if (amount > 21e14) {
+        return;
+      }
     }
 
     if (value !== this.state.value) {
@@ -76,8 +78,6 @@ class ExccInput extends React.Component {
 
   render() {
     const { unitDivisor, currencyDisplay } = this.props;
-    const { value } = this.state;
-    const { onChange } = this;
     const maxFracDigits = Math.log10(unitDivisor);
 
     const Comp = unitDivisor !== 1 ? FloatInput : IntegerInput;
@@ -85,8 +85,8 @@ class ExccInput extends React.Component {
       <Comp
         {...this.props}
         unit={currencyDisplay}
-        value={value}
-        onChange={onChange}
+        value={this.state.value}
+        onChange={this.onChange}
         maxFracDigits={maxFracDigits}
       />
     );
