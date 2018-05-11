@@ -36,7 +36,6 @@ export default merge(baseConfig, {
     port: 3000,
     publicPath: "http://localhost:3000/dist/",
     compress: true,
-    noInfo: true,
     stats: statsOptions,
     inline: true,
     lazy: false,
