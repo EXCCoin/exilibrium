@@ -37,6 +37,7 @@ import {
   CREATEWALLET_NEWSEED_CONFIRM_INPUT,
   CREATEWALLET_NEWSEED_BACK_INPUT,
   CREATEWALLET_GOBACK_EXISITNG_OR_NEW,
+  CREATEWALLET_GOBACK,
   UPDATEDISCOVERACCOUNTS,
   NEEDED_BLOCKS_DETERMINED
 } from "actions/WalletLoaderActions";
@@ -85,6 +86,11 @@ export default function walletLoader(state = {}, action) {
         walletExistRequestAttempt: false,
         walletExistResponse: action.response,
         stepIndex: 2
+      };
+    case CREATEWALLET_GOBACK:
+      return {
+        ...state,
+        stepIndex: 1
       };
     case CREATEWALLET_GOBACK_EXISITNG_OR_NEW:
       return {

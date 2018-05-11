@@ -51,6 +51,11 @@ export const removeWallet = withLog(
   "Remove Wallet"
 );
 
+export const stopWallet = withLog(
+  () => Promise.resolve(ipcRenderer.sendSync("stop-wallet")).then(stopped => stopped),
+  "Stop Wallet"
+);
+
 export const startWallet = withLog(
   (walletPath, testnet) =>
     new Promise((resolve, reject) => {

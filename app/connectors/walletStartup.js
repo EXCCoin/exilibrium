@@ -51,6 +51,7 @@ const mapDispatchToProps = dispatch =>
       onSelectLanguage: daemonActions.selectLanguage,
       finishTutorial: daemonActions.finishTutorial,
       onReturnToNewSeed: walletLoaderActions.createWalletGoBackNewSeed,
+      onReturnToWalletSelection: walletLoaderActions.createWalletGoBackWalletSelection,
       onReturnToExistingOrNewScreen: walletLoaderActions.createWalletGoBackExistingOrNew,
       onSetCreateWalletFromExisting: walletLoaderActions.createWalletExistingToggle,
       onDiscoverAddresses: walletLoaderActions.discoverAddressAttempt,
