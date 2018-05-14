@@ -89,15 +89,12 @@ export const startupError = or(
 const availableWallets = get(["daemon", "availableWallets"]);
 
 export const availableWalletsSelect = createSelector([availableWallets], wallets =>
-  map(
-    wallet => ({
-      label: wallet.wallet + " (" + wallet.network + ")",
-      value: wallet,
-      network: wallet.network,
-      finished: wallet.finished
-    }),
-    wallets
-  )
+  wallets.map(wallet => ({
+    label: `${wallet.wallet} (${wallet.network})`,
+    value: wallet,
+    network: wallet.network,
+    finished: wallet.finished
+  }))
 );
 export const previousWallet = get(["daemon", "previousWallet"]);
 export const getWalletName = get(["daemon", "walletName"]);

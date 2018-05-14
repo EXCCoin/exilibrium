@@ -15,7 +15,7 @@ function stakepPoolInfoResponseToConfig(response) {
 
 export function stakePoolInfo(cb) {
   axios
-    .get("https://api.excc.co/?c=gsd")
+    .get("https://api.decred.org/?c=gsd")
     .then(response => {
       cb(stakepPoolInfoResponseToConfig(response));
     })

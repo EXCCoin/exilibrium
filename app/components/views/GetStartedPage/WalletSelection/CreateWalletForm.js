@@ -1,5 +1,8 @@
-import { FormattedMessage as T, defineMessages } from "react-intl";
+import { FormattedMessage as T, defineMessages, injectIntl } from "react-intl";
+
 import { TextInput } from "inputs";
+
+import { CreateWalletFormTypes } from "../types";
 import "style/LoginForm.less";
 
 const messages = defineMessages({
@@ -9,7 +12,7 @@ const messages = defineMessages({
   }
 });
 
-const CreateWalletForm = ({ newWalletName, onChangeCreateWalletName, intl }) => {
+function CreateWalletForm({ newWalletName, onChangeCreateWalletName, intl }) {
   return (
     <Aux>
       <div className="advanced-daemon-row">
@@ -29,6 +32,8 @@ const CreateWalletForm = ({ newWalletName, onChangeCreateWalletName, intl }) => 
       </div>
     </Aux>
   );
-};
+}
 
-export default CreateWalletForm;
+CreateWalletForm.propTypes = CreateWalletFormTypes;
+
+export default injectIntl(CreateWalletForm);

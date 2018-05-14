@@ -156,18 +156,30 @@ export const removeWallet = selectedWallet => dispatch => {
     });
 };
 
-export const createWallet = selectedWallet => (dispatch, getState) => {
-  const { network } = getState().daemon;
-  wallet
-    .createNewWallet(selectedWallet.value.wallet, network === "testnet")
-    .then(() => {
-      dispatch({ type: WALLETCREATED });
-      dispatch(startWallet(selectedWallet));
-    })
-    .catch(err => {
-      console.error(err);
-      dispatch({ error: err, type: WALLETREMOVED_FAILED });
-    });
+export const createWallet = selectedWallet => async (dispatch, getState) => {
+  try {
+    const { network } = getState().daemon;
+    await wallet.createNewWallet(selectedWallet.value.wallet, network === "testnet");
+    dispatch({ type: WALLETCREATED });
+    dispatch(startWallet(selectedWallet));
+  } catch (err) {
+    console.error(err);
+    dispatch({ error: err, type: WALLETREMOVED_FAILED });
+  }
+};
+
+export const importKeys = jsonData => async (dispatch, getState) => {
+  // validate if JSON, if has keys, etc.
+  try {
+    const { network } = getState().daemon;
+    await Promise.resolve("Import successfull");
+    // TODO: do domething
+    //  dispatch({ type: WALLETCREATED });
+    //  dispatch(startWallet(selectedWallet));
+  } catch (err) {
+    console.error(err);
+    //  dispatch({ error: err, type: WALLETREMOVED_FAILED });
+  }
 };
 
 export const startWallet = selectedWallet => (dispatch, getState) => {

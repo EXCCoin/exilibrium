@@ -1,6 +1,7 @@
 import { FormattedMessage as T } from "react-intl";
-import "style/Input.less";
+
 import { isNullOrUndefined } from "util";
+import "style/Input.less";
 
 class Input extends React.Component {
   constructor(props) {
@@ -11,8 +12,9 @@ class Input extends React.Component {
   getInitialState() {
     return {
       inputUnitDiv: null,
-      divClassName:
-        "input-and-unit " + (this.props.className || "") + (this.props.disabled ? " disabled " : "")
+      divClassName: `input-and-unit ${this.props.className || ""} ${
+        this.props.disabled ? "disabled" : ""
+      }`
     };
   }
   componentDidMount() {
@@ -23,15 +25,13 @@ class Input extends React.Component {
   onInputFocus = e => {
     const { onFocus } = this.props;
     const { inputUnitDiv } = this.state;
-    var updatedInputUnitDiv = inputUnitDiv;
-    this.setState({ inputUnitDiv: updatedInputUnitDiv.classList.add("active") });
+    this.setState({ inputUnitDiv: inputUnitDiv.classList.add("active") });
     onFocus && onFocus(e);
   };
   onInputBlur = e => {
     const { onBlur } = this.props;
     const { inputUnitDiv } = this.state;
-    var updatedInputUnitDiv = inputUnitDiv;
-    this.setState({ inputUnitDiv: updatedInputUnitDiv.classList.remove("active") });
+    this.setState({ inputUnitDiv: inputUnitDiv.classList.remove("active") });
     onBlur && onBlur(e);
   };
   onKeyDown = e => {
