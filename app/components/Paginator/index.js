@@ -36,7 +36,7 @@ class Paginator extends React.Component {
     const Component =
       this.props.totalPages < 10
         ? SmallPaginator
-        : this.props.totalPages == 11
+        : this.props.totalPages === 11
           ? MediumPaginator
           : LargePaginator;
 

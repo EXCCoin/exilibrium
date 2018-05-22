@@ -190,7 +190,9 @@ export const startRpcRequestFunc = isRetry => (dispatch, getState) => {
   const { loader } = getState().walletLoader;
 
   const cert = getExccdCert(rpccertPath);
-  if (!isRetry) dispatch({ type: STARTRPC_ATTEMPT });
+  if (!isRetry) {
+    dispatch({ type: STARTRPC_ATTEMPT });
+  }
   return wallet
     .startRpc(loader, daemonhost, rpcport, rpcuser, rpcpass, cert)
     .then(() => {
@@ -248,7 +250,9 @@ export const discoverAddressAttempt = privPass => (dispatch, getState) => {
       }
 
       dispatch({ response: {}, type: DISCOVERADDRESS_SUCCESS });
-      if (subscribeBlockNtfnsResponse !== null) dispatch(fetchHeadersAttempt());
+      if (subscribeBlockNtfnsResponse !== null) {
+        dispatch(fetchHeadersAttempt());
+      }
     })
     .catch(error => {
       if (error.message.includes("invalid passphrase") && error.message.includes("private key")) {

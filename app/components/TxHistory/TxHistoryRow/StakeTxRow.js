@@ -30,7 +30,7 @@ const StakeTxRow = ({ status, txType, ...props }) => {
       id="ticket.rewardMesage"
       m={"{rewardLabel}: {reward}"}
       values={{
-        rewardLabel: rewardLabel,
+        rewardLabel,
         reward: <Balance amount={ticketReward || 0} />
       }}
     />
@@ -42,7 +42,7 @@ const StakeTxRow = ({ status, txType, ...props }) => {
       id="ticket.priceMessage"
       m={"{ticketPriceLabel}: {ticketPrice}"}
       values={{
-        ticketPriceLabel: ticketPriceLabel,
+        ticketPriceLabel,
         ticketPrice: <Balance amount={ticketPrice || 0} />
       }}
     />

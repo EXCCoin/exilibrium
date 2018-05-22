@@ -18,7 +18,7 @@ const RenameAccount = ({
   intl,
   renameAccountNameError
 }) => (
-  <div className="account-row-details-bottom" key={"details" + account.accountNumber}>
+  <div className="account-row-details-bottom" key={`details${account.accountNumber}`}>
     <div className="account-row-details-bottom-title">
       <div className="account-row-details-bottom-title-name">
         <T id="accounts.rename" m="Rename Account" />
@@ -32,7 +32,7 @@ const RenameAccount = ({
         <div className="account-input-form">
           <TextInput
             autoFocus={true}
-            key={"rename" + account.accountNumber}
+            key={`rename${account.accountNumber}`}
             type="text"
             className="address-content-nest-address-hash-to"
             placeholder={intl.formatMessage(messages.newNamePlaceholder)}

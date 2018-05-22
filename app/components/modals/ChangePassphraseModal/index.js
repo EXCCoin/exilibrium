@@ -9,7 +9,9 @@ class ChangePassphraseModal extends React.Component {
 
   onCancelModal() {
     this.resetState();
-    this.props.onCancelModal && this.props.onCancelModal();
+    if (this.props.onCancelModal) {
+      this.props.onCancelModal();
+    }
   }
 
   resetState() {
@@ -33,7 +35,8 @@ class ChangePassphraseModal extends React.Component {
   }
 
   isValid() {
-    return !!this.state.privPass && this.state.privPass === this.state.confirmPrivPass;
+    const { privPass, confirmPrivPass } = this.state;
+    return Boolean(privPass) && privPass === confirmPrivPass;
   }
 
   onSubmit(passPhrase) {

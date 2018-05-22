@@ -13,7 +13,9 @@ class ImportScriptModal extends React.Component {
 
   onCancelModal() {
     this.resetState();
-    this.props.onCancelModal && this.props.onCancelModal();
+    if (this.props.onCancelModal) {
+      this.props.onCancelModal();
+    }
   }
 
   resetState() {
@@ -42,8 +44,7 @@ class ImportScriptModal extends React.Component {
   }
 
   isValid() {
-    const { script } = this.state;
-    return !!script;
+    return Boolean(this.state.script);
   }
 
   render() {

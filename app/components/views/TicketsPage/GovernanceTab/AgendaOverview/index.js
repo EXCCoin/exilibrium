@@ -11,7 +11,7 @@ class AgendaOverview extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.selectedChoice != nextProps.selectedChoice) {
+    if (this.props.selectedChoice !== nextProps.selectedChoice) {
       this.setState({ selectedChoiceId: nextProps.selectedChoice });
     }
   }
@@ -55,7 +55,9 @@ class AgendaOverview extends React.Component {
   }
 
   updatePreferences() {
-    if (!this.hasModifiedChoice()) return;
+    if (!this.hasModifiedChoice()) {
+      return;
+    }
     this.props.updatePreferences(this.props.agenda.getId(), this.state.selectedChoiceId);
   }
 }

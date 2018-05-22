@@ -200,8 +200,11 @@ export function readExccdConfig(configPath, testnet) {
 }
 
 export function getExccdCert(exccdCertPath) {
-  if (exccdCertPath) if (fs.existsSync(exccdCertPath)) return fs.readFileSync(exccdCertPath);
-
+  if (exccdCertPath) {
+    if (fs.existsSync(exccdCertPath)) {
+      return fs.readFileSync(exccdCertPath);
+    }
+  }
   const certPath = getExccdRpcCert();
 
   const cert = fs.readFileSync(certPath);
@@ -272,9 +275,9 @@ function makeRandomString(length) {
   let text = "";
   const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  for (let i = 0; i < length; i++)
+  for (let i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
-
+  }
   return text;
 }
 

@@ -35,9 +35,11 @@ export function updateStateSettingsChanged(settings) {
         (d, f) => d || newSettings[f] !== currentSettings[f],
         false
       );
-      newDiffersFromCurrent
-        ? dispatch({ tempSettings: newSettings, type: SETTINGS_CHANGED })
-        : dispatch({ tempSettings: currentSettings, type: SETTINGS_UNCHANGED });
+      if (newDiffersFromCurrent) {
+        dispatch({ tempSettings: newSettings, type: SETTINGS_CHANGED });
+      } else {
+        dispatch({ tempSettings: currentSettings, type: SETTINGS_UNCHANGED });
+      }
     }
   };
 }

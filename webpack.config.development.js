@@ -65,7 +65,7 @@ export default merge(baseConfig, {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        use: ["babel-loader", "eslint-loader"]
       },
       {
         test: /\.min\.css$/,

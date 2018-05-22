@@ -45,7 +45,7 @@ const OpenWalletDecryptFormBodyBase = ({
       <div className="loader-bar-buttons">
         <KeyBlueButton
           onClick={onOpenWallet}
-          disabled={publicPassPhrase == "" || isOpeningWallet}
+          disabled={publicPassPhrase === "" || isOpeningWallet}
           loading={isOpeningWallet}>
           <T id="advancedStartup.skip" m="Open Wallet" />
         </KeyBlueButton>

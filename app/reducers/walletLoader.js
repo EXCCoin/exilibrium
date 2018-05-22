@@ -1,3 +1,4 @@
+/* eslint complexity: off */
 import {
   CREATEWALLET_ATTEMPT,
   CREATEWALLET_FAILED,

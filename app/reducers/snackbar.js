@@ -1,3 +1,4 @@
+/* eslint complexity: off */
 /* eslint-disable no-fallthrough */
 // we disable no-fallthrough rule in this file to simplify the select/case below.
 import * as wallet from "wallet";
@@ -218,7 +219,9 @@ export default function snackbar(state = {}, action) {
     case REVOKETICKETS_SUCCESS:
     case IMPORTSCRIPT_SUCCESS:
       // willRescan will be false when importing just prior to a ticket purchase
-      if (action.willRescan === false) break;
+      if (action.willRescan === false) {
+        break;
+      }
     case STOPAUTOBUYER_SUCCESS:
     case STARTAUTOBUYER_SUCCESS:
     case UPDATESTAKEPOOLCONFIG_SUCCESS:

@@ -24,7 +24,7 @@ class Modal extends React.Component {
     return ReactDOM.createPortal(
       <Aux>
         <div className="app-modal-overlay" />
-        <div className={"app-modal " + (className || "")}>{children}</div>
+        <div className={`app-modal ${className || ""}`}>{children}</div>
       </Aux>,
 
       domNode

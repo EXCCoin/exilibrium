@@ -8,11 +8,7 @@ export default {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader"
-          }
-        ]
+        use: ["babel-loader"]
       },
       {
         test: /\.(png|jpg)$/,

@@ -55,7 +55,7 @@ export const startStepIndex = get(["walletLoader", "stepIndex"]);
 export const getVersionServiceError = get(["version", "getVersionServiceError"]);
 export const getWalletRPCVersionError = get(["version", "getWalletRPCVersionError"]);
 export const getLoaderError = get(["version", "getLoaderError"]);
-export const hasExistingWallet = compose(r => !!(r && r.getExists()), walletExistResponse);
+export const hasExistingWallet = compose(r => Boolean(r && r.getExists()), walletExistResponse);
 export const confirmNewSeed = get(["walletLoader", "confirmNewSeed"]);
 export const existingOrNew = get(["walletLoader", "existingOrNew"]);
 export const versionInvalidError = createSelector(
@@ -228,7 +228,11 @@ export const transactionNormalizer = createSelector(
         creditedAccount = credit.getAccount();
         const accountName = getAccountName(creditedAccount);
         txOutputs.push({ accountName, amount, address, index: credit.getIndex() });
-        credit.getInternal() ? (totalChange += amount) : (totalFundsReceived += amount);
+        if (credit.getInternal()) {
+          totalChange += amount;
+        } else {
+          totalFundsReceived += amount;
+        }
       });
 
       const txDetails =
@@ -322,9 +326,13 @@ export const sentAndReceivedTransactions = createSelector(
 
 //fake data for ticket tab on overview Page
 export const totalValueOfLiveTickets = createSelector([dailyBalancesStats], balances => {
-  if (!balances) return 0;
+  if (!balances) {
+    return 0;
+  }
   const lastBalance = balances[balances.length - 1];
-  if (!lastBalance) return 0;
+  if (!lastBalance) {
+    return 0;
+  }
   return lastBalance.series.locked + lastBalance.series.lockedNonWallet;
 });
 
@@ -421,7 +429,9 @@ export const ticketNormalizer = createSelector(
           .getCreditsList()
           .reduce((a, v) => [...a, v.getIndex()], []);
         ticketPoolFee = decodedSpenderTx.transaction.getOutputsList().reduce((a, v) => {
-          if (!v.getScriptAsm().match(scriptTag)) return a;
+          if (!v.getScriptAsm().match(scriptTag)) {
+            return a;
+          }
           return walletOutputIndices.indexOf(v.getIndex()) > -1 ? a : a + v.getValue();
         }, 0);
 
@@ -502,7 +512,7 @@ export const homeHistoryTickets = createSelector(
 
         return tx;
       })
-      .filter(v => !!v);
+      .filter(v => Boolean(v));
   }
 );
 
@@ -530,10 +540,16 @@ export const viewedTransaction = createSelector(
 );
 
 export const ticketsPerStatus = createSelector([allTickets], tickets =>
-  tickets.reduce((perStatus, ticket) => {
-    perStatus[ticket.status].push(ticket);
-    return perStatus;
-  }, Array.from(TicketTypes.values()).reduce((a, v) => ((a[v] = []), a), {}))
+  tickets.reduce(
+    (perStatus, ticket) => {
+      perStatus[ticket.status].push(ticket);
+      return perStatus;
+    },
+    Array.from(TicketTypes.values()).reduce((a, v) => {
+      a[v] = [];
+      return a;
+    }, {})
+  )
 );
 
 export const viewedTicketListing = createSelector(
@@ -851,7 +867,9 @@ export const location = get(["routing", "location"]);
 
 export const voteTimeStats = get(["statistics", "voteTime"]);
 export const averageVoteTime = createSelector([voteTimeStats], voteTimeStats => {
-  if (!voteTimeStats || !voteTimeStats.data.length) return 0;
+  if (!voteTimeStats || !voteTimeStats.data.length) {
+    return 0;
+  }
   const ticketCount = voteTimeStats.data.reduce((s, v) => s + v.series.count, 0);
   let sum = 0;
   for (let i = 0; i < voteTimeStats.data.length; i++) {
@@ -860,23 +878,31 @@ export const averageVoteTime = createSelector([voteTimeStats], voteTimeStats => 
   return sum / ticketCount;
 });
 export const medianVoteTime = createSelector([voteTimeStats], voteTimeStats => {
-  if (!voteTimeStats || !voteTimeStats.data.length) return 0;
+  if (!voteTimeStats || !voteTimeStats.data.length) {
+    return 0;
+  }
   const ticketCount = voteTimeStats.data.reduce((s, v) => s + v.series.count, 0);
   const ticketLimit = ticketCount * 0.5;
   let sum = 0;
   for (let i = 0; i < voteTimeStats.data.length; i++) {
     sum += voteTimeStats.data[i].series.count;
-    if (sum >= ticketLimit) return i;
+    if (sum >= ticketLimit) {
+      return i;
+    }
   }
 });
 export const ninetyFifthPercentileVoteTime = createSelector([voteTimeStats], voteTimeStats => {
-  if (!voteTimeStats || !voteTimeStats.data.length) return 0;
+  if (!voteTimeStats || !voteTimeStats.data.length) {
+    return 0;
+  }
   const ticketCount = voteTimeStats.data.reduce((s, v) => s + v.series.count, 0);
   const ticketLimit = ticketCount * 0.95;
   let sum = 0;
   for (let i = 0; i < voteTimeStats.data.length; i++) {
     sum += voteTimeStats.data[i].series.count;
-    if (sum >= ticketLimit) return i;
+    if (sum >= ticketLimit) {
+      return i;
+    }
   }
 });
 export const getMyTicketsStatsRequest = get(["statistics", "getMyTicketsStatsRequest"]);

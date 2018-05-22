@@ -29,8 +29,8 @@ export function decodeVoteScript(network, outputScript) {
     return null;
   }
 
-  let vote = outputScript.slice(2, 4).reduce((a, v, i) => a | (v << (i * 8), 0));
-  let version =
+  const vote = outputScript.slice(2, 4).reduce((a, v, i) => a | (v << (i * 8), 0));
+  const version =
     outputScript.length > 4
       ? outputScript.slice(4, 8).reduce((a, v, i) => a | (v << (i * 8)), 0)
       : 0;
@@ -38,7 +38,7 @@ export function decodeVoteScript(network, outputScript) {
   // TODO: currently hard coded because exccwallet doesn't return all
   // agendas (only the active ones). All agendas are needed for historical
   // votes.
-  let agendas = {
+  const agendas = {
     testnet: {
       5: [
         {
@@ -88,12 +88,12 @@ export function decodeVoteScript(network, outputScript) {
     return null;
   }
 
-  let voteAgendas = agendas[network][version];
-  let voteChoices = {};
+  const voteAgendas = agendas[network][version];
+  const voteChoices = {};
 
   for (let i = 0; i < voteAgendas.length; i++) {
-    let voteItem = voteAgendas[i];
-    let itemValue = vote & voteItem.mask;
+    const voteItem = voteAgendas[i];
+    const itemValue = vote & voteItem.mask;
     if (itemValue in voteItem.choices) {
       voteChoices[voteItem.name] = voteItem.choices[itemValue];
     } else {

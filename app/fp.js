@@ -46,3 +46,5 @@ export const substruct = (structure, obj) =>
 export const apply = (fn, ...args) => fn(...args);
 
 export const eql = x => y => x === y;
+
+export const neg = x => Math.abs(x) * -1;

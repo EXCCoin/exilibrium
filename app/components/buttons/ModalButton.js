@@ -22,7 +22,9 @@ class ModalButton extends React.Component {
   onSubmit(...args) {
     const { onSubmit } = this.props;
     this.hideModal();
-    onSubmit && this.props.onSubmit(...args);
+    if (onSubmit) {
+      onSubmit(...args);
+    }
   }
 
   render() {

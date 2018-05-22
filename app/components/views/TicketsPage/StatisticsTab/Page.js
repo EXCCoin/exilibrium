@@ -12,7 +12,9 @@ const ChartLink = ({ to, icon, children }) => (
 );
 
 const TicketsStatsPage = ({ getMyTicketsStatsRequest, hasStats, allTickets }) => {
-  if (allTickets.length === 0) return <NoStats />;
+  if (allTickets.length === 0) {
+    return <NoStats />;
+  }
   return (
     <Aux>
       {hasStats ? (

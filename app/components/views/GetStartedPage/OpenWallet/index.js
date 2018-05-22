@@ -25,7 +25,6 @@ class OpenWallet extends React.Component {
       <OpenWalletDecryptFormBody
         {...{
           ...this.props,
-
           isInputRequest,
           isOpeningWallet,
           publicPassPhrase,
@@ -46,7 +45,7 @@ class OpenWallet extends React.Component {
   }
 
   onOpenWallet() {
-    if (this.state.publicPassPhrase == "") {
+    if (this.state.publicPassPhrase === "") {
       return;
     }
 
@@ -55,7 +54,7 @@ class OpenWallet extends React.Component {
   }
 
   onKeyDown(e) {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       e.preventDefault();
       this.onOpenWallet();
     }

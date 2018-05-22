@@ -16,8 +16,11 @@ class ReceiveAccountsSelect extends React.Component {
   }
 
   onChangeAccount(account) {
-    this.props.onChange && this.props.onChange(account);
-    this.props.getNextAddressAttempt(account.value);
+    const { onChange, getNextAddressAttempt } = this.props;
+    if (onChange) {
+      onChange(account);
+    }
+    getNextAddressAttempt(account.value);
   }
 }
 

@@ -158,11 +158,11 @@ class AdvancedStartupBody extends React.Component {
 
   isRemoteValid() {
     const { rpc_user, rpc_password, rpc_cert, rpc_host, rpc_port } = this.state;
-    return !!(rpc_user && rpc_password && rpc_cert && rpc_host && rpc_port);
+    return Boolean(rpc_user && rpc_password && rpc_cert && rpc_host && rpc_port);
   }
 
   isAppDataValid() {
-    return !!this.state.appData;
+    return Boolean(this.state.appData);
   }
 
   skipAdvancedDaemon() {

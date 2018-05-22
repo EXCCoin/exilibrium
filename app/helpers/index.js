@@ -6,7 +6,7 @@ export * from "./addresses";
 
 // kidCheck takes a component and returns a component that only renders if it has children
 export const kidCheck = C => {
-  const Comp = p => !!p.children && h(C, p);
+  const Comp = p => Boolean(p.children) && h(C, p);
   Comp.displayName = `KidChecked: ${C.displayName || C.name || C}`;
   return Comp;
 };

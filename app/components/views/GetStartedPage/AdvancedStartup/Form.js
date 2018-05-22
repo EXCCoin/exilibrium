@@ -31,12 +31,12 @@ const AdvancedBodyBase = ({
       <div className="advanced-page-toggle">
         <div className="text-toggle">
           <div
-            className={"text-toggle-button-left " + (sideActive && "text-toggle-button-active")}
+            className={`text-toggle-button-left ${sideActive && "text-toggle-button-active"}`}
             onClick={!sideActive ? onShowAppData : null}>
             <T id="advancedDaemon.toggle.appdata" m="Remote Daemon" />
           </div>
           <div
-            className={"text-toggle-button-right " + (!sideActive && "text-toggle-button-active")}
+            className={`text-toggle-button-right ${!sideActive && "text-toggle-button-active"}`}
             onClick={sideActive ? onShowRemote : null}>
             <T id="advancedDaemon.toggle.remote" m="Different Local Daemon Location" />
           </div>

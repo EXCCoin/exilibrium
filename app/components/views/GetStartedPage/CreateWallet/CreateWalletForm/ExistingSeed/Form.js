@@ -77,7 +77,7 @@ class ExistingSeedForm extends React.Component {
           <div className="confirm-seed-label-text seed">
             <T id="confirmSeed.label" m="Confirm Seed" />
           </div>
-          {seedType == "words" && Array.isArray(seedWords) ? (
+          {seedType === "words" && Array.isArray(seedWords) ? (
             <div className="seedArea">
               {!this.state.showPasteWarning ? null : (
                 <div className="orange-warning">

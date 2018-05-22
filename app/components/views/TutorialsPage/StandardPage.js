@@ -14,7 +14,7 @@ export const StandardPage = ({
   <div className="tutorial-standard-page">
     <div className="tutorial-text">{text}</div>
     <div className="tutorial-image-and-indicator">
-      <div className={["tutorial-image", "tutorial-image-" + image].join(" ")} />
+      <div className={["tutorial-image", `tutorial-image-${image}`].join(" ")} />
       <div className={"tutorial-page-indicator"}>
         {pageCount < 2 ? null : (
           <a onClick={onPreviousPage}>

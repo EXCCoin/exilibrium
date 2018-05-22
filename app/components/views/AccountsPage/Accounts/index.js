@@ -30,8 +30,12 @@ class Accounts extends React.Component {
 
   onGetNextAccountAttempt(privpass, name) {
     const { onGetNextAccountAttempt } = this.props;
-    if (!privpass || !name) return;
-    onGetNextAccountAttempt && onGetNextAccountAttempt(privpass, name);
+    if (!privpass || !name) {
+      return;
+    }
+    if (onGetNextAccountAttempt) {
+      onGetNextAccountAttempt(privpass, name);
+    }
   }
 
   onShowAccountDetails(accountNumDetailsShown) {

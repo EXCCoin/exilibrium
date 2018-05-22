@@ -39,7 +39,7 @@ export const decodeRawTransactions = hexTxs => (dispatch, getState) => {
       const hash = reverseHash(
         Buffer.from(decodedTransaction.getTransactionHash()).toString("hex")
       );
-      map[hash] = { hash: hash, transaction: decodedTransaction };
+      map[hash] = { hash, transaction: decodedTransaction };
       return map;
     }, {});
     dispatch({ transactions, type: DECODERAWTXS_SUCCESS });

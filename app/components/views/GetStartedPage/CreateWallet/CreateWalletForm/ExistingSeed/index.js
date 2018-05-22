@@ -8,15 +8,15 @@ class ExistingSeed extends React.Component {
   }
 
   getInitialState() {
-    var seedWords = [];
-    for (var i = 0; i < 33; i++) {
+    const seedWords = [];
+    for (let i = 0; i < 33; i++) {
       seedWords.push({
         word: "",
         index: i,
         error: false
       });
     }
-    return { seedWords: seedWords, seedError: null };
+    return { seedWords, seedError: null };
   }
 
   componentWillUnmount() {
@@ -50,18 +50,18 @@ class ExistingSeed extends React.Component {
 
   setSeedWords(seedWords) {
     const onError = seedError => {
-      this.setState({ mnemonic: "", seedError: seedError + "" });
+      this.setState({ mnemonic: "", seedError: `${seedError}` });
       this.props.onChange(null);
 
-      const seedErrorStr = seedError + "";
+      const seedErrorStr = `${seedError}`;
       const position = "position";
       const positionLoc = seedErrorStr.indexOf(position);
       if (positionLoc > 0) {
         const { seedWords } = this.state;
-        var updatedSeedWords = seedWords;
-        const locatedErrPosition = seedErrorStr
+        const updatedSeedWords = seedWords;
+        const [locatedErrPosition] = seedErrorStr
           .slice(positionLoc + position.length + 1, positionLoc + position.length + 1 + 3)
-          .split(",")[0];
+          .split(",");
         updatedSeedWords[locatedErrPosition] = {
           word: updatedSeedWords[locatedErrPosition].word,
           index: updatedSeedWords[locatedErrPosition].index,
@@ -93,21 +93,21 @@ class ExistingSeed extends React.Component {
 
   onChangeSeedWord(seedWord, update) {
     const { seedWords } = this.state;
-    var updatedSeedWords = seedWords;
+    const updatedSeedWords = seedWords;
     updatedSeedWords[seedWord.index] = { word: update, index: seedWord.index, error: false };
 
     const onError = seedError => {
-      this.setState({ mnemonic: "", seedError: seedError + "" });
+      this.setState({ mnemonic: "", seedError: `${seedError}` });
       this.props.onChange(null);
 
-      const seedErrorStr = seedError + "";
+      const seedErrorStr = `${seedError}`;
       const position = "position";
       const positionLoc = seedErrorStr.indexOf(position);
       if (positionLoc > 0) {
-        const locatedErrPosition = seedErrorStr
+        const [locatedErrPosition] = seedErrorStr
           .slice(positionLoc + position.length + 1, positionLoc + position.length + 1 + 3)
-          .split(",")[0];
-        if (locatedErrPosition == seedWord.index) {
+          .split(",");
+        if (locatedErrPosition === seedWord.index) {
           updatedSeedWords[locatedErrPosition] = {
             word: update,
             index: seedWord.index,
@@ -115,9 +115,9 @@ class ExistingSeed extends React.Component {
           };
           this.setState({ seedWords: updatedSeedWords });
         } else {
-          var empty = false;
-          for (var i = 0; i < locatedErrPosition; i++) {
-            if (updatedSeedWords[i].word == "") {
+          let empty = false;
+          for (let i = 0; i < locatedErrPosition; i++) {
+            if (updatedSeedWords[i].word === "") {
               empty = true;
             }
           }
@@ -160,7 +160,7 @@ class ExistingSeed extends React.Component {
 
   isMatch() {
     const mnemonic = this.state.mnemonic || this.props.mnemonic;
-    return !!(mnemonic && this.getSeedWordsStr() === mnemonic);
+    return Boolean(mnemonic && this.getSeedWordsStr() === mnemonic);
   }
 }
 

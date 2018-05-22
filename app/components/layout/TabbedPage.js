@@ -85,7 +85,9 @@ class TabbedPage extends React.Component {
   render() {
     const { header, tabs } = this.props;
     let { children } = this.props;
-    if (!isArray(children)) children = [children];
+    if (!isArray(children)) {
+      children = [children];
+    }
     const nonTabs = children;
     const tabHeaders = tabs.map(tab => RoutedTab(tab.path, tab.link));
     const headers = tabs.map(tab => (

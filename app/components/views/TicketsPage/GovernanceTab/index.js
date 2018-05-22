@@ -43,7 +43,9 @@ class VotingPrefs extends React.Component {
   onChangeStakePool(stakePool) {
     const { onChangeStakePool } = this.props;
     this.setState({ stakePool });
-    onChangeStakePool && onChangeStakePool(stakePool);
+    if (onChangeStakePool) {
+      onChangeStakePool(stakePool);
+    }
   }
 
   getAgendaSelectedChoice(agenda) {

@@ -40,7 +40,9 @@ class SeedHexEntry extends React.Component {
   }
 
   onChange(val) {
-    if (!this.isHexValid(val.target.value)) return;
+    if (!this.isHexValid(val.target.value)) {
+      return;
+    }
     this.setState({
       currentHex: val.target.value
     });

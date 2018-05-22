@@ -1,12 +1,13 @@
-import "style/Loading.less";
+/* eslint complexity: off */
 import { FormattedMessage as T } from "react-intl";
+import "style/Loading.less";
 
 @autobind
 class LinearProgressFull extends React.Component {
   render() {
     const { value, min, max, error, disabled, getDaemonSynced } = this.props;
     const perComplete = value / max - min;
-    const leftStartingPoint = perComplete * 95 + "%";
+    const leftStartingPoint = `${perComplete * 95}%`;
     return (
       <div className="linear-progress">
         {(getDaemonSynced || !disabled) && (

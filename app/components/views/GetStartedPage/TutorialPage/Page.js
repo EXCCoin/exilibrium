@@ -1,6 +1,8 @@
+/* eslint complexity: off*/
 import { KeyBlueButton, InvisibleButton } from "buttons";
 import "style/Tutorial.less";
 import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
+import { eql } from "fp";
 
 const messages = defineMessages({
   step0Title: {
@@ -162,10 +164,11 @@ const messages = defineMessages({
 });
 
 const TutorialPage = ({ intl, tutorialStep, onNextTutorialStep, onGoToStep, finishTutorial }) => {
+  const tutorialStepEquals = eql(tutorialStep);
   return (
     <div className="tutorial">
-      <div className={"tutorial-side step-" + tutorialStep}>
-        <div className={"tutorial-side-image step-" + tutorialStep} />
+      <div className={`tutorial-side step-${tutorialStep}`}>
+        <div className={`tutorial-side-image step-${tutorialStep}`} />
       </div>
       <div className="tutorial-main">
         <div className="tutorial-main-header">
@@ -276,12 +279,12 @@ const TutorialPage = ({ intl, tutorialStep, onNextTutorialStep, onGoToStep, fini
           </KeyBlueButton>
           <div className="tutorial-main-toolbar-step-indicators">
             <div
-              className={tutorialStep == 0 ? "current" : tutorialStep > 0 ? "checked" : ""}
+              className={tutorialStepEquals(0) ? "current" : tutorialStep > 0 ? "checked" : ""}
               onClick={tutorialStep !== 0 ? () => onGoToStep(0) : null}
             />
             <div
               className={
-                tutorialStep == 1
+                tutorialStepEquals(1)
                   ? "current"
                   : tutorialStep > 1
                     ? "checked"
@@ -293,7 +296,7 @@ const TutorialPage = ({ intl, tutorialStep, onNextTutorialStep, onGoToStep, fini
             />
             <div
               className={
-                tutorialStep == 2
+                tutorialStepEquals(2)
                   ? "current"
                   : tutorialStep > 2
                     ? "checked"
@@ -305,7 +308,7 @@ const TutorialPage = ({ intl, tutorialStep, onNextTutorialStep, onGoToStep, fini
             />
             <div
               className={
-                tutorialStep == 3
+                tutorialStepEquals(3)
                   ? "current"
                   : tutorialStep > 3
                     ? "checked"
@@ -317,7 +320,7 @@ const TutorialPage = ({ intl, tutorialStep, onNextTutorialStep, onGoToStep, fini
             />
             <div
               className={
-                tutorialStep == 4
+                tutorialStepEquals(4)
                   ? "current"
                   : tutorialStep > 4
                     ? "checked"

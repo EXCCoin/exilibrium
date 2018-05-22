@@ -73,7 +73,7 @@ const SignMessageForm = ({
         modalTitle={<T id="securitycenter.signMessageModal" m="Sign Message" />}
         className="stakepool-content-purchase-button"
         disabled={
-          isSigningMessage || address == "" || message == "" || addressError || messageError
+          isSigningMessage || address === "" || message === "" || addressError || messageError
         }
         onSubmit={onSubmit}
         loading={isSigningMessage}

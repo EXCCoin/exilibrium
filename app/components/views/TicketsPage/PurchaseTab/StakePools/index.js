@@ -107,20 +107,24 @@ class StakePools extends React.Component {
   onCancelAddStakePool() {
     const { onHideStakePoolConfig } = this.props;
     this.setState({ isAdding: false });
-    onHideStakePoolConfig && onHideStakePoolConfig();
+    if (onHideStakePoolConfig) {
+      onHideStakePoolConfig();
+    }
   }
 
   onSetStakePoolInfo(privpass) {
     const { apiKey } = this.state;
-    const onSetInfo = this.props.onSetStakePoolInfo;
-    apiKey
-      ? onSetInfo && onSetInfo(privpass, this.getSelectedUnconfigured().Host, apiKey, 0)
-      : null;
+    const { onSetStakePoolInfo } = this.props;
+    if (apiKey && onSetStakePoolInfo) {
+      onSetStakePoolInfo(privpass, this.getSelectedUnconfigured().Host, apiKey, 0);
+    }
   }
 
   onRemoveStakePool(host) {
     const { onRemoveStakePool } = this.props;
-    onRemoveStakePool && onRemoveStakePool(host);
+    if (onRemoveStakePool) {
+      onRemoveStakePool(host);
+    }
   }
 }
 

@@ -29,12 +29,16 @@ class Settings extends React.Component {
 
   onAttemptChangePassphrase(oldPass, newPass, priv) {
     const { onAttemptChangePassphrase } = this.props;
-    onAttemptChangePassphrase && onAttemptChangePassphrase(oldPass, newPass, priv);
+    if (onAttemptChangePassphrase) {
+      onAttemptChangePassphrase(oldPass, newPass, priv);
+    }
   }
 
   onSaveSettings() {
     const { onSaveSettings, tempSettings } = this.props;
-    onSaveSettings && onSaveSettings(tempSettings);
+    if (onSaveSettings) {
+      onSaveSettings(tempSettings);
+    }
   }
 }
 

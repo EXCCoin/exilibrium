@@ -4,12 +4,12 @@ import "style/TxHistory.less";
 
 // TODO: use a global component for these indicators
 const indicators = {
-  [true]: (
+  true: (
     <span className="indicator pending">
       <T id="transaction.indicatorPending" m="Pending" />
     </span>
   ),
-  [false]: (
+  false: (
     <span className="indicator confirmed">
       <T id="transaction.indicatorConfirmed" m="Confirmed" />
     </span>
@@ -20,7 +20,7 @@ const Status = ({ txAccountName, pending, txTimestamp }) => (
   <Aux>
     <div className="transaction-status">
       <span className="transaction-account-name">{txAccountName}</span>
-      {indicators[!!pending]}
+      {indicators[String(Boolean(pending))]}
     </div>
     {pending ? (
       <div className="transaction-time-date-spacer" />

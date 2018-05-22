@@ -25,8 +25,8 @@ class AccountRow extends React.Component {
   }
 
   renameAccount() {
-    var checkErrors = false;
-    if (this.state.renameAccountName == "") {
+    let checkErrors = false;
+    if (this.state.renameAccountName === "") {
       this.setState({ renameAccountNameError: "*You must enter an account name" });
       checkErrors = true;
     }
@@ -138,7 +138,7 @@ class AccountRow extends React.Component {
     const { account, accountNumDetailsShown, hideAccountDetails, showAccountDetails } = this.props;
     const { isShowingRenameAccount, hidden } = this.state;
     const isShowingAccountDetails =
-      accountNumDetailsShown !== null && accountNumDetailsShown == account.accountNumber;
+      accountNumDetailsShown !== null && accountNumDetailsShown === account.accountNumber;
 
     return (
       <Row

@@ -151,7 +151,9 @@ class History extends React.Component {
   }
 
   selectedTxTypeFromFilter(filter) {
-    if (filter.types.length === 0) return "all";
+    if (filter.types.length === 0) {
+      return "all";
+    }
     const types = this.getTxTypes();
     types.shift(); //drop "all" which doesn't have value.types
     return types.reduce(

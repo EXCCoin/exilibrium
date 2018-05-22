@@ -45,7 +45,9 @@ class GetStartedPage extends React.Component {
     } = this.props;
     if (!getWalletReady) {
       onGetAvailableWallets().then(({ previousWallet }) => {
-        previousWallet && onStartWallet(previousWallet);
+        if (previousWallet) {
+          onStartWallet(previousWallet);
+        }
       });
     }
     if (!getNeededBlocks) {

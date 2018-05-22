@@ -6,8 +6,8 @@ import { FormattedMessage as T } from "react-intl";
 import { statusTxt } from "./messages";
 
 const TicketInfoCard = ({ ticket, onClick, expanded }) => {
-  const className = "ticket-info-card" + (expanded ? " is-expanded" : "");
-  let returnTipText;
+  const className = `ticket-info-card${expanded ? " is-expanded" : ""}`;
+  let returnTipText = null;
   if (["voted", "revoked"].indexOf(ticket.status) > -1) {
     const rewardLabel =
       ticket.ticketReward > 0 ? (
@@ -28,7 +28,7 @@ const TicketInfoCard = ({ ticket, onClick, expanded }) => {
           investment: <Balance amount={ticket.ticketInvestment || 0} />,
           txFee: <Balance amount={ticket.ticketTxFee || 0} />,
           poolFee: <Balance amount={ticket.ticketPoolFee || 0} />,
-          rewardLabel: rewardLabel,
+          rewardLabel,
           reward: <Balance amount={ticket.ticketReward || 0} />,
           roi: ticket.ticketROI
         }}

@@ -46,16 +46,20 @@ class ExccInput extends React.Component {
   }
 
   amountToDisplayStr(amount) {
-    if (!amount) return amount;
+    if (!amount) {
+      return amount;
+    }
     const { unitDivisor } = this.props;
     return amount / unitDivisor;
   }
 
   changeAmount(value) {
-    const { unitDivisor } = this.props;
+    const { unitDivisor, amount: currentAmount, onChangeAmount } = this.props;
     const amount = !value ? 0 : strToExccAtoms(value, unitDivisor);
-    if (amount !== this.props.amount) {
-      this.props.onChangeAmount && this.props.onChangeAmount(amount);
+    if (amount !== currentAmount) {
+      if (onChangeAmount) {
+        this.props.onChangeAmount(amount);
+      }
     }
   }
 

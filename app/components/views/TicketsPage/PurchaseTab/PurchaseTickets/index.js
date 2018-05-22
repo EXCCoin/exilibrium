@@ -97,7 +97,7 @@ class PurchaseTickets extends React.Component {
 
   willEnter(height) {
     return {
-      height: height,
+      height,
       opacity: 0
     };
   }
@@ -163,13 +163,19 @@ class PurchaseTickets extends React.Component {
   }
 
   onToggleShowAdvanced() {
-    this.state.isShowingAdvanced ? this.onHideAdvanced() : this.onShowAdvanced();
+    if (this.state.isShowingAdvanced) {
+      this.onHideAdvanced();
+    } else {
+      this.onShowAdvanced();
+    }
   }
 
   onChangeAccount(account) {
     const { onChangeAccount } = this.props;
     this.setState({ account });
-    onChangeAccount && onChangeAccount(account);
+    if (onChangeAccount) {
+      onChangeAccount(account);
+    }
   }
 
   onIncrementNumTickets() {
@@ -188,26 +194,34 @@ class PurchaseTickets extends React.Component {
   }
 
   getIsValid() {
-    if (!this.getCanAffordTickets()) return false;
-    if (this.getErrors()) return false;
+    if (!this.getCanAffordTickets()) {
+      return false;
+    }
+    if (this.getErrors()) {
+      return false;
+    }
     return true;
   }
 
   onPurchaseTickets(privpass) {
     const { onPurchaseTickets } = this.props;
-    if (!this.getIsValid() || !privpass) return;
-    onPurchaseTickets &&
+    if (!this.getIsValid() || !privpass) {
+      return;
+    }
+    if (onPurchaseTickets) {
+      const { conf, numTicketsToBuy, expiry, ticketFee, txFee } = this.state;
       onPurchaseTickets(
         privpass,
         this.getAccount().value,
         this.getAccount().spendable,
-        this.state.conf,
-        this.state.numTicketsToBuy,
-        this.state.expiry,
-        this.state.ticketFee,
-        this.state.txFee,
+        conf,
+        numTicketsToBuy,
+        expiry,
+        ticketFee,
+        txFee,
         this.getStakePool().value
       );
+    }
   }
 
   onChangeTicketFee(ticketFee) {
@@ -215,7 +229,7 @@ class PurchaseTickets extends React.Component {
       isNaN(ticketFee) || ticketFee <= 0 || ticketFee >= MAX_POSSIBLE_FEE_INPUT;
     this.setState({
       ticketFee: ticketFee.replace(/[^\d.]/g, ""),
-      ticketFeeError: ticketFeeError
+      ticketFeeError
     });
   }
 
@@ -223,7 +237,7 @@ class PurchaseTickets extends React.Component {
     const txFeeError = isNaN(txFee) || txFee <= 0 || txFee >= MAX_POSSIBLE_FEE_INPUT;
     this.setState({
       txFee: txFee.replace(/[^\d.]/g, ""),
-      txFeeError: txFeeError
+      txFeeError
     });
   }
 
@@ -231,7 +245,7 @@ class PurchaseTickets extends React.Component {
     const expiryError = isNaN(expiry) || expiry < 0 || isNullOrUndefined(expiry) || expiry === "";
     this.setState({
       expiry: expiry.replace(/[^\d.]/g, ""),
-      expiryError: expiryError
+      expiryError
     });
   }
 

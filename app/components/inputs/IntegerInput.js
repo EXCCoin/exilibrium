@@ -6,7 +6,9 @@ const IntegerInput = ({ value, onChange: changeHandler, ...props }) => {
     if (value !== newValue) {
       value = newValue;
       e.target.value = newValue;
-      changeHandler && changeHandler(e);
+      if (changeHandler) {
+        changeHandler(e);
+      }
     }
   };
 

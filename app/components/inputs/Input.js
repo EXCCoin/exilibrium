@@ -26,18 +26,26 @@ class Input extends React.Component {
     const { onFocus } = this.props;
     const { inputUnitDiv } = this.state;
     this.setState({ inputUnitDiv: inputUnitDiv.classList.add("active") });
-    onFocus && onFocus(e);
+    if (onFocus) {
+      onFocus(e);
+    }
   };
   onInputBlur = e => {
     const { onBlur } = this.props;
     const { inputUnitDiv } = this.state;
     this.setState({ inputUnitDiv: inputUnitDiv.classList.remove("active") });
-    onBlur && onBlur(e);
+    if (onBlur) {
+      onBlur(e);
+    }
   };
   onKeyDown = e => {
     const { onKeyDownSubmit, onKeyDown } = this.props;
-    e.keyCode === 13 && onKeyDownSubmit && onKeyDownSubmit(e);
-    onKeyDown && !e.defaultPrevented && onKeyDown(e);
+    if (e.keyCode === 13 && onKeyDownSubmit) {
+      onKeyDownSubmit(e);
+    }
+    if (onKeyDown && !e.defaultPrevented) {
+      onKeyDown(e);
+    }
   };
 
   render() {

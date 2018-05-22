@@ -1,7 +1,7 @@
 import NumericInput from "./NumericInput";
 import { restrictToStdDecimalNumber, limitFractionalDigits } from "helpers/strings";
 
-const FloatInput = ({ maxFracDigits, ...props }) => {
+const FloatInput = ({ maxFracDigits, onChange: changeHandler, ...props }) => {
   let { value } = props;
 
   const onChange = e => {
@@ -10,7 +10,9 @@ const FloatInput = ({ maxFracDigits, ...props }) => {
     if (value !== newValue) {
       value = newValue;
       e.target.value = newValue;
-      props.onChange && props.onChange(e);
+      if (changeHandler) {
+        changeHandler(e);
+      }
     }
   };
 

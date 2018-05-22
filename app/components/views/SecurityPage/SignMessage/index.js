@@ -71,8 +71,9 @@ class SignMessage extends React.Component {
   }
 
   onChangeAddress(address) {
-    if (address == "") this.setState({ address: "", addressError: "Please enter an address" });
-    else {
+    if (address === "") {
+      this.setState({ address: "", addressError: "Please enter an address" });
+    } else {
       this.props
         .validateAddress(address)
         .then(resp => {
@@ -92,13 +93,18 @@ class SignMessage extends React.Component {
   }
 
   onChangeMessage(message) {
-    if (message == "") this.setState({ message: "", messageError: "Please enter a message" });
-    else this.setState({ message, messageError: null });
+    if (message === "") {
+      this.setState({ message: "", messageError: "Please enter a message" });
+    } else {
+      this.setState({ message, messageError: null });
+    }
   }
 
   onSubmit(passphrase) {
     const { address, addressError, message, messageError } = this.state;
-    if (addressError || messageError) return;
+    if (addressError || messageError) {
+      return;
+    }
     this.props.signMessageAttempt(address, message, passphrase);
   }
 }

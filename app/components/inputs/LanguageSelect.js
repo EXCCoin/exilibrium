@@ -46,7 +46,7 @@ class SettingsInput extends React.Component {
   valueRenderer(option) {
     return (
       <div className="language-label">
-        <div className={"flag " + option.language} />
+        <div className={`flag ${option.language}`} />
         <div className="name">{option.description}</div>
       </div>
     );

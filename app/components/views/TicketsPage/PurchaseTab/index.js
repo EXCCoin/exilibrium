@@ -77,23 +77,31 @@ class Purchase extends React.Component {
   onChangeStakePool(stakePool) {
     const { onChangeStakePool } = this.props;
     this.setState({ stakePool });
-    onChangeStakePool && onChangeStakePool(stakePool);
+    if (onChangeStakePool) {
+      onChangeStakePool(stakePool);
+    }
   }
 
   onChangeAccount(account) {
     const { onChangeAccount } = this.props;
     this.setState({ account });
-    onChangeAccount && onChangeAccount(account);
+    if (onChangeAccount) {
+      onChangeAccount(account);
+    }
   }
 
   onImportScript(privpass, script) {
     const { onImportScript } = this.props;
-    onImportScript && onImportScript(privpass, script, true, 0, null);
+    if (onImportScript) {
+      onImportScript(privpass, script, true, 0, null);
+    }
   }
 
   onRevokeTickets(privpass) {
     const { onRevokeTickets } = this.props;
-    onRevokeTickets && onRevokeTickets(privpass);
+    if (onRevokeTickets) {
+      onRevokeTickets(privpass);
+    }
   }
 
   onShowStakePoolConfig() {

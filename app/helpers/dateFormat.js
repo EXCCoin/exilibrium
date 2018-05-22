@@ -34,8 +34,8 @@ export function formatLocalISODate(d) {
     tzOffset = -tzOffset;
     tzOffsetSign = "+";
   }
-  let tzOffsetHours = Math.trunc(tzOffset / 60);
-  let tzOffsetMinutes = Math.trunc(tzOffset % 60);
+  const tzOffsetHours = Math.trunc(tzOffset / 60);
+  const tzOffsetMinutes = Math.trunc(tzOffset % 60);
 
   return format(
     "%s-%s-%sT%s:%s:%s.%s%s%s%s",

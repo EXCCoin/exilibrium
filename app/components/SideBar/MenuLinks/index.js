@@ -52,12 +52,16 @@ class MenuLinks extends Component {
     const selectedTab =
       tabbedPageCheck > 0 ? location.pathname.substring(0, tabbedPageCheck) : location.pathname;
     const caretPosition = this.neededCaretPosition(selectedTab);
-    if (caretPosition) this.setState({ ...caretPosition, selectedTab });
+    if (caretPosition) {
+      this.setState({ ...caretPosition, selectedTab });
+    }
   }
 
   neededCaretPosition(path) {
     const tabForRoute = this._nodes.get(path);
-    if (!tabForRoute) return null;
+    if (!tabForRoute) {
+      return null;
+    }
     const newTop = tabForRoute.offsetTop;
     return { top: spring(newTop, theme("springs.sideBar")) };
   }

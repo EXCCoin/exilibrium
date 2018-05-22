@@ -24,7 +24,7 @@ const RenameAccountBtn = ({ showRenameAccount }) => (
 );
 
 const AccountsList = ({ account, showRenameAccount, hidden, hideAccount, showAccount }) => (
-  <div className="account-row-details-bottom" key={"details" + account.accountNumber}>
+  <div className="account-row-details-bottom" key={`details${account.accountNumber}`}>
     <div className="account-row-details-bottom-columns">
       <div className="account-row-details-bottom-column-left">
         <div className="account-row-details-bottom-title">

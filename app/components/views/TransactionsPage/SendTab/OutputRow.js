@@ -41,9 +41,9 @@ const SendOutputRow = ({
       <div className="send-address">
         <div className="send-input-form">
           <AddressInput
-            autoFocus={index == 0}
+            autoFocus={index === 0}
             showErrors={true}
-            invalid={!!addressError}
+            invalid={Boolean(addressError)}
             invalidMessage={addressError}
             value={destination}
             className="send-address-hash-to"
@@ -77,7 +77,7 @@ const SendOutputRow = ({
           />
           <ExccInput
             showErrors={true}
-            invalid={!!amountError}
+            invalid={Boolean(amountError)}
             invalidMessage={amountError}
             hidden={isSendAll}
             amount={amount}
