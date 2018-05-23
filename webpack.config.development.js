@@ -36,7 +36,6 @@ export default merge(baseConfig, {
     port: 3000,
     publicPath: "http://localhost:3000/dist/",
     compress: true,
-    noInfo: true,
     stats: statsOptions,
     inline: true,
     lazy: false,
@@ -66,7 +65,7 @@ export default merge(baseConfig, {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        use: ["babel-loader", "eslint-loader"]
       },
       {
         test: /\.min\.css$/,

@@ -9,9 +9,7 @@ const StakeROIChartPage = ({ stakeROIStats, dailyBalancesStats }) => {
     return <span>No data</span>;
   }
 
-  const totalStake = lastBalance.series.totalStake;
-  const totalReward = lastBalance.series.stakeRewards;
-  const totalFees = lastBalance.series.stakeFees;
+  const { totalStake, stakeRewards: totalReward, stakeFees: totalFees } = lastBalance.series;
 
   return (
     <Aux>

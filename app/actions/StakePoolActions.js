@@ -26,13 +26,15 @@ const updateSavedConfig = (newPoolInfo, poolHost, apiKey, accountNum) => (dispat
             : config
         : config
   );
-  if (!stakePoolConfigs.find((conf, idx) => conf !== currentStakePoolConfig[idx])) return;
+  if (!stakePoolConfigs.find((conf, idx) => conf !== currentStakePoolConfig[idx])) {
+    return;
+  }
   const {
     daemon: { walletName }
   } = getState();
   const walletCfg = getWalletCfg(sel.isTestNet(getState()), walletName);
   walletCfg.set("stakepools", stakePoolConfigs);
-  let selectedStakePool = stakePoolConfigs.filter(p => p.Host === poolHost)[0] || null;
+  const selectedStakePool = stakePoolConfigs.filter(p => p.Host === poolHost)[0] || null;
   dispatch({
     selectedStakePool,
     currentStakePoolConfig: stakePoolConfigs,
@@ -49,9 +51,9 @@ const setStakePoolAddressAction = (privpass, poolHost, apiKey, accountNum) => (
     .then(({ publicKey }) =>
       setStakePoolAddress(poolHost, apiKey, publicKey)
         .then(response => {
-          if (response.data.status == "success") {
+          if (response.data.status === "success") {
             dispatch(setStakePoolInformation(privpass, poolHost, apiKey, accountNum, true));
-          } else if (response.data.status == "error") {
+          } else if (response.data.status === "error") {
             dispatch({ error: response.data.message, type: UPDATESTAKEPOOLCONFIG_FAILED });
           } else {
             dispatch({
@@ -98,7 +100,9 @@ export const setStakePoolInformation = (
   accountNum,
   internal
 ) => dispatch => {
-  if (!internal) dispatch({ type: UPDATESTAKEPOOLCONFIG_ATTEMPT });
+  if (!internal) {
+    dispatch({ type: UPDATESTAKEPOOLCONFIG_ATTEMPT });
+  }
   getPurchaseInfo(poolHost, apiKey)
     .then(({ response: { data: { message, status, data } }, poolHost }) => {
       if (status === "success") {
@@ -116,7 +120,7 @@ export const setStakePoolInformation = (
           )
         );
       } else if (status === "error") {
-        if (message == "purchaseinfo error - no address submitted") {
+        if (message === "purchaseinfo error - no address submitted") {
           dispatch(setStakePoolAddressAction(privpass, poolHost, apiKey, accountNum));
         } else {
           dispatch({ error: message, type: UPDATESTAKEPOOLCONFIG_FAILED });
@@ -165,10 +169,10 @@ const updateStakePoolVoteChoicesConfig = (stakePool, voteChoices) => (dispatch, 
 export const setStakePoolVoteChoices = (stakePool, voteChoices) => dispatch =>
   setVoteChoices(stakePool.Host, stakePool.ApiKey, voteChoices.getVotebits())
     .then(response => {
-      if (response.data.status == "success") {
+      if (response.data.status === "success") {
         dispatch(updateStakePoolVoteChoicesConfig(stakePool, voteChoices));
         dispatch({ type: SETSTAKEPOOLVOTECHOICES_SUCCESS });
-      } else if (response.data.status == "error") {
+      } else if (response.data.status === "error") {
         dispatch({ error: response.data.message, type: SETSTAKEPOOLVOTECHOICES_FAILED });
       } else {
         dispatch({
@@ -186,7 +190,7 @@ export const discoverAvailableStakepools = () => (dispatch, getState) =>
       const {
         daemon: { walletName }
       } = getState();
-      let config = getWalletCfg(sel.isTestNet(getState()), walletName);
+      const config = getWalletCfg(sel.isTestNet(getState()), walletName);
       updateStakePoolConfig(config, foundStakepoolConfigs);
       dispatch({
         type: DISCOVERAVAILABLESTAKEPOOLS_SUCCESS,
@@ -204,9 +208,9 @@ export const removeStakePoolConfig = host => (dispatch, getState) => {
   const {
     daemon: { walletName }
   } = getState();
-  let config = getWalletCfg(sel.isTestNet(getState()), walletName);
-  let existingPools = config.get("stakepools");
-  let pool = existingPools.filter(p => p.Host === host)[0];
+  const config = getWalletCfg(sel.isTestNet(getState()), walletName);
+  const existingPools = config.get("stakepools");
+  const [pool] = existingPools.filter(p => p.Host === host);
   if (!pool) {
     return;
   }
@@ -216,9 +220,9 @@ export const removeStakePoolConfig = host => (dispatch, getState) => {
   // the stakepool list from the remote api.
 
   const propsToMaintain = ["Host", "Network", "APIVersionsSupported"];
-  let newPool = {};
+  const newPool = {};
   propsToMaintain.forEach(p => (newPool[p] = pool[p])); // **not** a deep copy
-  let newPools = existingPools.map(p => (p.Host === host ? newPool : p));
+  const newPools = existingPools.map(p => (p.Host === host ? newPool : p));
   config.set("stakepools", newPools);
 
   let selectedStakePool = sel.selectedStakePool(getState());

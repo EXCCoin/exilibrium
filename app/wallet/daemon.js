@@ -23,7 +23,9 @@ export const cleanShutdown = () => {
   return new Promise(resolve => {
     ipcRenderer.send("clean-shutdown");
     ipcRenderer.on("clean-shutdown-finished", (event, stopped) => {
-      if (!stopped) throw "Error shutting down app";
+      if (!stopped) {
+        throw "Error shutting down app";
+      }
       resolve(stopped);
     });
   });
@@ -59,7 +61,8 @@ export const stopWallet = withLog(
 export const startWallet = withLog(
   (walletPath, testnet) =>
     new Promise((resolve, reject) => {
-      let pid, port;
+      let pid = null;
+      let port = null;
 
       // resolveCheck must be done both on the exccwallet-port event and on the
       // return of the sendSync call because we can't be certain which will happen first
@@ -70,7 +73,9 @@ export const startWallet = withLog(
         resolveCheck();
       });
       pid = ipcRenderer.sendSync("start-wallet", walletPath, testnet);
-      if (!pid) reject("Error starting wallet");
+      if (!pid) {
+        reject("Error starting wallet");
+      }
       resolveCheck();
     }),
   "Start Wallet"
@@ -114,7 +119,9 @@ export const getExccdLogs = withLog(
 export const getExccwalletLogs = withLog(
   () =>
     Promise.resolve(ipcRenderer.sendSync("get-exccwallet-logs")).then(logs => {
-      if (logs) return logs;
+      if (logs) {
+        return logs;
+      }
       throw "Error getting exccwallet logs";
     }),
   "Get Exccwallet Logs",
@@ -137,7 +144,9 @@ export const getAvailableWallets = withLog(
   network =>
     Promise.resolve(ipcRenderer.sendSync("get-available-wallets", network)).then(
       availableWallets => {
-        if (availableWallets) return availableWallets;
+        if (availableWallets) {
+          return availableWallets;
+        }
         throw "Error getting avaiable wallets logs";
       }
     ),

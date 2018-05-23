@@ -53,7 +53,7 @@ const dev = {
   formats: defaultFormats
 };
 
-const locales = [ en, en_AU, pt_BR ];
+const locales = [en, en_AU, pt_BR];
 
 if (process.env.NODE_ENV === "development") {
   locales.push(dev);
@@ -68,13 +68,14 @@ export default locales;
 // The locale key returned by this function is guaranteed to exist.
 export function appLocaleFromElectronLocale(electronLocale) {
   switch (electronLocale) {
-  case "pt":
-  case "pt-BR":
-  case "pt-PT":
-    return "pt-BR";
+    case "pt":
+    case "pt-BR":
+    case "pt-PT":
+      return "pt-BR";
 
-  case "en-AU":
-    return "en-AU";
-  default: return "en";
+    case "en-AU":
+      return "en-AU";
+    default:
+      return "en";
   }
 }

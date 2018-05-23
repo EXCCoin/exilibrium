@@ -21,7 +21,7 @@ class RoutedTabsHeader extends React.Component {
   componentDidUpdate() {
     const { location } = this.props;
     const selectedTab = location.pathname;
-    if (this.state.selectedTab != selectedTab) {
+    if (this.state.selectedTab !== selectedTab) {
       this.updateCaretPosition();
     }
   }
@@ -30,12 +30,16 @@ class RoutedTabsHeader extends React.Component {
     const { location } = this.props;
     const selectedTab = location.pathname;
     const caretPosition = this.neededCaretPosition(selectedTab);
-    if (caretPosition) this.setState({ ...caretPosition, selectedTab });
+    if (caretPosition) {
+      this.setState({ ...caretPosition, selectedTab });
+    }
   }
 
   neededCaretPosition(path) {
     const tabForRoute = this._nodes.get(path);
-    if (!tabForRoute) return null;
+    if (!tabForRoute) {
+      return null;
+    }
     const tabRect = tabForRoute.getBoundingClientRect();
     const caretLeft = tabForRoute.offsetLeft;
     const caretWidth = tabRect.width;

@@ -95,7 +95,7 @@ const SendPage = ({
                 </div>
                 {outputs.map((output, index) => {
                   return (
-                    <div className="passphrase-modal-confirm-send-address" key={"confirm-" + index}>
+                    <div className="passphrase-modal-confirm-send-address" key={`confirm-${index}`}>
                       {output.data.destination}
                     </div>
                   );

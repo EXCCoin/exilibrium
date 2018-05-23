@@ -23,8 +23,9 @@ export const ConfirmSeedForm = ({ seedWords, onChangeSeedWord }) => (
       </div>
       <div className="seedArea">
         {seedWords.map(seedWord => {
-          const className =
-            "seedWord " + (!seedWord.show ? (seedWord.match ? "match" : "no-match") : "");
+          const className = `seedWord ${
+            !seedWord.show ? (seedWord.match ? "match" : "no-match") : ""
+          }`;
           return seedWord.show ? (
             <div key={seedWord.index} className="seedWord">
               {seedWord.word}

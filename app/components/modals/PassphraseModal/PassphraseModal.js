@@ -13,7 +13,9 @@ class PassphraseModal extends React.Component {
 
   onCancelModal() {
     this.resetState();
-    this.props.onCancelModal && this.props.onCancelModal();
+    if (this.props.onCancelModal) {
+      this.props.onCancelModal();
+    }
   }
 
   resetState() {
@@ -34,14 +36,16 @@ class PassphraseModal extends React.Component {
   isValid() {
     const { passPhrase } = this.state;
     const parentValid = this.props.isValid ? this.props.isValid() : true;
-    return !!passPhrase && parentValid;
+    return Boolean(passPhrase) && parentValid;
   }
 
   onSubmit() {
     const { passPhrase } = this.state;
 
     if (!this.isValid()) {
-      this.props.validationFailed && this.props.validationFailed();
+      if (this.props.validationFailed) {
+        this.props.validationFailed();
+      }
       return this.setState({ hasFailedAttempt: true });
     }
 

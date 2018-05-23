@@ -1,3 +1,6 @@
+/* eslint complexity: off */
+/* eslint no-case-declarations: off */
+
 import {
   GETWALLETSERVICE_ATTEMPT,
   GETWALLETSERVICE_FAILED,
@@ -67,9 +70,7 @@ import {
   SIGNMESSAGE_ATTEMPT,
   SIGNMESSAGE_SUCCESS,
   SIGNMESSAGE_FAILED,
-  SIGNMESSAGE_CLEANSTORE
-} from "../actions/ControlActions";
-import {
+  SIGNMESSAGE_CLEANSTORE,
   VERIFYMESSAGE_ATTEMPT,
   VERIFYMESSAGE_SUCCESS,
   VERIFYMESSAGE_FAILED,
@@ -298,12 +299,11 @@ export default function grpc(state = {}, action) {
         getTransactionsRequestAttempt: false
       };
     case GETTRANSACTIONS_COMPLETE:
-      var transactions = [...action.unminedTransactions, ...action.minedTransactions];
       return {
         ...state,
         minedTransactions: action.minedTransactions,
         unminedTransactions: action.unminedTransactions,
-        transactions: transactions,
+        transactions: [...action.unminedTransactions, ...action.minedTransactions],
         noMoreTransactions: action.noMoreTransactions,
         lastTransaction: action.lastTransaction,
         getTransactionsRequestError: "",
@@ -345,8 +345,10 @@ export default function grpc(state = {}, action) {
         currentBlockHeight: action.currentBlockHeight
       };
     case NEWBLOCKCONNECTED:
-      var newMaturingBlockHeights = Object.keys(state.maturingBlockHeights).reduce((o, h) => {
-        h > action.currentBlockHeight ? (o[h] = state.maturingBlockHeights[h]) : null;
+      const newMaturingBlockHeights = Object.keys(state.maturingBlockHeights).reduce((o, h) => {
+        if (h > action.currentBlockHeight) {
+          o[h] = state.maturingBlockHeights[h];
+        }
         return o;
       }, {});
       return {

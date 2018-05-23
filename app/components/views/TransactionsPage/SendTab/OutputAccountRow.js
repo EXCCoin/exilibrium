@@ -41,7 +41,7 @@ const SendOutputAccountRow = ({
           />
           <ExccInput
             showErrors={true}
-            invalid={!!amountError}
+            invalid={Boolean(amountError)}
             invalidMessage={amountError}
             hidden={isSendAll}
             amount={amount}

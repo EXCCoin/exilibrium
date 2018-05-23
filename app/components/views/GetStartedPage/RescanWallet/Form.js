@@ -23,7 +23,7 @@ const RescanWalletFormBody = ({
         values={{
           rescanCurrentBlock:
             rescanCurrentBlock > rescanStartBlock ? rescanCurrentBlock : rescanStartBlock,
-          rescanEndBlock: rescanEndBlock
+          rescanEndBlock
         }}
       />
     </Aux>

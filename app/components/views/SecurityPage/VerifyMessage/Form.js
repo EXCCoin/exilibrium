@@ -95,9 +95,9 @@ const VerifyMessageForm = ({
         className="stakepool-content-purchase-button"
         disabled={
           isVerifyingMessage ||
-          address == "" ||
-          message == "" ||
-          signature == "" ||
+          address === "" ||
+          message === "" ||
+          signature === "" ||
           addressError ||
           messageError ||
           signatureError

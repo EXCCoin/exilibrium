@@ -27,11 +27,11 @@ class EyeFilterMenu extends React.Component {
     const labelKey = this.props.labelKey || "label";
     const keyField = this.props.keyField || labelKey;
     const { menuOpen } = this.state;
-    const extraClassName = ` this.props.className` || "";
+    const extraClassName = ` ${this.props.className}` || "";
 
     return (
       <IconMenu
-        className={"eye-filter-menu " + (menuOpen ? "menu-open" : "") + extraClassName}
+        className={`eye-filter-menu ${menuOpen ? "menu-open" : ""}${extraClassName}`}
         onChange={this.onMenuChanged}
         onRequestChange={this.onMenuRequestChange}
         open={menuOpen}
@@ -46,7 +46,7 @@ class EyeFilterMenu extends React.Component {
         targetOrigin={{ horizontal: "right", vertical: "top" }}>
         {options.map(opt => (
           <MenuItem
-            className={"context-menu-item " + (selected === opt[keyField] ? "selected" : "")}
+            className={`context-menu-item ${selected === opt[keyField] ? "selected" : ""}`}
             key={opt[keyField]}
             value={opt}
             style={{ fontSize: null, lineHeight: null, minHeight: null, padding: null }}

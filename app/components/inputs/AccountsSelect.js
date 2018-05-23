@@ -22,7 +22,7 @@ class AccountsSelect extends React.Component {
 
   constructor(props) {
     super(props);
-    let accountsPerType = {
+    const accountsPerType = {
       spending: this.props.spendingAccounts,
       visible: this.props.visibleAccounts
     };
@@ -75,7 +75,10 @@ class AccountsSelect extends React.Component {
   }
 
   onChangeAccount(account) {
-    this.props.onChange && this.props.onChange(account);
+    const { onChange } = this.props;
+    if (onChange) {
+      onChange(account);
+    }
   }
 }
 

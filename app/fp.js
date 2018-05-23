@@ -1,5 +1,6 @@
 export { createSelector } from "reselect";
-export { compose, reduce, find, filter, get, eq, map } from "lodash/fp";
+export { compose, reduce, find, filter, get, eq, map, pick } from "lodash/fp";
+
 import compose from "lodash/fp/compose";
 import get from "lodash/fp/get";
 
@@ -15,6 +16,15 @@ export const and = (...fns) => (...args) => {
     ? result
     : false;
 };
+
+export function cond(conditionPairs = []) {
+  for (const [cond, result] of conditionPairs) {
+    if (cond) {
+      return result;
+    }
+  }
+  return null;
+}
 
 // Currently redux state is not immutable causing issues with real selectors
 // This is a temporary hack to allow same code style until that is fixed.
@@ -36,3 +46,5 @@ export const substruct = (structure, obj) =>
 export const apply = (fn, ...args) => fn(...args);
 
 export const eql = x => y => x === y;
+
+export const neg = x => Math.abs(x) * -1;

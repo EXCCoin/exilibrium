@@ -61,6 +61,7 @@ const mapDispatchToProps = dispatch =>
       onStartDaemon: daemonActions.startDaemon,
       onStartWallet: daemonActions.startWallet,
       onCreateWallet: daemonActions.createWallet,
+      onImportKeys: daemonActions.importKeys,
       onRemoveWallet: daemonActions.removeWallet,
       setCredentialsAppdataError: daemonActions.setCredentialsAppdataError,
       onGetAvailableWallets: daemonActions.getAvailableWallets

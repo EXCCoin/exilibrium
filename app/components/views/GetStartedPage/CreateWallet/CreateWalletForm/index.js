@@ -138,13 +138,15 @@ class CreateWalletForm extends React.Component {
     const { seed, passPhrase } = this.state;
     const pubpass = ""; // Temporarily disabled?
 
-    if (!this.isValid()) return;
-    createWalletRequest(pubpass, passPhrase, seed, !!createWalletExisting);
+    if (!this.isValid()) {
+      return;
+    }
+    createWalletRequest(pubpass, passPhrase, seed, Boolean(createWalletExisting));
   }
 
   isValid() {
     const { seed, passPhrase } = this.state;
-    return !!(seed && passPhrase);
+    return Boolean(seed && passPhrase);
   }
 }
 

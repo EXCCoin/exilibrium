@@ -82,7 +82,7 @@ const PurchaseTicketsForm = ({
 
             <Tooltip
               className="stakepool-content-import-script-button-tooltip-container"
-              warning={!!rescanRequest}
+              warning={Boolean(rescanRequest)}
               text={
                 !rescanRequest ? (
                   <T id="purchaseTickets.import" m="Manually import a redeem script for tickets." />

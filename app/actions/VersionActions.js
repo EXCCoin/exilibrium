@@ -41,19 +41,13 @@ export const getWalletRPCVersionAttempt = () => (dispatch, getState) => {
         version: { requiredVersion }
       } = getState();
       let versionErr = null;
-      let walletVersion = getWalletRPCVersionResponse.getVersionString();
+      const walletVersion = getWalletRPCVersionResponse.getVersionString();
       ipcRenderer.send("grpc-versions-determined", { requiredVersion, walletVersion });
       if (!walletVersion) {
         versionErr = "Unable to obtain Exccwallet API version";
       } else {
         if (!semverCompatible(requiredVersion, walletVersion)) {
-          versionErr =
-            "API versions not compatible..  Exilibrium requires " +
-            requiredVersion +
-            " but wallet " +
-            walletVersion +
-            " does not satisfy the requirement. Please check your" +
-            " installation, Exilibrium and Exccwallet versions should match.";
+          versionErr = `API versions not compatible..  Exilibrium requires ${requiredVersion} but wallet ${walletVersion} does not satisfy the requirement. Please check your installation, Exilibrium and Exccwallet versions should match.`;
         }
       }
       if (versionErr) {
@@ -67,28 +61,28 @@ export const getWalletRPCVersionAttempt = () => (dispatch, getState) => {
     .catch(error => dispatch({ error, type: WALLETRPCVERSION_FAILED }));
 };
 
+const version = {
+  MAJOR: 0,
+  MINOR: 1,
+  PATCH: 2
+};
+
 export function semverCompatible(req, act) {
-  var required = req.split("."),
-    actual = act.split(".");
+  const required = req.split(".");
+  const actual = act.split(".");
 
-  var version = {
-    MAJOR: 0,
-    MINOR: 1,
-    PATCH: 2
-  };
-
-  if (required.length != 3 || actual.length != 3) {
+  if (required.length !== 3 || actual.length !== 3) {
     return false;
   }
 
-  if (required[version.MAJOR] != actual[version.MAJOR]) {
+  if (required[version.MAJOR] !== actual[version.MAJOR]) {
     return false;
   }
   if (required[version.MINOR] > actual[version.MINOR]) {
     return false;
   }
   if (
-    required[version.MINOR] == actual[version.MINOR] &&
+    required[version.MINOR] === actual[version.MINOR] &&
     required[version.PATCH] > actual[version.PATCH]
   ) {
     return false;

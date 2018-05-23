@@ -35,7 +35,7 @@ const Row = ({
             ? "account-row-hidden"
             : "account-row"
       }
-      key={"top" + account.accountNumber}
+      key={`top${account.accountNumber}`}
       onClick={
         isShowingAccountDetails
           ? hideAccountDetails

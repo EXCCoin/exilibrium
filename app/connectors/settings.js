@@ -1,24 +1,24 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectorMap } from "../fp";
-import * as sel from "../selectors";
-import * as sa from "../actions/SettingsActions";
-import * as ca from "../actions/ControlActions";
+import * as selectors from "../selectors";
+import * as settingsActions from "../actions/SettingsActions";
+import * as controlActions from "../actions/ControlActions";
 
 const mapStateToProps = selectorMap({
-  currencies: sel.currencies,
-  networks: sel.networks,
-  locales: sel.sortedLocales,
-  tempSettings: sel.tempSettings,
-  areSettingsDirty: sel.settingsChanged
+  currencies: selectors.currencies,
+  networks: selectors.networks,
+  locales: selectors.sortedLocales,
+  tempSettings: selectors.tempSettings,
+  areSettingsDirty: selectors.settingsChanged
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      onAttemptChangePassphrase: ca.changePassphraseAttempt,
-      onChangeTempSettings: sa.updateStateSettingsChanged,
-      onSaveSettings: sa.saveSettings
+      onAttemptChangePassphrase: controlActions.changePassphraseAttempt,
+      onChangeTempSettings: settingsActions.updateStateSettingsChanged,
+      onSaveSettings: settingsActions.saveSettings
     },
     dispatch
   );

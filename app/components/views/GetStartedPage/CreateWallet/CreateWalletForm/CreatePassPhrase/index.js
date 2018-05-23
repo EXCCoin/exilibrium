@@ -78,7 +78,7 @@ class CreatePassPhrase extends React.Component {
   }
 
   onKeyDown(e) {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       // Enter key
       e.preventDefault();
       if (this.props.onSubmit) {
@@ -88,10 +88,13 @@ class CreatePassPhrase extends React.Component {
   }
 
   onChange() {
-    if (this.isValid()) {
-      this.props.onChange ? this.props.onChange(this.state.passPhrase) : null;
-    } else {
-      this.props.onChange ? this.props.onChange("") : null;
+    const { onChange } = this.props;
+    if (onChange) {
+      if (this.isValid()) {
+        onChange(this.state.passPhrase);
+      } else {
+        onChange("");
+      }
     }
   }
 }

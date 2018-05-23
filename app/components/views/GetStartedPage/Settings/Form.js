@@ -1,10 +1,14 @@
-import GeneralSettings from "views/SettingsPage/GeneralSettings";
-import { Tooltip } from "shared";
+import React from "react";
 import { FormattedMessage as T } from "react-intl";
+
+import { Tooltip } from "shared";
 import { LoaderBarBottom } from "indicators";
 import { KeyBlueButton, InvisibleButton } from "buttons";
+import GeneralSettings from "views/SettingsPage/GeneralSettings";
 
-export default ({
+import { SettingsFormTypes } from "../types";
+
+export default function SettingsForm({
   areSettingsDirty,
   tempSettings,
   networks,
@@ -17,39 +21,43 @@ export default ({
   getCurrentBlockCount,
   getNeededBlocks,
   getEstimatedTimeLeft
-}) => (
-  <div className="page-body getstarted">
-    <div className="getstarted loader logs">
-      <div className="content-title">
-        <div className="loader-settings-logs">
-          <InvisibleButton className="active">
-            <T id="getStarted.btnSettings" m="Settings" />
-          </InvisibleButton>
-          <InvisibleButton onClick={onShowLogs}>
-            <T id="getStarted.btnLogs" m="Logs" />
-          </InvisibleButton>
+}) {
+  return (
+    <div className="page-body getstarted">
+      <div className="getstarted loader logs">
+        <div className="content-title">
+          <div className="loader-settings-logs">
+            <InvisibleButton className="active">
+              <T id="getStarted.btnSettings" m="Settings" />
+            </InvisibleButton>
+            <InvisibleButton onClick={onShowLogs}>
+              <T id="getStarted.btnLogs" m="Logs" />
+            </InvisibleButton>
+          </div>
+          <Tooltip text={<T id="logs.goBack" m="Go back" />}>
+            <div className="go-back-screen-button" onClick={onHideSettings} />
+          </Tooltip>
         </div>
-        <Tooltip text={<T id="logs.goBack" m="Go back" />}>
-          <div className="go-back-screen-button" onClick={onHideSettings} />
-        </Tooltip>
+        <GeneralSettings
+          {...{
+            tempSettings,
+            networks,
+            currencies,
+            locales,
+            onChangeTempSettings
+          }}
+        />
+        <KeyBlueButton
+          disabled={!areSettingsDirty}
+          size="large"
+          block={false}
+          onClick={() => onSaveSettings(tempSettings)}>
+          <T id="settings.save" m="Save" />
+        </KeyBlueButton>
+        <LoaderBarBottom {...{ getCurrentBlockCount, getNeededBlocks, getEstimatedTimeLeft }} />
       </div>
-      <GeneralSettings
-        {...{
-          tempSettings,
-          networks,
-          currencies,
-          locales,
-          onChangeTempSettings
-        }}
-      />
-      <KeyBlueButton
-        disabled={!areSettingsDirty}
-        size="large"
-        block={false}
-        onClick={() => onSaveSettings(tempSettings)}>
-        <T id="settings.save" m="Save" />
-      </KeyBlueButton>
-      <LoaderBarBottom {...{ getCurrentBlockCount, getNeededBlocks, getEstimatedTimeLeft }} />
     </div>
-  </div>
-);
+  );
+}
+
+SettingsForm.propTypes = SettingsFormTypes;

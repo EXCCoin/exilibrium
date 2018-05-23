@@ -13,4 +13,4 @@ export * from "./service";
 export * from "./stakePool";
 export * from "./version";
 
-export const TransactionType = TransactionDetails.TransactionType;
+export const { TransactionType } = TransactionDetails;

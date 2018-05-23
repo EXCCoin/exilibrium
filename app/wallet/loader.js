@@ -86,7 +86,7 @@ export const discoverAddresses = withLog(
   (loader, shouldDiscoverAccounts, privPass) =>
     new Promise((resolve, reject) => {
       const request = new DiscoverAddressesRequest();
-      request.setDiscoverAccounts(!!shouldDiscoverAccounts);
+      request.setDiscoverAccounts(Boolean(shouldDiscoverAccounts));
       if (shouldDiscoverAccounts) {
         request.setPrivatePassphrase(new Uint8Array(Buffer.from(privPass)));
       }

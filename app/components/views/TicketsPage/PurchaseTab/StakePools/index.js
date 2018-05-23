@@ -34,7 +34,7 @@ class StakePools extends React.Component {
           link: (
             <a
               className="stakepool-link"
-              onClick={() => shell.openExternal("https://api.excc.co/?c=gsd")}>
+              onClick={() => shell.openExternal("https://api.decred.org/?c=gsd")}>
               <T id="stake.discoverStakeOoolsAPILink" m="this link" />
             </a>
           )
@@ -107,20 +107,24 @@ class StakePools extends React.Component {
   onCancelAddStakePool() {
     const { onHideStakePoolConfig } = this.props;
     this.setState({ isAdding: false });
-    onHideStakePoolConfig && onHideStakePoolConfig();
+    if (onHideStakePoolConfig) {
+      onHideStakePoolConfig();
+    }
   }
 
   onSetStakePoolInfo(privpass) {
     const { apiKey } = this.state;
-    const onSetInfo = this.props.onSetStakePoolInfo;
-    apiKey
-      ? onSetInfo && onSetInfo(privpass, this.getSelectedUnconfigured().Host, apiKey, 0)
-      : null;
+    const { onSetStakePoolInfo } = this.props;
+    if (apiKey && onSetStakePoolInfo) {
+      onSetStakePoolInfo(privpass, this.getSelectedUnconfigured().Host, apiKey, 0);
+    }
   }
 
   onRemoveStakePool(host) {
     const { onRemoveStakePool } = this.props;
-    onRemoveStakePool && onRemoveStakePool(host);
+    if (onRemoveStakePool) {
+      onRemoveStakePool(host);
+    }
   }
 }
 

@@ -96,7 +96,9 @@ export const finishPrivacy = () => dispatch => {
 
 export const startDaemon = (rpcCreds, appData) => (dispatch, getState) => {
   const { daemonStarted } = getState().daemon;
-  if (daemonStarted) return;
+  if (daemonStarted) {
+    return;
+  }
   if (rpcCreds) {
     dispatch({ type: DAEMONSTARTED_REMOTE, credentials: rpcCreds, pid: -1 });
     dispatch(syncDaemon());
@@ -156,18 +158,31 @@ export const removeWallet = selectedWallet => dispatch => {
     });
 };
 
-export const createWallet = selectedWallet => (dispatch, getState) => {
-  const { network } = getState().daemon;
-  wallet
-    .createNewWallet(selectedWallet.value.wallet, network === "testnet")
-    .then(() => {
-      dispatch({ type: WALLETCREATED });
-      dispatch(startWallet(selectedWallet));
-    })
-    .catch(err => {
-      console.error(err);
-      dispatch({ error: err, type: WALLETREMOVED_FAILED });
-    });
+export const createWallet = selectedWallet => async (dispatch, getState) => {
+  try {
+    const { network } = getState().daemon;
+    await wallet.createNewWallet(selectedWallet.value.wallet, network === "testnet");
+    dispatch({ type: WALLETCREATED });
+    dispatch(startWallet(selectedWallet));
+  } catch (err) {
+    console.error(err);
+    dispatch({ error: err, type: WALLETREMOVED_FAILED });
+  }
+};
+
+export const importKeys = jsonData => async () => {
+  // validate if JSON, if has keys, etc.
+  try {
+    console.log(jsonData);
+    //  const { network } = getState().daemon;
+    await Promise.resolve("Import successfull");
+    // TODO: do domething
+    //  dispatch({ type: WALLETCREATED });
+    //  dispatch(startWallet(selectedWallet));
+  } catch (err) {
+    console.error(err);
+    //  dispatch({ error: err, type: WALLETREMOVED_FAILED });
+  }
 };
 
 export const startWallet = selectedWallet => (dispatch, getState) => {
@@ -183,7 +198,7 @@ export const startWallet = selectedWallet => (dispatch, getState) => {
       let firstConfiguredStakePool = null;
       if (currentStakePoolConfig !== undefined) {
         for (let i = 0; i < currentStakePoolConfig.length; i++) {
-          if (currentStakePoolConfig[i].ApiKey && currentStakePoolConfig[i].Network == network) {
+          if (currentStakePoolConfig[i].ApiKey && currentStakePoolConfig[i].Network === network) {
             foundStakePoolConfig = true;
             firstConfiguredStakePool = currentStakePoolConfig[i];
             break;
@@ -281,7 +296,9 @@ export const syncDaemon = () => (dispatch, getState) => {
       daemon: { daemonSynced, timeStart, blockStart, credentials }
     } = getState();
     // check to see if user skipped;
-    if (daemonSynced) return;
+    if (daemonSynced) {
+      return;
+    }
     return wallet
       .getBlockCount(credentials, isTestNet(getState()))
       .then(updateCurrentBlockCount => {
@@ -325,35 +342,29 @@ export const syncDaemon = () => (dispatch, getState) => {
 export const getExccdLogs = () => {
   wallet
     .getExccdLogs()
-    .then(logs => {
-      return logs;
-    })
+    .then(logs => logs)
     .catch(err => {
       console.log(err);
-      return null, err;
+      return err;
     });
 };
 
 export const getExccwalletLogs = () => {
   wallet
     .getExccwalletLogs()
-    .then(logs => {
-      return logs;
-    })
+    .then(logs => logs)
     .catch(err => {
       console.log(err);
-      return null, err;
+      return err;
     });
 };
 
 export const getExilibriumLogs = () => {
   wallet
     .getExilibriumLogs()
-    .then(logs => {
-      return logs;
-    })
+    .then(logs => logs)
     .catch(err => {
       console.log(err);
-      return null, err;
+      return err;
     });
 };

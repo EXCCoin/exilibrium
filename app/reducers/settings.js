@@ -2,12 +2,12 @@ import { SETTINGS_SAVE, SETTINGS_CHANGED, SETTINGS_UNCHANGED } from "../actions/
 import { WALLET_SETTINGS, SELECT_LANGUAGE } from "actions/DaemonActions";
 export default function settings(state = {}, action) {
   switch (action.type) {
-    case SELECT_LANGUAGE:
-      var currentSettings = state.currentSettings;
+    case SELECT_LANGUAGE: // eslint-disable-line no-case-declarations
+      const { currentSettings } = state;
       currentSettings.locale = action.language;
       return {
         ...state,
-        currentSettings: currentSettings,
+        currentSettings,
         tempSettings: currentSettings
       };
     case SETTINGS_SAVE:
@@ -29,17 +29,16 @@ export default function settings(state = {}, action) {
         tempSettings: action.tempSettings,
         settingsChanged: false
       };
-    case WALLET_SETTINGS:
-      currentSettings = state.currentSettings;
-      var tempSettings = state.tempSettings;
-      currentSettings.currencyDisplay = action.currencyDisplay;
+    case WALLET_SETTINGS: // eslint-disable-line no-case-declarations
+      const { currentSettings: settings, tempSettings } = state;
+      settings.currencyDisplay = action.currencyDisplay;
       tempSettings.currencyDisplay = action.currencyDisplay;
-      currentSettings.gapLimit = action.gapLimit;
+      settings.gapLimit = action.gapLimit;
       tempSettings.gapLimit = action.gapLimit;
       return {
         ...state,
-        currentSettings: currentSettings,
-        tempSettings: tempSettings
+        currentSettings: settings,
+        tempSettings
       };
     default:
       return state;

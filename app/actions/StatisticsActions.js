@@ -1,7 +1,9 @@
+/* eslint no-case-declarations: off */
 import * as wallet from "wallet";
 import * as sel from "selectors";
 import fs from "fs";
 import { isNumber, isNullOrUndefined, isUndefined } from "util";
+import { neg } from "fp";
 import { tsToDate, endOfDay, reverseRawHash, formatLocalISODate } from "helpers";
 
 const VALUE_TYPE_ATOMAMOUNT = "VALUE_TYPE_ATOMAMOUNT";
@@ -30,7 +32,9 @@ export const getStartupStats = () => dispatch => {
 
       let idx = 0;
       for (let i = 0; i < 15; i++) {
-        while (idx < dailyBalances.length - 1 && dailyBalances[idx + 1].time <= date) idx++;
+        while (idx < dailyBalances.length - 1 && dailyBalances[idx + 1].time <= date) {
+          idx++;
+        }
         if (dailyBalances[idx].time.getTime() === date.getTime()) {
           lastBalances.push(dailyBalances[idx]);
         } else if (dailyBalances[idx].time.getTime() > date.getTime()) {
@@ -109,9 +113,9 @@ export const EXPORT_ERROR = "EXPORT_ERROR";
 export const exportStatToCSV = opts => (dispatch, getState) => {
   const { calcFunction, csvFilename } = opts;
 
-  var fd;
-  var allSeries;
-  var seriesOpts;
+  let fd = null;
+  let allSeries = null;
+  let seriesOpts = null;
 
   // constants (may be overriden/parametrized in the future)
   const unitDivisor = sel.unitDivisor(getState());
@@ -120,19 +124,18 @@ export const exportStatToCSV = opts => (dispatch, getState) => {
   const precision = Math.ceil(Math.log10(unitDivisor)); // maximum decimal precision
 
   // formatting functions
-  const quote = v => '"' + v.replace('"', '\\"') + '"';
+  const quote = v => `"${v.replace('"', '\\"')}"`;
   const formatTime = v => (v ? formatLocalISODate(v) : "");
   const csvValue = v => (isNullOrUndefined(v) ? "" : isNumber(v) ? v.toFixed(precision) : quote(v));
   const csvLine = values => values.map(csvValue).join(vsep);
 
   const seriesValueFormatFunc = series => {
-    if (series["type"] === VALUE_TYPE_ATOMAMOUNT) {
+    if (series.type === VALUE_TYPE_ATOMAMOUNT) {
       return v => v / unitDivisor;
-    } else if (series["type"] === VALUE_TYPE_DATETIME) {
+    } else if (series.type === VALUE_TYPE_DATETIME) {
       return formatTime;
-    } else {
-      return v => v;
     }
+    return v => v;
   };
 
   // called once at the start of the stats calc function
@@ -154,7 +157,9 @@ export const exportStatToCSV = opts => (dispatch, getState) => {
       s => (!isUndefined(series[s.name]) ? s.valueFormatFunc(series[s.name]) : null)
     );
 
-    !seriesOpts.noTimestamp && values.unshift(formatTime(time));
+    if (!seriesOpts.noTimestamp) {
+      values.unshift(formatTime(time));
+    }
     const line = csvLine(values);
     fs.writeSync(fd, line);
     fs.writeSync(fd, ln);
@@ -245,11 +250,11 @@ export const balancesStats = opts => (dispatch, getState) => {
     ]
   });
 
-  let liveTickets = {}; // live by hash
-  let maturingTickets = {}; // maturing by height
-  let recordTicket = (tx, commitAmount, isWallet) => {
+  const liveTickets = {}; // live by hash
+  const maturingTickets = {}; // maturing by height
+  const recordTicket = (tx, commitAmount, isWallet) => {
     liveTickets[tx.txHash] = { tx, commitAmount, isWallet };
-    let ticketMatureHeight = tx.height + chainParams.TicketMaturity;
+    const ticketMatureHeight = tx.height + chainParams.TicketMaturity;
     maturingTickets[ticketMatureHeight] = maturingTickets[ticketMatureHeight] || [];
     maturingTickets[ticketMatureHeight].push({ tx, commitAmount, isWallet });
   };
@@ -265,7 +270,7 @@ export const balancesStats = opts => (dispatch, getState) => {
 
   // return the balance deltas from recorded tickets that matured in the
   // interval fromHeight..toHeight
-  let matureTicketDeltas = (fromHeight, toHeight, fromTimestamp, toTimestamp) => {
+  const matureTicketDeltas = (fromHeight, toHeight, fromTimestamp, toTimestamp) => {
     // largeStakeTimeDiff === true when the time+height difference to calculate
     // the maturity is so large that it's better to estimate the maturity time
     // using chainParams.TargetTimePerBlock instead of linearly interpolating
@@ -274,9 +279,11 @@ export const balancesStats = opts => (dispatch, getState) => {
       toHeight - fromHeight > chainParams.TicketMaturity &&
       toTimestamp - fromTimestamp > (toHeight - fromHeight) * chainParams.TargetTimePerBlock;
 
-    let res = [];
+    const res = [];
     for (let h = fromHeight; h <= toHeight; h++) {
-      if (!maturingTickets[h]) continue;
+      if (!maturingTickets[h]) {
+        continue;
+      }
       maturingTickets[h].forEach(({ tx, commitAmount, isWallet }) => {
         let timestamp;
         if (fromHeight === toHeight) {
@@ -295,7 +302,7 @@ export const balancesStats = opts => (dispatch, getState) => {
           // estimate the maturation timestamp by linearly interpolating the
           // times as if the blocks between fromHeight...toHeight were mined in
           // regular intervals
-          let blockInterval = (toTimestamp - fromTimestamp) / (toHeight - fromHeight);
+          const blockInterval = (toTimestamp - fromTimestamp) / (toHeight - fromHeight);
           timestamp = fromTimestamp + (h - fromHeight) * blockInterval;
         }
 
@@ -330,15 +337,15 @@ export const balancesStats = opts => (dispatch, getState) => {
     // tx.amount is negative in sends/tickets/transfers already
     switch (tx.txType) {
       case wallet.TRANSACTION_TYPE_TICKET_PURCHASE:
-        var change = tx.tx
+        const change = tx.tx
           .getCreditsList()
           .reduce((s, c) => (s + isTicketChange(c) ? c.getAmount() : 0), 0);
-        var isWallet = isWalletTicket(tx.tx);
-        var debitsSum = tx.tx.getDebitsList().reduce((s, d) => s + d.getPreviousAmount(), 0);
-        var commitAmount = debitsSum - change - (isWallet ? tx.tx.getFee() : 0);
-        var spentAmount = commitAmount + (isWallet ? tx.fee : 0);
+        const isWallet = isWalletTicket(tx.tx);
+        const debitsSum = tx.tx.getDebitsList().reduce((s, d) => s + d.getPreviousAmount(), 0);
+        const commitAmount = debitsSum - change - (isWallet ? tx.tx.getFee() : 0);
+        const spentAmount = commitAmount + (isWallet ? tx.fee : 0);
         recordTicket(tx, commitAmount, isWallet);
-        var purchaseFees = debitsSum - commitAmount;
+        const purchaseFees = debitsSum - commitAmount;
         return {
           spendable: -spentAmount,
           immature: isWallet ? commitAmount : 0,
@@ -358,26 +365,26 @@ export const balancesStats = opts => (dispatch, getState) => {
         };
       case wallet.TRANSACTION_TYPE_VOTE:
       case wallet.TRANSACTION_TYPE_REVOCATION:
-        var isVote = tx.txType === wallet.TRANSACTION_TYPE_VOTE;
-        var decodedSpender = await wallet.decodeTransaction(
+        const isVote = tx.txType === wallet.TRANSACTION_TYPE_VOTE;
+        const decodedSpender = await wallet.decodeTransaction(
           decodeMessageService,
           tx.tx.getTransaction()
         );
-        var spenderInputs = decodedSpender.getTransaction().getInputsList();
-        var ticketHash = reverseRawHash(
+        const spenderInputs = decodedSpender.getTransaction().getInputsList();
+        const ticketHash = reverseRawHash(
           spenderInputs[spenderInputs.length - 1].getPreviousTransactionHash()
         );
-        var ticket = liveTickets[ticketHash];
+        const ticket = liveTickets[ticketHash];
         if (!ticket) {
-          throw "Previous live ticket not found: " + ticketHash;
+          throw `Previous live ticket not found: ${ticketHash}`;
         }
-        var returnAmount = tx.tx.getCreditsList().reduce((s, c) => s + c.getAmount(), 0);
-        var wasWallet = ticket.isWallet;
-        var stakeResult = returnAmount - ticket.commitAmount;
+        const returnAmount = tx.tx.getCreditsList().reduce((s, c) => s + c.getAmount(), 0);
+        const wasWallet = ticket.isWallet;
+        const stakeResult = returnAmount - ticket.commitAmount;
         return {
-          spendable: +returnAmount,
-          locked: wasWallet ? -ticket.commitAmount : 0,
-          lockedNonWallet: wasWallet ? 0 : -ticket.commitAmount,
+          spendable: Number(returnAmount),
+          locked: wasWallet ? neg(ticket.commitAmount) : 0,
+          lockedNonWallet: wasWallet ? 0 : neg(ticket.commitAmount),
           voted: isVote ? returnAmount : 0,
           revoked: !isVote ? returnAmount : 0,
           sent: 0,
@@ -385,7 +392,7 @@ export const balancesStats = opts => (dispatch, getState) => {
           ticket: 0,
           immature: 0,
           immatureNonWallet: 0,
-          stakeFees: isVote ? 0 : -stakeResult,
+          stakeFees: isVote ? 0 : neg(stakeResult),
           stakeRewards: isVote ? stakeResult : 0,
           totalStake: 0,
           timestamp: tx.timestamp,
@@ -394,7 +401,7 @@ export const balancesStats = opts => (dispatch, getState) => {
       case wallet.TRANSACTION_TYPE_COINBASE:
       case wallet.TRANSACTION_TYPE_REGULAR:
         return {
-          spendable: +tx.amount,
+          spendable: Number(tx.amount),
           locked: 0,
           lockedNonWallet: 0,
           voted: 0,
@@ -411,7 +418,7 @@ export const balancesStats = opts => (dispatch, getState) => {
           tx
         };
       default:
-        throw "Unknown tx type: " + tx.txType;
+        throw `Unknown tx type: ${tx.txType}`;
     }
   };
 
@@ -430,7 +437,7 @@ export const balancesStats = opts => (dispatch, getState) => {
   };
 
   // account for this delta in the balances and call the progress function
-  let addDelta = delta => {
+  const addDelta = delta => {
     currentBalance = {
       spendable: currentBalance.spendable + delta.spendable,
       immature: currentBalance.immature + delta.immature,
@@ -569,7 +576,9 @@ export const voteTimeStats = opts => (dispatch, getState) => {
 
   const txDataCb = tickets => {
     tickets.forEach(t => {
-      if (t.status !== "voted") return;
+      if (t.status !== "voted") {
+        return;
+      }
       const daysToVote = Math.floor(
         (t.spender.getTimestamp() - t.ticket.getTimestamp()) / (24 * 60 * 60)
       );

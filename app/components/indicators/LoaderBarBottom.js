@@ -31,29 +31,26 @@ class LoaderBarBottom extends React.Component {
       finishDateEstimation = new Date();
       finishDateEstimation.setSeconds(finishDateEstimation.getSeconds() + getEstimatedTimeLeft);
     }
-    return (
-      getCurrentBlockCount &&
-      !getDaemonSynced && (
-        <div className="loader-bar-bottom">
-          <div className="loader-bar-estimation">
-            <span className="normal">
-              <T
-                id="getStarted.chainLoading.syncEstimation.small"
-                m="Loading EXCC blockchain, estimated time left"
-              />
-            </span>
-            <span className="bold">
-              {" "}
-              {finishDateEstimation ? <FormattedRelative value={finishDateEstimation} /> : "--"} ({
-                getCurrentBlockCount
-              }{" "}
-              / {getNeededBlocks})
-            </span>
-          </div>
-          <LinearProgressSmall min={0} max={getNeededBlocks} value={getCurrentBlockCount} />
+    return getCurrentBlockCount && !getDaemonSynced ? (
+      <div className="loader-bar-bottom">
+        <div className="loader-bar-estimation">
+          <span className="normal">
+            <T
+              id="getStarted.chainLoading.syncEstimation.small"
+              m="Loading EXCC blockchain, estimated time left"
+            />
+          </span>
+          <span className="bold">
+            {" "}
+            {finishDateEstimation ? <FormattedRelative value={finishDateEstimation} /> : "--"} ({
+              getCurrentBlockCount
+            }{" "}
+            / {getNeededBlocks})
+          </span>
         </div>
-      )
-    );
+        <LinearProgressSmall min={0} max={getNeededBlocks} value={getCurrentBlockCount} />
+      </div>
+    ) : null;
   }
 }
 export default LoaderBarBottom;

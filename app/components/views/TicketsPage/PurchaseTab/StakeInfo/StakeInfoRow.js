@@ -15,7 +15,7 @@ const StakeInfoDisplay = ({
     className="stakepool-stake-info-area"
     onClick={isShowingDetails ? onHideStakeInfo : onShowStakeInfo}>
     <div className="stakepool-stake-info-show-advanced-area">
-      <VerticalExpand expanded={!!isShowingDetails} />
+      <VerticalExpand expanded={Boolean(isShowingDetails)} />
     </div>
     <Row>
       <Column

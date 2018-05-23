@@ -38,10 +38,9 @@ function mapNonWalletOutput(output) {
 }
 
 function mapNonWalletInput(input) {
-  const address =
-    reverseHash(Buffer.from(input.getPreviousTransactionHash()).toString("hex")) +
-    ":" +
-    input.getPreviousTransactionIndex();
+  const address = `${reverseHash(
+    Buffer.from(input.getPreviousTransactionHash()).toString("hex")
+  )}:${input.getPreviousTransactionIndex()}`;
 
   const amount = input.getAmountIn();
 
@@ -69,7 +68,7 @@ const TxDetails = ({
   intl,
   goBackHistory
 }) => {
-  const isConfirmed = !!txTimestamp;
+  const isConfirmed = Boolean(txTimestamp);
   const icon = headerIcons[txType || txDirection];
   const subtitle = isConfirmed ? (
     <T

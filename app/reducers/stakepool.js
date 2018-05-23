@@ -50,7 +50,7 @@ export default function stakepool(state = {}, action) {
         ...state,
         currentStakePoolConfig: action.currentStakePoolConfig,
         selectedStakePool: action.selectedStakePool,
-        activeStakePoolConfig: !!action.selectedStakePool
+        activeStakePoolConfig: Boolean(action.selectedStakePool)
       };
     case WALLET_STAKEPOOL_SETTINGS:
       return {

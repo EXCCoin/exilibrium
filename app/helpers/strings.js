@@ -4,7 +4,7 @@ import { isString } from "util";
 // when it's rendered inside of a floated element. Without the spaces, double-clicking will
 // highlight floated text that comes before or after it in the DOM.
 export function addSpacingAroundText(s) {
-  return " " + s + " ";
+  return ` ${s} `;
 }
 
 // restrictToStdDecimalChars returns a new version of the string s, removing
@@ -45,11 +45,19 @@ export function strToExccAtoms(s, unitDivisor) {
 // This function does **not** pad the string if less than maxFracDigits are
 // present.
 export function limitFractionalDigits(s, maxFracDigits) {
-  if (!isString(s)) return s;
+  if (!isString(s)) {
+    return s;
+  }
 
   const match = s.match(/(\d+)\.(\d*)/);
-  if (!match) return s;
-  if (!maxFracDigits) return s[1]; // no fractional digits, return just the int part
-  if (match[2].length <= maxFracDigits) return s;
-  return match[1] + "." + match[2].substr(0, maxFracDigits);
+  if (!match) {
+    return s;
+  }
+  if (!maxFracDigits) {
+    return s[1];
+  } // no fractional digits, return just the int part}
+  if (match[2].length <= maxFracDigits) {
+    return s;
+  }
+  return `${match[1]}.${match[2].substr(0, maxFracDigits)}`;
 }

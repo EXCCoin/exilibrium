@@ -10,11 +10,15 @@ class CopyToClipboard extends React.Component {
   }
 
   onClick() {
-    if (copy(this.props.textToCopy)) this.setState({ success: "" });
+    if (copy(this.props.textToCopy)) {
+      this.setState({ success: "" });
+    }
   }
 
   onMouseLeave() {
-    if (this.state.success === "") this.setState({ success: "hidden" });
+    if (this.state.success === "") {
+      this.setState({ success: "hidden" });
+    }
   }
 
   render() {

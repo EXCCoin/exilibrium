@@ -10,6 +10,7 @@
   "extends": "eslint:recommended",
   "rules": {
     "semi": ["error", "always"],
+    "curly": "error",
     "no-console": "off",
     "no-debugger": "warn",
     "no-unused-vars": "warn",
@@ -41,7 +42,13 @@
     "no-duplicate-imports": "warn",
     "no-useless-rename": "warn",
     "object-shorthand": "warn",
-    "arrow-spacing": "warn"
+    "arrow-spacing": "warn",
+    "no-implicit-coercion": "error",
+    "no-loop-func": "error",
+    "no-self-compare": "error",
+    "no-sequences": "warn",
+    "no-unused-expressions": "warn",
+    "no-undef-init": "error"
   },
   "globals": {
     "Uint8Array": true,

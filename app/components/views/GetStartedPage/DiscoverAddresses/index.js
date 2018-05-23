@@ -57,7 +57,7 @@ class DiscoverAddressesBody extends React.Component {
   }
 
   onKeyDown(e) {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       // Enter key
       e.preventDefault();
       this.onDiscoverAddresses();

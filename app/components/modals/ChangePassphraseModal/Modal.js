@@ -35,7 +35,7 @@ const Modal = ({
 
     <PassphraseModalField label={<T id="changePassModal.confirm" m="Confirm" />}>
       <PasswordInput
-        invalid={!!confirmPrivPassError}
+        invalid={Boolean(confirmPrivPassError)}
         invalidMessage={
           <T
             id="changePassModal.confirmMismatch"

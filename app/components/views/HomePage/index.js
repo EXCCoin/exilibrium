@@ -46,7 +46,9 @@ class Home extends React.Component {
 
   onRevokeTickets(privpass) {
     const { onRevokeTickets } = this.props;
-    onRevokeTickets && onRevokeTickets(privpass);
+    if (onRevokeTickets) {
+      onRevokeTickets(privpass);
+    }
     this.onCancelPassphraseRequest();
   }
 

@@ -61,7 +61,8 @@ const initialState = {
     remoteAppdataError: false,
     previousWallet: null,
     selectCreateWalletInputRequest: true,
-    hiddenAccounts: Array()
+    hiddenAccounts: Array(),
+    availableWallets: []
   },
   version: {
     // RequiredVersion

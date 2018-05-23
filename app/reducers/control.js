@@ -1,3 +1,4 @@
+/* eslint complexity: off*/
 import {
   GETNEXTADDRESS_ATTEMPT,
   GETNEXTADDRESS_FAILED,

@@ -73,7 +73,7 @@ class ValidateAddress extends React.Component {
   }
 
   onAddressChange(address) {
-    if (address == "") {
+    if (address === "") {
       this.setState({ address, error: null });
       return;
     }

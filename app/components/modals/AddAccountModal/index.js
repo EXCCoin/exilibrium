@@ -13,7 +13,9 @@ class AddAccountModal extends React.Component {
 
   onCancelModal() {
     this.resetState();
-    this.props.onCancelModal && this.props.onCancelModal();
+    if (this.props.onCancelModal) {
+      this.props.onCancelModal();
+    }
   }
 
   resetState() {
@@ -42,8 +44,7 @@ class AddAccountModal extends React.Component {
   }
 
   isValid() {
-    const { name } = this.state;
-    return !!name;
+    return Boolean(this.state.name);
   }
 
   render() {

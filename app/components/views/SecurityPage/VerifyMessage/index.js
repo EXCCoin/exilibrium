@@ -77,13 +77,16 @@ class VerifyMessage extends React.Component {
 
   onSubmit() {
     const { address, addressError, message, messageError, signature, signatureError } = this.state;
-    if (addressError || messageError || signatureError) return;
+    if (addressError || messageError || signatureError) {
+      return;
+    }
     this.props.verifyMessageAttempt(address, message, signature);
   }
 
   onChangeAddress(address) {
-    if (address == "") this.setState({ address: "", addressError: "Please enter an address" });
-    else {
+    if (address === "") {
+      this.setState({ address: "", addressError: "Please enter an address" });
+    } else {
       this.props
         .validateAddress(address)
         .then(resp => {
@@ -103,14 +106,19 @@ class VerifyMessage extends React.Component {
   }
 
   onChangeMessage(message) {
-    if (message == "") this.setState({ message: "", messageError: "Please enter a message" });
-    else this.setState({ message, messageError: null });
+    if (message === "") {
+      this.setState({ message: "", messageError: "Please enter a message" });
+    } else {
+      this.setState({ message, messageError: null });
+    }
   }
 
   onChangeSignature(signature) {
-    if (signature == "")
+    if (signature === "") {
       this.setState({ signature: "", signatureError: "Please enter a signature" });
-    else this.setState({ signature, signatureError: null });
+    } else {
+      this.setState({ signature, signatureError: null });
+    }
   }
 }
 

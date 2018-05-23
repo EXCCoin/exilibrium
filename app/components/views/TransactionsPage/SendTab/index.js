@@ -53,7 +53,7 @@ class Send extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { nextAddress } = this.props;
     const { isSendSelf, outputs } = this.state;
-    if (isSendSelf && nextAddress != nextProps.nextAddress) {
+    if (isSendSelf && nextAddress !== nextProps.nextAddress) {
       const newOutputs = outputs.map(o => ({
         ...o,
         data: { ...o.data, destination: nextProps.nextAddress }
@@ -177,9 +177,15 @@ class Send extends React.Component {
       getNextAddressAttempt,
       nextAddressAccount
     } = this.props;
-    if (!privpass || !this.getIsValid()) return;
-    onAttemptSignTransaction && onAttemptSignTransaction(privpass, unsignedTransaction);
-    getNextAddressAttempt && nextAddressAccount && getNextAddressAttempt(nextAddressAccount.value);
+    if (!privpass || !this.getIsValid()) {
+      return;
+    }
+    if (onAttemptSignTransaction) {
+      onAttemptSignTransaction(privpass, unsignedTransaction);
+    }
+    if (getNextAddressAttempt && nextAddressAccount) {
+      getNextAddressAttempt(nextAddressAccount.value);
+    }
     this.onClearTransaction();
   }
 
@@ -198,7 +204,9 @@ class Send extends React.Component {
     this.setState({ isSendAll: false, outputs: newOutputs }, this.onAttemptConstructTransaction);
   }
   onShowConfirm() {
-    if (!this.getIsValid()) return;
+    if (!this.getIsValid()) {
+      return;
+    }
     this.setState({ isShowingConfirm: true });
   }
   onShowSendSelf() {
@@ -217,12 +225,16 @@ class Send extends React.Component {
   onAttemptConstructTransaction() {
     const { onAttemptConstructTransaction } = this.props;
     const confirmations = 0;
-    if (this.getHasEmptyFields()) return;
+    if (this.getHasEmptyFields()) {
+      return;
+    }
     this.setState({ hastAttemptedConstruct: true });
-    if (this.getIsInvalid()) return;
+    if (this.getIsInvalid()) {
+      return;
+    }
 
     if (!this.getIsSendAll()) {
-      onAttemptConstructTransaction &&
+      if (onAttemptConstructTransaction) {
         onAttemptConstructTransaction(
           this.state.account.value,
           confirmations,
@@ -231,14 +243,14 @@ class Send extends React.Component {
             destination: data.destination
           }))
         );
-    } else {
-      onAttemptConstructTransaction &&
-        onAttemptConstructTransaction(
-          this.state.account.value,
-          confirmations,
-          this.state.outputs,
-          true
-        );
+      }
+    } else if (onAttemptConstructTransaction) {
+      onAttemptConstructTransaction(
+        this.state.account.value,
+        confirmations,
+        this.state.outputs,
+        true
+      );
     }
   }
 
@@ -251,7 +263,9 @@ class Send extends React.Component {
 
   onRebroadcastUnmined() {
     const { publishUnminedTransactions } = this.props;
-    publishUnminedTransactions && publishUnminedTransactions();
+    if (publishUnminedTransactions) {
+      publishUnminedTransactions();
+    }
   }
 
   getOnRemoveOutput(key) {
@@ -305,7 +319,9 @@ class Send extends React.Component {
       return this.setState(
         {
           outputs: this.state.outputs.map(o => {
-            if (o.key !== `output_${key}`) return o;
+            if (o.key !== `output_${key}`) {
+              return o;
+            }
             reconstruct = newAmount !== o.data.amount;
             return {
               ...o,
@@ -322,23 +338,26 @@ class Send extends React.Component {
   }
 
   getIsInvalid() {
-    return !!this.state.outputs.find(
-      (o, index) => this.getAddressError(index) || this.getAmountError(index)
+    return Boolean(
+      this.state.outputs.find(
+        (o, index) => this.getAddressError(index) || this.getAmountError(index)
+      )
     );
   }
 
   getHasEmptyFields() {
-    return !!this.state.outputs.find(({ data }) => {
-      const { destination, amount } = data;
-      return !destination || (!amount && !this.state.isSendAll);
-    });
+    return Boolean(
+      this.state.outputs.find(
+        ({ data: { destination, amount } }) => !destination || (!amount && !this.state.isSendAll)
+      )
+    );
   }
 
   getIsValid() {
-    return !!(
+    return Boolean(
       !this.getIsInvalid() &&
-      this.props.unsignedTransaction &&
-      !this.props.isConstructingTransaction
+        this.props.unsignedTransaction &&
+        !this.props.isConstructingTransaction
     );
   }
   getIsSendAll() {
@@ -350,17 +369,20 @@ class Send extends React.Component {
   getAddressError(key) {
     const { outputs } = this.state;
     const { destination, destinationInvalid } = outputs[key].data;
-    if (!destination || destinationInvalid)
+    if (!destination || destinationInvalid) {
       return <T id="send.errors.invalidAddress" m="*Please enter a valid address" />;
+    }
   }
 
   getAmountError(key) {
     const { outputs, isSendAll } = this.state;
     const { amount } = outputs[key].data;
-    if (isNaN(amount) && !isSendAll)
+    if (isNaN(amount) && !isSendAll) {
       return <T id="send.errors.invalidAmount" m="*Please enter a valid amount" />;
-    if (amount <= 0 && !isSendAll)
+    }
+    if (amount <= 0 && !isSendAll) {
       return <T id="send.errors.negativeAmount" m="*Please enter a valid amount (> 0)" />;
+    }
   }
 }
 

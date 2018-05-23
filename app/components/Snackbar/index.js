@@ -39,8 +39,7 @@ class Snackbar extends React.Component {
     const message =
       nextProps.messages.length > 0 ? nextProps.messages[nextProps.messages.length - 1] : null;
     if (message !== this.state.message) {
-      const state = this.state;
-      this.setState({ ...state, message });
+      this.setState({ ...this.state, message });
     }
   }
 
@@ -49,8 +48,7 @@ class Snackbar extends React.Component {
   }
 
   onDismissMessage() {
-    const state = this.state;
-    this.setState({ ...state, message: null });
+    this.setState({ ...this.state, message: null });
     this.props.onDismissAllMessages();
   }
 
@@ -65,7 +63,7 @@ class Snackbar extends React.Component {
     return (
       <MUISnackbar
         className={snackbarClasses(message || "")}
-        open={!!message}
+        open={Boolean(message)}
         message={message ? <Notification {...message} /> : ""}
         autoHideDuration={4000}
         bodyStyle={{
