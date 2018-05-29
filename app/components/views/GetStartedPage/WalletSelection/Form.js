@@ -154,7 +154,7 @@ function WalletSelectionBodyBase({
               )}
               <div className="display-wallet import" onClick={showImportKeysForm}>
                 <div className="display-wallet-network" />
-                <div className="wallet-icon wallet" />
+                <div className="wallet-icon imported" />
                 <div className="display-wallet-name">
                   <T id="getStarted.importKeysTab" m="Import keys" />
                 </div>

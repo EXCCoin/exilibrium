@@ -28,7 +28,7 @@
   height: 18px;
   background-image: @copy-to-clipboard-icon;
   background-position: 0 0;
-  background-size: 20px auto;
+  background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
 }
@@ -263,16 +263,16 @@
 }
 
 .menu-link.helpIcon {
-  background-image: @menu-help-default;
+  background-image: @help-icon;
 }
 
 .menu-link-active.helpIcon {
-  background-image: @menu-help-active;
+  background-image: @help-icon;
   cursor: default;
 }
 
 .menu-link.helpIcon:not(.menu-link-active):hover {
-  background-image: @menu-help-hover;
+  background-image: @help-icon;
 }
 
 .menu-link.ticketsIcon {
@@ -289,16 +289,16 @@
 }
 
 .menu-link.transactionsIcon {
-  background-image: @menu-transactions-default;
+  background-image: @transactions-icon;
 }
 
 .menu-link-active.transactionsIcon {
-  background-image: @menu-transactions-active;
+  background-image: @transactions-icon;
   cursor: default;
 }
 
 .menu-link.transactionsIcon:not(.menu-link-active):hover {
-  background-image: @menu-transactions-hover;
+  background-image: @transactions-icon;
 }
 
 .menu-link.accountsIcon {
@@ -614,7 +614,7 @@
 .vertical-expand {
   background-image: @arrow-right-gray-icon;
   background-repeat: no-repeat;
-  background-size: 20px 10px;
+  background-size: 10px 15px;
   display: inline-block;
   width: 20px;
   height: 10px;

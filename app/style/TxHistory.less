@@ -24,10 +24,19 @@
   color: #2971ff;
 }
 
+// background: linear-gradient(45deg, #fa78af, #fa78af, #fba5cf);
+// box-shadow: 0px 5px 21px rgba(72, 86, 110, 0.34);
+// color: #fff;
+// border: 1px solid #fba5cf;
+//
+// &:hover {
+//   border-color: #ff00a5;
+// }
+
 .indicator.confirmed {
-  border-color: #2ed8a3;
+  border-color: #ff00a5;
   background-image: @indicator-confirmed-icon;
-  color: #2ed8a3;
+  color: #ff00a5;
 }
 
 .pending-overview-details {
@@ -234,6 +243,7 @@
 .transaction-info-overview-reward-icon {
   background-image: @ticket-reward-icon;
   background-repeat: no-repeat;
+  background-size: contain;
   width: 12px;
   height: 12px;
   position: absolute;
@@ -242,6 +252,7 @@
 .transaction-info-overview-lock-icon {
   background-image: @time-lock-icon;
   background-repeat: no-repeat;
+  background-size: contain;
   height: 12px;
   width: 12px;
   position: absolute;
