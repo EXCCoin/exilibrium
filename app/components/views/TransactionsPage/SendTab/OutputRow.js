@@ -48,7 +48,10 @@ const SendOutputRow = ({
             value={destination}
             className="send-address-hash-to"
             placeholder={intl.formatMessage(messages.destinationAddrPlaceholder)}
-            onChange={compose(getOnChangeOutputDestination(index), e => e.target.value)}
+            onChange={compose(
+              getOnChangeOutputDestination(index),
+              e => e.target.value
+            )}
           />
         </div>
         {index === 0 && !isSendAll ? (

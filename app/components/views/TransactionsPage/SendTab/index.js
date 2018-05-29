@@ -271,7 +271,14 @@ class Send extends React.Component {
   getOnRemoveOutput(key) {
     return () =>
       this.setState(
-        { outputs: this.state.outputs.filter(compose(not(eq(`output_${key}`)), get("key"))) },
+        {
+          outputs: this.state.outputs.filter(
+            compose(
+              not(eq(`output_${key}`)),
+              get("key")
+            )
+          )
+        },
         this.onAttemptConstructTransaction
       );
   }

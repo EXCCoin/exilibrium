@@ -563,7 +563,7 @@ export const voteTimeStats = opts => (dispatch, getState) => {
   const { progressFunction, endFunction, startFunction, errorFunction } = opts;
   const { currentBlockHeight, walletService } = getState().grpc;
 
-  const blocksPerDay = 60 * 60 * 24 / chainParams.TargetTimePerBlock;
+  const blocksPerDay = (60 * 60 * 24) / chainParams.TargetTimePerBlock;
   const expirationDays = Math.ceil(
     (chainParams.TicketExpiry + chainParams.TicketMaturity) / blocksPerDay
   );

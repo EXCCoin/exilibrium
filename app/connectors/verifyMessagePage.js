@@ -15,9 +15,12 @@ const mapStateToProps = selectorMap({
   isVerifyingMessage: sel.isVerifyingMessage
 });
 
-export default connect(mapStateToProps, {
-  verifyMessageAttempt,
-  verifyMessageCleanStore,
-  validateAddress,
-  getMessageVerificationServiceAttempt
-});
+export default connect(
+  mapStateToProps,
+  {
+    verifyMessageAttempt,
+    verifyMessageCleanStore,
+    validateAddress,
+    getMessageVerificationServiceAttempt
+  }
+);

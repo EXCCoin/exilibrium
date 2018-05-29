@@ -9,4 +9,7 @@ const mapStateToProps = selectorMap({
   validateAddressRequestAttempt: sel.validateAddressRequestAttempt
 });
 
-export default connect(mapStateToProps, { validateAddress, validateAddressCleanStore });
+export default connect(
+  mapStateToProps,
+  { validateAddress, validateAddressCleanStore }
+);

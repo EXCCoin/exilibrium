@@ -43,7 +43,7 @@ class TicketAutoBuyer extends React.Component {
       return;
     }
     const difference = to - element.scrollTop;
-    const perTick = difference / duration * 10;
+    const perTick = (difference / duration) * 10;
 
     let intervelId = setTimeout(() => {
       element.scrollTop = element.scrollTop + perTick;
@@ -164,7 +164,12 @@ class TicketAutoBuyer extends React.Component {
 
   getAccount() {
     const account = this.props.onChangeAccount ? this.props.account : this.state.account;
-    return this.props.spendingAccounts.find(compose(eq(account.value), get("value")));
+    return this.props.spendingAccounts.find(
+      compose(
+        eq(account.value),
+        get("value")
+      )
+    );
   }
 
   onToggleShowDetails() {

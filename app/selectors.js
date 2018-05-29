@@ -55,7 +55,10 @@ export const startStepIndex = get(["walletLoader", "stepIndex"]);
 export const getVersionServiceError = get(["version", "getVersionServiceError"]);
 export const getWalletRPCVersionError = get(["version", "getWalletRPCVersionError"]);
 export const getLoaderError = get(["version", "getLoaderError"]);
-export const hasExistingWallet = compose(r => Boolean(r && r.getExists()), walletExistResponse);
+export const hasExistingWallet = compose(
+  r => Boolean(r && r.getExists()),
+  walletExistResponse
+);
 export const confirmNewSeed = get(["walletLoader", "confirmNewSeed"]);
 export const existingOrNew = get(["walletLoader", "existingOrNew"]);
 export const versionInvalidError = createSelector(
@@ -63,10 +66,22 @@ export const versionInvalidError = createSelector(
   (invalid, error) => (invalid ? error || "Unknown Error" : null)
 );
 
-const isStartStepOpen = compose(eq(START_STEP_OPEN), startStepIndex);
-const isStartStepDiscover = compose(eq(START_STEP_DISCOVER), startStepIndex);
-const isStartStepRPC = compose(or(eq(START_STEP_RPC1), eq(START_STEP_RPC2)), startStepIndex);
-const isStartStepFetch = compose(eq(START_STEP_FETCH), startStepIndex);
+const isStartStepOpen = compose(
+  eq(START_STEP_OPEN),
+  startStepIndex
+);
+const isStartStepDiscover = compose(
+  eq(START_STEP_DISCOVER),
+  startStepIndex
+);
+const isStartStepRPC = compose(
+  or(eq(START_STEP_RPC1), eq(START_STEP_RPC2)),
+  startStepIndex
+);
+const isStartStepFetch = compose(
+  eq(START_STEP_FETCH),
+  startStepIndex
+);
 
 const walletExistError = and(get(["walletLoader", "walletExistError"]), isStartStepOpen);
 const walletCreateError = and(get(["walletLoader", "walletCreateError"]), isStartStepOpen);
@@ -147,11 +162,17 @@ export const lockedBalance = createSelector(
 
 export const networks = () => [{ name: "testnet" }, { name: "mainnet" }];
 export const network = get(["daemon", "network"]);
-export const isTestNet = compose(eq("testnet"), network);
+export const isTestNet = compose(
+  eq("testnet"),
+  network
+);
 export const isMainNet = not(isTestNet);
 export const currencies = () => [{ name: "EXCC" }, { name: "atoms" }];
 export const currencyDisplay = get(["settings", "currentSettings", "currencyDisplay"]);
-export const unitDivisor = compose(disp => (disp === "EXCC" ? 100000000 : 1), currencyDisplay);
+export const unitDivisor = compose(
+  disp => (disp === "EXCC" ? 100000000 : 1),
+  currencyDisplay
+);
 export const currentLocaleName = get(["settings", "currentSettings", "locale"]);
 export const defaultLocaleName = createSelector([currentLocaleName], currentLocaleName => {
   return appLocaleFromElectronLocale(currentLocaleName);
@@ -580,7 +601,10 @@ export const notifiedBlockHeight = get(["notifications", "currentHeight"]);
 export const currentBlockHeight = get(["grpc", "currentBlockHeight"]);
 
 export const rescanEndBlock = currentBlockHeight;
-export const rescanStartBlock = compose(req => (req ? req.getBeginHeight() : 0), rescanRequest);
+export const rescanStartBlock = compose(
+  req => (req ? req.getBeginHeight() : 0),
+  rescanRequest
+);
 export const rescanCurrentBlock = compose(
   res => (res ? res.getRescannedThrough() : 0),
   rescanResponse
@@ -588,7 +612,7 @@ export const rescanCurrentBlock = compose(
 
 export const rescanPercentFinished = createSelector(
   [rescanCurrentBlock, rescanEndBlock],
-  (current, end) => (current / end * 100).toFixed(2)
+  (current, end) => ((current / end) * 100).toFixed(2)
 );
 
 export const visibleAccounts = createSelector(
@@ -647,13 +671,27 @@ const nextAddressAccountNumber = compose(
 export const getNextAddressRequestAttempt = get(["control", "getNextAddressRequestAttempt"]);
 export const nextAddressAccount = createSelector(
   [visibleAccounts, nextAddressAccountNumber],
-  (accounts, number) => accounts.find(compose(eq(number), get("value")))
+  (accounts, number) =>
+    accounts.find(
+      compose(
+        eq(number),
+        get("value")
+      )
+    )
 );
-export const nextAddress = compose(res => (res ? res.getAddress() : ""), getNextAddressResponse);
+export const nextAddress = compose(
+  res => (res ? res.getAddress() : ""),
+  getNextAddressResponse
+);
 
 export const defaultSpendingAccount = createSelector(
   [spendingAccounts],
-  find(compose(eq(0), get("value")))
+  find(
+    compose(
+      eq(0),
+      get("value")
+    )
+  )
 );
 
 const constructTxResponse = get(["control", "constructTxResponse"]);
@@ -662,8 +700,14 @@ const signTransactionRequestAttempt = get(["control", "signTransactionRequestAtt
 export const signTransactionError = get(["control", "signTransactionError"]);
 const publishTransactionResponse = get(["control", "publishTransactionResponse"]);
 const publishTransactionRequestAttempt = get(["control", "publishTransactionRequestAttempt"]);
-const totalOutputAmount = compose(r => (r ? r.getTotalOutputAmount() : 0), constructTxResponse);
-const totalAmount = compose(res => (res ? res.totalAmount : 0), constructTxResponse);
+const totalOutputAmount = compose(
+  r => (r ? r.getTotalOutputAmount() : 0),
+  constructTxResponse
+);
+const totalAmount = compose(
+  res => (res ? res.totalAmount : 0),
+  constructTxResponse
+);
 const totalPreviousOutputAmount = compose(
   res => (res ? res.getTotalPreviousOutputAmount() : 0),
   constructTxResponse
@@ -680,7 +724,7 @@ export const unsignedTransaction = createSelector(
 );
 
 export const estimatedFee = compose(
-  bytes => bytes / 1000 * (0.001 * 100000000),
+  bytes => (bytes / 1000) * (0.001 * 100000000),
   estimatedSignedSize
 );
 
@@ -709,13 +753,19 @@ export const changePassphraseSuccess = get(["control", "changePassphraseSuccess"
 export const isSigningMessage = get(["grpc", "getSignMessageRequestAttempt"]);
 export const signMessageError = get(["grpc", "getSignMessageError"]);
 export const signMessageResponse = get(["grpc", "getSignMessageResponse"]);
-export const signMessageSuccess = compose(r => (r ? r.toObject() : null), signMessageResponse);
+export const signMessageSuccess = compose(
+  r => (r ? r.toObject() : null),
+  signMessageResponse
+);
 
 export const messageVerificationService = get(["grpc", "messageVerificationService"]);
 export const isVerifyingMessage = get(["grpc", "getVerifyMessageRequestAttempt"]);
 export const verifyMessageError = get(["grpc", "getVerifyMessageError"]);
 export const verifyMessageResponse = get(["grpc", "getVerifyMessageResponse"]);
-export const verifyMessageSuccess = compose(r => (r ? r.toObject() : null), verifyMessageResponse);
+export const verifyMessageSuccess = compose(
+  r => (r ? r.toObject() : null),
+  verifyMessageResponse
+);
 export const validateAddressRequestAttempt = get(["control", "validateAddressRequestAttempt"]);
 export const validateAddressError = get(["control", "validateAddressError"]);
 export const validateAddressResponse = get(["control", "validateAddressResponse"]);
@@ -726,22 +776,46 @@ export const validateAddressSuccess = compose(
 
 const getStakeInfoResponse = get(["grpc", "getStakeInfoResponse"]);
 
-export const ticketPoolSize = compose(r => (r ? r.getPoolSize() : 0), getStakeInfoResponse);
-export const votedTicketsCount = compose(r => (r ? r.getVoted() : 0), getStakeInfoResponse);
+export const ticketPoolSize = compose(
+  r => (r ? r.getPoolSize() : 0),
+  getStakeInfoResponse
+);
+export const votedTicketsCount = compose(
+  r => (r ? r.getVoted() : 0),
+  getStakeInfoResponse
+);
 export const allMempoolTicketsCount = compose(
   r => (r ? r.getAllMempoolTix() : 0),
   getStakeInfoResponse
 );
-export const missedTicketsCount = compose(r => (r ? r.getMissed() : 0), getStakeInfoResponse);
+export const missedTicketsCount = compose(
+  r => (r ? r.getMissed() : 0),
+  getStakeInfoResponse
+);
 export const ownMempoolTicketsCount = compose(
   r => (r ? r.getOwnMempoolTix() : 0),
   getStakeInfoResponse
 );
-export const revokedTicketsCount = compose(r => (r ? r.getRevoked() : 0), getStakeInfoResponse);
-export const immatureTicketsCount = compose(r => (r ? r.getImmature() : 0), getStakeInfoResponse);
-export const expiredTicketsCount = compose(r => (r ? r.getExpired() : 0), getStakeInfoResponse);
-export const liveTicketsCount = compose(r => (r ? r.getLive() : 0), getStakeInfoResponse);
-export const totalSubsidy = compose(r => (r ? r.getTotalSubsidy() : 0), getStakeInfoResponse);
+export const revokedTicketsCount = compose(
+  r => (r ? r.getRevoked() : 0),
+  getStakeInfoResponse
+);
+export const immatureTicketsCount = compose(
+  r => (r ? r.getImmature() : 0),
+  getStakeInfoResponse
+);
+export const expiredTicketsCount = compose(
+  r => (r ? r.getExpired() : 0),
+  getStakeInfoResponse
+);
+export const liveTicketsCount = compose(
+  r => (r ? r.getLive() : 0),
+  getStakeInfoResponse
+);
+export const totalSubsidy = compose(
+  r => (r ? r.getTotalSubsidy() : 0),
+  getStakeInfoResponse
+);
 export const hasTicketsToRevoke = compose(
   r => (r ? r.getRevoked() !== r.getExpired() + r.getMissed() : 0),
   getStakeInfoResponse
@@ -759,7 +833,10 @@ export const getTicketBuyerConfigResponse = get(["control", "getTicketBuyerConfi
 
 const getTicketPriceResponse = get(["grpc", "getTicketPriceResponse"]);
 
-export const ticketPrice = compose(r => (r ? r.getTicketPrice() : 0), getTicketPriceResponse);
+export const ticketPrice = compose(
+  r => (r ? r.getTicketPrice() : 0),
+  getTicketPriceResponse
+);
 
 const getAgendasResponse = get(["grpc", "getAgendasResponse"]);
 export const agendas = createSelector(
@@ -803,7 +880,13 @@ const allStakePools = createSelector(
 );
 
 const networkStakePools = createSelector([allStakePools, network], (pools, network) =>
-  filter(compose(eq(network), get("Network")), pools)
+  filter(
+    compose(
+      eq(network),
+      get("Network")
+    ),
+    pools
+  )
 );
 
 export const configuredStakePools = createSelector(
@@ -816,7 +899,10 @@ export const unconfiguredStakePools = createSelector(
   filter(not(get("ApiKey")))
 );
 
-export const defaultStakePool = compose(get(0), configuredStakePools);
+export const defaultStakePool = compose(
+  get(0),
+  configuredStakePools
+);
 export const selectedStakePool = get(["stakepool", "selectedStakePool"]);
 
 const currentStakePoolConfigRequest = get(["stakepool", "currentStakePoolConfigRequest"]);

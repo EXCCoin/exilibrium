@@ -88,7 +88,12 @@ class StakePools extends React.Component {
   getSelectedUnconfigured() {
     const pool = this.state.selectedUnconfigured;
     return pool
-      ? this.props.unconfiguredStakePools.find(compose(eq(pool.Host), get("Host")))
+      ? this.props.unconfiguredStakePools.find(
+          compose(
+            eq(pool.Host),
+            get("Host")
+          )
+        )
       : null;
   }
 

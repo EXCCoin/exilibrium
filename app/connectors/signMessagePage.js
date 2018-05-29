@@ -14,8 +14,11 @@ const mapStateToProps = selectorMap({
   walletService: sel.walletService
 });
 
-export default connect(mapStateToProps, {
-  signMessageAttempt,
-  validateAddress,
-  signMessageCleanStore
-});
+export default connect(
+  mapStateToProps,
+  {
+    signMessageAttempt,
+    validateAddress,
+    signMessageCleanStore
+  }
+);

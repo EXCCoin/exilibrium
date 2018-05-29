@@ -5,7 +5,10 @@ import compose from "lodash/fp/compose";
 import get from "lodash/fp/get";
 
 export const not = fn => (...args) => !fn(...args);
-export const bool = compose(not, not);
+export const bool = compose(
+  not,
+  not
+);
 export const or = (...fns) => (...args) => {
   let result;
   return fns.find(fn => (result = fn(...args))) ? result : false;

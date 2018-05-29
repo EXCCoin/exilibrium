@@ -37,7 +37,14 @@ class VotingPrefs extends React.Component {
 
   getStakePool() {
     const pool = this.props.onChangeStakePool ? this.props.stakePool : this.state.stakePool;
-    return pool ? this.props.configuredStakePools.find(compose(eq(pool.Host), get("Host"))) : null;
+    return pool
+      ? this.props.configuredStakePools.find(
+          compose(
+            eq(pool.Host),
+            get("Host")
+          )
+        )
+      : null;
   }
 
   onChangeStakePool(stakePool) {
@@ -53,7 +60,10 @@ class VotingPrefs extends React.Component {
       get(
         ["choiceId"],
         find(
-          compose(eq(agenda.getId()), get(["agendaId"])),
+          compose(
+            eq(agenda.getId()),
+            get(["agendaId"])
+          ),
           get("VoteChoices", this.getStakePool()) || []
         )
       ) || "abstain"

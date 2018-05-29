@@ -316,7 +316,7 @@ export const syncDaemon = () => (dispatch, getState) => {
           if (timeStart !== 0 && blockStart !== 0 && blocksDiff !== 0) {
             const currentTime = new Date();
             const timeSyncing = (currentTime - timeStart) / 1000;
-            const secondsLeft = Math.round(blocksLeft / blocksDiff * timeSyncing);
+            const secondsLeft = Math.round((blocksLeft / blocksDiff) * timeSyncing);
             dispatch({
               currentBlockCount: parseInt(updateCurrentBlockCount),
               timeLeftEstimate: secondsLeft,
