@@ -167,11 +167,11 @@
   }
 
   .go-back-screen-button {
-    height: 12px;
-    width: 12px;
+    height: 20px;
+    width: 20px;
     position: fixed;
     background-repeat: no-repeat;
-    background-size: 12px;
+    background-size: 20px;
     background-image: @x-grey;
     right: 55px;
     opacity: 1;
@@ -381,6 +381,10 @@
     background-image: @accounts-button-hover-icon;
   }
 
+  .wallet-icon.imported {
+    background-image: @wallet-import-icon;
+  }
+
   .wallet-icon.createnew {
     background-size: 58px 58px;
     background-position: 0px 5px;
@@ -426,17 +430,16 @@
 
 .display-wallet-button.start:hover {
   background-color: rgb(41, 112, 255);
-  background-image: @launcher-wallet-activate-hover;
+  background-image: @launcher-wallet-activate;
 }
 
 .display-wallet-button.remove {
-  background-color: black;
   background-image: @launcher-wallet-delete;
+  background-color: #5956fc;
 }
 
 .display-wallet-button.remove:hover {
-  background-color: black;
-  background-image: @launcher-wallet-delete-hover;
+  background-color: #ff00a5;
 }
 
 .display-wallet:hover {

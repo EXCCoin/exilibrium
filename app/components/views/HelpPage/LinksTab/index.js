@@ -1,5 +1,4 @@
 import { FormattedMessage as T } from "react-intl";
-import { Tooltip } from "shared";
 import { HelpLink, HelpLinkInfoModal } from "buttons";
 import { ConstitutionModalContent } from "modals";
 import { DescriptionHeader } from "layout";
@@ -26,19 +25,6 @@ export const LinksTab = () => (
     </HelpLink>
     <HelpLink className={"help-stakepools-icon"} href="https://excc.co/stakepools">
       <T id="help.stakepools" m=" Stakepools" />
-    </HelpLink>
-    <HelpLink className={"help-rocketchat-icon"} href="https://rocketchat.excc.org">
-      <T id="help.rocketchat" m="RocketChat" />
-    </HelpLink>
-    <Tooltip text={<T id="help.matrix.info" m="Use matrix.excc.org as your custom server URL." />}>
-      <HelpLink className={"help-matrix-icon"} href="https://riot.im/app/#/login">
-        <T id="help.matrix" m="Matrix Chat" />
-      </HelpLink>
-    </Tooltip>
-    <HelpLink
-      className={"help-freenode-icon"}
-      href="https://webchat.freenode.net/?channels=excc&uio=d4">
-      <T id="help.freenode" m="Freenode" />
     </HelpLink>
     <HelpLink className={"help-forum-icon"} href="https://forum.excc.co">
       <T id="help.forum" m="Forum" />{" "}
