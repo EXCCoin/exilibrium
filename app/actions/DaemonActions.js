@@ -170,10 +170,10 @@ export const createWallet = selectedWallet => async (dispatch, getState) => {
   }
 };
 
-export const importKeys = jsonData => async () => {
+export const importKeys = privateKeysObject => async () => {
   // validate if JSON, if has keys, etc.
   try {
-    console.log(jsonData);
+    console.log(privateKeysObject);
     //  const { network } = getState().daemon;
     await Promise.resolve("Import successfull");
     // TODO: do domething

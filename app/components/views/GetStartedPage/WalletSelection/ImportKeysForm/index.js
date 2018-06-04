@@ -5,12 +5,14 @@ import Validator from "./Validator";
 import FileHandler from "./FileHandler";
 import Decryptor from "./Decryptor";
 
-export default ({ submitSection }) => (
+export default ({ submitSection, setPrivateKeysObject }) => (
   <Validator>
     {({ validator, errorMessage }) => (
       <FileHandler {...{ validator }}>
         {({ fileHandler, encryptedString, selectedFileName }) => (
-          <Decryptor {...{ encryptedString, validator }}>
+          <Decryptor
+            setPrivateKeysObject={setPrivateKeysObject}
+            {...{ encryptedString, validator }}>
             {({ decryptor, mnemonic, walletName, encryptionPassword }) => (
               <ImportKeysForm
                 {...{

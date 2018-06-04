@@ -24,9 +24,8 @@ function WalletSelectionBodyBase({
   selectedWallet,
   onChangeAvailableWallets,
   onChangeCreateWalletName,
-  onChangePrivateKeysObject,
   newWalletName,
-  privateKeysObject
+  setPrivateKeysObject
 }) {
   switch (true) {
     case createWalletForm:
@@ -71,8 +70,7 @@ function WalletSelectionBodyBase({
                 </div>
               }
               {...{
-                privateKeysObject,
-                onChangePrivateKeysObject
+                setPrivateKeysObject
               }}
             />
           </div>

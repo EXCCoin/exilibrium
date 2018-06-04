@@ -12,7 +12,7 @@ class WalletSelectionBody extends React.Component {
       createWalletForm: false,
       importKeysForm: false,
       newWalletName: "",
-      privateKeysObject: "",
+      privateKeysObject: {},
       selectedWallet: this.props.availableWallets ? this.props.availableWallets[0] : null
     };
   }
@@ -48,8 +48,8 @@ class WalletSelectionBody extends React.Component {
   onChangeCreateWalletName(newWalletName) {
     this.setState({ newWalletName });
   }
-  onChangePrivateKeysObject(jsonData) {
-    this.setState({ privateKeysObject: jsonData });
+  setPrivateKeysObject(privateKeysObject = {}) {
+    this.setState({ privateKeysObject });
   }
   createWallet() {
     const { newWalletName } = this.state;
@@ -62,8 +62,8 @@ class WalletSelectionBody extends React.Component {
     });
   }
   importKeys() {
-    console.log("importing keys");
-    //  this.props.onImportKeys();
+    console.log("importing keys", this.state.privateKeysObject);
+    this.props.onImportKeys(this.state.privateKeysObject);
   }
   startWallet() {
     this.props.onStartWallet(this.state.selectedWallet);
@@ -83,13 +83,13 @@ class WalletSelectionBody extends React.Component {
       showCreateWalletForm,
       showImportKeysForm,
       hideCreateWalletForm,
-      hideImportKeysForm
+      hideImportKeysForm,
+      setPrivateKeysObject
     } = this;
     const {
       selectedWallet,
       sideActive,
       newWalletName,
-      privateKeysObject,
       newWalletNetwork,
       createWalletForm
     } = this.state;
@@ -103,6 +103,7 @@ class WalletSelectionBody extends React.Component {
           startWallet,
           createWallet,
           importKeys,
+          setPrivateKeysObject,
           createWalletForm,
           showCreateWalletForm,
           showImportKeysForm,
@@ -110,7 +111,6 @@ class WalletSelectionBody extends React.Component {
           hideImportKeysForm,
           selectedWallet,
           newWalletName,
-          privateKeysObject,
           newWalletNetwork,
           networkSelected: newWalletNetwork === "mainnet",
           ...this.props,

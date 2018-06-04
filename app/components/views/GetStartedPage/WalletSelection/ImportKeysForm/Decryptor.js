@@ -10,6 +10,7 @@ class Decryptor extends Component {
       resetErrorMessage: PropTypes.func.isRequired,
       decryptionFailed: PropTypes.func.isRequired
     }),
+    setPrivateKeysObject: PropTypes.func.isRequired,
     encryptedString: PropTypes.string.isRequired
   };
   constructor(props) {
@@ -34,11 +35,13 @@ class Decryptor extends Component {
     const { encryptionPassword } = this.state;
     try {
       const decrypted = sjcl.decrypt(encryptionPassword, encryptedString);
-      const { walletName, mnemonic } = JSON.parse(decrypted);
+      const privateKeysObject = JSON.parse(decrypted);
+      const { walletName, mnemonic } = privateKeysObject;
       this.setState({
         walletName,
         mnemonic: mnemonic.split(" ")
       });
+      this.props.setPrivateKeysObject(privateKeysObject);
       validator.resetErrorMessage();
     } catch (e) {
       validator.decryptionFailed(e);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormattedMessage as T } from "react-intl";
 
 import { KeyBlueButton } from "buttons";
-import { TextInput } from "inputs";
+import { TextInput, PasswordInput } from "inputs";
 
 import { ImportKeysFormTypes } from "../../types";
 import "style/ImportKeysForm.less";
@@ -26,6 +26,7 @@ class ImportKeysForm extends Component {
       selectedFileName,
       encryptedString,
       encryptionPassword,
+      copayPassphrase,
       submitSection
     } = this.props;
     const hasMnemonic = Boolean(mnemonic.length);
@@ -102,6 +103,13 @@ class ImportKeysForm extends Component {
               <T id="wallet.importkeys.decryptButton" m="Decrypt" />
             </KeyBlueButton>
           </div>
+        )}
+        {encryptedString && (
+          <PasswordInput
+            id="copay-passphrase"
+            placeholder="Please provide your copay passphrase (if applicable)"
+            value={copayPassphrase}
+          />
         )}
         {hasMnemonic && (
           <div className="keys-import-mnemonic-section">
