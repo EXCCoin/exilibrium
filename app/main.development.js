@@ -89,9 +89,15 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Check that wallets directory has been created, if not, make it.
-fs.pathExistsSync(walletsDirectory) || fs.mkdirsSync(walletsDirectory);
-fs.pathExistsSync(mainnetWalletsPath) || fs.mkdirsSync(mainnetWalletsPath);
-fs.pathExistsSync(testnetWalletsPath) || fs.mkdirsSync(testnetWalletsPath);
+if (!fs.pathExistsSync(walletsDirectory)) {
+  fs.mkdirsSync(walletsDirectory);
+}
+if (!fs.pathExistsSync(mainnetWalletsPath)) {
+  fs.mkdirsSync(mainnetWalletsPath);
+}
+if (!fs.pathExistsSync(testnetWalletsPath)) {
+  fs.mkdirsSync(testnetWalletsPath);
+}
 
 checkAndInitWalletCfg(true);
 checkAndInitWalletCfg(false);
@@ -115,7 +121,7 @@ const installExtensions = async () => {
     const installer = require("electron-devtools-installer");
 
     const extensions = ["REACT_DEVELOPER_TOOLS", "REDUX_DEVTOOLS"];
-    const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+    const forceDownload = Boolean(process.env.UPGRADE_EXTENSIONS);
     for (const name of extensions) {
       try {
         await installer.default(installer[name], forceDownload);

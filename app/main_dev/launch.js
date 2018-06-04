@@ -26,8 +26,12 @@ let exccwPort;
 function closeClis() {
   // shutdown daemon and wallet.
   // Don't try to close if not running.
-  if (exccdPID && exccdPID !== -1) closeEXCCD(exccdPID);
-  if (exccwPID && exccwPID !== -1) closeEXCCW(exccwPID);
+  if (exccdPID && exccdPID !== -1) {
+    closeEXCCD(exccdPID);
+  }
+  if (exccwPID && exccwPID !== -1) {
+    closeEXCCW(exccwPID);
+  }
 }
 
 function closeEXCCD() {

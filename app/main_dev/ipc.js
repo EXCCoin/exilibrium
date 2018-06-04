@@ -35,7 +35,10 @@ export const getAvailableWallets = network => {
   const walletDirs = fs.readdirSync(walletsBasePath);
   walletDirs.forEach(wallet => {
     const walletDirStat = fs.statSync(path.join(walletsBasePath, wallet));
-    if (!walletDirStat.isDirectory()) return;
+
+    if (!walletDirStat.isDirectory()) {
+      return;
+    }
 
     const walletDbFilePath = getWalletDBPathFromWallets(isTestNet, wallet);
     const finished = fs.pathExistsSync(walletDbFilePath);

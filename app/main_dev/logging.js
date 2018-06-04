@@ -84,7 +84,9 @@ const AddToLog = (destIO, destLogBuffer, data, debug) => {
   if (destLogBuffer.length + dataBuffer.length > MAX_LOG_LENGTH) {
     destLogBuffer = destLogBuffer.slice(destLogBuffer.indexOf(os.EOL, dataBuffer.length) + 1);
   }
-  debug && destIO.write(data);
+  if (debug) {
+    destIO.write(data);
+  }
   return Buffer.concat([destLogBuffer, dataBuffer]);
 };
 
