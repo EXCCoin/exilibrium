@@ -76,7 +76,7 @@ function WalletSelectionBodyBase({
           </div>
         </div>
       );
-    case Boolean(availableWallets.length):
+    case Boolean(availableWallets):
       return (
         <div className="advanced-page">
           <div className="advanced-page-form">
