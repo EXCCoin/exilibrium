@@ -32,7 +32,7 @@ export default function ReleaseNotesForm({
           </Tooltip>
           <T
             id="getStarted.logsTitle"
-            m="Decrediton v{version} Released"
+            m="Exilibrium v{version} Released"
             values={{ version: appVersion }}
           />
         </div>

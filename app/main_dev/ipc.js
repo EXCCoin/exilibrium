@@ -154,7 +154,7 @@ export const checkDaemon = (mainWindow, rpcCreds, testnet) => {
     args.push("--testnet");
   }
 
-  const exccctlExe = getExecutablePath("dcrctl", argv.customBinPath);
+  const exccctlExe = getExecutablePath("exccctl", argv.customBinPath);
   if (!fs.existsSync(exccctlExe)) {
     logger.log("error", "The exccctl file does not exists");
   }

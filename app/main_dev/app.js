@@ -353,14 +353,14 @@ async function installExtensions() {
 function readExesVersion(state) {
   const spawn = require("child_process").spawnSync;
   const args = ["--version"];
-  const exes = ["dcrd", "dcrwallet", "dcrctl"];
+  const exes = ["exccd", "exccwallet", "exccctl"];
   const versions = {
     grpc: state.grpcVersions,
     exilibrium: app.getVersion()
   };
 
   for (const exe of exes) {
-    const exePath = paths.getExecutablePath("dcrd", state.argv.customBinPath);
+    const exePath = paths.getExecutablePath("exccd", state.argv.customBinPath);
     if (!fs.existsSync(exePath)) {
       state.logger.log("error", "The exccd file does not exists");
     }

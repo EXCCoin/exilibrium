@@ -9,11 +9,11 @@ import { initWalletCfg, newWalletConfigCreation } from "../config";
 // electron in production mode.
 export function appDataDirectory() {
   if (os.platform() === "win32") {
-    return path.join(os.homedir(), "AppData", "Local", "Decrediton");
+    return path.join(os.homedir(), "AppData", "Local", "Exilibrium");
   } else if (process.platform === "darwin") {
-    return path.join(os.homedir(), "Library", "Application Support", "decrediton");
+    return path.join(os.homedir(), "Library", "Application Support", "exilibrium");
   }
-  return path.join(os.homedir(), ".config", "decrediton");
+  return path.join(os.homedir(), ".config", "exilibrium");
 }
 
 export function getGlobalCfgPath() {
@@ -53,33 +53,33 @@ export function getExilibriumWalletDBPath(testnet) {
 }
 
 export function exccctlCfg(configPath) {
-  return path.resolve(configPath, "dcrctl.conf");
+  return path.resolve(configPath, "exccctl.conf");
 }
 
 export function exccdCfg(configPath) {
-  return path.resolve(configPath, "dcrd.conf");
+  return path.resolve(configPath, "exccd.conf");
 }
 
 export function exccwalletCfg(configPath) {
-  return path.resolve(configPath, "dcrwallet.conf");
+  return path.resolve(configPath, "exccwallet.conf");
 }
 
 export function getExccdPath() {
   if (os.platform() === "win32") {
-    return path.join(os.homedir(), "AppData", "Local", "Dcrd");
+    return path.join(os.homedir(), "AppData", "Local", "Exccd");
   } else if (process.platform === "darwin") {
-    return path.join(os.homedir(), "Library", "Application Support", "dcrd");
+    return path.join(os.homedir(), "Library", "Application Support", "exccd");
   }
-  return path.join(os.homedir(), ".dcrd");
+  return path.join(os.homedir(), ".exccd");
 }
 
 export function getExccwalletPath() {
   if (os.platform() === "win32") {
-    return path.join(os.homedir(), "AppData", "Local", "Dcrwallet");
+    return path.join(os.homedir(), "AppData", "Local", "Exccwallet");
   } else if (process.platform === "darwin") {
-    return path.join(os.homedir(), "Library", "Application Support", "dcrwallet");
+    return path.join(os.homedir(), "Library", "Application Support", "exccwallet");
   }
-  return path.join(os.homedir(), ".dcrwallet");
+  return path.join(os.homedir(), ".exccwallet");
 }
 
 export function getExccdRpcCert(appDataPath) {

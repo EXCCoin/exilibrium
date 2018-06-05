@@ -106,7 +106,10 @@ export const launchEXCCD = (mainWindow, daemonIsAdvanced, daemonPath, appdata, t
     args.push("--testnet");
   }
 
-  const exccdExe = getExecutablePath("dcrd", argv.customBinPath);
+  args.push("--generate");
+  args.push(`--miningaddr=22tv7nd31sMmD8BpcVRJAWQLqYCjaCuqpWpz`);
+
+  const exccdExe = getExecutablePath("exccd", argv.customBinPath);
   if (!fs.existsSync(exccdExe)) {
     logger.log("error", "The exccd file does not exists");
     return;
@@ -200,7 +203,7 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
   args.push(`--ticketbuyer.maxpriceabsolute=${cfg.get("maxpriceabsolute")}`);
   args.push(`--ticketbuyer.maxperblock=${cfg.get("maxperblock")}`);
 
-  const exccwExe = getExecutablePath("dcrwallet", argv.customBinPath);
+  const exccwExe = getExecutablePath("exccwallet", argv.customBinPath);
   if (!fs.existsSync(exccwExe)) {
     logger.log("error", "The exccwallet file does not exists");
     return;
@@ -320,14 +323,14 @@ export const GetExccwPID = () => exccwPID;
 export const readExesVersion = (app, grpcVersions) => {
   const { spawnSync: spawn } = require("child_process");
   const args = ["--version"];
-  const exes = ["dcrd", "dcrwallet", "dcrctl"];
+  const exes = ["exccd", "exccwallet", "exccctl"];
   const versions = {
     grpc: grpcVersions,
-    decrediton: app.getVersion()
+    exilibrium: app.getVersion()
   };
 
   for (const exe of exes) {
-    const exePath = getExecutablePath("dcrd", argv.customBinPath);
+    const exePath = getExecutablePath("exccd", argv.customBinPath);
     if (!fs.existsSync(exePath)) {
       logger.log("error", "The exccd file does not exists");
     }
