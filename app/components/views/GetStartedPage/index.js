@@ -1,6 +1,6 @@
+/* eslint complexity: off */
 import { FormattedMessage as T } from "react-intl";
 
-import { pick } from "fp";
 import { walletStartup } from "connectors";
 
 import GetStartedPageTypes from "./types";
@@ -22,6 +22,7 @@ class GetStartedPage extends React.Component {
   state = { showSettings: false, showLogs: false, showReleaseNotes: false };
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     const { startStepIndex, getDaemonSynced, onRetryStartRPC } = this.props;
     if (
       startStepIndex !== nextProps.startStepIndex ||
@@ -152,7 +153,17 @@ class GetStartedPage extends React.Component {
   }
 
   render() {
-    const { startStepIndex, hasExistingWallet, ...props } = this.props;
+    const {
+      startStepIndex,
+      isPrepared,
+      isAdvancedDaemon,
+      openForm,
+      getWalletReady,
+      remoteAppdataError,
+      startupError,
+      hasExistingWallet,
+      ...props
+    } = this.props;
     const { showSettings, showLogs, showReleaseNotes, ...state } = this.state;
     const {
       onShowReleaseNotes,
@@ -163,44 +174,74 @@ class GetStartedPage extends React.Component {
       onHideLogs
     } = this;
 
-    const blockStatProps = pick(this.props, [
-      "getCurrentBlockCount",
-      "getNeededBlocks",
-      "getEstimatedTimeLeft"
-    ]);
-
-    switch (true) {
-      case showSettings:
-        return (
-          <Settings onShowLogs={onShowLogs} onHideSettings={onHideSettings} {...blockStatProps} />
-        );
-      case showLogs:
-        return <Logs onShowSettings={onShowSettings} onHideLogs={onHideLogs} {...blockStatProps} />;
-      case showReleaseNotes:
-        return (
-          <ReleaseNotes
-            appVersion={this.props.appVersion}
-            onShowSettings={onShowSettings}
-            onShowLogs={onShowLogs}
-            onHideReleaseNotes={onHideReleaseNotes}
-            {...blockStatProps}
-          />
-        );
-    }
-    const conditions = this.getConditions();
-    const Form = this.getForm(conditions);
-
-    if (Form === null && startStepIndex === 2 && !hasExistingWallet) {
-      return <CreateWallet {...props} />;
+    let text, Form;
+    if (showSettings) {
+      return <Settings {...{ onShowLogs, onHideSettings, ...props }} />;
+    } else if (showLogs) {
+      return <Logs {...{ onShowSettings, onHideLogs, ...props }} />;
+    } else if (showReleaseNotes) {
+      return <ReleaseNotes {...{ onShowSettings, onShowLogs, onHideReleaseNotes, ...props }} />;
+    } else if (
+      isAdvancedDaemon &&
+      openForm &&
+      !remoteAppdataError &&
+      !isPrepared &&
+      getWalletReady
+    ) {
+      Form = AdvancedStartupBody;
+    } else if (remoteAppdataError && !isPrepared && getWalletReady) {
+      Form = RemoteAppdataError;
+    } else if (!getWalletReady) {
+      Form = WalletSelectionBody;
+    } else {
+      switch (startStepIndex || 0) {
+        case 1:
+          text = startupError ? (
+            startupError
+          ) : (
+            <T id="getStarted.header.checkingWalletState.meta" m="Checking wallet state" />
+          );
+          break;
+        case 2:
+          if (hasExistingWallet) {
+            Form = OpenWallet;
+          } else {
+            return <CreateWallet {...props} />;
+          }
+          break;
+        case 3:
+        case 4:
+          text = <T id="getStarted.header.startrpc.meta" m="Establishing RPC connection" />;
+          Form = StartRPCBody;
+          break;
+        case 5:
+          text = <T id="getStarted.header.discoveringAddresses.meta" m="Discovering addresses" />;
+          Form = DiscoverAddressesBody;
+          break;
+        case 6:
+          text = <T id="getStarted.header.fetchingBlockHeaders.meta" m="Fetching block headers" />;
+          Form = FetchBlockHeadersBody;
+          break;
+        case 7:
+          text = (
+            <T id="getStarted.header.rescanWallet.meta" m="Scanning blocks for transactions" />
+          );
+          Form = RescanWalletBody;
+          break;
+        default:
+          text = <T id="getStarted.header.finalizingSetup.meta" m="Finalizing setup" />;
+      }
     }
 
     return (
       <DaemonLoading
-        text={this.getText(conditions)}
+        Form={Form}
         {...{
           ...props,
           ...state,
-          Form,
+          text,
+          getWalletReady,
+          startupError,
           showSettings,
           showLogs,
           onShowReleaseNotes,
