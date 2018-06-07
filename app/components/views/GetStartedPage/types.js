@@ -22,7 +22,8 @@ export const GetStartedPageTypes = {
   isInputRequest: any,
   startupError: any,
   confirmNewSeed: any,
-  existingOrNew: any,
+  existingOrNew: bool,
+  importCopay: bool,
   hasExistingWallet: any,
   getDaemonStarted: any,
   getDaemonSynced: any,
@@ -75,20 +76,15 @@ export const GetStartedPageTypes = {
 export const WalletSelectionBodyBaseTypes = {
   availableWallets: arrayOf(WalletTypes),
   createWallet: func.isRequired,
-  importKeys: func.isRequired,
   showCreateWalletForm: func.isRequired,
-  showImportKeysForm: func.isRequired,
   hideCreateWalletForm: func.isRequired,
-  hideImportKeysForm: func.isRequired,
   createWalletForm: bool.isRequired,
-  importKeysForm: bool.isRequired,
   startWallet: func.isRequired,
   onRemoveWallet: func.isRequired,
   selectedWallet: WalletTypes,
   onChangeAvailableWallets: func.isRequired,
   onChangeCreateWalletName: func.isRequired,
-  newWalletName: string.isRequired,
-  privateKeysObject: string.isRequired
+  newWalletName: string.isRequired
 };
 
 export const CreateWalletFormTypes = {
@@ -151,7 +147,6 @@ export const ReleaseNotesFormTypes = {
 };
 
 export const ImportKeysFormTypes = {
-  onChangePrivateKeysObject: func,
   decryptor: shape({
     decrypt: func.isRequired,
     onPasswordChange: func.isRequired,
@@ -167,7 +162,7 @@ export const ImportKeysFormTypes = {
   mnemonic: arrayOf(string).isRequired,
   walletName: string.isRequired,
   encryptedString: string.isRequired,
-  submitSection: element.isRequired,
+  importKeys: func.isRequired,
   encryptionPassword: string.isRequired,
   errorMessage: oneOfType([element, string]).isRequired,
   selectedFileName: string.isRequired

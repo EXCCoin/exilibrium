@@ -61,6 +61,7 @@ export const hasExistingWallet = compose(
 );
 export const confirmNewSeed = get(["walletLoader", "confirmNewSeed"]);
 export const existingOrNew = get(["walletLoader", "existingOrNew"]);
+export const importCopay = get(["walletLoader", "importCopay"]);
 export const versionInvalidError = createSelector(
   [versionInvalid, get(["version", "versionInvalidError"])],
   (invalid, error) => (invalid ? error || "Unknown Error" : null)

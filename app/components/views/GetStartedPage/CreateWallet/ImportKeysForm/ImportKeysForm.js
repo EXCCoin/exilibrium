@@ -26,8 +26,7 @@ class ImportKeysForm extends Component {
       selectedFileName,
       encryptedString,
       encryptionPassword,
-      copayPassphrase,
-      submitSection
+      copayPassphrase
     } = this.props;
     const hasMnemonic = Boolean(mnemonic.length);
     return (
@@ -126,7 +125,13 @@ class ImportKeysForm extends Component {
             ))}
           </div>
         )}
-        {hasMnemonic && <div className="import-keys-submit-section">{submitSection}</div>}
+        {hasMnemonic && (
+          <div className="import-keys-submit-section">
+            <KeyBlueButton onClick={() => {}}>
+              <T id="wallet.importKeys.button" m="Import keys" />
+            </KeyBlueButton>
+          </div>
+        )}
       </div>
     );
   }

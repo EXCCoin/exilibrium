@@ -10,7 +10,6 @@ import { getAvailableWallets, WALLETREMOVED_FAILED } from "./DaemonActions";
 import { getWalletCfg, getExccdCert } from "config";
 import { getWalletPath } from "main_dev/paths";
 import { isTestNet } from "selectors";
-import axios from "axios";
 
 const MAX_RPC_RETRIES = 5;
 const RPC_RETRY_DELAY = 5000;
@@ -61,6 +60,7 @@ export const CREATEWALLET_EXISTINGSEED_INPUT = "CREATEWALLET_EXISTINGSEED_INPUT"
 export const CREATEWALLET_GOBACK_EXISITNG_OR_NEW = "CREATEWALLET_GOBACK_EXISITNG_OR_NEW";
 export const CREATEWALLET_GOBACK = "CREATEWALLET_GOBACK";
 export const CREATEWALLET_NEWSEED_INPUT = "CREATEWALLET_NEWSEED_INPUT";
+export const CREATEWALLET_IMPORTSEED_INPUT = "CREATEWALLET_IMPORTSEED_INPUT";
 
 export const createWalletConfirmNewSeed = () => ({ type: CREATEWALLET_NEWSEED_CONFIRM_INPUT });
 export const createWalletGoBackNewSeed = () => ({ type: CREATEWALLET_NEWSEED_BACK_INPUT });
@@ -86,10 +86,18 @@ export const createWalletGoBackWalletSelection = () => (dispatch, getState) => {
   });
 };
 
-export const createWalletExistingToggle = existing => dispatch =>
-  existing
-    ? dispatch({ type: CREATEWALLET_EXISTINGSEED_INPUT })
-    : setTimeout(() => dispatch({ type: CREATEWALLET_NEWSEED_INPUT }), 50);
+export const createWalletExistingToggle = walletCreationType => dispatch => {
+  switch (walletCreationType) {
+    case "new":
+      setTimeout(() => dispatch({ type: CREATEWALLET_NEWSEED_INPUT }), 50);
+      return;
+    case "restore":
+      dispatch({ type: CREATEWALLET_EXISTINGSEED_INPUT });
+      return;
+    case "import":
+      dispatch({ type: CREATEWALLET_IMPORTSEED_INPUT });
+  }
+};
 
 export const CREATEWALLET_ATTEMPT = "CREATEWALLET_ATTEMPT";
 export const CREATEWALLET_FAILED = "CREATEWALLET_FAILED";
@@ -97,6 +105,11 @@ export const CREATEWALLET_SUCCESS = "CREATEWALLET_SUCCESS";
 
 export const createWalletRequest = (pubPass, privPass, seed, existing) => (dispatch, getState) => {
   dispatch({ existing, type: CREATEWALLET_ATTEMPT });
+  console.log(wallet);
+  console.log(pubPass);
+  console.log(privPass);
+  console.log(seed);
+  console.log(existing);
   return wallet
     .createWallet(getState().walletLoader.loader, pubPass, privPass, seed)
     .then(() => {

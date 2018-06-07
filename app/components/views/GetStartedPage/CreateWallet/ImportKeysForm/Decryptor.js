@@ -10,7 +10,6 @@ class Decryptor extends Component {
       resetErrorMessage: PropTypes.func.isRequired,
       decryptionFailed: PropTypes.func.isRequired
     }),
-    setPrivateKeysObject: PropTypes.func.isRequired,
     encryptedString: PropTypes.string.isRequired
   };
   constructor(props) {
@@ -41,7 +40,6 @@ class Decryptor extends Component {
         walletName,
         mnemonic: mnemonic.split(" ")
       });
-      this.props.setPrivateKeysObject(privateKeysObject);
       validator.resetErrorMessage();
     } catch (e) {
       validator.decryptionFailed(e);

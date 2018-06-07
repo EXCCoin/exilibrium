@@ -34,6 +34,7 @@ import {
   FETCHHEADERS_PROGRESS,
   FETCHHEADERS_SUCCESS,
   CREATEWALLET_EXISTINGSEED_INPUT,
+  CREATEWALLET_IMPORTSEED_INPUT,
   CREATEWALLET_NEWSEED_INPUT,
   CREATEWALLET_NEWSEED_CONFIRM_INPUT,
   CREATEWALLET_NEWSEED_BACK_INPUT,
@@ -117,14 +118,24 @@ export default function walletLoader(state = {}, action) {
         ...state,
         createWalletInputRequest: true,
         createWalletExisting: true,
-        existingOrNew: false
+        existingOrNew: false,
+        importCopay: false
+      };
+    case CREATEWALLET_IMPORTSEED_INPUT:
+      return {
+        ...state,
+        createWalletInputRequest: true,
+        createWalletExisting: false,
+        existingOrNew: false,
+        importCopay: true
       };
     case CREATEWALLET_NEWSEED_INPUT:
       return {
         ...state,
         createWalletInputRequest: true,
         createWalletExisting: false,
-        existingOrNew: false
+        existingOrNew: false,
+        importCopay: false
       };
     case CREATEWALLET_ATTEMPT:
       return {

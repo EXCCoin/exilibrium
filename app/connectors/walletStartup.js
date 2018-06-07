@@ -14,6 +14,7 @@ const mapStateToProps = selectorMap({
   startupError: selectors.startupError,
   confirmNewSeed: selectors.confirmNewSeed,
   existingOrNew: selectors.existingOrNew,
+  importCopay: selectors.importCopay,
   hasExistingWallet: selectors.hasExistingWallet,
   getDaemonStarted: selectors.getDaemonStarted,
   getDaemonSynced: selectors.getDaemonSynced,
