@@ -7,7 +7,7 @@ export const SEED_WORDS = require("../helpers/wordlist.js");
 SEED_WORDS.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 
 export const SEED_LENGTH = {
-  WORDS: 33,
+  WORDS: 12,
   HEX_MAX: 128,
   HEX_MIN: 32
 };
@@ -43,11 +43,11 @@ export const getSeedService = createSelector(
         });
       },
 
-      decode(mnemonic) {
+      decode(mnemonic, password) {
         return new Promise((resolve, reject) => {
           try {
             const request = new DecodeSeedRequest();
-            request.setUserInput(mnemonic);
+            request.setUserInput(mnemonic, password);
             seeder.decodeSeed(request, (err, response) => (err ? reject(err) : resolve(response)));
           } catch (err) {
             reject(err);
