@@ -46,6 +46,46 @@ class CreateWalletForm extends React.Component {
   onCancelCopySeedConfirm() {
     this.setState({ showCopySeedConfirm: false });
   }
+  resetState() {
+    this.setState(this.getInitialState());
+  }
+
+  generateSeed() {
+    return this.props.seedService.then(({ generate, decode }) =>
+      generate().then(response => {
+        this.setState({
+          decode,
+          mnemonic: response.getSeedMnemonic(),
+          seed: this.props.isTestNet ? response.getSeedBytes() : null // Allows verification skip in dev
+        });
+      })
+    );
+  }
+
+  setSeed(seed) {
+    console.log("setting seed", seed);
+    this.setState({ seed });
+  }
+
+  setPassPhrase(passPhrase) {
+    this.setState({ passPhrase });
+  }
+
+  onCreateWallet() {
+    const { createWalletExisting, createWalletRequest } = this.props;
+    const { seed, passPhrase } = this.state;
+    const pubpass = ""; // Temporarily disabled?
+
+    if (!this.isValid()) {
+      return;
+    }
+    createWalletRequest(pubpass, passPhrase, seed, Boolean(createWalletExisting));
+  }
+
+  isValid() {
+    const { seed, passPhrase } = this.state;
+    return Boolean(seed && passPhrase);
+  }
   render() {
     const {
       confirmNewSeed,
@@ -107,46 +147,6 @@ class CreateWalletForm extends React.Component {
         }}
       />
     );
-  }
-
-  resetState() {
-    this.setState(this.getInitialState());
-  }
-
-  generateSeed() {
-    return this.props.seedService.then(({ generate, decode }) =>
-      generate().then(response =>
-        this.setState({
-          decode,
-          mnemonic: response.getSeedMnemonic(),
-          seed: this.props.isTestNet ? response.getSeedBytes() : null // Allows verification skip in dev
-        })
-      )
-    );
-  }
-
-  setSeed(seed) {
-    this.setState({ seed });
-  }
-
-  setPassPhrase(passPhrase) {
-    this.setState({ passPhrase });
-  }
-
-  onCreateWallet() {
-    const { createWalletExisting, createWalletRequest } = this.props;
-    const { seed, passPhrase } = this.state;
-    const pubpass = ""; // Temporarily disabled?
-
-    if (!this.isValid()) {
-      return;
-    }
-    createWalletRequest(pubpass, passPhrase, seed, Boolean(createWalletExisting));
-  }
-
-  isValid() {
-    const { seed, passPhrase } = this.state;
-    return Boolean(seed && passPhrase);
   }
 }
 

@@ -4,7 +4,6 @@ import { KeyBlueButton, RemoveWalletButton, InvisibleButton } from "buttons";
 
 import { WalletSelectionBodyBaseTypes } from "../types";
 import CreateWalletForm from "./CreateWalletForm";
-import ImportKeysForm from "./ImportKeysForm";
 import "style/LoginForm.less";
 
 WalletSelectionBodyBase.propTypes = WalletSelectionBodyBaseTypes;
@@ -12,20 +11,15 @@ WalletSelectionBodyBase.propTypes = WalletSelectionBodyBaseTypes;
 function WalletSelectionBodyBase({
   availableWallets,
   createWallet,
-  importKeys,
   showCreateWalletForm,
-  showImportKeysForm,
   hideCreateWalletForm,
-  hideImportKeysForm,
   createWalletForm,
-  importKeysForm,
   startWallet,
   onRemoveWallet,
   selectedWallet,
   onChangeAvailableWallets,
   onChangeCreateWalletName,
-  newWalletName,
-  setPrivateKeysObject
+  newWalletName
 }) {
   switch (true) {
     case createWalletForm:
@@ -49,30 +43,6 @@ function WalletSelectionBodyBase({
                 <T id="wallet.create.button" m="Create new wallet" />
               </KeyBlueButton>
             </div>
-          </div>
-        </div>
-      );
-    case importKeysForm:
-      return (
-        <div className="advanced-page">
-          <div className="advanced-page-form">
-            <ImportKeysForm
-              submitSection={
-                <div>
-                  {availableWallets.length && (
-                    <InvisibleButton onClick={hideImportKeysForm}>
-                      <T id="advancedStartup.cancel" m="Cancel" />
-                    </InvisibleButton>
-                  )}
-                  <KeyBlueButton onClick={importKeys}>
-                    <T id="wallet.importKeys.button" m="Import keys" />
-                  </KeyBlueButton>
-                </div>
-              }
-              {...{
-                setPrivateKeysObject
-              }}
-            />
           </div>
         </div>
       );
@@ -150,13 +120,6 @@ function WalletSelectionBodyBase({
                   </div>
                 </div>
               )}
-              <div className="display-wallet import" onClick={showImportKeysForm}>
-                <div className="display-wallet-network" />
-                <div className="wallet-icon imported" />
-                <div className="display-wallet-name">
-                  <T id="getStarted.importKeysTab" m="Import keys" />
-                </div>
-              </div>
             </div>
           </div>
         </div>

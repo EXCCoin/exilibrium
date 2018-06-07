@@ -99,59 +99,6 @@ class GetStartedPage extends React.Component {
       walletNotReady: !getWalletReady
     };
   }
-  getForm(conds) {
-    if (conds.advancedDaemonStartup) {
-      return AdvancedStartupBody;
-    } else if (conds.remoteDataError) {
-      return RemoteAppdataError;
-    } else if (conds.walletNotReady) {
-      return WalletSelectionBody;
-    }
-    switch (this.props.startStepIndex || 0) {
-      case 2:
-        if (this.props.hasExistingWallet) {
-          return OpenWallet;
-        }
-      case 3: // eslint-disable-line no-fallthrough
-      case 4:
-        return StartRPCBody;
-      case 5:
-        return DiscoverAddressesBody;
-      case 6:
-        return FetchBlockHeadersBody;
-      case 7:
-        return RescanWalletBody;
-    }
-    return null;
-  }
-
-  getText(conds) {
-    if (conds.advancedDaemonStartup || conds.remoteDataError || conds.walletNotReady) {
-      return null;
-    }
-
-    switch (this.props.startStepIndex) {
-      case 1:
-        return (
-          this.props.startupError || (
-            <T id="getStarted.header.checkingWalletState.meta" m="Checking wallet state" />
-          )
-        );
-      case 2:
-        return null;
-      case 3:
-      case 4:
-        return <T id="getStarted.header.startrpc.meta" m="Establishing RPC connection" />;
-      case 5:
-        return <T id="getStarted.header.discoveringAddresses.meta" m="Discovering addresses" />;
-      case 6:
-        return <T id="getStarted.header.fetchingBlockHeaders.meta" m="Fetching block headers" />;
-      case 7:
-        return <T id="getStarted.header.rescanWallet.meta" m="Scanning blocks for transactions" />;
-    }
-    return <T id="getStarted.header.finalizingSetup.meta" m="Finalizing setup" />;
-  }
-
   render() {
     const {
       startStepIndex,
