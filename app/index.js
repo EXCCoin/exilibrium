@@ -88,10 +88,10 @@ const initialState = {
     currentBlockHeight: 0,
 
     // ints for mainnet and testnet protocol hex
-    // TestNet2 CurrencyNet = 0x48e7a065
-    testnet: 1223139429,
-    // MainNet CurrencyNet = 0xd9b400f9
-    mainnet: 3652452601,
+    // TestNet2 CurrencyNet = 0x5aa4752a
+    testnet: 1520727338,
+    // MainNet CurrencyNet = 0x9917d7e1
+    mainnet: 2568476641,
 
     // GetWalletService
     getWalletServiceRequestAttempt: false,
