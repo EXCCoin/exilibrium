@@ -11,7 +11,6 @@ const LanguageSelectPage = ({
 }) => {
   return (
     <div className="page-body getstarted">
-      <div className="getstarted-logo" />
       <div className="getstarted-new">
         <div className="language-select-title">
           <T id="selectLang.title" m={"Welcome to Exilibrium Wallet"} />
