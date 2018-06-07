@@ -61,7 +61,7 @@ const messages = defineMessages({
   },
   step2TextBoldp1: {
     id: "tutorial.step.2.text.bold.p1",
-    defaultMessage: "seed is a list of 33 words"
+    defaultMessage: "seed is a list of 12 words"
   },
   step2Textp12: {
     id: "tutorial.step.2.text.p12",

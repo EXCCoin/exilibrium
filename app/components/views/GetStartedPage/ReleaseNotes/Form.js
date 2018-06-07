@@ -118,7 +118,7 @@ export default function ReleaseNotesForm({
               </li>
 
               <li>
-                Import wallet from hex seed - instead of entering in the 33 word mnemonic, they are
+                Import wallet from hex seed - instead of entering in the 12 word mnemonic, they are
                 now able to use the hex representation of their seed.
               </li>
 

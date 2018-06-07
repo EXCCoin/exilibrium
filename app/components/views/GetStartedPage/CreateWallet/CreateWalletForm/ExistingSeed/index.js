@@ -9,7 +9,7 @@ class ExistingSeed extends React.Component {
 
   getInitialState() {
     const seedWords = [];
-    for (let i = 0; i < 33; i++) {
+    for (let i = 0; i < 12; i++) {
       seedWords.push({
         word: "",
         index: i,
@@ -21,27 +21,6 @@ class ExistingSeed extends React.Component {
 
   componentWillUnmount() {
     this.state = this.getInitialState();
-  }
-
-  render() {
-    const { onChangeSeedWord, setSeedWords, resetSeedWords } = this;
-    const isMatch = this.isMatch();
-    const { seedWords } = this.state;
-    const isEmpty = this.state.seedWords.length <= 1; // Weird errors with one word, better to count as empty
-    const seedError = isEmpty ? null : this.state.seedError;
-    return (
-      <ExistingSeedForm
-        {...{
-          seedWords,
-          setSeedWords,
-          onChangeSeedWord,
-          resetSeedWords,
-          isMatch,
-          seedError,
-          isEmpty
-        }}
-      />
-    );
   }
 
   resetSeedWords() {
@@ -70,8 +49,10 @@ class ExistingSeed extends React.Component {
         this.setState({ seedWords: updatedSeedWords });
       }
     };
+    console.log("this.props.decode", this.props.decode);
     this.setState({ seedWords }, () => {
       const mnemonic = this.getSeedWordsStr();
+      console.log(this.props.decode);
       if (this.props.mnemonic && this.isMatch()) {
         this.props
           .decode(mnemonic)
@@ -97,6 +78,7 @@ class ExistingSeed extends React.Component {
     updatedSeedWords[seedWord.index] = { word: update, index: seedWord.index, error: false };
 
     const onError = seedError => {
+      console.log("got Error", seedError);
       this.setState({ mnemonic: "", seedError: `${seedError}` });
       this.props.onChange(null);
 
@@ -134,17 +116,24 @@ class ExistingSeed extends React.Component {
     };
     this.setState({ seedWords: updatedSeedWords }, () => {
       const mnemonic = this.getSeedWordsStr();
+      console.log("this.props.mnemonic", this.props.mnemonic);
+      console.log("this.props.decode", this.props.decode);
       if (this.props.mnemonic && this.isMatch()) {
         this.props
           .decode(mnemonic)
-          .then(response => this.props.onChange(response.getDecodedSeed()))
+          .then(response => {
+            console.log("got response", response);
+            return this.props.onChange(response.getDecodedSeed());
+          })
           .then(() => this.setState({ seedError: null }))
           .catch(onError);
       } else {
         this.props.onChange(null);
         this.props
-          .decode(mnemonic)
+          .decode(mnemonic, "")
           .then(response => {
+            const resp = response.getDecodedSeed();
+            console.log("got response", resp);
             this.setState({ mnemonic, seedError: null });
             this.props.onChange(response.getDecodedSeed());
           })
@@ -155,12 +144,34 @@ class ExistingSeed extends React.Component {
 
   getSeedWordsStr() {
     const { seedWords } = this.state;
+    console.log(seedWords);
     return Array.isArray(seedWords) ? seedWords.map(({ word }) => word).join(" ") : seedWords;
   }
 
   isMatch() {
     const mnemonic = this.state.mnemonic || this.props.mnemonic;
     return Boolean(mnemonic && this.getSeedWordsStr() === mnemonic);
+  }
+
+  render() {
+    const { onChangeSeedWord, setSeedWords, resetSeedWords } = this;
+    const isMatch = this.isMatch();
+    const { seedWords } = this.state;
+    const isEmpty = this.state.seedWords.length <= 1; // Weird errors with one word, better to count as empty
+    const seedError = isEmpty ? null : this.state.seedError;
+    return (
+      <ExistingSeedForm
+        {...{
+          seedWords,
+          setSeedWords,
+          onChangeSeedWord,
+          resetSeedWords,
+          isMatch,
+          seedError,
+          isEmpty
+        }}
+      />
+    );
   }
 }
 
