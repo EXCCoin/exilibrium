@@ -82,9 +82,8 @@ class CreateWalletForm extends React.Component {
   }
 
   isValid() {
-    //const { seed, passPhrase } = this.state;
-    //  return Boolean(seed && passPhrase);
-    return true;
+    const { seed, passPhrase } = this.state;
+    return Boolean(seed && passPhrase);
   }
   render() {
     const {
