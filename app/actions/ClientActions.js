@@ -566,6 +566,42 @@ export const GETTRANSACTIONS_COMPLETE = "GETTRANSACTIONS_COMPLETE";
 //
 // If empty, all transactions are accepted.
 function filterTransactions(transactions, filter) {
+  const res1 = [];
+  for (const tx of transactions) {
+    if (filter.types.length) {
+      if (filter.types.indexOf(tx.type) > -1) {
+        res1.push(tx);
+      }
+    } else {
+      res1.push(tx);
+    }
+  }
+  const res2 = [];
+  for (const tx of res1) {
+    if (filter.direction) {
+      if (filter.direction === tx.direction) {
+        res2.push(tx);
+      }
+    } else {
+      res2.push(tx);
+    }
+  }
+  const res3 = [];
+  for (const tx of res2) {
+    if (filter.search) {
+      if (
+        tx.creditAddresses.find(
+          address =>
+            address.length > 1 && address.toLowerCase().indexOf(filter.search.toLowerCase()) !== -1
+        ) !== undefined
+      ) {
+        res3.push(tx);
+      }
+    } else {
+      res3.push(tx);
+    }
+  }
+
   return transactions
     .filter(v => (filter.types.length ? filter.types.indexOf(v.type) > -1 : true))
     .filter(v => (filter.direction ? filter.direction === v.direction : true))
