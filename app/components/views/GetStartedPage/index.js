@@ -22,7 +22,6 @@ class GetStartedPage extends React.Component {
   state = { showSettings: false, showLogs: false, showReleaseNotes: false };
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     const { startStepIndex, getDaemonSynced, onRetryStartRPC } = this.props;
     if (
       startStepIndex !== nextProps.startStepIndex ||

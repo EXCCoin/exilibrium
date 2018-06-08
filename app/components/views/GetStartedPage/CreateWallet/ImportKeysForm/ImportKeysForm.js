@@ -3,6 +3,8 @@ import { FormattedMessage as T } from "react-intl";
 
 import { KeyBlueButton } from "buttons";
 import { TextInput, PasswordInput } from "inputs";
+import { createWallet } from "connectors";
+import CreatePassPhrase from "../CreateWalletForm/CreatePassPhrase";
 
 import { ImportKeysFormTypes } from "../../types";
 import "style/ImportKeysForm.less";
@@ -16,19 +18,39 @@ class ImportKeysForm extends Component {
     decryptor.resetState();
     fileHandler.resetState();
   }
+
+  onCreateWallet() {
+    if (!this.isValid()) {
+      return;
+    }
+    const { createWalletRequest, mnemonic } = this.props;
+    const { passPhrase } = this.state;
+    const pubpass = ""; // Temporarily disabled?
+    console.log(pubpass, passPhrase, mnemonic.join(" "));
+    console.log(createWalletRequest);
+    //createWalletRequest(pubpass, passPhrase, mnemonic.join(" "), false);
+  }
+
+  isValid() {
+    const { mnemonic, passPhrase } = this.state;
+    const seed = mnemonic.join("");
+    return Boolean(seed && passPhrase);
+  }
   render() {
     const {
       decryptor,
       fileHandler,
       mnemonic,
-      walletName,
       errorMessage,
       selectedFileName,
       encryptedString,
       encryptionPassword,
-      copayPassphrase
+      copayPassphrase,
+      // new props
+      isCreatingWallet
     } = this.props;
     const hasMnemonic = Boolean(mnemonic.length);
+    const isValid = this.isValid();
     return (
       <div className="import-keys-wrapper">
         <h2>
@@ -115,8 +137,6 @@ class ImportKeysForm extends Component {
             <h3>
               <T id="wallet.importKeys.step4.title" m="4. Confirm decrypted data" />
             </h3>
-            <h3>Wallet name </h3>
-            <div>{walletName}</div>
             <h3>Decrypted mnemonic </h3>
             {mnemonic.map(word => (
               <div className="keys-import-mnemonic-word" key={word}>
@@ -126,15 +146,20 @@ class ImportKeysForm extends Component {
           </div>
         )}
         {hasMnemonic && (
-          <div className="import-keys-submit-section">
-            <KeyBlueButton onClick={() => {}}>
-              <T id="wallet.importKeys.button" m="Import keys" />
-            </KeyBlueButton>
-          </div>
+          <CreatePassPhrase onChange={this.setPassPhrase} onSubmit={this.onCreateWallet} />
+        )}
+        {hasMnemonic && (
+          <KeyBlueButton
+            className="wallet-key-blue-button"
+            disabled={!isValid || isCreatingWallet}
+            loading={isCreatingWallet}
+            onClick={this.onCreateWallet}>
+            <T id="createWallet.createWalletBtn" m="Create Wallet" />
+          </KeyBlueButton>
         )}
       </div>
     );
   }
 }
 
-export default ImportKeysForm;
+export default createWallet(ImportKeysForm);

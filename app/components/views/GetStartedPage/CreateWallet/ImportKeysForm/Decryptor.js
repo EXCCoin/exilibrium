@@ -19,8 +19,7 @@ class Decryptor extends Component {
   getInitialState() {
     return {
       encryptionPassword: "",
-      mnemonic: [],
-      walletName: ""
+      mnemonic: []
     };
   }
   resetState() {
@@ -35,9 +34,8 @@ class Decryptor extends Component {
     try {
       const decrypted = sjcl.decrypt(encryptionPassword, encryptedString);
       const privateKeysObject = JSON.parse(decrypted);
-      const { walletName, mnemonic } = privateKeysObject;
+      const { mnemonic } = privateKeysObject;
       this.setState({
-        walletName,
         mnemonic: mnemonic.split(" ")
       });
       validator.resetErrorMessage();
@@ -47,12 +45,11 @@ class Decryptor extends Component {
   }
 
   render() {
-    const { mnemonic, walletName, encryptionPassword } = this.state;
+    const { mnemonic, encryptionPassword } = this.state;
     const { decrypt, onPasswordChange, resetState } = this;
     return this.props.children({
       decryptor: { decrypt, onPasswordChange, resetState },
       mnemonic,
-      walletName,
       encryptionPassword
     });
   }

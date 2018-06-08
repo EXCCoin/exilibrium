@@ -160,7 +160,6 @@ export const ImportKeysFormTypes = {
     resetState: func.isRequired
   }),
   mnemonic: arrayOf(string).isRequired,
-  walletName: string.isRequired,
   encryptedString: string.isRequired,
   importKeys: func.isRequired,
   encryptionPassword: string.isRequired,

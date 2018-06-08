@@ -105,11 +105,6 @@ export const CREATEWALLET_SUCCESS = "CREATEWALLET_SUCCESS";
 
 export const createWalletRequest = (pubPass, privPass, seed, existing) => (dispatch, getState) => {
   dispatch({ existing, type: CREATEWALLET_ATTEMPT });
-  console.log(wallet);
-  console.log(pubPass);
-  console.log(privPass);
-  console.log(seed);
-  console.log(existing);
   return wallet
     .createWallet(getState().walletLoader.loader, pubPass, privPass, seed)
     .then(() => {
