@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2018-04-20T15:15:36.775Z\n"
+"POT-Creation-Date: 2018-06-11T09:21:13.658Z\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
@@ -58,25 +58,25 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/TicketAutoBuyer/Details.json
 #. [autobuyer.invalidMaxFee]
 #. defaultMessage is:
-#. *Invalid max fee (0 - 0.1 DCR/KB)
+#. *Invalid max fee (0 - 0.1 EXCC/KB)
 msgctxt "autobuyer.invalidMaxFee"
-msgid "*Invalid max fee (0 - 0.1 DCR/KB)"
+msgid "*Invalid max fee (0 - 0.1 EXCC/KB)"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/PurchaseTicketsAdvanced.json
 #. [purchaseTickets.errors.invalidTicketFee]
 #. defaultMessage is:
-#. *Invalid ticket fee (0 - 0.1 DCR/KB)
+#. *Invalid ticket fee (0 - 0.1 EXCC/KB)
 msgctxt "purchaseTickets.errors.invalidTicketFee"
-msgid "*Invalid ticket fee (0 - 0.1 DCR/KB)"
+msgid "*Invalid ticket fee (0 - 0.1 EXCC/KB)"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/PurchaseTicketsAdvanced.json
 #. [purchaseTickets.errors.invalidTxFee]
 #. defaultMessage is:
-#. *Invalid tx fee (0 - 0.1 DCR/KB)
+#. *Invalid tx fee (0 - 0.1 EXCC/KB)
 msgctxt "purchaseTickets.errors.invalidTxFee"
-msgid "*Invalid tx fee (0 - 0.1 DCR/KB)"
+msgid "*Invalid tx fee (0 - 0.1 EXCC/KB)"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/ChangePassphraseModal/Modal.json
@@ -183,6 +183,14 @@ msgctxt "changePassModal.newPassphraseRequired"
 msgid "*Please type your new passphrase"
 msgstr ""
 
+#: app/i18n/extracted/app/components/modals/GapLimitInfoModalContent.json
+#. [gapLimit.info.warning]
+#. defaultMessage is:
+#. *Warning* This gap limit setting should typically be left alone.  An increase to the gap limit could cause major performance degradation.
+msgctxt "gapLimit.info.warning"
+msgid "*Warning* This gap limit setting should typically be left alone.  An increase to the gap limit could cause major performance degradation."
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.3.text.p23]
 #. defaultMessage is:
@@ -199,12 +207,60 @@ msgctxt "stake.notRedeemed.content2"
 msgid "1. Each stakepool account you create can only be associated with 1 wallet. If you have previously created this stakepool account with a different wallet (different seed), then you must create a new account."
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.title]
+#. defaultMessage is:
+#. 1. Export from copay
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.title]
+#. defaultMessage is:
+#. 1. Export from copay
+msgctxt "wallet.importKeys.step1.title"
+msgid "1. Export from copay"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/StakePools/AddForm.json
 #. [stake.notRedeemed.content3]
 #. defaultMessage is:
 #. 2. If you had previously used a ‘voting account’, for your ticket purchases, please go to the Accounts page and create a new account. This may now allow you to successfully import your script for your stakepool.
 msgctxt "stake.notRedeemed.content3"
 msgid "2. If you had previously used a ‘voting account’, for your ticket purchases, please go to the Accounts page and create a new account. This may now allow you to successfully import your script for your stakepool."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step2.title]
+#. defaultMessage is:
+#. 2. Upload file
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step2.title]
+#. defaultMessage is:
+#. 2. Upload file
+msgctxt "wallet.importKeys.step2.title"
+msgid "2. Upload file"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step3.title]
+#. defaultMessage is:
+#. 3. Type your encryption password
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step3.title]
+#. defaultMessage is:
+#. 3. Type your encryption password
+msgctxt "wallet.importKeys.step3.title"
+msgid "3. Type your encryption password"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step4.title]
+#. defaultMessage is:
+#. 4. Confirm decrypted data
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step4.title]
+#. defaultMessage is:
+#. 4. Confirm decrypted data
+msgctxt "wallet.importKeys.step4.title"
+msgid "4. Confirm decrypted data"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/StatisticsTab/charts/VoteTime.json
@@ -298,10 +354,10 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/AccountsPage/Accounts/List.json
 #. [accounts.description]
 #. defaultMessage is:
-#. Accounts allow you to keep separate records of your DCR funds.
-#. Transferring DCR across accounts will create a transaction on the blockchain.
+#. Accounts allow you to keep separate records of your EXCC funds.
+#. Transferring EXCC across accounts will create a transaction on the blockchain.
 msgctxt "accounts.description"
-msgid "Accounts allow you to keep separate records of your DCR funds.\nTransferring DCR across accounts will create a transaction on the blockchain."
+msgid "Accounts allow you to keep separate records of your EXCC funds.\nTransferring EXCC across accounts will create a transaction on the blockchain."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/AccountsPage/Accounts/List.json
@@ -532,6 +588,14 @@ msgctxt "export.balances.fields.spendable"
 msgid "Available balance for spending in regular transactions."
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/TicketsPage/StatisticsTab/charts/VoteTime.json
+#. [mytickets.statistics.votetime.average.label]
+#. defaultMessage is:
+#. Average vote time:
+msgctxt "mytickets.statistics.votetime.average.label"
+msgid "Average vote time:"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TicketsPage/MyTicketsTab/TicketListPage.json
 #. [ticketList.backBtn]
 #. defaultMessage is:
@@ -671,9 +735,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/HomePage/tables/NoTransactionsLinks.json
 #. [home.noTransactions.buyFromExchanges]
 #. defaultMessage is:
-#. Buy Decred from Exchanges
+#. Buy EXCC from Exchanges
 msgctxt "home.noTransactions.buyFromExchanges"
-msgid "Buy Decred from Exchanges"
+msgid "Buy EXCC from Exchanges"
 msgstr ""
 
 #: app/i18n/extracted/app/components/inputs/PathBrowseInput.json
@@ -775,9 +839,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.3.text.p3]
 #. defaultMessage is:
-#. Changes are inevitable for all digital currencies, whether deciding on development matters or resolving unexpected problems. Decred’s innovative governance system is built into the blockchain. This allows for seamless adaption to changes while keeping the existing blockchain ecosystem safe. The same tickets are also used as voting power when deciding on consensus changes.
+#. Changes are inevitable for all digital currencies, whether deciding on development matters or resolving unexpected problems. EXCC’s innovative governance system is built into the blockchain. This allows for seamless adaption to changes while keeping the existing blockchain ecosystem safe. The same tickets are also used as voting power when deciding on consensus changes.
 msgctxt "tutorial.step.3.text.p3"
-msgid "Changes are inevitable for all digital currencies, whether deciding on development matters or resolving unexpected problems. Decred’s innovative governance system is built into the blockchain. This allows for seamless adaption to changes while keeping the existing blockchain ecosystem safe. The same tickets are also used as voting power when deciding on consensus changes."
+msgid "Changes are inevitable for all digital currencies, whether deciding on development matters or resolving unexpected problems. EXCC’s innovative governance system is built into the blockchain. This allows for seamless adaption to changes while keeping the existing blockchain ecosystem safe. The same tickets are also used as voting power when deciding on consensus changes."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/SettingsPage/Page.json
@@ -813,6 +877,10 @@ msgid "Close"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/InfoModal/Modal.json
+#. [infoModal.btnClose]
+#. defaultMessage is:
+#. Close
+#: app/i18n/extracted/app/components/modals/PickImportTypeModal/index.json
 #. [infoModal.btnClose]
 #. defaultMessage is:
 #. Close
@@ -976,10 +1044,18 @@ msgstr ""
 #. [createWallet.createWalletBtn]
 #. defaultMessage is:
 #. Create Wallet
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [createWallet.createWalletBtn]
+#. defaultMessage is:
+#. Create Wallet
 msgctxt "createWallet.createWalletBtn"
 msgid "Create Wallet"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/CreationTypeSelectScreen.json
+#. [getStarted.newSeedTab]
+#. defaultMessage is:
+#. Create a New Wallet
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ExistingOrNewScreen.json
 #. [getStarted.newSeedTab]
 #. defaultMessage is:
@@ -1132,62 +1208,20 @@ msgctxt "charts.keys.day"
 msgid "Days"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
-#. [help.constitution.modal.title]
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importkeys.decryptButton]
 #. defaultMessage is:
-#. Decred Constitution
-msgctxt "help.constitution.modal.title"
-msgid "Decred Constitution"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/TutorialsPage/Staking/index.json
-#. [tutorial.staking.page1]
+#. Decrypt
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
+#. [wallet.importkeys.decryptButton]
 #. defaultMessage is:
-#. Decred holders can participate in the Staking (Proof-of Stake) process by purchasing tickets. These tickets are used to vote on miners’ Proof-of-Work in order to validate changes to the Decred blockchain, or on governance proposals within the Politeia system.
-#. 
-#.   Staking to verify PoW is rewarding, as each cast vote receives part of the Decred Block Reward. Typically, five tickets are included in each block, meaning each ticket holder receives 6% of the total block reward.
-msgctxt "tutorial.staking.page1"
-msgid "Decred holders can participate in the Staking (Proof-of Stake) process by purchasing tickets. These tickets are used to vote on miners’ Proof-of-Work in order to validate changes to the Decred blockchain, or on governance proposals within the Politeia system.\n\n  Staking to verify PoW is rewarding, as each cast vote receives part of the Decred Block Reward. Typically, five tickets are included in each block, meaning each ticket holder receives 6% of the total block reward."
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.0.text.p3]
+#. Decrypt
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importkeys.decryptButton]
 #. defaultMessage is:
-#. Decred uses an innovative hybrid proof-of-work (PoW) proof-of-stake (PoS) for validating the transactions, keeping the network secure and making decisions on the consensus rules.
-msgctxt "tutorial.step.0.text.p3"
-msgid "Decred uses an innovative hybrid proof-of-work (PoW) proof-of-stake (PoS) for validating the transactions, keeping the network secure and making decisions on the consensus rules."
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.1.text.p2]
-#. defaultMessage is:
-#. Decrediton Wallet can also be used for participating in staking (PoS) and project governance by time-locking your funds in return for tickets.
-msgctxt "tutorial.step.1.text.p2"
-msgid "Decrediton Wallet can also be used for participating in staking (PoS) and project governance by time-locking your funds in return for tickets."
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/TicketAutoBuyer/Form.json
-#. [tickets.startAutoBuyerConfirmation.description]
-#. defaultMessage is:
-#. Decrediton must remain running for tickets to be automatically purchased.
-msgctxt "tickets.startAutoBuyerConfirmation.description"
-msgid "Decrediton must remain running for tickets to be automatically purchased."
-msgstr ""
-
-#: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
-#. [tickets.info.txFee.message]
-#. defaultMessage is:
-#. Decrediton uses a "split" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The "split" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them.
-msgctxt "tickets.info.txFee.message"
-msgid "Decrediton uses a \"split\" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The \"split\" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them."
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/ReleaseNotes/Form.json
-#. [getStarted.logsTitle]
-#. defaultMessage is:
-#. Decrediton v1.1.2 Released
-msgctxt "getStarted.logsTitle"
-msgid "Decrediton v1.1.2 Released"
+#. Decrypt
+msgctxt "wallet.importkeys.decryptButton"
+msgid "Decrypt"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/OpenWallet/DecryptForm.json
@@ -1334,6 +1368,36 @@ msgctxt "appMenu.documentation"
 msgid "Documentation"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.listItem4]
+#. defaultMessage is:
+#. Download file (save it as '.json' file)
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.listItem4]
+#. defaultMessage is:
+#. Download file (save it as '.json' file)
+msgctxt "wallet.importKeys.step1.listItem4"
+msgid "Download file (save it as '.json' file)"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/TutorialsPage/Staking/index.json
+#. [tutorial.staking.page1]
+#. defaultMessage is:
+#. EXCC holders can participate in the Staking (Proof-of Stake) process by purchasing tickets. These tickets are used to vote on miners’ Proof-of-Work in order to validate changes to the EXCC blockchain, or on governance proposals within the Politeia system.
+#. 
+#.   Staking to verify PoW is rewarding, as each cast vote receives part of the EXCC Block Reward. Typically, five tickets are included in each block, meaning each ticket holder receives 6% of the total block reward.
+msgctxt "tutorial.staking.page1"
+msgid "EXCC holders can participate in the Staking (Proof-of Stake) process by purchasing tickets. These tickets are used to vote on miners’ Proof-of-Work in order to validate changes to the EXCC blockchain, or on governance proposals within the Politeia system.\n\n  Staking to verify PoW is rewarding, as each cast vote receives part of the EXCC Block Reward. Typically, five tickets are included in each block, meaning each ticket holder receives 6% of the total block reward."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.0.text.p3]
+#. defaultMessage is:
+#. EXCC uses an innovative hybrid proof-of-work (PoW) proof-of-stake (PoS) for validating the transactions, keeping the network secure and making decisions on the consensus rules.
+msgctxt "tutorial.step.0.text.p3"
+msgid "EXCC uses an innovative hybrid proof-of-work (PoW) proof-of-stake (PoS) for validating the transactions, keeping the network secure and making decisions on the consensus rules."
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TransactionsPage/ReceiveTab/index.json
 #. [transactions.description.receive]
 #. defaultMessage is:
@@ -1407,9 +1471,9 @@ msgstr ""
 #. defaultMessage is:
 #. Enter the passphrase you just created to scan the blockchain for additional accounts you may have previously created with your wallet.
 #. 
-#.             Your account names aren't stored on the blockchain, so you will have to rename them after setting up Decrediton.
+#.             Your account names aren't stored on the blockchain, so you will have to rename them after setting up Exilibrium.
 msgctxt "getStarted.discoverAccountsInfo"
-msgid "Enter the passphrase you just created to scan the blockchain for additional accounts you may have previously created with your wallet.\n\n            Your account names aren't stored on the blockchain, so you will have to rename them after setting up Decrediton."
+msgid "Enter the passphrase you just created to scan the blockchain for additional accounts you may have previously created with your wallet.\n\n            Your account names aren't stored on the blockchain, so you will have to rename them after setting up Exilibrium."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/AdvancedStartup/AppDataForm.json
@@ -1536,12 +1600,52 @@ msgctxt "getStarted.chainLoading.syncEstimation"
 msgid "Estimated time left"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
+#. [help.constitution.modal.title]
+#. defaultMessage is:
+#. Excc Constitution
+msgctxt "help.constitution.modal.title"
+msgid "Excc Constitution"
+msgstr ""
+
 #: app/i18n/extracted/static/menus.json
 #. [appMenu.exilibrium]
 #. defaultMessage is:
 #. Exilibrium
 msgctxt "appMenu.exilibrium"
 msgid "Exilibrium"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.1.text.p2]
+#. defaultMessage is:
+#. Exilibrium Wallet can also be used for participating in staking (PoS) and project governance by time-locking your funds in return for tickets.
+msgctxt "tutorial.step.1.text.p2"
+msgid "Exilibrium Wallet can also be used for participating in staking (PoS) and project governance by time-locking your funds in return for tickets."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/TicketAutoBuyer/Form.json
+#. [tickets.startAutoBuyerConfirmation.description]
+#. defaultMessage is:
+#. Exilibrium must remain running for tickets to be automatically purchased.
+msgctxt "tickets.startAutoBuyerConfirmation.description"
+msgid "Exilibrium must remain running for tickets to be automatically purchased."
+msgstr ""
+
+#: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
+#. [tickets.info.txFee.message]
+#. defaultMessage is:
+#. Exilibrium uses a "split" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The "split" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them.
+msgctxt "tickets.info.txFee.message"
+msgid "Exilibrium uses a \"split\" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The \"split\" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/ReleaseNotes/Form.json
+#. [getStarted.logsTitle]
+#. defaultMessage is:
+#. Exilibrium v{version} Released
+msgctxt "getStarted.logsTitle"
+msgid "Exilibrium v{version} Released"
 msgstr ""
 
 #: app/i18n/extracted/app/components/TxHistory/TxHistoryRow/StakeTxRow.json
@@ -1716,6 +1820,22 @@ msgctxt "getStarted.header.fetchingBlockHeaders.meta"
 msgid "Fetching block headers"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.decryptionFailed]
+#. defaultMessage is:
+#. File decryption failed, reason: {err}
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
+#. [wallet.importkeys.error.decryptionFailed]
+#. defaultMessage is:
+#. File decryption failed, reason: {err}
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.decryptionFailed]
+#. defaultMessage is:
+#. File decryption failed, reason: {err}
+msgctxt "wallet.importkeys.error.decryptionFailed"
+msgid "File decryption failed, reason: {err}"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TransactionsPage/HistoryTab/Page.json
 #. [txhistory.filterByAddrPlaceholder]
 #. defaultMessage is:
@@ -1744,6 +1864,10 @@ msgstr ""
 #. [agenda.card.finishedIndicator]
 #. defaultMessage is:
 #. Finished
+#: app/i18n/extracted/app/components/views/TicketsPage/GovernanceTab/AgendaOverview/Overview.json
+#. [agenda.card.finishedIndicator]
+#. defaultMessage is:
+#. Finished
 msgctxt "agenda.card.finishedIndicator"
 msgid "Finished"
 msgstr ""
@@ -1754,14 +1878,6 @@ msgstr ""
 #. Forum
 msgctxt "help.forum"
 msgid "Forum"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
-#. [help.freenode]
-#. defaultMessage is:
-#. Freenode
-msgctxt "help.freenode"
-msgid "Freenode"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/Form.json
@@ -1789,6 +1905,30 @@ msgid "Funds can be time-locked in return for tickets on the network. Tickets ar
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/SettingsPage/GeneralSettings.json
+#. [settings.gapLimit.label]
+#. defaultMessage is:
+#. Gap Limit
+msgctxt "settings.gapLimit.label"
+msgid "Gap Limit"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/SettingsPage/GeneralSettings.json
+#. [settings.gapLimit.information]
+#. defaultMessage is:
+#. Gap Limit information
+msgctxt "settings.gapLimit.information"
+msgid "Gap Limit information"
+msgstr ""
+
+#: app/i18n/extracted/app/components/modals/GapLimitInfoModalContent.json
+#. [gapLimit.info.first]
+#. defaultMessage is:
+#. Gap limit sets the amount of addresses that the wallet will generate and look ahead to determine usage.  By default, the gap limit is set to 20.  This means 2 things.  1) When wallet first loads, it scans for address usage and expects the largest gap between addresses to be 20.  2) When providing user with newly generated addresses it will only give 20 addresses then loop back, which ensures that gaps are no larger than 20.
+msgctxt "gapLimit.info.first"
+msgid "Gap limit sets the amount of addresses that the wallet will generate and look ahead to determine usage.  By default, the gap limit is set to 20.  This means 2 things.  1) When wallet first loads, it scans for address usage and expects the largest gap between addresses to be 20.  2) When providing user with newly generated addresses it will only give 20 addresses then loop back, which ensures that gaps are no larger than 20."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/SettingsPage/GeneralSettings.json
 #. [settings.general.title]
 #. defaultMessage is:
 #. General
@@ -1799,9 +1939,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/HomePage/tables/NoTransactionsLinks.json
 #. [home.noTransactions.receiveLink]
 #. defaultMessage is:
-#. Generate a DCR Address for receiving funds
+#. Generate a EXCC Address for receiving funds
 msgctxt "home.noTransactions.receiveLink"
-msgid "Generate a DCR Address for receiving funds"
+msgid "Generate a EXCC Address for receiving funds"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TransactionsPage/ReceiveTab/Page.json
@@ -1842,6 +1982,20 @@ msgstr ""
 #. Go back
 msgctxt "logs.goBack"
 msgid "Go back"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.listItem2]
+#. defaultMessage is:
+#. Go to Settings -> Wallets -> Choose your wallet -> More Options -> Export Wallet ->
+#.             File/Text
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.listItem2]
+#. defaultMessage is:
+#. Go to Settings -> Wallets -> Choose your wallet -> More Options -> Export Wallet ->
+#.             File/Text
+msgctxt "wallet.importKeys.step1.listItem2"
+msgid "Go to Settings -> Wallets -> Choose your wallet -> More Options -> Export Wallet ->\n            File/Text"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/HomePage/tables/TicketActivity.json
@@ -1975,9 +2129,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.2.text.p3]
 #. defaultMessage is:
-#. If the wallet encryption passphrase is forgotten or the wallet is destroyed (e.g. computer breaks), the seed can be used to recover the wallet. Same seed can also be used to export your wallet to other Decred wallet clients.
+#. If the wallet encryption passphrase is forgotten or the wallet is destroyed (e.g. computer breaks), the seed can be used to recover the wallet. Same seed can also be used to export your wallet to other EXCC wallet clients.
 msgctxt "tutorial.step.2.text.p3"
-msgid "If the wallet encryption passphrase is forgotten or the wallet is destroyed (e.g. computer breaks), the seed can be used to recover the wallet. Same seed can also be used to export your wallet to other Decred wallet clients."
+msgid "If the wallet encryption passphrase is forgotten or the wallet is destroyed (e.g. computer breaks), the seed can be used to recover the wallet. Same seed can also be used to export your wallet to other EXCC wallet clients."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/FetchBlockHeaders/Form.json
@@ -1991,9 +2145,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
 #. [help.description.links]
 #. defaultMessage is:
-#. If you have any difficulty with decrediton, please use the following links to help find a solution.
+#. If you have any difficulty with exilibrium, please use the following links to help find a solution.
 msgctxt "help.description.links"
-msgid "If you have any difficulty with decrediton, please use the following links to help find a solution."
+msgid "If you have any difficulty with exilibrium, please use the following links to help find a solution."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/StakePools/AddForm.json
@@ -2076,6 +2230,26 @@ msgctxt "tickets.importScriptConfirmation"
 msgid "Import Script Confirmation"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/CreationTypeSelectScreen.json
+#. [getStarted.importKeysTab]
+#. defaultMessage is:
+#. Import keys
+msgctxt "getStarted.importKeysTab"
+msgid "Import keys"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.title]
+#. defaultMessage is:
+#. Import keys from copay wallet
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.title]
+#. defaultMessage is:
+#. Import keys from copay wallet
+msgctxt "wallet.importKeys.title"
+msgid "Import keys from copay wallet"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/Form.json
 #. [purchaseTickets.importDisabledRescan]
 #. defaultMessage is:
@@ -2084,28 +2258,12 @@ msgctxt "purchaseTickets.importDisabledRescan"
 msgid "Importing scripts is disabled during a rescan."
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/TicketsPage/GovernanceTab/AgendaCard.json
-#. [agenda.card.inProgressIndicator]
-#. defaultMessage is:
-#. In Progress
-msgctxt "agenda.card.inProgressIndicator"
-msgid "In Progress"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/TicketsPage/GovernanceTab/AgendaOverview/Overview.json
-#. [agenda.overview.inProgressIndicator]
-#. defaultMessage is:
-#. In Progress
-msgctxt "agenda.overview.inProgressIndicator"
-msgid "In Progress"
-msgstr ""
-
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.0.text.p4]
 #. defaultMessage is:
-#. In return for participation, miners (PoW) and stakers (PoS) are rewarded with newly generated Decred tokens.
+#. In return for participation, miners (PoW) and stakers (PoS) are rewarded with newly generated EXCC tokens.
 msgctxt "tutorial.step.0.text.p4"
-msgid "In return for participation, miners (PoW) and stakers (PoS) are rewarded with newly generated Decred tokens."
+msgid "In return for participation, miners (PoW) and stakers (PoS) are rewarded with newly generated EXCC tokens."
 msgstr ""
 
 #: app/i18n/extracted/app/components/buttons/RescanButton.json
@@ -2127,6 +2285,22 @@ msgstr ""
 #. Insufficient spendable account balance to purchase tickets.
 msgctxt "purchaseTickets.errors.insufficientBalance"
 msgid "Insufficient spendable account balance to purchase tickets."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.incorrectFieldValue]
+#. defaultMessage is:
+#. Invalid '{paramName}' parameter value: {paramValue}, expected: {expectedValue}
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
+#. [wallet.importkeys.error.incorrectFieldValue]
+#. defaultMessage is:
+#. Invalid '{paramName}' parameter value: {paramValue}, expected: {expectedValue}
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.incorrectFieldValue]
+#. defaultMessage is:
+#. Invalid '{paramName}' parameter value: {paramValue}, expected: {expectedValue}
+msgctxt "wallet.importkeys.error.incorrectFieldValue"
+msgid "Invalid '{paramName}' parameter value: {paramValue}, expected: {expectedValue}"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/SecurityPage/ValidateAddress/index.json
@@ -2160,9 +2334,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.1.text.p1]
 #. defaultMessage is:
-#. It can be used to send and receive Decred funds, and acts as a personal ledger of transactions.
+#. It can be used to send and receive EXCC funds, and acts as a personal ledger of transactions.
 msgctxt "tutorial.step.1.text.p1"
-msgid "It can be used to send and receive Decred funds, and acts as a personal ledger of transactions."
+msgid "It can be used to send and receive EXCC funds, and acts as a personal ledger of transactions."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
@@ -2220,9 +2394,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
 #. [help.description.tutorials]
 #. defaultMessage is:
-#. Learn about the various aspects of the Decred network.
+#. Learn about the various aspects of the EXCC network.
 msgctxt "help.description.tutorials"
-msgid "Learn about the various aspects of the Decred network."
+msgid "Learn about the various aspects of the EXCC network."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
@@ -2260,9 +2434,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/indicators/LoaderBarBottom.json
 #. [getStarted.chainLoading.syncEstimation.small]
 #. defaultMessage is:
-#. Loading Decred blockchain, estimated time left
+#. Loading EXCC blockchain, estimated time left
 msgctxt "getStarted.chainLoading.syncEstimation.small"
-msgid "Loading Decred blockchain, estimated time left"
+msgid "Loading EXCC blockchain, estimated time left"
 msgstr ""
 
 #: app/i18n/extracted/app/components/indicators/LoadingMoreTransactions.json
@@ -2352,10 +2526,10 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/TransactionsPage/SendTab/index.json
 #. [transactions.description.send.mainnet]
 #. defaultMessage is:
-#. Mainnet Decred addresses always begin with letter D and contain 26-35 alphanumeric characters
+#. Mainnet EXCC addresses always begin with letter E and contain 26-35 alphanumeric characters
 #. (e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).
 msgctxt "transactions.description.send.mainnet"
-msgid "Mainnet Decred addresses always begin with letter D and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
+msgid "Mainnet EXCC addresses always begin with letter E and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
@@ -2372,14 +2546,6 @@ msgstr ""
 #. Manually import a redeem script for tickets.
 msgctxt "purchaseTickets.import"
 msgid "Manually import a redeem script for tickets."
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
-#. [help.matrix]
-#. defaultMessage is:
-#. Matrix Chat
-msgctxt "help.matrix"
-msgid "Matrix Chat"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/TicketAutoBuyerInfoModalContent.json
@@ -2602,6 +2768,22 @@ msgctxt "noTransactions.description"
 msgid "No Transactions Found"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.noFile]
+#. defaultMessage is:
+#. No file selected
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
+#. [wallet.importkeys.error.noFile]
+#. defaultMessage is:
+#. No file selected
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.noFile]
+#. defaultMessage is:
+#. No file selected
+msgctxt "wallet.importkeys.error.noFile"
+msgid "No file selected"
+msgstr ""
+
 #: app/i18n/extracted/app/components/indicators/NoMoreTransactions.json
 #. [history.noMoreTransactions]
 #. defaultMessage is:
@@ -2749,9 +2931,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.3.text.p1]
 #. defaultMessage is:
-#. Participation in staking (PoS) requires only existing Decred funds.
+#. Participation in staking (PoS) requires only existing EXCC funds.
 msgctxt "tutorial.step.3.text.p1"
-msgid "Participation in staking (PoS) requires only existing Decred funds."
+msgid "Participation in staking (PoS) requires only existing EXCC funds."
 msgstr ""
 
 #: app/i18n/extracted/static/menus.json
@@ -2804,6 +2986,38 @@ msgstr ""
 #.           If you are sure you understand the risks and still want to copy the seed to the clipboard, please type the phrase {confirmationPhrase} in the box below and the seed will be copied to the clipboard.
 msgctxt "seedCopyConfirmModal.warningText"
 msgid "Please note that copying the seed to the clipboard may be a security risk, as other applications may be able to monitor and copy the contents of the clipboard.\n\n          It is also highly unadvised to maintain the seed on a computer file, specially without encryption, as that can lead to stealing of funds by anyone with access to the computer.\n\n          Further, storing the seed on a computer file without backing it up on a physical medium (written down piece of paper stored in a secure location) can cause loss of funds if the local wallet file gets corrupted or is otherwise unavailable (due to hardware failure or any other number of issues).\n\n          If you want to learn more about seed security, please check our seed FAQ located at {seedFaqURL}.\n\n          If you are sure you understand the risks and still want to copy the seed to the clipboard, please type the phrase {confirmationPhrase} in the box below and the seed will be copied to the clipboard."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.incorrectType]
+#. defaultMessage is:
+#. Please select file of type 'application/json'. Selected: {fileType}
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
+#. [wallet.importkeys.error.incorrectType]
+#. defaultMessage is:
+#. Please select file of type 'application/json'. Selected: {fileType}
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.incorrectType]
+#. defaultMessage is:
+#. Please select file of type 'application/json'. Selected: {fileType}
+msgctxt "wallet.importkeys.error.incorrectType"
+msgid "Please select file of type 'application/json'. Selected: {fileType}"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.incorrectExtension]
+#. defaultMessage is:
+#. Please select file with extension '.aes.json'. Selected: {fileName}
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
+#. [wallet.importkeys.error.incorrectExtension]
+#. defaultMessage is:
+#. Please select file with extension '.aes.json'. Selected: {fileName}
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.incorrectExtension]
+#. defaultMessage is:
+#. Please select file with extension '.aes.json'. Selected: {fileName}
+msgctxt "wallet.importkeys.error.incorrectExtension"
+msgid "Please select file with extension '.aes.json'. Selected: {fileName}"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/PurchaseTicketsAdvanced.json
@@ -3053,9 +3267,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/TransactionsPage/SendTab/Page.json
 #. [send.rebroadcastTooltip]
 #. defaultMessage is:
-#. Rebroadcasting transactions may help in situations when a transaction has been sent to a node that had poor connectivity to the general Decred network.
+#. Rebroadcasting transactions may help in situations when a transaction has been sent to a node that had poor connectivity to the general EXCC network.
 msgctxt "send.rebroadcastTooltip"
-msgid "Rebroadcasting transactions may help in situations when a transaction has been sent to a node that had poor connectivity to the general Decred network."
+msgid "Rebroadcasting transactions may help in situations when a transaction has been sent to a node that had poor connectivity to the general EXCC network."
 msgstr ""
 
 #: app/i18n/extracted/app/components/Snackbar/Notification/Transaction.json
@@ -3096,6 +3310,14 @@ msgstr ""
 #. Received
 msgctxt "transaction.type.received"
 msgid "Received"
+msgstr ""
+
+#: app/i18n/extracted/app/components/Snackbar/Notification/Transaction.json
+#. [notifications.type.mine]
+#. defaultMessage is:
+#. Received block reward
+msgctxt "notifications.type.mine"
+msgid "Received block reward"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/HomePage/tables/TicketActivity.json
@@ -3213,9 +3435,25 @@ msgstr ""
 #: app/i18n/extracted/app/reducers/snackbar.json
 #. [send.publishUnminedTransactions.success]
 #. defaultMessage is:
-#. Republished unmined transactions to the decred network.
+#. Republished unmined transactions to the excc network.
 msgctxt "send.publishUnminedTransactions.success"
-msgid "Republished unmined transactions to the decred network."
+msgid "Republished unmined transactions to the excc network."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.noField]
+#. defaultMessage is:
+#. Required field '{field}' doesn't exist
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
+#. [wallet.importkeys.error.noField]
+#. defaultMessage is:
+#. Required field '{field}' doesn't exist
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.noField]
+#. defaultMessage is:
+#. Required field '{field}' doesn't exist
+msgctxt "wallet.importkeys.error.noField"
+msgid "Required field '{field}' doesn't exist"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/RescanWallet/Form.json
@@ -3234,6 +3472,10 @@ msgctxt "rescan.rescanning"
 msgid "Rescanning {blockProgress} ({progressPercent})"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/CreationTypeSelectScreen.json
+#. [getStarted.existingSeedTab]
+#. defaultMessage is:
+#. Restore Existing Wallet
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ExistingOrNewScreen.json
 #. [getStarted.existingSeedTab]
 #. defaultMessage is:
@@ -3324,14 +3566,6 @@ msgstr ""
 #. Revokes
 msgctxt "transaction.type.revokes"
 msgid "Revokes"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
-#. [help.rocketchat]
-#. defaultMessage is:
-#. RocketChat
-msgctxt "help.rocketchat"
-msgid "RocketChat"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
@@ -3490,6 +3724,22 @@ msgctxt "accountsSelect.placeholder"
 msgid "Select account"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.invalidJSON]
+#. defaultMessage is:
+#. Selected file content is not valid JSON
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
+#. [wallet.importkeys.error.invalidJSON]
+#. defaultMessage is:
+#. Selected file content is not valid JSON
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.invalidJSON]
+#. defaultMessage is:
+#. Selected file content is not valid JSON
+msgctxt "wallet.importkeys.error.invalidJSON"
+msgid "Selected file content is not valid JSON"
+msgstr ""
+
 #: app/i18n/extracted/app/components/Snackbar/Notification/Transaction.json
 #. [notifications.type.send]
 #. defaultMessage is:
@@ -3570,6 +3820,18 @@ msgctxt "appMenu.services"
 msgid "Services"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.listItem3]
+#. defaultMessage is:
+#. Set up encrytion password
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.listItem3]
+#. defaultMessage is:
+#. Set up encrytion password
+msgctxt "wallet.importKeys.step1.listItem3"
+msgid "Set up encrytion password"
+msgstr ""
+
 #: app/i18n/extracted/app/components/SideBar/MenuLinks/index.json
 #. [sidebar.link.settings]
 #. defaultMessage is:
@@ -3641,9 +3903,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/ShutdownAppPage.json
 #. [shutdown.header.title]
 #. defaultMessage is:
-#. Shutting down Decrediton
+#. Shutting down Exilibrium
 msgctxt "shutdown.header.title"
-msgid "Shutting down Decrediton"
+msgid "Shutting down Exilibrium"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/SecurityPage/SignMessage/Form.json
@@ -3689,9 +3951,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/SignMessageInfoModalContent.json
 #. [sign.info.message]
 #. defaultMessage is:
-#. Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 DCR to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID.
+#. Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 EXCC to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID.
 msgctxt "sign.info.message"
-msgid "Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 DCR to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID."
+msgid "Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 EXCC to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/AdvancedStartup/Form.json
@@ -3825,9 +4087,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.3.text.p4]
 #. defaultMessage is:
-#. Staking encourages long term investment in Decred by giving the stakeholders decision-making power in projects governance as well rewarding them for participation.
+#. Staking encourages long term investment in  by giving the stakeholders decision-making power in projects governance as well rewarding them for participation.
 msgctxt "tutorial.step.3.text.p4"
-msgid "Staking encourages long term investment in Decred by giving the stakeholders decision-making power in projects governance as well rewarding them for participation."
+msgid "Staking encourages long term investment in  by giving the stakeholders decision-making power in projects governance as well rewarding them for participation."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/AdvancedStartup/Form.json
@@ -3921,30 +4183,30 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/TransactionsPage/SendTab/index.json
 #. [transactions.description.send.testnet]
 #. defaultMessage is:
-#. Testnet Decred addresses always begin with letter T and contain 26-35 alphanumeric characters
+#. Testnet EXCC ades always begin with letter T and contain 26-35 alphanumeric characters
 #. (e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).
 msgctxt "transactions.description.send.testnet"
-msgid "Testnet Decred addresses always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
+msgid "Testnet EXCC ades always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/InvalidRPCVersion.json
 #. [invalidRPCVersion.info]
 #. defaultMessage is:
-#. The API of the currently running wallet ({walletRPCVersion}) is not compatible with Decrediton (required version {requiredWalletRPCVersion}).
+#. The API of the currently running wallet ({walletRPCVersion}) is not compatible with Exilibrium (required version {requiredWalletRPCVersion}).
 #. 
-#.         Please update the daemon (dcrd) and wallet (dcrwallet) to the latest version, then try again.
+#.         Please update the daemon (exccd) and wallet (exccwallet) to the latest version, then try again.
 #. 
 #.         See the "Help ⮕ About" menu for the current version of the executables.
 msgctxt "invalidRPCVersion.info"
-msgid "The API of the currently running wallet ({walletRPCVersion}) is not compatible with Decrediton (required version {requiredWalletRPCVersion}).\n\n        Please update the daemon (dcrd) and wallet (dcrwallet) to the latest version, then try again.\n\n        See the \"Help ⮕ About\" menu for the current version of the executables."
+msgid "The API of the currently running wallet ({walletRPCVersion}) is not compatible with Exilibrium (required version {requiredWalletRPCVersion}).\n\n        Please update the daemon (exccd) and wallet (exccwallet) to the latest version, then try again.\n\n        See the \"Help ⮕ About\" menu for the current version of the executables."
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 #. [tickets.info.votingAddress.message]
 #. defaultMessage is:
-#. The Decred address that will do the voting.
+#. The EXCC address that will do the voting.
 msgctxt "tickets.info.votingAddress.message"
-msgid "The Decred address that will do the voting."
+msgid "The EXCC address that will do the voting."
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
@@ -3958,9 +4220,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.0.text.bold.p1]
 #. defaultMessage is:
-#. The blockchain is the heart of Decred,
+#. The blockchain is the heart of EXCC,
 msgctxt "tutorial.step.0.text.bold.p1"
-msgid "The blockchain is the heart of Decred,"
+msgid "The blockchain is the heart of EXCC,"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
@@ -4027,6 +4289,14 @@ msgctxt "votingPreferences.noAgenda"
 msgid "There are currently no agendas for voting."
 msgstr ""
 
+#: app/i18n/extracted/app/components/modals/GapLimitInfoModalContent.json
+#. [gapLimit.info.second]
+#. defaultMessage is:
+#. There are really only 2 reasons that you should be changing this value.  1) If your wallet was created and used heavily prior to roughly v1.0, it may have large address gaps.  If you restore from seed and notice that you are missing funds, you may increase this to 100 (then 1000 if not fixed) then restart decrediton.  Once your balance is resolved you can revert back to 20.  2) If you would like to be able to generate more than 20 addresses at a time without wrapping around.
+msgctxt "gapLimit.info.second"
+msgid "There are really only 2 reasons that you should be changing this value.  1) If your wallet was created and used heavily prior to roughly v1.0, it may have large address gaps.  If you restore from seed and notice that you are missing funds, you may increase this to 100 (then 1000 if not fixed) then restart decrediton.  Once your balance is resolved you can revert back to 20.  2) If you would like to be able to generate more than 20 addresses at a time without wrapping around."
+msgstr ""
+
 #: app/i18n/extracted/app/components/modals/BalanceOverviewModalContent.json
 #. [balanceInfoModal.immatureRewards.text]
 #. defaultMessage is:
@@ -4038,9 +4308,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/SeedInfoModalContent.json
 #. [seedEntry.info.message]
 #. defaultMessage is:
-#. This 33 word seed is what is used to derive everything about your particular wallet.  With this seed you can regenerate this wallet from anywhere in the world.  While this does offer flexibility and easy back ups, it also means that this seed should be handled with the utmost security.  We recommend only having seeds written by hand in the most secure location you have.
+#. This 12 word seed is what is used to derive everything about your particular wallet.  With this seed you can regenerate this wallet from anywhere in the world.  While this does offer flexibility and easy back ups, it also means that this seed should be handled with the utmost security.  We recommend only having seeds written by hand in the most secure location you have.
 msgctxt "seedEntry.info.message"
-msgid "This 33 word seed is what is used to derive everything about your particular wallet.  With this seed you can regenerate this wallet from anywhere in the world.  While this does offer flexibility and easy back ups, it also means that this seed should be handled with the utmost security.  We recommend only having seeds written by hand in the most secure location you have."
+msgid "This 12 word seed is what is used to derive everything about your particular wallet.  With this seed you can regenerate this wallet from anywhere in the world.  While this does offer flexibility and easy back ups, it also means that this seed should be handled with the utmost security.  We recommend only having seeds written by hand in the most secure location you have."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TransactionsPage/ReceiveTab/Page.json
@@ -4049,6 +4319,18 @@ msgstr ""
 #. This address is for
 msgctxt "receive.accountLabel"
 msgid "This address is for"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/TicketsPage/GovernanceTab/AgendaCard.json
+#. [agenda.card.finishedTooltip]
+#. defaultMessage is:
+#. This agenda has finished voting and PASSED.  You may still toggle your vote choices, but they will no longer be tallied.
+#: app/i18n/extracted/app/components/views/TicketsPage/GovernanceTab/AgendaOverview/Overview.json
+#. [agenda.card.finishedTooltip]
+#. defaultMessage is:
+#. This agenda has finished voting and PASSED.  You may still toggle your vote choices, but they will no longer be tallied.
+msgctxt "agenda.card.finishedTooltip"
+msgid "This agenda has finished voting and PASSED.  You may still toggle your vote choices, but they will no longer be tallied."
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/BalanceOverviewModalContent.json
@@ -4110,9 +4392,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/TicketAutoBuyerInfoModalContent.json
 #. [ticketAutoBuyer.info.maxPriceRelative.message]
 #. defaultMessage is:
-#. This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 DCR.
+#. This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 EXCC.
 msgctxt "ticketAutoBuyer.info.maxPriceRelative.message"
-msgid "This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 DCR."
+msgid "This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 EXCC."
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PassphraseInfoModalContent.json
@@ -4286,9 +4568,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 #. [tickets.info.ticketFee.header]
 #. defaultMessage is:
-#. Ticket fee (DCR/kB)
+#. Ticket fee (EXCC/kB)
 msgctxt "tickets.info.ticketFee.header"
-msgid "Ticket fee (DCR/kB)"
+msgid "Ticket fee (EXCC/kB)"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
@@ -4490,9 +4772,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/TransactionsPage/ExportTab/messages.json
 #. [export.balances.fields.totalStake]
 #. defaultMessage is:
-#. Total amount of DCR used on staking.
+#. Total amount of EXCC used on staking.
 msgctxt "export.balances.fields.totalStake"
-msgid "Total amount of DCR used on staking."
+msgid "Total amount of EXCC used on staking."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TransactionsPage/ExportTab/messages.json
@@ -4631,6 +4913,18 @@ msgctxt "notifications.type.transfer"
 msgid "Transfer"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.listItem1]
+#. defaultMessage is:
+#. Transfer funds from java wallet to copay wallet
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.listItem1]
+#. defaultMessage is:
+#. Transfer funds from java wallet to copay wallet
+msgctxt "wallet.importKeys.step1.listItem1"
+msgid "Transfer funds from java wallet to copay wallet"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TransactionsPage/HistoryTab/index.json
 #. [transaction.type.transfered]
 #. defaultMessage is:
@@ -4710,9 +5004,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 #. [tickets.info.txFee.header]
 #. defaultMessage is:
-#. Tx fee (DCR/kB)
+#. Tx fee (EXCC/kB)
 msgctxt "tickets.info.txFee.header"
-msgid "Tx fee (DCR/kB)"
+msgid "Tx fee (EXCC/kB)"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TransactionsPage/ExportTab/messages.json
@@ -4809,14 +5103,6 @@ msgstr ""
 #. Use Remote Daemon
 msgctxt "login.form.connect.button"
 msgid "Use Remote Daemon"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
-#. [help.matrix.info]
-#. defaultMessage is:
-#. Use matrix.decred.org as your custom server URL.
-msgctxt "help.matrix.info"
-msgid "Use matrix.decred.org as your custom server URL."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/SecurityPage/VerifyMessage/index.json
@@ -5061,17 +5347,17 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
 #. [loader.title]
 #. defaultMessage is:
-#. Welcome to Decrediton Wallet
+#. Welcome to Exilibrium Wallet
 msgctxt "loader.title"
-msgid "Welcome to Decrediton Wallet"
+msgid "Welcome to Exilibrium Wallet"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/LanguageSelectPage/Page.json
 #. [selectLang.title]
 #. defaultMessage is:
-#. Welcome to Decrediton Wallet
+#. Welcome to Exilibrium Wallet
 msgctxt "selectLang.title"
-msgid "Welcome to Decrediton Wallet"
+msgid "Welcome to Exilibrium Wallet"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
@@ -5097,17 +5383,17 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.0.title]
 #. defaultMessage is:
-#. What is the Decred Blockchain?
+#. What is the Exchange Coin Blockchain?
 msgctxt "tutorial.step.0.title"
-msgid "What is the Decred Blockchain?"
+msgid "What is the Exchange Coin Blockchain?"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
 #. [getStarted.whatsNew]
 #. defaultMessage is:
-#. What's New in {version}
+#. What's New in v{version}
 msgctxt "getStarted.whatsNew"
-msgid "What's New in {version}"
+msgid "What's New in v{version}"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TutorialsPage/TicketLifecycle/index.json
@@ -5123,13 +5409,25 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/TutorialsPage/Staking/index.json
 #. [tutorial.staking.page2]
 #. defaultMessage is:
-#. When a ticket is purchased, the cost of the ticket is locked in your wallet until the ticket is used to vote, or is revoked. Tickets enter the mempool, then the ticketpool where they are drawn at random to vote. There is a 99.5% probability that a ticket will vote. The average ticket will vote in 28 days, but tickets still in the pool that have not been drawn after 142 days will be revoked. The DCR used to purchase the ticket is released from lockup when it votes or when the ticket is revoked.
+#. When a ticket is purchased, the cost of the ticket is locked in your wallet until the ticket is used to vote, or is revoked. Tickets enter the mempool, then the ticketpool where they are drawn at random to vote. There is a 99.5% probability that a ticket will vote. The average ticket will vote in 28 days, but tickets still in the pool that have not been drawn after 142 days will be revoked. The EXCC used to purchase the ticket is released from lockup when it votes or when the ticket is revoked.
 #. 
 #.   When a proposal is set for a vote in Politeia, a snapshot of the ticket pool will be taken at the time of voting. All tickets will have the right to vote on the proposal in an off chain process.
 #. 
-#.   As block validation is immutable, decisions made on all voted tickets can be publicly tracked. Active participation in staking helps secure Decred network’s, network, ensure quality Proof-of-Work, and determine the future direction of Decred.
+#.   As block validation is immutable, decisions made on all voted tickets can be publicly tracked. Active participation in staking helps secure EXCC network’s, network, ensure quality Proof-of-Work, and determine the future direction of EXCC.
 msgctxt "tutorial.staking.page2"
-msgid "When a ticket is purchased, the cost of the ticket is locked in your wallet until the ticket is used to vote, or is revoked. Tickets enter the mempool, then the ticketpool where they are drawn at random to vote. There is a 99.5% probability that a ticket will vote. The average ticket will vote in 28 days, but tickets still in the pool that have not been drawn after 142 days will be revoked. The DCR used to purchase the ticket is released from lockup when it votes or when the ticket is revoked.\n\n  When a proposal is set for a vote in Politeia, a snapshot of the ticket pool will be taken at the time of voting. All tickets will have the right to vote on the proposal in an off chain process.\n\n  As block validation is immutable, decisions made on all voted tickets can be publicly tracked. Active participation in staking helps secure Decred network’s, network, ensure quality Proof-of-Work, and determine the future direction of Decred."
+msgid "When a ticket is purchased, the cost of the ticket is locked in your wallet until the ticket is used to vote, or is revoked. Tickets enter the mempool, then the ticketpool where they are drawn at random to vote. There is a 99.5% probability that a ticket will vote. The average ticket will vote in 28 days, but tickets still in the pool that have not been drawn after 142 days will be revoked. The EXCC used to purchase the ticket is released from lockup when it votes or when the ticket is revoked.\n\n  When a proposal is set for a vote in Politeia, a snapshot of the ticket pool will be taken at the time of voting. All tickets will have the right to vote on the proposal in an off chain process.\n\n  As block validation is immutable, decisions made on all voted tickets can be publicly tracked. Active participation in staking helps secure EXCC network’s, network, ensure quality Proof-of-Work, and determine the future direction of EXCC."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.listItem5]
+#. defaultMessage is:
+#. When file is uploaded, go to step 2
+#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step1.listItem5]
+#. defaultMessage is:
+#. When file is uploaded, go to step 2
+msgctxt "wallet.importKeys.step1.listItem5"
+msgid "When file is uploaded, go to step 2"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
@@ -5195,9 +5493,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/TutorialsPage/TicketLifecycle/index.json
 #. [tutorial.ticketLifecycle.page6]
 #. defaultMessage is:
-#. You should now understand a bit better the lifecycle of a ticket, so start staking your Decred and participate on the community!
+#. You should now understand a bit better the lifecycle of a ticket, so start staking your EXCC and participate on the community!
 msgctxt "tutorial.ticketLifecycle.page6"
-msgid "You should now understand a bit better the lifecycle of a ticket, so start staking your Decred and participate on the community!"
+msgid "You should now understand a bit better the lifecycle of a ticket, so start staking your EXCC and participate on the community!"
 msgstr ""
 
 #: app/i18n/extracted/app/reducers/snackbar.json
@@ -5241,19 +5539,19 @@ msgid "days"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/HelpPage/LogsTab/Page.json
-#. [help.logs.dcrd]
+#. [help.logs.exccd]
 #. defaultMessage is:
-#. dcrd
-msgctxt "help.logs.dcrd"
-msgid "dcrd"
+#. exccd
+msgctxt "help.logs.exccd"
+msgid "exccd"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/HelpPage/LogsTab/Page.json
-#. [help.logs.dcrwallet]
+#. [help.logs.exccwallet]
 #. defaultMessage is:
-#. dcrwallet
-msgctxt "help.logs.dcrwallet"
-msgid "dcrwallet"
+#. exccwallet
+msgctxt "help.logs.exccwallet"
+msgid "exccwallet"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/MyTicketsTab/messages.json
@@ -5339,9 +5637,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.2.text.bold.p1]
 #. defaultMessage is:
-#. seed is a list of 33 words
+#. seed is a list of 12 words
 msgctxt "tutorial.step.2.text.bold.p1"
-msgid "seed is a list of 33 words"
+msgid "seed is a list of 12 words"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
@@ -5427,9 +5725,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.0.text.p1]
 #. defaultMessage is:
-#. where all activity that takes place is stored. It is like a global, decentralised spreadsheet or ledger that records all the activity that happens when Decred funds are transferred, keeping track of how many tokens are sent, and what the balance of every account is.
+#. where all activity that takes place is stored. It is like a global, decentralised spreadsheet or ledger that records all the activity that happens when EXCC funds are transferred, keeping track of how many tokens are sent, and what the balance of every account is.
 msgctxt "tutorial.step.0.text.p1"
-msgid "where all activity that takes place is stored. It is like a global, decentralised spreadsheet or ledger that records all the activity that happens when Decred funds are transferred, keeping track of how many tokens are sent, and what the balance of every account is."
+msgid "where all activity that takes place is stored. It is like a global, decentralised spreadsheet or ledger that records all the activity that happens when EXCC funds are transferred, keeping track of how many tokens are sent, and what the balance of every account is."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TxDetails.json
@@ -5493,6 +5791,14 @@ msgstr ""
 #. defaultMessage is:
 #. {originalError}
 msgctxt "snackbar.defaults.error"
+msgid "{originalError}"
+msgstr ""
+
+#: app/i18n/extracted/app/reducers/snackbar.json
+#. [createwallet.errors.walletRemoveFailed]
+#. defaultMessage is:
+#. {originalError}
+msgctxt "createwallet.errors.walletRemoveFailed"
 msgid "{originalError}"
 msgstr ""
 
@@ -5686,6 +5992,14 @@ msgstr ""
 #. {value, date}
 msgctxt "charts.fullDayDisplay"
 msgid "{value, date}"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/TicketsPage/StatisticsTab/charts/VoteTime.json
+#. [mytickets.statistics.votetime.average.value]
+#. defaultMessage is:
+#. {value, plural, =0 {in the same day} one {within one day } other {within # days}}
+msgctxt "mytickets.statistics.votetime.average.value"
+msgid "{value, plural, =0 {in the same day} one {within one day } other {within # days}}"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/StatisticsTab/charts/VoteTime.json

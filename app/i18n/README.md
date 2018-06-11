@@ -43,10 +43,10 @@ A placeholder can't use a jsx component as value, only a simple string. So you n
 
 The main steps to using a placeholder are:
 
-* Import `injectIntl` and `defineMessages`
-* Define a custom intl message (id and defaultMessage)
-* Get the translated string using `int.formatMessage()`
-* Inject the `intl` prop by using the `injectIntl` HOC
+- Import `injectIntl` and `defineMessages`
+- Define a custom intl message (id and defaultMessage)
+- Get the translated string using `intl.formatMessage()`
+- Inject the `intl` prop by using the `injectIntl` HOC
 
 Simplified example:
 
@@ -152,17 +152,17 @@ Exilibrium implements i18n by using the tools provided by the [react-intl](https
 
 The following directories and files comprise the i18n subsystem:
 
-* **extracted/app**: Generated automatically by [babel-plugin-react-intl](https://github.com/yahoo/babel-plugin-react-intl)
-* **extract/static**: Static translation files (manually written)
-* **locales/index.js**: Entrypoint for all i18n data
-* **pot/**: source \*.pot files to be sent to translation
-* **po/**: source \*.po files received from translators
-* **translations/\*.json**: Translated files to be used by the app
+- **extracted/app**: Generated automatically by [babel-plugin-react-intl](https://github.com/yahoo/babel-plugin-react-intl)
+- **extract/static**: Static translation files (manually written)
+- **locales/index.js**: Entrypoint for all i18n data
+- **pot/**: source \*.pot files to be sent to translation
+- **po/**: source \*.po files received from translators
+- **translations/\*.json**: Translated files to be used by the app
 
 Inside the `translations/` directory, there are a few special files:
 
-* **dev.json**: All strings of the app but not maintained on transifex (mainly useful while developing the i18n system and to check if all strings are translated).
-* **whitelist_dev.json**: Created automatically by [react-intl-translations-manager](https://github.com/GertjanReynaert/react-intl-translations-manager)
+- **dev.json**: All strings of the app but not maintained on transifex (mainly useful while developing the i18n system and to check if all strings are translated).
+- **whitelist_dev.json**: Created automatically by [react-intl-translations-manager](https://github.com/GertjanReynaert/react-intl-translations-manager)
 
 The files inside the `po/` and `pot/` subdir are managed by the scripts and by transifex and shouldn't be manually updated.
 
