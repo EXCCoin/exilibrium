@@ -1,46 +1,46 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectorMap } from "fp";
-import * as sel from "selectors";
-import * as ca from "actions/ControlActions";
-import * as spa from "actions/StakePoolActions";
+import * as selectors from "selectors";
+import * as controlActions from "actions/ControlActions";
+import * as stakePoolActions from "actions/StakePoolActions";
 
 const mapStateToProps = selectorMap({
-  spendingAccounts: sel.spendingAccounts,
-  configuredStakePools: sel.configuredStakePools,
-  unconfiguredStakePools: sel.unconfiguredStakePools,
-  defaultSpendingAccount: sel.defaultSpendingAccount,
-  defaultStakePool: sel.defaultStakePool,
-  stakePool: sel.selectedStakePool,
-  ticketPrice: sel.ticketPrice,
-  currentStakePoolConfigError: sel.currentStakePoolConfigError,
-  currentStakePoolConfigSuccessMessage: sel.currentStakePoolConfigSuccessMessage,
-  purchaseTicketsError: sel.purchaseTicketsError,
-  purchaseTicketsSuccess: sel.purchaseTicketsSuccess,
-  revokeTicketsError: sel.revokeTicketsError,
-  revokeTicketsSuccess: sel.revokeTicketsSuccess,
-  startAutoBuyerSuccess: sel.startAutoBuyerSuccess,
-  stopAutoBuyerSuccess: sel.stopAutoBuyerSuccess,
-  startAutoBuyerError: sel.startAutoBuyerError,
-  stopAutoBuyerError: sel.stopAutoBuyerError,
-  importScriptError: sel.importScriptError,
-  importScriptSuccess: sel.importScriptSuccess,
-  isImportingScript: sel.isImportingScript,
-  isPurchasingTickets: sel.isPurchasingTickets,
-  isSavingStakePoolConfig: sel.isSavingStakePoolConfig,
-  isTestNet: sel.isTestNet
+  spendingAccounts: selectors.spendingAccounts,
+  configuredStakePools: selectors.configuredStakePools,
+  unconfiguredStakePools: selectors.unconfiguredStakePools,
+  defaultSpendingAccount: selectors.defaultSpendingAccount,
+  defaultStakePool: selectors.defaultStakePool,
+  stakePool: selectors.selectedStakePool,
+  ticketPrice: selectors.ticketPrice,
+  currentStakePoolConfigError: selectors.currentStakePoolConfigError,
+  currentStakePoolConfigSuccessMessage: selectors.currentStakePoolConfigSuccessMessage,
+  purchaseTicketsError: selectors.purchaseTicketsError,
+  purchaseTicketsSuccess: selectors.purchaseTicketsSuccess,
+  revokeTicketsError: selectors.revokeTicketsError,
+  revokeTicketsSuccess: selectors.revokeTicketsSuccess,
+  startAutoBuyerSuccess: selectors.startAutoBuyerSuccess,
+  stopAutoBuyerSuccess: selectors.stopAutoBuyerSuccess,
+  startAutoBuyerError: selectors.startAutoBuyerError,
+  stopAutoBuyerError: selectors.stopAutoBuyerError,
+  importScriptError: selectors.importScriptError,
+  importScriptSuccess: selectors.importScriptSuccess,
+  isImportingScript: selectors.isImportingScript,
+  isPurchasingTickets: selectors.isPurchasingTickets,
+  isSavingStakePoolConfig: selectors.isSavingStakePoolConfig,
+  isTestNet: selectors.isTestNet
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      onRevokeTickets: ca.revokeTicketsAttempt,
-      onImportScript: ca.importScriptAttempt,
-      onClearRevokeTicketsError: ca.clearRevokeTicketsError,
-      onClearRevokeTicketsSuccess: ca.clearRevokeTicketsSuccess,
-      onClearImportScriptError: ca.clearImportScriptError,
-      onClearImportScriptSuccess: ca.clearImportScriptSuccess,
-      onChangeStakePool: spa.changeSelectedStakePool
+      onRevokeTickets: controlActions.revokeTicketsAttempt,
+      onImportScript: controlActions.importScriptAttempt,
+      onClearRevokeTicketsError: controlActions.clearRevokeTicketsError,
+      onClearRevokeTicketsSuccess: controlActions.clearRevokeTicketsSuccess,
+      onClearImportScriptError: controlActions.clearImportScriptError,
+      onClearImportScriptSuccess: controlActions.clearImportScriptSuccess,
+      onChangeStakePool: stakePoolActions.changeSelectedStakePool
     },
     dispatch
   );

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import * as sel from "../selectors";
+import * as selectors from "../selectors";
 import {
   signMessageAttempt,
   validateAddress,
@@ -8,10 +8,10 @@ import {
 import { selectorMap } from "../fp";
 
 const mapStateToProps = selectorMap({
-  signMessageError: sel.signMessageError,
-  signMessageSuccess: sel.signMessageSuccess,
-  isSigningMessage: sel.isSigningMessage,
-  walletService: sel.walletService
+  signMessageError: selectors.signMessageError,
+  signMessageSuccess: selectors.signMessageSuccess,
+  isSigningMessage: selectors.isSigningMessage,
+  walletService: selectors.walletService
 });
 
 export default connect(

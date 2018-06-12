@@ -1,23 +1,23 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectorMap } from "../fp";
-import * as sel from "../selectors";
-import * as spa from "../actions/StakePoolActions";
+import * as selectors from "../selectors";
+import * as stakePoolActions from "../actions/StakePoolActions";
 
 const mapStateToProps = selectorMap({
-  configuredStakePools: sel.configuredStakePools,
-  unconfiguredStakePools: sel.unconfiguredStakePools,
-  defaultStakePool: sel.defaultStakePool,
-  stakePool: sel.selectedStakePool,
-  rescanRequest: sel.rescanRequest
+  configuredStakePools: selectors.configuredStakePools,
+  unconfiguredStakePools: selectors.unconfiguredStakePools,
+  defaultStakePool: selectors.defaultStakePool,
+  stakePool: selectors.selectedStakePool,
+  rescanRequest: selectors.rescanRequest
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      onSetStakePoolInfo: spa.setStakePoolInformation,
-      onRemoveStakePool: spa.removeStakePoolConfig,
-      discoverAvailableStakepools: spa.discoverAvailableStakepools
+      onSetStakePoolInfo: stakePoolActions.setStakePoolInformation,
+      onRemoveStakePool: stakePoolActions.removeStakePoolConfig,
+      discoverAvailableStakepools: stakePoolActions.discoverAvailableStakepools
     },
     dispatch
   );

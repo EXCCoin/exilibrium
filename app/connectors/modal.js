@@ -1,15 +1,15 @@
 import { connect } from "react-redux";
 import { selectorMap } from "../fp";
 import { bindActionCreators } from "redux";
-import * as ca from "../actions/ControlActions";
+import * as controlActions from "../actions/ControlActions";
 
 const mapStateToProps = selectorMap({});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      modalShown: ca.modalShown,
-      modalHidden: ca.modalHidden
+      modalShown: controlActions.modalShown,
+      modalHidden: controlActions.modalHidden
     },
     dispatch
   );

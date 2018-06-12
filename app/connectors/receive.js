@@ -1,18 +1,18 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectorMap } from "../fp";
-import * as ca from "../actions/ControlActions";
-import * as sel from "../selectors";
+import * as controlActions from "../actions/ControlActions";
+import * as selectors from "../selectors";
 
 const mapStateToProps = selectorMap({
-  nextAddress: sel.nextAddress,
-  account: sel.nextAddressAccount
+  nextAddress: selectors.nextAddress,
+  account: selectors.nextAddressAccount
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      getNextAddressAttempt: ca.getNextAddressAttempt
+      getNextAddressAttempt: controlActions.getNextAddressAttempt
     },
     dispatch
   );

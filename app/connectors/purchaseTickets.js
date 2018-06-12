@@ -1,20 +1,20 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectorMap } from "../fp";
-import * as sel from "../selectors";
-import * as ca from "../actions/ControlActions";
+import * as selectors from "../selectors";
+import * as controlActions from "../actions/ControlActions";
 
 const mapStateToProps = selectorMap({
-  ticketPrice: sel.ticketPrice,
-  spendingAccounts: sel.spendingAccounts,
-  rescanRequest: sel.rescanRequest,
-  hasTicketsToRevoke: sel.hasTicketsToRevoke
+  ticketPrice: selectors.ticketPrice,
+  spendingAccounts: selectors.spendingAccounts,
+  rescanRequest: selectors.rescanRequest,
+  hasTicketsToRevoke: selectors.hasTicketsToRevoke
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      onPurchaseTickets: ca.purchaseTicketsAttempt
+      onPurchaseTickets: controlActions.purchaseTicketsAttempt
     },
     dispatch
   );

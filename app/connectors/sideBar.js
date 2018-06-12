@@ -1,27 +1,27 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectorMap } from "../fp";
-import * as sel from "../selectors";
-import * as ca from "../actions/ClientActions";
-import * as sba from "../actions/SidebarActions";
+import * as selectors from "../selectors";
+import * as clientActions from "../actions/ClientActions";
+import * as sidebarActions from "../actions/SidebarActions";
 
 const mapStateToProps = selectorMap({
-  isTestNet: sel.isTestNet,
-  balances: sel.balances,
-  currentBlockHeight: sel.currentBlockHeight,
-  lastBlockTimestamp: sel.lastBlockTimestamp,
-  totalBalance: sel.totalBalance,
-  showingSidebar: sel.showingSidebar,
-  showingSidebarMenu: sel.showingSidebarMenu,
-  expandSideBar: sel.expandSideBar
+  isTestNet: selectors.isTestNet,
+  balances: selectors.balances,
+  currentBlockHeight: selectors.currentBlockHeight,
+  lastBlockTimestamp: selectors.lastBlockTimestamp,
+  totalBalance: selectors.totalBalance,
+  showingSidebar: selectors.showingSidebar,
+  showingSidebarMenu: selectors.showingSidebarMenu,
+  expandSideBar: selectors.expandSideBar
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      updateBlockTimeSince: ca.updateBlockTimeSince,
-      onExpandSideBar: sba.expandSideBar,
-      onReduceSideBar: sba.reduceSideBar
+      updateBlockTimeSince: clientActions.updateBlockTimeSince,
+      onExpandSideBar: sidebarActions.expandSideBar,
+      onReduceSideBar: sidebarActions.reduceSideBar
     },
     dispatch
   );

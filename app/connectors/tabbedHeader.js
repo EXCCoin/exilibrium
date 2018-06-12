@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
-import * as sel from "../selectors";
+import * as selectors from "../selectors";
 import { selectorMap } from "../fp";
 
 const mapStateToProps = selectorMap({
-  isTestNet: sel.isTestNet,
-  totalBalance: sel.totalBalance,
-  ticketPrice: sel.ticketPrice
+  isTestNet: selectors.isTestNet,
+  totalBalance: selectors.totalBalance,
+  ticketPrice: selectors.ticketPrice
 });
 
 export default connect(mapStateToProps);

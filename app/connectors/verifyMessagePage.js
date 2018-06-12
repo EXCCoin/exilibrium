@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import * as sel from "../selectors";
+import * as selectors from "../selectors";
 import {
   verifyMessageAttempt,
   verifyMessageCleanStore,
@@ -9,10 +9,10 @@ import { getMessageVerificationServiceAttempt } from "../actions/ClientActions";
 import { selectorMap } from "../fp";
 
 const mapStateToProps = selectorMap({
-  messageVerificationService: sel.messageVerificationService,
-  verifyMessageError: sel.verifyMessageError,
-  verifyMessageSuccess: sel.verifyMessageSuccess,
-  isVerifyingMessage: sel.isVerifyingMessage
+  messageVerificationService: selectors.messageVerificationService,
+  verifyMessageError: selectors.verifyMessageError,
+  verifyMessageSuccess: selectors.verifyMessageSuccess,
+  isVerifyingMessage: selectors.isVerifyingMessage
 });
 
 export default connect(

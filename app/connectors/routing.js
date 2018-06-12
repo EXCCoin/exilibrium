@@ -1,17 +1,17 @@
 import { connect } from "react-redux";
 import { selectorMap } from "../fp";
 import { bindActionCreators } from "redux";
-import * as sel from "../selectors";
-import * as ca from "../actions/ClientActions";
+import * as selectors from "../selectors";
+import * as clientActions from "../actions/ClientActions";
 
 const mapStateToProps = selectorMap({
-  location: sel.location
+  location: selectors.location
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      goBackHistory: ca.goBackHistory
+      goBackHistory: clientActions.goBackHistory
     },
     dispatch
   );

@@ -1,18 +1,18 @@
 import { connect } from "react-redux";
 import { selectorMap } from "../fp";
-import * as sel from "../selectors";
+import * as selectors from "../selectors";
 
 const mapStateToProps = selectorMap({
-  ticketPoolSize: sel.ticketPoolSize,
-  votedTicketsCount: sel.votedTicketsCount,
-  allMempoolTicketsCount: sel.allMempoolTicketsCount,
-  missedTicketsCount: sel.missedTicketsCount,
-  ownMempoolTicketsCount: sel.ownMempoolTicketsCount,
-  revokedTicketsCount: sel.revokedTicketsCount,
-  immatureTicketsCount: sel.immatureTicketsCount,
-  expiredTicketsCount: sel.expiredTicketsCount,
-  liveTicketsCount: sel.liveTicketsCount,
-  totalSubsidy: sel.totalSubsidy
+  ticketPoolSize: selectors.ticketPoolSize,
+  votedTicketsCount: selectors.votedTicketsCount,
+  allMempoolTicketsCount: selectors.allMempoolTicketsCount,
+  missedTicketsCount: selectors.missedTicketsCount,
+  ownMempoolTicketsCount: selectors.ownMempoolTicketsCount,
+  revokedTicketsCount: selectors.revokedTicketsCount,
+  immatureTicketsCount: selectors.immatureTicketsCount,
+  expiredTicketsCount: selectors.expiredTicketsCount,
+  liveTicketsCount: selectors.liveTicketsCount,
+  totalSubsidy: selectors.totalSubsidy
 });
 
 export default connect(mapStateToProps);

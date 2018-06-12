@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 import { selectorMap } from "fp";
-import * as sel from "selectors";
+import * as selectors from "selectors";
 
 const mapStateToProps = selectorMap({
-  balanceSent: sel.balanceSent,
-  balanceReceived: sel.balanceReceived,
-  sentAndReceivedTransactions: sel.sentAndReceivedTransactions
+  balanceSent: selectors.balanceSent,
+  balanceReceived: selectors.balanceReceived,
+  sentAndReceivedTransactions: selectors.sentAndReceivedTransactions
 });
 
 export default connect(mapStateToProps);
