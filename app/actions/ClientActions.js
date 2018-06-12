@@ -566,41 +566,41 @@ export const GETTRANSACTIONS_COMPLETE = "GETTRANSACTIONS_COMPLETE";
 //
 // If empty, all transactions are accepted.
 function filterTransactions(transactions, filter) {
-  const res1 = [];
-  for (const tx of transactions) {
-    if (filter.types.length) {
-      if (filter.types.indexOf(tx.type) > -1) {
-        res1.push(tx);
-      }
-    } else {
-      res1.push(tx);
-    }
-  }
-  const res2 = [];
-  for (const tx of res1) {
-    if (filter.direction) {
-      if (filter.direction === tx.direction) {
-        res2.push(tx);
-      }
-    } else {
-      res2.push(tx);
-    }
-  }
-  const res3 = [];
-  for (const tx of res2) {
-    if (filter.search) {
-      if (
-        tx.creditAddresses.find(
-          address =>
-            address.length > 1 && address.toLowerCase().indexOf(filter.search.toLowerCase()) !== -1
-        ) !== undefined
-      ) {
-        res3.push(tx);
-      }
-    } else {
-      res3.push(tx);
-    }
-  }
+  // const res1 = [];
+  // for (const tx of transactions) {
+  //   if (filter.types.length) {
+  //     if (filter.types.indexOf(tx.type) > -1) {
+  //       res1.push(tx);
+  //     }
+  //   } else {
+  //     res1.push(tx);
+  //   }
+  // }
+  // const res2 = [];
+  // for (const tx of res1) {
+  //   if (filter.direction) {
+  //     if (filter.direction === tx.direction) {
+  //       res2.push(tx);
+  //     }
+  //   } else {
+  //     res2.push(tx);
+  //   }
+  // }
+  // const res3 = [];
+  // for (const tx of res2) {
+  //   if (filter.search) {
+  //     if (
+  //       tx.creditAddresses.find(
+  //         address =>
+  //           address.length > 1 && address.toLowerCase().indexOf(filter.search.toLowerCase()) !== -1
+  //       ) !== undefined
+  //     ) {
+  //       res3.push(tx);
+  //     }
+  //   } else {
+  //     res3.push(tx);
+  //   }
+  // }
 
   return transactions
     .filter(v => (filter.types.length ? filter.types.indexOf(v.type) > -1 : true))
@@ -668,9 +668,9 @@ export const getTransactions = () => async (dispatch, getState) => {
 
   // now, request a batch of mined transactions until `maximumTransactionCount`
   // transactions have been obtained (after filtering)
+  let startRequestHeight, endRequestHeight;
+  const receivedBlocks = [];
   while (!noMoreTransactions && filtered.length < maximumTransactionCount) {
-    let startRequestHeight, endRequestHeight;
-
     if (transactionsFilter.listDirection === "desc") {
       startRequestHeight = lastTransaction ? lastTransaction.height - 1 : currentBlockHeight;
       endRequestHeight = 1;
@@ -679,19 +679,24 @@ export const getTransactions = () => async (dispatch, getState) => {
       endRequestHeight = currentBlockHeight;
     }
 
-    try {
-      const { mined } = await walletGetTransactions(
-        walletService,
-        startRequestHeight,
-        endRequestHeight,
-        pageCount
-      );
-      noMoreTransactions = mined.length === 0;
-      lastTransaction = mined.length ? mined[mined.length - 1] : lastTransaction;
-      filterTransactions(mined, transactionsFilter).forEach(v => filtered.push(v));
-    } catch (error) {
-      dispatch({ type: GETTRANSACTIONS_FAILED, error });
-      return;
+    if (!receivedBlocks.includes(startRequestHeight)) {
+      try {
+        const { mined } = await walletGetTransactions(
+          walletService,
+          startRequestHeight,
+          endRequestHeight,
+          pageCount
+        );
+        noMoreTransactions = mined.length === 0;
+        lastTransaction = mined.length ? mined[mined.length - 1] : lastTransaction;
+        receivedBlocks.push(startRequestHeight);
+        filterTransactions(mined, transactionsFilter).forEach(v => filtered.push(v));
+      } catch (error) {
+        dispatch({ type: GETTRANSACTIONS_FAILED, error });
+        return;
+      }
+    } else {
+      noMoreTransactions = true;
     }
   }
 
