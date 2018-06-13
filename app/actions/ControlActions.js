@@ -691,9 +691,9 @@ export function constructTransactionAttempt(account, confirmations, outputs, all
   const request = new ConstructTransactionRequest();
   request.setSourceAccount(parseInt(account));
   request.setRequiredConfirmations(parseInt(parseInt(confirmations)));
+  let totalAmount = 0;
   if (!all) {
     request.setOutputSelectionAlgorithm(0);
-    let totalAmount = 0; // eslint-disable-line no-unused-vars
     for (const output of outputs) {
       const outputDest = new ConstructTransactionRequest.OutputDestination();
       outputDest.setAddress(output.destination);
@@ -728,7 +728,7 @@ export function constructTransactionAttempt(account, confirmations, outputs, all
         dispatch({ error, type: CONSTRUCTTX_FAILED });
       } else {
         if (!all) {
-          constructTxResponse.totalAmount = totalAmount; // eslint-disable-line no-undef
+          constructTxResponse.totalAmount = totalAmount;
         } else {
           constructTxResponse.totalAmount = constructTxResponse.getTotalOutputAmount();
         }
