@@ -26,6 +26,7 @@ export default ({
   ...props
 }) => (
   <div className="page-body getstarted">
+    <div className="logo-banner" />
     <div className="getstarted loader">
       <Aux>
         <div className="content-title">
@@ -63,13 +64,13 @@ export default ({
           <SlateGrayButton className="tutorial-button" onClick={onShowTutorial}>
             <T id="getStarted.learnBasics" m="Learn the Basics" />
           </SlateGrayButton>
-          <span onClick={onShowReleaseNotes} className="whatsnew">
-            <T
-              id="getStarted.whatsNew"
-              m="What's New in v{version}"
-              values={{ version: appVersion }}
-            />
-          </span>
+          {/* <span onClick={onShowReleaseNotes} className="whatsnew">
+             <T
+               id="getStarted.whatsNew"
+               m="What's New in v{version}"
+               values={{ version: appVersion }}
+             />
+           </span>*/}
         </div>
         <div className="loader-bar">
           <LinearProgressFull

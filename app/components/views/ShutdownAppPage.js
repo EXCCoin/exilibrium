@@ -11,6 +11,7 @@ class ShutdownAppPage extends React.Component {
   render() {
     return (
       <div className="page-body getstarted">
+        <div className="logo-banner" />
         <ExccLoading className="get-started-loading" />
         <div className="shutdown-text">
           <T id="shutdown.header.title" m="Shutting down Exilibrium" />

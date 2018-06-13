@@ -18,6 +18,7 @@ export default function LogsForm({
 }) {
   return (
     <div className="page-body getstarted">
+      <div className="logo-banner" />
       <div className="getstarted loader logs">
         <div className="content-title">
           <div className="loader-settings-logs">
