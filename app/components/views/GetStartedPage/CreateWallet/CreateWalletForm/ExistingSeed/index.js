@@ -49,10 +49,8 @@ class ExistingSeed extends React.Component {
         this.setState({ seedWords: updatedSeedWords });
       }
     };
-    console.log("this.props.decode", this.props.decode);
     this.setState({ seedWords }, () => {
       const mnemonic = this.getSeedWordsStr();
-      console.log(this.props.decode);
       if (this.props.mnemonic && this.isMatch()) {
         this.props
           .decode(mnemonic)
@@ -116,15 +114,10 @@ class ExistingSeed extends React.Component {
     };
     this.setState({ seedWords: updatedSeedWords }, () => {
       const mnemonic = this.getSeedWordsStr();
-      console.log("this.props.mnemonic", this.props.mnemonic);
-      console.log("this.props.decode", this.props.decode);
       if (this.props.mnemonic && this.isMatch()) {
         this.props
           .decode(mnemonic)
-          .then(response => {
-            console.log("got response", response);
-            return this.props.onChange(response.getDecodedSeed());
-          })
+          .then(response => this.props.onChange(response.getDecodedSeed()))
           .then(() => this.setState({ seedError: null }))
           .catch(onError);
       } else {
@@ -132,8 +125,6 @@ class ExistingSeed extends React.Component {
         this.props
           .decode(mnemonic, "")
           .then(response => {
-            const resp = response.getDecodedSeed();
-            console.log("got response", resp);
             this.setState({ mnemonic, seedError: null });
             this.props.onChange(response.getDecodedSeed());
           })
@@ -144,7 +135,6 @@ class ExistingSeed extends React.Component {
 
   getSeedWordsStr() {
     const { seedWords } = this.state;
-    console.log(seedWords);
     return Array.isArray(seedWords) ? seedWords.map(({ word }) => word).join(" ") : seedWords;
   }
 

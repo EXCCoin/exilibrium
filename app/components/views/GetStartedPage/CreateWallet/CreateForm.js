@@ -13,7 +13,6 @@ const CreateForm = ({
   getNeededBlocks,
   getEstimatedTimeLeft,
   getDaemonSynced,
-  importKeys,
   importCopay
 }) =>
   showCreationTypeSelectScreen ? (
@@ -28,7 +27,7 @@ const CreateForm = ({
       }}
     />
   ) : importCopay ? (
-    <ImportKeysForm importKeys={importKeys} />
+    <ImportKeysForm />
   ) : (
     <CreateWalletForm
       {...{
@@ -51,7 +50,6 @@ CreateForm.propTypes = {
   getNeededBlocks: PropTypes.number.isRequired,
   getEstimatedTimeLeft: PropTypes.any,
   getDaemonSynced: PropTypes.any,
-  importKeys: PropTypes.any,
   importCopay: PropTypes.bool,
   importKeysForm: PropTypes.any,
   setPrivateKeysObject: PropTypes.func

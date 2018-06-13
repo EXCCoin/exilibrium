@@ -30,7 +30,7 @@ export default class Validator extends Component {
     this.setState({ errorMessage: "" });
   }
   checkFileMetadata(selectedFile) {
-    const correctExtension = selectedFile.name.includes(".aes.json");
+    const correctExtension = selectedFile.name.includes(".json");
     const correctContentType = selectedFile.type === "application/json";
 
     if (!correctExtension || !correctContentType) {
@@ -40,7 +40,7 @@ export default class Validator extends Component {
             !correctExtension,
             <T
               id="wallet.importkeys.error.incorrectExtension"
-              m="Please select file with extension '.aes.json'. Selected: {fileName}"
+              m="Please select file with extension '.json'. Selected: {fileName}"
               values={{ fileName: selectedFile.name }}
             />
           ],

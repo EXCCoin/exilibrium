@@ -21,19 +21,19 @@ const CreationTypeSelectScreen = ({
         </div>
       </div>
       <div
+        className="createwallet-button import"
+        onClick={() => onSetCreateWalletFromExisting("import")}>
+        <div className="display-wallet-name">
+          <div className="createwallet-button-label">
+            <T id="getStarted.importKeysTab" m="Import keys" />
+          </div>
+        </div>
+      </div>
+      <div
         className="createwallet-button restore"
         onClick={() => onSetCreateWalletFromExisting("restore")}>
         <div className="createwallet-button-label">
           <T id="getStarted.existingSeedTab" m="Restore Existing Wallet" />
-        </div>
-      </div>
-      <div
-        className="display-wallet import"
-        onClick={() => onSetCreateWalletFromExisting("import")}>
-        <div className="display-wallet-network" />
-        <div className="wallet-icon imported" />
-        <div className="display-wallet-name">
-          <T id="getStarted.importKeysTab" m="Import keys" />
         </div>
       </div>
     </div>

@@ -161,7 +161,6 @@ export const ImportKeysFormTypes = {
   }),
   mnemonic: arrayOf(string).isRequired,
   encryptedString: string.isRequired,
-  importKeys: func.isRequired,
   encryptionPassword: string.isRequired,
   errorMessage: oneOfType([element, string]).isRequired,
   selectedFileName: string.isRequired

@@ -12,6 +12,13 @@ import "style/ImportKeysForm.less";
 @autobind
 class ImportKeysForm extends Component {
   static propTypes = ImportKeysFormTypes;
+  state = {
+    passPhrase: ""
+  };
+
+  componentDidMount() {
+    this.generateSeed();
+  }
   resetFormState() {
     const { validator, decryptor, fileHandler } = this.props;
     validator.resetErrorMessage();
@@ -26,13 +33,36 @@ class ImportKeysForm extends Component {
     const { createWalletRequest, mnemonic } = this.props;
     const { passPhrase } = this.state;
     const pubpass = ""; // Temporarily disabled?
-    console.log(pubpass, passPhrase, mnemonic.join(" "));
-    console.log(createWalletRequest);
-    //createWalletRequest(pubpass, passPhrase, mnemonic.join(" "), false);
+    const mnemonicStr = mnemonic.join(" ");
+    if (mnemonic.length) {
+      this.state
+        .decode(mnemonicStr)
+        .then(response => {
+          createWalletRequest(pubpass, passPhrase, response.getDecodedSeed(), true);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+  }
+
+  setPassPhrase(passPhrase) {
+    this.setState({ passPhrase });
+  }
+
+  generateSeed() {
+    return this.props.seedService.then(({ generate, decode }) =>
+      generate().then(() => {
+        this.setState({
+          decode
+        });
+      })
+    );
   }
 
   isValid() {
-    const { mnemonic, passPhrase } = this.state;
+    const { mnemonic } = this.props;
+    const { passPhrase } = this.state;
     const seed = mnemonic.join("");
     return Boolean(seed && passPhrase);
   }
@@ -45,7 +75,7 @@ class ImportKeysForm extends Component {
       selectedFileName,
       encryptedString,
       encryptionPassword,
-      copayPassphrase,
+      //  copayPassphrase,
       // new props
       isCreatingWallet
     } = this.props;
@@ -125,13 +155,13 @@ class ImportKeysForm extends Component {
             </KeyBlueButton>
           </div>
         )}
-        {encryptedString && (
+        {/*encryptedString && (
           <PasswordInput
             id="copay-passphrase"
             placeholder="Please provide your copay passphrase (if applicable)"
             value={copayPassphrase}
           />
-        )}
+        )*/}
         {hasMnemonic && (
           <div className="keys-import-mnemonic-section">
             <h3>
@@ -146,7 +176,12 @@ class ImportKeysForm extends Component {
           </div>
         )}
         {hasMnemonic && (
-          <CreatePassPhrase onChange={this.setPassPhrase} onSubmit={this.onCreateWallet} />
+          <div className="keys-import-mnemonic-section">
+            <h3>
+              <T id="wallet.importKeys.step5.title" m="5. Set new wallet passphrase" />
+            </h3>
+            <CreatePassPhrase onChange={this.setPassPhrase} onSubmit={this.onCreateWallet} />
+          </div>
         )}
         {hasMnemonic && (
           <KeyBlueButton
