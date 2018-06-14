@@ -10,6 +10,7 @@ import { AnimatedSwitch } from "react-router-transition";
 import GetStartedContainer from "./GetStarted";
 import WalletContainer from "./Wallet";
 import ShutdownAppPage from "components/views/ShutdownAppPage";
+import FatalErrorPage from "components/views/FatalErrorPage";
 import Snackbar from "components/Snackbar";
 import "style/Layout.less";
 
@@ -94,6 +95,7 @@ class App extends React.Component {
             <AnimatedSwitch {...topLevelAnimation} className="top-level-container">
               <Route path="/getStarted" component={GetStartedContainer} />
               <Route path="/shutdown" component={ShutdownAppPage} />
+              <Route path="/error" component={FatalErrorPage} />
               <Route path="/" component={WalletContainer} />
             </AnimatedSwitch>
             <div id="modal-portal" />

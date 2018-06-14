@@ -13,7 +13,9 @@ import {
   SHUTDOWN_REQUESTED,
   SET_CREDENTIALS_APPDATA_ERROR,
   AVAILABLE_WALLETS,
-  EXILIBRIUM_VERSION
+  EXILIBRIUM_VERSION,
+  FATAL_DAEMON_ERROR,
+  FATAL_WALLET_ERROR
 } from "../actions/DaemonActions";
 import { CREATEWALLET_GOBACK } from "../actions/WalletLoaderActions";
 import { UPDATEHIDDENACCOUNTS } from "../actions/ClientActions";
@@ -127,6 +129,16 @@ export default function version(state = {}, action) {
       return {
         ...state,
         hiddenAccounts: action.hiddenAccounts
+      };
+    case FATAL_DAEMON_ERROR:
+      return {
+        ...state,
+        daemonError: action.error
+      };
+    case FATAL_WALLET_ERROR:
+      return {
+        ...state,
+        walletError: action.error
       };
     default:
       return state;

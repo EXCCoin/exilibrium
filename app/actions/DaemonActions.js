@@ -33,7 +33,9 @@ export const WALLETREMOVED_FAILED = "WALLETREMOVED_FAILED";
 export const AVAILABLE_WALLETS = "AVAILABLE_WALLETS";
 export const SHUTDOWN_REQUESTED = "SHUTDOWN_REQUESTED";
 export const SET_CREDENTIALS_APPDATA_ERROR = "SET_CREDENTIALS_APPDATA_ERROR";
-
+export const REGISTERFORERRORS = "REGISTERFORERRORS";
+export const FATAL_DAEMON_ERROR = "FATAL_DAEMON_ERROR";
+export const FATAL_WALLET_ERROR = "FATAL_WALLET_ERROR";
 export const WALLETCREATED = "WALLETCREATED";
 export const WALLET_AUTOBUYER_SETTINGS = "WALLET_AUTOBUYER_SETTINGS";
 export const WALLET_STAKEPOOL_SETTINGS = "WALLET_STAKEPOOL_SETTINGS";
@@ -123,6 +125,19 @@ export const startDaemon = (rpcCreds, appData) => (dispatch, getState) => {
 
 export const setCredentialsAppdataError = () => dispatch => {
   dispatch({ type: SET_CREDENTIALS_APPDATA_ERROR });
+};
+
+export const registerForErrors = () => dispatch => {
+  dispatch({ type: REGISTERFORERRORS });
+  ipcRenderer.sendSync("register-for-errors");
+  ipcRenderer.on("error-received", (event, daemon, error) => {
+    if (daemon) {
+      dispatch({ error, type: FATAL_DAEMON_ERROR });
+    } else {
+      dispatch({ error, type: FATAL_WALLET_ERROR });
+    }
+    dispatch(pushHistory("/error"));
+  });
 };
 
 export const shutdownApp = () => dispatch => {
@@ -251,6 +266,7 @@ export const prepStartDaemon = () => (dispatch, getState) => {
   const {
     daemon: { daemonAdvanced, openForm, walletName }
   } = getState();
+  dispatch(registerForErrors());
   dispatch(checkExilibriumVersion());
   if (!daemonAdvanced) {
     dispatch(startDaemon());
@@ -293,10 +309,10 @@ export const syncDaemon = () => (dispatch, getState) => {
       walletLoader: { neededBlocks }
     } = getState();
     const {
-      daemon: { daemonSynced, timeStart, blockStart, credentials }
+      daemon: { daemonSynced, timeStart, blockStart, credentials, daemonError }
     } = getState();
     // check to see if user skipped;
-    if (daemonSynced) {
+    if (daemonSynced || daemonError) {
       return;
     }
     return wallet

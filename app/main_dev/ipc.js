@@ -48,7 +48,14 @@ export const getAvailableWallets = network => {
   return availableWallets;
 };
 
-export const startDaemon = (mainWindow, daemonIsAdvanced, primaryInstance, appData, testnet) => {
+export const startDaemon = (
+  mainWindow,
+  daemonIsAdvanced,
+  primaryInstance,
+  appData,
+  testnet,
+  reactIPC
+) => {
   if (GetExccdPID() && GetExccdPID() !== -1) {
     logger.log("info", `Skipping restart of daemon as it is already running ${GetExccdPID()}`);
     return GetExccdPID();
@@ -69,7 +76,7 @@ export const startDaemon = (mainWindow, daemonIsAdvanced, primaryInstance, appDa
     if (!fs.existsSync(exccdCfg(exccdConfPath))) {
       exccdConfPath = createTempExccdConf();
     }
-    return launchEXCCD(mainWindow, daemonIsAdvanced, exccdConfPath, appData, testnet);
+    return launchEXCCD(mainWindow, daemonIsAdvanced, exccdConfPath, appData, testnet, reactIPC);
   } catch (e) {
     logger.log("error", `error launching exccd: ${e}`);
   }
@@ -105,7 +112,7 @@ export const removeWallet = (testnet, walletPath) => {
   }
 };
 
-export const startWallet = (mainWindow, daemonIsAdvanced, testnet, walletPath) => {
+export const startWallet = (mainWindow, daemonIsAdvanced, testnet, walletPath, reactIPC) => {
   if (GetExccwPID()) {
     logger.log("info", `exccwallet already started ${GetExccwPID()}`);
     mainWindow.webContents.send("exccwallet-port", GetExccwPort());
@@ -114,7 +121,7 @@ export const startWallet = (mainWindow, daemonIsAdvanced, testnet, walletPath) =
   }
   initWalletCfg(testnet, walletPath);
   try {
-    return launchEXCCWallet(mainWindow, daemonIsAdvanced, walletPath, testnet);
+    return launchEXCCWallet(mainWindow, daemonIsAdvanced, walletPath, testnet, reactIPC);
   } catch (e) {
     logger.log("error", `error launching exccwallet: ${e}`);
   }
