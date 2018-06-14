@@ -33,6 +33,7 @@ class App extends React.Component {
     super(props);
     const { window } = props;
     window.addEventListener("beforeunload", this.beforeWindowUnload);
+    window.addEventListener("click", this.onClick);
     this.refreshing = false;
 
     props.listenForAppReloadRequest(this.onReloadRequested);
@@ -61,6 +62,18 @@ class App extends React.Component {
   onReloadRequested(event) {
     this.refreshing = true;
     event.sender.send("app-reload-ui");
+  }
+
+  onClick({ target }) {
+    if (target.localName !== "a") {
+      return;
+    }
+    const href = target.attributes.href ? target.attributes.href.value : "";
+    if (href === "") {
+      event.stopPropagation();
+      event.preventDefault();
+      return false;
+    }
   }
 
   render() {
