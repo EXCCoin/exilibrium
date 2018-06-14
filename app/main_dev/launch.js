@@ -6,7 +6,14 @@ import {
   getExccdRpcCert
 } from "./paths";
 import { getWalletCfg, readExccdConfig } from "../config";
-import { createLogger, AddToExccdLog, AddToExccwalletLog } from "./logging";
+import {
+  createLogger,
+  AddToExccdLog,
+  AddToExccwalletLog,
+  GetExccdLogs,
+  GetExccwalletLogs,
+  lastErrorLine
+} from "./logging";
 import parseArgs from "minimist";
 import { OPTIONS } from "./constants";
 import os from "os";
@@ -107,7 +114,7 @@ export const launchEXCCD = (mainWindow, daemonIsAdvanced, daemonPath, appdata, t
   }
 
   args.push("--generate");
-  args.push(`--miningaddr=22tv7nd31sMmD8BpcVRJAWQLqYCjaCuqpWpz`);
+  args.push(`--miningaddr=22u1pp2rS71hwSSWADgftaTktTQe6Mac83HH`);
 
   const exccdExe = getExecutablePath("exccd", argv.customBinPath);
   if (!fs.existsSync(exccdExe)) {
@@ -146,12 +153,10 @@ export const launchEXCCD = (mainWindow, daemonIsAdvanced, daemonPath, appdata, t
       return;
     }
     if (code !== 0) {
-      logger.log(
-        "error",
-        "exccd closed due to an error.  Check exccd logs and contact support if the issue persists."
-      );
+      const lastDcrdErr = lastErrorLine(GetExccdLogs());
+      logger.log("error", "dcrd closed due to an error: ", lastDcrdErr);
       mainWindow.webContents.executeJavaScript(
-        'alert("exccd closed due to an error.  Check exccd logs and contact support if the issue persists.");'
+        `alert("exccd closed due to an error: ${lastDcrdErr}");`
       );
       mainWindow.webContents.executeJavaScript("window.close();");
     } else {
@@ -268,12 +273,10 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
       return;
     }
     if (code !== 0) {
-      logger.log(
-        "error",
-        "exccwallet closed due to an error.  Check exccwallet logs and contact support if the issue persists."
-      );
+      const lastDcrwalletErr = lastErrorLine(GetExccwalletLogs());
+      logger.log("error", "dcrwallet closed due to an error: ", lastDcrwalletErr);
       mainWindow.webContents.executeJavaScript(
-        'alert("exccwallet closed due to an error.  Check exccwallet logs and contact support if the issue persists.");'
+        `alert("exccwallet closed due to an error: ${lastDcrwalletErr}");`
       );
       mainWindow.webContents.executeJavaScript("window.close();");
     } else {

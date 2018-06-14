@@ -101,3 +101,18 @@ export const AddToExccwalletLog = (destIO, data, debug) => {
 export const GetExccdLogs = () => exccdLogs;
 
 export const GetExccwalletLogs = () => exccwalletLogs;
+
+const logError = "[ERR]";
+
+export function lastLogLine(log) {
+  const lastLineIdx = log.lastIndexOf(os.EOL, log.length - os.EOL.length - 1);
+  const lastLineBuff = log.slice(lastLineIdx).toString("utf-8");
+  return lastLineBuff.trim();
+}
+
+export function lastErrorLine(log) {
+  const lastLineIdx = log.lastIndexOf(logError);
+  const endOfErrorLineIdx = log.indexOf(os.EOL, lastLineIdx);
+  const lastLineBuff = log.slice(lastLineIdx, endOfErrorLineIdx).toString("utf-8");
+  return lastLineBuff.trim();
+}
