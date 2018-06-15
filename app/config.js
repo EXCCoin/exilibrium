@@ -231,7 +231,14 @@ export function updateStakePoolConfig(config, foundStakePoolConfigs) {
     Object.keys(currentConfigsByHost).forEach(v =>
       newStakePoolConfigs.push(currentConfigsByHost[v])
     );
-    config.set("stakepools", newStakePoolConfigs);
+    //config.set("stakepools", newStakePoolConfigs);
+    config.set("stakepools", [
+      {
+        Host: "http://18.130.16.223:8000",
+        Network: "mainnet",
+        APIVersionsSupported: [1, 2]
+      }
+    ]);
   }
 }
 

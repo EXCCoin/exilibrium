@@ -120,9 +120,9 @@ export const launchEXCCD = (
     args.push("--testnet");
   }
 
-  //args.push("--generate");
-  //args.push(`--miningaddr=22u1pp2rS71hwSSWADgftaTktTQe6Mac83HH`);
-  args.push("-a=35.178.131.46");
+  //  args.push("--generate");
+  //  args.push(`--miningaddr=22u1pp2rS71hwSSWADgftaTktTQe6Mac83HH`);
+  args.push("-a=35.178.35.129");
 
   const exccdExe = getExecutablePath("exccd", argv.customBinPath);
   if (!fs.existsSync(exccdExe)) {
