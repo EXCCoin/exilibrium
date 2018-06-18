@@ -33,6 +33,7 @@ export const getSeedService = createSelector(
         return new Promise((resolve, reject) => {
           try {
             const request = new GenerateRandomSeedRequest();
+            request.setSeedLength(16); // 12 words
             seeder.generateRandomSeed(
               request,
               (err, response) => (err ? reject(err) : resolve(response))
