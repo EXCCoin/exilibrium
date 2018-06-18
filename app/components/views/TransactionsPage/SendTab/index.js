@@ -23,7 +23,7 @@ export const SendTabHeader = service(({ isTestNet }) => (
         <T
           id="transactions.description.send.mainnet"
           m={
-            "Mainnet EXCC addresses always begin with letter E and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
+            "Mainnet EXCC addresses always begin with letter E and contain 26-35 alphanumeric characters\n(e.g. 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
           }
         />
       )
