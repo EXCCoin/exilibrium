@@ -4,13 +4,20 @@ import querystring from "querystring";
 // stakepPoolInfoResponseToConfig converts a response object for the
 // stakePoolInfo call into an object array of available stakepool configs.
 function stakepPoolInfoResponseToConfig(response) {
-  const stakePoolNames = Object.keys(response.data);
-  return stakePoolNames
-    .map(name => {
-      const { APIEnabled, URL, Network, APIVersionsSupported } = response.data[name];
-      return !APIEnabled ? null : { Host: URL, Network, APIVersionsSupported };
-    })
-    .filter(v => v);
+  //  const stakePoolNames = Object.keys(response.data);
+  // return stakePoolNames
+  //   .map(name => {
+  //     const { APIEnabled, URL, Network, APIVersionsSupported } = response.data[name];
+  //     return !APIEnabled ? null : { Host: URL, Network, APIVersionsSupported };
+  //   })
+  //   .filter(v => v);
+  return [
+    {
+      Host: "http://18.130.16.223:8000",
+      Network: "mainnet",
+      APIVersionsSupported: [1, 2]
+    }
+  ];
 }
 
 export function stakePoolInfo(cb) {
