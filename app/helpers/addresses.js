@@ -30,7 +30,6 @@ function _sha256x2(buffer) {
 }
 
 export function isValidAddress(addr, network) {
-  console.log(addr, network);
   if (!addr || !addr.trim().length) {
     return ERR_INVALID_ADDR_EMPTY;
   }
@@ -52,7 +51,6 @@ export function isValidAddress(addr, network) {
     const bs58check = bs58checkBase(_sha256x2);
     bs58check.decode(addr, _sha256x2);
   } catch (error) {
-    console.log(ERR_INVALID_ADDR_CHECKSUM);
     return ERR_INVALID_ADDR_CHECKSUM;
   }
 
