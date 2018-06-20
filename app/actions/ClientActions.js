@@ -565,7 +565,7 @@ export const GETTRANSACTIONS_COMPLETE = "GETTRANSACTIONS_COMPLETE";
 //   transactions (sent/received/transfered)
 //
 // If empty, all transactions are accepted.
-function filterTransactions(transactions, filter) {
+export function filterTransactions(transactions, filter) {
   // const res1 = [];
   // for (const tx of transactions) {
   //   if (filter.types.length) {
@@ -704,9 +704,11 @@ export const getTransactions = () => async (dispatch, getState) => {
 
   if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.REGULAR) > -1) {
     recentRegularTransactions = [...unminedTransactions, ...minedTransactions];
+    // reduce regular transactions visibility in "Overview page" to 8 items
     recentRegularTransactions = recentRegularTransactions.slice(0, recentTransactionCount);
   } else if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.VOTE) > -1) {
     recentStakeTransactions = [...unminedTransactions, ...minedTransactions];
+    // reduce stake transactions visibility in "Overview page" to 8 items
     recentStakeTransactions = recentStakeTransactions.slice(0, recentTransactionCount);
   }
 

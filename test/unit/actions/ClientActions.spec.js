@@ -1,8 +1,33 @@
-import { getTransactions } from "../../../app/actions/ClientActions";
+import {
+  getTransactions,
+  filterTransactions,
+  TRANSACTION_DIR_SENT,
+  TRANSACTION_DIR_RECEIVED,
+  TRANSACTION_DIR_TRANSFERED
+} from "../../../app/actions/ClientActions";
 import { getTransactions as walletGetTransactions } from "../../../app/wallet/service";
+import { mockedTransactions } from "./get-transactions-response-mock";
 
 jest.mock("../../../app/wallet/service");
 jest.mock("../../../app/middleware/walletrpc/api_pb");
+
+const defaultState1 = {
+  currentBlockHeight: 630,
+  getTransactionsRequestAttempt: false,
+  transactionsFilter: {
+    listDirection: "desc",
+    types: [1, 2, 3],
+    direction: null
+  },
+  walletService: jest.fn(),
+  maximumTransactionCount: 10,
+  recentTransactionCount: 8,
+  noMoreTransactions: false,
+  lastTransaction: null,
+  minedTransactions: [],
+  recentRegularTransactions: [],
+  recentStakeTransactions: []
+};
 
 function getMockedGrpcState(overrideProps = {}) {
   const defaultState = {
@@ -19,8 +44,8 @@ function getMockedGrpcState(overrideProps = {}) {
     noMoreTransactions: false,
     lastTransaction: null,
     minedTransactions: [],
-    recentRegularTransactions: undefined,
-    recentStakeTransactions: undefined
+    recentRegularTransactions: [],
+    recentStakeTransactions: []
   };
   return { grpc: { ...defaultState, ...overrideProps } };
 }
@@ -81,7 +106,7 @@ describe("getTransactions", () => {
     walletGetTransactions.mockReset();
   });
 
-  test("it should work", async () => {
+  test("it should call dispatch twice in case when noMoreTransactions condition is fulfilled", async () => {
     walletGetTransactions
       .mockResolvedValueOnce(getMockedWalletGetTransactionResponse())
       .mockResolvedValueOnce(getMockedWalletGetTransactionResponse({ empty: true }));
@@ -110,6 +135,42 @@ describe("getTransactions", () => {
       expect(walletGetTransactions.mock.calls.length).toBe(3);
       walletGetTransactions.mockReset();
     },
-    200
+    10
   );
+});
+
+describe("transactionFilter", () => {
+  function getTransactionFilter(overrides = {}) {
+    const defaults = {
+      types: [],
+      direction: "",
+      search: null
+    };
+    return { ...defaults, ...overrides };
+  }
+  test("returns array with the same length when none of filtering cases were fulfilled", () => {
+    const filter = getTransactionFilter();
+    expect(filterTransactions(mockedTransactions, filter).length).toBe(mockedTransactions.length);
+  });
+  test("returns array filtered by type condition", () => {
+    const voteFilter = getTransactionFilter({ types: [2] });
+    const combinedFilter = getTransactionFilter({ types: [0, 2, 4] });
+    const stakeVotesTransactionsLength = 5;
+    const coinbaseTransactionsLength = 1;
+    const regularTransactionsLength = 1;
+    expect(filterTransactions(mockedTransactions, voteFilter).length).toBe(
+      stakeVotesTransactionsLength
+    );
+    expect(filterTransactions(mockedTransactions, combinedFilter).length).toBe(
+      stakeVotesTransactionsLength + coinbaseTransactionsLength + regularTransactionsLength
+    );
+  });
+  test("returns array filtered by direction condition", () => {
+    const directionFilter1 = getTransactionFilter({ direction: TRANSACTION_DIR_SENT });
+    const directionFilter2 = getTransactionFilter({ direction: TRANSACTION_DIR_RECEIVED });
+    const directionFilter3 = getTransactionFilter({ direction: TRANSACTION_DIR_TRANSFERED });
+    expect(filterTransactions(mockedTransactions, directionFilter1).length).toBe();
+    expect(filterTransactions(mockedTransactions, directionFilter2).length).toBe(17);
+    expect(filterTransactions(mockedTransactions, directionFilter3).length).toBe();
+  });
 });
