@@ -1,6 +1,7 @@
 import * as wallet from "wallet";
 import * as sel from "selectors";
 import eq from "lodash/fp/eq";
+import { compose, filtering } from "fp";
 import {
   getNextAddressAttempt,
   loadActiveDataFiltersAttempt,
@@ -565,55 +566,32 @@ export const GETTRANSACTIONS_COMPLETE = "GETTRANSACTIONS_COMPLETE";
 //   transactions (sent/received/transfered)
 //
 // If empty, all transactions are accepted.
-export function filterTransactions(transactions, filter) {
-  // const res1 = [];
-  // for (const tx of transactions) {
-  //   if (filter.types.length) {
-  //     if (filter.types.indexOf(tx.type) > -1) {
-  //       res1.push(tx);
-  //     }
-  //   } else {
-  //     res1.push(tx);
-  //   }
-  // }
-  // const res2 = [];
-  // for (const tx of res1) {
-  //   if (filter.direction) {
-  //     if (filter.direction === tx.direction) {
-  //       res2.push(tx);
-  //     }
-  //   } else {
-  //     res2.push(tx);
-  //   }
-  // }
-  // const res3 = [];
-  // for (const tx of res2) {
-  //   if (filter.search) {
-  //     if (
-  //       tx.creditAddresses.find(
-  //         address =>
-  //           address.length > 1 && address.toLowerCase().indexOf(filter.search.toLowerCase()) !== -1
-  //       ) !== undefined
-  //     ) {
-  //       res3.push(tx);
-  //     }
-  //   } else {
-  //     res3.push(tx);
-  //   }
-  // }
 
-  return transactions
-    .filter(v => (filter.types.length ? filter.types.indexOf(v.type) > -1 : true))
-    .filter(v => (filter.direction ? filter.direction === v.direction : true))
-    .filter(
+const xTransactionFilter = filterObj =>
+  compose(
+    filtering(v => (filterObj.types.length ? filterObj.types.indexOf(v.type) > -1 : true)),
+    filtering(v => (filterObj.direction ? filterObj.direction === v.direction : true)),
+    filtering(
       v =>
-        filter.search
+        filterObj.search
           ? v.creditAddresses.find(
               address =>
                 address.length > 1 &&
-                address.toLowerCase().indexOf(filter.search.toLowerCase()) !== -1
+                address.toLowerCase().indexOf(filterObj.search.toLowerCase()) !== -1
             ) !== undefined
           : true
+    )
+  );
+
+export function filterTransactions(filterObj) {
+  const xfilter = xTransactionFilter(filterObj);
+  return transactions =>
+    transactions.reduce(
+      xfilter((acc, element) => {
+        acc.push(element);
+        return acc;
+      }),
+      []
     );
 }
 
@@ -661,15 +639,17 @@ export const getTransactions = () => async (dispatch, getState) => {
 
   // List of transactions found after filtering
   const filtered = [];
+  const filterTx = filterTransactions(transactionsFilter);
 
   // first, request unmined transactions. They always come first in exilibrium.
   const { unmined } = await walletGetTransactions(walletService, -1, -1, 0);
-  const unminedTransactions = filterTransactions(unmined, transactionsFilter);
+  const unminedTransactions = filterTx(unmined);
 
   // now, request a batch of mined transactions until `maximumTransactionCount`
   // transactions have been obtained (after filtering)
   let startRequestHeight, endRequestHeight;
   const receivedBlocks = [];
+
   while (!noMoreTransactions && filtered.length < maximumTransactionCount) {
     if (transactionsFilter.listDirection === "desc") {
       startRequestHeight = lastTransaction ? lastTransaction.height - 1 : currentBlockHeight;
@@ -678,7 +658,6 @@ export const getTransactions = () => async (dispatch, getState) => {
       startRequestHeight = lastTransaction ? lastTransaction.height + 1 : 1;
       endRequestHeight = currentBlockHeight;
     }
-
     if (!receivedBlocks.includes(startRequestHeight)) {
       try {
         const { mined } = await walletGetTransactions(
@@ -690,7 +669,9 @@ export const getTransactions = () => async (dispatch, getState) => {
         noMoreTransactions = mined.length === 0;
         lastTransaction = mined.length ? mined[mined.length - 1] : lastTransaction;
         receivedBlocks.push(startRequestHeight);
-        filterTransactions(mined, transactionsFilter).forEach(v => filtered.push(v));
+        for (const tx of filterTx(mined)) {
+          filtered.push(tx);
+        }
       } catch (error) {
         dispatch({ type: GETTRANSACTIONS_FAILED, error });
         return;
@@ -809,13 +790,12 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
   ) {
     dispatch(getStakeInfoAttempt());
   }
-  unminedTransactions = filterTransactions(
-    [
-      ...newlyUnminedTransactions,
-      ...unminedTransactions.filter(tx => !newlyMinedMap[tx.hash] && !newlyUnminedMap[tx.hash])
-    ],
-    transactionsFilter
-  );
+  const filterTx = filterTransactions(transactionsFilter);
+
+  unminedTransactions = filterTx([
+    ...newlyUnminedTransactions,
+    ...unminedTransactions.filter(tx => !newlyMinedMap[tx.hash] && !newlyUnminedMap[tx.hash])
+  ]);
 
   const regularTransactionFilter = {
     listDirection: "desc",
@@ -823,16 +803,11 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
     direction: null
   };
 
-  recentRegularTransactions = filterTransactions(
-    [
-      ...newlyUnminedTransactions,
-      ...newlyMinedTransactions,
-      ...recentRegularTransactions.filter(
-        tx => !newlyMinedMap[tx.hash] && !newlyUnminedMap[tx.hash]
-      )
-    ],
-    regularTransactionFilter
-  ).slice(0, recentTransactionCount);
+  recentRegularTransactions = filterTransactions(regularTransactionFilter)([
+    ...newlyUnminedTransactions,
+    ...newlyMinedTransactions,
+    ...recentRegularTransactions.filter(tx => !newlyMinedMap[tx.hash] && !newlyUnminedMap[tx.hash])
+  ]).slice(0, recentTransactionCount);
 
   const stakeTransactionFilter = {
     listDirection: "desc",
@@ -844,14 +819,11 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
     direction: null
   };
 
-  recentStakeTransactions = filterTransactions(
-    [
-      ...newlyUnminedTransactions,
-      ...newlyMinedTransactions,
-      ...recentStakeTransactions.filter(tx => !newlyMinedMap[tx.hash] && !newlyUnminedMap[tx.hash])
-    ],
-    stakeTransactionFilter
-  ).slice(0, recentTransactionCount);
+  recentStakeTransactions = filterTransactions(stakeTransactionFilter)([
+    ...newlyUnminedTransactions,
+    ...newlyMinedTransactions,
+    ...recentStakeTransactions.filter(tx => !newlyMinedMap[tx.hash] && !newlyUnminedMap[tx.hash])
+  ]).slice(0, recentTransactionCount);
 
   const { maturingBlockHeights } = getState().grpc;
   const newMaturingHeights = { ...maturingBlockHeights };
@@ -873,7 +845,7 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
   } else {
     minedTransactions = [...minedTransactions, ...newlyMinedTransactions];
   }
-  minedTransactions = filterTransactions(minedTransactions, transactionsFilter);
+  minedTransactions = filterTx(minedTransactions, transactionsFilter);
 
   dispatch({
     unminedTransactions,

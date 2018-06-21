@@ -41,6 +41,64 @@ export const mockedSingleTransaction = {
 };
 
 // prettier-ignore
+export const unminedMockedTransactions = [
+  {
+    amount: 230913783,
+    blockHash: null,
+    creditAddresses: ["22trunbF1DXEN5vPtKsfaWHZkd6UwhZUZP2Y"],
+    creditsAmount: 230913783,
+    debitAccounts: [0, 0],
+    debitsAmount: 0,
+    direction: "",
+    fee: 0,
+    hash: new Uint8Array([54, 17, 28, 4, 238, 119, 219, 68, 111, 119, 75, 239, 139, 11, 87, 138, 125, 181, 170, 2, 162, 208, 225, 100, 73, 67, 110, 197, 218, 47, 207, 238]),
+    height: -1,
+    index: 0,
+    timestamp: null,
+    tx: {},
+    txHash: "eecf2fdac56e434964e1d0a202aab57d8a570b8bef4b776f44db77ee041c1136",
+    txType: "Vote",
+    type: 2
+  },
+  {
+    amount: -20055000,
+    blockHash: null,
+    creditAddresses: [],
+    creditsAmount: 0,
+    debitAccounts: [0, 0],
+    debitsAmount: 20055000,
+    direction: "",
+    fee: 55000,
+    hash: new Uint8Array([56, 36, 204, 220, 77, 2, 255, 3, 86, 142, 69, 231, 173, 114, 44, 158, 126, 217, 227, 49, 58, 7, 49, 142, 47, 86, 141, 62, 249, 135, 62, 59]),
+    height: -1,
+    index: 1,
+    timestamp: null,
+    tx: {},
+    txHash: "3b3e87f93e8d562f8e31073a31e3d97e9e2c72ade7458e5603ff024ddccc2438",
+    txType: "Ticket",
+    type: 1
+  },
+  {
+    amount: -57700,
+    blockHash: null,
+    creditAddresses: ["22u36W2PeJmRmW9wnRzZMxrhFXYzzNkuepT1", "22u36W2PeJmRmW9wnRzZMxrhFXYzzNkuepT1", "22u36W2PeJmRmW9wnRzZMxrhFXYzzNkuepT1", "22u36W2PeJmRmW9wnRzZMxrhFXYzzNkuepT1", "22u36W2PeJmRmW9wnRzZMxrhFXYzzNkuepT1", "22u36W2PeJmRmW9wnRzZMxrhFXYzzNkuepT1", "22u36W2PeJmRmW9wnRzZMxrhFXYzzNkuepT1", "22u36W2PeJmRmW9wnRzZMxrhFXYzzNkuepT1", "22u36W2PeJmRmW9wnRzZMxrhFXYzzNkuepT1", "22u36W2PeJmRmW9wnRzZMxrhFXYzzNkuepT1", "22tufHk5JaX3LtVAAA592vNPgi7KbaynEkP8"],
+    creditsAmount: 230856083,
+    debitAccounts: [0],
+    debitsAmount: 230913783,
+    direction: "transfer",
+    fee: 57700,
+    hash: new Uint8Array([111, 95, 195, 71, 110, 8, 102, 109, 148, 231, 251, 124, 142, 116, 163, 3, 6, 66, 94, 27, 122, 2, 54, 130, 112, 244, 186, 89, 198, 34, 183, 79]),
+    height: -1,
+    index: 2,
+    timestamp: null,
+    tx: {},
+    txHash: "4fb722c659baf4708236027a1b5e420603a3748e7cfbe7946d66086e47c35f6f",
+    txType: "Regular",
+    type: 0
+  }
+];
+
+// prettier-ignore
 export const mockedTransactions = [
   {
     amount: 230913783,

@@ -51,3 +51,8 @@ export const apply = (fn, ...args) => fn(...args);
 export const eql = x => y => x === y;
 
 export const neg = x => Math.abs(x) * -1;
+
+// transduce operations
+export const filtering = predicate => reducing => (acc, element) =>
+  predicate(element) ? reducing(acc, element) : acc;
+export const mapping = func => reducing => (acc, elem) => reducing(acc, func(elem));
