@@ -702,13 +702,12 @@ export const getTransactions = () => async (dispatch, getState) => {
 
   minedTransactions = [...minedTransactions, ...filtered];
 
+  // reduce transactions visibility in "Overview page" to 8 items
   if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.REGULAR) > -1) {
     recentRegularTransactions = [...unminedTransactions, ...minedTransactions];
-    // reduce regular transactions visibility in "Overview page" to 8 items
     recentRegularTransactions = recentRegularTransactions.slice(0, recentTransactionCount);
   } else if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.VOTE) > -1) {
     recentStakeTransactions = [...unminedTransactions, ...minedTransactions];
-    // reduce stake transactions visibility in "Overview page" to 8 items
     recentStakeTransactions = recentStakeTransactions.slice(0, recentTransactionCount);
   }
 

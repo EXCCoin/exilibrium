@@ -1,33 +1,32 @@
+import { getTransactions, filterTransactions } from "../../../app/actions/ClientActions";
 import {
-  getTransactions,
-  filterTransactions,
+  getTransactions as walletGetTransactions,
   TRANSACTION_DIR_SENT,
   TRANSACTION_DIR_RECEIVED,
   TRANSACTION_DIR_TRANSFERED
-} from "../../../app/actions/ClientActions";
-import { getTransactions as walletGetTransactions } from "../../../app/wallet/service";
+} from "../../../app/wallet/service";
 import { mockedTransactions } from "./get-transactions-response-mock";
 
 jest.mock("../../../app/wallet/service");
 jest.mock("../../../app/middleware/walletrpc/api_pb");
 
-const defaultState1 = {
-  currentBlockHeight: 630,
-  getTransactionsRequestAttempt: false,
-  transactionsFilter: {
-    listDirection: "desc",
-    types: [1, 2, 3],
-    direction: null
-  },
-  walletService: jest.fn(),
-  maximumTransactionCount: 10,
-  recentTransactionCount: 8,
-  noMoreTransactions: false,
-  lastTransaction: null,
-  minedTransactions: [],
-  recentRegularTransactions: [],
-  recentStakeTransactions: []
-};
+// const defaultState1 = {
+//   currentBlockHeight: 630,
+//   getTransactionsRequestAttempt: false,
+//   transactionsFilter: {
+//     listDirection: "desc",
+//     types: [1, 2, 3],
+//     direction: null
+//   },
+//   walletService: jest.fn(),
+//   maximumTransactionCount: 10,
+//   recentTransactionCount: 8,
+//   noMoreTransactions: false,
+//   lastTransaction: null,
+//   minedTransactions: [],
+//   recentRegularTransactions: [],
+//   recentStakeTransactions: []
+// };
 
 function getMockedGrpcState(overrideProps = {}) {
   const defaultState = {
@@ -57,6 +56,7 @@ function getMockedWalletGetTransactionResponse(options = {}) {
       unmined: []
     };
   }
+  const { height = 1 } = options;
   return {
     unmined: [],
     mined: [
@@ -70,7 +70,8 @@ function getMockedWalletGetTransactionResponse(options = {}) {
         txHash: "933bb306b3e71ac0d7c89f8dd2884f9190a1b7049e0632ae5201e1fb59377849",
         txType: "Coinbase",
         type: 4,
-        index: 0
+        index: 0,
+        height
       }
     ]
   };
@@ -121,22 +122,63 @@ describe("getTransactions", () => {
     walletGetTransactions.mockReset();
   });
 
-  test(
-    "it should work when endless loop case",
-    async () => {
-      walletGetTransactions.mockResolvedValue(getMockedWalletGetTransactionResponse());
-      const _getState = jest.fn();
-      const _dispatch = jest.fn();
-      _getState.mockReturnValue(getMockedGrpcState());
-      await getTransactions()(_dispatch, _getState);
-      expect(_dispatch.mock.calls.length).toBe(2);
-      expect(_dispatch.mock.calls[0][0]).toEqual({ type: "GETTRANSACTIONS_ATTEMPT" });
-      expect(_dispatch.mock.calls[1][0]).toHaveProperty("type", "GETTRANSACTIONS_COMPLETE");
-      expect(walletGetTransactions.mock.calls.length).toBe(3);
-      walletGetTransactions.mockReset();
-    },
-    10
-  );
+  test("it should correctly dispatch actions in endless loop case", async () => {
+    walletGetTransactions.mockResolvedValue(getMockedWalletGetTransactionResponse());
+    const _getState = jest.fn();
+    const _dispatch = jest.fn();
+    _getState.mockReturnValue(getMockedGrpcState());
+    await getTransactions()(_dispatch, _getState);
+    expect(_dispatch.mock.calls.length).toBe(2);
+    expect(_dispatch.mock.calls[0][0]).toEqual({ type: "GETTRANSACTIONS_ATTEMPT" });
+    expect(_dispatch.mock.calls[1][0]).toHaveProperty("type", "GETTRANSACTIONS_COMPLETE");
+    walletGetTransactions.mockReset();
+  });
+
+  test("it should correctly dispatch actions in case of 'walletGetTransactions' error & break request flow immediately in endless loop case", async () => {
+    walletGetTransactions
+      .mockResolvedValueOnce(getMockedWalletGetTransactionResponse({ empty: true }))
+      .mockRejectedValueOnce("GENERIC ERROR")
+      .mockResolvedValue(getMockedWalletGetTransactionResponse());
+    const _getState = jest.fn();
+    const _dispatch = jest.fn();
+    _getState.mockReturnValue(getMockedGrpcState());
+    await getTransactions()(_dispatch, _getState);
+    expect(_dispatch.mock.calls.length).toBe(2);
+    expect(_dispatch.mock.calls[0][0]).toEqual({ type: "GETTRANSACTIONS_ATTEMPT" });
+    expect(_dispatch.mock.calls[1][0]).toHaveProperty("type", "GETTRANSACTIONS_FAILED");
+    walletGetTransactions.mockReset();
+  });
+
+  test("it should call walletGetTransactions with correct arguments in endless loop case", async () => {
+    walletGetTransactions
+      .mockResolvedValueOnce(getMockedWalletGetTransactionResponse({ empty: true }))
+      .mockResolvedValueOnce(getMockedWalletGetTransactionResponse({ height: 2 }))
+      .mockResolvedValue(getMockedWalletGetTransactionResponse());
+    const _getState = jest.fn();
+    const _dispatch = jest.fn();
+    _getState.mockReturnValue(getMockedGrpcState());
+    await getTransactions()(_dispatch, _getState);
+    expect(walletGetTransactions.mock.calls.length).toBe(4);
+    const [firstCall, secondCall, thirdCall, fourthCall] = walletGetTransactions.mock.calls;
+    // unmined transactions
+    expect(firstCall[1]).toBe(-1);
+    expect(firstCall[2]).toBe(-1);
+    expect(firstCall[3]).toBe(0);
+
+    expect(secondCall[1]).toBe(2);
+    expect(secondCall[2]).toBe(1);
+    expect(secondCall[3]).toBe(10);
+
+    expect(thirdCall[1]).toBe(1);
+    expect(thirdCall[2]).toBe(1);
+    expect(thirdCall[3]).toBe(10);
+
+    expect(fourthCall[1]).toBe(0);
+    expect(fourthCall[2]).toBe(1);
+    expect(fourthCall[3]).toBe(10);
+
+    walletGetTransactions.mockReset();
+  });
 });
 
 describe("transactionFilter", () => {
@@ -155,6 +197,7 @@ describe("transactionFilter", () => {
   test("returns array filtered by type condition", () => {
     const voteFilter = getTransactionFilter({ types: [2] });
     const combinedFilter = getTransactionFilter({ types: [0, 2, 4] });
+    const notAppearingFilter = getTransactionFilter({ types: [3] });
     const stakeVotesTransactionsLength = 5;
     const coinbaseTransactionsLength = 1;
     const regularTransactionsLength = 1;
@@ -164,13 +207,43 @@ describe("transactionFilter", () => {
     expect(filterTransactions(mockedTransactions, combinedFilter).length).toBe(
       stakeVotesTransactionsLength + coinbaseTransactionsLength + regularTransactionsLength
     );
+    expect(filterTransactions(mockedTransactions, notAppearingFilter).length).toBe(0);
   });
   test("returns array filtered by direction condition", () => {
     const directionFilter1 = getTransactionFilter({ direction: TRANSACTION_DIR_SENT });
     const directionFilter2 = getTransactionFilter({ direction: TRANSACTION_DIR_RECEIVED });
     const directionFilter3 = getTransactionFilter({ direction: TRANSACTION_DIR_TRANSFERED });
-    expect(filterTransactions(mockedTransactions, directionFilter1).length).toBe();
-    expect(filterTransactions(mockedTransactions, directionFilter2).length).toBe(17);
-    expect(filterTransactions(mockedTransactions, directionFilter3).length).toBe();
+    expect(filterTransactions(mockedTransactions, directionFilter1).length).toBe(0);
+    expect(filterTransactions(mockedTransactions, directionFilter2).length).toBe(0);
+    expect(filterTransactions(mockedTransactions, directionFilter3).length).toBe(1);
+  });
+  test("returns array filtered by search address condition when letter cases are matching", () => {
+    const filter1 = getTransactionFilter({ search: "22u7jtCJiN6HeyZDm3xMBpCjKwgEnq3VxPAB" });
+    const filter2 = getTransactionFilter({ search: "22u58ndt3CoUPWSCyabSToqa2HEycrSqSr4B" });
+    expect(filterTransactions(mockedTransactions, filter1).length).toBe(3);
+    expect(filterTransactions(mockedTransactions, filter2).length).toBe(1);
+  });
+  test("returns array filtered by search address condition when letter cases aren't matching", () => {
+    const filter1 = getTransactionFilter({ search: "22U7JTCJIN6HEYZDM3XMBPCJKWGENQ3VXPAB" });
+    const filter2 = getTransactionFilter({ search: "22U58NDT3COUPWSCYABSTOQA2HEYCRSQSR4B" });
+    expect(filterTransactions(mockedTransactions, filter1).length).toBe(3);
+    expect(filterTransactions(mockedTransactions, filter2).length).toBe(1);
+  });
+  test("returns array filtered by combined conditions", () => {
+    const filter1 = getTransactionFilter({
+      types: [0, 1, 2],
+      search: "22U7JTCJIN6HEYZDM3XMBPCJKWGENQ3VXPAB"
+    });
+    const filter2 = getTransactionFilter({
+      types: [0, 1],
+      search: "22U7JTCJIN6HEYZDM3XMBPCJKWGENQ3VXPAB"
+    });
+    const filter3 = getTransactionFilter({
+      direction: "transfer",
+      search: "22U58NDT3COUPWSCYABSTOQA2HEYCRSQSR4B"
+    });
+    expect(filterTransactions(mockedTransactions, filter1).length).toBe(3);
+    expect(filterTransactions(mockedTransactions, filter2).length).toBe(0);
+    expect(filterTransactions(mockedTransactions, filter3).length).toBe(1);
   });
 });
