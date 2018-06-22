@@ -5,7 +5,7 @@ import {
   TRANSACTION_DIR_RECEIVED,
   TRANSACTION_DIR_TRANSFERED
 } from "../../../app/wallet/service";
-import { mockedTransactions, unminedMockedTransactions } from "./get-transactions-response-mock";
+import { mockedTransactions, unminedMockedTransactions } from "./get-transactions.data";
 
 jest.mock("../../../app/wallet/service");
 jest.mock("../../../app/middleware/walletrpc/api_pb");
