@@ -19,10 +19,8 @@ export default ({
   onShowSettings,
   onShowLogs,
   onShowTutorial,
-  onShowReleaseNotes,
   startupError,
   updateAvailable,
-  appVersion,
   ...props
 }) => (
   <div className="page-body getstarted">

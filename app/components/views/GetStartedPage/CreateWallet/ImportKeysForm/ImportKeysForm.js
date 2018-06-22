@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormattedMessage as T } from "react-intl";
 
 import { KeyBlueButton } from "buttons";
-import { TextInput, PasswordInput } from "inputs";
+import { TextInput } from "inputs";
 import { createWallet } from "connectors";
 import CreatePassPhrase from "../CreateWalletForm/CreatePassPhrase";
 

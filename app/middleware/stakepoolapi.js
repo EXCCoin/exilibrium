@@ -3,7 +3,7 @@ import querystring from "querystring";
 
 // stakepPoolInfoResponseToConfig converts a response object for the
 // stakePoolInfo call into an object array of available stakepool configs.
-function stakepPoolInfoResponseToConfig(response) {
+function stakepPoolInfoResponseToConfig() {
   //  const stakePoolNames = Object.keys(response.data);
   // return stakePoolNames
   //   .map(name => {
