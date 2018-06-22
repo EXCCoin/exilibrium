@@ -6,7 +6,7 @@ import { isNumber, isNullOrUndefined, isUndefined } from "util";
 import { neg } from "fp";
 import { tsToDate, endOfDay, reverseRawHash, formatLocalISODate } from "helpers";
 
-const VALUE_TYPE_ATOMAMOUNT = "VALUE_TYPE_ATOMAMOUNT";
+const VALUE_TYPE_EXELAMOUNT = "VALUE_TYPE_EXELAMOUNT";
 const VALUE_TYPE_DATETIME = "VALUE_TYPE_DATETIME";
 
 export const GETSTARTUPSTATS_ATTEMPT = "GETSTARTUPSTATS_ATTEMPT";
@@ -130,7 +130,7 @@ export const exportStatToCSV = opts => (dispatch, getState) => {
   const csvLine = values => values.map(csvValue).join(vsep);
 
   const seriesValueFormatFunc = series => {
-    if (series.type === VALUE_TYPE_ATOMAMOUNT) {
+    if (series.type === VALUE_TYPE_EXELAMOUNT) {
       return v => v / unitDivisor;
     } else if (series.type === VALUE_TYPE_DATETIME) {
       return formatTime;
@@ -195,10 +195,10 @@ export const transactionStats = opts => (dispatch, getState) => {
       { name: "hash" },
       { name: "type" },
       { name: "direction" },
-      { name: "fee", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "amount", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "credits", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "debits", type: VALUE_TYPE_ATOMAMOUNT }
+      { name: "fee", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "amount", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "credits", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "debits", type: VALUE_TYPE_EXELAMOUNT }
     ]
   });
 
@@ -238,15 +238,15 @@ export const balancesStats = opts => (dispatch, getState) => {
 
   startFunction({
     series: [
-      { name: "spendable", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "immature", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "locked", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "immatureNonWallet", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "lockedNonWallet", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "total", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "stakeRewards", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "stakeFees", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "totalStake", type: VALUE_TYPE_ATOMAMOUNT }
+      { name: "spendable", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "immature", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "locked", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "immatureNonWallet", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "lockedNonWallet", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "total", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "stakeRewards", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "stakeFees", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "totalStake", type: VALUE_TYPE_EXELAMOUNT }
     ]
   });
 
@@ -514,14 +514,14 @@ export const dailyBalancesStats = opts => {
   const aggStartFunction = opts => {
     opts.series = [
       ...opts.series,
-      { name: "sent", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "received", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "voted", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "revoked", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "ticket", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "stakeRewards", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "stakeFees", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "totalStake", type: VALUE_TYPE_ATOMAMOUNT }
+      { name: "sent", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "received", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "voted", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "revoked", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "ticket", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "stakeRewards", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "stakeFees", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "totalStake", type: VALUE_TYPE_EXELAMOUNT }
     ];
     startFunction(opts);
   };
@@ -608,8 +608,8 @@ export const ticketStats = opts => (dispatch, getState) => {
       { name: "status" },
       { name: "ticketHash" },
       { name: "spenderHash" },
-      { name: "sentAmount", type: VALUE_TYPE_ATOMAMOUNT },
-      { name: "returnedAmount", type: VALUE_TYPE_ATOMAMOUNT }
+      { name: "sentAmount", type: VALUE_TYPE_EXELAMOUNT },
+      { name: "returnedAmount", type: VALUE_TYPE_EXELAMOUNT }
     ]
   });
 

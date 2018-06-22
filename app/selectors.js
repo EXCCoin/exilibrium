@@ -147,7 +147,7 @@ export const sortedAccounts = createSelector([balances], balances =>
 
 export const totalBalance = createSelector(
   [balances],
-  reduce((atoms, { total }) => atoms + total, 0)
+  reduce((exels, { total }) => exels + total, 0)
 );
 
 export const spendableTotalBalance = createSelector(
@@ -160,7 +160,7 @@ export const spendableTotalBalance = createSelector(
 
 export const lockedBalance = createSelector(
   [balances],
-  reduce((atoms, { lockedByTickets }) => atoms + lockedByTickets, 0)
+  reduce((exels, { lockedByTickets }) => exels + lockedByTickets, 0)
 );
 
 export const networks = () => [{ name: "testnet" }, { name: "mainnet" }];
@@ -170,7 +170,7 @@ export const isTestNet = compose(
   network
 );
 export const isMainNet = not(isTestNet);
-export const currencies = () => [{ name: "EXCC" }, { name: "atoms" }];
+export const currencies = () => [{ name: "EXCC" }, { name: "exels" }];
 export const currencyDisplay = get(["settings", "currentSettings", "currencyDisplay"]);
 export const unitDivisor = compose(
   disp => (disp === "EXCC" ? 100000000 : 1),

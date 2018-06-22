@@ -51,12 +51,12 @@ export const Balance = ({
         </span>
       </div>
     );
-  } else if (currencyDisplay === "atoms") {
+  } else if (currencyDisplay === "exels") {
     return (
       <div className={classNameWrapper}>
         <span className="mono" {...{ onClick }}>
           <span className={[secondary, bold ? "bold" : null].join(" ")}>{`${amount} `}</span>
-          <span className={[secondary, classNameUnit].join(" ")}>atoms</span>
+          <span className={[secondary, classNameUnit].join(" ")}>exels</span>
         </span>
       </div>
     );
