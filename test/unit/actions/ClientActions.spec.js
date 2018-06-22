@@ -10,24 +10,6 @@ import { mockedTransactions, unminedMockedTransactions } from "./get-transaction
 jest.mock("../../../app/wallet/service");
 jest.mock("../../../app/middleware/walletrpc/api_pb");
 
-// const defaultState1 = {
-//   currentBlockHeight: 630,
-//   getTransactionsRequestAttempt: false,
-//   transactionsFilter: {
-//     listDirection: "desc",
-//     types: [1, 2, 3],
-//     direction: null
-//   },
-//   walletService: jest.fn(),
-//   maximumTransactionCount: 10,
-//   recentTransactionCount: 8,
-//   noMoreTransactions: false,
-//   lastTransaction: null,
-//   minedTransactions: [],
-//   recentRegularTransactions: [],
-//   recentStakeTransactions: []
-// };
-
 function getMockedGrpcState(overrideProps = {}) {
   const defaultState = {
     currentBlockHeight: 2,
@@ -129,19 +111,20 @@ describe("getTransactions", () => {
     walletGetTransactions.mockReset();
   });
 
-  test("it should correctly dispatch actions in endless loop case", async () => {
+  test("it should correctly dispatch actions in infinite loop case", async () => {
     walletGetTransactions.mockResolvedValue(getMockedWalletGetTransactionResponse());
     const _getState = jest.fn();
     const _dispatch = jest.fn();
     _getState.mockReturnValue(getMockedGrpcState());
     await getTransactions()(_dispatch, _getState);
     expect(_dispatch.mock.calls.length).toBe(2);
+    expect(walletGetTransactions.mock.calls.length).toBe(3);
     expect(_dispatch.mock.calls[0][0]).toEqual({ type: "GETTRANSACTIONS_ATTEMPT" });
     expect(_dispatch.mock.calls[1][0]).toHaveProperty("type", "GETTRANSACTIONS_COMPLETE");
     walletGetTransactions.mockReset();
   });
 
-  test("it should correctly dispatch actions in case of 'walletGetTransactions' error & break request flow immediately in endless loop case", async () => {
+  test("it should correctly dispatch actions in case of 'walletGetTransactions' error & break request flow immediately in infinite loop case", async () => {
     walletGetTransactions
       .mockResolvedValueOnce(getMockedWalletGetTransactionResponse({ empty: true }))
       .mockRejectedValueOnce("GENERIC ERROR")
@@ -156,7 +139,7 @@ describe("getTransactions", () => {
     walletGetTransactions.mockReset();
   });
 
-  test("it should call walletGetTransactions with correct arguments in endless loop case", async () => {
+  test("it should call walletGetTransactions with correct arguments in infinite loop case", async () => {
     walletGetTransactions
       .mockResolvedValueOnce(getMockedWalletGetTransactionResponse({ empty: true }))
       .mockResolvedValueOnce(getMockedWalletGetTransactionResponse({ height: 2 }))
@@ -165,8 +148,8 @@ describe("getTransactions", () => {
     const _dispatch = jest.fn();
     _getState.mockReturnValue(getMockedGrpcState());
     await getTransactions()(_dispatch, _getState);
-    expect(walletGetTransactions.mock.calls.length).toBe(4);
-    const [firstCall, secondCall, thirdCall, fourthCall] = walletGetTransactions.mock.calls;
+    expect(walletGetTransactions.mock.calls.length).toBe(3);
+    const [firstCall, secondCall, thirdCall] = walletGetTransactions.mock.calls;
     // unmined transactions
     expect(firstCall[1]).toBe(-1);
     expect(firstCall[2]).toBe(-1);
@@ -179,10 +162,6 @@ describe("getTransactions", () => {
     expect(thirdCall[1]).toBe(1);
     expect(thirdCall[2]).toBe(1);
     expect(thirdCall[3]).toBe(10);
-
-    expect(fourthCall[1]).toBe(0);
-    expect(fourthCall[2]).toBe(1);
-    expect(fourthCall[3]).toBe(10);
 
     walletGetTransactions.mockReset();
   });
@@ -228,9 +207,9 @@ describe("getTransactions", () => {
     expect(thirdCall[3]).toBe(10);
 
     expect(result.unminedTransactions.length).toBe(0);
-    expect(result.minedTransactions.length).toBe(10);
+    expect(result.minedTransactions.length).toBe(5);
     expect(result.recentRegularTransactions.length).toBe(0);
-    expect(result.recentStakeTransactions.length).toBe(8);
+    expect(result.recentStakeTransactions.length).toBe(5);
     walletGetTransactions.mockReset();
   });
 

@@ -1,7 +1,7 @@
 import * as wallet from "wallet";
 import * as sel from "selectors";
 import eq from "lodash/fp/eq";
-import { compose, filtering } from "fp";
+import { compose, filtering, intersect, increment, decrement } from "fp";
 import {
   getNextAddressAttempt,
   loadActiveDataFiltersAttempt,
@@ -595,6 +595,21 @@ export function filterTransactions(filterObj) {
     );
 }
 
+function getDirection(listDirection, currentBlockHeight) {
+  switch (listDirection) {
+    case "desc":
+      return lastTransaction => ({
+        start: lastTransaction ? decrement(lastTransaction.height) : currentBlockHeight,
+        end: 1
+      });
+    default:
+      return lastTransaction => ({
+        start: lastTransaction ? increment(lastTransaction.height) : 1,
+        end: currentBlockHeight
+      });
+  }
+}
+
 // getTransactions loads a list of transactions from the wallet, given the
 // current grpc state.
 //
@@ -639,57 +654,44 @@ export const getTransactions = () => async (dispatch, getState) => {
 
   // List of transactions found after filtering
   const filtered = [];
+  const receivedHashes = [];
   const filterTx = filterTransactions(transactionsFilter);
 
   // first, request unmined transactions. They always come first in exilibrium.
   const { unmined } = await walletGetTransactions(walletService, -1, -1, 0);
   const unminedTransactions = filterTx(unmined);
-
-  // now, request a batch of mined transactions until `maximumTransactionCount`
-  // transactions have been obtained (after filtering)
-  let startRequestHeight, endRequestHeight;
-  const receivedBlocks = [];
+  const direction = getDirection(transactionsFilter.listDirection, currentBlockHeight);
 
   while (!noMoreTransactions && filtered.length < maximumTransactionCount) {
-    if (transactionsFilter.listDirection === "desc") {
-      startRequestHeight = lastTransaction ? lastTransaction.height - 1 : currentBlockHeight;
-      endRequestHeight = 1;
-    } else {
-      startRequestHeight = lastTransaction ? lastTransaction.height + 1 : 1;
-      endRequestHeight = currentBlockHeight;
-    }
-    if (!receivedBlocks.includes(startRequestHeight)) {
-      try {
-        const { mined } = await walletGetTransactions(
-          walletService,
-          startRequestHeight,
-          endRequestHeight,
-          pageCount
-        );
-        noMoreTransactions = mined.length === 0;
-        lastTransaction = mined.length ? mined[mined.length - 1] : lastTransaction;
-        receivedBlocks.push(startRequestHeight);
-        for (const tx of filterTx(mined)) {
-          filtered.push(tx);
-        }
-      } catch (error) {
-        dispatch({ type: GETTRANSACTIONS_FAILED, error });
-        return;
+    const { start, end } = direction(lastTransaction);
+    try {
+      const { mined } = await walletGetTransactions(walletService, start, end, pageCount);
+      lastTransaction = mined[mined.length - 1] || lastTransaction;
+      const minedHashesBatch = mined.map(tx => tx.txHash);
+      if (mined.length === 0 || intersect(receivedHashes, minedHashesBatch)) {
+        noMoreTransactions = true;
+      } else {
+        filtered.push(...filterTx(mined));
+        receivedHashes.push(...minedHashesBatch);
       }
-    } else {
-      noMoreTransactions = true;
+    } catch (error) {
+      dispatch({ type: GETTRANSACTIONS_FAILED, error });
+      return;
     }
   }
 
   minedTransactions = [...minedTransactions, ...filtered];
 
   // reduce transactions visibility in "Overview page" to 8 items
-  if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.REGULAR) > -1) {
-    recentRegularTransactions = [...unminedTransactions, ...minedTransactions];
-    recentRegularTransactions = recentRegularTransactions.slice(0, recentTransactionCount);
-  } else if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.VOTE) > -1) {
-    recentStakeTransactions = [...unminedTransactions, ...minedTransactions];
-    recentStakeTransactions = recentStakeTransactions.slice(0, recentTransactionCount);
+  const { types } = transactionsFilter;
+  const recentTransactions = [...unminedTransactions, ...minedTransactions].slice(
+    0,
+    recentTransactionCount
+  );
+  if (types.includes(TransactionDetails.TransactionType.REGULAR)) {
+    recentRegularTransactions = recentTransactions;
+  } else if (types.includes(TransactionDetails.TransactionType.VOTE)) {
+    recentStakeTransactions = recentTransactions;
   }
 
   const stateChange = {

@@ -49,8 +49,21 @@ export const substruct = (structure, obj) =>
 export const apply = (fn, ...args) => fn(...args);
 
 export const eql = x => y => x === y;
+export const increment = x => x + 1;
+export const decrement = x => x - 1;
 
 export const neg = x => Math.abs(x) * -1;
+
+export function intersect(arr1, arr2) {
+  for (const el1 of arr1) {
+    for (const el2 of arr2) {
+      if (el1 === el2) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
 
 // transduce operations
 export const filtering = predicate => reducing => (acc, element) =>
