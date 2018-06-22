@@ -33,14 +33,7 @@ const updateSavedConfig = (newPoolInfo, poolHost, apiKey, accountNum) => (dispat
     daemon: { walletName }
   } = getState();
   const walletCfg = getWalletCfg(sel.isTestNet(getState()), walletName);
-  //walletCfg.set("stakepools", stakePoolConfigs);
-  walletCfg.set("stakepools", [
-    {
-      Host: "http://18.130.16.223:8000",
-      Network: "mainnet",
-      APIVersionsSupported: [1, 2]
-    }
-  ]);
+  walletCfg.set("stakepools", stakePoolConfigs);
   const selectedStakePool = stakePoolConfigs.filter(p => p.Host === poolHost)[0] || null;
   dispatch({
     selectedStakePool,
@@ -165,14 +158,7 @@ const updateStakePoolVoteChoicesConfig = (stakePool, voteChoices) => (dispatch, 
     );
   const selectedStakePool = sel.selectedStakePool(getState());
 
-  //config.set("stakepools", stakePoolConfigs);
-  config.set("stakepools", [
-    {
-      Host: "http://18.130.16.223:8000",
-      Network: "mainnet",
-      APIVersionsSupported: [1, 2]
-    }
-  ]);
+  config.set("stakepools", stakePoolConfigs);
   dispatch({
     selectedStakePool,
     currentStakePoolConfig: stakePoolConfigs,
@@ -237,14 +223,7 @@ export const removeStakePoolConfig = host => (dispatch, getState) => {
   const newPool = {};
   propsToMaintain.forEach(p => (newPool[p] = pool[p])); // **not** a deep copy
   const newPools = existingPools.map(p => (p.Host === host ? newPool : p));
-  //config.set("stakepools", newPools);
-  config.set("stakepools", [
-    {
-      Host: "http://18.130.16.223:8000",
-      Network: "mainnet",
-      APIVersionsSupported: [1, 2]
-    }
-  ]);
+  config.set("stakepools", newPools);
 
   let selectedStakePool = sel.selectedStakePool(getState());
   if (selectedStakePool && selectedStakePool.Host === host) {
