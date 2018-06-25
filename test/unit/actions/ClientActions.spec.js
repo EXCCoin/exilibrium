@@ -1,14 +1,23 @@
-import { getTransactions, filterTransactions } from "../../../app/actions/ClientActions";
+import {
+  getTransactions,
+  filterTransactions,
+  findImmatureTransactions,
+  transactionsMaturingHeights,
+  MATURINGHEIGHTS_CHANGED
+} from "../../../app/actions/ClientActions";
 import {
   getTransactions as walletGetTransactions,
   TRANSACTION_DIR_SENT,
   TRANSACTION_DIR_RECEIVED,
   TRANSACTION_DIR_TRANSFERED
 } from "../../../app/wallet/service";
+import { chainParams } from "../../../app/selectors";
 import { mockedTransactions, unminedMockedTransactions } from "./get-transactions.data";
+import { MainNetParams } from "./chain-params.data";
 
 jest.mock("../../../app/wallet/service");
 jest.mock("../../../app/middleware/walletrpc/api_pb");
+jest.mock("../../../app/selectors");
 
 function getMockedGrpcState(overrideProps = {}) {
   const defaultState = {
@@ -376,5 +385,64 @@ describe("transactionFilter", () => {
     expect(filter1(mockedTransactions).length).toBe(3);
     expect(filter2(mockedTransactions).length).toBe(0);
     expect(filter3(mockedTransactions).length).toBe(1);
+  });
+});
+
+describe("findImmatureTransactions", () => {
+  test("should dispatch 'MATURINGHEIGHTS_CHANGED' action with empty array when mined transactions array is empty", async () => {
+    walletGetTransactions.mockResolvedValue({ mined: [], unmined: [] });
+    const _getState = jest.fn();
+    const _dispatch = jest.fn();
+    chainParams.mockReturnValue(MainNetParams);
+    _getState.mockReturnValue(getMockedGrpcState());
+    await findImmatureTransactions()(_dispatch, _getState);
+    expect(_getState.mock.calls.length).toBe(2);
+    expect(_dispatch.mock.calls.length).toBe(1);
+    expect(_dispatch.mock.calls[0][0]).toEqual({
+      maturingBlockHeights: {},
+      type: MATURINGHEIGHTS_CHANGED
+    });
+    walletGetTransactions.mockReset();
+    chainParams.mockReset();
+  });
+  // test("should work in infinite loop case", async () => {
+  //   walletGetTransactions.mockResolvedValue({
+  //     mined: [
+  //       {
+  //         amount: 30000000000,
+  //         creditAddresses: [
+  //           "22tv7nd31sMmD8BpcVRJAWQLqYCjaCuqpWpz",
+  //           "22u4VtFDzXDT517DFfCLRM8i5t814pZXePBK"
+  //         ],
+  //         creditAmounts: 30000000000,
+  //         txHash: "933bb306b3e71ac0d7c89f8dd2884f9190a1b7049e0632ae5201e1fb59377849",
+  //         txType: "Coinbase",
+  //         type: 4,
+  //         index: 0,
+  //         height: 1
+  //       }
+  //     ],
+  //     unmined: []
+  //   });
+  //   const _getState = jest.fn();
+  //   const _dispatch = jest.fn();
+  //   chainParams.mockReturnValue(MainNetParams);
+  //   _getState.mockReturnValue(getMockedGrpcState());
+  //   await findImmatureTransactions()(_dispatch, _getState);
+  //   expect(_getState.mock.calls.length).toBe(2);
+  //   expect(_dispatch.mock.calls.length).toBe(1);
+  //   expect(_dispatch.mock.calls[0][0]).toEqual({
+  //     maturingBlockHeights: {},
+  //     type: MATURINGHEIGHTS_CHANGED
+  //   });
+  //   walletGetTransactions.mockReset();
+  //   chainParams.mockReset();
+  // });
+});
+
+describe("transactionsMaturingHeights", () => {
+  test("should work", () => {
+    const result = transactionsMaturingHeights(mockedTransactions, MainNetParams);
+    expect(result).toBe({});
   });
 });
