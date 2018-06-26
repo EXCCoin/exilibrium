@@ -1,3 +1,22 @@
+const mockedTx = {
+  credit: {
+    getAccount() {
+      return 0;
+    }
+  },
+  getCreditsList() {
+    return [this.credit];
+  },
+  getDebitsList() {
+    return [this.debit];
+  },
+  debit: {
+    getPreviousAccount() {
+      return 0;
+    }
+  }
+};
+
 // prettier-ignore
 export const mockedSingleTransaction = {
   amount: -93700,
@@ -34,7 +53,7 @@ export const mockedSingleTransaction = {
   height: 642,
   index: 16,
   timestamp: 1529480697,
-  tx: {},
+  tx: mockedTx,
   txHash: "2002f799b351ad76619fda03684be904acb48c8afb91a86ab67122ce78086b09",
   txType: "Regular",
   type: 0
@@ -55,7 +74,7 @@ export const unminedMockedTransactions = [
     height: -1,
     index: 0,
     timestamp: null,
-    tx: {},
+    tx: mockedTx,
     txHash: "eecf2fdac56e434964e1d0a202aab57d8a570b8bef4b776f44db77ee041c1136",
     txType: "Vote",
     type: 2
@@ -73,7 +92,7 @@ export const unminedMockedTransactions = [
     height: -1,
     index: 1,
     timestamp: null,
-    tx: {},
+    tx: mockedTx,
     txHash: "3b3e87f93e8d562f8e31073a31e3d97e9e2c72ade7458e5603ff024ddccc2438",
     txType: "Ticket",
     type: 1
@@ -91,7 +110,7 @@ export const unminedMockedTransactions = [
     height: -1,
     index: 2,
     timestamp: null,
-    tx: {},
+    tx: mockedTx,
     txHash: "4fb722c659baf4708236027a1b5e420603a3748e7cfbe7946d66086e47c35f6f",
     txType: "Regular",
     type: 0
@@ -113,7 +132,7 @@ export const mockedTransactions = [
     height: 641,
     index: 0,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "a2d3a4ef34d1240de3b28a0c89ee3451d00f7145f2a4fb54a5afa611217d0cb6",
     txType: "Vote",
     type: 2
@@ -131,7 +150,7 @@ export const mockedTransactions = [
     height: 641,
     index: 1,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "e444f7108f66859820abe10e01775cc5cc3fe0d3299b70d7bac1cdfda82ad8f1",
     txType: "Vote",
     type: 2
@@ -149,7 +168,7 @@ export const mockedTransactions = [
     height: 641,
     index: 2,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "ebb1bbeb24e612de2ffa03ad132cc0366a6ebc2cbc36c5dfeb299e2445977906",
     txType: "Vote",
     type: 2
@@ -167,7 +186,7 @@ export const mockedTransactions = [
     height: 641,
     index: 3,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "6badefa6eaf7cd8bcf5dd4c98f6abf407d8c1ab5a062bc21cc90aaa288333f24",
     txType: "Vote",
     type: 2
@@ -186,7 +205,7 @@ export const mockedTransactions = [
     height: 641,
     index: 4,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "49855c3def69b45cefba40e297ed4ddd3deab1df7b44084ed05b29e2a8c83d1c",
     txType: "Vote",
     type: 2
@@ -204,7 +223,7 @@ export const mockedTransactions = [
     height: 641,
     index: 5,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "feafd84244a540bc04d778fbe8d1deaf89a71d3888d2b26131ab9c87fba096fa",
     txType: "Ticket",
     type: 1
@@ -223,7 +242,7 @@ export const mockedTransactions = [
     height: 641,
     index: 6,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "ea38814643b4fcb049a05c7b46335782d366cd70036b1d0116cda30ad5db2d08",
     txType: "Ticket",
     type: 1
@@ -241,7 +260,7 @@ export const mockedTransactions = [
     height: 641,
     index: 7,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "4e9527ce643644df9e9e9141148e88e6cca2022b8c7a60b86b3f0805a0b2ee5d",
     txType: "Ticket",
     type: 1
@@ -259,7 +278,7 @@ export const mockedTransactions = [
     height: 641,
     index: 8,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "d3218bff8e61fa53ca1ee3271d5729a59787de5712452794abd7321bb9379c18",
     txType: "Ticket",
     type: 1
@@ -277,7 +296,7 @@ export const mockedTransactions = [
     height: 641,
     index: 9,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "b3245d7b1f6b5b7b48c0d259cb39124385fdee3aa8fb69e723395df462b57ef0",
     txType: "Ticket",
     type: 1
@@ -295,7 +314,7 @@ export const mockedTransactions = [
     height: 641,
     index: 10,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "5e6342ac4ba4d5c7484214273acfb6310e6ea2c098b2f59baa11eca69812cc1a",
     txType: "Ticket",
     type: 1
@@ -313,7 +332,7 @@ export const mockedTransactions = [
     height: 641,
     index: 11,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "e8338b6a3b6b58a3fa45ddf2792d2321b09132c9ae9b8febfcde2c14028b7966",
     txType: "Ticket",
     type: 1
@@ -331,7 +350,7 @@ export const mockedTransactions = [
     height: 641,
     index: 12,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "078bf9c88bb2d1a39fa4e94150f5fe04ff6aeea8aa2cb50481aab75004eb49a2",
     txType: "Ticket",
     type: 1
@@ -349,7 +368,7 @@ export const mockedTransactions = [
     height: 641,
     index: 13,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "58a806824d7a19965df17958e2e6d8bbbe0d63cddc8fe4577815a70c27469ec5",
     txType: "Ticket",
     type: 1
@@ -367,7 +386,7 @@ export const mockedTransactions = [
     height: 641,
     index: 14,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "6b58991eb8664a0538255f0a9af8db00195059018834532afd080a00988f894a",
     txType: "Ticket",
     type: 1
@@ -386,7 +405,7 @@ export const mockedTransactions = [
     height: 641,
     index: 15,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "18ff5e6a5ed80a2851a53b8a0ce64520de4cad59c51d2fef2f949bf631efa3e8",
     txType: "Coinbase",
     type: 4
@@ -426,7 +445,7 @@ export const mockedTransactions = [
     height: 641,
     index: 16,
     timestamp: 1529480613,
-    tx: {},
+    tx: mockedTx,
     txHash: "bde14b02b81d7f17e8ca87f99f3fc230f3f15e5f9a24913275fc6d5b75339444",
     txType: "Regular",
     type: 0

@@ -134,7 +134,7 @@ export const MATURINGHEIGHTS_ADDED = "MATURINGHEIGHTS_ADDED";
 
 // Given a list of transactions, returns the maturing heights of all
 // stake txs in the list.
-function transactionsMaturingHeights(txs, chainParams) {
+export function transactionsMaturingHeights(txs, chainParams) {
   const res = {};
   const addToRes = (height, found) => {
     const accounts = res[height] || [];
@@ -185,15 +185,17 @@ export const findImmatureTransactions = () => async (dispatch, getState) => {
 
   const checkHeights = {};
   // const mergeCheckHeights = (h) => (h > currentBlockHeight && checkHeights.indexOf(h) === -1)
-  //   ? checkHeights.push(h) : null;
-  const mergeCheckHeights = hs =>
-    Object.keys(hs).forEach(h => {
-      if (h < currentBlockHeight) {
+  // ? checkHeights.push(h) : null;
+  const mergeCheckHeights = heights =>
+    Object.keys(heights).forEach(height => {
+      if (height < currentBlockHeight) {
         return;
       }
-      const accounts = checkHeights[h] || [];
-      hs[h].forEach(a => (accounts.indexOf(a) === -1 ? accounts.push(a) : null));
-      checkHeights[h] = accounts;
+      const accounts = checkHeights[height] || [];
+      heights[height].forEach(
+        account => (accounts.includes(account) ? accounts.push(account) : null)
+      );
+      checkHeights[height] = accounts;
     });
 
   while (txs.mined.length > 0) {
@@ -206,7 +208,6 @@ export const findImmatureTransactions = () => async (dispatch, getState) => {
       pageSize
     );
   }
-
   dispatch({ maturingBlockHeights: checkHeights, type: MATURINGHEIGHTS_CHANGED });
 };
 

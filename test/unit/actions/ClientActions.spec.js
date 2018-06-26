@@ -441,8 +441,25 @@ describe("findImmatureTransactions", () => {
 });
 
 describe("transactionsMaturingHeights", () => {
-  test("should work", () => {
-    const result = transactionsMaturingHeights(mockedTransactions, MainNetParams);
-    expect(result).toBe({});
+  test("should return object with 3 transaction maturing heights when all txs have the same heights", () => {
+    const result = transactionsMaturingHeights(mockedTransactions, {
+      TicketExpiry: 1000,
+      SStxChangeMaturity: 1,
+      TicketMaturity: 10,
+      CoinbaseMaturity: 10
+    });
+    // mocked transactions height is 641
+    expect(result).toEqual({ "642": [0], "651": [0], "1641": [0] });
+  });
+  test("should return object with 1 transaction maturing height when there is no ticket purchase type available", () => {
+    const filteredMockedTransactions = mockedTransactions.filter(tx => tx.type !== 1);
+    const result = transactionsMaturingHeights(filteredMockedTransactions, {
+      TicketExpiry: 1000,
+      SStxChangeMaturity: 1,
+      TicketMaturity: 10,
+      CoinbaseMaturity: 10
+    });
+    // mocked transactions height is 641
+    expect(result).toEqual({ "651": [0] });
   });
 });
