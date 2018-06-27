@@ -31,7 +31,7 @@ export default class Validator extends Component {
   }
   checkFileMetadata(selectedFile) {
     const correctExtension = selectedFile.name.includes(".json");
-    const correctContentType = selectedFile.type === "application/json";
+    const correctContentType = selectedFile.type.toLowerCase().includes("json");
 
     if (!correctExtension || !correctContentType) {
       this.setState({
