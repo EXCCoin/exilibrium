@@ -462,4 +462,46 @@ describe("transactionsMaturingHeights", () => {
     // mocked transactions height is 641
     expect(result).toEqual({ "651": [0] });
   });
+  test("should return object with 1 transaction maturing height when there is no ticket purchase type available", () => {
+    const getTx = (creditAccounts = [0], debitAccounts = [0]) => ({
+      getCreditsList() {
+        return creditAccounts.map(a => ({
+          getAccount() {
+            return a;
+          }
+        }));
+      },
+      getDebitsList() {
+        return debitAccounts.map(a => ({
+          getPreviousAccount() {
+            return a;
+          }
+        }));
+      }
+    });
+    const mockedTransactions = [
+      {
+        height: 100,
+        type: 1,
+        tx: getTx([0, 1], [2])
+      },
+      {
+        height: 500,
+        type: 2,
+        tx: getTx([3, 4], [5])
+      }
+    ];
+    const result = transactionsMaturingHeights(mockedTransactions, {
+      TicketExpiry: 1000,
+      SStxChangeMaturity: 1,
+      TicketMaturity: 10,
+      CoinbaseMaturity: 10
+    });
+    expect(result).toEqual({
+      "1100": [0, 1, 2],
+      "110": [0, 1, 2],
+      "101": [0, 1, 2],
+      "510": [3, 4, 5]
+    });
+  });
 });
