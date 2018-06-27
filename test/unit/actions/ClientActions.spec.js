@@ -462,7 +462,7 @@ describe("transactionsMaturingHeights", () => {
     // mocked transactions height is 641
     expect(result).toEqual({ "651": [0] });
   });
-  test("should return object with 1 transaction maturing height when there is no ticket purchase type available", () => {
+  test("should return correct accounts", () => {
     const getTx = (creditAccounts = [0], debitAccounts = [0]) => ({
       getCreditsList() {
         return creditAccounts.map(a => ({

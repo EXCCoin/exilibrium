@@ -51,8 +51,25 @@ export const apply = (fn, ...args) => fn(...args);
 export const eql = x => y => x === y;
 export const increment = x => x + 1;
 export const decrement = x => x - 1;
+export const add = x => y => x + y;
 
 export const neg = x => Math.abs(x) * -1;
+
+export function mapValues(obj, callback) {
+  const result = {};
+  for (const [key, value] of Object.entries(obj)) {
+    result[key] = callback(value);
+  }
+  return result;
+}
+
+// set utils
+export function addToSet(set = new Set(), iterable) {
+  for (const item of iterable) {
+    set.add(item);
+  }
+  return set;
+}
 
 export function intersect(arr1, arr2) {
   for (const el1 of arr1) {

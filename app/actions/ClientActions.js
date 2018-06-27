@@ -1,7 +1,7 @@
 import * as wallet from "wallet";
 import * as selectors from "selectors";
 import eq from "lodash/fp/eq";
-import { compose, filtering, intersect, increment, decrement } from "fp";
+import { compose, filtering, intersect, increment, decrement, add, mapValues, addToSet } from "fp";
 import {
   getNextAddressAttempt,
   loadActiveDataFiltersAttempt,
@@ -134,33 +134,50 @@ export const MATURINGHEIGHTS_ADDED = "MATURINGHEIGHTS_ADDED";
 
 // Given a list of transactions, returns the maturing heights of all
 // stake txs in the list.
-export function transactionsMaturingHeights(txs, chainParams) {
-  const res = {};
-  const addToRes = (height, found) => {
-    const accounts = res[height] || [];
-    found.forEach(a => (accounts.indexOf(a) === -1 ? accounts.push(a) : null));
-    res[height] = accounts;
-  };
 
-  txs.forEach(tx => {
+const updateResult = foundAccounts => (acc, height) => ({
+  ...acc,
+  [height]: addToSet(acc[height], foundAccounts)
+});
+
+// function checkAccountsToUpdate2(transactions, accountsToUpdate) {
+//   for (const { tx } of transactions) {
+//     for (const credit of tx.getCreditsList()) {
+//       if (accountsToUpdate.find(eq(credit.getAccount())) === undefined) {
+//         accountsToUpdate.push(credit.getAccount());
+//       }
+//     }
+//     for (const debit of tx.getDebitsList()) {
+//       if (accountsToUpdate.find(eq(debit.getPreviousAccount())) === undefined) {
+//         accountsToUpdate.push(debit.getPreviousAccount());
+//       }
+//     }
+//   }
+//   return accountsToUpdate;
+// }
+
+export function transactionsMaturingHeights(transactions, chainParams) {
+  const result = transactions.reduce((acc, transaction) => {
     const accountsToUpdate = [];
-    switch (tx.type) {
+    const addHeight = add(transaction.height);
+    const update = arr => arr.map(addHeight).reduce(updateResult(accountsToUpdate), acc);
+    switch (transaction.type) {
       case TransactionDetails.TransactionType.TICKET_PURCHASE:
-        checkAccountsToUpdate([tx], accountsToUpdate);
-        addToRes(tx.height + chainParams.TicketExpiry, accountsToUpdate);
-        addToRes(tx.height + chainParams.SStxChangeMaturity, accountsToUpdate);
-        addToRes(tx.height + chainParams.TicketMaturity, accountsToUpdate); // FIXME: remove as it doesn't change balances
-        break;
-
+        checkAccountsToUpdate([transaction], accountsToUpdate);
+        return update([
+          chainParams.TicketExpiry,
+          chainParams.SStxChangeMaturity,
+          chainParams.TicketMaturity
+        ]);
       case TransactionDetails.TransactionType.VOTE:
       case TransactionDetails.TransactionType.REVOCATION:
-        checkAccountsToUpdate([tx], accountsToUpdate);
-        addToRes(tx.height + chainParams.CoinbaseMaturity, accountsToUpdate);
-        break;
+        checkAccountsToUpdate([transaction], accountsToUpdate);
+        return update([chainParams.CoinbaseMaturity]);
     }
-  });
+    return acc;
+  }, {});
 
-  return res;
+  return mapValues(result, Array.from);
 }
 
 export const findImmatureTransactions = () => async (dispatch, getState) => {
