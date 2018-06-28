@@ -52,6 +52,7 @@ export const eql = x => y => x === y;
 export const increment = x => x + 1;
 export const decrement = x => x - 1;
 export const add = x => y => x + y;
+export const last = (arr = []) => arr[arr.length - 1];
 
 export const neg = x => Math.abs(x) * -1;
 
@@ -63,6 +64,15 @@ export function mapValues(obj, callback) {
   return result;
 }
 
+export function filterKeys(predicate) {
+  return obj =>
+    Object.entries(obj).reduce((acc, [key, value]) => {
+      if (predicate(key)) {
+        acc[key] = value;
+      }
+      return acc;
+    }, {});
+}
 // set utils
 export function addToSet(set = new Set(), iterable) {
   for (const item of iterable) {
