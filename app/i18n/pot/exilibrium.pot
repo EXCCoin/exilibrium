@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2018-06-11T09:21:13.658Z\n"
+"POT-Creation-Date: 2018-06-29T09:36:43.114Z\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
@@ -261,6 +261,14 @@ msgstr ""
 #. 4. Confirm decrypted data
 msgctxt "wallet.importKeys.step4.title"
 msgid "4. Confirm decrypted data"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.step5.title]
+#. defaultMessage is:
+#. 5. Set new wallet passphrase
+msgctxt "wallet.importKeys.step5.title"
+msgid "5. Set new wallet passphrase"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/StatisticsTab/charts/VoteTime.json
@@ -888,6 +896,14 @@ msgctxt "infoModal.btnClose"
 msgid "Close"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/FatalErrorPage.json
+#. [fatal.button]
+#. defaultMessage is:
+#. Close Wallet
+msgctxt "fatal.button"
+msgid "Close Wallet"
+msgstr ""
+
 #: app/i18n/extracted/static/menus.json
 #. [appMenu.communityDiscussions]
 #. defaultMessage is:
@@ -1150,6 +1166,14 @@ msgstr ""
 #. Daemon Data Directory
 msgctxt "login.form.appdata.label"
 msgid "Daemon Data Directory"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/FatalErrorPage.json
+#. [fatal.daemon.title]
+#. defaultMessage is:
+#. Daemon Error
+msgctxt "fatal.daemon.title"
+msgid "Daemon Error"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TransactionsPage/ExportTab/messages.json
@@ -1794,6 +1818,14 @@ msgstr ""
 #. Failure to keep your seed key private can result in the theft of your entire wallet. Under no circumstanes should it ever be revealed to someone else.
 msgctxt "tutorial.step.2.text.p4"
 msgid "Failure to keep your seed key private can result in the theft of your entire wallet. Under no circumstanes should it ever be revealed to someone else."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/FatalErrorPage.json
+#. [fatal.header.title]
+#. defaultMessage is:
+#. Fatal error
+msgctxt "fatal.header.title"
+msgid "Fatal error"
 msgstr ""
 
 #: app/i18n/extracted/app/components/Snackbar/Notification/Transaction.json
@@ -2527,9 +2559,9 @@ msgstr ""
 #. [transactions.description.send.mainnet]
 #. defaultMessage is:
 #. Mainnet EXCC addresses always begin with letter E and contain 26-35 alphanumeric characters
-#. (e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).
+#. (e.g. 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).
 msgctxt "transactions.description.send.mainnet"
-msgid "Mainnet EXCC addresses always begin with letter E and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
+msgid "Mainnet EXCC addresses always begin with letter E and contain 26-35 alphanumeric characters\n(e.g. 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
@@ -2630,6 +2662,14 @@ msgstr ""
 #. Message
 msgctxt "securitycenter.form.field.message.label"
 msgid "Message"
+msgstr ""
+
+#: app/i18n/extracted/app/components/Snackbar/Notification/Transaction.json
+#. [notifications.type.mine]
+#. defaultMessage is:
+#. Mined
+msgctxt "notifications.type.mine"
+msgid "Mined"
 msgstr ""
 
 #: app/i18n/extracted/static/menus.json
@@ -2988,6 +3028,14 @@ msgctxt "seedCopyConfirmModal.warningText"
 msgid "Please note that copying the seed to the clipboard may be a security risk, as other applications may be able to monitor and copy the contents of the clipboard.\n\n          It is also highly unadvised to maintain the seed on a computer file, specially without encryption, as that can lead to stealing of funds by anyone with access to the computer.\n\n          Further, storing the seed on a computer file without backing it up on a physical medium (written down piece of paper stored in a secure location) can cause loss of funds if the local wallet file gets corrupted or is otherwise unavailable (due to hardware failure or any other number of issues).\n\n          If you want to learn more about seed security, please check our seed FAQ located at {seedFaqURL}.\n\n          If you are sure you understand the risks and still want to copy the seed to the clipboard, please type the phrase {confirmationPhrase} in the box below and the seed will be copied to the clipboard."
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/FatalErrorPage.json
+#. [fatal.suggestion.fallthrough]
+#. defaultMessage is:
+#. Please note the error above and go to the support channel on slack/matrix/rockchat for help resolving the issue.
+msgctxt "fatal.suggestion.fallthrough"
+msgid "Please note the error above and go to the support channel on slack/matrix/rockchat for help resolving the issue."
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
 #. [wallet.importkeys.error.incorrectType]
 #. defaultMessage is:
@@ -3004,10 +3052,6 @@ msgctxt "wallet.importkeys.error.incorrectType"
 msgid "Please select file of type 'application/json'. Selected: {fileType}"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
-#. [wallet.importkeys.error.incorrectExtension]
-#. defaultMessage is:
-#. Please select file with extension '.aes.json'. Selected: {fileName}
 #: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
 #. [wallet.importkeys.error.incorrectExtension]
 #. defaultMessage is:
@@ -3018,6 +3062,14 @@ msgstr ""
 #. Please select file with extension '.aes.json'. Selected: {fileName}
 msgctxt "wallet.importkeys.error.incorrectExtension"
 msgid "Please select file with extension '.aes.json'. Selected: {fileName}"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
+#. [wallet.importkeys.error.incorrectExtension]
+#. defaultMessage is:
+#. Please select file with extension '.json'. Selected: {fileName}
+msgctxt "wallet.importkeys.error.incorrectExtension"
+msgid "Please select file with extension '.json'. Selected: {fileName}"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/PurchaseTicketsAdvanced.json
@@ -3310,14 +3362,6 @@ msgstr ""
 #. Received
 msgctxt "transaction.type.received"
 msgid "Received"
-msgstr ""
-
-#: app/i18n/extracted/app/components/Snackbar/Notification/Transaction.json
-#. [notifications.type.mine]
-#. defaultMessage is:
-#. Received block reward
-msgctxt "notifications.type.mine"
-msgid "Received block reward"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/HomePage/tables/TicketActivity.json
@@ -4164,6 +4208,14 @@ msgctxt "tickets.setStakePoolVoteChoices"
 msgid "Successfully set vote choices."
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/FatalErrorPage.json
+#. [fatal.suggestion.title]
+#. defaultMessage is:
+#. Suggested action to resolve error
+msgctxt "fatal.suggestion.title"
+msgid "Suggested action to resolve error"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TransactionsPage/ExportTab/messages.json
 #. [export.transactions.fields.credits]
 #. defaultMessage is:
@@ -4347,6 +4399,14 @@ msgstr ""
 #. This balance shows the total amount that this account has voting authority over.  For example, if you use a voting-only wallet this will show that total amount controlled.
 msgctxt "balanceInfoModal.voting.text"
 msgid "This balance shows the total amount that this account has voting authority over.  For example, if you use a voting-only wallet this will show that total amount controlled."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/FatalErrorPage.json
+#. [fatal.suggestion.resources]
+#. defaultMessage is:
+#. This error typically means you have another instance of daemon running.  You should check your taskmanager or profiler to shutdown any still running daemon and then try again.
+msgctxt "fatal.suggestion.resources"
+msgid "This error typically means you have another instance of daemon running.  You should check your taskmanager or profiler to shutdown any still running daemon and then try again."
 msgstr ""
 
 #: app/i18n/extracted/app/components/inputs/Input.json
@@ -5285,6 +5345,14 @@ msgctxt "loaderBar.Waiting"
 msgid "Waiting for daemon connection..."
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/FatalErrorPage.json
+#. [fatal.wallet.title]
+#. defaultMessage is:
+#. Wallet Error
+msgctxt "fatal.wallet.title"
+msgid "Wallet Error"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TxDetails.json
 #. [txDetails.walletInputs]
 #. defaultMessage is:
@@ -5386,14 +5454,6 @@ msgstr ""
 #. What is the Exchange Coin Blockchain?
 msgctxt "tutorial.step.0.title"
 msgid "What is the Exchange Coin Blockchain?"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
-#. [getStarted.whatsNew]
-#. defaultMessage is:
-#. What's New in v{version}
-msgctxt "getStarted.whatsNew"
-msgid "What's New in v{version}"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TutorialsPage/TicketLifecycle/index.json
