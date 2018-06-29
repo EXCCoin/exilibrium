@@ -431,7 +431,7 @@
   vertical-align: middle;
   border-radius: 0px;
   background-position: 50% 50%;
-  background-size: 20px;
+  background-size: 15px;
   background-repeat: no-repeat;
   box-shadow: none;
   width: 20px;
@@ -612,18 +612,16 @@
 }
 
 .vertical-expand {
-  background-image: @arrow-right-gray-icon;
+  background-image: @arrow-down-key-blue-icon;
   background-repeat: no-repeat;
-  background-size: 10px 15px;
+  background-size: 15px;
   display: inline-block;
   width: 20px;
-  height: 10px;
-  transform: rotate(90deg);
-  transition: all 0.5s;
+  height: 20px;
 }
 
 .vertical-expand.expanded {
-  transform: rotate(270deg);
+  background-image: @arrow-up-key-blue-icon;
 }
 
 .step-indicator {
