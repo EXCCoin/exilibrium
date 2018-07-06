@@ -5,8 +5,10 @@ import { FormattedMessage as T } from "react-intl";
 import "style/CreateWalletForm.less";
 import { SEED_LENGTH, SEED_WORDS } from "wallet/seed";
 
-const shoudShowNonSupportSeedSize = (seedWords, seedType) =>
-  seedType === "hex" && seedWords.length !== 64 && seedWords.length > SEED_LENGTH.HEX_MIN;
+const shouldShowNonSupportSeedSize = (seedWords, seedType) =>
+  seedType === "hex" &&
+  seedWords.length < SEED_LENGTH.HEX_MIN &&
+  seedWords.length > SEED_LENGTH.HEX_MAX;
 
 class ExistingSeedForm extends React.Component {
   constructor(props) {
@@ -43,7 +45,7 @@ class ExistingSeedForm extends React.Component {
     if (this.props.seedError) {
       errors.push(<div key={this.props.seedError}>{this.props.seedError}</div>);
     }
-    if (shoudShowNonSupportSeedSize(this.props.seedWords, this.state.seedType)) {
+    if (shouldShowNonSupportSeedSize(this.props.seedWords, this.state.seedType)) {
       errors.push(
         <div key="confirmSeed.errors.hexNot32Bytes">
           <T
