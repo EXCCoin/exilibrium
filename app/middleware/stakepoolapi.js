@@ -11,7 +11,7 @@ function stakepPoolInfoResponseToConfig({ data = [] }) {
 
 export function stakePoolInfo(cb) {
   axios
-    .get("https://exccoin.github.io/excc-api/v1/stakepools.json")
+    .get("http://api.excc.co/v1/stakepools.json")
     .then(response => {
       cb(stakepPoolInfoResponseToConfig(response));
     })
