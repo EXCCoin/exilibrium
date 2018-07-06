@@ -3,31 +3,20 @@ import querystring from "querystring";
 
 // stakepPoolInfoResponseToConfig converts a response object for the
 // stakePoolInfo call into an object array of available stakepool configs.
-function stakepPoolInfoResponseToConfig() {
-  //  const stakePoolNames = Object.keys(response.data);
-  // return stakePoolNames
-  //   .map(name => {
-  //     const { APIEnabled, URL, Network, APIVersionsSupported } = response.data[name];
-  //     return !APIEnabled ? null : { Host: URL, Network, APIVersionsSupported };
-  //   })
-  //   .filter(v => v);
-  return [
-    {
-      Host: "http://18.130.16.223:8000",
-      Network: "mainnet",
-      APIVersionsSupported: [1, 2]
-    }
-  ];
+function stakepPoolInfoResponseToConfig({ data = [] }) {
+  return data
+    .filter(stakepoolData => stakepoolData.APIEnabled)
+    .map(({ Host, Network, APIVersionsSupported }) => ({ Host, Network, APIVersionsSupported }));
 }
 
 export function stakePoolInfo(cb) {
   axios
-    .get("https://api.decred.org/?c=gsd")
+    .get("https://exccoin.github.io/excc-api/v1/stakepools.json")
     .then(response => {
       cb(stakepPoolInfoResponseToConfig(response));
     })
     .catch(error => {
-      console.log("Error contacting remote stakepools api.", error);
+      console.log("Error connecting remote stakepools api.", error);
       cb(null, error);
     });
 }
