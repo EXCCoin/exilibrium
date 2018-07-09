@@ -3,8 +3,8 @@
 [![Build Status](https://travis-ci.org/EXCCoin/exilibrium.png?branch=master)](https://travis-ci.org/EXCCoin/exilibrium)
 [![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
 
-exilibrium is a cross-platform GUI for EXCC written in node.js using
-Electron.
+Exilibrium is an ExchangeCoin full node HD wallet GUI.
+This is cross-platform desktop app written in JavaScript using Electron & React.
 
 ## Installation
 
@@ -79,8 +79,8 @@ done with electron 1.4.15.
 
 You need to install exccd, exccwallet and exccctl.
 
-* [exccd/exccctl installation instructions](https://github.com/EXCCoin/exccd#updating)
-* [exccwallet installation instructions](https://github.com/EXCCoin/exccwallet#installation-and-updating)
+- [exccd/exccctl installation instructions](https://github.com/EXCCoin/exccd#updating)
+- [exccwallet installation instructions](https://github.com/EXCCoin/exccwallet#installation-and-updating)
 
 This has been tested on Linux and OSX.
 
@@ -153,8 +153,8 @@ Then build grpc as described above.
 
 You need to install exccd, exccwallet and exccctl.
 
-* [exccd/exccctl installation instructions](https://github.com/EXCCoin/exccd#updating)
-* [exccwallet installation instructions](https://github.com/EXCCoin/exccwallet#installation-and-updating)
+- [exccd/exccctl installation instructions](https://github.com/EXCCoin/exccd#updating)
+- [exccwallet installation instructions](https://github.com/EXCCoin/exccwallet#installation-and-updating)
 
 To build a packaged version of exilibrium (including a dmg on OSX and
 exe on Windows), follow the development steps above. Then build the
@@ -176,9 +176,9 @@ npm run package
 
 You need to make sure you have the following packages installed for the building to work:
 
-* icns2png
-* graphicsmagick
-* rpm-build
+- icns2png
+- graphicsmagick
+- rpm-build
 
 ```bash
 npm run package-linux
@@ -198,10 +198,10 @@ $ ./build-docker.sh <OS> <ARCH>
 
 If you have any further questions you can find us at:
 
-* irc.freenode.net (channel #excc)
-* [webchat](https://webchat.freenode.net/?channels=excc)
-* forum.excc.co
-* excc.slack.com
+- irc.freenode.net (channel #excc)
+- [webchat](https://webchat.freenode.net/?channels=excc)
+- forum.excc.co
+- excc.slack.com
 
 ## Issue Tracker
 
