@@ -27,7 +27,7 @@ export function setStakePoolAddress(apiUrl, apiToken, pKAddress, cb) {
       Authorization: `Bearer ${apiToken}`
     }
   };
-  const url = `${apiUrl}/api/v1/address`;
+  const url = `${apiUrl}api/v1/address`;
   axios
     .post(
       url,
@@ -50,7 +50,7 @@ export function setVoteChoices(apiUrl, apiToken, voteChoices, cb) {
       Authorization: `Bearer ${apiToken}`
     }
   };
-  const url = `${apiUrl}/api/v2/voting`;
+  const url = `${apiUrl}api/v2/voting`;
   axios
     .post(
       url,
@@ -73,7 +73,7 @@ export function getPurchaseInfo(apiUrl, apiToken, cb) {
       Authorization: `Bearer ${apiToken}`
     }
   };
-  const url = `${apiUrl}/api/v1/getpurchaseinfo`;
+  const url = `${apiUrl}api/v1/getpurchaseinfo`;
   axios
     .get(url, config)
     .then(response => {
