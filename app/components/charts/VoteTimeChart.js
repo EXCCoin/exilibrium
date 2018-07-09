@@ -45,7 +45,7 @@ const VoteTimeChart = ({ data, intl }) => {
       <XAxis dataKey="name" style={yAxisStyle} />
       <YAxis orientation="right" style={xAxisStyle} padding={padding} />
       <Tooltip content={<ChartTooltip />} />
-      <Bar barSize={8} dataKey={countKey} stackId="a" fill="#2971ff" radius={radiusFull} />
+      <Bar barSize={8} dataKey={countKey} stackId="a" fill="#6073E9" radius={radiusFull} />
     </BarChart>
   );
 };
