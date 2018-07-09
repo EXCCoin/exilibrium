@@ -1,12 +1,12 @@
 {
   "name": "exilibrium",
   "productName": "exilibrium",
-  "version": "1.2.0",
-  "description": "Cross-platform EXCC gui based on Electron and React",
+  "version": "1.0.0-alfa.1",
+  "description": "Exilibrium is an ExchangeCoin full node HD wallet GUI",
   "main": "./main.js",
   "author": {
-    "name": "EXCC Team",
-    "email": "info@excc.co",
+    "name": "The ExchangeCoin Developers",
+    "email": "support@excc.co",
     "url": "https://github.com/EXCCoin"
   },
   "license": "ISC",
