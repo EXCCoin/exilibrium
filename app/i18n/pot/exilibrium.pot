@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2018-06-29T09:36:43.114Z\n"
+"POT-Creation-Date: 2018-07-09T10:42:37.081Z\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
@@ -211,10 +211,6 @@ msgstr ""
 #. [wallet.importKeys.step1.title]
 #. defaultMessage is:
 #. 1. Export from copay
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
-#. [wallet.importKeys.step1.title]
-#. defaultMessage is:
-#. 1. Export from copay
 msgctxt "wallet.importKeys.step1.title"
 msgid "1. Export from copay"
 msgstr ""
@@ -231,10 +227,6 @@ msgstr ""
 #. [wallet.importKeys.step2.title]
 #. defaultMessage is:
 #. 2. Upload file
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
-#. [wallet.importKeys.step2.title]
-#. defaultMessage is:
-#. 2. Upload file
 msgctxt "wallet.importKeys.step2.title"
 msgid "2. Upload file"
 msgstr ""
@@ -243,19 +235,11 @@ msgstr ""
 #. [wallet.importKeys.step3.title]
 #. defaultMessage is:
 #. 3. Type your encryption password
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
-#. [wallet.importKeys.step3.title]
-#. defaultMessage is:
-#. 3. Type your encryption password
 msgctxt "wallet.importKeys.step3.title"
 msgid "3. Type your encryption password"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
-#. [wallet.importKeys.step4.title]
-#. defaultMessage is:
-#. 4. Confirm decrypted data
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
 #. [wallet.importKeys.step4.title]
 #. defaultMessage is:
 #. 4. Confirm decrypted data
@@ -888,10 +872,6 @@ msgstr ""
 #. [infoModal.btnClose]
 #. defaultMessage is:
 #. Close
-#: app/i18n/extracted/app/components/modals/PickImportTypeModal/index.json
-#. [infoModal.btnClose]
-#. defaultMessage is:
-#. Close
 msgctxt "infoModal.btnClose"
 msgid "Close"
 msgstr ""
@@ -992,14 +972,6 @@ msgctxt "transaction.indicatorConfirmed"
 msgid "Confirmed"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
-#. [help.constitution]
-#. defaultMessage is:
-#. Constitution
-msgctxt "help.constitution"
-msgid "Constitution"
-msgstr ""
-
 #: app/i18n/extracted/app/components/modals/PassphraseModal/ButtonsToolbar.json
 #. [passphraseModal.continue]
 #. defaultMessage is:
@@ -1069,10 +1041,6 @@ msgid "Create Wallet"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/CreationTypeSelectScreen.json
-#. [getStarted.newSeedTab]
-#. defaultMessage is:
-#. Create a New Wallet
-#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ExistingOrNewScreen.json
 #. [getStarted.newSeedTab]
 #. defaultMessage is:
 #. Create a New Wallet
@@ -1236,14 +1204,6 @@ msgstr ""
 #. [wallet.importkeys.decryptButton]
 #. defaultMessage is:
 #. Decrypt
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
-#. [wallet.importkeys.decryptButton]
-#. defaultMessage is:
-#. Decrypt
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
-#. [wallet.importkeys.decryptButton]
-#. defaultMessage is:
-#. Decrypt
 msgctxt "wallet.importkeys.decryptButton"
 msgid "Decrypt"
 msgstr ""
@@ -1393,10 +1353,6 @@ msgid "Documentation"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
-#. [wallet.importKeys.step1.listItem4]
-#. defaultMessage is:
-#. Download file (save it as '.json' file)
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
 #. [wallet.importKeys.step1.listItem4]
 #. defaultMessage is:
 #. Download file (save it as '.json' file)
@@ -1624,14 +1580,6 @@ msgctxt "getStarted.chainLoading.syncEstimation"
 msgid "Estimated time left"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
-#. [help.constitution.modal.title]
-#. defaultMessage is:
-#. Excc Constitution
-msgctxt "help.constitution.modal.title"
-msgid "Excc Constitution"
-msgstr ""
-
 #: app/i18n/extracted/static/menus.json
 #. [appMenu.exilibrium]
 #. defaultMessage is:
@@ -1856,14 +1804,6 @@ msgstr ""
 #. [wallet.importkeys.error.decryptionFailed]
 #. defaultMessage is:
 #. File decryption failed, reason: {err}
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
-#. [wallet.importkeys.error.decryptionFailed]
-#. defaultMessage is:
-#. File decryption failed, reason: {err}
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
-#. [wallet.importkeys.error.decryptionFailed]
-#. defaultMessage is:
-#. File decryption failed, reason: {err}
 msgctxt "wallet.importkeys.error.decryptionFailed"
 msgid "File decryption failed, reason: {err}"
 msgstr ""
@@ -2017,11 +1957,6 @@ msgid "Go back"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
-#. [wallet.importKeys.step1.listItem2]
-#. defaultMessage is:
-#. Go to Settings -> Wallets -> Choose your wallet -> More Options -> Export Wallet ->
-#.             File/Text
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
 #. [wallet.importKeys.step1.listItem2]
 #. defaultMessage is:
 #. Go to Settings -> Wallets -> Choose your wallet -> More Options -> Export Wallet ->
@@ -2274,10 +2209,6 @@ msgstr ""
 #. [wallet.importKeys.title]
 #. defaultMessage is:
 #. Import keys from copay wallet
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
-#. [wallet.importKeys.title]
-#. defaultMessage is:
-#. Import keys from copay wallet
 msgctxt "wallet.importKeys.title"
 msgid "Import keys from copay wallet"
 msgstr ""
@@ -2320,14 +2251,6 @@ msgid "Insufficient spendable account balance to purchase tickets."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
-#. [wallet.importkeys.error.incorrectFieldValue]
-#. defaultMessage is:
-#. Invalid '{paramName}' parameter value: {paramValue}, expected: {expectedValue}
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
-#. [wallet.importkeys.error.incorrectFieldValue]
-#. defaultMessage is:
-#. Invalid '{paramName}' parameter value: {paramValue}, expected: {expectedValue}
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
 #. [wallet.importkeys.error.incorrectFieldValue]
 #. defaultMessage is:
 #. Invalid '{paramName}' parameter value: {paramValue}, expected: {expectedValue}
@@ -2558,10 +2481,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/TransactionsPage/SendTab/index.json
 #. [transactions.description.send.mainnet]
 #. defaultMessage is:
-#. Mainnet EXCC addresses always begin with letter E and contain 26-35 alphanumeric characters
-#. (e.g. 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).
+#. Mainnet Exchange Coin addresses always begin with number 2
 msgctxt "transactions.description.send.mainnet"
-msgid "Mainnet EXCC addresses always begin with letter E and contain 26-35 alphanumeric characters\n(e.g. 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
+msgid "Mainnet Exchange Coin addresses always begin with number 2"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
@@ -2812,14 +2734,6 @@ msgstr ""
 #. [wallet.importkeys.error.noFile]
 #. defaultMessage is:
 #. No file selected
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
-#. [wallet.importkeys.error.noFile]
-#. defaultMessage is:
-#. No file selected
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
-#. [wallet.importkeys.error.noFile]
-#. defaultMessage is:
-#. No file selected
 msgctxt "wallet.importkeys.error.noFile"
 msgid "No file selected"
 msgstr ""
@@ -3040,28 +2954,8 @@ msgstr ""
 #. [wallet.importkeys.error.incorrectType]
 #. defaultMessage is:
 #. Please select file of type 'application/json'. Selected: {fileType}
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
-#. [wallet.importkeys.error.incorrectType]
-#. defaultMessage is:
-#. Please select file of type 'application/json'. Selected: {fileType}
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
-#. [wallet.importkeys.error.incorrectType]
-#. defaultMessage is:
-#. Please select file of type 'application/json'. Selected: {fileType}
 msgctxt "wallet.importkeys.error.incorrectType"
 msgid "Please select file of type 'application/json'. Selected: {fileType}"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
-#. [wallet.importkeys.error.incorrectExtension]
-#. defaultMessage is:
-#. Please select file with extension '.aes.json'. Selected: {fileName}
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
-#. [wallet.importkeys.error.incorrectExtension]
-#. defaultMessage is:
-#. Please select file with extension '.aes.json'. Selected: {fileName}
-msgctxt "wallet.importkeys.error.incorrectExtension"
-msgid "Please select file with extension '.aes.json'. Selected: {fileName}"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
@@ -3488,14 +3382,6 @@ msgstr ""
 #. [wallet.importkeys.error.noField]
 #. defaultMessage is:
 #. Required field '{field}' doesn't exist
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
-#. [wallet.importkeys.error.noField]
-#. defaultMessage is:
-#. Required field '{field}' doesn't exist
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
-#. [wallet.importkeys.error.noField]
-#. defaultMessage is:
-#. Required field '{field}' doesn't exist
 msgctxt "wallet.importkeys.error.noField"
 msgid "Required field '{field}' doesn't exist"
 msgstr ""
@@ -3517,10 +3403,6 @@ msgid "Rescanning {blockProgress} ({progressPercent})"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/CreationTypeSelectScreen.json
-#. [getStarted.existingSeedTab]
-#. defaultMessage is:
-#. Restore Existing Wallet
-#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ExistingOrNewScreen.json
 #. [getStarted.existingSeedTab]
 #. defaultMessage is:
 #. Restore Existing Wallet
@@ -3772,14 +3654,6 @@ msgstr ""
 #. [wallet.importkeys.error.invalidJSON]
 #. defaultMessage is:
 #. Selected file content is not valid JSON
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm.json
-#. [wallet.importkeys.error.invalidJSON]
-#. defaultMessage is:
-#. Selected file content is not valid JSON
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/Validator.json
-#. [wallet.importkeys.error.invalidJSON]
-#. defaultMessage is:
-#. Selected file content is not valid JSON
 msgctxt "wallet.importkeys.error.invalidJSON"
 msgid "Selected file content is not valid JSON"
 msgstr ""
@@ -3865,10 +3739,6 @@ msgid "Services"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
-#. [wallet.importKeys.step1.listItem3]
-#. defaultMessage is:
-#. Set up encrytion password
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
 #. [wallet.importKeys.step1.listItem3]
 #. defaultMessage is:
 #. Set up encrytion password
@@ -4235,10 +4105,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/TransactionsPage/SendTab/index.json
 #. [transactions.description.send.testnet]
 #. defaultMessage is:
-#. Testnet EXCC ades always begin with letter T and contain 26-35 alphanumeric characters
-#. (e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).
+#. Testnet Exchange Coin addresses always begin with letter T
 msgctxt "transactions.description.send.testnet"
-msgid "Testnet EXCC ades always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
+msgid "Testnet Exchange Coin addresses always begin with letter T"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/InvalidRPCVersion.json
@@ -4344,9 +4213,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/GapLimitInfoModalContent.json
 #. [gapLimit.info.second]
 #. defaultMessage is:
-#. There are really only 2 reasons that you should be changing this value.  1) If your wallet was created and used heavily prior to roughly v1.0, it may have large address gaps.  If you restore from seed and notice that you are missing funds, you may increase this to 100 (then 1000 if not fixed) then restart decrediton.  Once your balance is resolved you can revert back to 20.  2) If you would like to be able to generate more than 20 addresses at a time without wrapping around.
+#. There is only one reason to change this value: if you would like to generate more than 20 addresses at a time without wrapping around.
 msgctxt "gapLimit.info.second"
-msgid "There are really only 2 reasons that you should be changing this value.  1) If your wallet was created and used heavily prior to roughly v1.0, it may have large address gaps.  If you restore from seed and notice that you are missing funds, you may increase this to 100 (then 1000 if not fixed) then restart decrediton.  Once your balance is resolved you can revert back to 20.  2) If you would like to be able to generate more than 20 addresses at a time without wrapping around."
+msgid "There is only one reason to change this value: if you would like to generate more than 20 addresses at a time without wrapping around."
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/BalanceOverviewModalContent.json
@@ -4977,10 +4846,6 @@ msgstr ""
 #. [wallet.importKeys.step1.listItem1]
 #. defaultMessage is:
 #. Transfer funds from java wallet to copay wallet
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
-#. [wallet.importKeys.step1.listItem1]
-#. defaultMessage is:
-#. Transfer funds from java wallet to copay wallet
 msgctxt "wallet.importKeys.step1.listItem1"
 msgid "Transfer funds from java wallet to copay wallet"
 msgstr ""
@@ -5479,10 +5344,6 @@ msgid "When a ticket is purchased, the cost of the ticket is locked in your wall
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
-#. [wallet.importKeys.step1.listItem5]
-#. defaultMessage is:
-#. When file is uploaded, go to step 2
-#: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/ImportKeysForm/ImportKeysForm.json
 #. [wallet.importKeys.step1.listItem5]
 #. defaultMessage is:
 #. When file is uploaded, go to step 2

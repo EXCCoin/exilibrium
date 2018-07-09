@@ -271,8 +271,6 @@
   "getStarted.updateAvailableTooltip": "New version {version} available",
   "getStarted.walletRescan.progress": "Rescan Progress ({rescanCurrentBlock} / {rescanEndBlock})",
   "getStarted.whatsNew": "What's New in {version}",
-  "help.constitution": "Constitution",
-  "help.constitution.modal.title": "Decred Constitution",
   "help.description.links":
     "If you have any difficulty with decrediton, please use the following links to help find a solution.",
   "help.description.logs":

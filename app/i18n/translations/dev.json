@@ -251,8 +251,6 @@
   "getStarted.updateAvailable": "Atualização disponível",
   "getStarted.updateAvailableTooltip": "Nova versão {version} disponível",
   "getStarted.walletRescan.progress": "Progresso rescan ({rescanCurrentBlock} / {rescanEndBlock})",
-  "help.constitution": "Constitutição",
-  "help.constitution.modal.title": "Constituição EXCC",
   "help.description.links": "Se tiver dificuldades....",
   "help.description.logs": "Olhe seus logs abaixo.",
   "help.description.tutorials": "Conheça a rede excc.",

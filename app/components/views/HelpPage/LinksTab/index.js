@@ -1,6 +1,5 @@
 import { FormattedMessage as T } from "react-intl";
-import { HelpLink, HelpLinkInfoModal } from "buttons";
-import { ConstitutionModalContent } from "modals";
+import { HelpLink } from "buttons";
 import { DescriptionHeader } from "layout";
 import "style/Help.less";
 
@@ -29,15 +28,5 @@ export const LinksTab = () => (
     <HelpLink className={"help-forum-icon"} href="https://forum.excc.co">
       <T id="help.forum" m="Forum" />{" "}
     </HelpLink>
-    <HelpLinkInfoModal
-      className={"help-constitution-icon"}
-      modalTitle={
-        <h1>
-          <T id="help.constitution.modal.title" m="Excc Constitution" />
-        </h1>
-      }
-      modalContent={<ConstitutionModalContent />}
-      buttonLabel={<T id="help.constitution" m="Constitution" />}
-    />
   </div>
 );
