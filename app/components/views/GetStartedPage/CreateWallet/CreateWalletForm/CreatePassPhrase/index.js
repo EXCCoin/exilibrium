@@ -2,6 +2,11 @@ import PassPhraseInputs from "./PassPhraseInputs";
 
 @autobind
 class CreatePassPhrase extends React.Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = this.getInitialState();
@@ -19,38 +24,6 @@ class CreatePassPhrase extends React.Component {
     this.state = this.getInitialState();
   }
 
-  render() {
-    const {
-      setPassPhrase,
-      setPassPhraseVerification,
-      onKeyDown,
-      showPassphraseInformation,
-      hidePassphraseInformation
-    } = this;
-    const { passPhrase, passPhraseVerification, isShowingPassphraseInformation } = this.state;
-    const isValid = this.isValid();
-    const isBlank = this.isBlank();
-    const isMatching = this.isMatching();
-
-    return (
-      <PassPhraseInputs
-        {...{
-          ...this.props,
-          passPhrase,
-          passPhraseVerification,
-          isValid,
-          isBlank,
-          isMatching,
-          setPassPhrase,
-          setPassPhraseVerification,
-          onKeyDown,
-          showPassphraseInformation,
-          hidePassphraseInformation,
-          isShowingPassphraseInformation
-        }}
-      />
-    );
-  }
   showPassphraseInformation() {
     this.setState({ isShowingPassphraseInformation: true });
   }
@@ -96,6 +69,39 @@ class CreatePassPhrase extends React.Component {
         onChange("");
       }
     }
+  }
+
+  render() {
+    const {
+      setPassPhrase,
+      setPassPhraseVerification,
+      onKeyDown,
+      showPassphraseInformation,
+      hidePassphraseInformation
+    } = this;
+    const { onChange, onSubmit } = this.props;
+    const { passPhrase, passPhraseVerification, isShowingPassphraseInformation } = this.state;
+    const [isValid, isBlank, isMatching] = [this.isValid(), this.isBlank(), this.isMatching()];
+
+    return (
+      <PassPhraseInputs
+        {...{
+          onChange,
+          onSubmit,
+          passPhrase,
+          passPhraseVerification,
+          isValid,
+          isBlank,
+          isMatching,
+          setPassPhrase,
+          setPassPhraseVerification,
+          onKeyDown,
+          showPassphraseInformation,
+          hidePassphraseInformation,
+          isShowingPassphraseInformation
+        }}
+      />
+    );
   }
 }
 

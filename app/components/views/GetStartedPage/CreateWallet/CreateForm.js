@@ -1,9 +1,10 @@
 import CreateWalletForm from "./CreateWalletForm";
-import ExistingOrNewScreen from "./ExistingOrNewScreen";
+import ImportKeysForm from "./ImportKeysForm";
+import CreationTypeSelectScreen from "./CreationTypeSelectScreen";
 import "style/GetStarted.less";
 
 const CreateForm = ({
-  existingOrNew,
+  existingOrNew: showCreationTypeSelectScreen,
   onReturnToNewSeed,
   onReturnToWalletSelection,
   onReturnToExistingOrNewScreen,
@@ -11,10 +12,11 @@ const CreateForm = ({
   getCurrentBlockCount,
   getNeededBlocks,
   getEstimatedTimeLeft,
-  getDaemonSynced
+  getDaemonSynced,
+  importCopay
 }) =>
-  existingOrNew ? (
-    <ExistingOrNewScreen
+  showCreationTypeSelectScreen ? (
+    <CreationTypeSelectScreen
       {...{
         onReturnToWalletSelection,
         onSetCreateWalletFromExisting,
@@ -24,6 +26,8 @@ const CreateForm = ({
         getDaemonSynced
       }}
     />
+  ) : importCopay ? (
+    <ImportKeysForm />
   ) : (
     <CreateWalletForm
       {...{
@@ -35,5 +39,20 @@ const CreateForm = ({
       }}
     />
   );
+
+CreateForm.propTypes = {
+  existingOrNew: PropTypes.bool.isRequired,
+  onReturnToNewSeed: PropTypes.func.isRequired,
+  onReturnToWalletSelection: PropTypes.func.isRequired,
+  onReturnToExistingOrNewScreen: PropTypes.func.isRequired,
+  onSetCreateWalletFromExisting: PropTypes.func.isRequired,
+  getCurrentBlockCount: PropTypes.func,
+  getNeededBlocks: PropTypes.number.isRequired,
+  getEstimatedTimeLeft: PropTypes.any,
+  getDaemonSynced: PropTypes.any,
+  importCopay: PropTypes.bool,
+  importKeysForm: PropTypes.any,
+  setPrivateKeysObject: PropTypes.func
+};
 
 export default CreateForm;

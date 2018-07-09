@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 import { selectorMap } from "fp";
-import * as sel from "selectors";
+import * as selectors from "selectors";
 
 const mapStateToProps = selectorMap({
-  lockedTotalBalance: sel.lockedBalance,
-  spendableTotalBalance: sel.spendableTotalBalance,
-  spendableAndLockedBalance: sel.spendableAndLockedBalance
+  lockedTotalBalance: selectors.lockedBalance,
+  spendableTotalBalance: selectors.spendableTotalBalance,
+  spendableAndLockedBalance: selectors.spendableAndLockedBalance
 });
 
 export default connect(mapStateToProps);

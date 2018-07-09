@@ -17,6 +17,7 @@ export default function ReleaseNotesForm({
 }) {
   return (
     <div className="page-body getstarted">
+      <div className="logo-banner" />
       <div className="getstarted loader logs">
         <div className="content-title">
           <div className="loader-settings-logs">
@@ -32,7 +33,7 @@ export default function ReleaseNotesForm({
           </Tooltip>
           <T
             id="getStarted.logsTitle"
-            m="Decrediton v{version} Released"
+            m="Exilibrium v{version} Released"
             values={{ version: appVersion }}
           />
         </div>
@@ -118,7 +119,7 @@ export default function ReleaseNotesForm({
               </li>
 
               <li>
-                Import wallet from hex seed - instead of entering in the 33 word mnemonic, they are
+                Import wallet from hex seed - instead of entering in the 12 word mnemonic, they are
                 now able to use the hex representation of their seed.
               </li>
 

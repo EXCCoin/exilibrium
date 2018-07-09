@@ -1,31 +1,31 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectorMap } from "fp";
-import * as sel from "selectors";
-import * as ca from "actions/ControlActions";
-import * as cla from "actions/ClientActions";
+import * as selectors from "selectors";
+import * as controlActions from "actions/ControlActions";
+import * as clientActions from "actions/ClientActions";
 
 const mapStateToProps = selectorMap({
-  getTransactionsRequestAttempt: sel.getTransactionsRequestAttempt,
-  getTicketsRequestAttempt: sel.getTicketsRequestAttempt,
-  getAccountsResponse: sel.getAccountsResponse,
-  spendableTotalBalance: sel.spendableTotalBalance,
-  transactions: sel.homeHistoryTransactions,
-  tickets: sel.homeHistoryTickets,
-  revokeTicketsError: sel.revokeTicketsError,
-  revokeTicketsSuccess: sel.revokeTicketsSuccess,
-  hasTicketsToRevoke: sel.hasTicketsToRevoke,
-  totalBalance: sel.totalBalance
+  getTransactionsRequestAttempt: selectors.getTransactionsRequestAttempt,
+  getTicketsRequestAttempt: selectors.getTicketsRequestAttempt,
+  getAccountsResponse: selectors.getAccountsResponse,
+  spendableTotalBalance: selectors.spendableTotalBalance,
+  transactions: selectors.homeHistoryTransactions,
+  tickets: selectors.homeHistoryTickets,
+  revokeTicketsError: selectors.revokeTicketsError,
+  revokeTicketsSuccess: selectors.revokeTicketsSuccess,
+  hasTicketsToRevoke: selectors.hasTicketsToRevoke,
+  totalBalance: selectors.totalBalance
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      onRevokeTickets: ca.revokeTicketsAttempt,
-      onClearRevokeTicketsError: ca.clearRevokeTicketsError,
-      onClearRevokeTicketsSuccess: ca.clearRevokeTicketsSuccess,
-      goToMyTickets: cla.goToMyTickets,
-      goToTransactionHistory: cla.goToTransactionHistory
+      onRevokeTickets: controlActions.revokeTicketsAttempt,
+      onClearRevokeTicketsError: controlActions.clearRevokeTicketsError,
+      onClearRevokeTicketsSuccess: controlActions.clearRevokeTicketsSuccess,
+      goToMyTickets: clientActions.goToMyTickets,
+      goToTransactionHistory: clientActions.goToTransactionHistory
     },
     dispatch
   );

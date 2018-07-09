@@ -6,17 +6,13 @@ class WalletSelectionBody extends React.Component {
     super(props);
     this.state = this.getInitialState();
   }
-
   getInitialState() {
     return {
       createWalletForm: false,
-      importKeysForm: false,
       newWalletName: "",
-      privateKeysObject: "",
       selectedWallet: this.props.availableWallets ? this.props.availableWallets[0] : null
     };
   }
-
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.availableWallets &&
@@ -25,31 +21,20 @@ class WalletSelectionBody extends React.Component {
       this.setState({ selectedWallet: nextProps.availableWallets[0] });
     }
   }
-
   componentWillUnmount() {
     this.resetState();
   }
-
   showCreateWalletForm() {
     this.setState({ createWalletForm: true });
   }
-  showImportKeysForm() {
-    this.setState({ importKeysForm: true });
-  }
   hideCreateWalletForm() {
     this.setState({ createWalletForm: false });
-  }
-  hideImportKeysForm() {
-    this.setState({ importKeysForm: false });
   }
   onChangeAvailableWallets(selectedWallet) {
     this.setState({ selectedWallet });
   }
   onChangeCreateWalletName(newWalletName) {
     this.setState({ newWalletName });
-  }
-  onChangePrivateKeysObject(jsonData) {
-    this.setState({ privateKeysObject: jsonData });
   }
   createWallet() {
     const { newWalletName } = this.state;
@@ -60,10 +45,6 @@ class WalletSelectionBody extends React.Component {
       label: newWalletName,
       value: { wallet: newWalletName }
     });
-  }
-  importKeys() {
-    console.log("importing keys");
-    //  this.props.onImportKeys();
   }
   startWallet() {
     this.props.onStartWallet(this.state.selectedWallet);
@@ -77,19 +58,14 @@ class WalletSelectionBody extends React.Component {
       onChangeAvailableWallets,
       startWallet,
       createWallet,
-      importKeys,
       onChangeCreateWalletName,
-      onChangePrivateKeysObject,
       showCreateWalletForm,
-      showImportKeysForm,
-      hideCreateWalletForm,
-      hideImportKeysForm
+      hideCreateWalletForm
     } = this;
     const {
       selectedWallet,
       sideActive,
       newWalletName,
-      privateKeysObject,
       newWalletNetwork,
       createWalletForm
     } = this.state;
@@ -99,18 +75,13 @@ class WalletSelectionBody extends React.Component {
           sideActive,
           onChangeAvailableWallets,
           onChangeCreateWalletName,
-          onChangePrivateKeysObject,
           startWallet,
           createWallet,
-          importKeys,
           createWalletForm,
           showCreateWalletForm,
-          showImportKeysForm,
           hideCreateWalletForm,
-          hideImportKeysForm,
           selectedWallet,
           newWalletName,
-          privateKeysObject,
           newWalletNetwork,
           networkSelected: newWalletNetwork === "mainnet",
           ...this.props,

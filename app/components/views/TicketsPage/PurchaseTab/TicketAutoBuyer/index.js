@@ -136,7 +136,7 @@ class TicketAutoBuyer extends React.Component {
     );
   }
 
-  getValueInAtoms(value) {
+  getValueInExels(value) {
     const { currencyDisplay } = this.props;
     if (currencyDisplay === "EXCC") {
       return value * 100000000;
@@ -189,10 +189,10 @@ class TicketAutoBuyer extends React.Component {
   }
 
   onChangeBalanceToMaintain(balanceToMaintain) {
-    const balanceToMaintainInAtoms = this.getValueInAtoms(balanceToMaintain);
+    const balanceToMaintainInExels = this.getValueInExels(balanceToMaintain);
 
     const balanceToMaintainError =
-      isNaN(balanceToMaintainInAtoms) || balanceToMaintainInAtoms < 0 || !balanceToMaintain;
+      isNaN(balanceToMaintainInExels) || balanceToMaintainInExels < 0 || !balanceToMaintain;
 
     this.setState({
       balanceToMaintain,

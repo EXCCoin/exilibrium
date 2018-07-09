@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
-import * as sel from "../selectors";
+import * as selectors from "../selectors";
 import { validateAddress, validateAddressCleanStore } from "actions/ControlActions";
 import { selectorMap } from "fp";
 
 const mapStateToProps = selectorMap({
-  validateAddressError: sel.validateAddressError,
-  validateAddressSuccess: sel.validateAddressSuccess,
-  validateAddressRequestAttempt: sel.validateAddressRequestAttempt
+  validateAddressError: selectors.validateAddressError,
+  validateAddressSuccess: selectors.validateAddressSuccess,
+  validateAddressRequestAttempt: selectors.validateAddressRequestAttempt
 });
 
 export default connect(

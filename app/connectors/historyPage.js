@@ -1,23 +1,23 @@
 import { connect } from "react-redux";
 import { selectorMap } from "../fp";
 import { bindActionCreators } from "redux";
-import * as sel from "../selectors";
-import * as ca from "../actions/ClientActions";
+import * as selectors from "../selectors";
+import * as clientActions from "../actions/ClientActions";
 
 const mapStateToProps = selectorMap({
-  walletService: sel.walletService,
-  totalBalance: sel.totalBalance,
-  transactions: sel.transactions,
-  transactionsFilter: sel.transactionsFilter,
-  noMoreTransactions: sel.noMoreTransactions,
-  window: sel.mainWindow
+  walletService: selectors.walletService,
+  totalBalance: selectors.totalBalance,
+  transactions: selectors.transactions,
+  transactionsFilter: selectors.transactionsFilter,
+  noMoreTransactions: selectors.noMoreTransactions,
+  window: selectors.mainWindow
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      getTransactions: ca.getTransactions,
-      changeTransactionsFilter: ca.changeTransactionsFilter
+      getTransactions: clientActions.getTransactions,
+      changeTransactionsFilter: clientActions.changeTransactionsFilter
     },
     dispatch
   );

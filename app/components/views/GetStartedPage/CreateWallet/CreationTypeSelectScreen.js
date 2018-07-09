@@ -2,7 +2,7 @@ import { FormattedMessage as T } from "react-intl";
 import { LoaderBarBottom } from "indicators";
 import "style/CreateWalletForm.less";
 
-const ExistingOrNewScreen = ({
+const CreationTypeSelectScreen = ({
   onSetCreateWalletFromExisting,
   onReturnToWalletSelection,
   getCurrentBlockCount,
@@ -15,14 +15,23 @@ const ExistingOrNewScreen = ({
       <div className="create-wallet-go-back">
         <div className="create-wallet-go-back-button" onClick={onReturnToWalletSelection} />
       </div>
-      <div className="createwallet-button new" onClick={() => onSetCreateWalletFromExisting(false)}>
+      <div className="createwallet-button new" onClick={() => onSetCreateWalletFromExisting("new")}>
         <div className="createwallet-button-label">
           <T id="getStarted.newSeedTab" m="Create a New Wallet" />
         </div>
       </div>
       <div
+        className="createwallet-button import"
+        onClick={() => onSetCreateWalletFromExisting("import")}>
+        <div className="display-wallet-name">
+          <div className="createwallet-button-label">
+            <T id="getStarted.importKeysTab" m="Import keys" />
+          </div>
+        </div>
+      </div>
+      <div
         className="createwallet-button restore"
-        onClick={() => onSetCreateWalletFromExisting(true)}>
+        onClick={() => onSetCreateWalletFromExisting("restore")}>
         <div className="createwallet-button-label">
           <T id="getStarted.existingSeedTab" m="Restore Existing Wallet" />
         </div>
@@ -34,4 +43,4 @@ const ExistingOrNewScreen = ({
   </div>
 );
 
-export default ExistingOrNewScreen;
+export default CreationTypeSelectScreen;

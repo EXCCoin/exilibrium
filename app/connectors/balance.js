@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import { selectorMap } from "../fp";
-import * as sel from "../selectors";
+import * as selectors from "../selectors";
 
 const mapStateToProps = selectorMap({
-  currencyDisplay: sel.currencyDisplay,
-  unitDivisor: sel.unitDivisor
+  currencyDisplay: selectors.currencyDisplay,
+  unitDivisor: selectors.unitDivisor
 });
 
 export default connect(mapStateToProps);

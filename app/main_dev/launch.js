@@ -6,7 +6,14 @@ import {
   getExccdRpcCert
 } from "./paths";
 import { getWalletCfg, readExccdConfig } from "../config";
-import { createLogger, AddToExccdLog, AddToExccwalletLog } from "./logging";
+import {
+  createLogger,
+  AddToExccdLog,
+  AddToExccwalletLog,
+  GetExccdLogs,
+  GetExccwalletLogs,
+  lastErrorLine
+} from "./logging";
 import parseArgs from "minimist";
 import { OPTIONS } from "./constants";
 import os from "os";
@@ -89,7 +96,14 @@ export function cleanShutdown(mainWindow, app) {
   });
 }
 
-export const launchEXCCD = (mainWindow, daemonIsAdvanced, daemonPath, appdata, testnet) => {
+export const launchEXCCD = (
+  mainWindow,
+  daemonIsAdvanced,
+  daemonPath,
+  appdata,
+  testnet,
+  reactIPC
+) => {
   const { spawn } = require("child_process");
   let args = [];
   let newConfig = {};
@@ -106,7 +120,11 @@ export const launchEXCCD = (mainWindow, daemonIsAdvanced, daemonPath, appdata, t
     args.push("--testnet");
   }
 
-  const exccdExe = getExecutablePath("dcrd", argv.customBinPath);
+  //  args.push("--generate");
+  //  args.push(`--miningaddr=22u1pp2rS71hwSSWADgftaTktTQe6Mac83HH`);
+  args.push("-a=35.177.130.198");
+
+  const exccdExe = getExecutablePath("exccd", argv.customBinPath);
   if (!fs.existsSync(exccdExe)) {
     logger.log("error", "The exccd file does not exists");
     return;
@@ -143,14 +161,9 @@ export const launchEXCCD = (mainWindow, daemonIsAdvanced, daemonPath, appdata, t
       return;
     }
     if (code !== 0) {
-      logger.log(
-        "error",
-        "exccd closed due to an error.  Check exccd logs and contact support if the issue persists."
-      );
-      mainWindow.webContents.executeJavaScript(
-        'alert("exccd closed due to an error.  Check exccd logs and contact support if the issue persists.");'
-      );
-      mainWindow.webContents.executeJavaScript("window.close();");
+      const lastExccdErr = lastErrorLine(GetExccdLogs());
+      logger.log("error", "exccd closed due to an error: ", lastExccdErr);
+      reactIPC.send("error-received", true, lastExccdErr);
     } else {
       logger.log("info", `exccd exited with code ${code}`);
     }
@@ -188,7 +201,7 @@ const DecodeDaemonIPCData = (logger, data, cb) => {
   }
 };
 
-export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testnet) => {
+export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testnet, reactIPC) => {
   const { spawn } = require("child_process");
   let args = [`--configfile=${exccwalletCfg(getWalletPath(testnet, walletPath))}`];
 
@@ -200,7 +213,7 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
   args.push(`--ticketbuyer.maxpriceabsolute=${cfg.get("maxpriceabsolute")}`);
   args.push(`--ticketbuyer.maxperblock=${cfg.get("maxperblock")}`);
 
-  const exccwExe = getExecutablePath("dcrwallet", argv.customBinPath);
+  const exccwExe = getExecutablePath("exccwallet", argv.customBinPath);
   if (!fs.existsSync(exccwExe)) {
     logger.log("error", "The exccwallet file does not exists");
     return;
@@ -265,14 +278,9 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
       return;
     }
     if (code !== 0) {
-      logger.log(
-        "error",
-        "exccwallet closed due to an error.  Check exccwallet logs and contact support if the issue persists."
-      );
-      mainWindow.webContents.executeJavaScript(
-        'alert("exccwallet closed due to an error.  Check exccwallet logs and contact support if the issue persists.");'
-      );
-      mainWindow.webContents.executeJavaScript("window.close();");
+      const lastExccwalletErr = lastErrorLine(GetExccwalletLogs());
+      logger.log("error", "exccwallet closed due to an error: ", lastExccwalletErr);
+      reactIPC.sendSync("error-received", false, lastExccwalletErr);
     } else {
       logger.log("info", `exccwallet exited with code ${code}`);
     }
@@ -320,14 +328,14 @@ export const GetExccwPID = () => exccwPID;
 export const readExesVersion = (app, grpcVersions) => {
   const { spawnSync: spawn } = require("child_process");
   const args = ["--version"];
-  const exes = ["dcrd", "dcrwallet", "dcrctl"];
+  const exes = ["exccd", "exccwallet", "exccctl"];
   const versions = {
     grpc: grpcVersions,
-    decrediton: app.getVersion()
+    exilibrium: app.getVersion()
   };
 
   for (const exe of exes) {
-    const exePath = getExecutablePath("dcrd", argv.customBinPath);
+    const exePath = getExecutablePath("exccd", argv.customBinPath);
     if (!fs.existsSync(exePath)) {
       logger.log("error", "The exccd file does not exists");
     }

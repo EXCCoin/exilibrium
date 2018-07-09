@@ -20,9 +20,9 @@ export function restrictToStdDecimalNumber(s) {
 }
 
 // Converts a string encoded as stdDecimalString (ie, a string protected by
-// restrictToStdDecimalNumber) into a excc atom amount. This performs a
+// restrictToStdDecimalNumber) into a excc exel amount. This performs a
 // conversion from a string into a JS number and then scales the number
-// according to unitDivisor so the value represents an atom amount.
+// according to unitDivisor so the value represents an exel amount.
 //
 // Due to floating point inacuracies, a rounding function compatible to dcrutil
 // `round` is used (see:
@@ -34,7 +34,7 @@ export function restrictToStdDecimalNumber(s) {
 //
 // This is fine for representing numbers within the range of the total excc
 // supply (up to 21e14) but may not be arbitrarily applicable.
-export function strToExccAtoms(s, unitDivisor) {
+export function strToExccExels(s, unitDivisor) {
   return Math.trunc(parseFloat(s) * unitDivisor + 0.5);
 }
 

@@ -1,22 +1,22 @@
 import { connect } from "react-redux";
 import { selectorMap } from "../fp";
 import { bindActionCreators } from "redux";
-import * as sel from "../selectors";
-import * as da from "actions/DaemonActions";
-import * as ca from "actions/ClientActions";
+import * as selectors from "../selectors";
+import * as daemonActions from "actions/DaemonActions";
+import * as clientActions from "actions/ClientActions";
 
 const mapStateToProps = selectorMap({
-  locale: sel.locale,
-  window: sel.mainWindow,
-  daemonStopped: sel.daemonStopped,
-  shutdownRequested: sel.shutdownRequested
+  locale: selectors.locale,
+  window: selectors.mainWindow,
+  daemonStopped: selectors.daemonStopped,
+  shutdownRequested: selectors.shutdownRequested
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      shutdownApp: da.shutdownApp,
-      listenForAppReloadRequest: ca.listenForAppReloadRequest
+      shutdownApp: daemonActions.shutdownApp,
+      listenForAppReloadRequest: clientActions.listenForAppReloadRequest
     },
     dispatch
   );

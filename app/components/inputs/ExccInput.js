@@ -1,17 +1,17 @@
 import FloatInput from "./FloatInput";
 import IntegerInput from "./IntegerInput";
-import { strToExccAtoms } from "helpers/strings";
+import { strToExccExels } from "helpers/strings";
 import balanceConnector from "connectors/balance";
 
 /**
  * FixedExccInput is a simple numeric input that is assumed to **always** hold
  * a floating point number representing a EXCC amount (ie, an amount that
- * will be mutiplied by 1e8 to get to the actual atoms value).
+ * will be mutiplied by 1e8 to get to the actual exels value).
  *
  * This is **not** affected by the global currencyDisplay state.
  *
  * Whenever possible, use the ExccInput component, as it is more flexible and
- * already manages the underlying input value in atoms.
+ * already manages the underlying input value in exels.
  */
 export const FixedExccInput = ({ currencyDisplay, ...props }) => (
   <FloatInput {...{ ...props, unit: currencyDisplay, maxFracDigits: 8 }} />
@@ -20,12 +20,12 @@ export const FixedExccInput = ({ currencyDisplay, ...props }) => (
 /**
  * ExccInput provides a way to receive excc amount inputs. Instead of the usual
  * value/onChange pair, it uses amount/onChangeAmount to track values in excc
- * atoms, correctly accounting for the currently used currencyDisplay, floating
+ * exels, correctly accounting for the currently used currencyDisplay, floating
  * convertions, etc.
  *
  * It tracks 2 different values: the typed input in the text box (which may
  * contain decimal and eventually thousands separator) and the actual input
- * amount in **ATOMS** (as required by various wallet operations).
+ * amount in **EXELS** (as required by various wallet operations).
  */
 @autobind
 class ExccInput extends React.Component {
@@ -55,7 +55,7 @@ class ExccInput extends React.Component {
 
   changeAmount(value) {
     const { unitDivisor, amount: currentAmount, onChangeAmount } = this.props;
-    const amount = !value ? 0 : strToExccAtoms(value, unitDivisor);
+    const amount = !value ? 0 : strToExccExels(value, unitDivisor);
     if (amount !== currentAmount) {
       if (onChangeAmount) {
         this.props.onChangeAmount(amount);
@@ -68,7 +68,7 @@ class ExccInput extends React.Component {
     if (value) {
       // pre-validate if <= max supply
 
-      const amount = strToExccAtoms(value, this.props.unitDivisor);
+      const amount = strToExccExels(value, this.props.unitDivisor);
       // TODO: move to a global constant
       if (amount > 21e14) {
         return;

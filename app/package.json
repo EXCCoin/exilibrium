@@ -11,11 +11,11 @@
   },
   "license": "ISC",
   "dependencies": {
-    "blake-hash": "^1.1.0",
     "bs58check": "^2.1.1",
     "electron-store": "1.2.0",
     "fs-extra": "^5.0.0",
     "grpc": "^1.11.3",
+    "js-sha256": "^0.9.0",
     "minimist": "^1.2.0"
   },
   "resolutions": {

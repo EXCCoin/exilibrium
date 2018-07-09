@@ -10,7 +10,6 @@ import { getAvailableWallets, WALLETREMOVED_FAILED } from "./DaemonActions";
 import { getWalletCfg, getExccdCert } from "config";
 import { getWalletPath } from "main_dev/paths";
 import { isTestNet } from "selectors";
-import axios from "axios";
 
 const MAX_RPC_RETRIES = 5;
 const RPC_RETRY_DELAY = 5000;
@@ -61,6 +60,7 @@ export const CREATEWALLET_EXISTINGSEED_INPUT = "CREATEWALLET_EXISTINGSEED_INPUT"
 export const CREATEWALLET_GOBACK_EXISITNG_OR_NEW = "CREATEWALLET_GOBACK_EXISITNG_OR_NEW";
 export const CREATEWALLET_GOBACK = "CREATEWALLET_GOBACK";
 export const CREATEWALLET_NEWSEED_INPUT = "CREATEWALLET_NEWSEED_INPUT";
+export const CREATEWALLET_IMPORTSEED_INPUT = "CREATEWALLET_IMPORTSEED_INPUT";
 
 export const createWalletConfirmNewSeed = () => ({ type: CREATEWALLET_NEWSEED_CONFIRM_INPUT });
 export const createWalletGoBackNewSeed = () => ({ type: CREATEWALLET_NEWSEED_BACK_INPUT });
@@ -86,10 +86,18 @@ export const createWalletGoBackWalletSelection = () => (dispatch, getState) => {
   });
 };
 
-export const createWalletExistingToggle = existing => dispatch =>
-  existing
-    ? dispatch({ type: CREATEWALLET_EXISTINGSEED_INPUT })
-    : setTimeout(() => dispatch({ type: CREATEWALLET_NEWSEED_INPUT }), 50);
+export const createWalletExistingToggle = walletCreationType => dispatch => {
+  switch (walletCreationType) {
+    case "new":
+      setTimeout(() => dispatch({ type: CREATEWALLET_NEWSEED_INPUT }), 50);
+      return;
+    case "restore":
+      dispatch({ type: CREATEWALLET_EXISTINGSEED_INPUT });
+      return;
+    case "import":
+      dispatch({ type: CREATEWALLET_IMPORTSEED_INPUT });
+  }
+};
 
 export const CREATEWALLET_ATTEMPT = "CREATEWALLET_ATTEMPT";
 export const CREATEWALLET_FAILED = "CREATEWALLET_FAILED";
@@ -328,13 +336,22 @@ export function clearStakePoolConfigNewWallet() {
 export const NEEDED_BLOCKS_DETERMINED = "NEEDED_BLOCKS_DETERMINED";
 export function determineNeededBlocks() {
   return (dispatch, getState) => {
-    const { network } = getState().daemon;
-    const explorerInfoURL = `https://${network}.decred.org/api/status`;
-    axios
-      .get(explorerInfoURL, { timeout: 5000 })
-      .then(response => {
-        const neededBlocks = response.data.info.blocks;
-        wallet.log("info", `Determined needed block height as ${neededBlocks}`);
+    // COMBAK: we need to have our own network & explorer
+    // Right now we are trying to query our local blockchain state through exccctl
+    //  const { network } = getState().daemon;
+    //  const explorerInfoURL = `https://${network}.decred.org/api/status`;
+    //  axios
+    //    .get(explorerInfoURL, { timeout: 5000 })
+    //       .then(response => {
+    //        const neededBlocks = response.data.info.blocks;
+    const { credentials } = getState().daemon;
+    wallet
+      .getBlockCount(credentials, isTestNet(getState()))
+      .then(neededBlocks => {
+        wallet.log(
+          "info",
+          `Determined needed block height as ${neededBlocks}, testnet: ${isTestNet(getState())}`
+        );
         dispatch({ neededBlocks, type: NEEDED_BLOCKS_DETERMINED });
       })
       .catch(error => {

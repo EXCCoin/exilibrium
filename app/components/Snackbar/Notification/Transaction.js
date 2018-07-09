@@ -33,6 +33,10 @@ const messages = defineMessages({
   [TRANSACTION_DIR_RECEIVED]: {
     id: "notifications.type.receive",
     defaultMessage: "Receive"
+  },
+  Coinbase: {
+    id: "notifications.type.mine",
+    defaultMessage: "Mined"
   }
 });
 

@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import { selectorMap } from "../fp";
-import * as sel from "../selectors";
+import * as selectors from "../selectors";
 
 const mapStateToProps = selectorMap({
-  requiredWalletRPCVersion: sel.requiredWalletRPCVersion,
-  walletRPCVersion: sel.walletRPCVersion
+  requiredWalletRPCVersion: selectors.requiredWalletRPCVersion,
+  walletRPCVersion: selectors.walletRPCVersion
 });
 
 export default connect(mapStateToProps);

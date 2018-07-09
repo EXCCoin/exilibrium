@@ -5,7 +5,7 @@ import Validator from "./Validator";
 import FileHandler from "./FileHandler";
 import Decryptor from "./Decryptor";
 
-export default ({ submitSection }) => (
+export default () => (
   <Validator>
     {({ validator, errorMessage }) => (
       <FileHandler {...{ validator }}>
@@ -22,8 +22,7 @@ export default ({ submitSection }) => (
                   encryptedString,
                   selectedFileName,
                   encryptionPassword,
-                  errorMessage,
-                  submitSection
+                  errorMessage
                 }}
               />
             )}

@@ -1,6 +1,6 @@
 import Promise from "promise";
 import { stakePoolInfo } from "middleware/stakepoolapi";
-import { withLogNoData } from "./index";
+import { withLogNoData } from "./app";
 
 export const getStakePoolInfo = withLogNoData(
   () =>

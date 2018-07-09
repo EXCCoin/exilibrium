@@ -364,6 +364,7 @@
   "notifications.type.ticket": "Ticket",
   "notifications.type.transfer": "Transfer",
   "notifications.type.vote": "Vote",
+  "notifications.type.mine": "Mine",
   "numTicketsInput.unit": "tickets",
   "passphrase.info.message":
     "This passphrase ensures that no funds may be spent from this wallet without it.  It is used to encrypt your private keys associated with your addresses.  These private keys are required to sign transactions that spend from the addresses.  Make sure to use a high-security passphrase and keep this passphrase in a secure place.   With your wallet file and this private passphrase an attacker would have full control over any funds associated with this wallet.",
@@ -675,9 +676,9 @@
   "transactions.description.receive":
     "Each time you request a payment, create a new address to protect your privacy.",
   "transactions.description.send.mainnet":
-    "Mainnet Decred addresses always begin with letter D and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
+    "Mainnet Exchange Coin addresses always begin with number 2",
   "transactions.description.send.testnet":
-    "Testnet Decred addresses always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).",
+    "Testnet Exchainge Coin addresses always begin with letter T",
   "transactions.sortby.tooltip": "Sort By",
   "transactions.tab.export": "Export",
   "transactions.tab.history": "History",

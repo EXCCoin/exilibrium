@@ -10,6 +10,7 @@ import { AnimatedSwitch } from "react-router-transition";
 import GetStartedContainer from "./GetStarted";
 import WalletContainer from "./Wallet";
 import ShutdownAppPage from "components/views/ShutdownAppPage";
+import FatalErrorPage from "components/views/FatalErrorPage";
 import Snackbar from "components/Snackbar";
 import "style/Layout.less";
 
@@ -33,6 +34,7 @@ class App extends React.Component {
     super(props);
     const { window } = props;
     window.addEventListener("beforeunload", this.beforeWindowUnload);
+    window.addEventListener("click", this.onClick);
     this.refreshing = false;
 
     props.listenForAppReloadRequest(this.onReloadRequested);
@@ -63,6 +65,18 @@ class App extends React.Component {
     event.sender.send("app-reload-ui");
   }
 
+  onClick({ target }) {
+    if (target.localName !== "a") {
+      return;
+    }
+    const href = target.attributes.href ? target.attributes.href.value : "";
+    if (href === "") {
+      event.stopPropagation();
+      event.preventDefault();
+      return false;
+    }
+  }
+
   render() {
     const { locale } = this.props;
     return (
@@ -81,6 +95,7 @@ class App extends React.Component {
             <AnimatedSwitch {...topLevelAnimation} className="top-level-container">
               <Route path="/getStarted" component={GetStartedContainer} />
               <Route path="/shutdown" component={ShutdownAppPage} />
+              <Route path="/error" component={FatalErrorPage} />
               <Route path="/" component={WalletContainer} />
             </AnimatedSwitch>
             <div id="modal-portal" />

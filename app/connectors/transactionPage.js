@@ -1,19 +1,19 @@
 import { connect } from "react-redux";
 import { selectorMap } from "../fp";
 import { bindActionCreators } from "redux";
-import * as sel from "../selectors";
-import * as dma from "../actions/DecodeMessageActions";
+import * as selectors from "../selectors";
+import * as decodeMessageActions from "../actions/DecodeMessageActions";
 
 const mapStateToProps = selectorMap({
-  walletService: sel.walletService,
-  viewedTransaction: sel.viewedTransaction,
-  viewedDecodedTransaction: sel.viewedDecodedTransaction
+  walletService: selectors.walletService,
+  viewedTransaction: selectors.viewedTransaction,
+  viewedDecodedTransaction: selectors.viewedDecodedTransaction
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      decodeRawTransactions: dma.decodeRawTransactions
+      decodeRawTransactions: decodeMessageActions.decodeRawTransactions
     },
     dispatch
   );

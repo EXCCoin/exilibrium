@@ -1,4 +1,4 @@
-import createBlakeHash from "blake-hash";
+import sha256 from "js-sha256";
 const bs58checkBase = require("bs58check/base");
 
 export const ERR_INVALID_ADDR_EMPTY = "ERR_INVALID_ADDR_EMPTY";
@@ -18,11 +18,13 @@ export const ERR_INVALID_ADDR_CHECKSUM = "ERR_INVALID_ADDR_CHECKSUM";
 // 3) Checksum - https://github.com/bitcoinjs/bs58check/blob/master/test/base.js
 
 // Injected checksum function
-function _blake256x2(buffer) {
-  buffer = createBlakeHash("blake256")
+function _sha256x2(buffer) {
+  buffer = sha256
+    .create()
     .update(buffer)
     .digest();
-  return createBlakeHash("blake256")
+  return sha256
+    .create()
     .update(buffer)
     .digest();
 }
@@ -41,13 +43,13 @@ export function isValidAddress(addr, network) {
   if (network === "testnet" && addr[0] !== "T") {
     return ERR_INVALID_ADDR_NETWORKPREFIX;
   }
-  if (network === "mainnet" && addr[0] !== "D") {
+  if (network === "mainnet" && addr[0] !== "2") {
     return ERR_INVALID_ADDR_NETWORKPREFIX;
   }
 
   try {
-    const bs58check = bs58checkBase(_blake256x2);
-    bs58check.decode(addr, _blake256x2);
+    const bs58check = bs58checkBase(_sha256x2);
+    bs58check.decode(addr, _sha256x2);
   } catch (error) {
     return ERR_INVALID_ADDR_CHECKSUM;
   }

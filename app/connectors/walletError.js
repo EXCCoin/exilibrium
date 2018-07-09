@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import { selectorMap } from "../fp";
-import * as sel from "../selectors";
+import * as selectors from "../selectors";
 
 const mapStateToProps = selectorMap({
-  getNetworkError: sel.getNetworkError
+  getNetworkError: selectors.getNetworkError
 });
 
 export default connect(mapStateToProps);

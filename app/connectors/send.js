@@ -1,33 +1,33 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectorMap } from "../fp";
-import * as sel from "../selectors";
-import * as ca from "../actions/ControlActions";
+import * as selectors from "../selectors";
+import * as controlActions from "../actions/ControlActions";
 
 const mapStateToProps = selectorMap({
-  defaultSpendingAccount: sel.defaultSpendingAccount,
-  estimatedSignedSize: sel.estimatedSignedSize,
-  unsignedTransaction: sel.unsignedTransaction,
-  estimatedFee: sel.estimatedFee,
-  totalSpent: sel.totalSpent,
-  publishedTransactionHash: sel.publishedTransactionHash,
-  isSendingTransaction: sel.isSendingTransaction,
-  isConstructingTransaction: sel.isConstructingTransaction,
-  nextAddress: sel.nextAddress,
-  nextAddressAccount: sel.nextAddressAccount,
-  unitDivisor: sel.unitDivisor,
-  hasUnminedTransactions: sel.hasUnminedTransactions
+  defaultSpendingAccount: selectors.defaultSpendingAccount,
+  estimatedSignedSize: selectors.estimatedSignedSize,
+  unsignedTransaction: selectors.unsignedTransaction,
+  estimatedFee: selectors.estimatedFee,
+  totalSpent: selectors.totalSpent,
+  publishedTransactionHash: selectors.publishedTransactionHash,
+  isSendingTransaction: selectors.isSendingTransaction,
+  isConstructingTransaction: selectors.isConstructingTransaction,
+  nextAddress: selectors.nextAddress,
+  nextAddressAccount: selectors.nextAddressAccount,
+  unitDivisor: selectors.unitDivisor,
+  hasUnminedTransactions: selectors.hasUnminedTransactions
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      onAttemptConstructTransaction: ca.constructTransactionAttempt,
-      onAttemptSignTransaction: ca.signTransactionAttempt,
-      onClearTransaction: ca.clearTransaction,
-      getNextAddressAttempt: ca.getNextAddressAttempt,
-      validateAddress: ca.validateAddress,
-      publishUnminedTransactions: ca.publishUnminedTransactionsAttempt
+      onAttemptConstructTransaction: controlActions.constructTransactionAttempt,
+      onAttemptSignTransaction: controlActions.signTransactionAttempt,
+      onClearTransaction: controlActions.clearTransaction,
+      getNextAddressAttempt: controlActions.getNextAddressAttempt,
+      validateAddress: controlActions.validateAddress,
+      publishUnminedTransactions: controlActions.publishUnminedTransactionsAttempt
     },
     dispatch
   );

@@ -134,12 +134,26 @@ const installExtensions = async () => {
 
 const { ipcMain } = require("electron");
 
+let reactIPC;
+
+ipcMain.on("register-for-errors", event => {
+  reactIPC = event.sender;
+  event.returnValue = true;
+});
+
 ipcMain.on("get-available-wallets", (event, network) => {
   event.returnValue = getAvailableWallets(network);
 });
 
 ipcMain.on("start-daemon", (event, appData, testnet) => {
-  event.returnValue = startDaemon(mainWindow, daemonIsAdvanced, primaryInstance, appData, testnet);
+  event.returnValue = startDaemon(
+    mainWindow,
+    daemonIsAdvanced,
+    primaryInstance,
+    appData,
+    testnet,
+    reactIPC
+  );
 });
 
 ipcMain.on("create-wallet", (event, walletPath, testnet) => {
@@ -155,7 +169,7 @@ ipcMain.on("stop-wallet", event => {
 });
 
 ipcMain.on("start-wallet", (event, walletPath, testnet) => {
-  event.returnValue = startWallet(mainWindow, daemonIsAdvanced, testnet, walletPath);
+  event.returnValue = startWallet(mainWindow, daemonIsAdvanced, testnet, walletPath, reactIPC);
 });
 
 ipcMain.on("check-daemon", (event, rpcCreds, testnet) => {

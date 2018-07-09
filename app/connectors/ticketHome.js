@@ -1,14 +1,14 @@
 import { connect } from "react-redux";
 import { selectorMap } from "fp";
-import * as sel from "selectors";
+import * as selectors from "selectors";
 
 const mapStateToProps = selectorMap({
-  sentAndReceivedTransactions: sel.sentAndReceivedTransactions,
-  totalValueOfLiveTickets: sel.totalValueOfLiveTickets,
-  earnedStakingReward: sel.totalSubsidy,
-  liveTicketsCount: sel.liveTicketsCount,
-  votedTicketsCount: sel.votedTicketsCount,
-  ticketDataChart: sel.ticketDataChart
+  sentAndReceivedTransactions: selectors.sentAndReceivedTransactions,
+  totalValueOfLiveTickets: selectors.totalValueOfLiveTickets,
+  earnedStakingReward: selectors.totalSubsidy,
+  liveTicketsCount: selectors.liveTicketsCount,
+  votedTicketsCount: selectors.votedTicketsCount,
+  ticketDataChart: selectors.ticketDataChart
 });
 
 export default connect(mapStateToProps);

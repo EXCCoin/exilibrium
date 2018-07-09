@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as da from "../actions/DaemonActions";
+import * as daemonActions from "../actions/DaemonActions";
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      cleanShutdown: da.cleanShutdown
+      cleanShutdown: daemonActions.cleanShutdown
     },
     dispatch
   );

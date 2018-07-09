@@ -21,6 +21,8 @@ import { TicketTypes, decodeVoteScript } from "./helpers/tickets";
 
 const EMPTY_ARRAY = []; // Maintaining identity (will) improve performance;
 
+export const daemonError = get(["daemon", "daemonError"]);
+export const walletError = get(["daemon", "walletError"]);
 export const appVersion = get(["daemon", "appVersion"]);
 export const updateAvailable = get(["daemon", "updateAvailable"]);
 export const openForm = get(["daemon", "openForm"]);
@@ -61,6 +63,7 @@ export const hasExistingWallet = compose(
 );
 export const confirmNewSeed = get(["walletLoader", "confirmNewSeed"]);
 export const existingOrNew = get(["walletLoader", "existingOrNew"]);
+export const importCopay = get(["walletLoader", "importCopay"]);
 export const versionInvalidError = createSelector(
   [versionInvalid, get(["version", "versionInvalidError"])],
   (invalid, error) => (invalid ? error || "Unknown Error" : null)
@@ -144,7 +147,7 @@ export const sortedAccounts = createSelector([balances], balances =>
 
 export const totalBalance = createSelector(
   [balances],
-  reduce((atoms, { total }) => atoms + total, 0)
+  reduce((exels, { total }) => exels + total, 0)
 );
 
 export const spendableTotalBalance = createSelector(
@@ -157,7 +160,7 @@ export const spendableTotalBalance = createSelector(
 
 export const lockedBalance = createSelector(
   [balances],
-  reduce((atoms, { lockedByTickets }) => atoms + lockedByTickets, 0)
+  reduce((exels, { lockedByTickets }) => exels + lockedByTickets, 0)
 );
 
 export const networks = () => [{ name: "testnet" }, { name: "mainnet" }];
@@ -167,7 +170,7 @@ export const isTestNet = compose(
   network
 );
 export const isMainNet = not(isTestNet);
-export const currencies = () => [{ name: "EXCC" }, { name: "atoms" }];
+export const currencies = () => [{ name: "EXCC" }, { name: "exels" }];
 export const currencyDisplay = get(["settings", "currentSettings", "currencyDisplay"]);
 export const unitDivisor = compose(
   disp => (disp === "EXCC" ? 100000000 : 1),
