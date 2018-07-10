@@ -1,3 +1,4 @@
+import axios from "axios";
 import * as wallet from "wallet";
 import {
   getWalletServiceAttempt,
@@ -336,18 +337,11 @@ export function clearStakePoolConfigNewWallet() {
 export const NEEDED_BLOCKS_DETERMINED = "NEEDED_BLOCKS_DETERMINED";
 export function determineNeededBlocks() {
   return (dispatch, getState) => {
-    // COMBAK: we need to have our own network & explorer
-    // Right now we are trying to query our local blockchain state through exccctl
-    //  const { network } = getState().daemon;
-    //  const explorerInfoURL = `https://${network}.decred.org/api/status`;
-    //  axios
-    //    .get(explorerInfoURL, { timeout: 5000 })
-    //       .then(response => {
-    //        const neededBlocks = response.data.info.blocks;
-    const { credentials } = getState().daemon;
-    wallet
-      .getBlockCount(credentials, isTestNet(getState()))
-      .then(neededBlocks => {
+    const explorerInfoURL = `http://explorer2.excc.co/api/status`;
+    axios
+      .get(explorerInfoURL, { timeout: 5000 })
+      .then(response => {
+        const { db_height: neededBlocks } = response.data;
         wallet.log(
           "info",
           `Determined needed block height as ${neededBlocks}, testnet: ${isTestNet(getState())}`
