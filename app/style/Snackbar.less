@@ -3,18 +3,25 @@
 
 .snackbar {
   left: 61% !important;
-  background-color: rgba(250, 95, 171, 0.7);
+  background-color: #4143cd;
+  color: #fff;
   font-family: Source Sans Pro, sans-serif;
   margin-bottom: 0.5em;
+  a {
+    color: #fff;
+  }
 }
 
 .snackbar.snackbar-warning,
 .snackbar.snackbar-error {
-  background-color: rgba(253, 110, 75, 0.8);
+  background-color: #fa5baa;
+  a {
+    color: #fff;
+  }
 }
 
 .snackbar.snackbar-success {
-  background-color: rgba(69, 191, 87, 0.8);
+  background-color: #4143cd;
 }
 
 .snackbar-information {
@@ -60,33 +67,30 @@
 .snackbar-tx-mixin {
   height: 78px;
   padding: 0px 50px 20px;
-  background-color: rgba(250, 95, 171, 0.7);
+  background-color: #4143cd;
   background-position: 15px 50%;
   background-size: 24px;
   background-repeat: no-repeat;
   margin-bottom: 0px;
+  font-weight: bold;
 }
 
 .snackbar-stake {
   .snackbar-tx-mixin;
-
-  background-image: @ticket-small-icon;
+  background-image: @ticket-small-icon-white;
 }
 
 .snackbar-receive {
   .snackbar-tx-mixin;
-
-  background-image: @plus-big-icon;
+  background-image: @plus-small-icon-white;
 }
 
 .snackbar-send {
   .snackbar-tx-mixin;
-
-  background-image: @minus-big-icon;
+  background-image: @minus-small-icon-white;
 }
 
 .snackbar-transfer {
   .snackbar-tx-mixin;
-
   background-image: @wallet-gray-icon;
 }
