@@ -93,7 +93,7 @@ git clone https://github.com/EXCCoin/exilibrium.git
 cd exilibrium
 yarn
 mkdir bin/
-cp $GOPATH/bin/dcr* bin/
+cp $GOPATH/bin/excc* bin/
 yarn dev
 ```
 
@@ -158,7 +158,7 @@ You need to install exccd, exccwallet and exccctl.
 
 To build a packaged version of exilibrium (including a dmg on OSX and
 exe on Windows), follow the development steps above. Then build the
-dcr command line tools:
+excc command line tools:
 
 ```bash
 cd code/exilibrium

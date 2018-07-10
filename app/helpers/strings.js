@@ -24,10 +24,6 @@ export function restrictToStdDecimalNumber(s) {
 // conversion from a string into a JS number and then scales the number
 // according to unitDivisor so the value represents an exel amount.
 //
-// Due to floating point inacuracies, a rounding function compatible to dcrutil
-// `round` is used (see:
-// https://github.com/EXCCoin/exccd/blob/v1.1.2/dcrutil/amount.go#L77)
-//
 // Note that, since JS doesn't actually have an integer type (all numbers
 // are floating-point numbers), the Math.trunc function is used to simulate
 // the float64 -> int64 conversion.

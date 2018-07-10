@@ -5,7 +5,7 @@
   "accounts.balances": "Balances",
   "accounts.cancelRenameBtn": "Cancel",
   "accounts.description":
-    "Accounts allow you to keep separate records of your DCR funds.\nTransferring DCR across accounts will create a transaction on the blockchain.",
+    "Accounts allow you to keep separate records of your EXCC funds.\nTransferring EXCC across accounts will create a transaction on the blockchain.",
   "accounts.details.spendable": "Spendable",
   "accounts.errors.getNextAccountFailed": "{originalError}",
   "accounts.errors.renameAccountFailed": "{originalError}",
@@ -55,20 +55,20 @@
   "agenda.updatePreference": "Update Preference",
   "agenda.votingFor": "Voting for",
   "appMenu.about": "About",
-  "appMenu.aboutDecrediton": "About Decrediton",
+  "appMenu.aboutExilibrium": "About Exilibrium",
   "appMenu.advanced": "Advanced",
   "appMenu.bringAllFront": "Bring All to Front",
   "appMenu.close": "&Close",
   "appMenu.communityDiscussions": "Community Discussions",
   "appMenu.copy": "Copy",
   "appMenu.cut": "Cut",
-  "appMenu.decrediton": "Decrediton",
+  "appMenu.exilibrium": "Exilibrium",
   "appMenu.developerTools": "Toggle Developer Tools",
   "appMenu.documentation": "Documentation",
   "appMenu.edit": "Edit",
   "appMenu.file": "&File",
   "appMenu.help": "Help",
-  "appMenu.hideDecrediton": "Hide Decrediton",
+  "appMenu.hideExilibrium": "Hide Exilibrium",
   "appMenu.hideOthers": "Hide Others",
   "appMenu.learnMore": "Learn More",
   "appMenu.minimize": "Minimize",
@@ -91,7 +91,7 @@
   "autobuyer.canNotEnableAutobuyer": "*Please fix fields with errors",
   "autobuyer.disabled": "Turn on auto buyer",
   "autobuyer.enabled": "Turn off auto buyer",
-  "autobuyer.invalidMaxFee": "*Invalid max fee (0 - 0.1 DCR/KB)",
+  "autobuyer.invalidMaxFee": "*Invalid max fee (0 - 0.1 EXCC/KB)",
   "autobuyer.maxFee": "Max Fee",
   "autobuyer.maxPerBlock": "Max Per Block",
   "autobuyer.maxPerBlock.units": "tickets",
@@ -189,7 +189,7 @@
   "export.balances.fields.stakeRewards": "Total stake rewards received.",
   "export.balances.fields.time": "Date/time that the balance changed",
   "export.balances.fields.total": "Total available balance.",
-  "export.balances.fields.totalStake": "Total amount of DCR used on staking.",
+  "export.balances.fields.totalStake": "Total amount of EXCC used on staking.",
   "export.balances.name": "Balances",
   "export.btnExport": "Export",
   "export.completed": "Export of file '{filename}' completed!",
@@ -243,14 +243,15 @@
   "getStarted.btnLogs": "Logs",
   "getStarted.btnSettings": "Settings",
   "getStarted.chainLoading.syncEstimation": "Estimated time left",
-  "getStarted.chainLoading.syncEstimation.small": "Loading Decred blockchain, estimated time left",
+  "getStarted.chainLoading.syncEstimation.small":
+    "Loading ExchangeCoin blockchain, estimated time left",
   "getStarted.decrypt.info":
     "This wallet is encrypted, please enter the public passphrase to decrypt it.",
   "getStarted.decrypt.label": "Decrypt Wallet",
   "getStarted.decrypt.publicPassphrasePlaceholder": "Public Passphrase",
   "getStarted.discover.label": "Scan for accounts",
   "getStarted.discoverAccountsInfo":
-    "Enter the passphrase you just created to scan the blockchain for additional accounts you may have previously created with your wallet.\n\n            Your account names aren't stored on the blockchain, so you will have to rename them after setting up Decrediton.",
+    "Enter the passphrase you just created to scan the blockchain for additional accounts you may have previously created with your wallet.\n\n            Your account names aren't stored on the blockchain, so you will have to rename them after setting up Exlilibrium.",
   "getStarted.discoverAddresses.passphrasePlaceholder": "Private Passphrase",
   "getStarted.discoverAddresses.scanBtn": "Scan",
   "getStarted.existingSeedTab": "Restore Existing Wallet",
@@ -263,7 +264,7 @@
   "getStarted.header.rescanWallet.meta": "Scanning blocks for transactions",
   "getStarted.header.startrpc.meta": "Establishing RPC connection",
   "getStarted.learnBasics": "Learn the Basics",
-  "getStarted.logsTitle": "Decrediton v1.1.2 Released",
+  "getStarted.logsTitle": "Exilibrium v1.0.0 Released",
   "getStarted.newSeedTab": "Create a New Wallet",
   "getStarted.importKeysTab": "Import keys",
   "getStarted.retryBtn": "Retry",
@@ -272,18 +273,18 @@
   "getStarted.walletRescan.progress": "Rescan Progress ({rescanCurrentBlock} / {rescanEndBlock})",
   "getStarted.whatsNew": "What's New in {version}",
   "help.description.links":
-    "If you have any difficulty with decrediton, please use the following links to help find a solution.",
+    "If you have any difficulty with exilibrium, please use the following links to help find a solution.",
   "help.description.logs":
     "Please find your current logs below to look for any issue or error you are having.",
-  "help.description.tutorials": "Learn about the various aspects of the Decred network.",
+  "help.description.tutorials": "Learn about the various aspects of the ExchangeCoin network.",
   "help.documentation": "Documentation",
   "help.forum": "Forum",
   "help.freenode": "Freenode",
   "help.github": "Github",
-  "help.logs.dcrd": "dcrd",
-  "help.logs.dcrwallet": "dcrwallet",
+  "help.logs.exccd": "exccd",
+  "help.logs.exccwallet": "exccwallet",
   "help.matrix": "Matrix Chat",
-  "help.matrix.info": "Use matrix.decred.org as your custom server URL.",
+  "help.matrix.info": "Use matrix.excc.co as your custom server URL.",
   "help.rocketchat": "RocketChat",
   "help.stakepools": "Stakepools",
   "help.tab.links": "Links",
@@ -301,8 +302,8 @@
   "home.noTickets.lifecycle": "Learn About the Ticket Lifecycle",
   "home.noTickets.staking": "What is Staking (Proof-of-Stake)?",
   "home.noTickets.title": "No tickets yet",
-  "home.noTransactions.buyFromExchanges": "Buy Decred from Exchanges",
-  "home.noTransactions.receiveLink": "Generate a DCR Address for receiving funds",
+  "home.noTransactions.buyFromExchanges": "Buy ExchangeCoin from Exchanges",
+  "home.noTransactions.receiveLink": "Generate a EXCC Address for receiving funds",
   "home.noTransactions.title": "No transactions yet",
   "home.recentTransactionsHistory": "Go to all transactions",
   "home.recentTransactionsTitle": "Recent Transactions",
@@ -320,8 +321,8 @@
   "input.invalidInput": "This field is wrong",
   "input.requiredInput": "This field is required",
   "invalidRPCVersion.info":
-    "The API of the currently running wallet ({walletRPCVersion}) is not compatible with Decrediton (required version {requiredWalletRPCVersion}).\n\n        Please update the daemon (dcrd) and wallet (dcrwallet) to the latest version, then try again.\n\n        See the \"Help ⮕ About\" menu for the current version of the executables.",
-  "loader.title": "Welcome to Decrediton Wallet",
+    "The API of the currently running wallet ({walletRPCVersion}) is not compatible with Exilibrium (required version {requiredWalletRPCVersion}).\n\n        Please update the daemon (exccd) and wallet (exccwallet) to the latest version, then try again.\n\n        See the \"Help ⮕ About\" menu for the current version of the executables.",
+  "loader.title": "Welcome to Exilibrium Wallet",
   "loaderBar.Loaded": "Blockchain loaded",
   "loaderBar.Loading": "Blockchain syncing",
   "loaderBar.Waiting": "Waiting for daemon connection...",
@@ -377,8 +378,8 @@
   "purchaseTickets.errors.expiryRequred": "Expiry is required",
   "purchaseTickets.errors.insufficientBalance":
     "Insufficient spendable account balance to purchase tickets.",
-  "purchaseTickets.errors.invalidTicketFee": "*Invalid ticket fee (0 - 0.1 DCR/KB)",
-  "purchaseTickets.errors.invalidTxFee": "*Invalid tx fee (0 - 0.1 DCR/KB)",
+  "purchaseTickets.errors.invalidTicketFee": "*Invalid ticket fee (0 - 0.1 EXCC/KB)",
+  "purchaseTickets.errors.invalidTxFee": "*Invalid tx fee (0 - 0.1 EXCC/KB)",
   "purchaseTickets.expiry": "Expiry",
   "purchaseTickets.expiryPlaceholder": "Expiry",
   "purchaseTickets.import": "Manually import a redeem script for tickets.",
@@ -436,7 +437,7 @@
   "seedEntry.info.message":
     "This 33 word seed is what is used to derive everything about your particular wallet.  With this seed you can regenerate this wallet from anywhere in the world.  While this does offer flexibility and easy back ups, it also means that this seed should be handled with the utmost security.  We recommend only having seeds written by hand in the most secure location you have.",
   "selectLang.continueBtn": "Continue",
-  "selectLang.title": "Welcome to Decrediton Wallet",
+  "selectLang.title": "Welcome to Exilibrium Wallet",
   "selectLang.titleSub": "Choose your language",
   "selectStakepool.placeholder": "Select Stakepool...",
   "selectWallet.placeholder": "Select Wallet...",
@@ -458,10 +459,10 @@
   "send.feeEstimation": "Estimated Fee",
   "send.from": "From",
   "send.publishUnminedTransactions.success":
-    "Republished unmined transactions to the decred network.",
+    "Republished unmined transactions to the ExchangeCoin network.",
   "send.publishedTxHeader": "Published tx: {hash}",
   "send.rebroadcastTooltip":
-    "Rebroadcasting transactions may help in situations when a transaction has been sent to a node that had poor connectivity to the general Decred network.",
+    "Rebroadcasting transactions may help in situations when a transaction has been sent to a node that had poor connectivity to the general ExchangeCoin network.",
   "send.rebroadcastUnmined": "Rebroadcast",
   "send.sendAllTitle": "Send all funds from selected account",
   "send.sendBtn": "Send",
@@ -485,7 +486,7 @@
   "settings.security.title": "Security",
   "settings.title": "Settings",
   "settings.updatePrivatePassphrase": "Update Private Passphrase",
-  "shutdown.header.title": "Shutting down Decrediton",
+  "shutdown.header.title": "Shutting down Exilibrium",
   "sidebar.lastBlockIsRecent": "< 1 minute ago",
   "sidebar.latestBlock": "Latest Block",
   "sidebar.link.accounts": "Accounts",
@@ -499,7 +500,7 @@
   "sidebar.rescanCancelBtn.tip": "Cancel rescan",
   "sidebar.totalBalance": "Total Balance",
   "sign.info.message":
-    "Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 DCR to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID.",
+    "Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 EXCC to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID.",
   "snackbar.defaults.error": "{originalError}",
   "snackbar.defaults.success": "Success!",
   "stake.addPool.addBtn": "Continue",
@@ -587,7 +588,7 @@
     "If the ticket price is above this value, you will not buy more tickets. The default of 0 turns this off.",
   "ticketAutoBuyer.info.maxPriceRelative.header": "Max Price Relative",
   "ticketAutoBuyer.info.maxPriceRelative.message":
-    "This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 DCR.",
+    "This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 EXCC.",
   "ticketList.backBtn": "Back",
   "tickets.description": "Current Price: {ticketPrice}",
   "tickets.errors.importScriptFailed": "{originalError}",
@@ -615,17 +616,17 @@
   "tickets.info.poolPreference.header": "Stake pool preference",
   "tickets.info.poolPreference.message":
     "Automate setup with PoS pools. See below for more information.",
-  "tickets.info.ticketFee.header": "Ticket fee (DCR/kB)",
+  "tickets.info.ticketFee.header": "Ticket fee (EXCC/kB)",
   "tickets.info.ticketFee.message":
     "Tickets are entered into the voting pool by order of their fee. In times of demand, you will need to increase this value in order to have your tickets accepted. You can view current ticket fees here.",
   "tickets.info.ticketPrice.header": "Ticket price",
   "tickets.info.ticketPrice.message":
     "The current price of a ticket as calculated by the network.  Changes every 144 Blocks.",
-  "tickets.info.txFee.header": "Tx fee (DCR/kB)",
+  "tickets.info.txFee.header": "Tx fee (EXCC/kB)",
   "tickets.info.txFee.message":
-    "Decrediton uses a \"split\" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The \"split\" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them.",
+    "Exilibrium uses a \"split\" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The \"split\" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them.",
   "tickets.info.votingAddress.header": "Voting address",
-  "tickets.info.votingAddress.message": "The Decred address that will do the voting.",
+  "tickets.info.votingAddress.message": "The ExchangeCoin address that will do the voting.",
   "tickets.purchaseConfirmation": "Ticket Purchase Confirmation",
   "tickets.purchaseTicketsHeader":
     "You bought {numTickets, plural, one {# ticket } other {# tickets }}",
@@ -635,7 +636,7 @@
   "tickets.startAutoBuyerConfirmation": "Start Ticket Buyer Confirmation",
   "tickets.startAutoBuyerConfirmation.attention": "Attention!",
   "tickets.startAutoBuyerConfirmation.description":
-    "Decrediton must remain running for tickets to be automatically purchased.",
+    "Exilibrium must remain running for tickets to be automatically purchased.",
   "tickets.startAutoBuyerHeader": "Ticket buyer is now running.",
   "tickets.stopAutoBuyerHeader": "Ticket buyer is now stopped.",
   "tickets.tab.governance": "Governance",
@@ -687,28 +688,28 @@
   "tutorial.nextBtn": "Next",
   "tutorial.skipBtn": "Skip",
   "tutorial.staking.page1":
-    "Decred holders can participate in the Staking (Proof-of Stake) process by purchasing tickets. These tickets are used to vote on miners’ Proof-of-Work in order to validate changes to the Decred blockchain, or on governance proposals within the Politeia system.\n\n  Staking to verify PoW is rewarding, as each cast vote receives part of the Decred Block Reward. Typically, five tickets are included in each block, meaning each ticket holder receives 6% of the total block reward.",
+    "ExchangeCoin holders can participate in the Staking (Proof-of Stake) process by purchasing tickets. These tickets are used to vote on miners’ Proof-of-Work in order to validate changes to the ExchangeCoin blockchain, or on governance proposals within the Politeia system.\n\n  Staking to verify PoW is rewarding, as each cast vote receives part of the ExchangeCoin Block Reward. Typically, five tickets are included in each block, meaning each ticket holder receives 6% of the total block reward.",
   "tutorial.staking.page2":
-    "When a ticket is purchased, the cost of the ticket is locked in your wallet until the ticket is used to vote, or is revoked. Tickets enter the mempool, then the ticketpool where they are drawn at random to vote. There is a 99.5% probability that a ticket will vote. The average ticket will vote in 28 days, but tickets still in the pool that have not been drawn after 142 days will be revoked. The DCR used to purchase the ticket is released from lockup when it votes or when the ticket is revoked.\n\n  When a proposal is set for a vote in Politeia, a snapshot of the ticket pool will be taken at the time of voting. All tickets will have the right to vote on the proposal in an off chain process.\n\n  As block validation is immutable, decisions made on all voted tickets can be publicly tracked. Active participation in staking helps secure Decred network’s, network, ensure quality Proof-of-Work, and determine the future direction of Decred.",
+    "When a ticket is purchased, the cost of the ticket is locked in your wallet until the ticket is used to vote, or is revoked. Tickets enter the mempool, then the ticketpool where they are drawn at random to vote. There is a 99.5% probability that a ticket will vote. The average ticket will vote in 28 days, but tickets still in the pool that have not been drawn after 142 days will be revoked. The EXCC used to purchase the ticket is released from lockup when it votes or when the ticket is revoked.\n\n  When a proposal is set for a vote in Politeia, a snapshot of the ticket pool will be taken at the time of voting. All tickets will have the right to vote on the proposal in an off chain process.\n\n  As block validation is immutable, decisions made on all voted tickets can be publicly tracked. Active participation in staking helps secure ExchangeCoin network’s, network, ensure quality Proof-of-Work, and determine the future direction of ExchangeCoin.",
   "tutorial.standardPage.finish": "Finish",
   "tutorial.standardPage.nextPage": "Next",
   "tutorial.standardPage.previousPage": "Previous",
-  "tutorial.step.0.text.bold.p1": "The blockchain is the heart of Decred,",
+  "tutorial.step.0.text.bold.p1": "The blockchain is the heart of ExchangeCoin,",
   "tutorial.step.0.text.p1":
-    "where all activity that takes place is stored. It is like a global, decentralised spreadsheet or ledger that records all the activity that happens when Decred funds are transferred, keeping track of how many tokens are sent, and what the balance of every account is.",
+    "where all activity that takes place is stored. It is like a global, decentralised spreadsheet or ledger that records all the activity that happens when ExchangeCoin funds are transferred, keeping track of how many tokens are sent, and what the balance of every account is.",
   "tutorial.step.0.text.p2":
     "The blockchain is used to confirm that new transactions are valid and that no fraud is taking place.",
   "tutorial.step.0.text.p3":
-    "Decred uses an innovative hybrid proof-of-work (PoW) proof-of-stake (PoS) for validating the transactions, keeping the network secure and making decisions on the consensus rules.",
+    "ExchangeCoin uses an innovative hybrid proof-of-work (PoW) proof-of-stake (PoS) for validating the transactions, keeping the network secure and making decisions on the consensus rules.",
   "tutorial.step.0.text.p4":
-    "In return for participation, miners (PoW) and stakers (PoS) are rewarded with newly generated Decred tokens.",
-  "tutorial.step.0.title": "What is the Decred Blockchain?",
+    "In return for participation, miners (PoW) and stakers (PoS) are rewarded with newly generated ExchangeCoin tokens.",
+  "tutorial.step.0.title": "What is the ExchangeCoin Blockchain?",
   "tutorial.step.1.text.bold.p1":
     "Wallet is the tool for interacting with the blockchain and using the currency.",
   "tutorial.step.1.text.p1":
-    "It can be used to send and receive Decred funds, and acts as a personal ledger of transactions.",
+    "It can be used to send and receive ExchangeCoin funds, and acts as a personal ledger of transactions.",
   "tutorial.step.1.text.p2":
-    "Decrediton Wallet can also be used for participating in staking (PoS) and project governance by time-locking your funds in return for tickets.",
+    "Exilibrium Wallet can also be used for participating in staking (PoS) and project governance by time-locking your funds in return for tickets.",
   "tutorial.step.1.title": "What is a Wallet?",
   "tutorial.step.2.text.bold.p1": "seed is a list of 33 words",
   "tutorial.step.2.text.p1":
@@ -717,14 +718,15 @@
   "tutorial.step.2.text.p2":
     "The seed works as a master key that stores all of the information needed to re-create the wallet at any time.",
   "tutorial.step.2.text.p3":
-    "If the wallet encryption passphrase is forgotten or the wallet is destroyed (e.g. computer breaks), the seed can be used to recover the wallet. Same seed can also be used to export your wallet to other Decred wallet clients.",
+    "If the wallet encryption passphrase is forgotten or the wallet is destroyed (e.g. computer breaks), the seed can be used to recover the wallet. Same seed can also be used to export your wallet to other ExchangeCoin wallet clients.",
   "tutorial.step.2.text.p4":
     "Failure to keep your seed key private can result in the theft of your entire wallet. Under no circumstanes should it ever be revealed to someone else.",
   "tutorial.step.2.title": "Key to Your Wallet",
   "tutorial.step.3.text.light.p1":
     "(Unlike Proof-of-Work (PoW) mining that requires computing resources and electricity).",
   "tutorial.step.3.text.light.p2": "(possible maximum time period is 142 days).",
-  "tutorial.step.3.text.p1": "Participation in staking (PoS) requires only existing Decred funds.",
+  "tutorial.step.3.text.p1":
+    "Participation in staking (PoS) requires only existing ExchangeCoin funds.",
   "tutorial.step.3.text.p2":
     "Funds can be time-locked in return for tickets on the network. Tickets are chosen at random to vote on the validity of blocks. By average a ticket gets voted in 28 days",
   "tutorial.step.3.text.p22":
@@ -732,9 +734,9 @@
   "tutorial.step.3.text.p23":
     ", the original cost of the ticket is safely returned to the user without the reward.",
   "tutorial.step.3.text.p3":
-    "Changes are inevitable for all digital currencies, whether deciding on development matters or resolving unexpected problems. Decred’s innovative governance system is built into the blockchain. This allows for seamless adaption to changes while keeping the existing blockchain ecosystem safe. The same tickets are also used as voting power when deciding on consensus changes.",
+    "Changes are inevitable for all digital currencies, whether deciding on development matters or resolving unexpected problems. ExchangeCoin’s innovative governance system is built into the blockchain. This allows for seamless adaption to changes while keeping the existing blockchain ecosystem safe. The same tickets are also used as voting power when deciding on consensus changes.",
   "tutorial.step.3.text.p4":
-    "Staking encourages long term investment in Decred by giving the stakeholders decision-making power in projects governance as well rewarding them for participation.",
+    "Staking encourages long term investment in ExchangeCoin by giving the stakeholders decision-making power in projects governance as well rewarding them for participation.",
   "tutorial.step.3.text.pLight22": "(0.5% probability)",
   "tutorial.step.3.title": "Staking and Governance",
   "tutorial.step.4.text.bold.p1": "Only you are responsible for your security.",
@@ -761,7 +763,7 @@
   "tutorial.ticketLifecycle.page5":
     "You must be connected to the network to cast a vote, which is why many people use stakepools. If your ticket is called and it misses the vote, you receive a refund on the original Ticket Price.\n\n  After a ticket has voted, missed, or expired, the funds (ticket price minus the fee) will enter immature status for another 256 blocks, after which they are released from lockup in the wallet. If a ticket is missed or expired, a ticket revocation transaction is submitted by the wallet to free up the locked ticket price.\n\n  NOTE: Revocations can only be submitted for a corresponding missed ticket. You cannot revoke a ticket until it is missed.",
   "tutorial.ticketLifecycle.page6":
-    "You should now understand a bit better the lifecycle of a ticket, so start staking your Decred and participate on the community!",
+    "You should now understand a bit better the lifecycle of a ticket, so start staking your ExchangeCoin and participate on the community!",
   "tutorial.ticketLifecycle.title": "Ticket Lifecycle",
   "txDetails.backBtn": "Back",
   "txDetails.blockHeightLabel": "Height",

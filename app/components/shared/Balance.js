@@ -23,12 +23,12 @@ export const Balance = ({
       : title
         ? "balance-title"
         : "balance-small";
-  if (currencyDisplay === "EXCC" || currencyDisplay === "DCR") {
-    let totalDcr = 0;
+  if (currencyDisplay === "EXCC") {
+    let totalExcc = 0;
     if (typeof amount !== "undefined" && amount !== 0 && !isNaN(amount)) {
-      totalDcr = preScaled ? parseFloat(amount) : parseInt(amount) / 100000000;
+      totalExcc = preScaled ? parseFloat(amount) : parseInt(amount) / 100000000;
     }
-    const split = totalDcr
+    const split = totalExcc
       .toFixed(8)
       .toString()
       .split(".");

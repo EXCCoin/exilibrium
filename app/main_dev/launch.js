@@ -289,7 +289,7 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
   // waitForGrpcPortListener is added as a stdout on("data") listener only on
   // win32 because so far that's the only way we found to get back the grpc port
   // on that platform. For linux/macOS users, the --pipetx argument is used to
-  // provide a pipe back to decrediton, which reads the grpc port in a secure and
+  // provide a pipe back to exilibrium, which reads the grpc port in a secure and
   // reliable way.
   const waitForGrpcPortListener = data => {
     const matches = /EXCCW: gRPC server listening on [^ ]+:(\d+)/.exec(data);
