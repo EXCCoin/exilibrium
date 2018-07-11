@@ -10,31 +10,31 @@
 
 .tutorial-side.step-0 {
   height: 100%;
-  background-color: rgba(72, 86, 110, 1);
+  background: linear-gradient(-70deg, rgba(0, 0, 255, 0.06), #fff 45%);
 }
 
 .tutorial-side.step-1 {
   height: 100%;
-  background-color: rgba(72, 86, 110, 0.9);
+  background: linear-gradient(-70deg, rgba(0, 0, 255, 0.06), #fff 45%);
 }
 
 .tutorial-side.step-2 {
   height: 100%;
-  background-color: rgba(72, 86, 110, 0.8);
+  background: linear-gradient(-70deg, rgba(0, 0, 255, 0.06), #fff 45%);
 }
 
 .tutorial-side.step-3 {
   height: 100%;
-  background-color: rgba(72, 86, 110, 0.7);
+  background: linear-gradient(-70deg, rgba(0, 0, 255, 0.06), #fff 45%);
 }
 
 .tutorial-side.step-4 {
   height: 100%;
-  background-color: rgba(72, 86, 110, 0.6);
+  background: linear-gradient(-70deg, rgba(0, 0, 255, 0.06), #fff 45%);
 }
 
 .tutorial-side-image {
-  margin: 212px 56px 0px 56px;
+  margin: 200px 56px 0px 56px;
   height: 342px;
   width: 255px;
   background-position: 50% 0px;
@@ -42,41 +42,45 @@
 }
 
 .tutorial-side-image.step-0 {
-  margin: 212px 56px 0px 56px;
+  margin: 200px 56px 0px 56px;
   background-image: @onboarding-blockchain;
 }
 
 .tutorial-side-image.step-1 {
-  margin: 232px 62px 0px 62px;
-  height: 302px;
-  width: 243px;
+  margin: 200px 77px 0px 77px;
+  width: 213px;
   background-image: @onboarding-wallet;
 }
 
 .tutorial-side-image.step-2 {
-  margin: 287px 57px 0px 60px;
-  height: 192px;
+  margin: 200px 57px 0px 60px;
   width: 250px;
   background-image: @onboarding-seed;
 }
 
 .tutorial-side-image.step-3 {
-  margin: 160px 72px 0px 65px;
+  margin: 200px 72px 0px 65px;
   height: 504px;
   width: 230px;
   background-image: @onboarding-stakingandgov;
 }
 
 .tutorial-side-image.step-4 {
-  margin: 217px 84px 0px 83px;
-  height: 336px;
-  width: 200px;
+  margin: 200px 94px 0px 93px;
+  width: 180px;
   background-image: @onboarding-safetytips;
 }
 
 .tutorial-main {
-  padding-top: 174px;
+  padding-top: 74px;
   padding-left: 64px;
+}
+
+.tutorial-section-header {
+  color: rgba(0, 0, 255, 0.1);
+  height: 44px;
+  font-size: 44px;
+  padding-bottom: 30px;
 }
 
 .tutorial-main-header {
@@ -87,7 +91,7 @@
 }
 
 .tutorial-main-text {
-  height: 308px;
+  height: 330px;
   color: #48566e;
   font-size: 13px;
   padding-bottom: 50px;
@@ -108,10 +112,15 @@
   display: flex;
 
   .next-button {
+    box-shadow: rgba(0, 0, 255, 0.1) 0px 0px 10px 0px;
+    background: transparent;
+    color: #6d2894;
+    border: 1px solid #6d2894;
     margin-right: 52px;
     margin-top: 5px;
     height: 4px;
     padding-top: 10px;
+    user-select: none;
   }
 
   .skip-button {
@@ -120,6 +129,7 @@
     height: 4px;
     padding-top: 10px;
     padding-left: 0px;
+    user-select: none;
   }
 }
 
@@ -151,6 +161,15 @@
     border-radius: 10px;
   }
 }
+
+// .logo-container {
+//   display: inline-block;
+//   width: 200px;
+//   height: 70px;
+//   margin-top: 100px;
+//   background-image: @menu-mainnet;
+//   background-repeat: no-repeat;
+// }
 
 /** Wallet Tutorial Classes */
 .wallet-tutorial {
