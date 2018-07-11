@@ -16,7 +16,7 @@ const RecentTransactions = ({
 }) => {
   const hasTxs = transactions.length > 0 && tickets.length > 0;
   return getTransactionsRequestAttempt ? (
-    <ExccLoading />
+    <ExccLoading grey />
   ) : (
     <Aux>
       <div className="home-content-title">

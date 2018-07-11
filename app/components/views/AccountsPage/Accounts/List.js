@@ -41,7 +41,7 @@ const AccountsList = ({
 }) => (
   <StandalonePage header={<AccountsListHeader {...{ onGetNextAccountAttempt }} />}>
     {isLoading ? (
-      <ExccLoading />
+      <ExccLoading grey />
     ) : (
       <Aux>
         <div className="account-content-title-buttons-area">

@@ -4,18 +4,13 @@
 .stakey-bounce {
   width: 256px;
   height: 256px;
-  background: @stakeySprites left center;
-  animation: stakey-bounce-play 0.8s steps(24) infinite;
+  background: @grey-loader;
   position: absolute;
 }
 
 .stakey-bounce.center {
   margin: 2% auto;
   position: initial;
-}
-
-@keyframes stakey-bounce-play {
-  100% { background-position: -6144px; }
 }
 
 .stakey-bounce-xs {
