@@ -1,7 +1,7 @@
 {
   "name": "exilibrium",
   "productName": "exilibrium",
-  "version": "1.0.0-alfa.1",
+  "version": "1.0.0-alfa.2",
   "description": "Exilibrium is an ExchangeCoin full node HD wallet GUI",
   "main": "./main.js",
   "author": {
