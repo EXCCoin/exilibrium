@@ -40,7 +40,9 @@ export default ({
                 }>
                 <InvisibleButton
                   className="update-available-button"
-                  onClick={() => shell.openExternal("https://excc.co/downloads")}>
+                  onClick={() =>
+                    shell.openExternal("https://github.com/EXCCoin/excc-binaries/releases")
+                  }>
                   <T id="getStarted.updateAvailable" m="Update Available" />
                 </InvisibleButton>
               </Tooltip>

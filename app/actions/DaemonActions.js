@@ -43,13 +43,13 @@ export const WALLET_SETTINGS = "WALLET_SETTINGS";
 export const WALLET_LOADER_SETTINGS = "WALLET_LOADER_SETTINGS";
 
 export const checkExilibriumVersion = () => (dispatch, getState) => {
-  const detectedVersion = getState().daemon.appVersion;
+  const currentVersion = getState().daemon.appVersion;
   const releaseApiURL = "https://api.github.com/repos/EXCCoin/exilibrium/releases";
   axios
     .get(releaseApiURL, { timeout: 5000 })
     .then(response => {
-      const [currentVersion] = response.data[0].tag_name.split("v");
-      if (semverCompatible(currentVersion, detectedVersion)) {
+      const [, newestVersion] = response.data[0].tag_name.split("v");
+      if (semverCompatible(newestVersion, currentVersion)) {
         wallet.log("info", "Exilibrium version up to date.");
       } else {
         dispatch({ type: EXILIBRIUM_VERSION, msg: response.data[0].tag_name });

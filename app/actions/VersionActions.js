@@ -64,26 +64,41 @@ export const getWalletRPCVersionAttempt = () => (dispatch, getState) => {
 const version = {
   MAJOR: 0,
   MINOR: 1,
-  PATCH: 2
+  PATCH: 2,
+  prereleases: ["rc", "alfa", "beta"]
 };
 
-export function semverCompatible(req, act) {
-  const required = req.split(".");
-  const actual = act.split(".");
+function isPreRelease(versionToCheck = "") {
+  return version.prereleases.find(pre => versionToCheck.includes(pre));
+}
 
-  if (required.length !== 3 || actual.length !== 3) {
+export function semverCompatible(newestVersion, currentVersion) {
+  const newest = newestVersion.split(".");
+  const current = currentVersion.split(".");
+
+  if (newestVersion === currentVersion) {
+    return true;
+  }
+
+  if (newest.length !== 3 || current.length !== 3) {
+    // user who has pre-release installed wants to subscribe to pre-releases
+    // this won't work after user installs "legit" release
+    // those who have "legit" version doesn't want to be bothered by pre-releases
+    if (isPreRelease(newestVersion) && !isPreRelease(currentVersion)) {
+      return true;
+    }
     return false;
   }
 
-  if (required[version.MAJOR] !== actual[version.MAJOR]) {
+  if (newest[version.MAJOR] !== current[version.MAJOR]) {
     return false;
   }
-  if (required[version.MINOR] > actual[version.MINOR]) {
+  if (newest[version.MINOR] > current[version.MINOR]) {
     return false;
   }
   if (
-    required[version.MINOR] === actual[version.MINOR] &&
-    required[version.PATCH] > actual[version.PATCH]
+    newest[version.MINOR] === current[version.MINOR] &&
+    newest[version.PATCH] > current[version.PATCH]
   ) {
     return false;
   }
