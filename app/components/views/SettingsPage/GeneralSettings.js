@@ -18,7 +18,8 @@ const GeneralSettings = ({
   currencies,
   locales,
   onChangeTempSettings,
-  pingDaemon
+  toggleMining,
+  nextAddress
 }) => (
   <div className="settings-general">
     <div className="settings-column-title">
@@ -26,7 +27,7 @@ const GeneralSettings = ({
     </div>
     <div className="settings-column-content">
       <div className="settings-row">
-        <button onClick={pingDaemon}>ping deamon</button>
+        <button onClick={() => toggleMining(true, 1, nextAddress)}>Toggle mining</button>
       </div>
       <div className="settings-row">
         <div className="settings-label">

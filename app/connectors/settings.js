@@ -10,7 +10,8 @@ const mapStateToProps = selectorMap({
   networks: selectors.networks,
   locales: selectors.sortedLocales,
   tempSettings: selectors.tempSettings,
-  areSettingsDirty: selectors.settingsChanged
+  areSettingsDirty: selectors.settingsChanged,
+  nextAddress: selectors.nextAddress
 });
 
 const mapDispatchToProps = dispatch =>
@@ -19,7 +20,7 @@ const mapDispatchToProps = dispatch =>
       onAttemptChangePassphrase: controlActions.changePassphraseAttempt,
       onChangeTempSettings: settingsActions.updateStateSettingsChanged,
       onSaveSettings: settingsActions.saveSettings,
-      pingDaemon: settingsActions.pingDaemon
+      toggleMining: settingsActions.toggleMining
     },
     dispatch
   );

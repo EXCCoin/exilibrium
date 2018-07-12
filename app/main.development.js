@@ -29,7 +29,7 @@ import {
   stopWallet,
   startWallet,
   checkDaemon,
-  enableMining
+  toggleMining
 } from "./main_dev/ipc";
 
 // setPath as exilibrium
@@ -177,8 +177,8 @@ ipcMain.on("check-daemon", (event, rpcCreds, testnet) => {
   checkDaemon(mainWindow, rpcCreds, testnet);
 });
 
-ipcMain.on("enable-mining", (event, arg) => {
-  enableMining();
+ipcMain.on("toggle-mining", (event, miningOptions) => {
+  toggleMining(miningOptions);
   event.returnValue = true;
 });
 

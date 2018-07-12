@@ -185,9 +185,13 @@ export const checkDaemon = (mainWindow, rpcCreds, testnet) => {
   });
 };
 
-export function toggleMining() {
-  const args = ["getblockcount"];
-
+export function toggleMining({ enable = false, CPUCores = 1, miningAddresses = [] }) {
+  logger.log(
+    "info",
+    `enable: ${enable}, CPUCores: ${CPUCores}, miningAddresses: ${miningAddresses[0]}`
+  );
+  //const args = [`setgenerate ${enable}`];
+  const args = ["setgenerate", `${enable}`];
   args.push(`--configfile=${exccctlCfg(appDataDirectory())}`);
 
   const exccctlExe = getExecutablePath("exccctl", argv.customBinPath);
@@ -195,8 +199,6 @@ export function toggleMining() {
   if (!fs.existsSync(exccctlExe)) {
     logger.log("error", "The exccctl file does not exists");
   }
-
-  logger.log("info", `checking if daemon is ready  with exccctl ${args}`);
 
   const { spawn } = require("child_process");
   const exccctl = spawn(exccctlExe, args, {

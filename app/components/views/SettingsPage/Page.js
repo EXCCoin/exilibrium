@@ -22,7 +22,8 @@ const SettingsPage = ({
   onChangeTempSettings,
   onSaveSettings,
   onAttemptChangePassphrase,
-  pingDaemon
+  toggleMining,
+  nextAddress
 }) => (
   <StandalonePage header={<SettingsPageHeader />}>
     <div className="settings-wrapper">
@@ -33,7 +34,8 @@ const SettingsPage = ({
           currencies,
           locales,
           onChangeTempSettings,
-          pingDaemon
+          toggleMining,
+          nextAddress
         }}
       />
 

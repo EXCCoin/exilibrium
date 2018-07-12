@@ -5,6 +5,7 @@ import { ipcRenderer } from "electron";
 export const SETTINGS_SAVE = "SETTINGS_SAVE";
 export const SETTINGS_CHANGED = "SETTINGS_CHANGED";
 export const SETTINGS_UNCHANGED = "SETTINGS_UNCHANGED";
+export const TOGGLE_MINING = "TOGGLE_MINING";
 
 export const saveSettings = settings => (dispatch, getState) => {
   const {
@@ -62,7 +63,7 @@ export const updateStateVoteSettingsChanged = settings => (dispatch, getState) =
   }
 };
 
-export const pingDaemon = () => () => {
-  console.log("pinging");
-  ipcRenderer.sendSync("enable-mining", "hello world");
+export const toggleMining = (enable, cores, address) => () => {
+  console.log("pinging", enable, cores, address);
+  ipcRenderer.sendSync("toggle-mining", { enable, CPUCores: cores, miningAddresses: [address] });
 };
