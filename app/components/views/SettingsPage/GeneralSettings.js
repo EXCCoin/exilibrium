@@ -13,12 +13,21 @@ const propTypes = {
 
 // Do **not** add stuff that depends on the wallet here, as this is also used
 // for startup config.
-const GeneralSettings = ({ tempSettings, currencies, locales, onChangeTempSettings }) => (
+const GeneralSettings = ({
+  tempSettings,
+  currencies,
+  locales,
+  onChangeTempSettings,
+  pingDaemon
+}) => (
   <div className="settings-general">
     <div className="settings-column-title">
       <T id="settings.general.title" m="General" />
     </div>
     <div className="settings-column-content">
+      <div className="settings-row">
+        <button onClick={pingDaemon}>ping deamon</button>
+      </div>
       <div className="settings-row">
         <div className="settings-label">
           <T id="settings.displayedUnits" m="Displayed Units" />

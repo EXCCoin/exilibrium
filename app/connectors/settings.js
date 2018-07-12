@@ -18,7 +18,8 @@ const mapDispatchToProps = dispatch =>
     {
       onAttemptChangePassphrase: controlActions.changePassphraseAttempt,
       onChangeTempSettings: settingsActions.updateStateSettingsChanged,
-      onSaveSettings: settingsActions.saveSettings
+      onSaveSettings: settingsActions.saveSettings,
+      pingDaemon: settingsActions.pingDaemon
     },
     dispatch
   );
