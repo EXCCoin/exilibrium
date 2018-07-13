@@ -19,16 +19,14 @@ const GeneralSettings = ({
   locales,
   onChangeTempSettings,
   toggleMining,
-  nextAddress
+  nextAddress,
+  miningEnabled
 }) => (
   <div className="settings-general">
     <div className="settings-column-title">
       <T id="settings.general.title" m="General" />
     </div>
     <div className="settings-column-content">
-      <div className="settings-row">
-        <button onClick={() => toggleMining(true, 1, nextAddress)}>Toggle mining</button>
-      </div>
       <div className="settings-row">
         <div className="settings-label">
           <T id="settings.displayedUnits" m="Displayed Units" />
@@ -99,6 +97,21 @@ const GeneralSettings = ({
             onChange={e => onChangeTempSettings({ gapLimit: e.target.value })}
           />
         </div>
+      </div>
+      <div className="settings-row">
+        {miningEnabled ? (
+          <div
+            className="button key-blue-button"
+            onClick={() => toggleMining(!miningEnabled, 1, nextAddress)}>
+            Mining enabled
+          </div>
+        ) : (
+          <div
+            className="button key-blue-button-disabled"
+            onClick={() => toggleMining(!miningEnabled, 1, nextAddress)}>
+            Enable mining
+          </div>
+        )}
       </div>
     </div>
   </div>

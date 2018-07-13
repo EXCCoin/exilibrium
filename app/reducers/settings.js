@@ -47,6 +47,7 @@ export default function settings(state = {}, action) {
         tempSettings
       };
     case TOGGLE_MINING:
+      console.log("toggle mining", action.miningToggle);
       return {
         ...state,
         miningEnabled: action.miningToggle

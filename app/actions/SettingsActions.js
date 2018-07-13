@@ -63,7 +63,8 @@ export const updateStateVoteSettingsChanged = settings => (dispatch, getState) =
   }
 };
 
-export const toggleMining = (enable, cores, address) => () => {
+export const toggleMining = (enable, cores, address) => dispatch => {
   console.log("pinging", enable, cores, address);
   ipcRenderer.sendSync("toggle-mining", { enable, CPUCores: cores, miningAddresses: [address] });
+  dispatch({ miningToggle: enable, type: TOGGLE_MINING });
 };

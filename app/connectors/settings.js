@@ -11,7 +11,8 @@ const mapStateToProps = selectorMap({
   locales: selectors.sortedLocales,
   tempSettings: selectors.tempSettings,
   areSettingsDirty: selectors.settingsChanged,
-  nextAddress: selectors.nextAddress
+  nextAddress: selectors.nextAddress,
+  miningEnabled: selectors.miningToggle
 });
 
 const mapDispatchToProps = dispatch =>
