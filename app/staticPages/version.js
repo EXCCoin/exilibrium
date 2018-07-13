@@ -7,5 +7,5 @@ ipcRenderer.on("exes-versions", (event, versions) => {
   document.getElementById("requiredWalletGrpcVersion").innerHTML = versions.grpc.requiredVersion;
   document.getElementById(
     "whatsNewLink"
-  ).href = `https://github.com/EXCCoin/excc-binaries/releases/tag/v${versions.exilibrium}`;
+  ).href = `https://github.com/EXCCoin/exilibrium/releases/tag/v${versions.exilibrium}`;
 });
