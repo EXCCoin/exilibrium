@@ -184,3 +184,35 @@ export const checkDaemon = (mainWindow, rpcCreds, testnet) => {
     mainWindow.webContents.send("check-daemon-response", 0);
   });
 };
+
+export function toggleMining({ enable = false, CPUCores = 1, miningAddresses = [] }) {
+  logger.log(
+    "info",
+    `enable: ${enable}, CPUCores: ${CPUCores}, miningAddresses: ${miningAddresses[0]}`
+  );
+  //const args = [`setgenerate ${enable}`];
+  const args = ["setgenerate", `${enable}`, `${CPUCores}`, `${miningAddresses[0]}`];
+  args.push(`--configfile=${exccctlCfg(appDataDirectory())}`);
+
+  const exccctlExe = getExecutablePath("exccctl", argv.customBinPath);
+
+  if (!fs.existsSync(exccctlExe)) {
+    logger.log("error", "The exccctl file does not exists");
+  }
+
+  const { spawn } = require("child_process");
+  const exccctl = spawn(exccctlExe, args, {
+    detached: false,
+    stdio: ["ignore", "pipe", "pipe", "pipe"]
+  });
+
+  exccctl.stdout.on("data", data => {
+    //currentBlockCount = data.toString();
+    logger.log("info", data.toString());
+    //  mainWindow.webContents.send("check-daemon-response", currentBlockCount);
+  });
+  exccctl.stderr.on("data", data => {
+    logger.log("error", data.toString());
+    //  mainWindow.webContents.send("check-daemon-response", 0);
+  });
+}

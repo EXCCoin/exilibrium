@@ -3,40 +3,32 @@ import "style/MiscComponents.less";
 
 @autobind
 class KeyBlueButton extends React.Component {
-  render() {
-    let className = "button ";
-    className += !this.props.disabled ? "key-blue-button" : "key-blue-button-disabled";
-    const style = {};
-    Object.assign(style, this.props.style);
-    if (!this.props.disabled && this.props.block) {
-      style.display = "block";
+  onClick(e) {
+    const { disabled, onClick } = this.props;
+    if (!disabled && onClick) {
+      onClick(e);
     }
+  }
+  render() {
+    const { disabled, className = "", style } = this.props;
+    const buttonClassName = `button key-blue-button${disabled ? "-disabled" : ""} ${className}`;
+    const buttonStyle = { ...style };
 
-    if (this.props.className) {
-      className += ` ${this.props.className}`;
+    if (!disabled && this.props.block) {
+      buttonStyle.display = "block";
     }
 
     return (
       <div
-        className={className}
-        style={style}
+        className={buttonClassName}
+        style={buttonStyle}
         type={this.props.type}
-        disabled={this.props.disabled}
+        disabled={disabled}
         onClick={this.onClick}
         hidden={this.props.hidden}>
-        {this.props.loading ? (
-          <SimpleLoading {...{ disabled: this.props.disabled }} />
-        ) : (
-          this.props.children
-        )}
+        {this.props.loading ? <SimpleLoading {...{ disabled }} /> : this.props.children}
       </div>
     );
-  }
-
-  onClick(e) {
-    if (!this.props.disabled && this.props.onClick) {
-      this.props.onClick(e);
-    }
   }
 }
 

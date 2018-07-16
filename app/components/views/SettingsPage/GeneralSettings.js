@@ -13,7 +13,15 @@ const propTypes = {
 
 // Do **not** add stuff that depends on the wallet here, as this is also used
 // for startup config.
-const GeneralSettings = ({ tempSettings, currencies, locales, onChangeTempSettings }) => (
+const GeneralSettings = ({
+  tempSettings,
+  currencies,
+  locales,
+  onChangeTempSettings,
+  toggleMining,
+  nextAddress,
+  miningEnabled
+}) => (
   <div className="settings-general">
     <div className="settings-column-title">
       <T id="settings.general.title" m="General" />
@@ -89,6 +97,21 @@ const GeneralSettings = ({ tempSettings, currencies, locales, onChangeTempSettin
             onChange={e => onChangeTempSettings({ gapLimit: e.target.value })}
           />
         </div>
+      </div>
+      <div className="settings-row">
+        {miningEnabled ? (
+          <div
+            className="button key-blue-button"
+            onClick={() => toggleMining(!miningEnabled, 1, nextAddress)}>
+            Mining enabled
+          </div>
+        ) : (
+          <div
+            className="button key-blue-button-disabled"
+            onClick={() => toggleMining(!miningEnabled, 1, nextAddress)}>
+            Enable mining
+          </div>
+        )}
       </div>
     </div>
   </div>

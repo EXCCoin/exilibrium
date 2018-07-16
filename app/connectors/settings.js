@@ -10,7 +10,9 @@ const mapStateToProps = selectorMap({
   networks: selectors.networks,
   locales: selectors.sortedLocales,
   tempSettings: selectors.tempSettings,
-  areSettingsDirty: selectors.settingsChanged
+  areSettingsDirty: selectors.settingsChanged,
+  nextAddress: selectors.nextAddress,
+  miningEnabled: selectors.miningToggle
 });
 
 const mapDispatchToProps = dispatch =>
@@ -18,7 +20,8 @@ const mapDispatchToProps = dispatch =>
     {
       onAttemptChangePassphrase: controlActions.changePassphraseAttempt,
       onChangeTempSettings: settingsActions.updateStateSettingsChanged,
-      onSaveSettings: settingsActions.saveSettings
+      onSaveSettings: settingsActions.saveSettings,
+      toggleMining: settingsActions.toggleMining
     },
     dispatch
   );
