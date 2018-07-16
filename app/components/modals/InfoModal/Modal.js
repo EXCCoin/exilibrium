@@ -1,14 +1,6 @@
 import Modal from "../Modal";
 import { SlateGrayButton } from "buttons";
 import { FormattedMessage as T } from "react-intl";
-import PropTypes from "prop-types";
-
-const propTypes = {
-  modalTitle: PropTypes.object.isRequired,
-  show: PropTypes.bool.isRequired,
-  modalContent: PropTypes.object.isRequired,
-  onCancelModal: PropTypes.func.isRequired
-};
 
 const InfoModal = ({ modalTitle, modalContent, show, onCancelModal }) => (
   <Modal className="info-modal" {...{ show }}>
@@ -22,6 +14,11 @@ const InfoModal = ({ modalTitle, modalContent, show, onCancelModal }) => (
   </Modal>
 );
 
-InfoModal.propTypes = propTypes;
+InfoModal.propTypes = {
+  modalTitle: PropTypes.object.isRequired,
+  show: PropTypes.bool.isRequired,
+  modalContent: PropTypes.object.isRequired,
+  onCancelModal: PropTypes.func.isRequired
+};
 
 export default InfoModal;
