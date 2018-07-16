@@ -178,6 +178,8 @@ export const unitDivisor = compose(
 );
 export const currentLocaleName = get(["settings", "currentSettings", "locale"]);
 export const miningToggle = get(["settings", "miningEnabled"]);
+export const systemInfo = get(["settings", "systemInfo"]);
+export const miningParams = get(["settings", "miningParams"]);
 export const defaultLocaleName = createSelector([currentLocaleName], currentLocaleName => {
   return appLocaleFromElectronLocale(currentLocaleName);
 });

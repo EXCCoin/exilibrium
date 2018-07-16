@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2018-07-10T09:15:57.829Z\n"
+"POT-Creation-Date: 2018-07-18T08:19:27.972Z\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
@@ -37,22 +37,6 @@ msgstr ""
 #. (0.5% probability)
 msgctxt "tutorial.step.3.text.pLight22"
 msgid "(0.5% probability)"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.3.text.light.p1]
-#. defaultMessage is:
-#. (Unlike Proof-of-Work (PoW) mining that requires computing resources and electricity).
-msgctxt "tutorial.step.3.text.light.p1"
-msgid "(Unlike Proof-of-Work (PoW) mining that requires computing resources and electricity)."
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.3.text.light.p2]
-#. defaultMessage is:
-#. (possible maximum time period is 142 days).
-msgctxt "tutorial.step.3.text.light.p2"
-msgid "(possible maximum time period is 142 days)."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/TicketAutoBuyer/Details.json
@@ -263,6 +247,14 @@ msgctxt "mytickets.statistics.votetime.ninetyfifthpercentile.label"
 msgid "95% of tickets voted:"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.2.text.p12]
+#. defaultMessage is:
+#. ; it is advised that you back up this seed by copying the list on a piece of paper for safekeeping.
+msgctxt "tutorial.step.2.text.p12"
+msgid "; it is advised that you back up this seed by copying the list on a piece of paper for safekeeping."
+msgstr ""
+
 #: app/i18n/extracted/app/components/SideBar/Bar.json
 #. [sidebar.lastBlockIsRecent]
 #. defaultMessage is:
@@ -272,11 +264,11 @@ msgid "< 1 minute ago"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.3.text.p22]
+#. [tutorial.step.1.text.p1]
 #. defaultMessage is:
-#. A successful vote returns the stakeholder a part of the Block Reward plus the original cost of the ticket. In case of missing the vote
-msgctxt "tutorial.step.3.text.p22"
-msgid "A successful vote returns the stakeholder a part of the Block Reward plus the original cost of the ticket. In case of missing the vote"
+#. A cryptocurrency wallet is generally defined as a software program which stores private and public keys (a secure digital code known only to you and recognized by your wallet), and it enables you to send, receive, and monitor your digital currencies. Our desktop Exilibrium wallet is a tool used to interact with the blockchain and the use of your EXCC. It is mainly used to send and receive EXCC funds and acts as a personal ledger for recording all transactions. A desktop wallet is recognized as one of the safest hot wallets. It is only accessible from the device where you have installed and set-up the wallet.
+msgctxt "tutorial.step.1.text.p1"
+msgid "A cryptocurrency wallet is generally defined as a software program which stores private and public keys (a secure digital code known only to you and recognized by your wallet), and it enables you to send, receive, and monitor your digital currencies. Our desktop Exilibrium wallet is a tool used to interact with the blockchain and the use of your EXCC. It is mainly used to send and receive EXCC funds and acts as a personal ledger for recording all transactions. A desktop wallet is recognized as one of the safest hot wallets. It is only accessible from the device where you have installed and set-up the wallet."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/StakePools/AddForm.json
@@ -453,11 +445,11 @@ msgid "All Mempool Tickets"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.4.text.p2]
+#. [tutorial.step.3.text.p1]
 #. defaultMessage is:
-#. Always keep your seed key and password safe. If you lose your seed key or password, nobody else can recover it.
-msgctxt "tutorial.step.4.text.p2"
-msgid "Always keep your seed key and password safe. If you lose your seed key or password, nobody else can recover it."
+#. All you need to participate in staking (PoS) is available EXCC funds.
+msgctxt "tutorial.step.3.text.p1"
+msgid "All you need to participate in staking (PoS) is available EXCC funds."
 msgstr ""
 
 #: app/i18n/extracted/app/components/Snackbar/Notification/Transaction.json
@@ -578,6 +570,14 @@ msgstr ""
 #. Available balance for spending in regular transactions.
 msgctxt "export.balances.fields.spendable"
 msgid "Available balance for spending in regular transactions."
+msgstr ""
+
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.systemInfo.memory]
+#. defaultMessage is:
+#. Available memory:
+msgctxt "miningModal.systemInfo.memory"
+msgid "Available memory:"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/StatisticsTab/charts/VoteTime.json
@@ -732,6 +732,22 @@ msgctxt "home.noTransactions.buyFromExchanges"
 msgid "Buy EXCC from Exchanges"
 msgstr ""
 
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.coresInput.label]
+#. defaultMessage is:
+#. CPU cores
+msgctxt "miningModal.coresInput.label"
+msgid "CPU cores"
+msgstr ""
+
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.systemInfo.cores]
+#. defaultMessage is:
+#. CPU cores:
+msgctxt "miningModal.systemInfo.cores"
+msgid "CPU cores:"
+msgstr ""
+
 #: app/i18n/extracted/app/components/inputs/PathBrowseInput.json
 #. [fileBrowserTypes.csv.name]
 #. defaultMessage is:
@@ -829,11 +845,11 @@ msgid "Change your passphrase"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.3.text.p3]
+#. [tutorial.step.3.text.p4]
 #. defaultMessage is:
-#. Changes are inevitable for all digital currencies, whether deciding on development matters or resolving unexpected problems. EXCC’s innovative governance system is built into the blockchain. This allows for seamless adaption to changes while keeping the existing blockchain ecosystem safe. The same tickets are also used as voting power when deciding on consensus changes.
-msgctxt "tutorial.step.3.text.p3"
-msgid "Changes are inevitable for all digital currencies, whether deciding on development matters or resolving unexpected problems. EXCC’s innovative governance system is built into the blockchain. This allows for seamless adaption to changes while keeping the existing blockchain ecosystem safe. The same tickets are also used as voting power when deciding on consensus changes."
+#. Changes are inevitable for all the digital currencies. EXCC’s innovative governance system is built into the blockchain. This allows a seamless adaptation to changes while the existing blockchain ecosystem is kept safe. We also have a plan to regard the tickets as a voting power when deciding on consensus based changes. This action represents our revolutionary approach to stakeholder governance, where the entire community directs projects and makes decisions together.
+msgctxt "tutorial.step.3.text.p4"
+msgid "Changes are inevitable for all the digital currencies. EXCC’s innovative governance system is built into the blockchain. This allows a seamless adaptation to changes while the existing blockchain ecosystem is kept safe. We also have a plan to regard the tickets as a voting power when deciding on consensus based changes. This action represents our revolutionary approach to stakeholder governance, where the entire community directs projects and makes decisions together."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/SettingsPage/Page.json
@@ -869,6 +885,10 @@ msgid "Close"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/InfoModal/Modal.json
+#. [infoModal.btnClose]
+#. defaultMessage is:
+#. Close
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
 #. [infoModal.btnClose]
 #. defaultMessage is:
 #. Close
@@ -1028,6 +1048,14 @@ msgctxt "createWallet.copy"
 msgid "Copy Seed"
 msgstr ""
 
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.error.coresExceeded]
+#. defaultMessage is:
+#. Cores number exceeded
+msgctxt "miningModal.error.coresExceeded"
+msgid "Cores number exceeded"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/CreateWalletForm/ContinueWalletCreation.json
 #. [createWallet.createWalletBtn]
 #. defaultMessage is:
@@ -1086,6 +1114,14 @@ msgstr ""
 #. Create new wallet
 msgctxt "wallet.create.button"
 msgid "Create new wallet"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.2.text.p1]
+#. defaultMessage is:
+#. Cryptocurrency wallets can be created by a wallet seed.
+msgctxt "tutorial.step.2.text.p1"
+msgid "Cryptocurrency wallets can be created by a wallet seed."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/HomePage/tabs/Tickets.json
@@ -1280,6 +1316,14 @@ msgctxt "advancedDaemon.toggle.remote"
 msgid "Different Local Daemon Location"
 msgstr ""
 
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.buttonText.confirmDisable]
+#. defaultMessage is:
+#. Disable
+msgctxt "miningModal.buttonText.confirmDisable"
+msgid "Disable"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/SettingsPage/GeneralSettings.json
 #. [settings.advancedDaemon.false]
 #. defaultMessage is:
@@ -1315,17 +1359,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.4.text.p5]
 #. defaultMessage is:
-#. Do not enter your seed key to any phising website. Nobody can reverse, cancel or refund transactions if your wallet has been compromised.
+#. Do not enter your seed key on any phishing website. Please note that nobody can reverse, cancel or refund transactions if your wallet has been compromised.
 msgctxt "tutorial.step.4.text.p5"
-msgid "Do not enter your seed key to any phising website. Nobody can reverse, cancel or refund transactions if your wallet has been compromised."
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.4.text.p4]
-#. defaultMessage is:
-#. Do not store your seed key in a cloud storage or a password service. If your account gets compromised, so may your funds.
-msgctxt "tutorial.step.4.text.p4"
-msgid "Do not store your seed key in a cloud storage or a password service. If your account gets compromised, so may your funds."
+msgid "Do not enter your seed key on any phishing website. Please note that nobody can reverse, cancel or refund transactions if your wallet has been compromised."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/StakePools/List.json
@@ -1370,14 +1406,6 @@ msgctxt "tutorial.staking.page1"
 msgid "EXCC holders can participate in the Staking (Proof-of Stake) process by purchasing tickets. These tickets are used to vote on miners’ Proof-of-Work in order to validate changes to the EXCC blockchain, or on governance proposals within the Politeia system.\n\n  Staking to verify PoW is rewarding, as each cast vote receives part of the EXCC Block Reward. Typically, five tickets are included in each block, meaning each ticket holder receives 6% of the total block reward."
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.0.text.p3]
-#. defaultMessage is:
-#. EXCC uses an innovative hybrid proof-of-work (PoW) proof-of-stake (PoS) for validating the transactions, keeping the network secure and making decisions on the consensus rules.
-msgctxt "tutorial.step.0.text.p3"
-msgid "EXCC uses an innovative hybrid proof-of-work (PoW) proof-of-stake (PoS) for validating the transactions, keeping the network secure and making decisions on the consensus rules."
-msgstr ""
-
 #: app/i18n/extracted/app/components/views/TransactionsPage/ReceiveTab/index.json
 #. [transactions.description.receive]
 #. defaultMessage is:
@@ -1400,6 +1428,30 @@ msgstr ""
 #. Edit
 msgctxt "appMenu.edit"
 msgid "Edit"
+msgstr ""
+
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.buttonText.confirmEnable]
+#. defaultMessage is:
+#. Enable
+msgctxt "miningModal.buttonText.confirmEnable"
+msgid "Enable"
+msgstr ""
+
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.title]
+#. defaultMessage is:
+#. Enable mining
+msgctxt "miningModal.title"
+msgid "Enable mining"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/SettingsPage/Page.json
+#. [miningModal.buttonTextDisabled]
+#. defaultMessage is:
+#. Enable mining
+msgctxt "miningModal.buttonTextDisabled"
+msgid "Enable mining"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/SettingsPage/GeneralSettings.json
@@ -1588,14 +1640,6 @@ msgctxt "appMenu.exilibrium"
 msgid "Exilibrium"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.1.text.p2]
-#. defaultMessage is:
-#. Exilibrium Wallet can also be used for participating in staking (PoS) and project governance by time-locking your funds in return for tickets.
-msgctxt "tutorial.step.1.text.p2"
-msgid "Exilibrium Wallet can also be used for participating in staking (PoS) and project governance by time-locking your funds in return for tickets."
-msgstr ""
-
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/TicketAutoBuyer/Form.json
 #. [tickets.startAutoBuyerConfirmation.description]
 #. defaultMessage is:
@@ -1760,14 +1804,6 @@ msgctxt "export.transactions.descr"
 msgid "Exports all transactions recorded in the wallet."
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.2.text.p4]
-#. defaultMessage is:
-#. Failure to keep your seed key private can result in the theft of your entire wallet. Under no circumstanes should it ever be revealed to someone else.
-msgctxt "tutorial.step.2.text.p4"
-msgid "Failure to keep your seed key private can result in the theft of your entire wallet. Under no circumstanes should it ever be revealed to someone else."
-msgstr ""
-
 #: app/i18n/extracted/app/components/views/FatalErrorPage.json
 #. [fatal.header.title]
 #. defaultMessage is:
@@ -1842,6 +1878,14 @@ msgstr ""
 #. Finished
 msgctxt "agenda.card.finishedIndicator"
 msgid "Finished"
+msgstr ""
+
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.importantNote.2]
+#. defaultMessage is:
+#. For example: mining on 2 cores will use 5GB of RAM.
+msgctxt "miningModal.importantNote.2"
+msgid "For example: mining on 2 cores will use 5GB of RAM."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
@@ -2077,6 +2121,14 @@ msgctxt "export.votetime.fields.count"
 msgid "How many tickets voted in this day bucket"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.2.text.p4]
+#. defaultMessage is:
+#. However, failure to properly protect your seed key and keep it private can result in the theft of the entire assets stored in your wallet. Under no circumstances should you disclose your seed key to third parties.
+msgctxt "tutorial.step.2.text.p4"
+msgid "However, failure to properly protect your seed key and keep it private can result in the theft of the entire assets stored in your wallet. Under no circumstances should you disclose your seed key to third parties."
+msgstr ""
+
 #: app/i18n/extracted/app/components/modals/SeedCopyConfirmModal/index.json
 #. [seedCopyConfirmModal.copyConfirmationPhrase]
 #. defaultMessage is:
@@ -2091,14 +2143,6 @@ msgstr ""
 #. If the ticket price is above this value, you will not buy more tickets. The default of 0 turns this off.
 msgctxt "ticketAutoBuyer.info.maxPriceAbsolute.message"
 msgid "If the ticket price is above this value, you will not buy more tickets. The default of 0 turns this off."
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.2.text.p3]
-#. defaultMessage is:
-#. If the wallet encryption passphrase is forgotten or the wallet is destroyed (e.g. computer breaks), the seed can be used to recover the wallet. Same seed can also be used to export your wallet to other EXCC wallet clients.
-msgctxt "tutorial.step.2.text.p3"
-msgid "If the wallet encryption passphrase is forgotten or the wallet is destroyed (e.g. computer breaks), the seed can be used to recover the wallet. Same seed can also be used to export your wallet to other EXCC wallet clients."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/FetchBlockHeaders/Form.json
@@ -2222,11 +2266,27 @@ msgid "Importing scripts is disabled during a rescan."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.3.text.p3]
+#. defaultMessage is:
+#. In case of missing the vote
+msgctxt "tutorial.step.3.text.p3"
+msgid "In case of missing the vote"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.3.text.light.p2]
+#. defaultMessage is:
+#. In every block, five tickets from the pool are randomly selected to vote on the validity of the previous block. The average time it takes for a ticket to be voted is 14 days (and possibly a maximum period of 71 days). During this period your funds will be time-locked in exchange for the tickets. A successful vote returns the stakeholder a part of the Block Reward plus the original cost of the ticket.
+msgctxt "tutorial.step.3.text.light.p2"
+msgid "In every block, five tickets from the pool are randomly selected to vote on the validity of the previous block. The average time it takes for a ticket to be voted is 14 days (and possibly a maximum period of 71 days). During this period your funds will be time-locked in exchange for the tickets. A successful vote returns the stakeholder a part of the Block Reward plus the original cost of the ticket."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.0.text.p4]
 #. defaultMessage is:
-#. In return for participation, miners (PoW) and stakers (PoS) are rewarded with newly generated EXCC tokens.
+#. In return for their participation, miners (PoW) and the stakers (PoS) are rewarded with newly created EXCC coins.
 msgctxt "tutorial.step.0.text.p4"
-msgid "In return for participation, miners (PoW) and stakers (PoS) are rewarded with newly generated EXCC tokens."
+msgid "In return for their participation, miners (PoW) and the stakers (PoS) are rewarded with newly created EXCC coins."
 msgstr ""
 
 #: app/i18n/extracted/app/components/buttons/RescanButton.json
@@ -2287,11 +2347,19 @@ msgid "Investment: {investment}\n      Transaction Fee: {txFee}\n      Pool Fee:
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.1.text.p1]
+#. [tutorial.step.0.text.p1]
 #. defaultMessage is:
-#. It can be used to send and receive EXCC funds, and acts as a personal ledger of transactions.
-msgctxt "tutorial.step.1.text.p1"
-msgid "It can be used to send and receive EXCC funds, and acts as a personal ledger of transactions."
+#. It can be described as a global decentralised spreadsheet or ledger where the entire activity logs for EXCC fund transfers are recorded. The blockchain keeps track of the number of tokens that have been sent and the balance of every account.
+msgctxt "tutorial.step.0.text.p1"
+msgid "It can be described as a global decentralised spreadsheet or ledger where the entire activity logs for EXCC fund transfers are recorded. The blockchain keeps track of the number of tokens that have been sent and the balance of every account."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.4.text.p3]
+#. defaultMessage is:
+#. It is important that you do not store your seed key in cloud storage or a password service. If your account is compromised, your funds can be stolen.
+msgctxt "tutorial.step.4.text.p3"
+msgid "It is important that you do not store your seed key in cloud storage or a password service. If your account is compromised, your funds can be stolen."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
@@ -2486,14 +2554,6 @@ msgctxt "transactions.description.send.mainnet"
 msgid "Mainnet Exchange Coin addresses always begin with number 2"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.4.text.p3]
-#. defaultMessage is:
-#. Make a backup of your seed key and password. Do not store it on your computer, instead write it down or print it out on a piece of paper or save it to a USB drive.
-msgctxt "tutorial.step.4.text.p3"
-msgid "Make a backup of your seed key and password. Do not store it on your computer, instead write it down or print it out on a piece of paper or save it to a USB drive."
-msgstr ""
-
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/Form.json
 #. [purchaseTickets.import]
 #. defaultMessage is:
@@ -2602,6 +2662,30 @@ msgctxt "appMenu.minimize"
 msgid "Minimize"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/SettingsPage/Page.json
+#. [settings.mining.title]
+#. defaultMessage is:
+#. Mining
+msgctxt "settings.mining.title"
+msgid "Mining"
+msgstr ""
+
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.addressInput.label]
+#. defaultMessage is:
+#. Mining address
+msgctxt "miningModal.addressInput.label"
+msgid "Mining address"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/SettingsPage/Page.json
+#. [miningModal.buttonTextEnabled]
+#. defaultMessage is:
+#. Mining enabled
+msgctxt "miningModal.buttonTextEnabled"
+msgid "Mining enabled"
+msgstr ""
+
 #: app/i18n/extracted/app/components/TxHistory/TxHistoryRow/StakeTxRow.json
 #. [transaction.type.missed]
 #. defaultMessage is:
@@ -2624,6 +2708,14 @@ msgstr ""
 #. My Tickets
 msgctxt "tickets.tab.mytickets"
 msgid "My Tickets"
+msgstr ""
+
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.importantNote.0]
+#. defaultMessage is:
+#. NOTE
+msgctxt "miningModal.importantNote.0"
+msgid "NOTE"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TransactionsPage/ExportTab/messages.json
@@ -2802,6 +2894,14 @@ msgctxt "txDetails.nonWalletOutputs"
 msgid "Non Wallet Outputs"
 msgstr ""
 
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.error.memoryExceeded]
+#. defaultMessage is:
+#. Not enough memory available
+msgctxt "miningModal.error.memoryExceeded"
+msgid "Not enough memory available"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/SecurityPage/ValidateAddress/index.json
 #. [securitycenter.validate.result.notOwned]
 #. defaultMessage is:
@@ -2842,20 +2942,20 @@ msgctxt "agenda.overviewDescription"
 msgid "Once the majority of the PoW miners have upgraded (75% of the 100 most recent blocks are at the latest version) and the majority of the PoS miners have upgraded (75% of the votes in a 2016 block interval), the voting process begins."
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.4.text.bold.p1]
-#. defaultMessage is:
-#. Only you are responsible for your security.
-msgctxt "tutorial.step.4.text.bold.p1"
-msgid "Only you are responsible for your security."
-msgstr ""
-
 #: app/i18n/extracted/app/components/views/GetStartedPage/OpenWallet/DecryptForm.json
 #. [advancedStartup.skip]
 #. defaultMessage is:
 #. Open Wallet
 msgctxt "advancedStartup.skip"
 msgid "Open Wallet"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.1.text.p2]
+#. defaultMessage is:
+#. Our Exilibrium wallet offers you a comprehensive security. We only use proven technology that has been very effective over the years. Your password is encrypted and well protected. The wallet features a mnemonic mechanism used for restoring private keys. Our platform is compliant with all the necessary security standards and trends associated with the new generation systems regarding the technology being used in the industry.
+msgctxt "tutorial.step.1.text.p2"
+msgid "Our Exilibrium wallet offers you a comprehensive security. We only use proven technology that has been very effective over the years. Your password is encrypted and well protected. The wallet features a mnemonic mechanism used for restoring private keys. Our platform is compliant with all the necessary security standards and trends associated with the new generation systems regarding the technology being used in the industry."
 msgstr ""
 
 #: app/i18n/extracted/app/components/SideBar/MenuLinks/index.json
@@ -2880,14 +2980,6 @@ msgstr ""
 #. Owned address!
 msgctxt "securitycenter.validate.result.owned"
 msgid "Owned address!"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.3.text.p1]
-#. defaultMessage is:
-#. Participation in staking (PoS) requires only existing EXCC funds.
-msgctxt "tutorial.step.3.text.p1"
-msgid "Participation in staking (PoS) requires only existing EXCC funds."
 msgstr ""
 
 #: app/i18n/extracted/static/menus.json
@@ -3998,14 +4090,6 @@ msgctxt "tutorial.step.3.title"
 msgid "Staking and Governance"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.3.text.p4]
-#. defaultMessage is:
-#. Staking encourages long term investment in  by giving the stakeholders decision-making power in projects governance as well rewarding them for participation.
-msgctxt "tutorial.step.3.text.p4"
-msgid "Staking encourages long term investment in  by giving the stakeholders decision-making power in projects governance as well rewarding them for participation."
-msgstr ""
-
 #: app/i18n/extracted/app/components/views/GetStartedPage/AdvancedStartup/Form.json
 #. [login.form.appdata.button]
 #. defaultMessage is:
@@ -4102,6 +4186,14 @@ msgctxt "export.transactions.fields.debits"
 msgid "Sum of debits (transaction inputs) of the wallet included in this transaction."
 msgstr ""
 
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.systemInfo.title]
+#. defaultMessage is:
+#. System Info
+msgctxt "miningModal.systemInfo.title"
+msgid "System Info"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TransactionsPage/SendTab/index.json
 #. [transactions.description.send.testnet]
 #. defaultMessage is:
@@ -4130,6 +4222,14 @@ msgctxt "tickets.info.votingAddress.message"
 msgid "The EXCC address that will do the voting."
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.1.text.p3]
+#. defaultMessage is:
+#. The Exilibrium is now available on Windows, Mac, and Linux. You can also use your Exilibrium wallet to participate in staking (PoS) and project governance by time locking your funds to receive staking tickets.
+msgctxt "tutorial.step.1.text.p3"
+msgid "The Exilibrium is now available on Windows, Mac, and Linux. You can also use your Exilibrium wallet to participate in staking (PoS) and project governance by time locking your funds to receive staking tickets."
+msgstr ""
+
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 #. [tickets.info.poolFeeAddress.message]
 #. defaultMessage is:
@@ -4139,19 +4239,19 @@ msgid "The address that your stakepool fee will end up getting paid."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.0.text.bold.p1]
+#. [tutorial.step.0.text.p2]
 #. defaultMessage is:
-#. The blockchain is the heart of EXCC,
-msgctxt "tutorial.step.0.text.bold.p1"
-msgid "The blockchain is the heart of EXCC,"
+#. The blockchain is also used to confirm the validity of new transactions to ensure that there is no fraud.
+msgctxt "tutorial.step.0.text.p2"
+msgid "The blockchain is also used to confirm the validity of new transactions to ensure that there is no fraud."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.0.text.p2]
+#. [tutorial.step.0.text.bold.p1]
 #. defaultMessage is:
-#. The blockchain is used to confirm that new transactions are valid and that no fraud is taking place.
-msgctxt "tutorial.step.0.text.p2"
-msgid "The blockchain is used to confirm that new transactions are valid and that no fraud is taking place."
+#. The blockchain is the ‘heart’ of EXCC.
+msgctxt "tutorial.step.0.text.bold.p1"
+msgid "The blockchain is the ‘heart’ of EXCC."
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
@@ -4168,6 +4268,14 @@ msgstr ""
 #. The fee in which you will be charged for using the stakepool's service.
 msgctxt "tickets.info.poolFeePercentage.message"
 msgid "The fee in which you will be charged for using the stakepool's service."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.2.text.bold.p1]
+#. defaultMessage is:
+#. The mnemonic seed in Exilibrium is a list of 12 words
+msgctxt "tutorial.step.2.text.bold.p1"
+msgid "The mnemonic seed in Exilibrium is a list of 12 words"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/CreateWalletForm/CreateWallet.json
@@ -4187,11 +4295,11 @@ msgid "The number of tickets to attempt to purchase."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.2.text.p2]
+#. [tutorial.step.3.text.light.p1]
 #. defaultMessage is:
-#. The seed works as a master key that stores all of the information needed to re-create the wallet at any time.
-msgctxt "tutorial.step.2.text.p2"
-msgid "The seed works as a master key that stores all of the information needed to re-create the wallet at any time."
+#. The process is different from the Proof of Work (PoW) mining that requires computing resources and electricity. You can use EXCC funds to purchase voting tickets on our network.
+msgctxt "tutorial.step.3.text.light.p1"
+msgid "The process is different from the Proof of Work (PoW) mining that requires computing resources and electricity. You can use EXCC funds to purchase voting tickets on our network."
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/BalanceOverviewModalContent.json
@@ -4592,6 +4700,14 @@ msgstr ""
 #. To help avoid permanent loss of your wallet, the seed must be backed up before continuing.
 msgctxt "createWallet.lossInfo"
 msgid "To help avoid permanent loss of your wallet, the seed must be backed up before continuing."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.0.text.p3]
+#. defaultMessage is:
+#. To validate all transactions, EXCC uses an innovative hybrid system which involves the Proof of Work (PoW) and the Proof of Stake (PoS) processes. This is how we ensure that the network is secure and make decisions based on consensus.
+msgctxt "tutorial.step.0.text.p3"
+msgid "To validate all transactions, EXCC uses an innovative hybrid system which involves the Proof of Work (PoW) and the Proof of Stake (PoS) processes. This is how we ensure that the network is secure and make decisions based on consensus."
 msgstr ""
 
 #: app/i18n/extracted/static/menus.json
@@ -5234,22 +5350,6 @@ msgctxt "txDetails.walletOutputs"
 msgid "Wallet Outputs"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.1.text.bold.p1]
-#. defaultMessage is:
-#. Wallet is the tool for interacting with the blockchain and using the currency.
-msgctxt "tutorial.step.1.text.bold.p1"
-msgid "Wallet is the tool for interacting with the blockchain and using the currency."
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.2.text.p1]
-#. defaultMessage is:
-#. Wallets are deterministically generated by a wallet seed. The mnemonic
-msgctxt "tutorial.step.2.text.p1"
-msgid "Wallets are deterministically generated by a wallet seed. The mnemonic"
-msgstr ""
-
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/CreateWalletForm/CreateWallet.json
 #. [createWallet.info]
 #. defaultMessage is:
@@ -5275,6 +5375,14 @@ msgstr ""
 #. Warning:
 msgctxt "createWallet.warningNotice"
 msgid "Warning:"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.4.text.p2]
+#. defaultMessage is:
+#. We need to remind everyone that you are responsible for the safety of your assets. Always keep your seed key and the password safe. Make sure nobody knows your key. Prepare a backup of your seed key and the password. Do not store this information on your computer, instead, write it on a piece of paper and keep it safely or create a digital copy and save on a USB drive.
+msgctxt "tutorial.step.4.text.p2"
+msgid "We need to remind everyone that you are responsible for the safety of your assets. Always keep your seed key and the password safe. Make sure nobody knows your key. Prepare a backup of your seed key and the password. Do not store this information on your computer, instead, write it on a piece of paper and keep it safely or create a digital copy and save on a USB drive."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
@@ -5351,20 +5459,20 @@ msgctxt "wallet.importKeys.step1.listItem5"
 msgid "When file is uploaded, go to step 2"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.4.text.p6]
-#. defaultMessage is:
-#. When something doesn’t seem right or you don’t understand it ask questions and do research. Avoid making a decision based on fear.
-msgctxt "tutorial.step.4.text.p6"
-msgid "When something doesn’t seem right or you don’t understand it ask questions and do research. Avoid making a decision based on fear."
-msgstr ""
-
 #: app/i18n/extracted/app/components/views/TutorialsPage/TicketLifecycle/index.json
 #. [tutorial.ticketLifecycle.page4]
 #. defaultMessage is:
 #. When your ticket matures (256 blocks), it enters the Ticket Pool and can be selected to vote. For each new block, five tickets are deterministically and pseudorandomly selected to vote on the newly mined block. The average ticket is selected to vote in approximately 28 days, and any ticket has a 99.5% chance of voting within ~142 days. If, after this time a ticket has not voted, it expires and the original Ticket Price is refunded.
 msgctxt "tutorial.ticketLifecycle.page4"
 msgid "When your ticket matures (256 blocks), it enters the Ticket Pool and can be selected to vote. For each new block, five tickets are deterministically and pseudorandomly selected to vote on the newly mined block. The average ticket is selected to vote in approximately 28 days, and any ticket has a 99.5% chance of voting within ~142 days. If, after this time a ticket has not voted, it expires and the original Ticket Price is refunded."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.4.text.p6]
+#. defaultMessage is:
+#. Whenever you think something does not seem right or if there is an area you do not understand, ask questions and research. Avoid making decisions based on your emotions.
+msgctxt "tutorial.step.4.text.p6"
+msgid "Whenever you think something does not seem right or if there is an area you do not understand, ask questions and research. Avoid making decisions based on your emotions."
 msgstr ""
 
 #: app/i18n/extracted/static/menus.json
@@ -5441,6 +5549,14 @@ msgstr ""
 #. Your balance to mantain is invalid
 msgctxt "autobuyer.balanceToMaintainError"
 msgid "Your balance to mantain is invalid"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
+#. [tutorial.step.2.text.p2]
+#. defaultMessage is:
+#. Your wallet seed is very important. If you forget your wallet encryption passphrase or your wallet is destroyed (for example if your computer is damaged), you can use the seed to recover your wallet. The seed can also be used to export your wallet to another client’s EXCC wallet.
+msgctxt "tutorial.step.2.text.p2"
+msgid "Your wallet seed is very important. If you forget your wallet encryption passphrase or your wallet is destroyed (for example if your computer is damaged), you can use the seed to recover your wallet. The seed can also be used to export your wallet to another client’s EXCC wallet."
 msgstr ""
 
 #: app/i18n/extracted/app/components/inputs/BlocksInput.json
@@ -5523,6 +5639,14 @@ msgctxt "ticket.status.multiple.live"
 msgid "live"
 msgstr ""
 
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.importantNote.1]
+#. defaultMessage is:
+#. mining on each CPU core require 2.5x GB memory.
+msgctxt "miningModal.importantNote.1"
+msgid "mining on each CPU core require 2.5x GB memory."
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TicketsPage/MyTicketsTab/messages.json
 #. [ticket.status.missed]
 #. defaultMessage is:
@@ -5553,22 +5677,6 @@ msgstr ""
 #. revoked
 msgctxt "ticket.status.multiple.revoked"
 msgid "revoked"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.2.text.bold.p1]
-#. defaultMessage is:
-#. seed is a list of 12 words
-msgctxt "tutorial.step.2.text.bold.p1"
-msgid "seed is a list of 12 words"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.2.text.p12]
-#. defaultMessage is:
-#. that can be easily written down on a piece of paper for backup.
-msgctxt "tutorial.step.2.text.p12"
-msgid "that can be easily written down on a piece of paper for backup."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/StakePools/index.json
@@ -5641,14 +5749,6 @@ msgstr ""
 #. voted
 msgctxt "ticket.status.multiple.voted"
 msgid "voted"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
-#. [tutorial.step.0.text.p1]
-#. defaultMessage is:
-#. where all activity that takes place is stored. It is like a global, decentralised spreadsheet or ledger that records all the activity that happens when EXCC funds are transferred, keeping track of how many tokens are sent, and what the balance of every account is.
-msgctxt "tutorial.step.0.text.p1"
-msgid "where all activity that takes place is stored. It is like a global, decentralised spreadsheet or ledger that records all the activity that happens when EXCC funds are transferred, keeping track of how many tokens are sent, and what the balance of every account is."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TxDetails.json

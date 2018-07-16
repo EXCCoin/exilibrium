@@ -7,26 +7,17 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
     "test-watch": "npm test -- --watch",
-    "test-e2e":
-      "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 mocha --retries 2 --compilers js:babel-register --require ./test/setup.js ./test/e2e.js",
-    "lint":
-      "./node_modules/.bin/eslint app scripts && ./node_modules/.bin/stylelint app/style/*.less",
-    "lint-fix":
-      "./node_modules/.bin/eslint app scripts --fix && ./node_modules/.bin/stylelint app/style/*.less --fix",
-    "hot-server":
-      "cross-env NODE_ENV=development node --max_old_space_size=4096 -r babel-register server.js",
-    "build-main":
-      "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors",
-    "build-renderer":
-      "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
+    "test-e2e": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 mocha --retries 2 --compilers js:babel-register --require ./test/setup.js ./test/e2e.js",
+    "lint": "./node_modules/.bin/eslint app scripts && ./node_modules/.bin/stylelint app/style/*.less",
+    "lint-fix": "./node_modules/.bin/eslint app scripts --fix && ./node_modules/.bin/stylelint app/style/*.less --fix",
+    "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=4096 -r babel-register server.js",
+    "build-main": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors",
+    "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
     "build": "npm run build-main && npm run build-renderer",
     "start": "cross-env NODE_ENV=production electron ./app/ --debug --customBinPath=./bin",
-    "dev-main":
-      "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./app/main.development",
-    "postinstall":
-      "concurrently \"electron-builder install-app-deps\" \"node node_modules/fbjs-scripts/node/check-dev-engines.js package.json\"",
-    "dev-renderer":
-      "node -r babel-register ./node_modules/.bin/webpack-dev-server --port 3000 --config ./webpack.config.development.js",
+    "dev-main": "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./app/main.development",
+    "postinstall": "concurrently \"electron-builder install-app-deps\" \"node node_modules/fbjs-scripts/node/check-dev-engines.js package.json\"",
+    "dev-renderer": "node -r babel-register ./node_modules/.bin/webpack-dev-server --port 3000 --config ./webpack.config.development.js",
     "dev": "npm run dev-renderer & npm run dev-main",
     "package": "npm run build && build --publish never",
     "package-win": "npm run build && build --win --x64 --ia32",
@@ -35,13 +26,13 @@
     "package-all": "npm run build && build -mwl",
     "package-dev-linux": "npm run build && build --linux tar.gz",
     "cleanup": "mop -v",
-    "i18n-prepare-untranslated":
-      "node ./scripts/prepareUntranslated.js && ./node_modules/.bin/rip json2pot 'app/i18n/extracted/**/*.json' -c id -o app/i18n/pot/exilibrium.pot",
-    "i18n-assemble-translated":
-      "node ./scripts/assembleTranslated.js && ./node_modules/.bin/rip po2json 'app/i18n/po/*.po' -m 'app/i18n/extracted/**/*.json' -c id -o app/i18n/translations"
+    "i18n-prepare-untranslated": "node ./scripts/prepareUntranslated.js && ./node_modules/.bin/rip json2pot 'app/i18n/extracted/**/*.json' -c id -o app/i18n/pot/exilibrium.pot",
+    "i18n-assemble-translated": "node ./scripts/assembleTranslated.js && ./node_modules/.bin/rip po2json 'app/i18n/po/*.po' -m 'app/i18n/extracted/**/*.json' -c id -o app/i18n/translations"
   },
   "jest": {
-    "modulePaths": ["app"],
+    "modulePaths": [
+      "app"
+    ],
     "moduleNameMapper": {
       "grpc": "<rootDir>/test/mock/grpc.js"
     }
@@ -83,7 +74,11 @@
     },
     "linux": {
       "category": "public.app-category.tools",
-      "target": ["deb", "rpm", "tar.gz"]
+      "target": [
+        "deb",
+        "rpm",
+        "tar.gz"
+      ]
     },
     "directories": {
       "output": "release"
@@ -155,6 +150,7 @@
     "source-map-support": "^0.4.6",
     "string-argv": "0.0.2",
     "stylelint": "^8.1.1",
+    "systeminformation": "^3.42.4",
     "winston": "^2.3.1"
   },
   "devDependencies": {

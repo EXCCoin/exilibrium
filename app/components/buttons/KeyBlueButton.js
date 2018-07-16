@@ -10,7 +10,7 @@ class KeyBlueButton extends React.Component {
     }
   }
   render() {
-    const { disabled, className = "", style } = this.props;
+    const { disabled, className, style, type, hidden, loading, children } = this.props;
     const buttonClassName = `button key-blue-button${disabled ? "-disabled" : ""} ${className}`;
     const buttonStyle = { ...style };
 
@@ -22,14 +22,34 @@ class KeyBlueButton extends React.Component {
       <div
         className={buttonClassName}
         style={buttonStyle}
-        type={this.props.type}
+        type={type}
         disabled={disabled}
         onClick={this.onClick}
-        hidden={this.props.hidden}>
-        {this.props.loading ? <SimpleLoading {...{ disabled }} /> : this.props.children}
+        hidden={hidden}>
+        {loading ? <SimpleLoading {...{ disabled }} /> : children}
       </div>
     );
   }
 }
+
+KeyBlueButton.propTypes = {
+  disabled: PropTypes.bool,
+  style: PropTypes.object,
+  className: PropTypes.string,
+  hidden: PropTypes.bool,
+  loading: PropTypes.bool,
+  children: PropTypes.element,
+  type: PropTypes.string,
+  block: PropTypes.bool,
+  onClick: PropTypes.func
+};
+
+KeyBlueButton.defaultProps = {
+  disabled: false,
+  hidden: false,
+  block: false,
+  loading: false,
+  className: ""
+};
 
 export default KeyBlueButton;
