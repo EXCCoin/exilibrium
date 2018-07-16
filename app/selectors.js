@@ -177,6 +177,7 @@ export const unitDivisor = compose(
   currencyDisplay
 );
 export const currentLocaleName = get(["settings", "currentSettings", "locale"]);
+export const miningToggle = get(["settings", "miningEnabled"]);
 export const defaultLocaleName = createSelector([currentLocaleName], currentLocaleName => {
   return appLocaleFromElectronLocale(currentLocaleName);
 });

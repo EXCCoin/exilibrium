@@ -1,5 +1,11 @@
-import { SETTINGS_SAVE, SETTINGS_CHANGED, SETTINGS_UNCHANGED } from "../actions/SettingsActions";
+import {
+  SETTINGS_SAVE,
+  SETTINGS_CHANGED,
+  SETTINGS_UNCHANGED,
+  TOGGLE_MINING
+} from "../actions/SettingsActions";
 import { WALLET_SETTINGS, SELECT_LANGUAGE } from "actions/DaemonActions";
+
 export default function settings(state = {}, action) {
   switch (action.type) {
     case SELECT_LANGUAGE: // eslint-disable-line no-case-declarations
@@ -39,6 +45,12 @@ export default function settings(state = {}, action) {
         ...state,
         currentSettings: settings,
         tempSettings
+      };
+    case TOGGLE_MINING:
+      console.log("toggle mining", action.miningToggle);
+      return {
+        ...state,
+        miningEnabled: action.miningToggle
       };
     default:
       return state;

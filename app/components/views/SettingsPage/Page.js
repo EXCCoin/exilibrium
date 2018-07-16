@@ -21,7 +21,10 @@ const SettingsPage = ({
   locales,
   onChangeTempSettings,
   onSaveSettings,
-  onAttemptChangePassphrase
+  onAttemptChangePassphrase,
+  toggleMining,
+  nextAddress,
+  miningEnabled
 }) => (
   <StandalonePage header={<SettingsPageHeader />}>
     <div className="settings-wrapper">
@@ -31,7 +34,10 @@ const SettingsPage = ({
           networks,
           currencies,
           locales,
-          onChangeTempSettings
+          onChangeTempSettings,
+          toggleMining,
+          nextAddress,
+          miningEnabled
         }}
       />
 
