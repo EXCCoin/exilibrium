@@ -177,8 +177,8 @@ ipcMain.on("check-daemon", (event, rpcCreds, testnet) => {
   checkDaemon(mainWindow, rpcCreds, testnet);
 });
 
-ipcMain.on("toggle-mining", (event, miningOptions) => {
-  toggleMining(miningOptions);
+ipcMain.on("toggle-mining", (event, rpcCreds, miningOptions) => {
+  toggleMining(rpcCreds, miningOptions);
   event.returnValue = true;
 });
 

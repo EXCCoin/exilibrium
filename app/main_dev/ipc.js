@@ -185,14 +185,34 @@ export const checkDaemon = (mainWindow, rpcCreds, testnet) => {
   });
 };
 
-export function toggleMining({ enable = false, CPUCores = 1, miningAddresses = [] }) {
+export function toggleMining(rpcCreds, { enable = false, CPUCores = 1, miningAddresses = [] }) {
   logger.log(
     "info",
     `enable: ${enable}, CPUCores: ${CPUCores}, miningAddresses: ${miningAddresses[0]}`
   );
-  //const args = [`setgenerate ${enable}`];
   const args = ["setgenerate", `${enable}`, `${CPUCores}`, `${miningAddresses[0]}`];
-  args.push(`--configfile=${exccctlCfg(appDataDirectory())}`);
+  let host, port;
+
+  if (!rpcCreds) {
+    args.push(`--configfile=${exccctlCfg(appDataDirectory())}`);
+  } else if (rpcCreds) {
+    if (rpcCreds.rpc_user) {
+      args.push(`--rpcuser=${rpcCreds.rpc_user}`);
+    }
+    if (rpcCreds.rpc_password) {
+      args.push(`--rpcpass=${rpcCreds.rpc_password}`);
+    }
+    if (rpcCreds.rpc_cert) {
+      args.push(`--rpccert=${rpcCreds.rpc_cert}`);
+    }
+    if (rpcCreds.rpc_host) {
+      host = rpcCreds.rpc_host;
+    }
+    if (rpcCreds.rpc_port) {
+      port = rpcCreds.rpc_port;
+    }
+    args.push(`--rpcserver=${host}:${port}`);
+  }
 
   const exccctlExe = getExecutablePath("exccctl", argv.customBinPath);
 
@@ -207,12 +227,9 @@ export function toggleMining({ enable = false, CPUCores = 1, miningAddresses = [
   });
 
   exccctl.stdout.on("data", data => {
-    //currentBlockCount = data.toString();
     logger.log("info", data.toString());
-    //  mainWindow.webContents.send("check-daemon-response", currentBlockCount);
   });
   exccctl.stderr.on("data", data => {
     logger.log("error", data.toString());
-    //  mainWindow.webContents.send("check-daemon-response", 0);
   });
 }
