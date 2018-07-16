@@ -120,8 +120,6 @@ export const launchEXCCD = (
     args.push("--testnet");
   }
 
-  args.push("-a=18.130.184.21");
-
   const exccdExe = getExecutablePath("exccd", argv.customBinPath);
   if (!fs.existsSync(exccdExe)) {
     logger.log("error", "The exccd file does not exists");
