@@ -6,10 +6,7 @@ const defaultButton = ({ onClick, enabled, buttonLabel, className }) => (
 
 @autobind
 class ModalButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { show: false };
-  }
+  state = { show: false };
 
   showModal() {
     this.setState({ show: true });
@@ -28,15 +25,13 @@ class ModalButton extends React.Component {
   }
 
   render() {
-    const { buttonLabel, modalComponent } = this.props;
-    const ButtonComponent = this.props.buttonComponent || defaultButton;
+    const { buttonLabel, modalComponent: Modal, buttonComponent: ButtonComponent } = this.props;
     const { show } = this.state;
-    const { onSubmit } = this;
-    const Modal = modalComponent;
+    const { onSubmit, showModal, hideModal } = this;
 
     return (
       <Aux>
-        <ButtonComponent {...this.props} onClick={this.showModal}>
+        <ButtonComponent {...this.props} onClick={showModal}>
           {buttonLabel}
         </ButtonComponent>
 
@@ -45,12 +40,22 @@ class ModalButton extends React.Component {
             ...this.props,
             show,
             onSubmit,
-            onCancelModal: this.hideModal
+            onCancelModal: hideModal
           }}
         />
       </Aux>
     );
   }
 }
+
+ModalButton.propTypes = {
+  modalComponent: PropTypes.element.isRequired,
+  className: PropTypes.string.isRequired,
+  buttonComponent: PropTypes.element
+};
+
+ModalButton.defaultProps = {
+  buttonComponent: defaultButton
+};
 
 export default ModalButton;

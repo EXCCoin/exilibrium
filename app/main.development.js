@@ -29,7 +29,8 @@ import {
   stopWallet,
   startWallet,
   checkDaemon,
-  toggleMining
+  toggleMining,
+  getSystemInfo
 } from "./main_dev/ipc";
 
 // setPath as exilibrium
@@ -180,6 +181,10 @@ ipcMain.on("check-daemon", (event, rpcCreds, testnet) => {
 ipcMain.on("toggle-mining", (event, rpcCreds, miningOptions) => {
   toggleMining(rpcCreds, miningOptions);
   event.returnValue = true;
+});
+
+ipcMain.on("get-system-information", async event => {
+  event.returnValue = await getSystemInfo();
 });
 
 ipcMain.on("clean-shutdown", async event => {

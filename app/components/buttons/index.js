@@ -16,6 +16,7 @@ import NetworkSwitch from "./NetworkSwitch";
 import DangerButton from "./DangerButton";
 import CloseButton from "./CloseButton";
 import InvisibleButton from "./InvisibleButton";
+import MiningToggleButton from "./MiningToggleButton";
 export {
   ModalButton,
   AutoBuyerSwitch,
@@ -34,7 +35,8 @@ import {
   PassphraseModal,
   ChangePassphraseModal,
   ConfirmModal,
-  InfoConfirmModal
+  InfoConfirmModal,
+  MiningModal
 } from "modals";
 
 // mbb = ModalButtonBuilder (func to build a functional ModalButton component
@@ -65,3 +67,4 @@ export const PassphraseModalSwitch = mbb(null, PassphraseModal, AutoBuyerSwitch)
 export const RemoveStakePoolButton = mbb(null, ConfirmModal, DangerButton);
 export const RemoveWalletButton = mbb(null, ConfirmModal, DangerButton);
 export const ScriptRedeemableButton = mbb(null, InfoConfirmModal, helpLinkButton);
+export const MiningModalButton = mbb(null, MiningModal, MiningToggleButton);

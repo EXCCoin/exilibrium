@@ -26,7 +26,6 @@ class Modal extends React.Component {
         <div className="app-modal-overlay" />
         <div className={`app-modal ${className || ""}`}>{children}</div>
       </Aux>,
-
       domNode
     );
   }

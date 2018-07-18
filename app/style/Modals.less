@@ -32,7 +32,8 @@
   text-align: left;
 }
 
-.info-modal-close-button {
+.info-modal-close-button,
+.mining-modal-close-button {
   position: absolute;
   right: 2em;
   top: 2em;
@@ -55,7 +56,8 @@
   margin-top: 0;
 }
 
-.app-modal.passphrase-modal {
+.app-modal.passphrase-modal,
+.app-modal.mining-modal {
   left: 10%;
   right: 10%;
   top: 20%;
@@ -70,14 +72,16 @@
 }
 
 @media screen and (min-width: 768px) {
-  .app-modal.passphrase-modal {
+  .app-modal.passphrase-modal,
+  .app-modal.mining-modal {
     left: 25%;
     width: 500px;
   }
 }
 
 @media screen and (max-height: 420px) {
-  .app-modal.passphrase-modal {
+  .app-modal.passphrase-modal,
+  .app-modal.mining-modal {
     top: 10%;
     max-height: 60%;
   }
@@ -96,6 +100,11 @@
   margin-bottom: 10px;
 }
 
+.mining-modal-header {
+  float: left;
+  margin-bottom: 10px;
+}
+
 .passphrase-modal-header-title {
   margin-left: 50px;
   font-size: 27px;
@@ -103,48 +112,62 @@
   padding-top: 5px;
 }
 
-.passphrase-modal-content {
+.mining-modal-header-title {
+  font-size: 27px;
+  text-transform: capitalize;
+  padding-top: 5px;
+}
+
+.passphrase-modal-content,
+.mining-modal-content {
   float: left;
   width: 100%;
 }
 
-.passphrase-modal-header-description {
+.passphrase-modal-header-description,
+.mining-modal-header-description {
   margin-top: 10px;
   margin-left: 50px;
   font-size: 15px;
   float: left;
 }
 
-.passphrase-modal-confirm-send {
+.passphrase-modal-confirm-send,
+.mining-modal-confirm-send {
   width: 415px;
 }
 
-.passphrase-modal-confirm-send-label {
+.passphrase-modal-confirm-send-label,
+.mining-modal-confirm-send-label {
   float: left;
   width: 65%;
   margin-top: 5px;
 }
 
-.passphrase-modal-confirm-send-address {
+.passphrase-modal-confirm-send-address,
+.mining-modal-confirm-send-address {
   margin-left: 20px;
   margin-top: 5px;
   font-weight: 600;
   float: right;
 }
 
-.passphrase-modal-confirm-send-balance {
+.passphrase-modal-confirm-send-balance,
+.mining-modal-confirm-send-balance {
   margin-left: 20px;
   font-weight: 600;
   margin-top: 5px;
   float: right;
 }
 
-.passphrase-modal-field {
+.passphrase-modal-field,
+.mining-modal-field {
   display: flex;
   margin-bottom: 15px;
 }
 
-.passphrase-modal-field-label {
+.passphrase-modal-field-label,
+.mining-modal-field-label {
   font-size: 13px;
   text-align: right;
   width: 12em;
@@ -152,14 +175,45 @@
   padding-top: 4px;
 }
 
-.passphrase-modal-field-value {
+.passphrase-modal-field-value,
+.mining-modal-field-value {
   width: 300px;
 }
 
-.passphrase-modal-toolbar {
+.passphrase-modal-toolbar,
+.mining-modal-toolbar {
   margin-top: 20px;
   height: 44px;
   float: right;
+}
+
+.mining-modal-system-info-title {
+  font-size: 16px;
+}
+
+.mining-modal-system-info-content {
+  margin: 10px 0;
+}
+
+.mining-modal-system-info-refresh-button {
+  margin-right: 10px;
+}
+
+.mining-modal-system-info-stat {
+  margin-right: 15px;
+}
+
+.mining-modal-input-container {
+  margin: 10px 0;
+}
+
+.mining-modal-error-message {
+  color: @error-text-color;
+  height: 12px;
+}
+
+.mining-modal-note {
+  display: inline-block;
 }
 
 .info-modal-column {

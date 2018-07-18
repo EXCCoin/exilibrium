@@ -1,6 +1,7 @@
 import fs from "fs-extra";
 import path from "path";
 import parseArgs from "minimist";
+import si from "systeminformation";
 import { OPTIONS } from "./constants";
 import { createLogger } from "./logging";
 import {
@@ -232,4 +233,20 @@ export function toggleMining(rpcCreds, { enable = false, CPUCores = 1, miningAdd
   exccctl.stderr.on("data", data => {
     logger.log("error", data.toString());
   });
+}
+
+export async function getSystemInfo() {
+  logger.log("info", "Requesting CPU & memory info");
+  try {
+    const [cpuData, memoryData] = await Promise.all([si.cpu(), si.mem()]);
+    logger.log("info", `CPU cores: ${cpuData.cores}, available memory: ${memoryData.available}`);
+    return {
+      cores: cpuData.cores,
+      availableMemory: memoryData.available,
+      totalMemory: memoryData.total
+    };
+  } catch (err) {
+    logger.log("error", err);
+    return err;
+  }
 }

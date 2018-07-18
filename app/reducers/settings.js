@@ -2,7 +2,8 @@ import {
   SETTINGS_SAVE,
   SETTINGS_CHANGED,
   SETTINGS_UNCHANGED,
-  TOGGLE_MINING
+  TOGGLE_MINING,
+  SYSTEM_INFO_REQUEST_SUCCESS
 } from "../actions/SettingsActions";
 import { WALLET_SETTINGS, SELECT_LANGUAGE } from "actions/DaemonActions";
 
@@ -47,10 +48,15 @@ export default function settings(state = {}, action) {
         tempSettings
       };
     case TOGGLE_MINING:
-      console.log("toggle mining", action.miningToggle);
       return {
         ...state,
-        miningEnabled: action.miningToggle
+        miningEnabled: action.miningToggle,
+        miningParams: action.miningParams
+      };
+    case SYSTEM_INFO_REQUEST_SUCCESS:
+      return {
+        ...state,
+        systemInfo: action.systemInfo
       };
     default:
       return state;

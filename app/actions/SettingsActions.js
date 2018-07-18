@@ -6,6 +6,7 @@ export const SETTINGS_SAVE = "SETTINGS_SAVE";
 export const SETTINGS_CHANGED = "SETTINGS_CHANGED";
 export const SETTINGS_UNCHANGED = "SETTINGS_UNCHANGED";
 export const TOGGLE_MINING = "TOGGLE_MINING";
+export const SYSTEM_INFO_REQUEST_SUCCESS = "SYSTEM_INFO_REQUEST_SUCCESS";
 
 export const saveSettings = settings => (dispatch, getState) => {
   const {
@@ -72,5 +73,10 @@ export const toggleMining = (enable, cores, address) => (dispatch, getState) => 
     CPUCores: cores,
     miningAddresses: [address]
   });
-  dispatch({ miningToggle: enable, type: TOGGLE_MINING });
+  dispatch({ miningParams: { cores, address }, miningToggle: enable, type: TOGGLE_MINING });
+};
+
+export const checkSystemInfo = () => dispatch => {
+  const systemInfo = ipcRenderer.sendSync("get-system-information");
+  dispatch({ type: SYSTEM_INFO_REQUEST_SUCCESS, systemInfo });
 };
