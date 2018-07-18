@@ -5,10 +5,14 @@ import { ExternalLink } from "shared";
 export default () => (
   <div className="overview-no-transactions">
     <Link to="/transactions/receive" className="receive">
-      <T id="home.noTransactions.receiveLink" m="Generate a EXCC Address for receiving funds" /> →
+      <strong>
+        <T id="home.noTransactions.receiveLink" m="Generate a EXCC Address for receiving funds" /> →{" "}
+      </strong>
     </Link>
     <ExternalLink href="https://excc.co/#invest_section" className="buy">
-      <T id="home.noTransactions.buyFromExchanges" m="Buy EXCC from Exchanges" /> →
+      <strong>
+        <T id="home.noTransactions.buyFromExchanges" m="Buy EXCC from Exchanges" /> →{" "}
+      </strong>
     </ExternalLink>
   </div>
 );

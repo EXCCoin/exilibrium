@@ -27,7 +27,7 @@ const CreateForm = ({
       }}
     />
   ) : importCopay ? (
-    <ImportKeysForm />
+    <ImportKeysForm onReturnToExistingOrNewScreen={onReturnToExistingOrNewScreen} />
   ) : (
     <CreateWalletForm
       {...{

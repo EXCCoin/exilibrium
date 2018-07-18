@@ -5,7 +5,7 @@ import Validator from "./Validator";
 import FileHandler from "./FileHandler";
 import Decryptor from "./Decryptor";
 
-export default () => (
+export default ({ onReturnToExistingOrNewScreen }) => (
   <Validator>
     {({ validator, errorMessage }) => (
       <FileHandler {...{ validator }}>
@@ -14,6 +14,7 @@ export default () => (
             {({ decryptor, mnemonic, walletName, encryptionPassword }) => (
               <ImportKeysForm
                 {...{
+                  onReturnToExistingOrNewScreen,
                   validator,
                   fileHandler,
                   decryptor,

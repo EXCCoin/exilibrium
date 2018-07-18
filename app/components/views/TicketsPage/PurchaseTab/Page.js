@@ -1,4 +1,4 @@
-import { StakeyBounce } from "indicators";
+import { ExccLoader } from "indicators";
 import StakePools from "./StakePools";
 import Tickets from "./Tickets";
 import "style/StakePool.less";
@@ -13,7 +13,7 @@ const PurchasePage = ({
   ...props
 }) =>
   isSavingStakePoolConfig || isPurchasingTickets || isImportingScript ? (
-    <StakeyBounce center />
+    <ExccLoader center />
   ) : isShowingStakePools ? (
     <StakePools {...{ onHideStakePoolConfig }} />
   ) : (

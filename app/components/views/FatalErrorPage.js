@@ -37,7 +37,7 @@ class FatalErrorPage extends React.Component {
               ) : (
                 <T
                   id="fatal.suggestion.fallthrough"
-                  m="Please note the error above and go to the support channel on slack/matrix/rockchat for help resolving the issue."
+                  m="Please note the error above and submit a request here: https://support.excc.co/hc/en-us/requests/new"
                 />
               )}
             </div>

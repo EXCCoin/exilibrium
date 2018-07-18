@@ -1,6 +1,6 @@
+import { shell } from "electron";
 import { FormattedMessage as T } from "react-intl";
 import { DescriptionHeader } from "layout";
-import { Link } from "react-router-dom";
 
 export const TutorialsTabHeader = () => (
   <DescriptionHeader
@@ -10,16 +10,34 @@ export const TutorialsTabHeader = () => (
   />
 );
 
+const open = article => () =>
+  shell.openExternal(`https://support.excc.co/hc/en-us/articles/${article}`);
+
 export const TutorialsTab = () => (
   <div className="overview-no-tickets">
-    {/* <Link to="/mytickets/purchase" className="purchaseTickets">
-      <T id="home.noTickets.purchase" m="Stake Your Idle EXCC and Earn Rewards" /> →
-    </Link> */}
-    <Link to="/tutorial/staking" className="whatIsStaking">
-      <T id="home.noTickets.staking" m="What is Staking (Proof-of-Stake)?" /> →
-    </Link>
-    <Link to="/tutorial/ticketLifecycle" className="ticketLifeCycle">
-      <T id="home.noTickets.lifecycle" m="Learn About the Ticket Lifecycle" /> →
-    </Link>
+    <div className="tutorial-item" onClick={open("360004934231")}>
+      <T id="tutorialLink.aboutEXCC" m="About ExchangeCoin" />
+    </div>
+    <div className="tutorial-item" onClick={open("360004872972")}>
+      <T id="tutorialLink.setup" m="Exilibrium setup guide" />
+    </div>
+    <div className="tutorial-item" onClick={open("360007235671")}>
+      <T id="tutorialLink.howToUse" m="How to use Exlilibrium" />
+    </div>
+    <div className="tutorial-item" onClick={open("360006702912")}>
+      <T
+        id="tutorialLink.transferCopay"
+        m="How to transfer funds from Copay wallet to Exlilibrium"
+      />
+    </div>
+    <div className="tutorial-item" onClick={open("360004934011")}>
+      <T id="tutorialLink.staking" m="Proof of Stake (PoS) Mining" />
+    </div>
+    <div className="tutorial-item" onClick={open("360004974992")}>
+      <T id="tutorialLink.vote" m="Voting through Exilibrium" />
+    </div>
+    <div className="tutorial-item" onClick={open("360004934571")}>
+      <T id="tutorialLink.buyingTickets" m="Buying tickets with exccwallet" />
+    </div>
   </div>
 );
