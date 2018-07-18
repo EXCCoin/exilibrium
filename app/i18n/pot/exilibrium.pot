@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2018-07-18T08:19:27.972Z\n"
+"POT-Creation-Date: 2018-07-18T14:41:36.283Z\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "MIME-Version: 1.0\n"
@@ -285,6 +285,14 @@ msgstr ""
 #. About
 msgctxt "appMenu.about"
 msgid "About"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
+#. [tutorialLink.aboutEXCC]
+#. defaultMessage is:
+#. About ExchangeCoin
+msgctxt "tutorialLink.aboutEXCC"
+msgid "About ExchangeCoin"
 msgstr ""
 
 #: app/i18n/extracted/static/menus.json
@@ -692,6 +700,14 @@ msgctxt "export.balances.name"
 msgid "Balances"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
+#. [help.forum]
+#. defaultMessage is:
+#. Bitcointalk
+msgctxt "help.forum"
+msgid "Bitcointalk"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TxDetails.json
 #. [txDetails.blockLabel]
 #. defaultMessage is:
@@ -732,20 +748,20 @@ msgctxt "home.noTransactions.buyFromExchanges"
 msgid "Buy EXCC from Exchanges"
 msgstr ""
 
-#: app/i18n/extracted/app/components/modals/MiningModal/index.json
-#. [miningModal.coresInput.label]
+#: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
+#. [tutorialLink.buyingTickets]
 #. defaultMessage is:
-#. CPU cores
-msgctxt "miningModal.coresInput.label"
-msgid "CPU cores"
+#. Buying tickets with exccwallet
+msgctxt "tutorialLink.buyingTickets"
+msgid "Buying tickets with exccwallet"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/MiningModal/index.json
 #. [miningModal.systemInfo.cores]
 #. defaultMessage is:
-#. CPU cores:
+#. CPU threads:
 msgctxt "miningModal.systemInfo.cores"
-msgid "CPU cores:"
+msgid "CPU threads:"
 msgstr ""
 
 #: app/i18n/extracted/app/components/inputs/PathBrowseInput.json
@@ -1372,14 +1388,6 @@ msgctxt "stakepools.list.confirmRemove"
 msgid "Do you confirm removal of stakepool {stakepool}?"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
-#. [help.documentation]
-#. defaultMessage is:
-#. Documentation
-msgctxt "help.documentation"
-msgid "Documentation"
-msgstr ""
-
 #: app/i18n/extracted/static/menus.json
 #. [appMenu.documentation]
 #. defaultMessage is:
@@ -1400,7 +1408,7 @@ msgstr ""
 #. [tutorial.staking.page1]
 #. defaultMessage is:
 #. EXCC holders can participate in the Staking (Proof-of Stake) process by purchasing tickets. These tickets are used to vote on miners’ Proof-of-Work in order to validate changes to the EXCC blockchain, or on governance proposals within the Politeia system.
-#. 
+#.
 #.   Staking to verify PoW is rewarding, as each cast vote receives part of the EXCC Block Reward. Typically, five tickets are included in each block, meaning each ticket holder receives 6% of the total block reward.
 msgctxt "tutorial.staking.page1"
 msgid "EXCC holders can participate in the Staking (Proof-of Stake) process by purchasing tickets. These tickets are used to vote on miners’ Proof-of-Work in order to validate changes to the EXCC blockchain, or on governance proposals within the Politeia system.\n\n  Staking to verify PoW is rewarding, as each cast vote receives part of the EXCC Block Reward. Typically, five tickets are included in each block, meaning each ticket holder receives 6% of the total block reward."
@@ -1443,14 +1451,6 @@ msgstr ""
 #. defaultMessage is:
 #. Enable mining
 msgctxt "miningModal.title"
-msgid "Enable mining"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/SettingsPage/Page.json
-#. [miningModal.buttonTextDisabled]
-#. defaultMessage is:
-#. Enable mining
-msgctxt "miningModal.buttonTextDisabled"
 msgid "Enable mining"
 msgstr ""
 
@@ -1502,7 +1502,7 @@ msgstr ""
 #. [getStarted.discoverAccountsInfo]
 #. defaultMessage is:
 #. Enter the passphrase you just created to scan the blockchain for additional accounts you may have previously created with your wallet.
-#. 
+#.
 #.             Your account names aren't stored on the blockchain, so you will have to rename them after setting up Exilibrium.
 msgctxt "getStarted.discoverAccountsInfo"
 msgid "Enter the passphrase you just created to scan the blockchain for additional accounts you may have previously created with your wallet.\n\n            Your account names aren't stored on the blockchain, so you will have to rename them after setting up Exilibrium."
@@ -1646,6 +1646,14 @@ msgstr ""
 #. Exilibrium must remain running for tickets to be automatically purchased.
 msgctxt "tickets.startAutoBuyerConfirmation.description"
 msgid "Exilibrium must remain running for tickets to be automatically purchased."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
+#. [tutorialLink.setup]
+#. defaultMessage is:
+#. Exilibrium setup guide
+msgctxt "tutorialLink.setup"
+msgid "Exilibrium setup guide"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
@@ -1883,17 +1891,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/MiningModal/index.json
 #. [miningModal.importantNote.2]
 #. defaultMessage is:
-#. For example: mining on 2 cores will use 5GB of RAM.
+#. For example: mining on 2 threads will use 5GB of RAM.
 msgctxt "miningModal.importantNote.2"
-msgid "For example: mining on 2 cores will use 5GB of RAM."
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
-#. [help.forum]
-#. defaultMessage is:
-#. Forum
-msgctxt "help.forum"
-msgid "Forum"
+msgid "For example: mining on 2 threads will use 5GB of RAM."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/Form.json
@@ -2121,6 +2121,22 @@ msgctxt "export.votetime.fields.count"
 msgid "How many tickets voted in this day bucket"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
+#. [tutorialLink.transferCopay]
+#. defaultMessage is:
+#. How to transfer funds from Copay wallet to Exlilibrium
+msgctxt "tutorialLink.transferCopay"
+msgid "How to transfer funds from Copay wallet to Exlilibrium"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
+#. [tutorialLink.howToUse]
+#. defaultMessage is:
+#. How to use Exlilibrium
+msgctxt "tutorialLink.howToUse"
+msgid "How to use Exlilibrium"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
 #. [tutorial.step.2.text.p4]
 #. defaultMessage is:
@@ -2159,6 +2175,14 @@ msgstr ""
 #. If you have any difficulty with exilibrium, please use the following links to help find a solution.
 msgctxt "help.description.links"
 msgid "If you have any difficulty with exilibrium, please use the following links to help find a solution."
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.tutorial.info]
+#. defaultMessage is:
+#. If you need more comprehensive guide on importing keys from Copay wallet, you can check then
+msgctxt "wallet.importKeys.tutorial.info"
+msgid "If you need more comprehensive guide on importing keys from Copay wallet, you can check then"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/StakePools/AddForm.json
@@ -2293,9 +2317,9 @@ msgstr ""
 #. [sidebar.rescanBtn.tip]
 #. defaultMessage is:
 #. Initiate a transaction rescan.
-#. 
+#.
 #. Rescanning may help resolve some balance errors.
-#. 
+#.
 #. Note: This scans the entire blockchain for transactions,
 #. but does not re-download it.
 msgctxt "sidebar.rescanBtn.tip"
@@ -2392,18 +2416,6 @@ msgstr ""
 #. Latest status for the ticket (live, voted, missed, revoked).
 msgctxt "export.tickets.fields.status"
 msgid "Latest status for the ticket (live, voted, missed, revoked)."
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
-#. [home.noTickets.lifecycle]
-#. defaultMessage is:
-#. Learn About the Ticket Lifecycle
-#: app/i18n/extracted/app/components/views/HomePage/tables/NoTicketsLinks.json
-#. [home.noTickets.lifecycle]
-#. defaultMessage is:
-#. Learn About the Ticket Lifecycle
-msgctxt "home.noTickets.lifecycle"
-msgid "Learn About the Ticket Lifecycle"
 msgstr ""
 
 #: app/i18n/extracted/static/menus.json
@@ -2662,28 +2674,20 @@ msgctxt "appMenu.minimize"
 msgid "Minimize"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/SettingsPage/Page.json
-#. [settings.mining.title]
-#. defaultMessage is:
-#. Mining
-msgctxt "settings.mining.title"
-msgid "Mining"
-msgstr ""
-
 #: app/i18n/extracted/app/components/modals/MiningModal/index.json
 #. [miningModal.addressInput.label]
 #. defaultMessage is:
-#. Mining address
+#. Mining address (current receive address)
 msgctxt "miningModal.addressInput.label"
-msgid "Mining address"
+msgid "Mining address (current receive address)"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/SettingsPage/Page.json
-#. [miningModal.buttonTextEnabled]
+#: app/i18n/extracted/app/components/modals/MiningModal/index.json
+#. [miningModal.coresInput.label]
 #. defaultMessage is:
-#. Mining enabled
-msgctxt "miningModal.buttonTextEnabled"
-msgid "Mining enabled"
+#. Mining threads
+msgctxt "miningModal.coresInput.label"
+msgid "Mining threads"
 msgstr ""
 
 #: app/i18n/extracted/app/components/TxHistory/TxHistoryRow/StakeTxRow.json
@@ -3022,13 +3026,13 @@ msgstr ""
 #. [seedCopyConfirmModal.warningText]
 #. defaultMessage is:
 #. Please note that copying the seed to the clipboard may be a security risk, as other applications may be able to monitor and copy the contents of the clipboard.
-#. 
+#.
 #.           It is also highly unadvised to maintain the seed on a computer file, specially without encryption, as that can lead to stealing of funds by anyone with access to the computer.
-#. 
+#.
 #.           Further, storing the seed on a computer file without backing it up on a physical medium (written down piece of paper stored in a secure location) can cause loss of funds if the local wallet file gets corrupted or is otherwise unavailable (due to hardware failure or any other number of issues).
-#. 
+#.
 #.           If you want to learn more about seed security, please check our seed FAQ located at {seedFaqURL}.
-#. 
+#.
 #.           If you are sure you understand the risks and still want to copy the seed to the clipboard, please type the phrase {confirmationPhrase} in the box below and the seed will be copied to the clipboard.
 msgctxt "seedCopyConfirmModal.warningText"
 msgid "Please note that copying the seed to the clipboard may be a security risk, as other applications may be able to monitor and copy the contents of the clipboard.\n\n          It is also highly unadvised to maintain the seed on a computer file, specially without encryption, as that can lead to stealing of funds by anyone with access to the computer.\n\n          Further, storing the seed on a computer file without backing it up on a physical medium (written down piece of paper stored in a secure location) can cause loss of funds if the local wallet file gets corrupted or is otherwise unavailable (due to hardware failure or any other number of issues).\n\n          If you want to learn more about seed security, please check our seed FAQ located at {seedFaqURL}.\n\n          If you are sure you understand the risks and still want to copy the seed to the clipboard, please type the phrase {confirmationPhrase} in the box below and the seed will be copied to the clipboard."
@@ -3037,9 +3041,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/FatalErrorPage.json
 #. [fatal.suggestion.fallthrough]
 #. defaultMessage is:
-#. Please note the error above and go to the support channel on slack/matrix/rockchat for help resolving the issue.
+#. Please note the error above and submit a request here: https://support.excc.co/hc/en-us/requests/new
 msgctxt "fatal.suggestion.fallthrough"
-msgid "Please note the error above and go to the support channel on slack/matrix/rockchat for help resolving the issue."
+msgid "Please note the error above and submit a request here: https://support.excc.co/hc/en-us/requests/new"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/Validator.json
@@ -3164,6 +3168,14 @@ msgstr ""
 #. Private passphrase information
 msgctxt "confirmSeed.passphraseInformation"
 msgid "Private passphrase information"
+msgstr ""
+
+#: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
+#. [tutorialLink.staking]
+#. defaultMessage is:
+#. Proof of Stake (PoS) Mining
+msgctxt "tutorialLink.staking"
+msgid "Proof of Stake (PoS) Mining"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/AccountsPage/Accounts/AccountRow/AccountDetails.json
@@ -4058,6 +4070,14 @@ msgctxt "tickets.info.poolPreference.header"
 msgid "Stake pool preference"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
+#. [help.stakepools]
+#. defaultMessage is:
+#. Stakepool
+msgctxt "help.stakepools"
+msgid "Stakepool"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/StakePools/AddForm.json
 #. [stakepool.label]
 #. defaultMessage is:
@@ -4072,14 +4092,6 @@ msgstr ""
 #. Stakepool Confirmation
 msgctxt "stake.addPoolConfirmation"
 msgid "Stakepool Confirmation"
-msgstr ""
-
-#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
-#. [help.stakepools]
-#. defaultMessage is:
-#. Stakepools
-msgctxt "help.stakepools"
-msgid "Stakepools"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/TutorialPage/Page.json
@@ -4186,6 +4198,14 @@ msgctxt "export.transactions.fields.debits"
 msgid "Sum of debits (transaction inputs) of the wallet included in this transaction."
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
+#. [help.support]
+#. defaultMessage is:
+#. Support
+msgctxt "help.support"
+msgid "Support"
+msgstr ""
+
 #: app/i18n/extracted/app/components/modals/MiningModal/index.json
 #. [miningModal.systemInfo.title]
 #. defaultMessage is:
@@ -4206,9 +4226,9 @@ msgstr ""
 #. [invalidRPCVersion.info]
 #. defaultMessage is:
 #. The API of the currently running wallet ({walletRPCVersion}) is not compatible with Exilibrium (required version {requiredWalletRPCVersion}).
-#. 
+#.
 #.         Please update the daemon (exccd) and wallet (exccwallet) to the latest version, then try again.
-#. 
+#.
 #.         See the "Help ⮕ About" menu for the current version of the executables.
 msgctxt "invalidRPCVersion.info"
 msgid "The API of the currently running wallet ({walletRPCVersion}) is not compatible with Exilibrium (required version {requiredWalletRPCVersion}).\n\n        Please update the daemon (exccd) and wallet (exccwallet) to the latest version, then try again.\n\n        See the \"Help ⮕ About\" menu for the current version of the executables."
@@ -5006,13 +5026,21 @@ msgctxt "help.tab.tutorials"
 msgid "Tutorials"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
+#. [help.twitter]
+#. defaultMessage is:
+#. Twitter
+msgctxt "help.twitter"
+msgid "Twitter"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TutorialsPage/TicketLifecycle/index.json
 #. [tutorial.ticketLifecycle.page3]
 #. defaultMessage is:
 #. Two things might happen next:
-#. 
+#.
 #.   A - Your ticket is mined into a block and it becomes an immature ticket. This state lasts for 256 blocks (about 20 hours). During this time, the ticket cannot vote and the ticket fee becomes non-refundable.
-#. 
+#.
 #.   B - If your ticket is not mined, it will stay in the mempool until the ticket price increases or the block height hits your ticket expiration date. At this point, both the Ticket Price and Ticket Fee are returned.
 msgctxt "tutorial.ticketLifecycle.page3"
 msgid "Two things might happen next:\n\n  A - Your ticket is mined into a block and it becomes an immature ticket. This state lasts for 256 blocks (about 20 hours). During this time, the ticket cannot vote and the ticket fee becomes non-refundable.\n\n  B - If your ticket is not mined, it will stay in the mempool until the ticket price increases or the block height hits your ticket expiration date. At this point, both the Ticket Price and Ticket Fee are returned."
@@ -5318,6 +5346,14 @@ msgctxt "agenda.votingFor"
 msgid "Voting for"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
+#. [tutorialLink.vote]
+#. defaultMessage is:
+#. Voting through Exilibrium
+msgctxt "tutorialLink.vote"
+msgid "Voting through Exilibrium"
+msgstr ""
+
 #: app/i18n/extracted/app/components/indicators/LinearProgressFull.json
 #. [loaderBar.Waiting]
 #. defaultMessage is:
@@ -5401,10 +5437,6 @@ msgctxt "selectLang.title"
 msgid "Welcome to Exilibrium Wallet"
 msgstr ""
 
-#: app/i18n/extracted/app/components/views/HelpPage/TutorialsTab/index.json
-#. [home.noTickets.staking]
-#. defaultMessage is:
-#. What is Staking (Proof-of-Stake)?
 #: app/i18n/extracted/app/components/views/HomePage/tables/NoTicketsLinks.json
 #. [home.noTickets.staking]
 #. defaultMessage is:
@@ -5433,7 +5465,7 @@ msgstr ""
 #. [tutorial.ticketLifecycle.page2]
 #. defaultMessage is:
 #. When a Ticket is purchased, the total cost is its Ticket Fee + Ticket Price. The price is dynamic in order to yield a ticket pool of approximately 40,960 tickets.
-#. 
+#.
 #.   Your ticket enters the mempool. Up to 20 tickets are mined into each block, prioritized by the ticket fee.
 msgctxt "tutorial.ticketLifecycle.page2"
 msgid "When a Ticket is purchased, the total cost is its Ticket Fee + Ticket Price. The price is dynamic in order to yield a ticket pool of approximately 40,960 tickets.\n\n  Your ticket enters the mempool. Up to 20 tickets are mined into each block, prioritized by the ticket fee."
@@ -5443,9 +5475,9 @@ msgstr ""
 #. [tutorial.staking.page2]
 #. defaultMessage is:
 #. When a ticket is purchased, the cost of the ticket is locked in your wallet until the ticket is used to vote, or is revoked. Tickets enter the mempool, then the ticketpool where they are drawn at random to vote. There is a 99.5% probability that a ticket will vote. The average ticket will vote in 28 days, but tickets still in the pool that have not been drawn after 142 days will be revoked. The EXCC used to purchase the ticket is released from lockup when it votes or when the ticket is revoked.
-#. 
+#.
 #.   When a proposal is set for a vote in Politeia, a snapshot of the ticket pool will be taken at the time of voting. All tickets will have the right to vote on the proposal in an off chain process.
-#. 
+#.
 #.   As block validation is immutable, decisions made on all voted tickets can be publicly tracked. Active participation in staking helps secure EXCC network’s, network, ensure quality Proof-of-Work, and determine the future direction of EXCC.
 msgctxt "tutorial.staking.page2"
 msgid "When a ticket is purchased, the cost of the ticket is locked in your wallet until the ticket is used to vote, or is revoked. Tickets enter the mempool, then the ticketpool where they are drawn at random to vote. There is a 99.5% probability that a ticket will vote. The average ticket will vote in 28 days, but tickets still in the pool that have not been drawn after 142 days will be revoked. The EXCC used to purchase the ticket is released from lockup when it votes or when the ticket is revoked.\n\n  When a proposal is set for a vote in Politeia, a snapshot of the ticket pool will be taken at the time of voting. All tickets will have the right to vote on the proposal in an off chain process.\n\n  As block validation is immutable, decisions made on all voted tickets can be publicly tracked. Active participation in staking helps secure EXCC network’s, network, ensure quality Proof-of-Work, and determine the future direction of EXCC."
@@ -5511,9 +5543,9 @@ msgstr ""
 #. [tutorial.ticketLifecycle.page5]
 #. defaultMessage is:
 #. You must be connected to the network to cast a vote, which is why many people use stakepools. If your ticket is called and it misses the vote, you receive a refund on the original Ticket Price.
-#. 
+#.
 #.   After a ticket has voted, missed, or expired, the funds (ticket price minus the fee) will enter immature status for another 256 blocks, after which they are released from lockup in the wallet. If a ticket is missed or expired, a ticket revocation transaction is submitted by the wallet to free up the locked ticket price.
-#. 
+#.
 #.   NOTE: Revocations can only be submitted for a corresponding missed ticket. You cannot revoke a ticket until it is missed.
 msgctxt "tutorial.ticketLifecycle.page5"
 msgid "You must be connected to the network to cast a vote, which is why many people use stakepools. If your ticket is called and it misses the vote, you receive a refund on the original Ticket Price.\n\n  After a ticket has voted, missed, or expired, the funds (ticket price minus the fee) will enter immature status for another 256 blocks, after which they are released from lockup in the wallet. If a ticket is missed or expired, a ticket revocation transaction is submitted by the wallet to free up the locked ticket price.\n\n  NOTE: Revocations can only be submitted for a corresponding missed ticket. You cannot revoke a ticket until it is missed."
@@ -5607,6 +5639,14 @@ msgctxt "ticket.status.multiple.expired"
 msgid "expired"
 msgstr ""
 
+#: app/i18n/extracted/app/components/views/GetStartedPage/CreateWallet/ImportKeysForm/ImportKeysForm.json
+#. [wallet.importKeys.tutorial.link]
+#. defaultMessage is:
+#. here
+msgctxt "wallet.importKeys.tutorial.link"
+msgid "here"
+msgstr ""
+
 #: app/i18n/extracted/app/components/views/TicketsPage/MyTicketsTab/messages.json
 #. [ticket.status.immature]
 #. defaultMessage is:
@@ -5642,9 +5682,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/MiningModal/index.json
 #. [miningModal.importantNote.1]
 #. defaultMessage is:
-#. mining on each CPU core require 2.5x GB memory.
+#. mining on each CPU thread require 2.5 GB memory.
 msgctxt "miningModal.importantNote.1"
-msgid "mining on each CPU core require 2.5x GB memory."
+msgid "mining on each CPU thread require 2.5 GB memory."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/MyTicketsTab/messages.json

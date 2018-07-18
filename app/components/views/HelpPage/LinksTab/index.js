@@ -16,17 +16,22 @@ export const LinksTabHeader = () => (
 
 export const LinksTab = () => (
   <div className="help-icons-list">
+    <HelpLink className={"help-common"} href="https://support.excc.co">
+      <T id="help.support" m="Support" />{" "}
+    </HelpLink>
     <HelpLink className={"help-github-icon"} href="https://github.com/EXCCoin/exilibrium">
       <T id="help.github" m="Github" />
     </HelpLink>
-    <HelpLink className={"help-docs-icon"} href="https://docs.excc.org/">
-      <T id="help.documentation" m="Documentation" />
+    <HelpLink className={"help-twitter-icon"} href="https://twitter.com/EXCC_Team">
+      <T id="help.twitter" m="Twitter" />{" "}
     </HelpLink>
-    <HelpLink className={"help-stakepools-icon"} href="https://excc.co/stakepools">
-      <T id="help.stakepools" m=" Stakepools" />
+    <HelpLink
+      className={"help-forum-icon"}
+      href="https://bitcointalk.org/index.php?topic=2375067.msg24224448#msg24224448">
+      <T id="help.forum" m="Bitcointalk" />{" "}
     </HelpLink>
-    <HelpLink className={"help-forum-icon"} href="https://forum.excc.co">
-      <T id="help.forum" m="Forum" />{" "}
+    <HelpLink className={"help-stakepools-icon"} href="https://stakepool.excc.co/">
+      <T id="help.stakepools" m="Stakepool" />
     </HelpLink>
   </div>
 );

@@ -35,13 +35,13 @@ const Modal = ({
 
           Further, storing the seed on a computer file without backing it up on a physical medium (written down piece of paper stored in a secure location) can cause loss of funds if the local wallet file gets corrupted or is otherwise unavailable (due to hardware failure or any other number of issues).
 
-          If you want to learn more about seed security, please check our seed FAQ located at {seedFaqURL}.
+          If you want to learn more about seed security, please check our Setup Guide located at {seedFaqURL}.
 
           If you are sure you understand the risks and still want to copy the seed to the clipboard, please type the phrase {confirmationPhrase} in the box below and the seed will be copied to the clipboard.`}
           values={{
             seedFaqURL: (
-              <ExternalLink href="https://docs.excc.co/faq/wallets-and-seeds/">
-                https://docs.excc.co/faq/wallets-and-seeds/
+              <ExternalLink href="https://support.excc.co/hc/en-us/articles/360004872972-Exilibrium-setup-guide">
+                https://support.excc.co/hc/en-us/articles/360004872972-Exilibrium-setup-guide
               </ExternalLink>
             ),
             confirmationPhrase: (

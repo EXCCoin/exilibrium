@@ -15,7 +15,7 @@
 }
 
 .overview-balance-label {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 11px;
   color: #596d81;
 }
@@ -68,7 +68,7 @@
 .overview-balance-spendable-locked-label {
   font-size: 11px;
   color: #596d81;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 .recent-transactions {
@@ -79,7 +79,7 @@
   border-bottom: 1px solid transparent;
   color: #596d81;
   font-size: 16px;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   margin: 0px 0px 8px 16px;
 }
 
@@ -102,9 +102,29 @@
   background-position: 16px 20px;
   background-size: 20px;
   text-decoration: none;
-  color: @input-color-default;
+  color: #596d81;
+  font-weight: bold;
   margin-bottom: 1px;
   cursor: pointer;
+}
+
+.overview-no-tickets > .tutorial-item {
+  display: block;
+  background-color: #fff;
+  padding: 20px 20px 20px 48px;
+  background-repeat: no-repeat;
+  background-position: 16px 20px;
+  background-size: 20px;
+  text-decoration: none;
+  color: #596d81;
+  background-image: @help-icon;
+  margin-bottom: 1px;
+  cursor: pointer;
+  font-weight: bold;
+
+  &:hover {
+    color: #fa5baa;
+  }
 }
 
 .overview-no-transactions > a.receive {

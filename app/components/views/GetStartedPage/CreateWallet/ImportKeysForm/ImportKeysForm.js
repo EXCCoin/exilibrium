@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FormattedMessage as T } from "react-intl";
+import { shell } from "electron";
 
 import { KeyBlueButton } from "buttons";
 import { TextInput } from "inputs";
@@ -75,17 +76,32 @@ class ImportKeysForm extends Component {
       selectedFileName,
       encryptedString,
       encryptionPassword,
-      //  copayPassphrase,
-      // new props
+      onReturnToExistingOrNewScreen,
       isCreatingWallet
     } = this.props;
     const hasMnemonic = Boolean(mnemonic.length);
     const isValid = this.isValid();
     return (
       <div className="import-keys-wrapper">
+        <div className="create-wallet-go-back">
+          <div className="create-wallet-go-back-button" onClick={onReturnToExistingOrNewScreen} />
+        </div>
         <h2>
           <T id="wallet.importKeys.title" m="Import keys from copay wallet" />
         </h2>
+        <div>
+          <T
+            id="wallet.importKeys.tutorial.info"
+            m="If you need more comprehensive guide on importing keys from Copay wallet, you can check then"
+          />{" "}
+          <span
+            className="import-keys-tutorial-link"
+            onClick={() =>
+              shell.openExternal("https://support.excc.co/hc/en-us/articles/360006702912")
+            }>
+            <T id="wallet.importKeys.tutorial.link" m="here" />
+          </span>
+        </div>
         <h3>
           <T id="wallet.importKeys.step1.title" m="1. Export from copay" />
         </h3>
@@ -155,13 +171,6 @@ class ImportKeysForm extends Component {
             </KeyBlueButton>
           </div>
         )}
-        {/*encryptedString && (
-          <PasswordInput
-            id="copay-passphrase"
-            placeholder="Please provide your copay passphrase (if applicable)"
-            value={copayPassphrase}
-          />
-        )*/}
         {hasMnemonic && (
           <div className="keys-import-mnemonic-section">
             <h3>
