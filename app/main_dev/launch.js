@@ -129,7 +129,7 @@ export const launchEXCCD = (
   if (os.platform() === "win32") {
     try {
       const util = require("util");
-      const win32ipc = require("./node_modules/win32ipc/build/Release/win32ipc.node");
+      const win32ipc = require("../node_modules/win32ipc/build/Release/win32ipc.node");
       const pipe = win32ipc.createPipe("out");
       args.push(util.format("--piperx=%d", pipe.readEnd));
     } catch (e) {
@@ -218,7 +218,7 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
   if (os.platform() === "win32") {
     try {
       const util = require("util");
-      const win32ipc = require("../../node_modules/win32ipc/build/Release/win32ipc.node");
+      const win32ipc = require("../node_modules/win32ipc/build/Release/win32ipc.node");
       const pipe = win32ipc.createPipe("out");
       args.push(util.format("--piperx=%d", pipe.readEnd));
     } catch (e) {
