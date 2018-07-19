@@ -206,16 +206,14 @@ export const locale = createSelector(
 
 const getTxTypeStr = type => TRANSACTION_TYPES[type];
 
-export const txURLBuilder = createSelector([network], network => txHash =>
-  `https://${network !== "testnet" ? "explorer" : network}.exccdata.co/${
-    network === "testnet" ? "explorer/" : ""
-  }tx/${txHash}`
+export const txURLBuilder = createSelector([network], () => txHash =>
+  // COMBAK: before v1.0.0
+  `https://explorer2.excc.co/tx/${txHash}`
 );
 
-export const blockURLBuilder = createSelector([network], network => txHash =>
-  `https://${network !== "testnet" ? "explorer" : network}.exccdata.co/${
-    network === "testnet" ? "explorer/" : ""
-  }block/${txHash}`
+export const blockURLBuilder = createSelector([network], () => txHash =>
+  // COMBAK: before v1.0.0
+  `https://explorer2.excc.co/block/${txHash}`
 );
 
 export const transactionNormalizer = createSelector(

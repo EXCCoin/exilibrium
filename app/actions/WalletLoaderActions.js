@@ -337,6 +337,7 @@ export function clearStakePoolConfigNewWallet() {
 export const NEEDED_BLOCKS_DETERMINED = "NEEDED_BLOCKS_DETERMINED";
 export function determineNeededBlocks() {
   return (dispatch, getState) => {
+    // COMBAK: before v1.0.0
     const explorerInfoURL = `http://explorer2.excc.co/api/status`;
     axios
       .get(explorerInfoURL, { timeout: 5000 })

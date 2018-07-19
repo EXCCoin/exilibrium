@@ -120,9 +120,6 @@ export const launchEXCCD = (
     args.push("--testnet");
   }
 
-  args.push("--generate");
-  args.push("--miningaddr=22tmbV8PzH1Jy3qaLxFUBNtPK6bMU6JVdqvK");
-
   const exccdExe = getExecutablePath("exccd", argv.customBinPath);
   if (!fs.existsSync(exccdExe)) {
     logger.log("error", "The exccd file does not exists");
