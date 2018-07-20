@@ -87,7 +87,7 @@ function getWalletServiceSuccess(walletService) {
     if (walletCreateExisting) {
       setTimeout(() => {
         dispatch(rescanAttempt(0)).then(goHomeCb);
-      }, 1000);
+      }, 3000);
     } else if (
       walletCreateResponse === null &&
       fetchHeadersResponse !== null &&
@@ -95,7 +95,7 @@ function getWalletServiceSuccess(walletService) {
     ) {
       setTimeout(() => {
         dispatch(rescanAttempt(fetchHeadersResponse.getFirstNewBlockHeight())).then(goHomeCb);
-      }, 1000);
+      }, 3000);
     } else {
       dispatch(getStartupWalletInfo()).then(goHomeCb);
     }
