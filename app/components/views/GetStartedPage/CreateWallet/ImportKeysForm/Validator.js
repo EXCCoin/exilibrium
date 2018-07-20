@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { FormattedMessage as T } from "react-intl";
 
-import { cond } from "fp";
-
 @autobind
 export default class Validator extends Component {
   state = { errorMessage: "" };
@@ -31,28 +29,18 @@ export default class Validator extends Component {
   }
   checkFileMetadata(selectedFile) {
     const correctExtension = selectedFile.name.includes(".json");
-    const correctContentType = selectedFile.type.toLowerCase().includes("json");
 
-    if (!correctExtension || !correctContentType) {
+    if (!correctExtension) {
       this.setState({
-        errorMessage: cond([
-          [
-            !correctExtension,
-            <T
-              id="wallet.importkeys.error.incorrectExtension"
-              m="Please select file with extension '.json'. Selected: {fileName}"
-              values={{ fileName: selectedFile.name }}
-            />
-          ],
-          [
-            !correctContentType,
-            <T
-              id="wallet.importkeys.error.incorrectType"
-              m={"Please select file of type 'application/json'. Selected: {fileType}"}
-              values={{ fileType: selectedFile.type }}
-            />
-          ]
-        ])
+        errorMessage: !correctExtension ? (
+          <T
+            id="wallet.importkeys.error.incorrectExtension"
+            m="Please select file with extension '.json'. Selected: {fileName}"
+            values={{ fileName: selectedFile.name }}
+          />
+        ) : (
+          ""
+        )
       });
       return false;
     }

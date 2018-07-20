@@ -42,7 +42,7 @@ function closeClis() {
 }
 
 function closeEXCCD() {
-  if (require("is-running")(exccdPID) && os.platform() !== "win32") {
+  if (require("is-running")(exccdPID)) {
     logger.log("info", `Sending SIGINT to exccd at pid:${exccdPID}`);
     process.kill(exccdPID, "SIGINT");
   }
@@ -50,7 +50,7 @@ function closeEXCCD() {
 
 export const closeEXCCW = () => {
   try {
-    if (require("is-running")(exccwPID) && os.platform() !== "win32") {
+    if (require("is-running")(exccwPID)) {
       logger.log("info", `Sending SIGINT to exccwallet at pid:${exccwPID}`);
       process.kill(exccwPID, "SIGINT");
     }
@@ -126,22 +126,15 @@ export const launchEXCCD = (
     return;
   }
 
-  if (os.platform() === "win32") {
-    try {
-      const util = require("util");
-      const win32ipc = require("./node_modules/win32ipc/build/Release/win32ipc.node");
-      const pipe = win32ipc.createPipe("out");
-      args.push(util.format("--piperx=%d", pipe.readEnd));
-    } catch (e) {
-      logger.log("error", `can't find proper module to launch exccd: ${e}`);
-    }
+  if (os.platform() !== "win32") {
+    args.push("--piperx=3");
   }
 
   logger.log("info", `Starting ${exccdExe} with ${args}`);
 
   const exccd = spawn(exccdExe, args, {
     detached: os.platform() === "win32",
-    stdio: ["ignore", "pipe", "pipe"]
+    stdio: ["ignore", "pipe", "pipe", "pipe"]
   });
 
   exccd.on("error", err => {
@@ -215,18 +208,10 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
     return;
   }
 
-  if (os.platform() === "win32") {
-    try {
-      const util = require("util");
-      const win32ipc = require("../../node_modules/win32ipc/build/Release/win32ipc.node");
-      const pipe = win32ipc.createPipe("out");
-      args.push(util.format("--piperx=%d", pipe.readEnd));
-    } catch (e) {
-      logger.log("error", `can't find proper module to launch exccwallet: ${e}`);
-    }
-  } else {
-    args.push("--rpclistenerevents");
-    args.push("--pipetx=4");
+  if (os.platform() !== "win32") {
+    // The spawn() below opens a pipe on fd 4
+    // No luck getting this to work on win7.
+    args.push("--piperx=4");
   }
 
   // Add any extra args if defined.
