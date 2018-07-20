@@ -132,9 +132,15 @@ export const launchEXCCD = (
 
   logger.log("info", `Starting ${exccdExe} with ${args}`);
 
+  const exccdStdio = ["ignore", "pipe", "pipe"];
+
+  if (os.platform() === "win32") {
+    exccdStdio.push("pipe");
+  }
+
   const exccd = spawn(exccdExe, args, {
     detached: os.platform() === "win32",
-    stdio: ["ignore", "pipe", "pipe", "pipe"]
+    stdio: exccdStdio
   });
 
   exccd.on("error", err => {
@@ -211,7 +217,8 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
   if (os.platform() !== "win32") {
     // The spawn() below opens a pipe on fd 4
     // No luck getting this to work on win7.
-    args.push("--piperx=4");
+    args.push("--rpclistenerevents");
+    args.push("--pipetx=4");
   }
 
   // Add any extra args if defined.
