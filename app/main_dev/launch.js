@@ -126,10 +126,6 @@ export const launchEXCCD = (
     return;
   }
 
-  if (os.platform() !== "win32") {
-    args.push("--piperx=3");
-  }
-
   logger.log("info", `Starting ${exccdExe} with ${args}`);
 
   const exccdStdio = ["ignore", "pipe", "pipe"];
