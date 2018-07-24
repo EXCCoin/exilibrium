@@ -8,9 +8,9 @@ import {
 } from "./ClientActions";
 import { getVersionServiceAttempt } from "./VersionActions";
 import { getAvailableWallets, WALLETREMOVED_FAILED } from "./DaemonActions";
-import { getWalletCfg, getExccdCert } from "config";
+import { getGlobalCfg, getWalletCfg, getExccdCert } from "config";
 import { getWalletPath } from "main_dev/paths";
-import { isTestNet } from "selectors";
+import { isTestNet, explorer } from "selectors";
 
 const MAX_RPC_RETRIES = 5;
 const RPC_RETRY_DELAY = 5000;
@@ -230,6 +230,31 @@ export const startRpcRequestFunc = isRetry => (dispatch, getState) => {
         dispatch(startRpcRequestFunc(true));
       }
     });
+};
+
+export const EXPLORER_DATA_SUCCESS = "EXPLORER_DATA_SUCCESS";
+export const EXPLORER_DATA_FAIL = "EXPLORER_DATA_FAIL";
+
+export const fetchExplorerData = () => async (dispatch, getState) => {
+  const config = getGlobalCfg();
+  try {
+    const { address: apiAddress } = getState().api;
+    const { data: explorerData } = await axios.get(`${apiAddress}/explorer.json`);
+    if (explorerData) {
+      config.set("explorer", explorerData);
+      dispatch({ type: EXPLORER_DATA_SUCCESS, explorerData });
+    } else {
+      throw new Error("Got empty response from API");
+    }
+  } catch (error) {
+    wallet.log("error", `Cannot fetch explorer data: ${error}`);
+    const savedExplorerData = config.get("explorer");
+    if (savedExplorerData) {
+      dispatch({ type: EXPLORER_DATA_SUCCESS, savedExplorerData });
+    } else {
+      dispatch({ type: EXPLORER_DATA_FAIL, error });
+    }
+  }
 };
 
 export const DISCOVERADDRESS_INPUT = "DISCOVERADDRESS_INPUT";
