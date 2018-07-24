@@ -41,6 +41,10 @@ const initialState = {
     activeStakePoolConfig: false,
     selectedStakePool: null
   },
+  explorer: {
+    address: null,
+    slugs: {}
+  },
   daemon: {
     appVersion: pkg.version,
     daemonRemote: false,

@@ -44,6 +44,7 @@ const mapStateToProps = selectorMap({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      fetchExplorerData: walletLoaderActions.fetchExplorerData,
       determineNeededBlocks: walletLoaderActions.determineNeededBlocks,
       prepStartDaemon: daemonActions.prepStartDaemon,
       onShowTutorial: daemonActions.showTutorial,

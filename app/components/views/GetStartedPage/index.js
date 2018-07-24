@@ -41,7 +41,8 @@ class GetStartedPage extends React.Component {
       onGetAvailableWallets,
       onStartWallet,
       prepStartDaemon,
-      determineNeededBlocks
+      determineNeededBlocks,
+      fetchExplorerData
     } = this.props;
     if (!getWalletReady) {
       onGetAvailableWallets().then(({ previousWallet }) => {
@@ -51,7 +52,9 @@ class GetStartedPage extends React.Component {
       });
     }
     if (!getNeededBlocks) {
-      determineNeededBlocks();
+      fetchExplorerData().then(() => {
+        determineNeededBlocks();
+      });
     }
     if (!getDaemonStarted) {
       setTimeout(() => prepStartDaemon(), 1000);

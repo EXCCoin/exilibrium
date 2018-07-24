@@ -13,11 +13,13 @@ import locales from "./locales";
 import sidebar from "./sidebar";
 import snackbar from "./snackbar";
 import statistics from "./statistics";
+import explorer from "./explorer";
 
 const rootReducer = combineReducers({
   api,
   control,
   daemon,
+  explorer,
   grpc,
   locales,
   notifications,

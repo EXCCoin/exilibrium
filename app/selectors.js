@@ -166,6 +166,7 @@ export const lockedBalance = createSelector(
 
 export const networks = () => [{ name: "testnet" }, { name: "mainnet" }];
 export const network = get(["daemon", "network"]);
+export const explorer = get(["explorer"]);
 export const isTestNet = compose(
   eq("testnet"),
   network
@@ -207,14 +208,12 @@ export const locale = createSelector(
 
 const getTxTypeStr = type => TRANSACTION_TYPES[type];
 
-export const txURLBuilder = createSelector([network], () => txHash =>
-  // COMBAK: before v1.0.0
-  `https://explorer2.excc.co/tx/${txHash}`
+export const txURLBuilder = createSelector([explorer], ({ address, slugs }) => txHash =>
+  `${address}/${slugs.transaction}/${txHash}`
 );
 
-export const blockURLBuilder = createSelector([network], () => txHash =>
-  // COMBAK: before v1.0.0
-  `https://explorer2.excc.co/block/${txHash}`
+export const blockURLBuilder = createSelector([explorer], ({ address, slugs }) => txHash =>
+  `${address}/${slugs.block}/${txHash}`
 );
 
 export const transactionNormalizer = createSelector(
