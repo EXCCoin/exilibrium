@@ -361,21 +361,27 @@ export function clearStakePoolConfigNewWallet() {
 
 export const NEEDED_BLOCKS_DETERMINED = "NEEDED_BLOCKS_DETERMINED";
 export function determineNeededBlocks() {
-  return (dispatch, getState) => {
-    // COMBAK: before v1.0.0
-    const explorerInfoURL = `http://explorer2.excc.co/api/status`;
-    axios
-      .get(explorerInfoURL, { timeout: 5000 })
-      .then(response => {
-        const { db_height: neededBlocks } = response.data;
-        wallet.log(
-          "info",
-          `Determined needed block height as ${neededBlocks}, testnet: ${isTestNet(getState())}`
-        );
-        dispatch({ neededBlocks, type: NEEDED_BLOCKS_DETERMINED });
-      })
-      .catch(error => {
-        console.log("Unable to obtain latest block number.", error);
+  return async (dispatch, getState) => {
+    const { address, slugs } = explorer(getState());
+    try {
+      const response = await axios.get(`${address}/${slugs.status}`, {
+        timeout: 5000
       });
+      const { db_height: neededBlocks } = response.data;
+      if (neededBlocks) {
+        wallet.log("info", `Determined needed block height as ${neededBlocks}.`);
+        dispatch({ neededBlocks, type: NEEDED_BLOCKS_DETERMINED });
+      } else {
+        throw new Error("Incompatible API response.");
+      }
+    } catch (error) {
+      wallet.log("error", `Unable to obtain latest block number: ${error}`);
+      const { credentials } = getState().daemon;
+      const neededBlocks = await wallet.getBlockCount(credentials, isTestNet(getState()));
+      if (neededBlocks) {
+        wallet.log("info", `Determined needed block height from exccd as ${neededBlocks}.`);
+        dispatch({ neededBlocks, type: NEEDED_BLOCKS_DETERMINED });
+      }
+    }
   };
 }
