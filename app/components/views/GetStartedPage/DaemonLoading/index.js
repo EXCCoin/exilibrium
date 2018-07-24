@@ -20,14 +20,15 @@ class DaemonLoading extends React.Component {
   }
 
   componentDidMount() {
+    const { setTimeout, setInterval } = this.props;
     this.mounted = true;
-    this.timeoutId = this.props.setTimeout(() => {
+    this.timeoutId = setTimeout(() => {
       if (this.mounted) {
         this.setState({ showLongWaitMessage: true });
       }
     }, 2000);
     const neededBlocksInterval = this.props.network === "mainnet" ? 5 * 60 * 1000 : 2 * 60 * 1000;
-    this.props.setInterval(this.props.determineNeededBlocks, neededBlocksInterval);
+    setInterval(this.props.determineNeededBlocks, neededBlocksInterval);
   }
 
   render() {

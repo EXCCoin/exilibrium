@@ -9,7 +9,8 @@ const mapStateToProps = selectorMap({
   unconfiguredStakePools: selectors.unconfiguredStakePools,
   defaultStakePool: selectors.defaultStakePool,
   stakePool: selectors.selectedStakePool,
-  rescanRequest: selectors.rescanRequest
+  rescanRequest: selectors.rescanRequest,
+  apiAddress: selectors.apiAddress
 });
 
 const mapDispatchToProps = dispatch =>

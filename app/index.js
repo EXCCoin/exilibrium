@@ -19,6 +19,9 @@ const globalCfg = getGlobalCfg();
 const locale = globalCfg.get("locale");
 
 const initialState = {
+  api: {
+    address: "https://api.excc.co/v1"
+  },
   settings: {
     currentSettings: {
       locale,
@@ -37,6 +40,10 @@ const initialState = {
     currentStakePoolConfigSuccessMessage: "",
     activeStakePoolConfig: false,
     selectedStakePool: null
+  },
+  explorer: {
+    address: null,
+    slugs: {}
   },
   daemon: {
     appVersion: pkg.version,

@@ -8,9 +8,9 @@ import {
 } from "./ClientActions";
 import { getVersionServiceAttempt } from "./VersionActions";
 import { getAvailableWallets, WALLETREMOVED_FAILED } from "./DaemonActions";
-import { getWalletCfg, getExccdCert } from "config";
+import { getGlobalCfg, getWalletCfg, getExccdCert } from "config";
 import { getWalletPath } from "main_dev/paths";
-import { isTestNet } from "selectors";
+import { isTestNet, explorer } from "selectors";
 
 const MAX_RPC_RETRIES = 5;
 const RPC_RETRY_DELAY = 5000;
@@ -232,6 +232,31 @@ export const startRpcRequestFunc = isRetry => (dispatch, getState) => {
     });
 };
 
+export const EXPLORER_DATA_SUCCESS = "EXPLORER_DATA_SUCCESS";
+export const EXPLORER_DATA_FAIL = "EXPLORER_DATA_FAIL";
+
+export const fetchExplorerData = () => async (dispatch, getState) => {
+  const config = getGlobalCfg();
+  try {
+    const { address: apiAddress } = getState().api;
+    const { data: explorerData } = await axios.get(`${apiAddress}/explorer.json`);
+    if (explorerData) {
+      config.set("explorer", explorerData);
+      dispatch({ type: EXPLORER_DATA_SUCCESS, explorerData });
+    } else {
+      throw new Error("Got empty response from API");
+    }
+  } catch (error) {
+    wallet.log("error", `Cannot fetch explorer data: ${error}`);
+    const savedExplorerData = config.get("explorer");
+    if (savedExplorerData) {
+      dispatch({ type: EXPLORER_DATA_SUCCESS, savedExplorerData });
+    } else {
+      dispatch({ type: EXPLORER_DATA_FAIL, error });
+    }
+  }
+};
+
 export const DISCOVERADDRESS_INPUT = "DISCOVERADDRESS_INPUT";
 export const DISCOVERADDRESS_FAILED_INPUT = "DISCOVERADDRESS_FAILED_INPUT";
 export const DISCOVERADDRESS_ATTEMPT = "DISCOVERADDRESS_ATTEMPT";
@@ -336,21 +361,27 @@ export function clearStakePoolConfigNewWallet() {
 
 export const NEEDED_BLOCKS_DETERMINED = "NEEDED_BLOCKS_DETERMINED";
 export function determineNeededBlocks() {
-  return (dispatch, getState) => {
-    // COMBAK: before v1.0.0
-    const explorerInfoURL = `http://explorer2.excc.co/api/status`;
-    axios
-      .get(explorerInfoURL, { timeout: 5000 })
-      .then(response => {
-        const { db_height: neededBlocks } = response.data;
-        wallet.log(
-          "info",
-          `Determined needed block height as ${neededBlocks}, testnet: ${isTestNet(getState())}`
-        );
-        dispatch({ neededBlocks, type: NEEDED_BLOCKS_DETERMINED });
-      })
-      .catch(error => {
-        console.log("Unable to obtain latest block number.", error);
+  return async (dispatch, getState) => {
+    const { address, slugs } = explorer(getState());
+    try {
+      const response = await axios.get(`${address}/${slugs.status}`, {
+        timeout: 5000
       });
+      const { db_height: neededBlocks } = response.data;
+      if (neededBlocks) {
+        wallet.log("info", `Determined needed block height as ${neededBlocks}.`);
+        dispatch({ neededBlocks, type: NEEDED_BLOCKS_DETERMINED });
+      } else {
+        throw new Error("Incompatible API response.");
+      }
+    } catch (error) {
+      wallet.log("error", `Unable to obtain latest block number: ${error}`);
+      const { credentials } = getState().daemon;
+      const neededBlocks = await wallet.getBlockCount(credentials, isTestNet(getState()));
+      if (neededBlocks) {
+        wallet.log("info", `Determined needed block height from exccd as ${neededBlocks}.`);
+        dispatch({ neededBlocks, type: NEEDED_BLOCKS_DETERMINED });
+      }
+    }
   };
 }
