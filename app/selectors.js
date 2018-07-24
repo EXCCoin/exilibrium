@@ -21,6 +21,7 @@ import { TicketTypes, decodeVoteScript } from "./helpers/tickets";
 
 const EMPTY_ARRAY = []; // Maintaining identity (will) improve performance;
 
+export const apiAddress = get(["api", "address"]);
 export const daemonError = get(["daemon", "daemonError"]);
 export const walletError = get(["daemon", "walletError"]);
 export const appVersion = get(["daemon", "appVersion"]);

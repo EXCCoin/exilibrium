@@ -3,6 +3,7 @@ import { routerReducer as routing } from "react-router-redux";
 import grpc from "./grpc";
 import walletLoader from "./walletLoader";
 import notifications from "./notifications";
+import api from "./api";
 import control from "./control";
 import version from "./version";
 import settings from "./settings";
@@ -14,19 +15,20 @@ import snackbar from "./snackbar";
 import statistics from "./statistics";
 
 const rootReducer = combineReducers({
-  grpc,
-  walletLoader,
-  notifications,
+  api,
   control,
-  version,
-  settings,
-  stakepool,
   daemon,
+  grpc,
   locales,
+  notifications,
   routing,
+  settings,
   sidebar,
   snackbar,
-  statistics
+  stakepool,
+  statistics,
+  version,
+  walletLoader
 });
 
 export default rootReducer;

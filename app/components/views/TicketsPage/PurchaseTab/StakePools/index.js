@@ -34,7 +34,7 @@ class StakePools extends React.Component {
           link: (
             <a
               className="stakepool-link"
-              onClick={() => shell.openExternal("http://api.excc.co/v1/stakepools.json")}>
+              onClick={() => shell.openExternal(`${this.props.apiAddress}/stakepools.json`)}>
               <T id="stake.discoverStakeOoolsAPILink" m="this link" />
             </a>
           )
