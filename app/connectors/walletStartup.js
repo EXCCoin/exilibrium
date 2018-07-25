@@ -33,6 +33,7 @@ const mapStateToProps = selectorMap({
   rescanStartBlock: selectors.rescanStartBlock,
   rescanCurrentBlock: selectors.rescanCurrentBlock,
   availableWallets: selectors.availableWalletsSelect,
+  modalVisible: selectors.modalVisible,
   walletName: selectors.getWalletName,
   previousWallet: selectors.previousWallet,
   availableLanguages: selectors.sortedLocales,

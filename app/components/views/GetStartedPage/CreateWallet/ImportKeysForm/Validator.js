@@ -49,12 +49,20 @@ export default class Validator extends Component {
   }
 
   decryptionFailed(err) {
+    let errorMessage = "Unknown error";
+    switch (err.toString()) {
+      case "CORRUPT: ccm: tag doesn't match":
+        errorMessage = "Incorrect password";
+        break;
+      default:
+        errorMessage = err.toString();
+    }
     this.setState({
       errorMessage: (
         <T
           id="wallet.importkeys.error.decryptionFailed"
-          m="File decryption failed, reason: {err}"
-          values={{ err }}
+          m="File decryption failed: {errorMessage}"
+          values={{ errorMessage }}
         />
       )
     });

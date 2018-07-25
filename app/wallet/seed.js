@@ -48,7 +48,10 @@ export const getSeedService = createSelector(
         return new Promise((resolve, reject) => {
           try {
             const request = new DecodeSeedRequest();
-            request.setUserInput(mnemonic, password);
+            request.setUserInput(mnemonic);
+            if (password) {
+              request.setPassphrase(password);
+            }
             seeder.decodeSeed(request, (err, response) => (err ? reject(err) : resolve(response)));
           } catch (err) {
             reject(err);

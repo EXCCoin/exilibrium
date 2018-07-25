@@ -11,7 +11,7 @@ export default ({ onReturnToExistingOrNewScreen }) => (
       <FileHandler {...{ validator }}>
         {({ fileHandler, encryptedString, selectedFileName }) => (
           <Decryptor {...{ encryptedString, validator }}>
-            {({ decryptor, mnemonic, walletName, encryptionPassword }) => (
+            {({ decryptor, mnemonic, mnemonicHasPassphrase, walletName, encryptionPassword }) => (
               <ImportKeysForm
                 {...{
                   onReturnToExistingOrNewScreen,
@@ -19,6 +19,7 @@ export default ({ onReturnToExistingOrNewScreen }) => (
                   fileHandler,
                   decryptor,
                   mnemonic,
+                  mnemonicHasPassphrase,
                   walletName,
                   encryptedString,
                   selectedFileName,

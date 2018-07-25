@@ -166,7 +166,6 @@ export default class MiningModal extends React.Component {
           </div>
           <KeyBlueButton
             disabled={this.props.miningEnabled ? false : !isValid}
-            style={{ float: "right" }}
             className="mining-modal-save-button"
             onClick={this.onSubmit}>
             {miningEnabled ? (
