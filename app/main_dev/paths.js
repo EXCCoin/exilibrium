@@ -28,14 +28,13 @@ export function getWalletsDirectoryPathNetwork(testnet) {
   return path.join(appDataDirectory(), "wallets", testnet ? "testnet" : "mainnet");
 }
 
-export function getWalletPath(testnet, walletPath = "", testnet2) {
+export function getWalletPath(testnet, walletPath = "") {
   const testnetStr = testnet ? "testnet" : "mainnet";
-  const testnet2Str = testnet2 === true ? "testnet2" : testnet2 === false ? "mainnet" : "";
-  return path.join(getWalletsDirectoryPath(), testnetStr, walletPath, testnet2Str);
+  return path.join(getWalletsDirectoryPath(), testnetStr, walletPath);
 }
 
-export function getDefaultWalletDirectory(testnet, testnet2) {
-  return getWalletPath(testnet, "default-wallet", testnet2);
+export function getDefaultWalletDirectory(testnet) {
+  return getWalletPath(testnet, "default-wallet");
 }
 
 export function getDefaultWalletFilesPath(testnet, filePath = "") {
@@ -44,12 +43,12 @@ export function getDefaultWalletFilesPath(testnet, filePath = "") {
 
 export function getWalletDBPathFromWallets(testnet, walletPath) {
   const network = testnet ? "testnet" : "mainnet";
-  const networkFolder = testnet ? "testnet2" : "mainnet";
+  const networkFolder = testnet ? "testnet" : "mainnet";
   return path.join(getWalletsDirectoryPath(), network, walletPath, networkFolder, "wallet.db");
 }
 
 export function getExilibriumWalletDBPath(testnet) {
-  return path.join(appDataDirectory(), testnet ? "testnet2" : "mainnet", "wallet.db");
+  return path.join(appDataDirectory(), testnet ? "testnet" : "mainnet", "wallet.db");
 }
 
 export function exccctlCfg(configPath) {
@@ -121,7 +120,7 @@ export function checkAndInitWalletCfg(testnet) {
     if (fs.pathExistsSync(getExilibriumWalletDBPath(testnet))) {
       fs.copySync(
         getExilibriumWalletDBPath(testnet),
-        path.join(getDefaultWalletDirectory(testnet, testnet), "wallet.db")
+        path.join(getDefaultWalletDirectory(testnet), "wallet.db")
       );
     }
 
