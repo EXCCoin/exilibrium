@@ -5,8 +5,8 @@ export const TestNetParams = {
   TicketExpiry: 6144, // 6*TicketPoolSize
   CoinbaseMaturity: 16,
   SStxChangeMaturity: 1,
-  GenesisTimestamp: 1531731600,
-  TargetTimePerBlock: 2 * 60 // in seconds
+  GenesisTimestamp: 1532420489,
+  TargetTimePerBlock: 2.5 * 60 // in seconds
 };
 
 export const MainNetParams = {

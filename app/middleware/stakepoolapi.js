@@ -9,9 +9,9 @@ function stakepPoolInfoResponseToConfig({ data = [] }) {
     .map(({ Host, Network, APIVersionsSupported }) => ({ Host, Network, APIVersionsSupported }));
 }
 
-export function stakePoolInfo(cb) {
+export function stakePoolInfo(cb, apiAddress) {
   axios
-    .get("https://api.excc.co/v1/stakepools.json")
+    .get(`${apiAddress}/stakepools.json`)
     .then(response => {
       cb(stakepPoolInfoResponseToConfig(response));
     })

@@ -883,15 +883,7 @@ const allStakePools = createSelector(
     )
 );
 
-const networkStakePools = createSelector([allStakePools, network], (pools, network) =>
-  filter(
-    compose(
-      eq(network),
-      get("Network")
-    ),
-    pools
-  )
-);
+const networkStakePools = createSelector([allStakePools], pools => pools);
 
 export const configuredStakePools = createSelector(
   [networkStakePools],
