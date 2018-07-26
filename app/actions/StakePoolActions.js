@@ -184,13 +184,12 @@ export const setStakePoolVoteChoices = (stakePool, voteChoices) => dispatch =>
     .catch(error => dispatch({ error, type: SETSTAKEPOOLVOTECHOICES_FAILED }));
 
 export const DISCOVERAVAILABLESTAKEPOOLS_SUCCESS = "DISCOVERAVAILABLESTAKEPOOLS_SUCCESS";
-export const discoverAvailableStakepools = () => (dispatch, getState) =>
-  getStakePoolInfo().then(foundStakepoolConfigs => {
+export const discoverAvailableStakepools = () => (dispatch, getState) => {
+  const state = getState();
+  return getStakePoolInfo(sel.apiAddress(state)).then(foundStakepoolConfigs => {
     if (foundStakepoolConfigs) {
-      const {
-        daemon: { walletName }
-      } = getState();
-      const config = getWalletCfg(sel.isTestNet(getState()), walletName);
+      const { walletName } = state.daemon;
+      const config = getWalletCfg(sel.isTestNet(state), walletName);
       updateStakePoolConfig(config, foundStakepoolConfigs);
       dispatch({
         type: DISCOVERAVAILABLESTAKEPOOLS_SUCCESS,
@@ -198,6 +197,7 @@ export const discoverAvailableStakepools = () => (dispatch, getState) =>
       });
     } // TODO: add error notification after global snackbar is merged
   });
+};
 
 export const CHANGESELECTEDSTAKEPOOL = "CHANGESELECTEDSTAKEPOOL";
 export const changeSelectedStakePool = selectedStakePool => dispatch =>

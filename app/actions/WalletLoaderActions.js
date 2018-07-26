@@ -8,9 +8,9 @@ import {
 } from "./ClientActions";
 import { getVersionServiceAttempt } from "./VersionActions";
 import { getAvailableWallets, WALLETREMOVED_FAILED } from "./DaemonActions";
-import { getGlobalCfg, getWalletCfg, getExccdCert } from "config";
+import { getWalletCfg, getExccdCert } from "config";
 import { getWalletPath } from "main_dev/paths";
-import { isTestNet, explorer } from "selectors";
+import { isTestNet, explorer, apiAddress } from "selectors";
 
 const MAX_RPC_RETRIES = 5;
 const RPC_RETRY_DELAY = 5000;
@@ -236,19 +236,20 @@ export const EXPLORER_DATA_SUCCESS = "EXPLORER_DATA_SUCCESS";
 export const EXPLORER_DATA_FAIL = "EXPLORER_DATA_FAIL";
 
 export const fetchExplorerData = () => async (dispatch, getState) => {
-  const config = getGlobalCfg();
+  const state = getState();
+  const walletConfig = getWalletCfg(isTestNet(state));
   try {
-    const { address: apiAddress } = getState().api;
+    const { address: apiAddress } = state.api;
     const { data: explorerData } = await axios.get(`${apiAddress}/explorer.json`);
     if (explorerData) {
-      config.set("explorer", explorerData);
+      walletConfig.set("explorer", explorerData);
       dispatch({ type: EXPLORER_DATA_SUCCESS, explorerData });
     } else {
       throw new Error("Got empty response from API");
     }
   } catch (error) {
     wallet.log("error", `Cannot fetch explorer data: ${error}`);
-    const savedExplorerData = config.get("explorer");
+    const savedExplorerData = walletConfig.get("explorer");
     if (savedExplorerData) {
       dispatch({ type: EXPLORER_DATA_SUCCESS, savedExplorerData });
     } else {
@@ -343,13 +344,13 @@ export const CLEARSTAKEPOOLCONFIG = "CLEARSTAKEPOOLCONFIG";
 
 export function clearStakePoolConfigNewWallet() {
   return (dispatch, getState) => {
-    const {
-      daemon: { walletName }
-    } = getState();
-    const config = getWalletCfg(isTestNet(getState()), walletName);
+    const state = getState();
+    const { walletName } = state.daemon;
+    const testnet = isTestNet(state);
+    const config = getWalletCfg(testnet, walletName);
     config.delete("stakepools");
 
-    wallet.getStakePoolInfo().then(foundStakePoolConfigs => {
+    wallet.getStakePoolInfo(apiAddress(state)).then(foundStakePoolConfigs => {
       if (foundStakePoolConfigs) {
         const config = getWalletCfg(isTestNet(getState()), walletName);
         config.set("stakepools", foundStakePoolConfigs);

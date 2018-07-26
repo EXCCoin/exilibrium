@@ -4,6 +4,7 @@
 import { render } from "react-dom";
 import { AppContainer, setConfig } from "react-hot-loader";
 import { App } from "containers";
+import { eq } from "fp";
 import { createMemoryHistory } from "history";
 import configureStore from "./store/configureStore";
 import { getGlobalCfg } from "config";
@@ -20,7 +21,7 @@ const locale = globalCfg.get("locale");
 
 const initialState = {
   api: {
-    address: "https://api.excc.co/v1"
+    address: `https://api.excc.co/v1/${["mainnet", "testnet"].find(eq(globalCfg.get("network")))}`
   },
   settings: {
     currentSettings: {
