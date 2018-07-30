@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormattedMessage as T } from "react-intl";
 import { shell } from "electron";
 
-import { KeyBlueButton } from "buttons";
+import { KeyBlueButton, SeedDisplayButton } from "buttons";
 import { TextInput } from "inputs";
 import { createWallet } from "connectors";
 import CreatePassPhrase from "../CreateWalletForm/CreatePassPhrase";
@@ -13,42 +13,73 @@ import "style/ImportKeysForm.less";
 @autobind
 class ImportKeysForm extends Component {
   static propTypes = ImportKeysFormTypes;
-  state = {
-    passPhrase: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = this.getInitialState();
+  }
+
+  getInitialState() {
+    return {
+      passPhrase: "",
+      copayPassphrase: "",
+      seedHex: "",
+      showDecryptedMnemonic: false,
+      createWalletError: ""
+    };
+  }
 
   componentDidMount() {
     this.generateSeed();
   }
   resetFormState() {
     const { validator, decryptor, fileHandler } = this.props;
+    this.setState(() => this.getInitialState());
     validator.resetErrorMessage();
     decryptor.resetState();
     fileHandler.resetState();
   }
 
-  onCreateWallet() {
+  toggleDecryptedMnemonicVisibility() {
+    this.setState({ showDecryptedMnemonic: !this.state.showDecryptedMnemonic });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { mnemonic } = this.props;
+    if (prevProps.mnemonic.length < 12 && mnemonic.length >= 12) {
+      this.decodeMnemonic();
+    }
+  }
+
+  async decodeMnemonic() {
+    const { mnemonic } = this.props;
+    const { copayPassphrase, decode } = this.state;
+    const decoded = await decode(mnemonic.join(" "), copayPassphrase);
+    this.setState({ seedHex: Buffer.from(decoded.getDecodedSeed()).toString("hex") });
+  }
+
+  async onCreateWallet() {
     if (!this.isValid()) {
       return;
     }
     const { createWalletRequest, mnemonic } = this.props;
-    const { passPhrase } = this.state;
-    const pubpass = ""; // Temporarily disabled?
+    const { passPhrase, copayPassphrase, decode } = this.state;
     const mnemonicStr = mnemonic.join(" ");
     if (mnemonic.length) {
-      this.state
-        .decode(mnemonicStr)
-        .then(response => {
-          createWalletRequest(pubpass, passPhrase, response.getDecodedSeed(), true);
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      try {
+        const decoded = await decode(mnemonicStr, copayPassphrase);
+        createWalletRequest("", passPhrase, decoded.getDecodedSeed(), true);
+      } catch (e) {
+        this.setState({ createWalletError: e });
+      }
     }
   }
 
   setPassPhrase(passPhrase) {
     this.setState({ passPhrase });
+  }
+
+  onCopayPasswordChange(e) {
+    this.setState({ copayPassphrase: e.target.value });
   }
 
   generateSeed() {
@@ -60,18 +91,21 @@ class ImportKeysForm extends Component {
       })
     );
   }
-
   isValid() {
-    const { mnemonic } = this.props;
-    const { passPhrase } = this.state;
-    const seed = mnemonic.join("");
-    return Boolean(seed && passPhrase);
+    const { mnemonic, mnemonicHasPassphrase } = this.props;
+    const { passPhrase, copayPassphrase } = this.state;
+    const mnemonicNotEmpty = mnemonic.length >= 12;
+    if (mnemonicHasPassphrase) {
+      return Boolean(mnemonicNotEmpty && passPhrase && copayPassphrase);
+    }
+    return Boolean(mnemonicNotEmpty && passPhrase);
   }
   render() {
     const {
       decryptor,
       fileHandler,
       mnemonic,
+      mnemonicHasPassphrase,
       errorMessage,
       selectedFileName,
       encryptedString,
@@ -81,18 +115,19 @@ class ImportKeysForm extends Component {
     } = this.props;
     const hasMnemonic = Boolean(mnemonic.length);
     const isValid = this.isValid();
+
     return (
       <div className="import-keys-wrapper">
         <div className="create-wallet-go-back">
           <div className="create-wallet-go-back-button" onClick={onReturnToExistingOrNewScreen} />
         </div>
         <h2>
-          <T id="wallet.importKeys.title" m="Import keys from copay wallet" />
+          <T id="wallet.importKeys.title" m="Import keys from Copay wallet" />
         </h2>
         <div>
           <T
             id="wallet.importKeys.tutorial.info"
-            m="If you need more comprehensive guide on importing keys from Copay wallet, you can check then"
+            m="If you need more comprehensive guide on importing keys from Copay wallet, you can check it"
           />{" "}
           <span
             className="import-keys-tutorial-link"
@@ -102,31 +137,38 @@ class ImportKeysForm extends Component {
             <T id="wallet.importKeys.tutorial.link" m="here" />
           </span>
         </div>
+
         <h3>
-          <T id="wallet.importKeys.step1.title" m="1. Export from copay" />
+          <T id="wallet.importKeys.step1.title" m="1. Export from Copay" />
         </h3>
         <ul>
           <li>
             <T
               id="wallet.importKeys.step1.listItem1"
-              m="Transfer funds from java wallet to copay wallet"
+              m="You can import keys with file only through exporting from Copay wallet"
             />
           </li>
           <li>
             <T
               id="wallet.importKeys.step1.listItem2"
               m="Go to Settings -> Wallets -> Choose your wallet -> More Options -> Export Wallet ->
-            File/Text"
+              File/Text"
             />
           </li>
           <li>
-            <T id="wallet.importKeys.step1.listItem3" m="Set up encrytion password" />
+            <T id="wallet.importKeys.step1.listItem3" m="Set up encryption password" />
           </li>
           <li>
-            <T id="wallet.importKeys.step1.listItem4" m="Download file (save it as '.json' file)" />
+            <T
+              id="wallet.importKeys.step1.listItem4"
+              m="Download the file - save it as '.json' file"
+            />
           </li>
           <li>
-            <T id="wallet.importKeys.step1.listItem5" m="When file is uploaded, go to step 2" />
+            <T
+              id="wallet.importKeys.step1.listItem5"
+              m="Once the file is saved, you can move to step 2"
+            />
           </li>
         </ul>
         <h3>
@@ -135,13 +177,19 @@ class ImportKeysForm extends Component {
         <div className="keys-import-upload-section">
           {encryptedString ? (
             <button className="key-blue-button" onClick={this.resetFormState}>
-              Clear
+              <strong>
+                {" "}
+                <T id="wallet.importKeys.button.clear" m="Clear" />
+              </strong>
             </button>
           ) : (
             <label htmlFor="keys-import-file-upload" className="key-blue-button">
-              Upload file
+              <strong>
+                <T id="wallet.importKeys.button.upload" m="Upload file" />
+              </strong>
             </label>
           )}
+
           <input
             type="file"
             id="keys-import-file-upload"
@@ -149,7 +197,11 @@ class ImportKeysForm extends Component {
             onChange={fileHandler.onFileChange}
           />
           <div className="keys-import-selected-file-section">
-            {selectedFileName && <h3>Selected file</h3>}
+            {selectedFileName && (
+              <h3>
+                <T id="wallet.importKeys.selectedFileInfo" m="Selected file" />
+              </h3>
+            )}
             {selectedFileName}
           </div>
           <div className="keys-import-error-message">{errorMessage}</div>
@@ -167,7 +219,9 @@ class ImportKeysForm extends Component {
               placeholder="Password"
             />
             <KeyBlueButton onClick={decryptor.decrypt} disabled={!encryptionPassword}>
-              <T id="wallet.importkeys.decryptButton" m="Decrypt" />
+              <strong>
+                <T id="wallet.importkeys.decryptButton" m="Decrypt" />
+              </strong>
             </KeyBlueButton>
           </div>
         )}
@@ -176,12 +230,38 @@ class ImportKeysForm extends Component {
             <h3>
               <T id="wallet.importKeys.step4.title" m="4. Confirm decrypted data" />
             </h3>
-            <h3>Decrypted mnemonic </h3>
-            {mnemonic.map(word => (
-              <div className="keys-import-mnemonic-word" key={word}>
-                {word}
-              </div>
-            ))}
+            <div>
+              {mnemonicHasPassphrase && (
+                <React.Fragment>
+                  <h4>
+                    <T
+                      id="wallet.importKeys.mnemonicPassphraseLabel"
+                      m="It seems that your mnemonic was encrypted by passphrase, please provide it below."
+                    />
+                  </h4>
+                  <div className="keys-import-mnemonic-passphrase-input">
+                    <TextInput
+                      type="password"
+                      value={this.state.copayPassphrase}
+                      onChange={this.onCopayPasswordChange}
+                      onBlur={this.decodeMnemonic}
+                      placeholder="Mnemonic passphrase (optional)"
+                    />
+                  </div>
+                </React.Fragment>
+              )}
+            </div>
+            <div>
+              <SeedDisplayButton
+                mnemonic={mnemonic}
+                seedHex={this.state.seedHex}
+                buttonLabel={
+                  <strong>
+                    <T id="wallet.importkeys.showMnemonic" m="Show mnemonic" />
+                  </strong>
+                }
+              />
+            </div>
           </div>
         )}
         {hasMnemonic && (
@@ -198,9 +278,13 @@ class ImportKeysForm extends Component {
             disabled={!isValid || isCreatingWallet}
             loading={isCreatingWallet}
             onClick={this.onCreateWallet}>
-            <T id="createWallet.createWalletBtn" m="Create Wallet" />
+            <strong>
+              {" "}
+              <T id="createWallet.createWalletBtn" m="Create Wallet" />{" "}
+            </strong>
           </KeyBlueButton>
         )}
+        <div className="keys-import-error-message">{this.state.createWalletError}</div>
       </div>
     );
   }

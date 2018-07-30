@@ -53,7 +53,7 @@ export const increment = x => x + 1;
 export const decrement = x => x - 1;
 export const add = x => y => x + y;
 export const last = (arr = []) => arr[arr.length - 1];
-
+export const range = num => [...Array(num).keys()];
 export const neg = x => Math.abs(x) * -1;
 
 export function mapValues(obj, callback) {
@@ -93,6 +93,6 @@ export function intersect(arr1, arr2) {
 }
 
 // transduce operations
-export const filtering = predicate => reducing => (acc, element) =>
-  predicate(element) ? reducing(acc, element) : acc;
-export const mapping = func => reducing => (acc, elem) => reducing(acc, func(elem));
+export const filtering = predicate => reducer => (acc, element) =>
+  predicate(element) ? reducer(acc, element) : acc;
+export const mapping = func => reducer => (acc, elem) => reducer(acc, func(elem));

@@ -104,24 +104,23 @@ export const CREATEWALLET_ATTEMPT = "CREATEWALLET_ATTEMPT";
 export const CREATEWALLET_FAILED = "CREATEWALLET_FAILED";
 export const CREATEWALLET_SUCCESS = "CREATEWALLET_SUCCESS";
 
-export const createWalletRequest = (pubPass, privPass, seed, existing) => (dispatch, getState) => {
-  dispatch({ existing, type: CREATEWALLET_ATTEMPT });
-  return wallet
-    .createWallet(getState().walletLoader.loader, pubPass, privPass, seed)
-    .then(() => {
-      const {
-        daemon: { walletName }
-      } = getState();
-      const config = getWalletCfg(isTestNet(getState()), walletName);
-      config.delete("discoveraccounts");
-      dispatch({ response: {}, type: CREATEWALLET_SUCCESS });
-      dispatch(clearStakePoolConfigNewWallet());
-      dispatch({ complete: !existing, type: UPDATEDISCOVERACCOUNTS });
-      config.set("discoveraccounts", !existing);
-    })
-    .catch(error => dispatch({ error, type: CREATEWALLET_FAILED }));
-};
-
+export function createWalletRequest(pubPass, privPass, seed, existing) {
+  return (dispatch, getState) => {
+    dispatch({ existing, type: CREATEWALLET_ATTEMPT });
+    const { walletLoader, daemon } = getState();
+    return wallet
+      .createWallet(walletLoader.loader, pubPass, privPass, seed)
+      .then(() => {
+        const config = getWalletCfg(isTestNet(getState()), daemon.walletName);
+        config.delete("discoveraccounts");
+        dispatch({ response: {}, type: CREATEWALLET_SUCCESS });
+        dispatch(clearStakePoolConfigNewWallet());
+        dispatch({ complete: !existing, type: UPDATEDISCOVERACCOUNTS });
+        config.set("discoveraccounts", !existing);
+      })
+      .catch(error => dispatch({ error, type: CREATEWALLET_FAILED }));
+  };
+}
 export const OPENWALLET_INPUT = "OPENWALLET_INPUT";
 export const OPENWALLET_FAILED_INPUT = "OPENWALLET_FAILED_INPUT";
 export const OPENWALLET_ATTEMPT = "OPENWALLET_ATTEMPT";

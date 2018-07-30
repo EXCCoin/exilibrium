@@ -16,3 +16,6 @@ export { default as PassphraseModal } from "./PassphraseModal/PassphraseModal";
 export { default as ConfirmModal } from "./ConfirmModal";
 export { default as SeedCopyConfirmModal } from "./SeedCopyConfirmModal";
 export { default as MiningModal } from "./MiningModal";
+export { default as SeedDisplayModal } from "./SeedDisplayModal";
+
+// {"22u4wwMpfvtDr4ubUz8ZL97K3WhiT7Z49Pun", 13985203628491},

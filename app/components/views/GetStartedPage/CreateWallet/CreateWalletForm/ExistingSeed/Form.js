@@ -1,23 +1,28 @@
 import SingleSeedWordEntry from "../SingleSeedWordEntry";
 import SeedHexEntry from "./SeedHexEntry";
 import { TextToggle } from "buttons";
+import { TextInput } from "inputs";
 import { FormattedMessage as T } from "react-intl";
 import "style/CreateWalletForm.less";
 import { SEED_LENGTH, SEED_WORDS } from "wallet/seed";
 
-const shouldShowNonSupportSeedSize = (seedWords, seedType) =>
-  seedType === "hex" &&
-  seedWords.length < SEED_LENGTH.HEX_MIN &&
-  seedWords.length > SEED_LENGTH.HEX_MAX;
+function shouldShowNonSupportSeedSize(seedWords, seedType) {
+  return (
+    seedType === "hex" &&
+    seedWords.length < SEED_LENGTH.HEX_MIN &&
+    seedWords.length > SEED_LENGTH.HEX_MAX
+  );
+}
+
+function getClassName({ word, error } = {}) {
+  return word ? (error ? "seedWord error" : "seedWord populated") : "seedWord restore";
+}
 
 class ExistingSeedForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showPasteWarning: false,
-      seedType: "words"
-    };
-  }
+  state = {
+    showPasteWarning: false,
+    seedType: "words"
+  };
 
   handleOnPaste = e => {
     e.preventDefault();
@@ -59,19 +64,26 @@ class ExistingSeedForm extends React.Component {
   };
 
   render() {
-    const { onChangeSeedWord, seedWords, setSeedWords } = this.props;
+    const {
+      onChangeSeedWord,
+      seedWords,
+      setSeedWords,
+      mnemonicPassphrase,
+      onChangeMnemonicPassphrase,
+      decodeMnemonic
+    } = this.props;
     const { seedType } = this.state;
     const errors = this.mountSeedErrors();
     return (
       <Aux>
         <div className="content-title">
-          <T id="createWallet.restore.title" m={"Restore existing wallet"} />
+          <T id="createWallet.restore.title" m="Restore existing wallet" />
         </div>
         <div className="seed-type-label">
           <TextToggle
-            activeButton={"left"}
-            leftText={"words"}
-            rightText={"hex"}
+            activeButton="left"
+            leftText="words"
+            rightText="hex"
             toggleAction={this.handleToggle}
           />
         </div>
@@ -89,23 +101,33 @@ class ExistingSeedForm extends React.Component {
                   />
                 </div>
               )}
-              {seedWords.map(seedWord => {
-                const className = seedWord.word
-                  ? seedWord.error
-                    ? "seedWord error"
-                    : "seedWord populated"
-                  : "seedWord restore";
-                return (
-                  <SingleSeedWordEntry
-                    className={className}
-                    onChange={onChangeSeedWord}
-                    onPaste={this.handleOnPaste}
-                    seedWord={seedWord}
-                    value={{ name: seedWord.word }}
-                    key={seedWord.index}
+              {seedWords.map(seedWord => (
+                <SingleSeedWordEntry
+                  className={getClassName(seedWord)}
+                  onChange={onChangeSeedWord}
+                  onPaste={this.handleOnPaste}
+                  seedWord={seedWord}
+                  value={{ name: seedWord.word }}
+                  key={seedWord.index}
+                />
+              ))}
+              <div className="confirm-seed-mnemonic-passphrase-container">
+                <h4>
+                  <T
+                    id="wallet.importKeys.mnemonicPassphraseLabel"
+                    m="If your mnemonic was encrypted with passphrase, please provide it below."
                   />
-                );
-              })}
+                </h4>
+                <div className="confirm-seed-mnemonic-passphrase-input">
+                  <TextInput
+                    type="password"
+                    value={mnemonicPassphrase}
+                    onChange={onChangeMnemonicPassphrase}
+                    onBlur={decodeMnemonic}
+                    placeholder="Mnemonic passphrase (optional)"
+                  />
+                </div>
+              </div>
             </div>
           ) : (
             <div className="seedArea hex">
