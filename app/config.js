@@ -74,7 +74,7 @@ export function initWalletCfg(testnet, walletPath) {
     if (foundStakePoolConfigs !== null) {
       updateStakePoolConfig(config, foundStakePoolConfigs);
     }
-  });
+  }, `https://api.excc.co/v1/${testnet ? "testnet" : "mainnet"}`);
   return config;
 }
 

@@ -8,7 +8,7 @@ import {
 } from "./ClientActions";
 import { getVersionServiceAttempt } from "./VersionActions";
 import { getAvailableWallets, WALLETREMOVED_FAILED } from "./DaemonActions";
-import { getWalletCfg, getExccdCert } from "config";
+import { getWalletCfg, getGlobalCfg, getExccdCert } from "config";
 import { getWalletPath } from "main_dev/paths";
 import { isTestNet, explorer, apiAddress } from "selectors";
 
@@ -236,19 +236,19 @@ export const EXPLORER_DATA_FAIL = "EXPLORER_DATA_FAIL";
 
 export const fetchExplorerData = () => async (dispatch, getState) => {
   const state = getState();
-  const walletConfig = getWalletCfg(isTestNet(state));
+  const globalConfig = getGlobalCfg();
   try {
     const { address: apiAddress } = state.api;
     const { data: explorerData } = await axios.get(`${apiAddress}/explorer.json`);
     if (explorerData) {
-      walletConfig.set("explorer", explorerData);
+      globalConfig.set(`explorer.${globalConfig.get("network")}`, explorerData);
       dispatch({ type: EXPLORER_DATA_SUCCESS, explorerData });
     } else {
       throw new Error("Got empty response from API");
     }
   } catch (error) {
     wallet.log("error", `Cannot fetch explorer data: ${error}`);
-    const savedExplorerData = walletConfig.get("explorer");
+    const savedExplorerData = globalConfig.get(`explorer.${globalConfig.get("network")}`);
     if (savedExplorerData) {
       dispatch({ type: EXPLORER_DATA_SUCCESS, savedExplorerData });
     } else {
