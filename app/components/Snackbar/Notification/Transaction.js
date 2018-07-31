@@ -44,7 +44,11 @@ const Transaction = ({ type, message, intl }) => (
   <div className="snackbar-information">
     <div className="snackbar-information-row">
       <div className="snackbar-information-row-tx">
-        <Link to={`/transactions/history/${message.txHash}`}>{message.txHash}</Link>
+        {type === "Coinbase" ? (
+          <span>{message.txHash}</span>
+        ) : (
+          <Link to={`/transactions/history/${message.txHash}`}>{message.txHash}</Link>
+        )}
       </div>
     </div>
     <div className="snackbar-information-row">
