@@ -17,14 +17,14 @@ const pad = (s, n) => {
 // format compatible to exccd/exccwallet logs. This function is meant to be
 // installed in the winston loggers.
 const logTimestamp = () => {
-  let date = new Date();
-  let y = date.getFullYear();
-  let mo = pad(date.getMonth() + 1);
-  let d = pad(date.getDate());
-  let h = pad(date.getHours());
-  let mi = pad(date.getMinutes());
-  let s = pad(date.getSeconds());
-  let ms = pad(date.getMilliseconds(), 3);
+  const date = new Date();
+  const y = date.getFullYear();
+  const mo = pad(date.getMonth() + 1);
+  const d = pad(date.getDate());
+  const h = pad(date.getHours());
+  const mi = pad(date.getMinutes());
+  const s = pad(date.getSeconds());
+  const ms = pad(date.getMilliseconds(), 3);
   return `${y}-${mo}-${d} ${h}:${mi}:${s}.${ms}`;
 };
 
