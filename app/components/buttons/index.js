@@ -37,7 +37,8 @@ import {
   ConfirmModal,
   InfoConfirmModal,
   MiningModal,
-  SeedDisplayModal
+  SeedDisplayModal,
+  PrivKeyImportModal
 } from "modals";
 
 // mbb = ModalButtonBuilder (func to build a functional ModalButton component
@@ -70,3 +71,4 @@ export const RemoveWalletButton = mbb(null, ConfirmModal, DangerButton);
 export const ScriptRedeemableButton = mbb(null, InfoConfirmModal, helpLinkButton);
 export const MiningModalButton = mbb(null, MiningModal, MiningToggleButton);
 export const SeedDisplayButton = mbb(null, SeedDisplayModal, KeyBlueButton);
+export const PrivKeyImportButton = mbb("single-key-modal-button", PrivKeyImportModal);

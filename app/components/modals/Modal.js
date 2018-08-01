@@ -22,10 +22,10 @@ class Modal extends React.Component {
     const domNode = document.getElementById("modal-portal");
 
     return ReactDOM.createPortal(
-      <Aux>
+      <React.Fragment>
         <div className="app-modal-overlay" />
         <div className={`app-modal ${className || ""}`}>{children}</div>
-      </Aux>,
+      </React.Fragment>,
       domNode
     );
   }

@@ -63,7 +63,6 @@ class AccountsSelect extends React.Component {
   }
 
   valueRenderer(option) {
-    //return <span><span>{option.name}</span></span>;
     return (
       <div className="accounts-select-value">
         <div className="accounts-select-name">{option.name}</div>

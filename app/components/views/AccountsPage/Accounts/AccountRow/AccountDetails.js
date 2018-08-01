@@ -1,5 +1,6 @@
 import { FormattedMessage as T } from "react-intl";
 import { Balance, Tooltip } from "shared";
+import { PrivKeyImportButton } from "buttons";
 
 function isHidable(account) {
   return account.accountName !== "imported" && account.accountName !== "default" && !account.total;
@@ -23,7 +24,15 @@ const RenameAccountBtn = ({ showRenameAccount }) => (
   </Tooltip>
 );
 
-const AccountsList = ({ account, showRenameAccount, hidden, hideAccount, showAccount }) => (
+const AccountsList = ({
+  account,
+  showRenameAccount,
+  hidden,
+  hideAccount,
+  showAccount,
+  isLoading,
+  importPrivateKeyAttempt
+}) => (
   <div className="account-row-details-bottom" key={`details${account.accountNumber}`}>
     <div className="account-row-details-bottom-columns">
       <div className="account-row-details-bottom-column-left">
@@ -121,6 +130,16 @@ const AccountsList = ({ account, showRenameAccount, hidden, hideAccount, showAcc
       {account.accountName !== "imported" ? <RenameAccountBtn {...{ showRenameAccount }} /> : null}
       {isHidable(account) && !hidden ? <HideAccountBtn {...{ hideAccount }} /> : null}
       {hidden ? <ShowAccountBtn {...{ showAccount }} /> : null}
+      {account.accountName === "imported" && (
+        <Tooltip text={<T id="accounts.privkey.tip" m="Import single private key" />}>
+          <PrivKeyImportButton
+            className="account-import-privkey"
+            isLoading={isLoading}
+            importPrivateKeyAttempt={importPrivateKeyAttempt}
+            importedAccount={account}
+          />
+        </Tooltip>
+      )}
     </div>
   </div>
 );

@@ -37,6 +37,7 @@ const AccountsList = ({
   onRenameAccount,
   onShowAccountDetails,
   onHideAccountDetails,
+  importPrivateKeyAttempt,
   accountNumDetailsShown
 }) => (
   <StandalonePage header={<AccountsListHeader {...{ onGetNextAccountAttempt }} />}>
@@ -65,6 +66,7 @@ const AccountsList = ({
               showAccount={onShowAccount}
               showAccountDetails={onShowAccountDetails}
               hideAccountDetails={onHideAccountDetails}
+              importPrivateKeyAttempt={importPrivateKeyAttempt}
             />
           ))}
         </div>
@@ -82,7 +84,8 @@ AccountsList.propTypes = {
   onRenameAccount: PropTypes.func.isRequired,
   onShowAccountDetails: PropTypes.func.isRequired,
   onHideAccountDetails: PropTypes.func.isRequired,
-  accountNumDetailsShown: PropTypes.number
+  accountNumDetailsShown: PropTypes.number,
+  importPrivateKeyAttempt: PropTypes.func
 };
 
 export default AccountsList;

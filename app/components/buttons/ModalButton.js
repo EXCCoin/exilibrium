@@ -28,9 +28,8 @@ class ModalButton extends React.Component {
     const { buttonLabel, modalComponent: Modal, buttonComponent: ButtonComponent } = this.props;
     const { show } = this.state;
     const { onSubmit, showModal, hideModal } = this;
-
     return (
-      <Aux>
+      <React.Fragment>
         <ButtonComponent {...this.props} onClick={showModal}>
           {buttonLabel}
         </ButtonComponent>
@@ -43,7 +42,7 @@ class ModalButton extends React.Component {
             onCancelModal: hideModal
           }}
         />
-      </Aux>
+      </React.Fragment>
     );
   }
 }

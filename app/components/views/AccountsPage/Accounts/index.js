@@ -16,6 +16,7 @@ class Accounts extends React.Component {
         {...{
           accounts: this.props.accounts,
           isLoading: this.props.isLoading,
+          importPrivateKeyAttempt: this.props.importPrivateKeyAttempt,
           onGetNextAccountAttempt: this.onGetNextAccountAttempt,
           onHideAccount: this.props.onHideAccount,
           onShowAccount: this.props.onShowAccount,
