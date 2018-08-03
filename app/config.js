@@ -70,11 +70,16 @@ export function initWalletCfg(testnet, walletPath) {
   if (!config.has("gaplimit")) {
     config.set("gaplimit", "20");
   }
-  stakePoolInfo(foundStakePoolConfigs => {
-    if (foundStakePoolConfigs !== null) {
-      updateStakePoolConfig(config, foundStakePoolConfigs);
-    }
-  }, `https://api.excc.co/v1/${testnet ? "testnet" : "mainnet"}`);
+  const network = testnet ? "testnet" : "mainnet";
+  stakePoolInfo(
+    foundStakePoolConfigs => {
+      if (foundStakePoolConfigs !== null) {
+        updateStakePoolConfig(config, foundStakePoolConfigs);
+      }
+    },
+    `https://api.excc.co/v1/${network}`,
+    network
+  );
   return config;
 }
 

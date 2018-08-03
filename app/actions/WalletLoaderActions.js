@@ -344,12 +344,12 @@ export const CLEARSTAKEPOOLCONFIG = "CLEARSTAKEPOOLCONFIG";
 export function clearStakePoolConfigNewWallet() {
   return (dispatch, getState) => {
     const state = getState();
-    const { walletName } = state.daemon;
+    const { walletName, network } = state.daemon;
     const testnet = isTestNet(state);
     const config = getWalletCfg(testnet, walletName);
     config.delete("stakepools");
 
-    wallet.getStakePoolInfo(apiAddress(state)).then(foundStakePoolConfigs => {
+    wallet.getStakePoolInfo(apiAddress(state), network).then(foundStakePoolConfigs => {
       if (foundStakePoolConfigs) {
         const config = getWalletCfg(isTestNet(getState()), walletName);
         config.set("stakepools", foundStakePoolConfigs);

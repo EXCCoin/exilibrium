@@ -3,17 +3,21 @@ import querystring from "querystring";
 
 // stakepPoolInfoResponseToConfig converts a response object for the
 // stakePoolInfo call into an object array of available stakepool configs.
-function stakepPoolInfoResponseToConfig({ data = [] }) {
+function stakepPoolInfoResponseToConfig({ data = [] }, network) {
   return data
     .filter(stakepoolData => stakepoolData.APIEnabled)
-    .map(({ Host, Network, APIVersionsSupported }) => ({ Host, Network, APIVersionsSupported }));
+    .map(({ Host, Network, APIVersionsSupported }) => ({
+      Host,
+      Network: Network || network,
+      APIVersionsSupported
+    }));
 }
 
-export function stakePoolInfo(cb, apiAddress) {
+export function stakePoolInfo(cb, apiAddress, network) {
   axios
     .get(`${apiAddress}/stakepools.json`)
     .then(response => {
-      cb(stakepPoolInfoResponseToConfig(response));
+      cb(stakepPoolInfoResponseToConfig(response, network));
     })
     .catch(error => {
       console.log("Error connecting remote stakepools api.", error);

@@ -14,6 +14,7 @@ import { hideSidebarMenu, showSidebar } from "./SidebarActions";
 import { isTestNet } from "selectors";
 import axios from "axios";
 import { semverCompatible } from "./VersionActions";
+import { eq } from "fp";
 
 export const EXILIBRIUM_VERSION = "EXILIBRIUM_VERSION";
 export const SELECT_LANGUAGE = "SELECT_LANGUAGE";
@@ -185,37 +186,23 @@ export const createWallet = selectedWallet => async (dispatch, getState) => {
   }
 };
 
-export const importKeys = privateKeysObject => async () => {
-  // validate if JSON, if has keys, etc.
-  try {
-    console.log(privateKeysObject);
-    //  const { network } = getState().daemon;
-    await Promise.resolve("Import successfull");
-    // TODO: do domething
-    //  dispatch({ type: WALLETCREATED });
-    //  dispatch(startWallet(selectedWallet));
-  } catch (err) {
-    console.error(err);
-    //  dispatch({ error: err, type: WALLETREMOVED_FAILED });
-  }
-};
-
 export const startWallet = selectedWallet => (dispatch, getState) => {
   const { network } = getState().daemon;
+  const networkEquals = eq("network");
   wallet
-    .startWallet(selectedWallet.value.wallet, network === "testnet")
+    .startWallet(selectedWallet.value.wallet, networkEquals("testnet"))
     .then(({ port }) => {
-      const walletCfg = getWalletCfg(network === "testnet", selectedWallet.value.wallet);
+      const walletCfg = getWalletCfg(networkEquals("testnet"), selectedWallet.value.wallet);
       wallet.setPreviousWallet(selectedWallet);
 
       const currentStakePoolConfig = walletCfg.get("stakepools");
       let foundStakePoolConfig = false;
       let firstConfiguredStakePool = null;
-      if (currentStakePoolConfig !== undefined) {
-        for (let i = 0; i < currentStakePoolConfig.length; i++) {
-          if (currentStakePoolConfig[i].ApiKey && currentStakePoolConfig[i].Network === network) {
+      if (currentStakePoolConfig) {
+        for (const stakepool of currentStakePoolConfig) {
+          if (stakepool.ApiKey && networkEquals(stakepool.Network)) {
             foundStakePoolConfig = true;
-            firstConfiguredStakePool = currentStakePoolConfig[i];
+            firstConfiguredStakePool = stakepool;
             break;
           }
         }
