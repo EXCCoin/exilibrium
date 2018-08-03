@@ -34,6 +34,15 @@ const Bar = ({
       <div className="sidebar-main">
         <div className="sidebar-scroll">
           <MenuLinks {...{ expandSideBar }} />
+          {isTestNet ? (
+            <div
+              className="sidebar-testnet-indicator"
+              style={{
+                display: expandSideBar ? "inherit" : "none"
+              }}>
+              TESTNET
+            </div>
+          ) : null}
         </div>
         <div
           className="sidebar-menu-total-balance-extended"
