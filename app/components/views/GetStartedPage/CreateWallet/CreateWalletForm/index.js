@@ -63,7 +63,6 @@ class CreateWalletForm extends React.Component {
   }
 
   setSeed(seed) {
-    console.log("setting seed", seed);
     this.setState({ seed });
   }
 

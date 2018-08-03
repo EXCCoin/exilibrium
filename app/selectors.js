@@ -648,7 +648,7 @@ export const spendingAccounts = createSelector(
   (unitDivisor, currencyDisplay, balances) =>
     reduce(
       (accounts, { accountName, accountNumber, spendable, ...data }) =>
-        accountNumber !== 0 && (accountName === "imported" || spendable <= 0)
+        accountNumber !== 0 && spendable <= 0
           ? accounts
           : [
               ...accounts,

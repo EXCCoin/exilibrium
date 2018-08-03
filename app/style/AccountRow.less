@@ -222,7 +222,8 @@
 
 .rename-account-button,
 .show-account-button,
-.hide-account-button {
+.hide-account-button,
+.single-key-modal-button {
   .inline-block-mixin;
 
   margin: 15px 8px;
@@ -256,8 +257,13 @@
   background-image: @hide-account-icon;
 }
 
+.single-key-modal-button {
+  background-image: @single-key-icon;
+}
+
 .rename-account-button:hover,
 .show-account-button:hover,
-.hide-account-button:hover {
+.hide-account-button:hover,
+.single-key-icon:hover {
   opacity: 0.7;
 }

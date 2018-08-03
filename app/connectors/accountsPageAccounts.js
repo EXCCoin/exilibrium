@@ -17,7 +17,8 @@ const mapDispatchToProps = dispatch =>
       onRenameAccount: controlActions.renameAccountAttempt,
       onHideAccount: clientActions.hideAccount,
       onShowAccount: clientActions.showAccount,
-      onGetNextAccountAttempt: controlActions.getNextAccountAttempt
+      onGetNextAccountAttempt: controlActions.getNextAccountAttempt,
+      importPrivateKeyAttempt: controlActions.importPrivateKeyAttempt
     },
     dispatch
   );

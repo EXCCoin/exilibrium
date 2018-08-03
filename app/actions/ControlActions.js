@@ -159,17 +159,17 @@ export const IMPORTPRIVKEY_ATTEMPT = "IMPORTPRIVKEY_ATTEMPT";
 export const IMPORTPRIVKEY_FAILED = "IMPORTPRIVKEY_FAILED";
 export const IMPORTPRIVKEY_SUCCESS = "IMPORTPRIVKEY_SUCCESS";
 
-export function importPrivateKeyAttempt(passphrase, accountNum, wif, rescan, scanFrom) {
-  const request = new ImportPrivateKeyRequest();
-  request.setPassphrase(new Uint8Array(Buffer.from(passphrase)));
-  request.setAccount(accountNum);
-  request.setPrivateKeyWif(wif);
-  request.setRescan(rescan);
-  request.setScanFrom(scanFrom);
+export function importPrivateKeyAttempt(passphrase, accountNumber, wif, rescan, scanFrom) {
   return (dispatch, getState) => {
+    const request = new ImportPrivateKeyRequest();
+    request.setPassphrase(new Uint8Array(Buffer.from(passphrase)));
+    request.setAccount(accountNumber);
+    request.setPrivateKeyWif(wif);
+    request.setRescan(rescan);
+    request.setScanFrom(scanFrom);
     dispatch({ type: IMPORTPRIVKEY_ATTEMPT });
     const { walletService } = getState().grpc;
-    walletService.importPrivateKey(request, (error, importPrivateKeyResponse) => {
+    return walletService.importPrivateKey(request, (error, importPrivateKeyResponse) => {
       if (error) {
         dispatch({ error, type: IMPORTPRIVKEY_FAILED });
       } else {

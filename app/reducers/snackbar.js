@@ -26,7 +26,9 @@ import {
   SIGNMESSAGE_FAILED,
   VERIFYMESSAGE_FAILED,
   PUBLISHUNMINEDTRANSACTIONS_SUCCESS,
-  PUBLISHUNMINEDTRANSACTIONS_FAILED
+  PUBLISHUNMINEDTRANSACTIONS_FAILED,
+  IMPORTPRIVKEY_FAILED,
+  IMPORTPRIVKEY_SUCCESS
 } from "../actions/ControlActions";
 import {
   UPDATESTAKEPOOLCONFIG_SUCCESS,
@@ -97,6 +99,10 @@ const messages = defineMessages({
   REVOKETICKETS_FAILED: {
     id: "tickets.errors.revokeTicketsFailed",
     defaultMessage: "{originalError}"
+  },
+  IMPORTPRIVKEY_SUCCESS: {
+    id: "accounts.importPrivKey",
+    defaultMessage: "Successfully imported private key"
   },
   IMPORTSCRIPT_SUCCESS: {
     id: "tickets.importScriptHeader",
@@ -229,6 +235,7 @@ export default function snackbar(state = {}, action) {
     case REMOVESTAKEPOOLCONFIG:
     case SEEDCOPIEDTOCLIPBOARD:
     case PUBLISHUNMINEDTRANSACTIONS_SUCCESS:
+    case IMPORTPRIVKEY_SUCCESS:
       type = "Success";
       message = messages[action.type] || messages.defaultSuccessMessage;
       break;
@@ -256,6 +263,7 @@ export default function snackbar(state = {}, action) {
     case EXPORT_ERROR:
     case GETSTARTUPSTATS_FAILED:
     case GETMYTICKETSSTATS_FAILED:
+    case IMPORTPRIVKEY_FAILED:
       type = "Error";
       message = messages[action.type] || messages.defaultErrorMessage;
       values = { originalError: String(action.error) };

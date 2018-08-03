@@ -101,7 +101,7 @@ class AccountRow extends React.Component {
   }
 
   getAccountDetailsStyles() {
-    const { account } = this.props;
+    const { account, importPrivateKeyAttempt } = this.props;
     const { showRenameAccount, showAccount, hideAccount } = this;
     const { hidden } = this.state;
     return [
@@ -113,7 +113,8 @@ class AccountRow extends React.Component {
               showRenameAccount,
               hidden,
               hideAccount,
-              showAccount
+              showAccount,
+              importPrivateKeyAttempt
             }}
           />
         ),
