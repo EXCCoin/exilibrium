@@ -151,7 +151,7 @@
     "string-argv": "0.0.2",
     "stylelint": "^8.1.1",
     "systeminformation": "^3.42.4",
-    "winston": "^2.3.1"
+    "winston": "^3.0.0"
   },
   "devDependencies": {
     "asar": "^0.12.3",
