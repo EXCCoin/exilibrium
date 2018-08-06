@@ -188,7 +188,7 @@ export const createWallet = selectedWallet => async (dispatch, getState) => {
 
 export const startWallet = selectedWallet => (dispatch, getState) => {
   const { network } = getState().daemon;
-  const networkEquals = eq("network");
+  const networkEquals = eq(network);
   wallet
     .startWallet(selectedWallet.value.wallet, networkEquals("testnet"))
     .then(({ port }) => {

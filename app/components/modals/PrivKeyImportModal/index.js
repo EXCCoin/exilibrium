@@ -10,10 +10,10 @@ export default class PrivKeyImportModal extends React.Component {
     passphrase: ""
   };
   onChangePrivKey(e) {
-    this.setState({ privKey: e.target.value });
+    this.setState({ privKey: e.target.value.trim() });
   }
   onChangePassphrase(e) {
-    this.setState({ passphrase: e.target.value });
+    this.setState({ passphrase: e.target.value.trim() });
   }
   onImportPrivateKey(e) {
     e.preventDefault();
