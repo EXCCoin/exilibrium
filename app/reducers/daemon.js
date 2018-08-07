@@ -1,3 +1,4 @@
+/* eslint complexity: off*/
 import {
   SELECT_LANGUAGE,
   FINISH_TUTORIAL,
@@ -123,7 +124,7 @@ export default function version(state = {}, action) {
         ...state,
         availableWallets: action.availableWallets,
         previousWallet: action.previousWallet,
-        selectCreateWalletInputRequest: !action.previousWallet
+        selectCreateWalletInputRequest: !action.previousWallet && action.preserveSelection
       };
     case UPDATEHIDDENACCOUNTS:
       return {

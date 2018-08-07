@@ -78,7 +78,7 @@ export const createWalletGoBackWalletSelection = () => (dispatch, getState) => {
       .removeWallet(walletName, network === "testnet")
       .then(() => {
         dispatch({ type: CREATEWALLET_GOBACK });
-        dispatch(getAvailableWallets());
+        dispatch(getAvailableWallets(false));
       })
       .catch(err => {
         console.error(err);

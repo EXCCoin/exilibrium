@@ -153,11 +153,11 @@ export const shutdownApp = () => dispatch => {
 
 export const cleanShutdown = () => () => wallet.cleanShutdown();
 
-export const getAvailableWallets = () => async (dispatch, getState) => {
+export const getAvailableWallets = (preserveSelection = true) => async (dispatch, getState) => {
   const { network } = getState().daemon;
   const availableWallets = await wallet.getAvailableWallets(network);
   const previousWallet = await wallet.getPreviousWallet();
-  dispatch({ availableWallets, previousWallet, type: AVAILABLE_WALLETS });
+  dispatch({ availableWallets, previousWallet, preserveSelection, type: AVAILABLE_WALLETS });
   return { availableWallets, previousWallet };
 };
 

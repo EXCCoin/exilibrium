@@ -53,6 +53,7 @@ export const closeEXCCW = () => {
       logger.info(`Sending SIGINT to exccwallet at pid:${exccwPID}`);
       process.kill(exccwPID, "SIGINT");
     }
+    exccwPID = null;
     return true;
   } catch (e) {
     logger.error(`error closing wallet: ${e}`);
