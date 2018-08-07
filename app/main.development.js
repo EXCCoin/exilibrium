@@ -163,6 +163,7 @@ ipcMain.on("remove-wallet", (event, walletPath, testnet) => {
 });
 
 ipcMain.on("stop-wallet", event => {
+  previousWallet = null;
   event.returnValue = stopWallet();
 });
 

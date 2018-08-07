@@ -152,6 +152,7 @@ class GetStartedPage extends React.Component {
           );
           break;
         case 2:
+          text = <T id="getStarted.header.openingwallet.meta" m="Opening Wallet" />;
           if (hasExistingWallet) {
             Form = OpenWallet;
           } else {
