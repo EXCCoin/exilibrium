@@ -3,7 +3,7 @@ import path from "path";
 import parseArgs from "minimist";
 import si from "systeminformation";
 import { OPTIONS } from "./constants";
-import { createLogger } from "./logging";
+import { logger } from "./logging";
 import {
   getWalletPath,
   getWalletDBPathFromWallets,
@@ -24,8 +24,6 @@ import {
 } from "./launch";
 
 const argv = parseArgs(process.argv.slice(1), OPTIONS);
-const debug = argv.debug || process.env.NODE_ENV === "development";
-const logger = createLogger(debug);
 
 export const getAvailableWallets = network => {
   // Attempt to find all currently available wallet.db's in the respective network direction in each wallets data dir
@@ -58,14 +56,14 @@ export const startDaemon = (
   reactIPC
 ) => {
   if (GetExccdPID() && GetExccdPID() !== -1) {
-    logger.log("info", `Skipping restart of daemon as it is already running ${GetExccdPID()}`);
+    logger.info(`Skipping restart of daemon as it is already running ${GetExccdPID()}`);
     return GetExccdPID();
   }
   if (appData) {
-    logger.log("info", "launching exccd with different appdata directory");
+    logger.info("launching exccd with different appdata directory");
   }
   if (!daemonIsAdvanced && !primaryInstance) {
-    logger.log("info", "Running on secondary instance. Assuming exccd is already running.");
+    logger.info("Running on secondary instance. Assuming exccd is already running.");
     let exccdConfPath = getExccdPath();
     if (!fs.existsSync(exccdCfg(exccdConfPath))) {
       exccdConfPath = createTempExccdConf();
@@ -79,7 +77,7 @@ export const startDaemon = (
     }
     return launchEXCCD(mainWindow, daemonIsAdvanced, exccdConfPath, appData, testnet, reactIPC);
   } catch (e) {
-    logger.log("error", `error launching exccd: ${e}`);
+    logger.error(`error launching exccd: ${e}`);
   }
 };
 
@@ -95,7 +93,7 @@ export const createWallet = (testnet, walletPath) => {
     }
     return true;
   } catch (e) {
-    logger.log("error", `error creating wallet: ${e}`);
+    logger.error(`error creating wallet: ${e}`);
     return false;
   }
 };
@@ -108,14 +106,14 @@ export const removeWallet = (testnet, walletPath) => {
     }
     return true;
   } catch (e) {
-    logger.log("error", `error creating wallet: ${e}`);
+    logger.error(`error creating wallet: ${e}`);
     return false;
   }
 };
 
 export const startWallet = (mainWindow, daemonIsAdvanced, testnet, walletPath, reactIPC) => {
   if (GetExccwPID()) {
-    logger.log("info", `exccwallet already started ${GetExccwPID()}`);
+    logger.info(`exccwallet already started ${GetExccwPID()}`);
     mainWindow.webContents.send("exccwallet-port", GetExccwPort());
     event.returnValue = GetExccwPID();
     return;
@@ -124,7 +122,7 @@ export const startWallet = (mainWindow, daemonIsAdvanced, testnet, walletPath, r
   try {
     return launchEXCCWallet(mainWindow, daemonIsAdvanced, walletPath, testnet, reactIPC);
   } catch (e) {
-    logger.log("error", `error launching exccwallet: ${e}`);
+    logger.error(`error launching exccwallet: ${e}`);
   }
 };
 
@@ -164,10 +162,10 @@ export const checkDaemon = (mainWindow, rpcCreds, testnet) => {
 
   const exccctlExe = getExecutablePath("exccctl", argv.customBinPath);
   if (!fs.existsSync(exccctlExe)) {
-    logger.log("error", "The exccctl file does not exists");
+    logger.error("The exccctl file does not exists");
   }
 
-  logger.log("info", `checking if daemon is ready  with exccctl ${args}`);
+  logger.info(`checking if daemon is ready  with exccctl ${args}`);
 
   const { spawn } = require("child_process");
   const exccctl = spawn(exccctlExe, args, {
@@ -177,20 +175,17 @@ export const checkDaemon = (mainWindow, rpcCreds, testnet) => {
 
   exccctl.stdout.on("data", data => {
     currentBlockCount = data.toString();
-    logger.log("info", data.toString());
+    logger.info(data.toString());
     mainWindow.webContents.send("check-daemon-response", currentBlockCount);
   });
   exccctl.stderr.on("data", data => {
-    logger.log("error", data.toString());
+    logger.error(data.toString());
     mainWindow.webContents.send("check-daemon-response", 0);
   });
 };
 
 export function toggleMining(rpcCreds, { enable = false, CPUCores = 1, miningAddresses = [] }) {
-  logger.log(
-    "info",
-    `enable: ${enable}, CPUCores: ${CPUCores}, miningAddresses: ${miningAddresses[0]}`
-  );
+  logger.info(`enable: ${enable}, CPUCores: ${CPUCores}, miningAddresses: ${miningAddresses[0]}`);
   const args = ["setgenerate", `${enable}`, `${CPUCores}`, `${miningAddresses[0]}`];
   let host, port;
 
@@ -218,7 +213,7 @@ export function toggleMining(rpcCreds, { enable = false, CPUCores = 1, miningAdd
   const exccctlExe = getExecutablePath("exccctl", argv.customBinPath);
 
   if (!fs.existsSync(exccctlExe)) {
-    logger.log("error", "The exccctl file does not exists");
+    logger.error("The exccctl file does not exists");
   }
 
   const { spawn } = require("child_process");
@@ -228,25 +223,25 @@ export function toggleMining(rpcCreds, { enable = false, CPUCores = 1, miningAdd
   });
 
   exccctl.stdout.on("data", data => {
-    logger.log("info", data.toString());
+    logger.info(data.toString());
   });
   exccctl.stderr.on("data", data => {
-    logger.log("error", data.toString());
+    logger.error(data.toString());
   });
 }
 
 export async function getSystemInfo() {
-  logger.log("info", "Requesting CPU & memory info");
+  logger.info("Requesting CPU & memory info");
   try {
     const [cpuData, memoryData] = await Promise.all([si.cpu(), si.mem()]);
-    logger.log("info", `CPU cores: ${cpuData.cores}, available memory: ${memoryData.available}`);
+    logger.info(`CPU cores: ${cpuData.cores}, available memory: ${memoryData.available}`);
     return {
       cores: cpuData.cores,
       availableMemory: memoryData.available,
       totalMemory: memoryData.total
     };
   } catch (err) {
-    logger.log("error", err);
+    logger.error(err);
     return err;
   }
 }

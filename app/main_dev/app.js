@@ -12,10 +12,7 @@ export async function ready(state, cleanShutdown, stopSecondInstance) {
   let locale = locales.find(value => value.key === cfgLocale);
   if (!locale) {
     const newCfgLocale = appLocaleFromElectronLocale(app.getLocale());
-    state.logger.log(
-      "error",
-      `Locale ${cfgLocale} not found. Switching to locale ${newCfgLocale}.`
-    );
+    state.logger.error(`Locale ${cfgLocale} not found. Switching to locale ${newCfgLocale}.`);
     state.globalCfg.set("locale", newCfgLocale);
     locale = locales.find(value => value.key === newCfgLocale);
   }
@@ -362,18 +359,18 @@ function readExesVersion(state) {
   for (const exe of exes) {
     const exePath = paths.getExecutablePath("exccd", state.argv.customBinPath);
     if (!fs.existsSync(exePath)) {
-      state.logger.log("error", "The exccd file does not exists");
+      state.logger.error("The exccd file does not exists");
     }
 
     const proc = spawn(exePath, args, { encoding: "utf8" });
     if (proc.error) {
-      state.logger.log("error", `Error trying to read version of ${exe}: ${proc.error}`);
+      state.logger.error(`Error trying to read version of ${exe}: ${proc.error}`);
       continue;
     }
 
     const versionLine = proc.stdout.toString();
     if (!versionLine) {
-      state.logger.log("error", `Empty version line when reading version of ${exe}`);
+      state.logger.error(`Empty version line when reading version of ${exe}`);
       continue;
     }
 
@@ -381,7 +378,7 @@ function readExesVersion(state) {
     if (decodedLine !== null) {
       versions[exe] = decodedLine[1]; // eslint-disable-line
     } else {
-      state.logger.log("error", `Unable to decode version line ${versionLine}`);
+      state.logger.error(`Unable to decode version line ${versionLine}`);
     }
   }
 

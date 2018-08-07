@@ -7,7 +7,7 @@ import {
 } from "./paths";
 import { getWalletCfg, readExccdConfig } from "../config";
 import {
-  createLogger,
+  logger,
   AddToExccdLog,
   AddToExccwalletLog,
   GetExccdLogs,
@@ -23,7 +23,6 @@ import { concat, isString } from "lodash";
 
 const argv = parseArgs(process.argv.slice(1), OPTIONS);
 const debug = argv.debug || process.env.NODE_ENV === "development";
-const logger = createLogger(debug);
 
 let exccdPID;
 let exccwPID;
@@ -43,7 +42,7 @@ function closeClis() {
 
 function closeEXCCD() {
   if (require("is-running")(exccdPID)) {
-    logger.log("info", `Sending SIGINT to exccd at pid:${exccdPID}`);
+    logger.info(`Sending SIGINT to exccd at pid:${exccdPID}`);
     process.kill(exccdPID, "SIGINT");
   }
 }
@@ -51,12 +50,12 @@ function closeEXCCD() {
 export const closeEXCCW = () => {
   try {
     if (require("is-running")(exccwPID)) {
-      logger.log("info", `Sending SIGINT to exccwallet at pid:${exccwPID}`);
+      logger.info(`Sending SIGINT to exccwallet at pid:${exccwPID}`);
       process.kill(exccwPID, "SIGINT");
     }
     return true;
   } catch (e) {
-    logger.log("error", `error closing wallet: ${e}`);
+    logger.error(`error closing wallet: ${e}`);
     return false;
   }
 };
@@ -72,13 +71,13 @@ export function cleanShutdown(mainWindow, app) {
     setTimeout(() => {
       closeClis();
     }, cliShutDownPause * 1000);
-    logger.log("info", "Closing exilibrium.");
+    logger.info("Closing exilibrium.");
 
     const shutdownTimer = setInterval(() => {
       const stillRunning = require("is-running")(exccdPID) && os.platform() !== "win32";
 
       if (!stillRunning) {
-        logger.log("info", "Final shutdown pause. Quitting app.");
+        logger.info("Final shutdown pause. Quitting app.");
         clearInterval(shutdownTimer);
         if (mainWindow) {
           mainWindow.webContents.send("daemon-stopped");
@@ -91,7 +90,7 @@ export function cleanShutdown(mainWindow, app) {
         }
         resolve(true);
       }
-      logger.log("info", "Daemon still running in final shutdown pause. Waiting.");
+      logger.info("Daemon still running in final shutdown pause. Waiting.");
     }, shutDownPause * 1000);
   });
 }
@@ -122,11 +121,11 @@ export const launchEXCCD = (
 
   const exccdExe = getExecutablePath("exccd", argv.customBinPath);
   if (!fs.existsSync(exccdExe)) {
-    logger.log("error", "The exccd file does not exists");
+    logger.error("The exccd file does not exists");
     return;
   }
 
-  logger.log("info", `Starting ${exccdExe} with ${args}`);
+  logger.info(`Starting ${exccdExe} with ${args}`);
 
   const exccdStdio = ["ignore", "pipe", "pipe"];
 
@@ -140,7 +139,7 @@ export const launchEXCCD = (
   });
 
   exccd.on("error", err => {
-    logger.log("error", `Error running exccd.  Check logs and restart! ${err}`);
+    logger.error(`Error running exccd.  Check logs and restart! ${err}`);
     mainWindow.webContents.executeJavaScript(
       `alert("Error running exccd.  Check logs and restart! '${err}'");`
     );
@@ -153,10 +152,10 @@ export const launchEXCCD = (
     }
     if (code !== 0) {
       const lastExccdErr = lastErrorLine(GetExccdLogs());
-      logger.log("error", "exccd closed due to an error: ", lastExccdErr);
+      logger.error("exccd closed due to an error: ", lastExccdErr);
       reactIPC.send("error-received", true, lastExccdErr);
     } else {
-      logger.log("info", `exccd exited with code ${code}`);
+      logger.info(`exccd exited with code ${code}`);
     }
   });
 
@@ -165,7 +164,7 @@ export const launchEXCCD = (
 
   newConfig.pid = exccd.pid;
   exccdPID = exccd.pid;
-  logger.log("info", `exccd started with pid:${newConfig.pid}`);
+  logger.info(`exccd started with pid:${newConfig.pid}`);
 
   exccd.unref();
   return newConfig;
@@ -206,7 +205,7 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
 
   const exccwExe = getExecutablePath("exccwallet", argv.customBinPath);
   if (!fs.existsSync(exccwExe)) {
-    logger.log("error", "The exccwallet file does not exists");
+    logger.error("The exccwallet file does not exists");
     return;
   }
 
@@ -222,7 +221,7 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
     args = concat(args, stringArgv(argv.extrawalletargs));
   }
 
-  logger.log("info", `Starting ${exccwExe} with ${args}`);
+  logger.info(`Starting ${exccwExe} with ${args}`);
 
   const exccwallet = spawn(exccwExe, args, {
     detached: os.platform() === "win32",
@@ -231,7 +230,7 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
 
   const notifyGrpcPort = port => {
     exccwPort = port;
-    logger.log("info", "wallet grpc running on port", port);
+    logger.info("wallet grpc running on port", port);
     mainWindow.webContents.send("exccwallet-port", port);
   };
 
@@ -243,14 +242,14 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
         if (matches) {
           notifyGrpcPort(matches[1]);
         } else {
-          logger.log("error", `GRPC port not found on IPC channel to exccwallet: ${intf}`);
+          logger.error(`GRPC port not found on IPC channel to exccwallet: ${intf}`);
         }
       }
     })
   );
 
   exccwallet.on("error", err => {
-    logger.log("error", `Error running wallet.  Check logs and restart! ${err}`);
+    logger.error(`Error running wallet.  Check logs and restart! ${err}`);
     mainWindow.webContents.executeJavaScript(
       `alert("Error running exccwallet.  Check logs and restart! '${err}'");`
     );
@@ -263,10 +262,10 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
     }
     if (code !== 0) {
       const lastExccwalletErr = lastErrorLine(GetExccwalletLogs());
-      logger.log("error", "exccwallet closed due to an error: ", lastExccwalletErr);
+      logger.error("exccwallet closed due to an error: ", lastExccwalletErr);
       reactIPC.sendSync("error-received", false, lastExccwalletErr);
     } else {
-      logger.log("info", `exccwallet exited with code ${code}`);
+      logger.info(`exccwallet exited with code ${code}`);
     }
   });
 
@@ -297,7 +296,7 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
   });
 
   exccwPID = exccwallet.pid;
-  logger.log("info", `exccwallet started with pid:${exccwPID}`);
+  logger.info(`exccwallet started with pid:${exccwPID}`);
 
   exccwallet.unref();
   return exccwPID;
@@ -321,18 +320,18 @@ export const readExesVersion = (app, grpcVersions) => {
   for (const exe of exes) {
     const exePath = getExecutablePath("exccd", argv.customBinPath);
     if (!fs.existsSync(exePath)) {
-      logger.log("error", "The exccd file does not exists");
+      logger.error("The exccd file does not exists");
     }
 
     const proc = spawn(exePath, args, { encoding: "utf8" });
     if (proc.error) {
-      logger.log("error", `Error trying to read version of ${exe}: ${proc.error}`);
+      logger.error(`Error trying to read version of ${exe}: ${proc.error}`);
       continue;
     }
 
     const versionLine = proc.stdout.toString();
     if (!versionLine) {
-      logger.log("error", `Empty version line when reading version of ${exe}`);
+      logger.error(`Empty version line when reading version of ${exe}`);
       continue;
     }
 
@@ -340,7 +339,7 @@ export const readExesVersion = (app, grpcVersions) => {
     if (decodedLine !== null) {
       versions[exe] = decodedLine[1]; // eslint-disable-line prefer-destructuring
     } else {
-      logger.log("error", `Unable to decode version line ${versionLine}`);
+      logger.error(`Unable to decode version line ${versionLine}`);
     }
   }
 

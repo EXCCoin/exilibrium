@@ -3,7 +3,7 @@ import parseArgs from "minimist";
 import { app, BrowserWindow, Menu, shell, dialog } from "electron";
 import { initGlobalCfg, validateGlobalCfgFile, setMustOpenForm } from "./config";
 import { appLocaleFromElectronLocale, default as locales } from "./i18n/locales";
-import { createLogger, GetExccdLogs, GetExccwalletLogs } from "./main_dev/logging";
+import { logger, GetExccdLogs, GetExccwalletLogs } from "./main_dev/logging";
 import {
   OPTIONS,
   USAGE_MESSAGE,
@@ -37,8 +37,6 @@ import {
 app.setPath("userData", appDataDirectory());
 
 const argv = parseArgs(process.argv.slice(1), OPTIONS);
-const debug = argv.debug || process.env.NODE_ENV === "development";
-const logger = createLogger(debug);
 
 // Verify that config.json is valid JSON before fetching it, because
 // it will silently fail when fetching.
@@ -104,17 +102,15 @@ if (!fs.pathExistsSync(testnetWalletsPath)) {
 checkAndInitWalletCfg(true);
 checkAndInitWalletCfg(false);
 
-logger.log("info", `Using config/data from: ${app.getPath("userData")}`);
-logger.log(
-  "info",
-  "Versions: Exilibrium: %s, Electron: %s, Chrome: %s",
-  app.getVersion(),
-  process.versions.electron,
-  process.versions.chrome
+logger.info(`Using config/data from: ${app.getPath("userData")}`);
+logger.info(
+  `Versions: Exilibrium: ${app.getVersion()}, Electron: ${process.versions.electron}, Chrome: ${
+    process.versions.chrome
+  }`
 );
 
 process.on("uncaughtException", err => {
-  logger.log("error", "UNCAUGHT EXCEPTION", err);
+  logger.error("UNCAUGHT EXCEPTION", err);
   throw err;
 });
 
@@ -128,7 +124,7 @@ const installExtensions = async () => {
       try {
         await installer.default(installer[name], forceDownload);
       } catch (e) {
-        logger.log("error", `Cannot install extensions: ${e}`);
+        logger.error(`Cannot install extensions: ${e}`);
       }
     }
   }
@@ -200,8 +196,8 @@ ipcMain.on("grpc-versions-determined", (event, versions) => {
   grpcVersions = { ...grpcVersions, ...versions };
 });
 
-ipcMain.on("main-log", (event, ...args) => {
-  logger.log(...args);
+ipcMain.on("main-log", (event, level, args) => {
+  logger[level](...args);
 });
 
 ipcMain.on("get-exccd-logs", event => {
@@ -228,7 +224,7 @@ ipcMain.on("set-previous-wallet", (event, cfg) => {
 primaryInstance = !app.makeSingleInstance(() => true);
 const stopSecondInstance = !primaryInstance && !daemonIsAdvanced;
 if (stopSecondInstance) {
-  logger.log("error", "Preventing second instance from running.");
+  logger.error("Preventing second instance from running.");
 }
 
 app.on("ready", async () => {
@@ -238,7 +234,7 @@ app.on("ready", async () => {
   let locale = locales.find(value => value.key === cfgLocale);
   if (!locale) {
     const newCfgLocale = appLocaleFromElectronLocale(app.getLocale());
-    logger.log("error", `Locale ${cfgLocale} not found. Switching to locale ${newCfgLocale}.`);
+    logger.error(`Locale ${cfgLocale} not found. Switching to locale ${newCfgLocale}.`);
     globalCfg.set("locale", newCfgLocale);
     locale = locales.find(value => value.key === newCfgLocale);
   }
@@ -563,7 +559,7 @@ app.on("ready", async () => {
 });
 
 app.on("before-quit", event => {
-  logger.log("info", "Caught before-quit. Set exilibrium as was closed");
+  logger.info("Caught before-quit. Set exilibrium as was closed");
   event.preventDefault();
   cleanShutdown(mainWindow, app, GetExccdPID(), GetExccwPID());
   setMustOpenForm(true);

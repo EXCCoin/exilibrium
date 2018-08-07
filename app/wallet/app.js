@@ -4,7 +4,7 @@ import { isObject, isString, isNumber, isUndefined, isNull, isFunction } from "u
 export const onAppReloadRequested = cb => ipcRenderer.on("app-reload-requested", cb);
 
 export const log = (level, ...args) => {
-  ipcRenderer.send("main-log", ...[level, ...args]);
+  ipcRenderer.send("main-log", level, args);
 };
 
 export const logOptionNoArgs = opts => ({ ...opts, noArguments: true });
