@@ -169,47 +169,42 @@ export const getAccountNumbersBalances = accountNumbers => dispatch => {
   accountNumbers.forEach(a => dispatch(getBalanceUpdateAttempt(a, 0)));
 };
 
-const getAccountsBalances = accounts => (dispatch, getState) => {
+const getAccountsBalances = accounts => async (dispatch, getState) => {
   const balances = [];
   const {
     daemon: { hiddenAccounts }
   } = getState();
 
-  accounts.forEach(account => {
-    let hidden = false;
-    let HDPath = "";
-    if (hiddenAccounts.find(eq(account.getAccountNumber()))) {
-      hidden = true;
-    }
-    if (selectors.isMainNet(getState())) {
-      HDPath = `m / 44' / 20' / ${account.getAccountNumber()}'`;
-    } else if (selectors.isTestNet(getState())) {
-      HDPath = `m / 44' / 11' / ${account.getAccountNumber()}'`;
-    }
-    wallet
-      .getBalance(selectors.walletService(getState()), account.getAccountNumber(), 0)
-      .then(resp => {
-        const accountEntry = {
-          accountNumber: account.getAccountNumber(),
-          accountName: account.getAccountName(),
-          externalKeys: account.getExternalKeyCount(),
-          internalKeys: account.getInternalKeyCount(),
-          importedKeys: account.getImportedKeyCount(),
-          hidden,
-          HDPath,
-          total: resp.getTotal(),
-          spendable: resp.getSpendable(),
-          immatureReward: resp.getImmatureReward(),
-          immatureStakeGeneration: resp.getImmatureStakeGeneration(),
-          lockedByTickets: resp.getLockedByTickets(),
-          votingAuthority: resp.getVotingAuthority()
-        };
-        balances.push(accountEntry);
-      })
-      .catch(error => {
-        dispatch({ error, type: T.GETBALANCE_FAILED });
+  for (const account of accounts) {
+    const accountNumber = account.getAccountNumber();
+    const hidden = hiddenAccounts.findIndex(eq(accountNumber)) > -1;
+    const HDPath = `m/44'/${selectors.isMainNet(getState()) ? "0" : "1"}'/${accountNumber}'`;
+
+    try {
+      const response = await wallet.getBalance(
+        selectors.walletService(getState()),
+        accountNumber,
+        0
+      );
+      balances.push({
+        accountNumber,
+        hidden,
+        HDPath,
+        accountName: account.getAccountName(),
+        externalKeys: account.getExternalKeyCount(),
+        internalKeys: account.getInternalKeyCount(),
+        importedKeys: account.getImportedKeyCount(),
+        total: response.getTotal(),
+        spendable: response.getSpendable(),
+        immatureReward: response.getImmatureReward(),
+        immatureStakeGeneration: response.getImmatureStakeGeneration(),
+        lockedByTickets: response.getLockedByTickets(),
+        votingAuthority: response.getVotingAuthority()
       });
-  });
+    } catch (error) {
+      dispatch({ error, type: T.GETBALANCE_FAILED });
+    }
+  }
   dispatch({ balances, type: T.GETBALANCE_SUCCESS });
 };
 
