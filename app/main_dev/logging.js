@@ -43,13 +43,13 @@ function createLogger(debug) {
       filename: logFilePath,
       maxsize: 4e6, // 4 MB
       maxFiles: 4,
-      tailable: true,
-      zippedArchive: true
+      tailable: true
+      //zippedArchive: true // this option doesn't work correctly in this version
     })
   ];
   const format = combine(
     splat(),
-    timestamp({ format: "YYYY-MM-DD hh:mm:ss.SSS" }),
+    timestamp({ format: "YYYY-MM-DD HH:mm:ss.SSS" }),
     customFormatter
   );
 
@@ -59,7 +59,7 @@ function createLogger(debug) {
       new winston.transports.Console({
         format: combine(
           splat(),
-          timestamp({ format: "YYYY-MM-DD hh:mm:ss.SSS" }),
+          timestamp({ format: "YYYY-MM-DD HH:mm:ss.SSS" }),
           colorize({ message: true }),
           customFormatter
         )
