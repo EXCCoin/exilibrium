@@ -9,6 +9,8 @@ class WalletSelectionBody extends React.Component {
   getInitialState() {
     return {
       createWalletForm: false,
+      startWalletClicked: false,
+      createWalletClicked: false,
       newWalletName: "",
       selectedWallet: this.props.availableWallets ? this.props.availableWallets[0] : null
     };
@@ -41,13 +43,19 @@ class WalletSelectionBody extends React.Component {
     if (newWalletName === "") {
       return;
     }
-    this.props.onCreateWallet({
-      label: newWalletName,
-      value: { wallet: newWalletName }
-    });
+    if (!this.state.createWalletClicked) {
+      this.setState({ createWalletClicked: true });
+      this.props.onCreateWallet({
+        label: newWalletName,
+        value: { wallet: newWalletName }
+      });
+    }
   }
   startWallet() {
-    this.props.onStartWallet(this.state.selectedWallet);
+    if (!this.state.startWalletClicked) {
+      this.setState({ startWalletClicked: true });
+      this.props.onStartWallet(this.state.selectedWallet);
+    }
   }
   resetState() {
     this.setState(this.getInitialState());
