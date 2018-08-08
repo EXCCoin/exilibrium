@@ -236,13 +236,6 @@ export async function ready(state, cleanShutdown, stopSecondInstance) {
             click() {
               state.mainWindow.setFullScreen(!state.mainWindow.isFullScreen());
             }
-          },
-          {
-            label: locale.messages["appMenu.reloadUI"],
-            accelerator: "F5",
-            click() {
-              state.mainWindow.webContents.send("app-reload-requested", state.mainWindow);
-            }
           }
         ]
       }

@@ -463,13 +463,6 @@ app.on("ready", async () => {
             click() {
               mainWindow.setFullScreen(!mainWindow.isFullScreen());
             }
-          },
-          {
-            label: locale.messages["appMenu.reloadUI"],
-            accelerator: "F5",
-            click() {
-              mainWindow.webContents.send("app-reload-requested", mainWindow);
-            }
           }
         ]
       }
