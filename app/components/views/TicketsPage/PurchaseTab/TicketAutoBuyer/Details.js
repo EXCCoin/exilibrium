@@ -1,4 +1,4 @@
-import { FeeInput, FixedExccInput, PercentInput, IntegerInput } from "inputs";
+import { FeeInput, FixedExccInput, IntegerInput } from "inputs";
 import { KeyBlueButton } from "buttons";
 import { FormattedMessage as T, defineMessages } from "react-intl";
 
@@ -123,7 +123,7 @@ const Details = ({
           </div>
         </div>
         <div className="stakepool-purchase-ticket-num-input">
-          <PercentInput
+          <FixedExccInput
             placeholder={formatMessage(messages.maxPriceRelative)}
             value={maxPriceRelative}
             onChange={onChangeMaxPriceRelative}

@@ -174,25 +174,19 @@ class TicketAutoBuyer extends React.Component {
 
   onToggleShowDetails() {
     if (this.state.isHidingDetails) {
-      this.onShowDetails();
+      this.setState({ isHidingDetails: false, isScrollingDown: true });
     } else {
-      this.onHideDetails();
+      this.setState({ isHidingDetails: true });
     }
-  }
-
-  onShowDetails() {
-    this.setState({ isHidingDetails: false, isScrollingDown: true });
-  }
-
-  onHideDetails() {
-    this.setState({ isHidingDetails: true });
   }
 
   onChangeBalanceToMaintain(balanceToMaintain) {
     const balanceToMaintainInExels = this.getValueInExels(balanceToMaintain);
 
     const balanceToMaintainError =
-      isNaN(balanceToMaintainInExels) || balanceToMaintainInExels < 0 || !balanceToMaintain;
+      isNaN(balanceToMaintainInExels) ||
+      parseFloat(balanceToMaintainInExels) < 0 ||
+      !balanceToMaintain;
 
     this.setState({
       balanceToMaintain,
@@ -201,7 +195,8 @@ class TicketAutoBuyer extends React.Component {
   }
 
   onChangeMaxFee(maxFee) {
-    const maxFeeError = isNaN(maxFee) || maxFee <= 0 || maxFee >= 0.1 || !maxFee;
+    const maxFeeError =
+      isNaN(maxFee) || parseFloat(maxFee) <= 0 || parseFloat(maxFee) >= 0.1 || !maxFee;
     this.setState({
       maxFee,
       maxFeeError
@@ -210,7 +205,7 @@ class TicketAutoBuyer extends React.Component {
 
   onChangeMaxPriceAbsolute(maxPriceAbsolute) {
     const maxPriceAbsoluteError =
-      isNaN(maxPriceAbsolute) || maxPriceAbsolute < 0 || !maxPriceAbsolute;
+      isNaN(maxPriceAbsolute) || parseFloat(maxPriceAbsolute) < 0 || !maxPriceAbsolute;
     this.setState({
       maxPriceAbsolute,
       maxPriceAbsoluteError
@@ -219,7 +214,7 @@ class TicketAutoBuyer extends React.Component {
 
   onChangeMaxPriceRelative(maxPriceRelative) {
     const maxPriceRelativeError =
-      isNaN(maxPriceRelative) || maxPriceRelative < 0 || !maxPriceRelative;
+      isNaN(maxPriceRelative) || parseFloat(maxPriceRelative) < 0 || !maxPriceRelative;
     this.setState({
       maxPriceRelative,
       maxPriceRelativeError
