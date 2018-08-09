@@ -15,7 +15,7 @@ const RegularTxRow = ({ txAmount, txDescription, txDirection, ...props }) => (
 );
 
 export const RegularTxRowOfClass = className => {
-  const Comp = ({ ...p }) => h(RegularTxRow, { className, ...p });
+  const Comp = props => h(RegularTxRow, { className, ...props });
   Comp.displayName = `RegularTxRowOfClass: ${className}`;
   return Comp;
 };

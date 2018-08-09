@@ -200,7 +200,7 @@ export default function snackbar(state = {}, action) {
   switch (action.type) {
     // snackbar management events
     case SNACKBAR_DISMISS_MESSAGES:
-      return { ...state, messages: Array() };
+      return { ...state, messages: [] };
 
     case NEW_TRANSACTIONS_RECEIVED: {
       // TODO: show more notifications or a summary when receiving many transactions.

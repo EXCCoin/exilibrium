@@ -85,7 +85,7 @@ const StakeTxRow = ({ status, txType, ...props }) => {
 };
 
 export const StakeTxRowOfType = txType => {
-  const Comp = ({ ...p }) => h(StakeTxRow, { txType, ...p });
+  const Comp = props => h(StakeTxRow, { txType, ...props });
   Comp.displayName = `StakeTxRowOfClass: ${txType}`;
   return Comp;
 };

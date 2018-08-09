@@ -14,30 +14,30 @@ const Row = ({
   leaveTimestamp,
   enterTimestamp
 }) => {
-  const rowClsname = "tx-history-row";
   const StatusComponent = overview ? StatusSmall : Status;
-  const overviewTxIsPending = overview && pending;
 
   // ticket can have leaveTimestamp equals null, which is not voted yet
   const daysToVote = leaveTimestamp ? diffBetweenTwoTs(leaveTimestamp, enterTimestamp) : null;
 
-  return (
-    <div
-      className={[
-        "tx-history-row-wrapper",
-        overviewTxIsPending ? "is-overview-pending" : null
-      ].join(" ")}>
-      <div className={[rowClsname, className].join(" ")} {...{ onClick }}>
-        {children}
-        {!overviewTxIsPending ? (
-          <StatusComponent {...{ txAccountName, pending, txTimestamp, overview, daysToVote }} />
-        ) : null}
-      </div>
-      {overviewTxIsPending && (
+  if (overview && pending) {
+    return (
+      <div className="tx-history-row-wrapper is-overview-pending">
+        <div className={`tx-history-row ${className}`} {...{ onClick }}>
+          {children}
+        </div>
         <StatusComponent
           {...{ txAccountName, pending, txTimestamp, overview, daysToVote, onClick }}
         />
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="tx-history-row-wrapper">
+      <div className={`tx-history-row ${className}`} {...{ onClick }}>
+        {children}
+        <StatusComponent {...{ txAccountName, pending, txTimestamp, overview, daysToVote }} />
+      </div>
     </div>
   );
 };
