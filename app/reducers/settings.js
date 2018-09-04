@@ -9,13 +9,17 @@ import { WALLET_SETTINGS, SELECT_LANGUAGE } from "actions/DaemonActions";
 
 export default function settings(state = {}, action) {
   switch (action.type) {
-    case SELECT_LANGUAGE: // eslint-disable-line no-case-declarations
-      const { currentSettings } = state;
-      currentSettings.locale = action.language;
+    case SELECT_LANGUAGE:
       return {
         ...state,
-        currentSettings,
-        tempSettings: currentSettings
+        currentSettings: {
+          ...state.currentSettings,
+          locale: action.language
+        },
+        tempSettings: {
+          ...state.currentSettings,
+          locale: action.language
+        }
       };
     case SETTINGS_SAVE:
       return {
@@ -36,16 +40,19 @@ export default function settings(state = {}, action) {
         tempSettings: action.tempSettings,
         settingsChanged: false
       };
-    case WALLET_SETTINGS: // eslint-disable-line no-case-declarations
-      const { currentSettings: settings, tempSettings } = state;
-      settings.currencyDisplay = action.currencyDisplay;
-      tempSettings.currencyDisplay = action.currencyDisplay;
-      settings.gapLimit = action.gapLimit;
-      tempSettings.gapLimit = action.gapLimit;
+    case WALLET_SETTINGS:
       return {
         ...state,
-        currentSettings: settings,
-        tempSettings
+        currentSettings: {
+          ...state.currentSettings,
+          currencyDisplay: action.currencyDisplay,
+          gapLimit: action.gapLimit
+        },
+        tempSettings: {
+          ...state.tempSettings,
+          currencyDisplay: action.currencyDisplay,
+          gapLimit: action.gapLimit
+        }
       };
     case TOGGLE_MINING:
       return {

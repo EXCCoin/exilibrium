@@ -48,9 +48,9 @@ class ModalButton extends React.Component {
 }
 
 ModalButton.propTypes = {
-  modalComponent: PropTypes.element.isRequired,
+  modalComponent: PropTypes.any.isRequired,
   className: PropTypes.string.isRequired,
-  buttonComponent: PropTypes.element
+  buttonComponent: PropTypes.any
 };
 
 ModalButton.defaultProps = {
