@@ -198,6 +198,13 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
 
   const cfg = getWalletCfg(testnet, walletPath);
 
+  const gaplimit = parseInt(cfg.get("gaplimit"));
+
+  if (gaplimit && !isNaN(gaplimit) && gaplimit !== 20) {
+    logger.info(`Using custom gap limit: ${gaplimit}`);
+    args.push(`--gaplimit=${gaplimit}`);
+  }
+
   args.push(`--ticketbuyer.balancetomaintainabsolute=${cfg.get("balancetomaintain")}`);
   args.push(`--ticketbuyer.maxfee=${cfg.get("maxfee")}`);
   args.push(`--ticketbuyer.maxpricerelative=${cfg.get("maxpricerelative")}`);
