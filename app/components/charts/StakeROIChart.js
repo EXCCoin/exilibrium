@@ -47,7 +47,9 @@ const ChartTooltip = props => {
 const VoteTimeChart = ({ data, intl }) => {
   const stakeRewardsKey = intl.formatMessage(messages.stakeRewards);
   const stakeFeesKey = intl.formatMessage(messages.stakeFees);
-
+  if (!data) {
+    return null;
+  }
   const displayData = data.map(s => ({
     name: intl.formatMessage(messages.dayMonthDisplay, { value: s.time }),
     legendName: intl.formatMessage(messages.fullDayDisplay, { value: s.time }),

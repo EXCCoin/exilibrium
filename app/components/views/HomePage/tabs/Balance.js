@@ -5,7 +5,36 @@ import { balanceHome } from "connectors";
 import "style/Fonts.less";
 import "style/HomePage.less";
 
-const HomePage = ({ spendableTotalBalance, lockedTotalBalance, spendableAndLockedBalance }) => {
+const HomePage = ({
+  spendableTotalBalance,
+  lockedTotalBalance,
+  spendableAndLockedBalance,
+  loadingStartupStats
+}) => {
+  if (loadingStartupStats) {
+    return (
+      <div className="overview-content-wrapper">
+        <div className="overview-spendable-locked-wrapper">
+          <div className="overview-spendable-locked">
+            <div className="placeholder-loader" />
+            <div className="overview-balance-spendable-locked-label">
+              <T id="home.currentTotalSpendableBalanceLabel" m="Available" />
+            </div>
+            <div className="placeholder-loader" />
+            <div className="overview-balance-spendable-locked-label">
+              <T id="home.currentTotalLockedBalanceLabel" m="Locked" />
+            </div>
+          </div>
+        </div>
+        <div className="overview-chart-wrapper">
+          <div className="overview-chart-placeholder">
+            <T id="home.chartPlaceholder" m="Loading data..." />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="overview-content-wrapper">
       <div className="overview-spendable-locked-wrapper">

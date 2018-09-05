@@ -5,6 +5,7 @@ import eq from "lodash/fp/eq";
 import * as wallet from "wallet";
 import * as selectors from "selectors";
 import { getWalletCfg } from "config";
+import { pause } from "helpers";
 import { TransactionDetails } from "middleware/walletrpc/api_pb";
 
 import {
@@ -36,96 +37,82 @@ export const goToMyTickets = () => dispatch => {
   dispatch(pushHistory("/tickets/mytickets"));
 };
 
-function getWalletServiceSuccess(walletService) {
-  return (dispatch, getState) => {
-    dispatch({ walletService, type: T.GETWALLETSERVICE_SUCCESS });
-    setTimeout(() => {
-      dispatch(loadActiveDataFiltersAttempt());
-    }, 1000);
-    setTimeout(() => {
-      dispatch(getNextAddressAttempt(0));
-    }, 1000);
-    setTimeout(() => {
-      dispatch(getTicketPriceAttempt());
-    }, 1000);
-    setTimeout(() => {
-      dispatch(getPingAttempt());
-    }, 1000);
-    setTimeout(() => {
-      dispatch(getNetworkAttempt());
-    }, 1000);
-    setTimeout(() => {
-      dispatch(transactionNtfnsStart());
-    }, 1000);
-    setTimeout(() => {
-      dispatch(accountNtfnsStart());
-    }, 1000);
-    setTimeout(() => {
-      dispatch(updateStakepoolPurchaseInformation());
-    }, 1000);
-    setTimeout(() => {
-      dispatch(getDecodeMessageServiceAttempt());
-    }, 1000);
+function* startupFlow() {
+  yield loadActiveDataFiltersAttempt;
+  yield () => getNextAddressAttempt(0);
+  yield getTicketPriceAttempt;
+  yield getPingAttempt;
+  yield getNetworkAttempt;
+  yield transactionNtfnsStart;
+  yield accountNtfnsStart;
+  yield updateStakepoolPurchaseInformation;
+  yield getDecodeMessageServiceAttempt;
+}
 
-    const goHomeCb = () => {
-      setTimeout(() => {
-        dispatch(pushHistory("/home"));
-      }, 1000);
-      setTimeout(() => {
-        dispatch(showSidebar());
-      }, 1000);
-      setTimeout(() => {
-        dispatch(showSidebarMenu());
-      }, 1000);
-    };
+const goHomeCb = dispatch => () => {
+  pause(1000).then(() => {
+    dispatch(pushHistory("/home"));
+    dispatch(showSidebar());
+    dispatch(showSidebarMenu());
+  });
+};
+
+function getWalletServiceSuccess(walletService) {
+  return async (dispatch, getState) => {
+    dispatch({ walletService, type: T.GETWALLETSERVICE_SUCCESS });
+    await pause(500);
+    const startupOperations = [];
+    for (const operation of startupFlow()) {
+      const activeOp = operation();
+      dispatch(activeOp);
+      startupOperations.push(activeOp);
+    }
 
     // Check here to see if wallet was just created from an existing
     // seed.  If it was created from a newly generated seed there is no
     // expectation of address use so rescan can be skipped.
-    const { walletCreateExisting, walletCreateResponse } = getState().walletLoader;
-    const { fetchHeadersResponse } = getState().walletLoader;
+    const {
+      walletCreateExisting,
+      walletCreateResponse,
+      fetchHeadersResponse
+    } = getState().walletLoader;
+
     if (walletCreateExisting) {
-      setTimeout(() => {
-        dispatch(rescanAttempt(0)).then(goHomeCb);
-      }, 3000);
+      await Promise.all(startupOperations);
+      dispatch(rescanAttempt(0)).then(goHomeCb(dispatch));
     } else if (
       walletCreateResponse === null &&
       fetchHeadersResponse !== null &&
       fetchHeadersResponse.getFirstNewBlockHeight() !== 0
     ) {
-      setTimeout(() => {
-        dispatch(rescanAttempt(fetchHeadersResponse.getFirstNewBlockHeight())).then(goHomeCb);
-      }, 3000);
+      await Promise.all(startupOperations);
+      await pause(2000);
+      dispatch(rescanAttempt(fetchHeadersResponse.getFirstNewBlockHeight())).then(
+        goHomeCb(dispatch)
+      );
     } else {
-      dispatch(getStartupWalletInfo()).then(goHomeCb);
+      dispatch(getStartupWalletInfo()).then(goHomeCb(dispatch));
     }
   };
 }
 
-export const getStartupWalletInfo = () => dispatch => {
+export const getStartupWalletInfo = () => async dispatch => {
   dispatch({ type: T.GETSTARTUPWALLETINFO_ATTEMPT });
-  setTimeout(() => {
-    dispatch(getStakeInfoAttempt());
-  }, 1000);
-  setTimeout(() => {
-    dispatch(getTicketsInfoAttempt());
-  }, 1000);
-  return new Promise((resolve, reject) => {
-    setTimeout(async () => {
-      try {
-        await dispatch(getAccountsAttempt(true));
-        await dispatch(getMostRecentRegularTransactions());
-        await dispatch(getMostRecentStakeTransactions());
-        await dispatch(getMostRecentTransactions());
-        await dispatch(getStartupStats());
-        dispatch(findImmatureTransactions());
-        dispatch({ type: T.GETSTARTUPWALLETINFO_SUCCESS });
-        resolve();
-      } catch (error) {
-        dispatch({ error, type: T.GETSTARTUPWALLETINFO_FAILED });
-        reject(error);
-      }
-    }, 1000);
+  await Promise.all([dispatch(getStakeInfoAttempt()), dispatch(getTicketsInfoAttempt())]);
+  return new Promise(async (resolve, reject) => {
+    try {
+      await dispatch(getAccountsAttempt(true));
+      await dispatch(getMostRecentRegularTransactions());
+      await dispatch(getMostRecentStakeTransactions());
+      await dispatch(getMostRecentTransactions());
+      dispatch(getStartupStats());
+      dispatch(findImmatureTransactions());
+      dispatch({ type: T.GETSTARTUPWALLETINFO_SUCCESS });
+      resolve();
+    } catch (error) {
+      dispatch({ error, type: T.GETSTARTUPWALLETINFO_FAILED });
+      reject(error);
+    }
   });
 };
 
@@ -153,14 +140,11 @@ export const getTicketBuyerServiceAttempt = () => (dispatch, getState) => {
   dispatch({ type: T.GETTICKETBUYERSERVICE_ATTEMPT });
   wallet
     .getTicketBuyerService(selectors.isTestNet(getState()), walletName, address, port)
-    .then(ticketBuyerService => {
+    .then(async ticketBuyerService => {
       dispatch({ ticketBuyerService, type: T.GETTICKETBUYERSERVICE_SUCCESS });
-      setTimeout(() => {
-        dispatch(getTicketBuyerConfigAttempt());
-      }, 10);
-      setTimeout(() => {
-        dispatch(stopAutoBuyerAttempt());
-      }, 10);
+      await pause(10);
+      dispatch(getTicketBuyerConfigAttempt());
+      dispatch(stopAutoBuyerAttempt());
     })
     .catch(error => dispatch({ error, type: T.GETTICKETBUYERSERVICE_FAILED }));
 };
@@ -251,9 +235,9 @@ function getNetworkSuccess(getNetworkResponse) {
       dispatch({ getNetworkResponse, type: T.GETNETWORK_SUCCESS });
     } else {
       dispatch({ error: "Invalid network detected", type: T.GETNETWORK_FAILED });
-      setTimeout(() => {
+      pause(1000).then(() => {
         dispatch(pushHistory("/walletError"));
-      }, 1000);
+      });
     }
   };
 }
@@ -262,39 +246,44 @@ export const getNetworkAttempt = () => (dispatch, getState) => {
   dispatch({ type: T.GETNETWORK_ATTEMPT });
   wallet
     .getNetwork(selectors.walletService(getState()))
-    .then(resp => dispatch(getNetworkSuccess(resp)))
+    .then(resp => {
+      dispatch(getNetworkSuccess(resp));
+    })
     .catch(error => {
       dispatch({ error, type: T.GETNETWORK_FAILED });
-      setTimeout(() => {
+      pause(1000).then(() => {
         dispatch(pushHistory("/walletError"));
-      }, 1000);
+      });
     });
 };
 
 export const getPingAttempt = () => (dispatch, getState) =>
   wallet
     .doPing(selectors.walletService(getState()))
-    .then(() => setTimeout(() => dispatch(getPingAttempt()), 10000))
+    .then(() => {
+      pause(10000).then(() => {
+        dispatch(getPingAttempt());
+      });
+    })
     .catch(error => {
       const {
         daemon: { shutdownRequested }
       } = getState();
       dispatch({ error, type: T.GETPING_FAILED });
       if (!shutdownRequested) {
-        setTimeout(() => {
+        pause(1000).then(() => {
           dispatch(pushHistory("/walletError"));
-        }, 1000);
+        });
       }
     });
 
 export const getStakeInfoAttempt = () => (dispatch, getState) => {
   dispatch({ type: T.GETSTAKEINFO_ATTEMPT });
-  wallet
+  return wallet
     .getStakeInfo(selectors.walletService(getState()))
     .then(resp => {
       const { getStakeInfoResponse } = getState().grpc;
       dispatch({ getStakeInfoResponse: resp, type: T.GETSTAKEINFO_SUCCESS });
-
       const checkedFields = [
         "getExpired",
         "getLive",
@@ -322,7 +311,9 @@ export const getTicketPriceAttempt = () => (dispatch, getState) => {
   dispatch({ type: T.GETTICKETPRICE_ATTEMPT });
   wallet
     .getTicketPrice(selectors.walletService(getState()))
-    .then(res => dispatch({ getTicketPriceResponse: res, type: T.GETTICKETPRICE_SUCCESS }))
+    .then(res => {
+      dispatch({ getTicketPriceResponse: res, type: T.GETTICKETPRICE_SUCCESS });
+    })
     .catch(error => dispatch({ error, type: T.GETTICKETPRICE_FAILED }));
 };
 
@@ -398,15 +389,18 @@ export const getTicketsInfoAttempt = () => (dispatch, getState) => {
   if (getTicketsRequestAttempt) {
     return;
   }
-
   // using 0..-1 requests all+unmined tickets
   const startRequestHeight = 0;
   const endRequestHeight = -1;
 
   dispatch({ type: T.GETTICKETS_ATTEMPT });
-  wallet
+  return wallet
     .getTickets(selectors.walletService(getState()), startRequestHeight, endRequestHeight)
-    .then(tickets => setTimeout(() => dispatch({ tickets, type: T.GETTICKETS_COMPLETE }), 1000))
+    .then(tickets => {
+      setTimeout(() => {
+        dispatch({ tickets, type: T.GETTICKETS_COMPLETE });
+      }, 1000);
+    })
     .catch(error => console.error(`${error} Please try again`));
 };
 
@@ -459,10 +453,10 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
   }
 
   let {
-    unminedTransactions,
-    minedTransactions,
-    recentRegularTransactions,
-    recentStakeTransactions
+    unminedTransactions = [],
+    minedTransactions = [],
+    recentRegularTransactions = [],
+    recentStakeTransactions = []
   } = getState().grpc;
   const { transactionsFilter, recentTransactionCount } = getState().grpc;
   const chainParams = selectors.chainParams(getState());

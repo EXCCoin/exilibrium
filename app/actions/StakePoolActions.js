@@ -76,14 +76,9 @@ export const updateStakepoolPurchaseInformation = () => (dispatch, getState) =>
   Promise.all(
     sel.configuredStakePools(getState()).map(({ Host, ApiKey }) =>
       getPurchaseInfo(Host, ApiKey)
-        .then(
-          ({
-            response: {
-              data: { status, data }
-            },
-            poolHost
-          }) => (status === "success" ? dispatch(updateSavedConfig(data, poolHost)) : null)
-        )
+        .then(({ response: { data: { status, data } }, poolHost }) => {
+          return status === "success" ? dispatch(updateSavedConfig(data, poolHost)) : null;
+        })
         .catch(error =>
           dispatch({
             error: `Unable to contact stakepool: ${error} please try again later`,

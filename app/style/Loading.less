@@ -71,6 +71,24 @@
   background-image: @grey-loader;
 }
 
+.placeholder-loader {
+  height: 18px;
+  width: 150px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+  50% {
+    background-color: rgba(165, 165, 165, 0.3);
+  }
+  100% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+}
+
 .linear-progress {
   height: 55px;
   width: 100%;

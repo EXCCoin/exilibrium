@@ -70,7 +70,9 @@ export const getStartupStats = () => dispatch => {
       }
       dispatch({ dailyBalances: lastBalances, type: GETSTARTUPSTATS_SUCCESS });
     })
-    .catch(error => dispatch({ error, type: GETSTARTUPSTATS_FAILED }));
+    .catch(error => {
+      dispatch({ error, type: GETSTARTUPSTATS_FAILED });
+    });
 };
 
 export const GETMYTICKETSSTATS_ATTEMPT = "GETMYTICKETSSTATS_ATTEMPT";
@@ -97,8 +99,13 @@ export const generateStat = opts => dispatch =>
 
     const stat = { series: null, data: [] };
     const startFunction = ({ series }) => (stat.series = series);
-    const endFunction = () => resolve(stat);
-    const errorFunction = error => reject(error);
+    const endFunction = () => {
+      resolve(stat);
+    };
+
+    const errorFunction = error => {
+      reject(error);
+    };
     const progressFunction = (time, series) => {
       stat.data.push({ time, series });
     };
@@ -305,7 +312,6 @@ export const balancesStats = opts => (dispatch, getState) => {
           const blockInterval = (toTimestamp - fromTimestamp) / (toHeight - fromHeight);
           timestamp = fromTimestamp + (h - fromHeight) * blockInterval;
         }
-
         res.push({
           spendable: 0,
           immature: isWallet ? -commitAmount : 0,
@@ -327,7 +333,6 @@ export const balancesStats = opts => (dispatch, getState) => {
     }
     return res;
   };
-
   // closure that calcs how much each tx affects each balance type.
   // Ticket and vote/revoke delta calculation assumes *a lot* about how tickets
   // are encoded (1st txout === ticket, odds are commitments, etc). If consensus

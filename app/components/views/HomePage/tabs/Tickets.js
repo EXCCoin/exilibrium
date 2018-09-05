@@ -10,8 +10,45 @@ const HomePage = ({
   earnedStakingReward,
   liveTicketsCount,
   votedTicketsCount,
-  ticketDataChart
+  ticketDataChart,
+  loadingStartupStats
 }) => {
+  if (loadingStartupStats) {
+    return (
+      <div className="overview-content-wrapper">
+        <div className="overview-spendable-locked-wrapper">
+          <div className="overview-ticket">
+            <div className="overview-ticket-column">
+              <div className="placeholder-loader" />
+              <div className="overview-balance-spendable-locked-label">
+                <T id="home.totalValueOfLiveTickets" m="Total Value Of Live Tickets" />
+              </div>
+              <div className="placeholder-loader" />
+              <div className="overview-balance-spendable-locked-label">
+                <T id="home.earnedStakingReward" m="Earned Staking Reward" />
+              </div>
+            </div>
+            <div className="overview-ticket-column-right">
+              <div className="placeholder-loader" />
+              <div className="overview-balance-spendable-locked-label">
+                <T id="home.liveTicketsCount" m="Current Live Tickets" />
+              </div>
+              <div className="placeholder-loader" />
+
+              <div className="overview-balance-spendable-locked-label">
+                <T id="home.votedTicketsCount" m="Voted Tickets" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="overview-ticket-chart-wrapper">
+          <div className="overview-chart-placeholder">
+            <T id="home.chartPlaceholder" m="Loading data..." />
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="overview-content-wrapper">
       <div className="overview-spendable-locked-wrapper">

@@ -8,7 +8,8 @@ const mapStateToProps = selectorMap({
   earnedStakingReward: selectors.totalSubsidy,
   liveTicketsCount: selectors.liveTicketsCount,
   votedTicketsCount: selectors.votedTicketsCount,
-  ticketDataChart: selectors.ticketDataChart
+  ticketDataChart: selectors.ticketDataChart,
+  loadingStartupStats: selectors.loadingStartupStats
 });
 
 export default connect(mapStateToProps);

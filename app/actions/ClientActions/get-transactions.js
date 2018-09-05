@@ -103,9 +103,9 @@ export default function getTransactions() {
       recentTransactionCount
     );
     if (types.includes(TransactionDetails.TransactionType.REGULAR)) {
-      recentRegularTransactions = recentTransactions;
+      recentRegularTransactions = [...recentTransactions];
     } else if (types.includes(TransactionDetails.TransactionType.VOTE)) {
-      recentStakeTransactions = recentTransactions;
+      recentStakeTransactions = [...recentTransactions];
     }
 
     const stateChange = {
