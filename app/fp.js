@@ -42,7 +42,7 @@ export const substruct = (structure, obj) =>
   );
 
 export const apply = (fn, ...args) => fn(...args);
-
+export const identity = x => x;
 export const eql = x => y => x === y;
 export const increment = x => x + 1;
 export const decrement = x => x - 1;

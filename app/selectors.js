@@ -1,4 +1,19 @@
-import { compose, reduce, filter, get, not, or, and, eq, find, bool, map, apply, div } from "./fp";
+import {
+  compose,
+  reduce,
+  filter,
+  get,
+  not,
+  or,
+  and,
+  eq,
+  find,
+  bool,
+  map,
+  apply,
+  div,
+  identity
+} from "./fp";
 import { createSelector } from "reselect";
 import { appLocaleFromElectronLocale } from "./i18n/locales";
 import { reverseHash } from "./helpers/byteActions";
@@ -308,7 +323,11 @@ export const homeHistoryTransactions = createSelector(
   apply
 );
 
-export const dailyBalancesStats = get(["statistics", "dailyBalances"]);
+export const loadingStartupStats = createSelector(
+  state => state.statistics.loadingStartupStats,
+  identity
+);
+export const dailyBalancesStats = state => state.statistics.dailyBalances;
 
 export const spendableAndLockedBalance = createSelector(
   dailyBalancesStats,

@@ -19,3 +19,10 @@ export const showCheck = C => {
   Comp.displayName = `ShowChecked: ${C.displayName || C.name || C}`;
   return Comp;
 };
+
+export const pause = time =>
+  new Promise(resolve => {
+    setTimeout(() => {
+      resolve();
+    }, time);
+  });

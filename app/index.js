@@ -341,7 +341,8 @@ const initialState = {
   statistics: {
     dailyBalances: Array(),
     voteTime: null,
-    getMyTicketsStatsRequest: false
+    getMyTicketsStatsRequest: false,
+    loadingStartupStats: false
   },
   locales
 };

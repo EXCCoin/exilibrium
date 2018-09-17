@@ -5,7 +5,35 @@ import { transactionsHome } from "connectors";
 import "style/Fonts.less";
 import "style/HomePage.less";
 
-const HomePage = ({ balanceReceived, balanceSent, sentAndReceivedTransactions }) => {
+const HomePage = ({
+  balanceReceived,
+  balanceSent,
+  sentAndReceivedTransactions,
+  loadingStartupStats
+}) => {
+  if (loadingStartupStats) {
+    return (
+      <div className="overview-content-wrapper">
+        <div className="overview-spendable-locked-wrapper">
+          <div className="overview-spendable-locked">
+            <div className="placeholder-loader" />
+            <div className="overview-balance-spendable-locked-label">
+              <T id="home.currentTotalSpendableBalanceLabel" m="Sent" />
+            </div>
+            <div className="placeholder-loader" />
+            <div className="overview-balance-spendable-locked-label">
+              <T id="home.currentTotalLockedBalanceLabel" m="Received" />
+            </div>
+          </div>
+        </div>
+        <div className="overview-chart-wrapper">
+          <div className="overview-chart-placeholder">
+            <T id="home.chartPlaceholder" m="Loading data..." />
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="overview-content-wrapper">
       <div className="overview-spendable-locked-wrapper">

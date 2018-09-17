@@ -16,9 +16,9 @@ export const getDecodeMessageServiceAttempt = () => (dispatch, getState) => {
   } = getState();
   dispatch({ type: GETDECODEMESSAGESERVICE_ATTEMPT });
   return getDecodeService(isTestNet(getState()), walletName, address, port)
-    .then(decodeMessageService =>
-      dispatch({ decodeMessageService, type: GETDECODEMESSAGESERVICE_SUCCESS })
-    )
+    .then(decodeMessageService => {
+      dispatch({ decodeMessageService, type: GETDECODEMESSAGESERVICE_SUCCESS });
+    })
     .catch(error => dispatch({ error, type: GETDECODEMESSAGESERVICE_FAILED }));
 };
 

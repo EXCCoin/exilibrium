@@ -5,7 +5,8 @@ import * as selectors from "selectors";
 const mapStateToProps = selectorMap({
   lockedTotalBalance: selectors.lockedBalance,
   spendableTotalBalance: selectors.spendableTotalBalance,
-  spendableAndLockedBalance: selectors.spendableAndLockedBalance
+  spendableAndLockedBalance: selectors.spendableAndLockedBalance,
+  loadingStartupStats: selectors.loadingStartupStats
 });
 
 export default connect(mapStateToProps);

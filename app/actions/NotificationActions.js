@@ -9,6 +9,7 @@ import {
   TransactionNotificationsRequest,
   AccountNotificationsRequest
 } from "middleware/walletrpc/api_pb";
+import { pause } from "helpers";
 
 export const TRANSACTIONNTFNS_START = "TRANSACTIONNTFNS_START";
 export const TRANSACTIONNTFNS_FAILED = "TRANSACTIONNTFNS_FAILED";
@@ -20,32 +21,33 @@ function transactionNtfnsData(response) {
   return (dispatch, getState) => {
     const attachedBlocks = response.getAttachedBlocksList();
     const unminedTxList = response.getUnminedTransactionsList();
-
     // Block was mined
     if (attachedBlocks.length > 0) {
       const currentBlockTimestamp = attachedBlocks[attachedBlocks.length - 1].getTimestamp();
       const currentBlockHeight = attachedBlocks[attachedBlocks.length - 1].getHeight();
       const { maturingBlockHeights } = getState().grpc;
       dispatch({ currentBlockHeight, currentBlockTimestamp, type: NEWBLOCKCONNECTED });
-      setTimeout(() => {
+      pause(1000).then(() => {
         dispatch(getTicketPriceAttempt());
-      }, 1000);
+      });
 
       const maturedHeights = Object.keys(maturingBlockHeights).filter(h => h <= currentBlockHeight);
       if (maturedHeights.length > 0) {
-        const accountNumbers = maturedHeights.reduce((l, h) => {
-          maturingBlockHeights[h].forEach(an => (l.indexOf(an) === -1 ? l.push(an) : null));
-          return l;
+        const accountNumbers = maturedHeights.reduce((acc, height) => {
+          maturingBlockHeights[height].forEach(
+            an => (acc.indexOf(an) === -1 ? acc.push(an) : null)
+          );
+          return acc;
         }, []);
         dispatch(getAccountNumbersBalances(accountNumbers));
       }
 
-      const newlyMined = attachedBlocks.reduce((l, b) => {
-        b.getTransactionsList().forEach((t, i) => {
-          const tx = wallet.formatTransaction(b, t, i);
-          l.push(tx);
+      const newlyMined = attachedBlocks.reduce((acc, block) => {
+        block.getTransactionsList().forEach((t, i) => {
+          const tx = wallet.formatTransaction(block, t, i);
+          acc.push(tx);
         });
-        return l;
+        return acc;
       }, []);
 
       const newlyUnmined = unminedTxList.map((t, i) => wallet.formatUnminedTransaction(t, i));
