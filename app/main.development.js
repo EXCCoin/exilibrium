@@ -242,8 +242,8 @@ app.on("ready", async () => {
 
   let windowOpts = {
     show: false,
-    width: 1178,
-    height: 790,
+    width: 1185,
+    height: 795,
     page: "app.html",
     webPreferences: {
       webSecurity: false
