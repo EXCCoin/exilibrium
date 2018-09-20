@@ -15,6 +15,7 @@ import { isTestNet } from "selectors";
 import axios from "axios";
 import { semverCompatible } from "./VersionActions";
 import { eq } from "fp";
+import { pause } from "helpers";
 
 export const EXILIBRIUM_VERSION = "EXILIBRIUM_VERSION";
 export const SELECT_LANGUAGE = "SELECT_LANGUAGE";
@@ -247,6 +248,20 @@ export const startWallet = selectedWallet => (dispatch, getState) => {
       console.log(err);
       dispatch({ type: DAEMONSTARTED_ERROR });
     });
+};
+
+export const QUIT_WALLET = "QUIT_WALLET";
+
+export const stopWallet = () => async dispatch => {
+  try {
+    dispatch(stopNotifcations());
+    await pause(100);
+    dispatch({ type: QUIT_WALLET });
+    await wallet.stopWallet();
+    dispatch(pushHistory("/getStarted"));
+  } catch (e) {
+    throw new Error(e);
+  }
 };
 
 export const prepStartDaemon = () => (dispatch, getState) => {

@@ -64,7 +64,7 @@ export const Balance = ({
 };
 
 Balance.propTypes = {
-  currencyDisplay: PropTypes.string.isRequired,
+  currencyDisplay: PropTypes.string,
   amount: PropTypes.any,
   onClick: PropTypes.func,
   bold: PropTypes.bool,
@@ -75,6 +75,10 @@ Balance.propTypes = {
   classNameWrapper: PropTypes.any,
   classNameUnit: PropTypes.any,
   preScaled: PropTypes.any
+};
+
+Balance.defaultProps = {
+  currencyDisplay: "EXCC"
 };
 
 export default balance(Balance);

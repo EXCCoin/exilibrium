@@ -69,7 +69,7 @@ import {
   MODAL_SHOWN,
   MODAL_HIDDEN
 } from "../actions/ControlActions";
-import { WALLET_AUTOBUYER_SETTINGS } from "actions/DaemonActions";
+import { WALLET_AUTOBUYER_SETTINGS, QUIT_WALLET } from "actions/DaemonActions";
 
 import { EXPORT_STARTED, EXPORT_COMPLETED, EXPORT_ERROR } from "actions/StatisticsActions";
 
@@ -501,6 +501,26 @@ export default function control(state = {}, action) {
         maxPriceAbsolute: action.maxPriceAbsolute,
         maxPriceRelative: action.maxPriceRelative,
         maxPerBlock: action.maxPerBlock
+      };
+    case QUIT_WALLET:
+      return {
+        ...state,
+        balanceToMaintain: null,
+        maxFee: null,
+        maxPriceAbsolute: null,
+        maxPriceRelative: null,
+        maxPerBlock: null,
+        getTicketBuyerConfigError: null,
+        getTicketBuyerConfigRequestAttempt: false,
+        stopAutoBuyerError: null,
+        stopAutoBuyerRequestAttempt: false,
+        getTicketBuyerConfigResponse: null,
+        loadActiveDataFiltersError: null,
+        loadActiveDataFiltersRequestAttempt: false,
+        loadActiveDataFiltersResponse: null,
+        getNextAddressError: null,
+        getNextAddressRequestAttempt: false,
+        getNextAddressResponse: null
       };
     case EXPORT_STARTED:
       return {

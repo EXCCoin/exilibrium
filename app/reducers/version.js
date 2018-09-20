@@ -7,6 +7,7 @@ import {
   WALLETRPCVERSION_SUCCESS,
   VERSION_NOT_VALID
 } from "../actions/VersionActions";
+import { QUIT_WALLET } from "actions/DaemonActions";
 
 export default function version(state = {}, action) {
   switch (action.type) {
@@ -28,6 +29,12 @@ export default function version(state = {}, action) {
         getWalletRPCVersionError: null,
         getVersionServiceRequestAttempt: false,
         versionService: action.versionService
+      };
+    case QUIT_WALLET:
+      return {
+        ...state,
+        versionService: null,
+        getWalletRPCVersionResponse: null
       };
     case WALLETRPCVERSION_ATTEMPT:
       return {

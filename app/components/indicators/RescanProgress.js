@@ -18,7 +18,7 @@ const RescanProgress = ({
         min={0}
         max={1}
         value={rescanCurrentBlock / rescanEndBlock}
-        color="#2ed8a3"
+        color="#ff00a5"
       />
     </div>
     <div className="rescan-button-area">

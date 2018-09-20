@@ -267,10 +267,11 @@ export const getPingAttempt = () => (dispatch, getState) =>
     })
     .catch(error => {
       const {
-        daemon: { shutdownRequested }
+        daemon: { shutdownRequested, goBack }
       } = getState();
+
       dispatch({ error, type: T.GETPING_FAILED });
-      if (!shutdownRequested) {
+      if (!(shutdownRequested || goBack)) {
         pause(1000).then(() => {
           dispatch(pushHistory("/walletError"));
         });

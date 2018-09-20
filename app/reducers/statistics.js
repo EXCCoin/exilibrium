@@ -6,7 +6,7 @@ import {
   GETMYTICKETSSTATS_SUCCESS,
   GETMYTICKETSSTATS_FAILED
 } from "actions/StatisticsActions";
-
+import { QUIT_WALLET } from "actions/DaemonActions";
 export default function statistics(state = {}, action) {
   switch (action.type) {
     case GETSTARTUPSTATS_ATTEMPT:
@@ -40,6 +40,12 @@ export default function statistics(state = {}, action) {
       return {
         ...state,
         getMyTicketsStatsRequest: false
+      };
+    case QUIT_WALLET:
+      return {
+        ...state,
+        loadingStartupStats: false,
+        dailyBalances: []
       };
     default:
       return state;

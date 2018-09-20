@@ -58,7 +58,7 @@ import {
   SETVOTECHOICES_SUCCESS,
   MATURINGHEIGHTS_CHANGED
 } from "../actions/ClientActions";
-import { STARTUPBLOCK, WALLETREADY } from "../actions/DaemonActions";
+import { STARTUPBLOCK, WALLETREADY, QUIT_WALLET } from "../actions/DaemonActions";
 import { NEWBLOCKCONNECTED } from "../actions/NotificationActions";
 import {
   GETDECODEMESSAGESERVICE_ATTEMPT,
@@ -535,6 +535,62 @@ export default function grpc(state = {}, action) {
       return {
         ...state,
         port: action.port
+      };
+    case QUIT_WALLET:
+      return {
+        ...state,
+        port: "9121",
+        getWalletServiceError: null,
+        getWalletServiceRequestAttempt: false,
+        walletService: null,
+        getTicketBuyerServiceError: null,
+        getTicketBuyerServiceRequestAttempt: false,
+        ticketBuyerService: null,
+        getVotingServiceError: null,
+        getVotingServiceRequestAttempt: false,
+        votingService: null,
+        getAgendaServiceError: null,
+        getAgendaServiceRequestAttempt: false,
+        agendaService: null,
+        getAgendasError: null,
+        getAgendasRequestAttempt: false,
+        getAgendasResponse: null,
+        getTicketPriceError: "",
+        getTicketPriceRequestAttempt: false,
+        getTicketPriceResponse: null,
+        getNetworkError: null,
+        getNetworkRequestAttempt: false,
+        getNetworkResponse: null,
+        getMessageDecodeServiceRequestAttempt: false,
+        getMessageDecodeServiceError: null,
+        getStakeInfoError: "",
+        getStakeInfoRequestAttempt: false,
+        getTicketsRequestAttempt: false,
+        decodeMessageService: null,
+        getStakeInfoResponse: null,
+        getAccountsError: "",
+        getAccountsRequestAttempt: false,
+        getAccountsResponse: null,
+        transactionsFilter: {
+          search: null, // The freeform text in the Search box
+          listDirection: "desc", // asc = oldest -> newest, desc => newest -> oldest
+          types: [], // desired transaction types (code). All if blank.
+          direction: null // direction of desired transactions (sent/received/transfer)
+        },
+        minedTransactions: [],
+        unminedTransactions: [],
+        transactions: [],
+        lastTransaction: null,
+        noMoreTransactions: false,
+        getTransactionsRequestAttempt: false,
+        getBalanceError: "",
+        getBalanceRequestAttempt: false,
+        balances: [],
+        getTransactionsRequestError: "",
+        recentRegularTransactions: [],
+        recentStakeTransactions: [],
+        tickets: [],
+        getTicketsRequestError: ""
       };
     default:
       return state;

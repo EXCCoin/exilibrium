@@ -5,7 +5,8 @@ import {
   TOGGLE_MINING,
   SYSTEM_INFO_REQUEST_SUCCESS
 } from "../actions/SettingsActions";
-import { WALLET_SETTINGS, SELECT_LANGUAGE } from "actions/DaemonActions";
+import { WALLET_SETTINGS, SELECT_LANGUAGE, QUIT_WALLET } from "actions/DaemonActions";
+import { getGlobalCfg } from "config";
 
 export default function settings(state = {}, action) {
   switch (action.type) {
@@ -53,6 +54,19 @@ export default function settings(state = {}, action) {
           currencyDisplay: action.currencyDisplay,
           gapLimit: action.gapLimit
         }
+      };
+    case QUIT_WALLET: // eslint-disable-line no-case-declarations
+      const globalCfg = getGlobalCfg();
+      return {
+        currentSettings: {
+          locale: globalCfg.get("locale"),
+          daemonStartAdvanced: globalCfg.get("daemon_start_advanced")
+        },
+        tempSettings: {
+          locale: globalCfg.get("locale"),
+          daemonStartAdvanced: globalCfg.get("daemon_start_advanced")
+        },
+        settingsChanged: false
       };
     case TOGGLE_MINING:
       return {

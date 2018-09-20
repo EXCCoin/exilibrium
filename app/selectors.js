@@ -996,3 +996,35 @@ export const stakeROIStats = createSelector(
 );
 
 export const modalVisible = get(["control", "modalVisible"]);
+
+export const hasUnresolvedRequests = createSelector(
+  getBalanceRequestAttempt,
+  getTransactionsRequestAttempt,
+  getTicketsRequestAttempt,
+  getNextAddressRequestAttempt,
+  constructTxRequestAttempt,
+  signTransactionRequestAttempt,
+  publishTransactionRequestAttempt,
+  purchaseTicketsRequestAttempt,
+  importScriptRequestAttempt,
+  getNextAccountRequestAttempt,
+  renameAccountRequestAttempt,
+  isOpeningWallet,
+  isSigningMessage,
+  isVerifyingMessage,
+  openWalletInputRequest,
+  createWalletInputRequest,
+  discoverAddressInputRequest,
+  selectCreateWalletInputRequest,
+  rescanRequest,
+  getTransactionsRequestAttempt,
+  getTicketsRequestAttempt,
+  validateAddressRequestAttempt,
+  currentStakePoolConfigRequest,
+  purchaseTicketsRequestAttempt,
+  shutdownRequested,
+  getMyTicketsStatsRequest,
+  exportingData,
+  loadingStartupStats,
+  (...args) => args.filter(Boolean).length > 0
+);
