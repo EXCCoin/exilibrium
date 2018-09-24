@@ -45,7 +45,7 @@ import {
 } from "actions/WalletLoaderActions";
 import { GETSTARTUPWALLETINFO_ATTEMPT } from "actions/ClientActions";
 import { RESCAN_ATTEMPT } from "actions/ControlActions";
-import { WALLET_LOADER_SETTINGS } from "actions/DaemonActions";
+import { WALLET_LOADER_SETTINGS, QUIT_WALLET } from "actions/DaemonActions";
 
 export default function walletLoader(state = {}, action) {
   switch (action.type) {
@@ -337,6 +337,34 @@ export default function walletLoader(state = {}, action) {
       return {
         ...state,
         discoverAccountsComplete: action.discoverAccountsComplete
+      };
+    case QUIT_WALLET:
+      return {
+        ...state,
+        discoverAccountsComplete: null,
+        getLoaderError: null,
+        loader: null,
+        getLoaderRequestAttempt: false,
+        stepIndex: 0,
+        walletExistError: null,
+        walletExistRequestAttempt: false,
+        walletExistResponse: null,
+        walletOpenResponse: null,
+        advancedDaemonInputRequest: false,
+        startRpcRequestAttempt: false,
+        startRpcResponse: null,
+        startRpcError: null,
+        subscribeBlockNtfnsError: null,
+        subscribeBlockNtfnsRequestAttempt: false,
+        subscribeBlockNtfnsRequest: null,
+        subscribeBlockNtfnsResponse: null,
+        discoverAddressInputRequest: false,
+        discoverAddressError: null,
+        discoverAddressRequestAttempt: false,
+        discoverAddressResponse: null,
+        fetchHeadersRequestAttempt: false,
+        fetchHeadersResponse: null,
+        fetchHeadersError: null
       };
     default:
       return state;

@@ -16,7 +16,8 @@ import {
   AVAILABLE_WALLETS,
   EXILIBRIUM_VERSION,
   FATAL_DAEMON_ERROR,
-  FATAL_WALLET_ERROR
+  FATAL_WALLET_ERROR,
+  QUIT_WALLET
 } from "../actions/DaemonActions";
 import { CREATEWALLET_GOBACK } from "../actions/WalletLoaderActions";
 import { UPDATEHIDDENACCOUNTS } from "../actions/ClientActions";
@@ -140,6 +141,12 @@ export default function version(state = {}, action) {
       return {
         ...state,
         walletError: action.error
+      };
+    case QUIT_WALLET:
+      return {
+        ...state,
+        goBack: true,
+        walletReady: false
       };
     default:
       return state;

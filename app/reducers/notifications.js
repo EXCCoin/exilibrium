@@ -7,6 +7,7 @@ import {
   ACCOUNTNTFNS_END,
   CLEARUNMINEDMESSAGE
 } from "../actions/NotificationActions";
+import { QUIT_WALLET } from "actions/DaemonActions";
 
 export default function notifications(state = {}, action) {
   switch (action.type) {
@@ -47,6 +48,15 @@ export default function notifications(state = {}, action) {
       return {
         ...state,
         newUnminedMessage: null
+      };
+    case QUIT_WALLET:
+      return {
+        ...state,
+        transactionNtfns: null,
+        transactionNtfnsError: null,
+        accountNtfns: null,
+        decodedTransactions: {},
+        maturingBlockHeights: {}
       };
     default:
       return state;

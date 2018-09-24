@@ -12,7 +12,7 @@ export default ({ rescanRequest, rescanAttempt }) => (
   <Tooltip text={<T id="sidebar.rescanBtn.tip" m={rescanBtnMessage} />} disabled={rescanRequest}>
     <button
       disabled={Boolean(rescanRequest)}
-      className={`rescan-button${rescanRequest ? " spin" : ""}`}
+      className={`rescan-button ${rescanRequest ? "spin" : ""}`}
       onClick={() => rescanAttempt(0)}
     />
   </Tooltip>

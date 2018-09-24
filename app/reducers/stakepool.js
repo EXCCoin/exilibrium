@@ -7,7 +7,7 @@ import {
   REMOVESTAKEPOOLCONFIG
 } from "../actions/StakePoolActions";
 import { CLEARSTAKEPOOLCONFIG } from "../actions/WalletLoaderActions";
-import { WALLET_STAKEPOOL_SETTINGS } from "actions/DaemonActions";
+import { WALLET_STAKEPOOL_SETTINGS, QUIT_WALLET } from "actions/DaemonActions";
 
 export default function stakepool(state = {}, action) {
   switch (action.type) {
@@ -58,6 +58,13 @@ export default function stakepool(state = {}, action) {
         activeStakePoolConfig: action.activeStakePoolConfig,
         selectedStakePool: action.selectedStakePool,
         currentStakePoolConfig: action.currentStakePoolConfig
+      };
+    case QUIT_WALLET:
+      return {
+        ...state,
+        currentStakePoolConfig: null,
+        activeStakePoolConfig: false,
+        selectedStakePool: null
       };
     default:
       return state;

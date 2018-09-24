@@ -65,6 +65,7 @@ const initialState = {
     credentials: null,
     appData: null,
     shutdownRequested: false,
+    goBack: false,
     openForm: globalCfg.get("must_open_form"),
     remoteAppdataError: false,
     previousWallet: null,

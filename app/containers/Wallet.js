@@ -14,6 +14,8 @@ import TicketsPage from "components/views/TicketsPage";
 import SideBar from "components/SideBar";
 import { BlurableContainer } from "layout";
 import { walletContainer } from "connectors";
+import { Tooltip } from "shared";
+import { FormattedMessage as T } from "react-intl";
 
 const pageAnimation = {
   atEnter: { opacity: 0 },
@@ -24,7 +26,7 @@ const pageAnimation = {
 @autobind
 class Wallet extends React.Component {
   render() {
-    const { expandSideBar } = this.props;
+    const { expandSideBar, stopWallet, walletName, hasUnresolvedRequests } = this.props;
     return (
       <BlurableContainer className="page-body">
         <SideBar />
@@ -43,6 +45,21 @@ class Wallet extends React.Component {
           <Route path="/transactions" component={TransactionsPage} />
           <Route path="/tickets" component={TicketsPage} />
         </AnimatedSwitch>
+        <Tooltip
+          text={
+            hasUnresolvedRequests ? (
+              <T id="quitBtn.warning" m="Cannot quit with ongoing requests" />
+            ) : (
+              <T id="quitBtn.tip" m="Go back to wallet selection" />
+            )
+          }>
+          <button
+            className="quit-wallet-button"
+            onClick={stopWallet}
+            disabled={hasUnresolvedRequests}>
+            <span>{walletName}</span>
+          </button>
+        </Tooltip>
       </BlurableContainer>
     );
   }

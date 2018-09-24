@@ -319,7 +319,7 @@ const subscribeBlockAttempt = () => (dispatch, getState) => {
     .catch(error => dispatch({ error, type: SUBSCRIBEBLOCKNTFNS_FAILED }));
 };
 
-export const FETCHHEADERS_ATTEMPT = "FETCHHEADER_ATTEMPT";
+export const FETCHHEADERS_ATTEMPT = "FETCHHEADERS_ATTEMPT";
 export const FETCHHEADERS_FAILED = "FETCHHEADERS_FAILED";
 export const FETCHHEADERS_SUCCESS = "FETCHHEADERS_SUCCESS";
 export const FETCHHEADERS_PROGRESS = "FETCHHEADERS_PROGRESS";
