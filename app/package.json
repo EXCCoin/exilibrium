@@ -20,8 +20,5 @@
   },
   "resolutions": {
     "conf": "1.1.2"
-  },
-  "optionalDependencies": {
-    "win32ipc": "./modules/win32ipc"
   }
 }

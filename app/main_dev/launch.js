@@ -41,7 +41,7 @@ function closeClis() {
 }
 
 function closeEXCCD() {
-  if (require("is-running")(exccdPID)) {
+  if (require("is-running")(exccdPID) && os.platform() !== "win32") {
     logger.info(`Sending SIGINT to exccd at pid:${exccdPID}`);
     process.kill(exccdPID, "SIGINT");
   }
@@ -49,7 +49,7 @@ function closeEXCCD() {
 
 export const closeEXCCW = () => {
   try {
-    if (require("is-running")(exccwPID)) {
+    if (require("is-running")(exccdPID) && os.platform() !== "win32") {
       logger.info(`Sending SIGINT to exccwallet at pid:${exccwPID}`);
       process.kill(exccwPID, "SIGINT");
     }
@@ -128,15 +128,8 @@ export const launchEXCCD = (
 
   logger.info(`Starting ${exccdExe} with ${args}`);
 
-  const exccdStdio = ["ignore", "pipe", "pipe"];
-
-  if (os.platform() === "win32") {
-    exccdStdio.push("pipe");
-  }
-
   const exccd = spawn(exccdExe, args, {
-    detached: os.platform() === "win32",
-    stdio: exccdStdio
+    stdio: ["ignore", "pipe", "pipe"]
   });
 
   exccd.on("error", err => {
@@ -167,7 +160,9 @@ export const launchEXCCD = (
   exccdPID = exccd.pid;
   logger.info(`exccd started with pid:${newConfig.pid}`);
 
-  exccd.unref();
+  if (os.platform() !== "win32") {
+    exccd.unref();
+  }
   return newConfig;
 };
 
@@ -218,8 +213,6 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
   }
 
   if (os.platform() !== "win32") {
-    // The spawn() below opens a pipe on fd 4
-    // No luck getting this to work on win7.
     args.push("--rpclistenerevents");
     args.push("--pipetx=4");
   }
@@ -232,7 +225,6 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
   logger.info(`Starting ${exccwExe} with ${args}`);
 
   const exccwallet = spawn(exccwExe, args, {
-    detached: os.platform() === "win32",
     stdio: ["ignore", "pipe", "pipe", "ignore", "pipe"]
   });
 
@@ -306,7 +298,9 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
   exccwPID = exccwallet.pid;
   logger.info(`exccwallet started with pid:${exccwPID}`);
 
-  exccwallet.unref();
+  if (os.platform() !== "win32") {
+    exccwallet.unref();
+  }
   return exccwPID;
 };
 
