@@ -192,6 +192,7 @@ const initialState = {
     neededBlocks: 0,
     curBlocks: 0,
     stepIndex: 0,
+    maxWalletCount: globalCfg.get("max_wallet_count"),
     // Loader
     getLoaderRequestAttempt: false,
     loader: null,

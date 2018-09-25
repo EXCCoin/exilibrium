@@ -39,7 +39,8 @@ const mapStateToProps = selectorMap({
   availableLanguages: selectors.sortedLocales,
   locale: selectors.currentLocaleName,
   defaultLocale: selectors.defaultLocaleName,
-  updateAvailable: selectors.updateAvailable
+  updateAvailable: selectors.updateAvailable,
+  maxWalletCount: selectors.maxWalletCount
 });
 
 const mapDispatchToProps = dispatch =>

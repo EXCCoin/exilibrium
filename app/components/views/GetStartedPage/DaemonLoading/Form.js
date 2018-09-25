@@ -83,23 +83,26 @@ export default ({
             value={getCurrentBlockCount}
           />
           {!getDaemonStarted || getCurrentBlockCount === null || getDaemonSynced ? (
-            <div />
+            <div className="loader-bar-estimation" />
           ) : (
             <div className="loader-bar-estimation">
               <T id="getStarted.chainLoading.syncEstimation" m="Estimated time left" />
               <span className="bold">
                 {" "}
-                {finishDateEstimation ? (
-                  <FormattedRelative value={finishDateEstimation} />
-                ) : (
-                  "--"
-                )} ({getCurrentBlockCount} / {getNeededBlocks})
+                {finishDateEstimation ? <FormattedRelative value={finishDateEstimation} /> : "--"} (
+                {getCurrentBlockCount} / {getNeededBlocks})
               </span>
             </div>
           )}
         </div>
         <div className="loader-bar-icon">
-          {text && !startupError && <div className="loader-bar-icon-text">{text}...</div>}
+          {text &&
+            !startupError && (
+              <div className="loader-bar-icon-text">
+                {text}
+                ...
+              </div>
+            )}
           {startupError && <div className="loader-bar-icon-text error">{startupError}</div>}
           <ExccLoading hidden={startupError || isInputRequest} />
         </div>

@@ -103,6 +103,9 @@ export function initGlobalCfg() {
   if (!config.has("show_tutorial")) {
     config.set("show_tutorial", "true");
   }
+  if (!config.has("max_wallet_count")) {
+    config.set("max_wallet_count", 3);
+  }
   return config;
 }
 

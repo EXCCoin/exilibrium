@@ -36,6 +36,7 @@ export const getEstimatedTimeLeft = get(["daemon", "timeLeftEstimate"]);
 export const getDaemonSynced = get(["daemon", "daemonSynced"]);
 export const isAdvancedDaemon = get(["daemon", "daemonAdvanced"]);
 export const getWalletReady = get(["daemon", "walletReady"]);
+export const maxWalletCount = get(["walletLoader", "maxWalletCount"]);
 export const isPrepared = and(getDaemonStarted, getDaemonSynced);
 export const getCredentials = get(["daemon", "credentials"]);
 
