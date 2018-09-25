@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { routerMiddleware, push } from "react-router-redux";
-import createLogger from "redux-logger";
+import { createLogger } from "redux-logger";
 //import immutableStateInvariantMiddleware from "redux-immutable-state-invariant";
 import rootReducer from "../reducers";
 

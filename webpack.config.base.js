@@ -20,17 +20,6 @@ export default {
             }
           }
         ]
-      },
-      {
-        test: /\.node$/,
-        use: [
-          {
-            loader: "node-addon-loader",
-            options: {
-              basePath: path.resolve(__dirname, "bin")
-            }
-          }
-        ]
       }
     ]
   },
