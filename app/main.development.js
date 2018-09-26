@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 import parseArgs from "minimist";
-import { app, BrowserWindow, Menu, shell, dialog } from "electron";
+import { app, BrowserWindow, Menu, shell, dialog, globalShortcut } from "electron";
 import { initGlobalCfg, validateGlobalCfgFile, setMustOpenForm } from "./config";
 import { appLocaleFromElectronLocale, default as locales } from "./i18n/locales";
 import { logger, GetExccdLogs, GetExccwalletLogs } from "./main_dev/logging";
@@ -321,7 +321,7 @@ app.on("ready", async () => {
       ]).popup(mainWindow);
     }
   });
-
+  let isToolbarVisible = true;
   if (process.platform === "darwin") {
     template = [
       {
@@ -463,6 +463,14 @@ app.on("ready", async () => {
             click() {
               mainWindow.setFullScreen(!mainWindow.isFullScreen());
             }
+          },
+          {
+            label: locale.messages["appMenu.appToolbar"],
+            accelerator: "CommandOrControl+Shift+g",
+            click() {
+              Menu.setApplicationMenu(null);
+              isToolbarVisible = false;
+            }
           }
         ]
       }
@@ -511,7 +519,7 @@ app.on("ready", async () => {
         {
           label: locale.messages["appMenu.communityDiscussions"],
           click() {
-            shell.openExternal("https://excc.co");
+            shell.openExternal("https://discordapp.com/invite/pZe2EcH");
           }
         },
         {
@@ -550,6 +558,16 @@ app.on("ready", async () => {
   );
   menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
+
+  globalShortcut.register("CommandOrControl+Shift+G", () => {
+    if (isToolbarVisible) {
+      Menu.setApplicationMenu(null);
+      isToolbarVisible = false;
+    } else {
+      Menu.setApplicationMenu(menu);
+      isToolbarVisible = true;
+    }
+  });
 });
 
 app.on("before-quit", event => {
