@@ -50,7 +50,9 @@ const ExportPage = ({
       <T id="export.infoFieldsHeader" m="Exported Fields" />
     </h4>
     <ul className="export-info-fields">
-      {selectedExport.fields.map(p => <FieldDescription key={p.name} {...p} />)}
+      {selectedExport.fields.map(p => (
+        <FieldDescription key={p.name} {...p} />
+      ))}
     </ul>
 
     <KeyBlueButton

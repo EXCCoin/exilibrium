@@ -91,7 +91,8 @@ const SendPage = ({
                     <T id="send.confirmAmountAddresses" m="Destination addresses" />
                   ) : (
                     <T id="send.confirmAmountAddress" m="Destination address" />
-                  )}:
+                  )}
+                  :
                 </div>
                 {outputs.map((output, index) => {
                   return (
@@ -142,8 +143,7 @@ const SendPage = ({
       <div className="estimation-area-send">
         <div className="total-amount-send">
           <div className="total-amount-send-text">
-            <T id="send.totalAmountEstimation" m="Total amount sending" />
-            :
+            <T id="send.totalAmountEstimation" m="Total amount sending" />:
           </div>
           <div className="total-amount-send-amount">
             <Balance amount={totalSpent} />
@@ -151,8 +151,7 @@ const SendPage = ({
         </div>
         <div className="total-amount-send">
           <div className="total-amount-send-text">
-            <T id="send.feeEstimation" m="Estimated Fee" />
-            :
+            <T id="send.feeEstimation" m="Estimated Fee" />:
           </div>
           <div className="total-amount-send-amount">
             <Balance amount={estimatedFee} />
@@ -160,8 +159,7 @@ const SendPage = ({
         </div>
         <div className="total-amount-send">
           <div className="total-amount-send-text">
-            <T id="send.sizeEstimation" m="Estimated Size" />
-            :
+            <T id="send.sizeEstimation" m="Estimated Size" />:
           </div>
           <div className="total-amount-send-amount">{estimatedSignedSize} bytes</div>
         </div>

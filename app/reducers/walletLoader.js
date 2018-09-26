@@ -364,7 +364,8 @@ export default function walletLoader(state = {}, action) {
         discoverAddressResponse: null,
         fetchHeadersRequestAttempt: false,
         fetchHeadersResponse: null,
-        fetchHeadersError: null
+        fetchHeadersError: null,
+        existingOrNew: true
       };
     default:
       return state;

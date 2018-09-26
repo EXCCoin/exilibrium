@@ -2,6 +2,7 @@
   "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
   "rules": {
     "length-zero-no-unit": null,
-    "shorthand-property-no-redundant-values": null
+    "shorthand-property-no-redundant-values": null,
+    "no-descending-specificity": null
   }
 }

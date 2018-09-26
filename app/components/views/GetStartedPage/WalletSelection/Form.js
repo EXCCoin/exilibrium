@@ -19,7 +19,8 @@ function WalletSelectionBodyBase({
   selectedWallet,
   onChangeAvailableWallets,
   onChangeCreateWalletName,
-  newWalletName
+  newWalletName,
+  maxWalletCount
 }) {
   switch (true) {
     case createWalletForm:
@@ -50,7 +51,7 @@ function WalletSelectionBodyBase({
       return (
         <div className="advanced-page">
           <div className="advanced-page-form">
-            <div className="advanced-daemon-row">
+            <div className="available-wallets-container">
               {availableWallets.map(wallet => {
                 const selected =
                   wallet.value.wallet === selectedWallet.value.wallet &&
@@ -111,7 +112,7 @@ function WalletSelectionBodyBase({
                   </div>
                 );
               })}
-              {availableWallets.length < 3 && (
+              {availableWallets.length < maxWalletCount && (
                 <div className="display-wallet new" onClick={showCreateWalletForm}>
                   <div className="display-wallet-network" />
                   <div className="wallet-icon createnew" />

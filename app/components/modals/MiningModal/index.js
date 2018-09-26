@@ -131,7 +131,8 @@ export default class MiningModal extends React.Component {
               <strong>
                 {availableMemory}
                 {" / "}
-                {totalMemory}GB
+                {totalMemory}
+                GB
               </strong>
             </div>
           </div>

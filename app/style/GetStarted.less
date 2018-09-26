@@ -23,6 +23,15 @@
   padding-top: 10px;
 }
 
+.available-wallets-container {
+  float: left;
+  width: 100%;
+  height: 346px;
+  margin-left: -5px;
+  overflow-y: auto;
+  position: relative;
+}
+
 .advanced-daemon-label {
   float: left;
   width: 150px;
@@ -38,8 +47,6 @@
 .page-body.getstarted {
   padding: 40px;
   display: block;
-
-  /*background-color: #f7f8f9;*/
   background-color: #fff;
   background-repeat: no-repeat;
   background-size: 250px;
@@ -51,13 +58,10 @@
 .logo-banner {
   width: 100%;
   height: 60px;
-
-  /*background-color: #f7f8f9;*/
   background-color: #fff;
   background-repeat: no-repeat;
   background-image: @logo-launcher;
   background-size: 250px;
-  //background-position: 40px 40px;
 }
 
 .getstarted {
@@ -168,6 +172,7 @@
   .loader-bar-estimation {
     float: left;
     font-size: 9px;
+    position: absolute;
 
     .normal {
       opacity: 0.5465;
@@ -369,11 +374,14 @@
   margin: 5px;
   float: left;
   height: 161px;
-  width: 168px;
+  width: 161px;
   border-radius: 5px;
   border: 1px solid #f7f8f9;
   background: linear-gradient(225deg, rgba(209, 213, 219, 1), rgba(149, 157, 172, 1));
   font-size: 15px;
+  & > * {
+    user-select: none;
+  }
 
   .wallet-icon {
     margin-left: 54px;
@@ -386,10 +394,12 @@
   }
 
   .wallet-icon.wallet {
+    margin-left: 51px;
     background-image: @wallet-gray-icon;
   }
 
   .wallet-icon.selected {
+    margin-left: 51px;
     background-image: @accounts-button-hover-icon;
   }
 

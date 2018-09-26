@@ -24,8 +24,8 @@ const Overview = ({
         <div className="agenda-overview-text">
           <div className="agenda-overview-short-description">{agendaDescription}</div>
           <div className="agenda-overview-agenda-id-ct">
-            <T id="agenda.card.idLabel" m="Agenda ID" />
-            : <span className="agenda-overview-agenda-id">{agendaId}</span>
+            <T id="agenda.card.idLabel" m="Agenda ID" />:{" "}
+            <span className="agenda-overview-agenda-id">{agendaId}</span>
           </div>
           <div className="agenda-overview-description">
             <T
