@@ -52,8 +52,7 @@ const PurchaseTicketsAdvanced = ({
     <div className="stakepool-purchase-ticket-row">
       <div className="stakepool-purchase-ticket-row-thirds-first">
         <div className="stakepool-purchase-ticket-label">
-          <T id="purchaseTickets.ticketFee" m="Ticket Fee" />
-          :
+          <T id="purchaseTickets.ticketFee" m="Ticket Fee" />:
         </div>
         <div className="stakepool-purchase-ticket-thirds-input">
           <div className="stakepool-input-form-purchase-ticket">
@@ -114,8 +113,7 @@ const PurchaseTicketsAdvanced = ({
     </div>
     <div className="stakepool-purchase-ticket-row">
       <div className="stakepool-purchase-ticket-label">
-        <T id="purchaseTickets.poolAddress" m="Pool Address" />
-        :
+        <T id="purchaseTickets.poolAddress" m="Pool Address" />:
       </div>
       <div className="stakepool-purchase-ticket-address-input">
         <div className="stakepool-input-form-purchase-ticket">

@@ -55,8 +55,8 @@ export default function settings(state = {}, action) {
           gapLimit: action.gapLimit
         }
       };
-    case QUIT_WALLET: // eslint-disable-line no-case-declarations
-      const globalCfg = getGlobalCfg();
+    case QUIT_WALLET:
+      const globalCfg = getGlobalCfg(); // eslint-disable-line no-case-declarations
       return {
         currentSettings: {
           locale: globalCfg.get("locale"),

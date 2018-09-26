@@ -42,10 +42,8 @@ class LoaderBarBottom extends React.Component {
           </span>
           <span className="bold">
             {" "}
-            {finishDateEstimation ? <FormattedRelative value={finishDateEstimation} /> : "--"} ({
-              getCurrentBlockCount
-            }{" "}
-            / {getNeededBlocks})
+            {finishDateEstimation ? <FormattedRelative value={finishDateEstimation} /> : "--"} (
+            {getCurrentBlockCount} / {getNeededBlocks})
           </span>
         </div>
         <LinearProgressSmall min={0} max={getNeededBlocks} value={getCurrentBlockCount} />
