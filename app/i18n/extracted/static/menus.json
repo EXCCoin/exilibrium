@@ -24,6 +24,10 @@
     "defaultMessage": "Toggle Developer Tools"
   },
   {
+    "id": "appMenu.appToolbar",
+    "defaultMessage": "Toggle Application Toolbar"
+  },
+  {
     "id": "appMenu.showWalletLog",
     "defaultMessage": "Show Wallet Log Files"
   },
