@@ -565,7 +565,7 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
   });
 
   if (newlyMinedTransactions.length > 0) {
-    dispatch(getStartupStats());
+    dispatch(getStartupStats(newlyMinedTransactions));
   }
 };
 

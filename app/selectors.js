@@ -263,7 +263,6 @@ export const transactionNormalizer = createSelector(
           totalFundsReceived += amount;
         }
       });
-
       const txDetails =
         totalFundsReceived + totalChange + fee < totalDebit
           ? {
@@ -281,7 +280,7 @@ export const transactionNormalizer = createSelector(
               }
             : {
                 txDescription: { direction: "Received at:", addressStr },
-                txAmount: totalFundsReceived,
+                txAmount: totalChange,
                 txDirection: "in",
                 txAccountName: getAccountName(creditedAccount)
               };

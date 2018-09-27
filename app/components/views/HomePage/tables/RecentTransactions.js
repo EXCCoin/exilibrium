@@ -14,7 +14,7 @@ const RecentTransactions = ({
   rowNumber,
   goToTransactionHistory
 }) => {
-  const hasTxs = transactions.length > 0 && tickets.length > 0;
+  const hasTxs = transactions.length > 0 || tickets.length > 0;
   return getTransactionsRequestAttempt ? (
     <ExccLoading grey />
   ) : (
@@ -31,7 +31,7 @@ const RecentTransactions = ({
           tickets.length > 0 ? (
             <TxHistory overview limit={rowNumber} {...{ getAccountsResponse, transactions }} />
           ) : (
-            <TxHistory limit={6} {...{ getAccountsResponse, transactions }} />
+            <TxHistory limit={6} overview {...{ getAccountsResponse, transactions }} />
           )
         ) : (
           <NoTransactionsLinks />

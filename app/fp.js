@@ -2,6 +2,7 @@ export { compose, reduce, find, filter, get, eq, map, pick } from "lodash/fp";
 
 import compose from "lodash/fp/compose";
 import get from "lodash/fp/get";
+import dropRight from "lodash/dropRight";
 
 export const not = fn => (...args) => !fn(...args);
 export const bool = compose(
@@ -26,6 +27,12 @@ export function cond(conditionPairs = []) {
     }
   }
   return null;
+}
+export function divideLast(arr) {
+  if (!arr || arr.length === 0) {
+    return [null, null];
+  }
+  return [dropRight(arr), arr[arr.length - 1]];
 }
 
 // Given a hash of keys to functions, creates a selector that returns a map of function results

@@ -18,7 +18,8 @@ export default function statistics(state = {}, action) {
       return {
         ...state,
         loadingStartupStats: false,
-        dailyBalances: action.dailyBalances
+        dailyBalances: action.dailyBalances,
+        fullBalances: action.fullBalances
       };
     case GETSTARTUPSTATS_FAILED:
       return {
@@ -45,7 +46,8 @@ export default function statistics(state = {}, action) {
       return {
         ...state,
         loadingStartupStats: false,
-        dailyBalances: []
+        dailyBalances: [],
+        fullBalances: []
       };
     default:
       return state;

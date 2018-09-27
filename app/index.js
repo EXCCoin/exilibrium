@@ -70,7 +70,7 @@ const initialState = {
     remoteAppdataError: false,
     previousWallet: null,
     selectCreateWalletInputRequest: true,
-    hiddenAccounts: Array(),
+    hiddenAccounts: [],
     availableWallets: []
   },
   version: {
@@ -144,12 +144,14 @@ const initialState = {
 
     // Transactions for Overview Page
     recentTransactionCount: 8,
-    recentTransactions: Array(),
+    recentTransactions: [],
+    recentRegularTransactions: [],
+    recentStakeTransactions: [],
 
     // GetTransactions
-    minedTransactions: Array(),
-    unminedTransactions: Array(),
-    transactions: Array(), // unmined + mined. Calculated on the grpc reducer.
+    minedTransactions: [],
+    unminedTransactions: [],
+    transactions: [], // unmined + mined. Calculated on the grpc reducer.
     maximumTransactionCount: 10,
     noMoreTransactions: false,
     transactionsFilter: {
@@ -333,7 +335,7 @@ const initialState = {
     modalVisible: false
   },
   snackbar: {
-    messages: Array()
+    messages: []
   },
   sidebar: {
     showingSidebar: !globalCfg.get("show_tutorial"),
@@ -341,7 +343,8 @@ const initialState = {
     expandSideBar: true
   },
   statistics: {
-    dailyBalances: Array(),
+    dailyBalances: [],
+    fullBalances: [],
     voteTime: null,
     getMyTicketsStatsRequest: false,
     loadingStartupStats: false
