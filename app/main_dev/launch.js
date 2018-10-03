@@ -20,13 +20,15 @@ import os from "os";
 import fs from "fs-extra";
 import stringArgv from "string-argv";
 import { concat, isString } from "lodash";
+import taskkill from "taskkill";
 
 const argv = parseArgs(process.argv.slice(1), OPTIONS);
 const debug = argv.debug || process.env.NODE_ENV === "development";
 
 let exccdPID;
 let exccwPID;
-
+let exccdWindowsClosing = false;
+let exccwWindowsClosing = false;
 let exccwPort;
 
 function closeClis() {
@@ -40,18 +42,30 @@ function closeClis() {
   }
 }
 
-function closeEXCCD() {
-  if (require("is-running")(exccdPID) && os.platform() !== "win32") {
+async function closeEXCCD() {
+  const processRunning = require("is-running")(exccdPID);
+  if (processRunning && os.platform() !== "win32") {
     logger.info(`Sending SIGINT to exccd at pid:${exccdPID}`);
     process.kill(exccdPID, "SIGINT");
+  } else if (processRunning && os.platform() === "win32") {
+    logger.info(`Attempting to kill exccd at pid:${exccdPID}`);
+    exccdWindowsClosing = true;
+    await taskkill(exccdPID, { force: true });
+    logger.info(`Forcefully killed exccd process`);
   }
 }
 
-export const closeEXCCW = () => {
+export const closeEXCCW = async () => {
   try {
-    if (require("is-running")(exccdPID) && os.platform() !== "win32") {
+    const processRunning = require("is-running")(exccwPID);
+    if (processRunning && os.platform() !== "win32") {
       logger.info(`Sending SIGINT to exccwallet at pid:${exccwPID}`);
       process.kill(exccwPID, "SIGINT");
+    } else if (processRunning && os.platform() === "win32") {
+      logger.info(`Attempting to kill exccwallet at pid: ${exccwPID}`);
+      exccwWindowsClosing = true;
+      await taskkill(exccwPID, { force: true });
+      logger.info(`Forcefully killed exccwwallet process`);
     }
     exccwPID = null;
     return true;
@@ -134,10 +148,12 @@ export const launchEXCCD = (
 
   exccd.on("error", err => {
     logger.error(`Error running exccd.  Check logs and restart! ${err}`);
-    mainWindow.webContents.executeJavaScript(
-      `alert("Error running exccd.  Check logs and restart! '${err}'");`
-    );
-    mainWindow.webContents.executeJavaScript("window.close();");
+    if (!exccdWindowsClosing) {
+      mainWindow.webContents.executeJavaScript(
+        `alert("Error running exccd.  Check logs and restart! '${err}'");`
+      );
+      mainWindow.webContents.executeJavaScript("window.close();");
+    }
   });
 
   exccd.on("close", code => {
@@ -147,7 +163,10 @@ export const launchEXCCD = (
     if (code !== 0) {
       const lastExccdErr = lastErrorLine(GetExccdLogs());
       logger.error("exccd closed due to an error: ", lastExccdErr);
-      reactIPC.send("error-received", true, lastExccdErr);
+      if (!exccdWindowsClosing) {
+        reactIPC.send("error-received", true, lastExccdErr);
+      }
+      exccdWindowsClosing = false;
     } else {
       logger.info(`exccd exited with code ${code}`);
     }
@@ -250,10 +269,12 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
 
   exccwallet.on("error", err => {
     logger.error(`Error running wallet.  Check logs and restart! ${err}`);
-    mainWindow.webContents.executeJavaScript(
-      `alert("Error running exccwallet.  Check logs and restart! '${err}'");`
-    );
-    mainWindow.webContents.executeJavaScript("window.close();");
+    if (!exccwWindowsClosing) {
+      mainWindow.webContents.executeJavaScript(
+        `alert("Error running exccwallet.  Check logs and restart! '${err}'");`
+      );
+      mainWindow.webContents.executeJavaScript("window.close();");
+    }
   });
 
   exccwallet.on("close", code => {
@@ -262,8 +283,11 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
     }
     if (code !== 0) {
       const lastExccwalletErr = lastErrorLine(GetExccwalletLogs());
-      logger.error("exccwallet closed due to an error: ", lastExccwalletErr);
-      reactIPC.sendSync("error-received", false, lastExccwalletErr);
+      logger.error("exccwallet closed due to an error: ", lastExccwalletErr, code);
+      if (!exccwWindowsClosing) {
+        reactIPC.sendSync("error-received", false, lastExccwalletErr);
+      }
+      exccwWindowsClosing = false;
     } else {
       logger.info(`exccwallet exited with code ${code}`);
     }
