@@ -494,7 +494,7 @@ export const allTickets = createSelector(get(["grpc", "tickets"]), tickets =>
 const recentStakeTransactions = createSelector(
   transactionsNormalizer,
   get(["grpc", "recentStakeTransactions"]),
-  apply
+  (normalizer, stakeTxs) => normalizer(stakeTxs)
 );
 
 // aux map from ticket/spender hash => ticket info

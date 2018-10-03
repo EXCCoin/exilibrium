@@ -52,11 +52,15 @@ class GetStartedPage extends React.Component {
       });
     }
     if (!getNeededBlocks) {
-      fetchExplorerData().then(() => {
-        determineNeededBlocks();
-      });
+      fetchExplorerData()
+        .then(determineNeededBlocks)
+        .then(() => {
+          if (!getDaemonStarted) {
+            prepStartDaemon();
+          }
+        });
     }
-    if (!getDaemonStarted) {
+    if (!getDaemonStarted && getNeededBlocks) {
       setTimeout(() => prepStartDaemon(), 1000);
     }
   }
