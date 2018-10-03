@@ -299,6 +299,7 @@ export default function grpc(state = {}, action) {
         getTransactionsRequestAttempt: false
       };
     case GETTRANSACTIONS_COMPLETE:
+      const { recentRegularTransactions = [], recentStakeTransactions = [] } = action;
       return {
         ...state,
         minedTransactions: action.minedTransactions,
@@ -308,12 +309,14 @@ export default function grpc(state = {}, action) {
         lastTransaction: action.lastTransaction,
         getTransactionsRequestError: "",
         getTransactionsRequestAttempt: false,
-        recentRegularTransactions: action.recentRegularTransactions
-          ? action.recentRegularTransactions
-          : state.recentRegularTransactions,
-        recentStakeTransactions: action.recentStakeTransactions
-          ? action.recentStakeTransactions
-          : state.recentStakeTransactions
+        recentRegularTransactions: [
+          ...recentRegularTransactions,
+          ...state.recentRegularTransactions
+        ].slice(0, state.recentTransactionCount),
+        recentStakeTransactions: [
+          ...recentStakeTransactions,
+          ...state.recentStakeTransactions
+        ].slice(0, state.recentTransactionCount)
       };
     case NEW_TRANSACTIONS_RECEIVED:
       return {
@@ -321,8 +324,14 @@ export default function grpc(state = {}, action) {
         minedTransactions: action.minedTransactions,
         unminedTransactions: action.unminedTransactions,
         transactions: [...action.unminedTransactions, ...action.minedTransactions],
-        recentRegularTransactions: action.recentRegularTransactions,
-        recentStakeTransactions: action.recentStakeTransactions
+        recentRegularTransactions: [
+          ...action.recentRegularTransactions,
+          ...state.recentRegularTransactions
+        ].slice(0, state.recentTransactionCount),
+        recentStakeTransactions: [
+          ...action.recentStakeTransactions,
+          ...state.recentStakeTransactions
+        ].slice(0, state.recentTransactionCount)
       };
     case CHANGE_TRANSACTIONS_FILTER:
       return {

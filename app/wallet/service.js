@@ -6,6 +6,7 @@ import {
   DecodeRawTransactionRequest,
   ValidateAddressRequest,
   GetTransactionsRequest,
+  GetTransactionRequest,
   TransactionDetails,
   PublishUnminedTransactionsRequest
 } from "middleware/walletrpc/api_pb";
@@ -155,6 +156,17 @@ export function formatTransaction(block, transaction, index) {
 export function formatUnminedTransaction(transaction, index) {
   return formatTransaction(UNMINED_BLOCK_TEMPLATE, transaction, index);
 }
+
+export const getSingleTransaction = withLogNoData((walletService, txHash) => {
+  const request = new GetTransactionRequest();
+  request.setTransactionHash(txHash);
+  return new Promise((resolve, reject) => {
+    walletService.getTransaction(
+      request,
+      (err, response) => (err ? reject(err) : resolve(response))
+    );
+  });
+}, "Get single transaction");
 
 export const streamGetTransactions = withLogNoData(
   (walletService, startBlockHeight, endBlockHeight, targetTransactionCount, dataCb) =>

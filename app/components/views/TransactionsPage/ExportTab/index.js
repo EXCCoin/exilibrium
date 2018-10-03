@@ -1,11 +1,6 @@
 import exportPage from "connectors/exportPage";
-import {
-  transactionStats,
-  dailyBalancesStats,
-  balancesStats,
-  voteTimeStats,
-  ticketStats
-} from "actions/StatisticsActions";
+import { transactionStats, voteTimeStats, ticketStats } from "actions/StatisticsActions";
+import { dailyBalancesStats, balancesStats } from "actions/StatisticsActions/balances-stats";
 import Page from "./Page";
 import messages from "./messages";
 import { DescriptionHeader } from "layout";
