@@ -321,7 +321,7 @@ app.on("ready", async () => {
       ]).popup(mainWindow);
     }
   });
-  let isToolbarVisible = true;
+  let isToolbarVisible = globalCfg.get("toolbar_visible");
   if (process.platform === "darwin") {
     template = [
       {
@@ -470,6 +470,7 @@ app.on("ready", async () => {
             click() {
               Menu.setApplicationMenu(null);
               isToolbarVisible = false;
+              globalCfg.set("toolbar_visible", false);
             }
           }
         ]
@@ -557,15 +558,21 @@ app.on("ready", async () => {
     }
   );
   menu = Menu.buildFromTemplate(template);
-  Menu.setApplicationMenu(menu);
+  if (isToolbarVisible) {
+    Menu.setApplicationMenu(menu);
+  } else {
+    Menu.setApplicationMenu(null);
+  }
 
   globalShortcut.register("CommandOrControl+Shift+G", () => {
     if (isToolbarVisible) {
       Menu.setApplicationMenu(null);
       isToolbarVisible = false;
+      globalCfg.set("toolbar_visible", false);
     } else {
       Menu.setApplicationMenu(menu);
       isToolbarVisible = true;
+      globalCfg.set("toolbar_visible", true);
     }
   });
 });

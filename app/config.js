@@ -91,6 +91,9 @@ export function initGlobalCfg() {
   if (!config.has("must_open_form")) {
     config.set("must_open_form", true);
   }
+  if (!config.has("toolbar_visible")) {
+    config.set("toolbar_visible", true);
+  }
   if (!config.has("locale")) {
     config.set("locale", "");
   }
