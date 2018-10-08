@@ -86,7 +86,7 @@ function getWalletServiceSuccess(walletService) {
       fetchHeadersResponse.getFirstNewBlockHeight() !== 0
     ) {
       await Promise.all(startupOperations);
-      await pause(2000);
+      await pause(2500);
       dispatch(rescanAttempt(fetchHeadersResponse.getFirstNewBlockHeight())).then(
         goHomeCb(dispatch)
       );
@@ -452,15 +452,16 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
   if (!newlyMinedTransactions.length && !newlyUnminedTransactions.length) {
     return;
   }
-
+  const state = getState();
   let {
     unminedTransactions = [],
     minedTransactions = [],
     recentRegularTransactions = [],
     recentStakeTransactions = []
-  } = getState().grpc;
-  const { transactionsFilter, recentTransactionCount } = getState().grpc;
-  const chainParams = selectors.chainParams(getState());
+  } = state.grpc;
+  const { transactionsFilter, recentTransactionCount } = state.grpc;
+
+  const chainParams = selectors.chainParams(state);
 
   // aux maps of [txhash] => tx (used to ensure no duplicate txs)
   const newlyMinedMap = newlyMinedTransactions.reduce((m, v) => {
@@ -565,7 +566,7 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
   });
 
   if (newlyMinedTransactions.length > 0) {
-    dispatch(getStartupStats(newlyMinedTransactions));
+    dispatch(getStartupStats(newlyMinedTransactions, state.statistics.fullBalances));
   }
 };
 

@@ -15,12 +15,11 @@ export const GETSTARTUPSTATS_SUCCESS = "GETSTARTUPSTATS_SUCCESS";
 export const GETSTARTUPSTATS_FAILED = "GETSTARTUPSTATS_FAILED";
 
 // Calculates all startup statistics
-export const getStartupStats = (minedTransactions = []) => (dispatch, getState) => {
-  const { fullBalances } = getState().statistics;
+export const getStartupStats = (minedTransactions = [], fullBalances) => dispatch => {
 
   const startupStats = {
     calcFunction: dailyBalancesStats(minedTransactions),
-    initialBalance: fullBalances.series && fullBalances.data ? fullBalances : {}
+    initialBalance: fullBalances
   };
 
   dispatch({ type: GETSTARTUPSTATS_ATTEMPT });
@@ -74,7 +73,6 @@ export const getStartupStats = (minedTransactions = []) => (dispatch, getState) 
         }
         date.setDate(date.getDate() + 1);
       }
-
       dispatch({
         dailyBalances: lastBalances,
         fullBalances: dailyBalances,
@@ -113,7 +111,6 @@ export const generateStat = opts => dispatch =>
       [previousBalances, last] = divideLast(initialBalance.data);
     }
     //const [previousBalances, last] = divideLast(initialBalance.data);
-
     const stat = previousBalances
       ? { series: initialBalance.series, data: previousBalances }
       : {
