@@ -73,7 +73,6 @@ export const dailyBalancesStats = (newlyMinedTransactions = []) => opts => {
   };
 
   const aggEndFunction = () => {
-    console.log("dailyBalancesStats - aggEndFunction");
     progressFunction(endOfDay(lastDate), balance);
     endFunction();
   };
