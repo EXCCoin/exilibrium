@@ -984,7 +984,7 @@ export const stakeROIStats = createSelector(
   unitDivisor,
   (stats, unitDivisor) => {
     const divByUnit = div(unitDivisor);
-    stats.map(({ time, series }) => ({
+    return stats.map(({ time, series }) => ({
       time,
       stakeRewards: divByUnit(series.stakeRewards),
       stakeFees: divByUnit(series.stakeFees),
