@@ -263,6 +263,13 @@ export const transactionNormalizer = createSelector(
           totalFundsReceived += amount;
         }
       });
+      console.log(
+        txInfo.height,
+        "totalFundsReceived",
+        totalFundsReceived,
+        "totalChange",
+        totalChange
+      );
       const txDetails =
         totalFundsReceived + totalChange + fee < totalDebit
           ? {
@@ -280,7 +287,12 @@ export const transactionNormalizer = createSelector(
               }
             : {
                 txDescription: { direction: "Received at:", addressStr },
-                txAmount: totalChange,
+                // totalChange or totalFundsReceived will be "0" here
+                // there is a bug in the wallet,
+                // where it accounts output with lesser amount as change
+                // 17.00 EXCC   -> 15.9999994 EXCC     (this is real change)
+                //              -> 1.00 EXCC           (this is real transferred amount)
+                txAmount: totalFundsReceived + totalChange,
                 txDirection: "in",
                 txAccountName: getAccountName(creditedAccount)
               };
