@@ -15,7 +15,7 @@ const StakePoolsList = ({
     <div className="stakepool-flex-height">
       <div className="stakepool-content-nest-from-address">
         <div className="stakepool-content-nest-prefix-configured">
-          <T id="stakepools.list.title" m="Configured stake pools:" />
+          <T id="stakepools.list.title" m="Configured stake pools" />
         </div>
       </div>
       <div id="dynamicInput">
@@ -71,16 +71,16 @@ const StakePoolsList = ({
       </div>
     </div>
     {unconfiguredStakePools.length > 0 ? (
-      <KeyBlueButton
+      <SlateGrayButton
         className="stakepool-content-send"
         disabled={rescanRequest}
         onClick={onShowAddStakePool}>
-        <T id="stakepools.list.form.submit" m="Add stakepool" />
-      </KeyBlueButton>
+        <T id="stakepools.list.form.submit" m="Add another stakepool" />
+      </SlateGrayButton>
     ) : null}
-    <SlateGrayButton className="stakepool-hide-config" onClick={onHideStakePoolConfig}>
-      <T id="stakepools.list.form.cancel" m="Cancel" />
-    </SlateGrayButton>
+    <KeyBlueButton className="stakepool-hide-config" onClick={onHideStakePoolConfig}>
+      <T id="stakepools.list.form.cancel" m="Go to ticket purchase" />
+    </KeyBlueButton>
   </Aux>
 );
 
