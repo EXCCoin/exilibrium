@@ -4,6 +4,7 @@ import { selectorMap } from "fp";
 import * as selectors from "selectors";
 import * as controlActions from "actions/ControlActions";
 import * as clientActions from "actions/ClientActions";
+import * as stakepoolActions from "actions/StakePoolActions";
 
 const mapStateToProps = selectorMap({
   getTransactionsRequestAttempt: selectors.getTransactionsRequestAttempt,
@@ -25,7 +26,8 @@ const mapDispatchToProps = dispatch =>
       onClearRevokeTicketsError: controlActions.clearRevokeTicketsError,
       onClearRevokeTicketsSuccess: controlActions.clearRevokeTicketsSuccess,
       goToMyTickets: clientActions.goToMyTickets,
-      goToTransactionHistory: clientActions.goToTransactionHistory
+      goToTransactionHistory: clientActions.goToTransactionHistory,
+      discoverAvailableStakepools: stakepoolActions.discoverAvailableStakepools
     },
     dispatch
   );

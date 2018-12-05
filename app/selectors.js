@@ -263,13 +263,6 @@ export const transactionNormalizer = createSelector(
           totalFundsReceived += amount;
         }
       });
-      console.log(
-        txInfo.height,
-        "totalFundsReceived",
-        totalFundsReceived,
-        "totalChange",
-        totalChange
-      );
       const txDetails =
         totalFundsReceived + totalChange + fee < totalDebit
           ? {
