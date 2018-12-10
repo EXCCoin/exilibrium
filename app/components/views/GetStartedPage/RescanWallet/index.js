@@ -8,7 +8,6 @@ class RescanWalletBody extends React.Component {
 
   componentWillUnmount() {
     this.mounted = false;
-    this.resetState();
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }

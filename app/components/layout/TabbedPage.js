@@ -20,13 +20,13 @@ class TabbedPage extends React.Component {
     this.state = { matchedTab, dir: "l2r", styles };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.tabs !== nextProps.tabs) {
-      this._tabs = getTabs(this.props.tabs);
+  componentDidUpdate(prevProps) {
+    if (this.props.tabs !== prevProps.tabs) {
+      this._tabs = getTabs(prevProps.tabs);
     }
 
-    if (this.props.location !== nextProps.location) {
-      const matchedTab = this.matchedTab(nextProps.location);
+    if (this.props.location !== prevProps.location) {
+      const matchedTab = this.matchedTab(this.props.location);
       const dir =
         this.state.matchedTab && matchedTab && this.state.matchedTab.index > matchedTab.index
           ? "r2l"

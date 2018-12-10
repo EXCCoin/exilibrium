@@ -10,10 +10,6 @@ class DiscoverAddressesBody extends React.Component {
     this.state = this.getInitialState();
   }
 
-  componentWillUnmount() {
-    this.resetState();
-  }
-
   getInitialState() {
     return {
       passPhrase: "",

@@ -7,10 +7,6 @@ class PassphraseModal extends React.Component {
     this.state = this.getInitialState();
   }
 
-  componentWillUnmount() {
-    this.state = this.getInitialState();
-  }
-
   onCancelModal() {
     this.resetState();
     if (this.props.onCancelModal) {

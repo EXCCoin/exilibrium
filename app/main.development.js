@@ -53,7 +53,7 @@ let mainWindow = null;
 let versionWin = null;
 let grpcVersions = { requiredVersion: null, walletVersion: null };
 let previousWallet = null;
-let primaryInstance; // eslint-disable-line prefer-const
+let primaryInstance = false; // eslint-disable-line prefer-const
 
 const globalCfg = initGlobalCfg();
 const daemonIsAdvanced = globalCfg.get("daemon_start_advanced");
@@ -171,7 +171,7 @@ ipcMain.on("start-wallet", (event, walletPath, testnet) => {
   event.returnValue = startWallet(mainWindow, daemonIsAdvanced, testnet, walletPath, reactIPC);
 });
 
-ipcMain.on("check-daemon", (event, rpcCreds, testnet) => {
+ipcMain.on("check-daemon", (_event, rpcCreds, testnet) => {
   checkDaemon(mainWindow, rpcCreds, testnet);
 });
 
@@ -193,11 +193,11 @@ ipcMain.on("app-reload-ui", () => {
   mainWindow.reload();
 });
 
-ipcMain.on("grpc-versions-determined", (event, versions) => {
+ipcMain.on("grpc-versions-determined", (_event, versions) => {
   grpcVersions = { ...grpcVersions, ...versions };
 });
 
-ipcMain.on("main-log", (event, level, args) => {
+ipcMain.on("main-log", (_event, level, args) => {
   logger[level](...args);
 });
 
@@ -222,7 +222,7 @@ ipcMain.on("set-previous-wallet", (event, cfg) => {
   event.returnValue = true;
 });
 
-primaryInstance = !app.makeSingleInstance(() => true);
+primaryInstance = app.requestSingleInstanceLock();
 const stopSecondInstance = !primaryInstance && !daemonIsAdvanced;
 if (stopSecondInstance) {
   logger.error("Preventing second instance from running.");
@@ -290,7 +290,7 @@ app.on("ready", async () => {
     return;
   }
 
-  mainWindow.webContents.on("context-menu", (e, props) => {
+  mainWindow.webContents.on("context-menu", (_e, props) => {
     const { selectionText, isEditable, x, y } = props;
     const inputMenu = [
       { role: "cut" },

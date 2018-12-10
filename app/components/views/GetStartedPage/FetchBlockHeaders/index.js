@@ -11,7 +11,6 @@ class FetchBlockHeadersBody extends React.Component {
 
   componentWillUnmount() {
     this.mounted = false;
-    this.resetState();
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
     }
