@@ -5,14 +5,23 @@ import { myTicketsCharts } from "connectors";
 class Statistics extends React.Component {
   constructor(props) {
     super(props);
-    if (!props.voteTimeStats && !props.getMyTicketsStatsRequest && props.allTickets.length > 0) {
-      props.getMyTicketsStats();
-    }
     this.state = { hasStats: props.voteTimeStats && !props.getMyTicketsStatsRequest };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ hasStats: nextProps.voteTimeStats && !nextProps.getMyTicketsStatsRequest });
+  componentDidMount() {
+    const { voteTimeStats, getMyTicketsStatsRequest, allTickets, getMyTicketsStats } = this.props;
+    if (!voteTimeStats && !getMyTicketsStatsRequest && allTickets.length > 0) {
+      getMyTicketsStats();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.voteTimeStats !== this.props.voteTimeStats ||
+      prevProps.getMyTicketsStatsRequest !== this.props.getMyTicketsStatsRequest
+    ) {
+      this.setState({ hasStats: this.props.voteTimeStats && !this.props.getMyTicketsStatsRequest });
+    }
   }
 
   render() {

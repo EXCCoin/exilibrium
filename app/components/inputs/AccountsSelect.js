@@ -32,9 +32,9 @@ class AccountsSelect extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.account !== nextProps.account) {
-      this.setState({ account: nextProps.account });
+  componentDidUpdate() {
+    if (this.state.account !== this.props.account) {
+      this.setState({ account: this.props.account });
     }
   }
 

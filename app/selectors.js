@@ -407,7 +407,7 @@ export const decodedTransactions = state => {
 export const viewedDecodedTransaction = createSelector(
   transactions,
   (
-    state,
+    _state,
     {
       match: {
         params: { txHash }
@@ -415,7 +415,7 @@ export const viewedDecodedTransaction = createSelector(
     }
   ) => txHash,
   decodedTransactions,
-  (transactions, txHash, decodedTransactions) => decodedTransactions[txHash]
+  (_transactions, txHash, decodedTransactions) => decodedTransactions[txHash]
 );
 
 // ticket change is anything returned to the wallet on ticket purchase.
@@ -551,7 +551,7 @@ export const viewableTransactions = createSelector(
 export const viewedTransaction = createSelector(
   viewableTransactions,
   (
-    state,
+    _state,
     {
       match: {
         params: { txHash }
@@ -577,7 +577,7 @@ export const ticketsPerStatus = createSelector(allTickets, tickets =>
 export const viewedTicketListing = createSelector(
   ticketsPerStatus,
   (
-    state,
+    _state,
     {
       match: {
         params: { status }

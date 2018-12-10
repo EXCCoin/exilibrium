@@ -7,10 +7,6 @@ class OpenWallet extends React.Component {
     this.state = this.getInitialState();
   }
 
-  componentWillUnmount() {
-    this.resetState();
-  }
-
   getInitialState() {
     return {
       publicPassPhrase: ""

@@ -43,10 +43,6 @@ class AdvancedStartupBody extends React.Component {
     };
   }
 
-  componentWillUnmount() {
-    this.resetState();
-  }
-
   render() {
     const {
       setRpcUser,

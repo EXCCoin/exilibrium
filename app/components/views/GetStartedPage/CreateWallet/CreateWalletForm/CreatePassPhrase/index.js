@@ -20,10 +20,6 @@ class CreatePassPhrase extends React.Component {
     };
   }
 
-  onComponentWillUnmount() {
-    this.state = this.getInitialState();
-  }
-
   showPassphraseInformation() {
     this.setState({ isShowingPassphraseInformation: true });
   }
