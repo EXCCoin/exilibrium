@@ -1,7 +1,7 @@
 {
   "name": "exilibrium",
   "productName": "Exilibrium",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-rc.1",
   "description": "Exilibrium is an ExchangeCoin full node HD wallet GUI",
   "main": "main.js",
   "scripts": {
@@ -114,8 +114,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "css-loader": "^1.0.0",
-    "electron": "^3.0.0",
-    "electron-builder": "^20.28.4",
+    "del": "^3.0.0",
+    "electron": "^3.0.12",
+    "electron-builder": "^20.38.3",
     "electron-devtools-installer": "^2.2.4",
     "grpc": "^1.15.1",
     "ini": "^1.3.5",

@@ -8,15 +8,25 @@ export const checkExilibriumVersion = withLog(
   "Check Exilibrium release version"
 );
 
+export const deleteDaemonData = withLog(
+  (appData, testnet) => Promise.resolve(ipcRenderer.sendSync("delete-daemon", appData, testnet)),
+  "Delete Daemon Data"
+);
+
 export const startDaemon = withLog(
   (appData, testnet) =>
     Promise.resolve(ipcRenderer.sendSync("start-daemon", appData, testnet)).then(pid => {
       if (pid) {
         return pid;
       }
-      throw "Error starting daemon";
+      throw new Error("Error starting daemon");
     }),
   "Start Daemon"
+);
+
+export const closeDaemon = withLog(
+  () => Promise.resolve(ipcRenderer.sendSync("close-daemon")),
+  "Close daemon"
 );
 
 export const cleanShutdown = () => {

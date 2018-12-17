@@ -77,7 +77,7 @@ export function initWalletCfg(testnet, walletPath) {
         updateStakePoolConfig(config, foundStakePoolConfigs);
       }
     },
-    `https://api.excc.co/v1/${network}`,
+    `https://api.excc.co/v2/${network}`,
     network
   );
   return config;

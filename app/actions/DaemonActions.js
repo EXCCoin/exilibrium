@@ -43,6 +43,9 @@ export const WALLET_AUTOBUYER_SETTINGS = "WALLET_AUTOBUYER_SETTINGS";
 export const WALLET_STAKEPOOL_SETTINGS = "WALLET_STAKEPOOL_SETTINGS";
 export const WALLET_SETTINGS = "WALLET_SETTINGS";
 export const WALLET_LOADER_SETTINGS = "WALLET_LOADER_SETTINGS";
+export const DELETE_EXCCD_ATTEMPT = "DELETE_EXCCD_ATTEMPT";
+export const DELETE_EXCCD_FAILED = "DELETE_EXCCD_FAILED";
+export const DELETE_EXCCD_SUCCESS = "DELETE_EXCCD_SUCCESS";
 
 export const checkExilibriumVersion = () => (dispatch, getState) => {
   const currentVersion = getState().daemon.appVersion;
@@ -160,6 +163,20 @@ export const getAvailableWallets = (preserveSelection = true) => async (dispatch
   const previousWallet = await wallet.getPreviousWallet();
   dispatch({ availableWallets, previousWallet, preserveSelection, type: AVAILABLE_WALLETS });
   return { availableWallets, previousWallet };
+};
+
+export const deleteDaemonData = () => async (dispatch, getState) => {
+  const { appData } = getState().daemon;
+  dispatch({ type: DELETE_EXCCD_ATTEMPT });
+  try {
+    await wallet.closeDaemon();
+    await pause(1000);
+    await wallet.deleteDaemonData(appData, isTestNet(getState()));
+    dispatch({ type: DELETE_EXCCD_SUCCESS });
+    dispatch(shutdownApp());
+  } catch (err) {
+    dispatch({ err, type: DELETE_EXCCD_FAILED });
+  }
 };
 
 export const removeWallet = selectedWallet => dispatch => {

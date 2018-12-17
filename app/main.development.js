@@ -20,7 +20,13 @@ import {
   getExccdPath,
   getExccwalletPath
 } from "./main_dev/paths";
-import { readExesVersion, cleanShutdown, GetExccdPID, GetExccwPID } from "./main_dev/launch";
+import {
+  readExesVersion,
+  cleanShutdown,
+  closeEXCCD,
+  GetExccdPID,
+  GetExccwPID
+} from "./main_dev/launch";
 import {
   getAvailableWallets,
   startDaemon,
@@ -30,7 +36,8 @@ import {
   startWallet,
   checkDaemon,
   toggleMining,
-  getSystemInfo
+  getSystemInfo,
+  deleteDaemon
 } from "./main_dev/ipc";
 
 // setPath as exilibrium
@@ -53,7 +60,7 @@ let mainWindow = null;
 let versionWin = null;
 let grpcVersions = { requiredVersion: null, walletVersion: null };
 let previousWallet = null;
-let primaryInstance; // eslint-disable-line prefer-const
+let primaryInstance = false;
 
 const globalCfg = initGlobalCfg();
 const daemonIsAdvanced = globalCfg.get("daemon_start_advanced");
@@ -133,6 +140,14 @@ const installExtensions = async () => {
 const { ipcMain } = require("electron");
 
 let reactIPC;
+
+ipcMain.on("delete-daemon", (event, appData, testnet) => {
+  event.returnValue = deleteDaemon(appData, testnet);
+});
+
+ipcMain.on("close-daemon", async event => {
+  event.returnValue = await closeEXCCD();
+});
 
 ipcMain.on("register-for-errors", event => {
   reactIPC = event.sender;
@@ -222,7 +237,7 @@ ipcMain.on("set-previous-wallet", (event, cfg) => {
   event.returnValue = true;
 });
 
-primaryInstance = !app.makeSingleInstance(() => true);
+primaryInstance = app.requestSingleInstanceLock();
 const stopSecondInstance = !primaryInstance && !daemonIsAdvanced;
 if (stopSecondInstance) {
   logger.error("Preventing second instance from running.");
@@ -261,7 +276,7 @@ app.on("ready", async () => {
   } else {
     await installExtensions();
   }
-  windowOpts.title = `Exilibrium - ${app.getVersion()}`;
+  windowOpts.title = `Exilibrium v${app.getVersion()}`;
 
   mainWindow = new BrowserWindow(windowOpts);
   mainWindow.loadURL(`file://${__dirname}/${windowOpts.page}`);

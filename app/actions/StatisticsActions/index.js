@@ -16,7 +16,6 @@ export const GETSTARTUPSTATS_FAILED = "GETSTARTUPSTATS_FAILED";
 
 // Calculates all startup statistics
 export const getStartupStats = (minedTransactions = [], fullBalances) => dispatch => {
-
   const startupStats = {
     calcFunction: dailyBalancesStats(minedTransactions),
     initialBalance: fullBalances
