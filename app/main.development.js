@@ -60,7 +60,7 @@ let mainWindow = null;
 let versionWin = null;
 let grpcVersions = { requiredVersion: null, walletVersion: null };
 let previousWallet = null;
-let primaryInstance; // eslint-disable-line prefer-const
+let primaryInstance = false;
 
 const globalCfg = initGlobalCfg();
 const daemonIsAdvanced = globalCfg.get("daemon_start_advanced");
@@ -237,7 +237,7 @@ ipcMain.on("set-previous-wallet", (event, cfg) => {
   event.returnValue = true;
 });
 
-primaryInstance = !app.makeSingleInstance(() => true);
+primaryInstance = app.requestSingleInstanceLock();
 const stopSecondInstance = !primaryInstance && !daemonIsAdvanced;
 if (stopSecondInstance) {
   logger.error("Preventing second instance from running.");
