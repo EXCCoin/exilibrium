@@ -276,7 +276,7 @@ app.on("ready", async () => {
   } else {
     await installExtensions();
   }
-  windowOpts.title = `Exilibrium - ${app.getVersion()}`;
+  windowOpts.title = `Exilibrium v${app.getVersion()}`;
 
   mainWindow = new BrowserWindow(windowOpts);
   mainWindow.loadURL(`file://${__dirname}/${windowOpts.page}`);
