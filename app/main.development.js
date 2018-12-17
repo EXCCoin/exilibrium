@@ -20,7 +20,13 @@ import {
   getExccdPath,
   getExccwalletPath
 } from "./main_dev/paths";
-import { readExesVersion, cleanShutdown, GetExccdPID, GetExccwPID } from "./main_dev/launch";
+import {
+  readExesVersion,
+  cleanShutdown,
+  closeEXCCD,
+  GetExccdPID,
+  GetExccwPID
+} from "./main_dev/launch";
 import {
   getAvailableWallets,
   startDaemon,
@@ -30,7 +36,8 @@ import {
   startWallet,
   checkDaemon,
   toggleMining,
-  getSystemInfo
+  getSystemInfo,
+  deleteDaemon
 } from "./main_dev/ipc";
 
 // setPath as exilibrium
@@ -133,6 +140,14 @@ const installExtensions = async () => {
 const { ipcMain } = require("electron");
 
 let reactIPC;
+
+ipcMain.on("delete-daemon", (event, appData, testnet) => {
+  event.returnValue = deleteDaemon(appData, testnet);
+});
+
+ipcMain.on("close-daemon", async event => {
+  event.returnValue = await closeEXCCD();
+});
 
 ipcMain.on("register-for-errors", event => {
   reactIPC = event.sender;

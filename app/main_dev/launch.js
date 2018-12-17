@@ -42,17 +42,20 @@ function closeClis() {
   }
 }
 
-async function closeEXCCD() {
+export async function closeEXCCD() {
   const processRunning = require("is-running")(exccdPID);
   if (processRunning && os.platform() !== "win32") {
     logger.info(`Sending SIGINT to exccd at pid:${exccdPID}`);
     process.kill(exccdPID, "SIGINT");
+    return Promise.resolve(true);
   } else if (processRunning && os.platform() === "win32") {
     logger.info(`Attempting to kill exccd at pid:${exccdPID}`);
     exccdWindowsClosing = true;
     await taskkill(exccdPID, { force: true });
     logger.info(`Forcefully killed exccd process`);
+    return true;
   }
+  return Promise.reject(false);
 }
 
 export const closeEXCCW = async () => {

@@ -2,6 +2,7 @@ import fs from "fs-extra";
 import path from "path";
 import parseArgs from "minimist";
 import si from "systeminformation";
+import del from "del";
 import { OPTIONS } from "./constants";
 import { logger } from "./logging";
 import {
@@ -24,6 +25,29 @@ import {
 } from "./launch";
 
 const argv = parseArgs(process.argv.slice(1), OPTIONS);
+
+export const deleteDaemon = (appData, testnet) => {
+  let removeDaemonDirectory = getExccdPath();
+  if (appData) {
+    removeDaemonDirectory = appData;
+  }
+  const removeDaemonDirectoryData = path.join(
+    removeDaemonDirectory,
+    "data",
+    testnet ? "testnet" : "mainnet"
+  );
+  logger.info("About to delete daemon data in:", removeDaemonDirectoryData);
+  try {
+    if (fs.pathExistsSync(removeDaemonDirectoryData)) {
+      del.sync([`${removeDaemonDirectoryData}/**`], { force: true });
+      logger.log("info", `removing ${removeDaemonDirectoryData}`);
+    }
+    return true;
+  } catch (e) {
+    logger.log("error", `error deleting daemon data: ${e}`);
+    return false;
+  }
+};
 
 export const getAvailableWallets = network => {
   // Attempt to find all currently available wallet.db's in the respective network direction in each wallets data dir

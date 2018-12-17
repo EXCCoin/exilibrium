@@ -20,7 +20,9 @@ export default function SettingsForm({
   onShowLogs,
   getCurrentBlockCount,
   getNeededBlocks,
-  getEstimatedTimeLeft
+  getEstimatedTimeLeft,
+  deleteDaemonData,
+  getWalletReady
 }) {
   return (
     <div className="page-body getstarted">
@@ -41,6 +43,8 @@ export default function SettingsForm({
         </div>
         <GeneralSettings
           {...{
+            deleteDaemonData,
+            getWalletReady,
             tempSettings,
             networks,
             currencies,

@@ -11,7 +11,6 @@ export default ({
   barText,
   isInputRequest,
   getCurrentBlockCount,
-  getWalletReady,
   getDaemonStarted,
   getDaemonSynced,
   getNeededBlocks,
@@ -47,16 +46,12 @@ export default ({
                 </InvisibleButton>
               </Tooltip>
             )}
-            {getWalletReady && (
-              <Aux>
-                <InvisibleButton onClick={onShowSettings}>
-                  <T id="getStarted.btnSettings" m="Settings" />
-                </InvisibleButton>
-                <InvisibleButton onClick={onShowLogs}>
-                  <T id="getStarted.btnLogs" m="Logs" />
-                </InvisibleButton>
-              </Aux>
-            )}
+            <InvisibleButton onClick={onShowSettings}>
+              <T id="getStarted.btnSettings" m="Settings" />
+            </InvisibleButton>
+            <InvisibleButton onClick={onShowLogs}>
+              <T id="getStarted.btnLogs" m="Logs" />
+            </InvisibleButton>
           </div>
           <T id="loader.title" m={"Welcome to Exilibrium Wallet"} />
         </div>

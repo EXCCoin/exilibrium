@@ -4,6 +4,7 @@ import { selectorMap } from "../fp";
 import * as selectors from "../selectors";
 import * as settingsActions from "../actions/SettingsActions";
 import * as controlActions from "../actions/ControlActions";
+import { deleteDaemonData } from "../actions/DaemonActions";
 
 const mapStateToProps = selectorMap({
   currencies: selectors.currencies,
@@ -14,12 +15,14 @@ const mapStateToProps = selectorMap({
   nextAddress: selectors.nextAddress,
   miningEnabled: selectors.miningToggle,
   systemInfo: selectors.systemInfo,
-  miningParams: selectors.miningParams
+  miningParams: selectors.miningParams,
+  getWalletReady: selectors.getWalletReady
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
+      deleteDaemonData,
       onAttemptChangePassphrase: controlActions.changePassphraseAttempt,
       onChangeTempSettings: settingsActions.updateStateSettingsChanged,
       onSaveSettings: settingsActions.saveSettings,

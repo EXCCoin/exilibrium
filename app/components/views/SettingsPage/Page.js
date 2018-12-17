@@ -40,7 +40,9 @@ export default function SettingsPage({
   miningEnabled,
   checkSystemInfo,
   systemInfo,
-  miningParams
+  miningParams,
+  deleteDaemonData,
+  getWalletReady
 }) {
   return (
     <StandalonePage header={<SettingsPageHeader />}>
@@ -51,7 +53,9 @@ export default function SettingsPage({
             networks,
             currencies,
             locales,
-            onChangeTempSettings
+            onChangeTempSettings,
+            deleteDaemonData,
+            getWalletReady
           }}
         />
 
