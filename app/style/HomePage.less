@@ -127,6 +127,72 @@
   }
 }
 
+.overview-no-tickets > .list-item {
+  display: block;
+  background-color: #fff;
+  padding: 20px 20px 20px 48px;
+  background-repeat: no-repeat;
+  background-position: 16px 20px;
+  background-size: 20px;
+  text-decoration: none;
+  color: #596d81;
+  background-image: @help-icon;
+  margin-bottom: 1px;
+  cursor: pointer;
+  font-weight: bold;
+
+  .link-item-url {
+    display: none;
+  }
+
+  &:hover {
+    color: #fa5baa;
+    background-color: #f3f5f6;
+    .link-item-url {
+      display: inline;
+      color: #596d81;
+      font-weight: normal;
+      float: right;
+    }
+  }
+}
+
+.overview-no-tickets > .discord {
+  background-image: @help-discord-icon;
+}
+
+.overview-no-tickets > .telegram {
+  background-image: @telegram-plane;
+}
+
+.overview-no-tickets > .support {
+  background-image: @help-info;
+}
+
+.overview-no-tickets > .twitter {
+  background-image: @help-twitter-icon;
+}
+
+.overview-no-tickets > .bitcointalk {
+  background-image: @help-forum-icon;
+}
+
+.overview-no-tickets .github {
+  background-image: @help-github-icon;
+}
+
+.overview-no-tickets > .explorer {
+  background-image: @search-icon;
+}
+
+.overview-no-tickets > .miningpool {
+  background-image: @mining-icon;
+}
+
+.overview-no-tickets > .stakepool {
+  background-image: @help-stakepools-icon;
+}
+
 .overview-no-transactions > a.receive {
   background-image: @generate-addr-icon;
 }
