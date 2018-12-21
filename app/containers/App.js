@@ -65,7 +65,8 @@ class App extends React.Component {
     event.sender.send("app-reload-ui");
   }
 
-  onClick({ target }) {
+  onClick(event) {
+    const { target } = event;
     if (target.localName !== "a") {
       return;
     }
