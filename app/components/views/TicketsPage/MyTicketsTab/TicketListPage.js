@@ -15,14 +15,15 @@ class TicketListPage extends React.Component {
     this.requestTicketsRawTx();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(this.calcPagination(nextProps.tickets));
+  componentDidUpdate(prevProps) {
+    if (prevProps.tickets.length !== this.props.tickets.length) {
+      this.setState(this.calcPagination(this.props.tickets));
+    }
   }
 
   calcPagination(tickets) {
     const ticketsPerPage = 6;
     const totalPages = tickets.length > 0 ? Math.ceil(tickets.length / ticketsPerPage) : 0;
-
     return { ticketsPerPage, totalPages };
   }
 
@@ -65,19 +66,20 @@ class TicketListPage extends React.Component {
 
   render() {
     const { currentPage, totalPages, expandedTicket } = this.state;
-
     const visibleTickets = this.getVisibleTickets();
-    const visibleCards = visibleTickets.map(ticket => {
-      const key = ticket.hash;
-      const expanded = expandedTicket && ticket.hash === expandedTicket.hash;
-      return <TicketInfoCard {...{ key, ticket, expanded }} onClick={this.onInfoCardClick} />;
-    });
-
     return (
       <Aux>
-        {visibleCards.length > 0 ? (
+        {visibleTickets.length > 0 ? (
           <Aux>
-            <TicketsCardList>{visibleCards}</TicketsCardList>
+            <TicketsCardList>
+              {visibleTickets.map(ticket => {
+                const key = ticket.hash;
+                const expanded = expandedTicket && ticket.hash === expandedTicket.hash;
+                return (
+                  <TicketInfoCard {...{ key, ticket, expanded }} onClick={this.onInfoCardClick} />
+                );
+              })}
+            </TicketsCardList>
             <Paginator {...{ totalPages, currentPage, onPageChanged: this.onPageChanged }} />
           </Aux>
         ) : (

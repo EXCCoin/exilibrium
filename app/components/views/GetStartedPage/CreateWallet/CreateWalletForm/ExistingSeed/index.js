@@ -16,10 +16,6 @@ class ExistingSeed extends React.Component {
     };
   }
 
-  componentWillUnmount() {
-    this.state = this.getInitialState();
-  }
-
   resetSeedWords() {
     this.setState(this.getInitialState());
   }

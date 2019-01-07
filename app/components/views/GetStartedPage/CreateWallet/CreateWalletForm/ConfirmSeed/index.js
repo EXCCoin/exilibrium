@@ -27,10 +27,6 @@ class ConfirmSeed extends React.Component {
     };
   }
 
-  componentWillUnmount() {
-    this.state = this.getInitialState();
-  }
-
   onChangeSeedWord(seedWord, update) {
     const { seedWords, splitMnemonic } = this.state;
     const { mnemonic } = this.props;

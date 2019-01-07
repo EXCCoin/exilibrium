@@ -39,5 +39,8 @@ export const TutorialsTab = () => (
     <div className="tutorial-item" onClick={open("360004934571")}>
       <T id="tutorialLink.buyingTickets" m="Buying tickets with exccwallet" />
     </div>
+    <div className="tutorial-item" onClick={open("360021038871")}>
+      <T id="tutorialLink.deleteBlockchain" m="Deleting blockchain data" />
+    </div>
   </div>
 );

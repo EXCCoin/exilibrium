@@ -31,20 +31,34 @@ class Snackbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      lastUsefulMessage: null,
       message: props.messages.length > 0 ? props.messages[props.messages.length - 1] : null
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const message =
-      nextProps.messages.length > 0 ? nextProps.messages[nextProps.messages.length - 1] : null;
-    if (message !== this.state.message) {
-      this.setState({ ...this.state, message });
+  messagesAreEqual(previous, current) {
+    if (previous && current && previous.message && current.message) {
+      return `${previous.type}${previous.message.id}` === `${current.type}${current.message.id}`;
     }
+    return previous === current;
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.message !== nextState.message;
+  componentDidUpdate() {
+    const message =
+      this.props.messages.length > 0 ? this.props.messages[this.props.messages.length - 1] : null;
+    if (message !== this.state.message && message !== null) {
+      if (!this.messagesAreEqual(this.state.lastUsefulMessage, message)) {
+        this.setState(
+          state => ({ ...state, message, lastUsefulMessage: message }),
+          () => {
+            // we don't want subsequent notifications to be the same in shorter timeframe
+            setTimeout(() => {
+              this.setState({ lastUsefulMessage: null });
+            }, 7000);
+          }
+        );
+      }
+    }
   }
 
   onDismissMessage() {

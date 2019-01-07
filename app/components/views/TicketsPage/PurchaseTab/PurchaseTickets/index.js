@@ -1,6 +1,6 @@
 import React from "react";
 import { autobind } from "core-decorators";
-import { substruct, compose, eq, get } from "fp";
+import { substruct, compose, eq, get, increment, decrement, or } from "fp";
 import { spring } from "react-motion";
 import PurchaseTicketsForm from "./Form";
 import purchaseTickets from "connectors/purchaseTickets";
@@ -11,22 +11,34 @@ import { isNullOrUndefined } from "util";
 
 const MAX_POSSIBLE_FEE_INPUT = 0.1;
 
+const numTicketsValid = or(
+  compose(
+    x => !x,
+    x => isNaN(x) || eq(0)(x),
+    parseInt
+  ),
+  eq("")
+);
+
+const processTicketNum = compose(
+  increment,
+  parseInt,
+  x => (x ? x : 0)
+);
+
 @autobind
 class PurchaseTickets extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ticketFeeError: false,
-      txFeeError: false,
-      expiryError: false,
-      isShowingAdvanced: false,
-      numTicketsToBuy: 1,
-      ticketFee: 0.001, // EXCC/kB
-      txFee: 0.001, // EXCC/kB
-      conf: 0,
-      expiry: 16
-    };
-  }
+  state = {
+    ticketFeeError: false,
+    txFeeError: false,
+    expiryError: false,
+    isShowingAdvanced: false,
+    numTicketsToBuy: 1,
+    ticketFee: 0.001, // EXCC/kB
+    txFee: 0.001, // EXCC/kB
+    conf: 0,
+    expiry: 16
+  };
 
   getQuickBarComponent() {
     const { getStakePool } = this;
@@ -194,17 +206,22 @@ class PurchaseTickets extends React.Component {
   }
 
   onIncrementNumTickets() {
-    this.setState({ numTicketsToBuy: this.state.numTicketsToBuy + 1 });
+    this.setState(state => ({ numTicketsToBuy: processTicketNum(state.numTicketsToBuy) }));
   }
 
   onChangeNumTickets(numTicketsToBuy) {
-    this.setState({ numTicketsToBuy });
+    if (numTicketsValid(numTicketsToBuy)) {
+      this.setState({ numTicketsToBuy });
+    }
   }
 
   onDecrementNumTickets() {
-    const { numTicketsToBuy } = this.state;
-    this.setState({
-      numTicketsToBuy: numTicketsToBuy <= 1 ? 1 : numTicketsToBuy - 1
+    this.setState(state => {
+      const parsedNumTickets = parseInt(state.numTicketsToBuy);
+      return {
+        numTicketsToBuy:
+          parsedNumTickets <= 1 || !parsedNumTickets ? 1 : decrement(parsedNumTickets)
+      };
     });
   }
 

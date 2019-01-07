@@ -27,8 +27,7 @@ class TicketAutoBuyer extends React.Component {
   }
 
   componentDidUpdate() {
-    const { isHidingDetails } = this.state;
-    if (!isHidingDetails) {
+    if (!this.state.isHidingDetails) {
       this.scrollToBottom();
     }
   }

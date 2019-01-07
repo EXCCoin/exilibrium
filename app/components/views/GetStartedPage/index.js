@@ -10,7 +10,7 @@ import DaemonLoading from "./DaemonLoading";
 import Logs from "./Logs";
 import Settings from "./Settings";
 import ReleaseNotes from "./ReleaseNotes";
-import { WalletSelectionBody } from "./WalletSelection";
+import WalletSelectionBody from "./WalletSelection";
 import { StartRPCBody } from "./StartRPC";
 import { DiscoverAddressesBody } from "./DiscoverAddresses";
 import { FetchBlockHeadersBody } from "./FetchBlockHeaders";
@@ -21,14 +21,13 @@ import { RescanWalletBody } from "./RescanWallet";
 class GetStartedPage extends React.Component {
   state = { showSettings: false, showLogs: false, showReleaseNotes: false };
 
-  componentWillReceiveProps(nextProps) {
-    const { startStepIndex, getDaemonSynced, onRetryStartRPC } = this.props;
+  componentDidUpdate(prevProps) {
     if (
-      startStepIndex !== nextProps.startStepIndex ||
-      getDaemonSynced !== nextProps.getDaemonSynced
+      prevProps.startStepIndex !== this.props.startStepIndex ||
+      prevProps.getDaemonSynced !== this.props.getDaemonSynced
     ) {
-      if (nextProps.startStepIndex === 3 && nextProps.getDaemonSynced) {
-        onRetryStartRPC();
+      if (this.props.startStepIndex === 3 && this.props.getDaemonSynced) {
+        prevProps.onRetryStartRPC();
       }
     }
   }

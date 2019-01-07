@@ -13,10 +13,10 @@ class SideBar extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     const { lastBlockTimestamp } = this.props;
-    if (lastBlockTimestamp !== nextProps.lastBlockTimestamp) {
-      this.setState(this.getBlockDate(nextProps.lastBlockTimestamp));
+    if (lastBlockTimestamp !== prevProps.lastBlockTimestamp) {
+      this.setState(this.getBlockDate(this.props.lastBlockTimestamp));
     }
   }
 

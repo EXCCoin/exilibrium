@@ -46,20 +46,20 @@ class Send extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { nextAddress } = this.props;
+  componentDidUpdate(prevProps) {
+    const { nextAddress } = prevProps;
     const { isSendSelf, outputs } = this.state;
-    if (isSendSelf && nextAddress !== nextProps.nextAddress) {
+    if (isSendSelf && nextAddress !== this.props.nextAddress) {
       const newOutputs = outputs.map(o => ({
         ...o,
-        data: { ...o.data, destination: nextProps.nextAddress }
+        data: { ...o.data, destination: this.props.nextAddress }
       }));
       this.setState({ outputs: newOutputs }, this.onAttemptConstructTransaction);
     }
   }
 
   componentWillUnmount() {
-    this.onClearTransaction();
+    this.props.onClearTransaction();
   }
 
   render() {

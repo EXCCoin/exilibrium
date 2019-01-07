@@ -280,7 +280,12 @@ export const transactionNormalizer = createSelector(
               }
             : {
                 txDescription: { direction: "Received at:", addressStr },
-                txAmount: totalChange,
+                // totalChange or totalFundsReceived will be "0" here
+                // there is a bug in the wallet,
+                // where it accounts output with lesser amount as change
+                // 17.00 EXCC   -> 15.9999994 EXCC     (this is real change)
+                //              -> 1.00 EXCC           (this is real transferred amount)
+                txAmount: totalFundsReceived + totalChange,
                 txDirection: "in",
                 txAccountName: getAccountName(creditedAccount)
               };
@@ -402,7 +407,7 @@ export const decodedTransactions = state => {
 export const viewedDecodedTransaction = createSelector(
   transactions,
   (
-    state,
+    _state,
     {
       match: {
         params: { txHash }
@@ -410,7 +415,7 @@ export const viewedDecodedTransaction = createSelector(
     }
   ) => txHash,
   decodedTransactions,
-  (transactions, txHash, decodedTransactions) => decodedTransactions[txHash]
+  (_transactions, txHash, decodedTransactions) => decodedTransactions[txHash]
 );
 
 // ticket change is anything returned to the wallet on ticket purchase.
@@ -546,7 +551,7 @@ export const viewableTransactions = createSelector(
 export const viewedTransaction = createSelector(
   viewableTransactions,
   (
-    state,
+    _state,
     {
       match: {
         params: { txHash }
@@ -572,7 +577,7 @@ export const ticketsPerStatus = createSelector(allTickets, tickets =>
 export const viewedTicketListing = createSelector(
   ticketsPerStatus,
   (
-    state,
+    _state,
     {
       match: {
         params: { status }
