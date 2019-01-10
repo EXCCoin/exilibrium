@@ -99,13 +99,14 @@ class WalletSelectionBody extends React.Component {
             </div>
           </div>
         );
-      case Boolean(availableWallets) && Boolean(selectedWallet):
+      case Array.isArray(availableWallets):
         return (
           <div className="advanced-page">
             <div className="advanced-page-form">
               <div className="available-wallets-container">
                 {availableWallets.map(wallet => {
                   const selected =
+                    Boolean(selectedWallet) &&
                     wallet.value.wallet === selectedWallet.value.wallet &&
                     wallet.network === selectedWallet.network;
                   return (
