@@ -99,7 +99,7 @@ class WalletSelectionBody extends React.Component {
             </div>
           </div>
         );
-      case Boolean(availableWallets) && Boolean(selectedWallet):
+      case Array.isArray(availableWallets):
         return (
           <div className="advanced-page">
             <div className="advanced-page-form">
