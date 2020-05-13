@@ -3,23 +3,39 @@ import webpack from "webpack";
 import { dependencies, optionalDependencies } from "./app/package.json";
 
 export default {
+  mode: "production",
+
   module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"]
-      },
+    rules: [ {
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      use: [ {
+        loader: "babel-loader"
+      } ]
+    },
       {
         test: /\.(png|jpg)$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 8192
-            }
+        use: [ {
+          loader: "url-loader",
+          options: {
+            limit: 8192
           }
-        ]
+        } ]
+      },
+      {
+        test: /\.node$/,
+        use: [ {
+          loader: "node-addon-loader",
+          options: {
+            basePath: path.resolve(__dirname, "bin")
+          }
+        } ]
+      },
+      {
+        test: /\.(md)$/,
+        use: [ {
+          loader: "raw-loader",
+        } ]
       }
     ]
   },

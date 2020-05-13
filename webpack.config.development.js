@@ -63,111 +63,103 @@ export default merge(baseConfig, {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: ["babel-loader", "eslint-loader"]
-      },
-      {
         test: /\.min\.css$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true
-            }
+        use: [ {
+          loader: "style-loader"
+        }, {
+          loader: "css-loader",
+          options: {
+            sourceMap: true
           }
-        ]
+        } ]
       },
 
       {
         test: /^((?!\.min).)*\.css$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-              modules: true,
-              localIdentName: "[name]__[local]___[hash:base64:5]"
-            }
+        use: [ {
+          loader: "style-loader"
+        }, {
+          loader: "css-loader",
+          options: {
+            sourceMap: true,
+            modules: true,
+            localIdentName: "[name]__[local]___[hash:base64:5]"
           }
-        ]
+        } ]
       },
 
       {
         test: /\.less$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-              modules: true,
-              importLoaders: 1,
-              localIdentName: "[local]"
-            }
-          },
-          {
-            loader: "less-loader",
-            options: {
-              noIeCompat: true,
-              strictMath: true
-            }
+        use: [ {
+          loader: "style-loader"
+        }, {
+          loader: "css-loader",
+          options: {
+            sourceMap: true,
+            modules: true,
+            importLoaders: 1,
+            localIdentName: "[local]"
           }
-        ]
+        }, {
+          loader: "less-loader",
+          options: {
+            noIeCompat: true,
+            strictMath: true
+          }
+        } ]
       },
 
       {
-        test: [/\.woff(\?v=\d+\.\d+\.\d+)?$/, /\.woff2(\?v=\d+\.\d+\.\d+)?$/],
-        use: [
-          {
-            loader: "url-loader",
-            options: { limit: 10000, mimetype: "application/font-woff" }
-          }
-        ]
+        test: [ /\.woff(\?v=\d+\.\d+\.\d+)?$/, /\.woff2(\?v=\d+\.\d+\.\d+)?$/ ],
+        use: [ {
+          loader: "url-loader",
+          options: { limit: 10000, mimetype: "application/font-woff" }
+        } ]
       },
 
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: { limit: 10000, mimetype: "application/octet-stream" }
-          }
-        ]
+        use: [ {
+          loader: "url-loader",
+          options: { limit: 10000, mimetype: "application/octet-stream" }
+        } ]
       },
 
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{ loader: "file-loader" }]
+        use: [ { loader: "file-loader" } ]
       },
 
       {
         test: /\.gif(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{ loader: "file-loader" }]
+        use: [ { loader: "file-loader" } ]
       },
 
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: { limit: 10000, mimetype: "image/svg+xml" }
+        use: [ {
+          loader: "url-loader",
+          options: { limit: 10000, mimetype: "image/svg+xml" }
+        } ]
+      },
+
+      {
+        test: /\.(mp4)$/,
+        use: [ {
+          loader: "file-loader",
+          options: {
+            mimetype: "video/mp4"
           }
-        ]
-      }
+        } ]
+      },
     ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify("development")
+    }),
     new webpack.LoaderOptionsPlugin({ minimize: false, debug: true, options: {} })
   ],
   target: "electron-renderer"
