@@ -175,7 +175,7 @@
     "material-ui": "^0.20.2",
     "mini-css-extract-plugin": "^0.4.3",
     "minimist": "^1.2.0",
-    "mocha": "^3.1.2",
+    "mocha": "^7.1.2",
     "node-gyp": "^3.6.2",
     "node-loader": "^0.6.0",
     "prettier": "^1.14.3",
