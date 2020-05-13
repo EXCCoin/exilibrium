@@ -24,7 +24,7 @@ export default merge(baseConfig, {
       "react-hot-loader/patch",
       `webpack-dev-server/client?http://localhost:${3000}/`,
       "webpack/hot/only-dev-server",
-      "babel-polyfill",
+      "@babel/polyfill",
       "./app/index"
     ]
   },

@@ -10,7 +10,7 @@ const config = merge(baseConfig, {
   devtool: "cheap-module-source-map",
   mode: "production",
   entry: {
-    app: ["babel-polyfill", "./app/index"]
+    app: ["@babel/polyfill", "./app/index"]
   },
 
   output: {

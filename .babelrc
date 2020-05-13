@@ -1,10 +1,12 @@
 {
-  "presets": ["env", "stage-0", "react"],
+  "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/flow"],
   "plugins": [
-    "transform-object-rest-spread",
-    "transform-decorators-legacy",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "@babel/plugin-proposal-object-rest-spread",
     "./scripts/aliasDefaultMessage.js",
-    ["react-intl", { "messagesDir": "app/i18n/extracted" }]
+    ["react-intl", {"messagesDir": "app/i18n/extracted"}]
   ],
-  "ignore": ["app/middleware/walletrpc/*.js"]
+  "ignore": [
+    "app/middleware/walletrpc/*.js"
+  ]
 }
