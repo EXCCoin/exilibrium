@@ -367,7 +367,7 @@ export const syncDaemon = () => (dispatch, getState) => {
             });
           }
         }
-        setTimeout(updateBlockCount, 1000);
+        setTimeout(updateBlockCount, 10000);
       })
       .catch(err => console.log(err));
   };

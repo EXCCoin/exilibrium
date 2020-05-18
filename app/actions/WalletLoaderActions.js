@@ -12,8 +12,8 @@ import { getWalletCfg, getGlobalCfg, getExccdCert } from "config";
 import { getWalletPath } from "main_dev/paths";
 import { isTestNet, explorer, apiAddress } from "selectors";
 
-const MAX_RPC_RETRIES = 5;
-const RPC_RETRY_DELAY = 5000;
+const MAX_RPC_RETRIES = 15;
+const RPC_RETRY_DELAY = 15000;
 
 export const versionCheckAction = () => dispatch =>
   setTimeout(() => dispatch(getVersionServiceAttempt()), 2000);
@@ -365,7 +365,7 @@ export function determineNeededBlocks() {
     const { address, slugs } = explorer(getState());
     try {
       const response = await axios.get(`${address}/${slugs.status}`, {
-        timeout: 5000
+        timeout: 15000
       });
       const { db_height: neededBlocks } = response.data;
       if (neededBlocks) {
