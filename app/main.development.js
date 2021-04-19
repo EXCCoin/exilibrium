@@ -130,7 +130,8 @@ const installExtensions = async () => {
     for (const name of extensions) {
       try {
         await installer.default(installer[name], forceDownload);
-      } catch (e) {
+        logger.debug(`Installed electron extension: ${name}`)
+      } catch (e) {        
         logger.error(`Cannot install extensions: ${e}`);
       }
     }
