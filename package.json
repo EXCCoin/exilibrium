@@ -158,6 +158,7 @@
     "enzyme": "^3.1.0",
     "eslint": "5.x",
     "eslint-formatter-pretty": "^1.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.11.1",
     "express": "^4.14.0",
     "fbjs-scripts": "^1.0.1",
