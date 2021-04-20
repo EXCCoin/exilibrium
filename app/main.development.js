@@ -40,6 +40,7 @@ import {
   deleteDaemon
 } from "./main_dev/ipc";
 
+app.allowRendererProcessReuse = false;
 // setPath as exilibrium
 app.setPath("userData", appDataDirectory());
 
@@ -178,9 +179,9 @@ ipcMain.on("remove-wallet", (event, walletPath, testnet) => {
   event.returnValue = removeWallet(testnet, walletPath);
 });
 
-ipcMain.on("stop-wallet", event => {
+ipcMain.on("stop-wallet", async event => {
   previousWallet = null;
-  event.returnValue = stopWallet();
+  event.returnValue = await stopWallet();
 });
 
 ipcMain.on("start-wallet", (event, walletPath, testnet) => {
@@ -262,7 +263,10 @@ app.on("ready", async () => {
     height: 795,
     page: "app.html",
     webPreferences: {
-      webSecurity: false
+      webSecurity: false,
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true,
     }
   };
   if (stopSecondInstance) {
@@ -272,7 +276,12 @@ app.on("ready", async () => {
       height: 275,
       autoHideMenuBar: true,
       resizable: false,
-      page: "staticPages/secondInstance.html"
+      page: "staticPages/secondInstance.html",
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false,
+        enableRemoteModule: true,
+      }
     };
   } else {
     await installExtensions();
