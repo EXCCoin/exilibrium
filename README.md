@@ -93,7 +93,9 @@ git clone https://github.com/EXCCoin/exilibrium.git
 cd exilibrium
 yarn
 mkdir bin/
-cp $GOPATH/bin/excc* bin/
+ln -s $GOPATH/bin/exccd bin/exccd
+ln -s $GOPATH/bin/exccctl bin/exccctl
+ln -s $GOPATH/bin/exccwallet bin/exccwallet
 yarn dev
 ```
 
