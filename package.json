@@ -240,5 +240,10 @@
   "devEngines": {
     "node": ">=6.x",
     "npm": ">=3.x"
+  },
+  "resolutions": {
+    "y18n": "4.0.1",
+    "elliptic": "6.5.3",
+    "terser-webpack-plugin": "1.4.5"
   }
 }
