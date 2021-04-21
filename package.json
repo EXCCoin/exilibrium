@@ -186,7 +186,7 @@
     "regenerator-runtime": "^0.13.7",
     "sinon": "^6.3.4",
     "sjcl": "^1.0.8",
-    "spectron": "^10.0.1",
+    "spectron": "^14.0.0",
     "style-loader": "^0.23.0",
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
