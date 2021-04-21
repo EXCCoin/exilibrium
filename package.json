@@ -204,7 +204,7 @@
     "axios": "^0.21.1",
     "css-loader": "^1.0.0",
     "dom-helpers": "^3.3.1",
-    "electron-builder": "^21.2.0",
+    "electron-builder": "^22.0.0",
     "electron-devtools-installer": "3.2.0",
     "ini": "^1.3.4",
     "is-running": "^2.1.0",
@@ -242,6 +242,7 @@
     "npm": ">=3.x"
   },
   "resolutions": {
+    "electron-builder/**/y18n": "5.0.5",
     "y18n": "4.0.1",
     "elliptic": "6.5.3",
     "terser-webpack-plugin": "1.4.5"
