@@ -293,7 +293,7 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
       const lastExccwalletErr = lastErrorLine(GetExccwalletLogs());
       logger.error(`exccwallet closed due to an error: ${lastExccwalletErr}, code: ${code}}`);
       if (!exccwWindowsClosing) {
-        reactIPC.sendSync("error-received", false, lastExccwalletErr);
+        reactIPC.send("error-received", false, lastExccwalletErr);
       }
       exccwWindowsClosing = false;
     } else {
