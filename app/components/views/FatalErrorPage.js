@@ -29,7 +29,7 @@ class FatalErrorPage extends React.Component {
           </div>
           <div className="fatal-error-area">
             <div className="fatal-error-suggestion">
-              {daemonError.indexOf("resource temp") > 0 ? (
+              {daemonError && daemonError.indexOf("resource temp") > 0 ? (
                 <T
                   id="fatal.suggestion.resources"
                   m="This error typically means you have another instance of daemon running.  You should check your taskmanager or profiler to shutdown any still running daemon and then try again."
