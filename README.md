@@ -93,7 +93,9 @@ git clone https://github.com/EXCCoin/exilibrium.git
 cd exilibrium
 yarn
 mkdir bin/
-cp $GOPATH/bin/excc* bin/
+ln -s $GOPATH/bin/exccd bin/exccd
+ln -s $GOPATH/bin/exccctl bin/exccctl
+ln -s $GOPATH/bin/exccwallet bin/exccwallet
 yarn dev
 ```
 
@@ -166,8 +168,8 @@ mkdir bin
 cp `which exccd` bin/
 cp `which exccctl` bin/
 cp `which exccwallet` bin/
-npm install
-npm run package
+yarn install
+yarn run package
 ```
 
 ## Building release versions
@@ -181,7 +183,7 @@ You need to make sure you have the following packages installed for the building
 - rpm-build
 
 ```bash
-npm run package-linux
+yarn run package-linux
 ```
 
 After it is finished it will have the built rpm, deb and tar.gz in the releases/ directory.

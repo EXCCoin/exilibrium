@@ -1,8 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { routerMiddleware, push } from "react-router-redux";
-import { createLogger } from "redux-logger";
-//import immutableStateInvariantMiddleware from "redux-immutable-state-invariant";
+import createLogger from "redux-logger";
 import rootReducer from "../reducers";
 
 export default function configureStore(initialState, history) {
@@ -28,14 +27,6 @@ export default function configureStore(initialState, history) {
   /* eslint-enable no-underscore-dangle */
   const enhancer = composeEnhancers(
     applyMiddleware(
-      // immutableStateInvariantMiddleware({
-      // ignore: [
-      // "notifications.transactionNtfns", // stream - notifications actions
-      // "notifications.accountNtfns", // stream - notifications actions
-      // "control.rescanCall", // stream - control actions
-      // "grpc.tickets" // to investigate - getWalletService + Router
-      // ]
-      // }),
       thunk,
       router,
       logger

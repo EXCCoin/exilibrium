@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import { semverCompatible } from "../../../app/actions/VersionActions";
 
 describe("VersionActions > semverCompatible", () => {
