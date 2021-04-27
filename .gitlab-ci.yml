@@ -1,0 +1,26 @@
+image: node:latest
+
+stages:
+  - build  
+  - test
+build:
+  stage: build
+  script:
+    - yarn install
+    - yarn build
+  cache:
+    paths:
+      - node_modules/
+      - ./app/node_modules/
+  artifacts:
+    expire_in: 1 days
+    when: on_success
+    paths:
+      - node_modules/  
+      - ./app/node_modules/
+test:unit:
+  stage: test  
+  script:
+    yarn test
+  dependencies:
+    - build
