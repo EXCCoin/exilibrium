@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import findImmatureTransactions from "../../../../app/actions/ClientActions/find-immature-transactions";
 import { MATURINGHEIGHTS_CHANGED } from "../../../../app/actions/ClientActions/action-types";
 import { getTransactions as walletGetTransactions } from "../../../../app/wallet/service";

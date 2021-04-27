@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import { getTransactions } from "../../../../app/actions/ClientActions";
 import { getTransactions as walletGetTransactions } from "../../../../app/wallet/service";
 import { mockedTransactions, unminedMockedTransactions } from "../get-transactions.data";

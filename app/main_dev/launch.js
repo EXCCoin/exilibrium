@@ -43,19 +43,24 @@ function closeClis() {
 }
 
 export async function closeEXCCD() {
-  const processRunning = require("is-running")(exccdPID);
-  if (processRunning && os.platform() !== "win32") {
-    logger.info(`Sending SIGINT to exccd at pid:${exccdPID}`);
-    process.kill(exccdPID, "SIGINT");
-    return Promise.resolve(true);
-  } else if (processRunning && os.platform() === "win32") {
-    logger.info(`Attempting to kill exccd at pid:${exccdPID}`);
-    exccdWindowsClosing = true;
-    await taskkill(exccdPID, { force: true });
-    logger.info(`Forcefully killed exccd process`);
-    return true;
+  try {
+    const processRunning = require("is-running")(exccdPID);
+    if (processRunning && os.platform() !== "win32") {
+      logger.info(`Sending SIGINT to exccd at pid:${exccdPID}`);
+      process.kill(exccdPID, "SIGINT");
+      return true;
+    } else if (processRunning && os.platform() === "win32") {
+      logger.info(`Attempting to kill exccd at pid:${exccdPID}`);
+      exccdWindowsClosing = true;
+      await taskkill(exccdPID, { force: true });
+      logger.info(`Forcefully killed exccd process`);
+      return true;
+    }
+    return false;
+  } catch (error) {
+    logger.error(`error closing daemon ${e}`);
+    return false;
   }
-  return Promise.reject(false);
 }
 
 export const closeEXCCW = async () => {
@@ -286,9 +291,9 @@ export const launchEXCCWallet = (mainWindow, daemonIsAdvanced, walletPath, testn
     }
     if (code !== 0) {
       const lastExccwalletErr = lastErrorLine(GetExccwalletLogs());
-      logger.error("exccwallet closed due to an error: ", lastExccwalletErr, code);
+      logger.error(`exccwallet closed due to an error: ${lastExccwalletErr}, code: ${code}}`);
       if (!exccwWindowsClosing) {
-        reactIPC.sendSync("error-received", false, lastExccwalletErr);
+        reactIPC.send("error-received", false, lastExccwalletErr);
       }
       exccwWindowsClosing = false;
     } else {

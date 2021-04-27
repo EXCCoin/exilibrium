@@ -130,7 +130,9 @@ const installExtensions = async () => {
     const forceDownload = Boolean(process.env.UPGRADE_EXTENSIONS);
     for (const name of extensions) {
       try {
-        await installer.default(installer[name], forceDownload);
+        await installer.default(installer[name], {
+          loadExtensionOptions: { allowFileAccess: true }, forceDownload 
+        });
         logger.debug(`Installed electron extension: ${name}`)
       } catch (e) {        
         logger.error(`Cannot install extensions: ${e}`);
