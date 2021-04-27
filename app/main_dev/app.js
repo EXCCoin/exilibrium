@@ -17,7 +17,12 @@ export async function ready(state, cleanShutdown, stopSecondInstance) {
     locale = locales.find(value => value.key === newCfgLocale);
   }
 
-  let windowOpts = { show: false, width: 1178, height: 790, page: "app.html" };
+  let windowOpts = { show: false, width: 1178, height: 790, page: "app.html", 
+  webPreferences: {
+    nodeIntegration: true,
+    contextIsolation: false,
+    enableRemoteModule: true,
+  } };
   if (stopSecondInstance) {
     windowOpts = {
       show: true,
@@ -25,6 +30,11 @@ export async function ready(state, cleanShutdown, stopSecondInstance) {
       height: 275,
       autoHideMenuBar: true,
       resizable: false,
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false,
+        enableRemoteModule: true,
+      },
       page: "staticPages/secondInstance.html"
     };
   } else {
@@ -302,7 +312,12 @@ export async function ready(state, cleanShutdown, stopSecondInstance) {
                 height: 275,
                 show: false,
                 autoHideMenuBar: true,
-                resizable: false
+                resizable: false,
+                webPreferences: {
+                  nodeIntegration: true,
+                  contextIsolation: false,
+                  enableRemoteModule: true,
+                }
               });
               state.versionWin.on("closed", () => {
                 state.versionWin = null;
