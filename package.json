@@ -238,7 +238,7 @@
     "winston": "^3.2.1"
   },
   "devEngines": {
-    "node": ">=6.x<16",
+    "node": ">=6.x <16",
     "npm": ">=3.x"
   },
   "resolutions": {
