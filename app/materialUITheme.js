@@ -42,7 +42,7 @@ const rawBaseTheme = {
     // Primary Blue
     primary1Color: "#2971ff",
     // Primary Green/Teal
-    primary2Color: "#2ed8a3",
+    primary2Color: "#c1272d",
     // Primary DarkBlue
     primary3Color: "#132f4b",
     // Accent Light Blue

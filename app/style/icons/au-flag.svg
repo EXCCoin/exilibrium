@@ -10,13 +10,13 @@
 </defs>
 <g transform="scale(840)">
 <rect width="12" height="6" fill="#002776"/>
-<path d="M0,0 6,3M6,0 0,3" stroke="#fff" stroke-width="0.6"/>
+<path d="M0,0 6,3M6,0 0,3" stroke="rgba(255,255,255,0.6)" stroke-width="0.6"/>
 <path d="M0,0 6,3M6,0 0,3" stroke="#e00034" stroke-width="0.4" clip-path="url(#c)"/>
-<path d="M3,0V3.5M0,1.5H7" stroke="#fff"/>
+<path d="M3,0V3.5M0,1.5H7" stroke="rgba(255,255,255,0.6)"/>
 <path d="M3,0V3.5M0,1.5H7" stroke="#e00034" stroke-width="0.6"/>
 <path d="M0,3H6V0H8V4H0z" fill="#002776"/>
 </g>
-<g fill="#fff">
+<g fill="rgba(255,255,255,0.6)">
 <use id="Comwlth" xlink:href="#Cstar" x="2520" y="3780"/>
 <use id="αCrucis" xlink:href="#Star7" x="7560" y="4200"/>
 <use id="βCrucis" xlink:href="#Star7" x="6300" y="2205"/>

@@ -39,8 +39,8 @@ const BalanceChart = ({ data, intl }) => {
       <YAxis orientation="right" style={xAxisStyle} padding={padding} />
       <Tooltip content={<ChartTooltip />} />
       <Bar barSize={8} dataKey={lockedKey} stackId="a" fill="#6073E9" radius={radiusBottom} />
-      <Bar barSize={8} dataKey={revokedKey} stackId="a" fill="#4143CD" radius={radiusMiddle} />
-      <Bar barSize={8} dataKey={ticketKey} stackId="a" fill="#88A6FC" radius={radiusMiddle} />
+      <Bar barSize={8} dataKey={revokedKey} stackId="a" fill="#c1272d" radius={radiusMiddle} />
+      <Bar barSize={8} dataKey={ticketKey} stackId="a" fill="#61142A" radius={radiusMiddle} />
       <Bar barSize={8} dataKey={immatureKey} stackId="a" fill="#FA78AF" radius={radiusMiddle} />
       <Bar barSize={8} dataKey={votedKey} stackId="a" fill="#FA5BAA" radius={radiusTop} />
     </BarChart>
