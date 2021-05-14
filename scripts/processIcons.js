@@ -115,10 +115,10 @@ const existing = {
 
 const colors = {
   common: "#596D81",
-  "violet-dark": "#4143cd",
-  "violet-normal": "#5956fc",
-  "violet-light": "#88a6fc",
-  rose: "#ff00a5",
+  "violet-dark": "#c1272d",
+  "violet-normal": "#070408",
+  "violet-light": "#61142A",
+  rose: "#D1D5DB",
   "rose-light": "#fa78af",
   white: "#ffffff"
 };

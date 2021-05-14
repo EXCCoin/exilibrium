@@ -85,7 +85,7 @@
     background-color: rgba(165, 165, 165, 0.3);
   }
   100% {
-    background-color: rgba(165, 165, 165, 0.1);
+    background-color: rgb(209, 213, 219);
   }
 }
 
@@ -93,7 +93,7 @@
   height: 55px;
   width: 100%;
   border-radius: 8px;
-  background-color: #d1d5db;
+  background-color: transparent;
 }
 
 .linear-progress.small {
@@ -109,7 +109,7 @@
   width: 41px;
   border-radius: 3px;
   opacity: 0;
-  background-color: #fff;
+  background-color: rgba(255,255,255,0.6);
   animation: slide 3s cubic-bezier(0.46, 0.03, 0.52, 0.96) infinite;
 }
 
@@ -157,36 +157,34 @@
 
 .linear-progress-text {
   position: absolute;
-  color: #fff;
+  color: rgba(255,255,255,0.6);
   font-size: 11px;
   font-weight: 600;
-  padding-left: 46px;
-  padding-top: 19px;
-  font-family: @font-family-monospaced;
-  background-image: @blockchain;
-  background-position: 20px 20px;
-  background-size: 16px;
+  padding-left: 40px;
+  padding-top: 9px;
+  font-family: @font-family-regular;
+  background-image: @new-loader;
+  background-position: 0 2px;
+  background-size: 32px;
   background-repeat: no-repeat;
 }
 
 .linear-progress-text.loading {
-  margin-top: -55px;
+  margin-top: -46px;
 }
 
 .linear-progress-bar {
   background: linear-gradient(
     90deg,
-    #4143cd 20%,
-    #5956fc 40%,
-    #88a6fc 60%,
-    #fa78af 97%,
-    #fa5baa 110%
+    #c1272d 20%,
+    #c70000 60%,
+    #c70713 110%,
   );
   border-radius: 8px;
   height: 100%;
-  box-shadow: 0px 5px 13px rgba(41, 112, 255, 0.21);
+  box-shadow: 0px 5px 13px #070408;
 }
 
 .linear-progress-bar.error {
-  background-color: #fd714b;
+  background-color: #C1272B;
 }

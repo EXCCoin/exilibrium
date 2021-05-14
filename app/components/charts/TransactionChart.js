@@ -27,7 +27,7 @@ const BalanceChart = ({ data, intl }) => {
       <Tooltip content={<ChartTooltip />} />
       <ReferenceLine y={0} />
       <Bar dataKey={sentKey} stackId="a" fill="#FA78AF" barSize={8} radius={radiusFull} />
-      <Bar dataKey={receivedKey} stackId="a" fill="#4143CD" barSize={8} radius={radiusFull} />
+      <Bar dataKey={receivedKey} stackId="a" fill="#c1272d" barSize={8} radius={radiusFull} />
     </BarChart>
   );
 };

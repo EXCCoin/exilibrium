@@ -70,7 +70,7 @@ const VoteTimeChart = ({ data, intl }) => {
         barSize={8}
         dataKey={stakeRewardsKey}
         stackId="a"
-        fill="#0c1e3e"
+        fill="#070408"
         radius={radiusBottom}
       />
       <Line barSize={8} dataKey={stakeFeesKey} stackId="a" fill="#69d5f7" radius={radiusTop} />
