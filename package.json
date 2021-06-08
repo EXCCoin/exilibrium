@@ -81,7 +81,8 @@
         "deb",
         "rpm",
         "tar.gz",
-        "pacman"
+        "pacman",
+	"AppImage"
       ]
     },
     "directories": {
