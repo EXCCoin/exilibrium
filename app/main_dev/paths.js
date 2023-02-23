@@ -10,21 +10,21 @@ import { TESTNET, MAINNET } from "constants";
 // electron in production mode.
 export function getAppDataDirectory() {
   if (os.platform() == "win32") {
-    return path.join(os.homedir(), "AppData", "Local", "Decrediton");
+    return path.join(os.homedir(), "AppData", "Local", "Exilibrium");
   } else if (process.platform === "darwin") {
     return path.join(
       os.homedir(),
       "Library",
       "Application Support",
-      "decrediton"
+      "exilibrium"
     );
   } else {
-    return path.join(os.homedir(), ".config", "decrediton");
+    return path.join(os.homedir(), ".config", "exilibrium");
   }
 }
 
 // getGlobalCfgPath gets decrediton's config.json file.
-// example of result in unix: ~/.config/decrediton/config.json
+// example of result in unix: ~/.config/exilibrium/config.json
 export function getGlobalCfgPath() {
   return path.resolve(getAppDataDirectory(), "config.json");
 }
@@ -35,7 +35,7 @@ export function getWalletsDirectoryPath() {
 }
 
 // getWalletsDirectoryPathNetwork gets the wallets directory.
-// Example in unix if testnet equals true: ~/.config/decrediton/wallets/testnet
+// Example in unix if testnet equals true: ~/.config/exilibrium/wallets/testnet
 export function getWalletsDirectoryPathNetwork(testnet) {
   return path.join(
     getAppDataDirectory(),
@@ -57,30 +57,30 @@ export function getWalletDb(testnet, walletPath) {
     getWalletsDirectoryPath(),
     testnet ? TESTNET : MAINNET,
     walletPath,
-    testnet ? "testnet3" : MAINNET,
+    testnet ? "testnet" : MAINNET,
     "wallet.db"
   );
 }
 
 // dcrdCfg gets the dcrd.conf file from a specified path
 export function dcrdCfg(configPath) {
-  return path.resolve(configPath, "dcrd.conf");
+  return path.resolve(configPath, "exccd.conf");
 }
 
 // dcrwalletConf gets the dcrwallet.conf file from a specified path
 export function dcrwalletConf(configPath) {
-  return path.resolve(configPath, "dcrwallet.conf");
+  return path.resolve(configPath, "exccwallet.conf");
 }
 
 // getDcrdPath gets the default dcrd path.
 export function getDcrdPath() {
   if (os.platform() == "win32") {
-    return path.join(os.homedir(), "AppData", "Local", "Dcrd");
+    return path.join(os.homedir(), "AppData", "Local", "Exccd");
   }
   if (process.platform === "darwin") {
-    return path.join(os.homedir(), "Library", "Application Support", "dcrd");
+    return path.join(os.homedir(), "Library", "Application Support", "exccd");
   } else {
-    return path.join(os.homedir(), ".dcrd");
+    return path.join(os.homedir(), ".exccd");
   }
 }
 
@@ -124,16 +124,16 @@ export function checkAndInitWalletCfg(testnet) {
   const configJson = path.join(walletDirectory, "config.json");
   const oldWalletDbPath = path.join(
     getAppDataDirectory(),
-    testnet ? "testnet3" : MAINNET
+    testnet ? "testnet" : MAINNET
   );
 
   if (!fs.existsSync(walletDirectory) && fs.existsSync(oldWalletDbPath)) {
-    fs.mkdirSync(path.join(walletDirectory, testnet ? "testnet3" : MAINNET), {
+    fs.mkdirSync(path.join(walletDirectory, testnet ? "testnet" : MAINNET), {
       recursive: true
     });
     fs.copyFileSync(
       path.join(oldWalletDbPath, "wallet.db"),
-      path.join(walletDirectory, testnet ? "testnet3" : MAINNET, "wallet.db")
+      path.join(walletDirectory, testnet ? "testnet" : MAINNET, "wallet.db")
     );
 
     // copy over existing config.json if it exists

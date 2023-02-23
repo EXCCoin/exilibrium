@@ -81,7 +81,7 @@ export const deleteDaemon = (appData, testnet) => {
   const removeDaemonDirectoryData = path.join(
     removeDaemonDirectory,
     "data",
-    testnet ? "testnet3" : MAINNET
+    testnet ? "testnet" : MAINNET
   );
   try {
     if (fs.existsSync(removeDaemonDirectoryData)) {
@@ -120,14 +120,14 @@ export const startDaemon = async (params, testnet, reactIPC) => {
     if (rpcCreds) {
       setDcrdRpcCredentials(rpcCreds);
       dcrdIsRemote = true;
-      logger.log("info", "dcrd is connected as remote");
+      logger.log("info", "exccd is connected as remote");
       return rpcCreds;
     }
 
     const appdata = params && params.appdata;
     return await launchDCRD(reactIPC, testnet, appdata);
   } catch (err) {
-    logger.log("error", "error launching dcrd: " + err);
+    logger.log("error", "error launching exccd: " + err);
     throw err;
   }
 };
@@ -182,7 +182,7 @@ export const startWallet = async (
   disableCoinTypeUpgrades
 ) => {
   if (GetDcrwPID()) {
-    logger.log("info", "dcrwallet already started " + GetDcrwPID());
+    logger.log("info", "exccwallet already started " + GetDcrwPID());
     return { pid: GetDcrwPID(), port: GetDcrwPort() };
   }
   initWalletCfg(testnet, walletPath);
@@ -206,7 +206,7 @@ export const startWallet = async (
       disableCoinTypeUpgrades
     );
   } catch (e) {
-    logger.log("error", "error launching dcrwallet: " + e);
+    logger.log("error", "error launching exccwallet: " + e);
     throw e;
   }
 };
@@ -222,7 +222,7 @@ export const startDcrlnd = async (
   if (GetDcrlndPID() && GetDcrlndPID() !== -1) {
     logger.log(
       "info",
-      `Skipping restart of dcrlnd as it is already running ${GetDcrlndPID()}`
+      `Skipping restart of excclnd as it is already running ${GetDcrlndPID()}`
     );
     const creds = GetDcrlndCreds();
     return { wasRunning: true, ...creds };
@@ -239,7 +239,7 @@ export const startDcrlnd = async (
     );
     return started;
   } catch (e) {
-    logger.log("error", `error launching dcrlnd: ${e}`);
+    logger.log("error", `error launching excclnd: ${e}`);
     return e;
   }
 };
@@ -450,7 +450,7 @@ export const stopDex = () => closeDex();
 
 export const removeDcrlnd = (walletName, testnet) => {
   const walletPath = getWalletPath(testnet, walletName);
-  const dcrlndRoot = path.join(walletPath, "dcrlnd");
+  const dcrlndRoot = path.join(walletPath, "excclnd");
   try {
     if (fs.existsSync(dcrlndRoot)) {
       fs.rmSync(dcrlndRoot, { recursive: true, force: true, maxRetries: 30 });
@@ -458,15 +458,15 @@ export const removeDcrlnd = (walletName, testnet) => {
     }
     return false;
   } catch (e) {
-    logger.log("error", "error removing dcrlnd dir: " + e);
+    logger.log("error", "error removing excclnd dir: " + e);
     return false;
   }
 };
 
 export const lnScbInfo = (walletPath, testnet) => {
   const netPath = testnet ? "testnet" : "mainnet";
-  const dcrlndRoot = path.join(walletPath, "dcrlnd");
-  const chainRoot = path.join(dcrlndRoot, "data", "chain", "decred", netPath);
+  const dcrlndRoot = path.join(walletPath, "excclnd");
+  const chainRoot = path.join(dcrlndRoot, "data", "chain", "exchangecoin", netPath);
   const channelBackupPath = path.join(chainRoot, "channel.backup");
   const scbFstat = fs.statSync(channelBackupPath);
   const channelBackupMTime = scbFstat.mtime;

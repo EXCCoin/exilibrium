@@ -45,7 +45,7 @@ const logLevelsPrintable = {
 };
 
 export const getLogFileName = () =>
-  path.join(getAppDataDirectory(), "decrediton.log");
+  path.join(getAppDataDirectory(), "exilibrium.log");
 
 class Logger {
   constructor(debug) {

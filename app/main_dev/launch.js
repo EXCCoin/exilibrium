@@ -174,7 +174,7 @@ export const setDcrwalletGrpcKeyCert = (grpcKeyCert) => {
   if (!Buffer.isBuffer(grpcKeyCert)) {
     logger.log(
       "error",
-      "Error getting grpc key and cert from dcrwallet, " +
+      "Error getting grpc key and cert from excwallet, " +
         "grpc key and cert value: " +
         grpcKeyCert
     );
@@ -188,7 +188,7 @@ export function closeDCRD() {
     return true;
   }
   if (isRunning(dcrdPID) && os.platform() != "win32") {
-    logger.log("info", "Sending SIGINT to dcrd at pid:" + dcrdPID);
+    logger.log("info", "Sending SIGINT to exccd at pid:" + dcrdPID);
     process.kill(dcrdPID, "SIGINT");
     dcrdPID = null;
     dcrdRequest = null;
@@ -199,7 +199,7 @@ export function closeDCRD() {
       dcrdPID = null;
       dcrdRequest = null;
     } catch (e) {
-      logger.log("error", "Error closing dcrd piperx: " + e);
+      logger.log("error", "Error closing exccd piperx: " + e);
       return false;
     }
   }
@@ -217,7 +217,7 @@ export const closeDCRW = () => {
   }
   try {
     if (isRunning(dcrwPID) && os.platform() != "win32") {
-      logger.log("info", "Sending SIGINT to dcrwallet at pid:" + dcrwPID);
+      logger.log("info", "Sending SIGINT to exccwallet at pid:" + dcrwPID);
       process.kill(dcrwPID, "SIGINT");
     } else if (isRunning(dcrwPID)) {
       try {
@@ -226,7 +226,7 @@ export const closeDCRW = () => {
         win32ipc.closePipe(dcrwPipeTx);
         win32ipc.closePipe(dcrwPipeRx);
       } catch (e) {
-        logger.log("error", "Error closing dcrwallet piperx: " + e);
+        logger.log("error", "Error closing exccwallet piperx: " + e);
       }
     }
     dcrwPID = null;
@@ -243,7 +243,7 @@ export const closeDcrlnd = () => {
     return true;
   }
   if (isRunning(dcrlndPID) && os.platform() != "win32") {
-    logger.log("info", "Sending SIGINT to dcrlnd at pid:" + dcrlndPID);
+    logger.log("info", "Sending SIGINT to excclnd at pid:" + dcrlndPID);
     process.kill(dcrlndPID, "SIGINT");
     dcrlndPID = null;
     dcrlndCreds = null;
@@ -254,7 +254,7 @@ export const closeDcrlnd = () => {
       dcrlndPID = null;
       dcrlndCreds = null;
     } catch (e) {
-      logger.log("error", "Error closing dcrlnd piperx: " + e);
+      logger.log("error", "Error closing excclnd piperx: " + e);
       return false;
     }
     dcrlndPID = null;
@@ -285,7 +285,7 @@ export function cleanShutdown(mainWindow, app) {
     setTimeout(function () {
       closeClis();
     }, cliShutDownPause * 1000);
-    logger.log("info", "Closing decrediton.");
+    logger.log("info", "Closing exilibrium.");
 
     const shutdownTimer = setInterval(function () {
       const stillRunning =
@@ -331,7 +331,7 @@ const upgradeToElectron8 = (rpcCert, rpcKey) => {
       if (backupDone) {
         logger.log(
           "info",
-          "Removing dcrd TLS key file for electron 8 upgrade at " + rpcKey
+          "Removing exccd TLS key file for electron 8 upgrade at " + rpcKey
         );
         fs.unlinkSync(rpcKey);
       }
@@ -341,7 +341,7 @@ const upgradeToElectron8 = (rpcCert, rpcKey) => {
       if (backupDone) {
         logger.log(
           "info",
-          "Removing dcrd TLS cert file for electron 8 upgrade at " + rpcCert
+          "Removing exccd TLS cert file for electron 8 upgrade at " + rpcCert
         );
         fs.unlinkSync(rpcCert);
       }
@@ -355,11 +355,11 @@ const upgradeToElectron8 = (rpcCert, rpcKey) => {
 // decrediton consider dcrd as launched after dcrd finds a valid peer.
 export const launchDCRD = (reactIPC, testnet, appdata) =>
   new Promise((resolve, reject) => {
-    const dcrdExe = getExecutablePath("dcrd", argv.custombinpath);
+    const dcrdExe = getExecutablePath("exccd", argv.custombinpath);
     if (!fs.existsSync(dcrdExe)) {
       logger.log(
         "error",
-        "The dcrd executable does not exist. Expected to find it at " + dcrdExe
+        "The exccd executable does not exist. Expected to find it at " + dcrdExe
       );
       return;
     }
@@ -402,7 +402,7 @@ export const launchDCRD = (reactIPC, testnet, appdata) =>
         dcrdPipeRx = win32ipc.createPipe("out");
         args.push(format("--piperx=%d", dcrdPipeRx.readEnd));
       } catch (e) {
-        logger.log("error", "can't find proper module to launch dcrd: " + e);
+        logger.log("error", "can't find proper module to launch exccd: " + e);
       }
     }
 
@@ -424,12 +424,12 @@ export const launchDCRD = (reactIPC, testnet, appdata) =>
         if (!lastDcrdErr || lastDcrdErr === "") {
           lastDcrdErr = lastPanicLine(GetDcrdLogs());
         }
-        logger.log("error", "dcrd closed due to an error: " + lastDcrdErr);
+        logger.log("error", "exccd closed due to an error: " + lastDcrdErr);
         reactIPC.send("error-received", true, lastDcrdErr);
         reject(lastDcrdErr);
       }
 
-      logger.log("info", `dcrd exited with code ${code}`);
+      logger.log("info", `exccd exited with code ${code}`);
     });
 
     dcrd.stdout.on("data", (data) => {
@@ -440,7 +440,7 @@ export const launchDCRD = (reactIPC, testnet, appdata) =>
       }
       if (dataString.includes("New valid peer")) {
         dcrdPID = dcrd.pid;
-        logger.log("info", "dcrd started with pid:" + dcrdPID);
+        logger.log("info", "exccd started with pid:" + dcrdPID);
 
         dcrd.unref();
         return resolve({
@@ -644,9 +644,9 @@ export const launchDCRWallet = async (
       : "--csppserver=" + CSPP_URL + ":" + CSPP_PORT_TESTNET
   );
 
-  const dcrwExe = getExecutablePath("dcrwallet", argv.custombinpath);
+  const dcrwExe = getExecutablePath("exccwallet", argv.custombinpath);
   if (!fs.existsSync(dcrwExe)) {
-    const msg = `The dcrwallet executable does not exist. Expected to find it at ${dcrwExe}`;
+    const msg = `The exccwallet executable does not exist. Expected to find it at ${dcrwExe}`;
     logger.log("error", msg);
     throw new Error(msg);
   }
@@ -674,9 +674,9 @@ export const launchDCRWallet = async (
         } else {
           logger.log(
             "error",
-            "GRPC port not found on IPC channel to dcrwallet: " + intf
+            "GRPC port not found on IPC channel to exccwallet: " + intf
           );
-          portReject("dcrwallet gRPC port not found");
+          portReject("exccwallet gRPC port not found");
         }
       }
       if (mtype === "issuedclientcertificate") {
@@ -712,7 +712,7 @@ export const launchDCRWallet = async (
         logger.log("info", "dcrwallet tx stream closed")
       );
     } catch (e) {
-      logger.log("error", "can't find proper module to launch dcrwallet: " + e);
+      logger.log("error", "can't find proper module to launch exccwallet: " + e);
     }
   } else {
     args.push("--rpclistenerevents");
@@ -771,11 +771,11 @@ export const launchDCRWallet = async (
       }
       logger.log(
         "error",
-        "dcrwallet closed due to an error: " + lastDcrwalletErr
+        "exccwallet closed due to an error: " + lastDcrwalletErr
       );
       reactIPC.send("error-received", false, lastDcrwalletErr);
     } else {
-      logger.log("info", `dcrwallet exited with code ${code}`);
+      logger.log("info", `exccwallet exited with code ${code}`);
     }
     ClearDcrwalletLogs();
   });
@@ -790,7 +790,7 @@ export const launchDCRWallet = async (
   });
 
   dcrwPID = dcrwallet.pid;
-  logger.log("info", "dcrwallet started with pid:" + dcrwPID);
+  logger.log("info", "exccwallet started with pid:" + dcrwPID);
 
   dcrwallet.unref();
   const port = await portPromise;
@@ -810,7 +810,7 @@ export const launchDCRLnd = (
       resolve();
     }
 
-    const dcrlndRoot = path.join(walletPath, "dcrlnd");
+    const dcrlndRoot = path.join(walletPath, "excclnd");
     const tlsCertPath = path.join(dcrlndRoot, "tls.cert");
     const adminMacaroonPath = path.join(dcrlndRoot, "admin.macaroon");
 
@@ -821,7 +821,7 @@ export const launchDCRLnd = (
       "--datadir=" + path.join(dcrlndRoot, "data"),
       "--tlscertpath=" + tlsCertPath,
       "--tlskeypath=" + path.join(dcrlndRoot, "tls.key"),
-      "--configfile=" + path.join(dcrlndRoot, "dcrlnd.conf"),
+      "--configfile=" + path.join(dcrlndRoot, "excclnd.conf"),
       "--adminmacaroonpath=" + adminMacaroonPath,
       "--node=dcrw",
       "--dcrwallet.grpchost=localhost:" + walletPort,
@@ -839,14 +839,14 @@ export const launchDCRLnd = (
       args.push("--autopilot.active");
     }
 
-    const dcrlndExe = getExecutablePath("dcrlnd", argv.custombinpath);
+    const dcrlndExe = getExecutablePath("excclnd", argv.custombinpath);
     if (!fs.existsSync(dcrlndExe)) {
       logger.log(
         "error",
-        "The dcrlnd executable does not exist. Expected to find it at " +
+        "The excclnd executable does not exist. Expected to find it at " +
           dcrlndExe
       );
-      reject("The dcrlnd executable does not exist at " + dcrlndExe);
+      reject("The excclnd executable does not exist at " + dcrlndExe);
     }
 
     if (os.platform() == "win32") {
@@ -855,7 +855,7 @@ export const launchDCRLnd = (
         dcrlndPipeRx = win32ipc.createPipe("out");
         args.push(format("--piperx=%d", dcrlndPipeRx.readEnd));
       } catch (e) {
-        logger.log("error", "can't find proper module to launch dcrlnd: " + e);
+        logger.log("error", "can't find proper module to launch excclnd: " + e);
       }
     }
 
@@ -883,7 +883,7 @@ export const launchDCRLnd = (
     }
     */
 
-      logger.log("info", `dcrlnd exited with code ${code}`);
+      logger.log("info", `excclnd exited with code ${code}`);
     });
 
     dcrlnd.stdout.on("data", (data) => {
@@ -897,7 +897,7 @@ export const launchDCRLnd = (
     });
 
     dcrlndPID = dcrlnd.pid;
-    logger.log("info", "dcrlnd started with pid:" + dcrlndPID);
+    logger.log("info", "excclnd started with pid:" + dcrlndPID);
 
     dcrlnd.unref();
 
@@ -1049,18 +1049,18 @@ export const GetDexCreds = () => dexCreds;
 
 export const readExesVersion = (app, grpcVersions) => {
   const args = ["--version"];
-  const exes = ["dcrd", "dcrwallet", "dcrctl"];
+  const exes = ["exccd", "exccwallet", "exccctl"];
   const versions = {
     grpc: grpcVersions,
     decrediton: app.getVersion()
   };
 
   for (const exe of exes) {
-    const exePath = getExecutablePath("dcrd", argv.custombinpath);
+    const exePath = getExecutablePath("exccd", argv.custombinpath);
     if (!fs.existsSync(exePath)) {
       logger.log(
         "error",
-        "The dcrd executable does not exist. Expected to find it at " + exePath
+        "The exccd executable does not exist. Expected to find it at " + exePath
       );
     }
 
