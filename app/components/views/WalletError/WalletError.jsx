@@ -4,11 +4,11 @@ import styles from "./WalletError.module.css";
 const WalletError = () => {
   const { getNetworkError } = useWalletError();
   return (
-    <div style={styles.view}>
-      <div style={styles.content}>
+    <div>
+      <div>
         {getNetworkError ? (
           <p>
-            {getNetworkError} Please verify that your dcrd is configured
+            {getNetworkError} Please verify that your exccd is configured
             correctly and restart.
           </p>
         ) : (
