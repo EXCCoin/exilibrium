@@ -53,7 +53,7 @@ export const Balance = ({
           )}
           {!hideCurrency && (
             <span className={classNames(styles[secondary], classNameUnit)}>
-              DCR
+              EXCC
             </span>
           )}
         </span>

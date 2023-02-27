@@ -37,7 +37,7 @@ export const OPTIONS = {
 
 export const MAX_LOG_LENGTH = 50000;
 
-export const DCR = "DCR";
+export const DCR = "EXCC";
 export const ATOMS = "atoms";
 
 export const WORDS = "words";
