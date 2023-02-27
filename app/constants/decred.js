@@ -13,17 +13,16 @@ export const TestNetParams = {
   TicketExpiry: 6144, // 6*TicketPoolSize
   CoinbaseMaturity: 16,
   SStxChangeMaturity: 1,
-  GenesisTimestamp: 1489550400,
-  TargetTimePerBlock: 2 * 60, // in seconds
+  GenesisTimestamp: 1532420489,
+  TargetTimePerBlock: 2.5 * 60, // in seconds
   WorkDiffWindowSize: 144,
 
   // no way to know which one the wallet is using right now, so we record both
   // types for the moment.
-  LegacyHDCoinType: 11,
-  HDCoinType: 1,
+  HDCoinType: 0,
 
-  TreasuryAddress: "TcrypGAcGCRVXrES7hWqVZb5oLJKCZEtoL1",
-  trezorCoinName: "Decred Testnet",
+  TreasuryAddress: "",
+  trezorCoinName: "ExchangeCoin Testnet",
 
   // Address encoding magics
   NetworkAddressPrefix: "T",
@@ -38,10 +37,7 @@ export const TestNetParams = {
   DefaultWalletRPCListener: "127.0.0.1:19110",
   // Sanctioned Politeia keys.
   // Only showing the first Pi trusted key for now.
-  PiKeys: [
-    "03beca9bbd227ca6bb5a58e03a36ba2b52fff09093bd7a50aee1193bccd257fb8a"
-    // "03e647c014f55265da506781f0b2d67674c35cb59b873d9926d483c4ced9a7bbd3",
-  ]
+  PiKeys: [""]
 };
 
 export const MainNetParams = {
@@ -49,35 +45,31 @@ export const MainNetParams = {
   TicketExpiry: 40960, // 5*TicketPoolSize
   CoinbaseMaturity: 256,
   SStxChangeMaturity: 1,
-  GenesisTimestamp: 1454954400,
-  TargetTimePerBlock: 5 * 60, // in seconds
+  GenesisTimestamp: 1531731600,
+  TargetTimePerBlock: 60 * 2.5, // in seconds
   WorkDiffWindowSize: 144,
 
   // no way to know which one the wallet is using right now, so we record both
   // types for the moment.
-  LegacyHDCoinType: 20,
-  HDCoinType: 42,
+  HDCoinType: 0,
 
-  TreasuryAddress: "Dcur2mcGjmENx4DhNqDctW5wJCVyT3Qeqkx",
-  trezorCoinName: "Decred",
+  TreasuryAddress: "",
+  trezorCoinName: "ExchangeCoin",
 
   // Address encoding magics
-  NetworkAddressPrefix: "D",
-  PubKeyAddrID: [0x13, 0x86], // starts with Dk
-  PubKeyHashAddrID: [0x07, 0x3f], // starts with Ds
-  PKHEdwardsAddrID: [0x07, 0x1f], // starts with De
-  PKHSchnorrAddrID: [0x07, 0x01], // starts with DS
-  ScriptHashAddrID: [0x07, 0x1a], // starts with Dc
+  NetworkAddressPrefix: "2",
+  PubKeyAddrID: [0x02, 0xdc], // starts with 2s
+  PubKeyHashAddrID: [0x21, 0xb9], // starts with 22
+  PKHEdwardsAddrID: [0x35, 0xcf], // starts with 2e
+  PKHSchnorrAddrID: [0x2f, 0x0d], // starts with 2S
+  ScriptHashAddrID: [0x34, 0xaf], // starts with 2c
 
   // DefaultWalletRPCListener is the default host and port that will be used
   // if the rpc server is started (currently only used when DEX is enabled).
   DefaultWalletRPCListener: "127.0.0.1:9110",
   // Sanctioned Politeia keys.
   // Only showing the first Pi trusted key for now.
-  PiKeys: [
-    "03f6e7041f1cf51ee10e0a01cd2b0385ce3cd9debaabb2296f7e9dee9329da946c"
-    // "0319a37405cb4d1691971847d7719cfce70857c0f6e97d7c9174a3998cf0ab86dd",
-  ]
+  PiKeys: [""]
 };
 
 // MAX_DCR_AMOUNT represents the maximum decred amount in atoms.
