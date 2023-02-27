@@ -10,7 +10,9 @@ export function useMenuLinks() {
   const sidebarOnBottom = useSelector(sel.sidebarOnBottom);
   const expandSideBar = useSelector(sel.expandSideBar);
   const isTrezor = useSelector(sel.isTrezor);
-  const lnEnabled = useSelector(sel.lnEnabled);
+  const lnEnabled = false;
+  // TODO: enable ln when ready
+  // const lnEnabled = useSelector(sel.lnEnabled);
 
   const newActiveVoteProposalsCount = useSelector(
     sel.newActiveVoteProposalsCount
