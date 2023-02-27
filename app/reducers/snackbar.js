@@ -436,7 +436,7 @@ const messages = defineMessages({
   },
   LNWALLET_STARTDCRLND_FAILED: {
     id: "ln.ntf.startDcrlndFailed",
-    defaultMessage: "dcrlnd failed to start: {originalError}"
+    defaultMessage: "excclnd failed to start: {originalError}"
   },
   LNWALLET_CONNECT_FAILED: {
     id: "ln.ntf.connectFailed",
@@ -452,7 +452,7 @@ const messages = defineMessages({
   },
   LNWALLET_STARTUPSYNC_FAILED: {
     id: "ln.ntf.startupSyncFailed",
-    defaultMessage: "Failed to sync to dcrlnd during startup: {originalError}"
+    defaultMessage: "Failed to sync to excclnd during startup: {originalError}"
   },
   LNWALLET_SCBRESTORE_FAILED: {
     id: "ln.ntf.scbRestoreFailed",

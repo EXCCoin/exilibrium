@@ -27,7 +27,7 @@ const Logs = ({
     <Subtitle title={<T id="logs.subtitle" m="System Logs" />} />
     {!isDaemonRemote && (
       <Log
-        title={<T id="help.logs.dcrd" m="dcrd" />}
+        title={<T id="help.logs.dcrd" m="exccd" />}
         log={dcrdLogs}
         expanded={showDcrdLogs}
         onShowLog={onShowDcrdLogs}
@@ -36,7 +36,7 @@ const Logs = ({
     )}
     {walletReady && (
       <Log
-        title={<T id="help.logs.dcrwallet" m="dcrwallet" />}
+        title={<T id="help.logs.dcrwallet" m="exccwallet" />}
         log={dcrwalletLogs}
         expanded={showDcrwalletLogs}
         onShowLog={onShowDcrwalletLogs}
@@ -44,7 +44,7 @@ const Logs = ({
       />
     )}
     <Log
-      title={<T id="help.logs.decrediton" m="decrediton" />}
+      title={<T id="help.logs.decrediton" m="exilibrium" />}
       log={decreditonLogs}
       expanded={showDecreditonLogs}
       onShowLog={onShowDecreditonLogs}
@@ -52,7 +52,7 @@ const Logs = ({
     />
     {(lnActive || lnStartAttempt) && (
       <Log
-        title={<T id="help.logs.dcrlnd" m="dcrlnd" />}
+        title={<T id="help.logs.dcrlnd" m="excclnd" />}
         expanded={showDcrlndLogs}
         onShowLog={onShowDcrlndLogs}
         onHideLog={onHideDcrlndLogs}

@@ -140,7 +140,7 @@ test("test create new new account", () => {
 
   expect(screen.getByText("Lightning Transactions")).toBeInTheDocument();
   expect(
-    screen.getByText("Start, unlock and connect to the dcrlnd wallet.")
+    screen.getByText("Start, unlock and connect to the excclnd wallet.")
   ).toBeInTheDocument();
 
   user.type(getSCBBackupFileInput(), mockFilePath);

@@ -19,10 +19,10 @@ import { LinearProgressSmall } from "indicators";
 
 const stageMsgs = {
   [LNWALLET_STARTUPSTAGE_STARTDCRLND]: (
-    <T id="ln.startupStage.startDcrlnd" m="Starting dcrlnd" />
+    <T id="ln.startupStage.startDcrlnd" m="Starting excclnd" />
   ),
   [LNWALLET_STARTUPSTAGE_CONNECT]: (
-    <T id="ln.startupStage.connect" m="Connecting to dcrlnd" />
+    <T id="ln.startupStage.connect" m="Connecting to excclnd" />
   ),
   [LNWALLET_STARTUPSTAGE_UNLOCK]: (
     <T id="ln.startupStage.unlock" m="Unlocking LN wallet" />
@@ -41,7 +41,7 @@ const ConnectPageHeader = () => (
     description={
       <T
         id="ln.connectPage.description"
-        m={"Start, unlock and connect to the dcrlnd wallet."}
+        m={"Start, unlock and connect to the excclnd wallet."}
       />
     }
     iconType={LN_ICON}

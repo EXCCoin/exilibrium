@@ -27,7 +27,7 @@ export const CreateLNWalletHeader = () => (
     description={
       <T
         id="ln.createLNWalletPage.description"
-        m={"Start, unlock and connect to the dcrlnd wallet."}
+        m={"Start, unlock and connect to the excclnd wallet."}
       />
     }
     iconType={LN_ICON}
