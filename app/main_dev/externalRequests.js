@@ -8,10 +8,6 @@
 import { session } from "electron";
 import { getGlobalCfg } from "../config";
 import {
-  POLITEIA_URL_TESTNET,
-  POLITEIA_URL_MAINNET
-} from "../middleware/politeiaapi";
-import {
   DCRDATA_URL_TESTNET,
   DCRDATA_URL_MAINNET
 } from "../middleware/dcrdataapi";
@@ -22,7 +18,6 @@ import {
   EXTERNALREQUEST_NETWORK_STATUS,
   EXTERNALREQUEST_STAKEPOOL_LISTING,
   EXTERNALREQUEST_UPDATE_CHECK,
-  EXTERNALREQUEST_POLITEIA,
   EXTERNALREQUEST_DCRDATA,
   EXTERNALREQUEST_TREZOR_BRIDGE
 } from "constants";
@@ -133,17 +128,6 @@ export const installSessionHandlers = (mainLogger) => {
       );
       newHeaders["Access-Control-Allow-Origin"] = "http://localhost:3000";
 
-      // When calling a Politeia POST endpoint in dev mode, electron performs
-      // a preflight OPTIONS call. Include the "Content-Type" as an allowed
-      // header because Politeia doesn't currently does this.
-      const isPoliteia =
-        details.url.startsWith(POLITEIA_URL_TESTNET) ||
-        details.url.startsWith(POLITEIA_URL_MAINNET);
-      if (isPoliteia && details.method === "OPTIONS") {
-        statusLine = "OK";
-        newHeaders["Access-Control-Allow-Headers"] = "Content-Type";
-      }
-
       const globalCfg = getGlobalCfg();
       const cfgAllowedVSPs = globalCfg.get(cfgConstants.ALLOWED_VSP_HOSTS, []);
       if (cfgAllowedVSPs.some((url) => details.url.includes(url))) {
@@ -179,10 +163,6 @@ export const allowExternalRequest = (externalReqType) => {
       break;
     case EXTERNALREQUEST_UPDATE_CHECK:
       addAllowedURL("https://api.github.com/repos/decred/decrediton/releases");
-      break;
-    case EXTERNALREQUEST_POLITEIA:
-      addAllowedURL(POLITEIA_URL_TESTNET);
-      addAllowedURL(POLITEIA_URL_MAINNET);
       break;
     case EXTERNALREQUEST_DCRDATA:
       addAllowedURL(DCRDATA_URL_TESTNET);

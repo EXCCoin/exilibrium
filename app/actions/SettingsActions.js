@@ -8,11 +8,7 @@ import {
   getTreasuryBalance,
   resetTreasuryBalance
 } from "actions/ClientActions";
-import { EXTERNALREQUEST_DCRDATA, EXTERNALREQUEST_POLITEIA } from "constants";
-import {
-  getTokenAndInitialBatch,
-  resetInventoryAndProposals
-} from "actions/GovernanceActions";
+import { EXTERNALREQUEST_DCRDATA } from "constants";
 import * as configConstants from "constants/config";
 
 export const SETTINGS_SAVE = "SETTINGS_SAVE";
@@ -90,16 +86,6 @@ export const saveSettings = (settings) => async (dispatch, getState) => {
     dispatch(closeWalletRequest());
     await dispatch(closeDaemonRequest());
     dispatch(backToCredentials());
-  }
-
-  // This should happen after dispatching `SETTINGS_SAVE` action
-  const newPoliteiaEnabled =
-    settings.allowedExternalRequests.indexOf(EXTERNALREQUEST_POLITEIA) > -1;
-  if (newPoliteiaEnabled === true) {
-    dispatch(getTokenAndInitialBatch());
-  }
-  if (newPoliteiaEnabled === false) {
-    dispatch(resetInventoryAndProposals());
   }
 };
 

@@ -26,10 +26,9 @@ import { getAccountMixerServiceAttempt } from "./AccountMixerActions";
 import { checkLnWallet } from "./LNActions";
 import { push as pushHistory, goBack } from "connected-react-router";
 import { getStartupStats } from "./StatisticsActions";
-import { getTokenAndInitialBatch } from "./GovernanceActions";
 import { discoverAvailableVSPs } from "./VSPActions";
 import * as da from "../middleware/dcrdataapi";
-import { EXTERNALREQUEST_DCRDATA, EXTERNALREQUEST_POLITEIA } from "constants";
+import { EXTERNALREQUEST_DCRDATA } from "constants";
 import {
   TESTNET,
   MAINNET,
@@ -148,9 +147,7 @@ export const getStartupWalletInfo = () => (dispatch) => {
   const dcrdataEnabled =
     config.get("allowed_external_requests").indexOf(EXTERNALREQUEST_DCRDATA) >
     -1;
-  const politeiaEnabled =
-    config.get("allowed_external_requests").indexOf(EXTERNALREQUEST_POLITEIA) >
-    -1;
+  const politeiaEnabled = -1;
 
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
@@ -163,9 +160,6 @@ export const getStartupWalletInfo = () => (dispatch) => {
         if (dcrdataEnabled) {
           dispatch(getTreasuryBalance());
           dispatch(getAllAgendasAttempt());
-        }
-        if (politeiaEnabled) {
-          dispatch(getTokenAndInitialBatch());
         }
         dispatch(checkLnWallet());
         dispatch({ type: GETSTARTUPWALLETINFO_SUCCESS });

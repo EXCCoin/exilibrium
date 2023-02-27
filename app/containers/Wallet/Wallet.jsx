@@ -12,9 +12,6 @@ import TransactionsPage from "components/views/TransactionsPage";
 import TransactionPage from "components/views/TransactionPage";
 import TicketsPage from "components/views/TicketsPage";
 import TutorialsPage from "components/views/TutorialsPage/TutorialsPage";
-import GovernancePage from "components/views/GovernancePage/GovernancePage";
-import ProposalDetailsPage from "components/views/ProposalDetailsPage/ProposalDetailsPage";
-import AgendaDetailsPage from "components/views/AgendaDetailsPage";
 import ChannelDetailsPage from "components/views/LNPage/ChannelDetailsPage";
 import TrezorPage from "components/views/TrezorPage";
 import LNPage from "components/views/LNPage";
@@ -56,7 +53,6 @@ const Wallet = ({ setInterval }) => {
           <Route path="/transactions" component={TransactionsPage} />
           <Route path="/tickets" component={TicketsPage} />
           <Route path="/tutorial" component={TutorialsPage} />
-          <Route path="/governance" component={GovernancePage} />
           <Route path="/trezor" component={TrezorPage} />
           <Route path="/ln" component={LNPage} />
           <Route path="/dex" component={DexPage} />
@@ -71,11 +67,6 @@ const Wallet = ({ setInterval }) => {
           component={TransactionPage}
         />
         <Route path="/home/:txHash" component={TransactionPage} />
-        <Route
-          path="/proposal/details/:token"
-          component={ProposalDetailsPage}
-        />
-        <Route path="/agenda/details/:name" component={AgendaDetailsPage} />
         <Route
           path="/ln/channel/:channelPoint"
           component={ChannelDetailsPage}

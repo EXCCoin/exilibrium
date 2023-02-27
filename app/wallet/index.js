@@ -11,7 +11,6 @@ export * from "./seed";
 export * from "./service";
 export * from "./vsp";
 export * from "./version";
-export * from "./politeia";
 export * from "./config";
 
 // These exports are named explicitly to ensure the UI isn't given

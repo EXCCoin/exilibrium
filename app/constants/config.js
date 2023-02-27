@@ -56,8 +56,6 @@ export const HIDDEN_ACCOUNTS = "hiddenaccounts";
 export const DISCOVER_ACCOUNTS = "discoveraccounts";
 export const GAP_LIMIT = "gaplimit";
 export const IS_WATCH_ONLY = "iswatchonly";
-export const POLITEIA_LAST_ACCESS_TIME = "politeia_last_access_time";
-export const POLITEIA_LAST_ACCESS_BLOCK = "politeia_last_access_block";
 export const TREZOR = "trezor";
 export const VSP_IS_LEGACY = "vsp_is_legacy";
 export const ENABLE_PRIVACY = "enableprivacy";
@@ -102,8 +100,6 @@ export const WALLET_INITIAL_VALUE = {
   [DISCOVER_ACCOUNTS]: true,
   [GAP_LIMIT]: 20,
   [IS_WATCH_ONLY]: false,
-  [POLITEIA_LAST_ACCESS_TIME]: 0,
-  [POLITEIA_LAST_ACCESS_BLOCK]: 0,
   [TREZOR]: false,
   [VSP_IS_LEGACY]: false,
   // enable_privacy only shows the privacy menu on the wallet

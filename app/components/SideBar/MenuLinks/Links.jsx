@@ -25,17 +25,6 @@ export const linkList = [
     ariaLabel: "Lightning Transactions"
   },
   {
-    path: "/governance",
-    link: <T id="sidebar.link.governance" m="Governance" />,
-    icon: "governance",
-    notifProp: [
-      "newProposalsStartedVoting",
-      "newNotYetVotedAgendasCount",
-      "newNotYetVotedActiveProposalsCount"
-    ],
-    ariaLabel: "Governance"
-  },
-  {
     path: "/tickets",
     link: <T id="sidebar.link.staking" m="Staking" />,
     icon: "tickets",

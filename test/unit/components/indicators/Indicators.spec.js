@@ -11,7 +11,6 @@ import {
   NoTicketsIndicator,
   NoMoreTicketsIndicator,
   NoProposals,
-  PoliteiaLoading,
   VotingProgress
 } from "indicators";
 import { render as lightRender } from "@testing-library/react";
@@ -150,17 +149,6 @@ test("render default NoProposals", () => {
   expect(
     screen.getByText(/no proposals available/i).textContent
   ).toMatchInlineSnapshot('"No Proposals Available"');
-});
-
-test("render default PoliteiaLoading", () => {
-  const { container } = lightRender(<PoliteiaLoading />);
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="politeiaLoading"
-      />
-    </div>
-  `);
 });
 
 test("render VotingProgress without voteCounts", () => {

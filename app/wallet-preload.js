@@ -3,7 +3,6 @@ import * as wallet from "wallet";
 import * as walletCrypto from "wallet/crypto";
 import * as dex from "wallet/dex";
 import * as ln from "wallet/ln";
-import * as politeia from "wallet/politeia";
 import { contextBridge } from "electron";
 
 // Elements in this object define the public API exported by the preload script.
@@ -13,7 +12,6 @@ const api = {
   walletCrypto: walletCrypto,
   dex: dex,
   ln: ln,
-  politeia: politeia
 };
 
 try {

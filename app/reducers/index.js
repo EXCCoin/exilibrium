@@ -11,7 +11,6 @@ import locales from "./locales";
 import sidebar from "./sidebar";
 import snackbar from "./snackbar";
 import statistics from "./statistics";
-import governance from "./governance";
 import trezor from "./trezor";
 import ln from "./ln";
 import vsp from "./vsp";
@@ -30,7 +29,6 @@ export default {
   sidebar,
   snackbar,
   statistics,
-  governance,
   trezor,
   ln,
   vsp,

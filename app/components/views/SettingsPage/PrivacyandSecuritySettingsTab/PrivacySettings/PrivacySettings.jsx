@@ -3,7 +3,6 @@ import {
   EXTERNALREQUEST_NETWORK_STATUS,
   EXTERNALREQUEST_STAKEPOOL_LISTING,
   EXTERNALREQUEST_UPDATE_CHECK,
-  EXTERNALREQUEST_POLITEIA,
   EXTERNALREQUEST_DCRDATA
 } from "constants";
 import { Checkbox, classNames } from "pi-ui";
@@ -92,25 +91,6 @@ const PrivacySettings = ({
             ) > -1
           }
           onChange={toggle(EXTERNALREQUEST_STAKEPOOL_LISTING)}
-        />
-      </div>
-      <div>
-        <Checkbox
-          className={styles.privacyCheckbox}
-          label={<T id="settings.privacy.politeia.label" m="Politeia" />}
-          id="politeia"
-          description={
-            <T
-              id="settings.privacy.politeia.description"
-              m="List and vote on proposals on proposals.decred.org"
-            />
-          }
-          checked={
-            tempSettings.allowedExternalRequests.indexOf(
-              EXTERNALREQUEST_POLITEIA
-            ) > -1
-          }
-          onChange={toggle(EXTERNALREQUEST_POLITEIA)}
         />
       </div>
       <div>

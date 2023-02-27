@@ -141,13 +141,6 @@ const expectToHaveDefaultMenuLinks = async (params) => {
     "/transactions",
     "On-chain Transactions"
   );
-  await expectToHaveMenuLink(
-    "menuLinkContent-governance",
-    "Governance",
-    "governanceIcon",
-    "/governance",
-    "Governance"
-  );
   if (!sidebarOnBottom || expandSideBar) {
     await expectToHaveMenuLink(
       "menuLinkContent-tickets",

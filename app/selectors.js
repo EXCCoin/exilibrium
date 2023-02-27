@@ -19,13 +19,8 @@ import { appLocaleFromElectronLocale } from "./i18n/locales";
 import { decodeVoteScript, reverseHash, dateToLocal, dateToUTC } from "helpers";
 import {
   EXTERNALREQUEST_STAKEPOOL_LISTING,
-  EXTERNALREQUEST_POLITEIA,
   EXTERNALREQUEST_DCRDATA
 } from "constants";
-import {
-  POLITEIA_URL_TESTNET,
-  POLITEIA_URL_MAINNET
-} from "./middleware/politeiaapi";
 import {
   DCRDATA_URL_TESTNET,
   DCRDATA_URL_MAINNET
@@ -1574,18 +1569,11 @@ export const isSignMessageDisabled = and(isWatchingOnly, not(isTrezor));
 export const isChangePassPhraseDisabled = isWatchingOnly;
 export const isTransactionsSendTabDisabled = not(isTrezor);
 
-export const politeiaURL = createSelector([isTestNet], (isTestNet) =>
-  isTestNet ? POLITEIA_URL_TESTNET : POLITEIA_URL_MAINNET
-);
-
 export const dcrdataURL = createSelector([isTestNet], (isTestNet) =>
   isTestNet ? DCRDATA_URL_TESTNET : DCRDATA_URL_MAINNET
 );
 
-export const politeiaEnabled = compose(
-  (l) => l.indexOf(EXTERNALREQUEST_POLITEIA) > -1,
-  allowedExternalRequests
-);
+export const politeiaEnabled = false;
 
 export const dcrdataEnabled = compose(
   (l) => l.indexOf(EXTERNALREQUEST_DCRDATA) > -1,
@@ -1687,14 +1675,6 @@ export const getVotesInventoryError = get([
   "getVotesInventoryError"
 ]);
 export const proposalsDetails = get(["governance", "proposalsDetails"]);
-export const lastPoliteiaAccessBlock = get([
-  "governance",
-  "lastPoliteiaAccessBlock"
-]);
-export const lastPoliteiaAccessTime = get([
-  "governance",
-  "lastPoliteiaAccessTime"
-]);
 export const setVoteChoicesAttempt = get([
   "grpc",
   "setVoteChoicesRequestAttempt"
