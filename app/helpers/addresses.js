@@ -7,7 +7,7 @@ import {
   ripemd160Size
 } from "constants";
 import bs58 from "bs58";
-import { blake256 } from "walletCrypto";
+import sha256 from "js-sha256";
 import bs58checkBase from "bs58check/base";
 
 export const ERR_INVALID_ADDR_EMPTY = "ERR_INVALID_ADDR_EMPTY";
@@ -26,8 +26,17 @@ export const ERR_INVALID_ADDR_CHECKSUM = "ERR_INVALID_ADDR_CHECKSUM";
 // 2) Network - Either mainnet or testnet
 // 3) Checksum - https://github.com/bitcoinjs/bs58check/blob/master/test/base.js
 
-// _blake256x2 gets a buffer and calculate its checksum twice with blake256.
-const _blake256x2 = (buffer) => blake256(blake256(buffer));
+// _sha256x2 gets a buffer and calculate its checksum twice with sha256.
+function _sha256x2(buffer) {
+  buffer = sha256
+    .create()
+    .update(buffer)
+    .digest();
+  return Uint8Array.from(sha256
+    .create()
+    .update(buffer)
+    .digest());
+}
 
 export function isValidAddress(addr, network) {
   if (!addr || !addr.trim().length) return ERR_INVALID_ADDR_EMPTY;
@@ -40,8 +49,8 @@ export function isValidAddress(addr, network) {
     return ERR_INVALID_ADDR_NETWORKPREFIX;
 
   try {
-    const bs58check = bs58checkBase(_blake256x2);
-    bs58check.decode(addr, _blake256x2);
+    const bs58check = bs58checkBase(_sha256x2);
+    bs58check.decode(addr, _sha256x2);
   } catch (error) {
     return ERR_INVALID_ADDR_CHECKSUM;
   }
@@ -56,8 +65,8 @@ export function isValidMasterPubKey(masterPubKey) {
   if (!masterPubKey || !masterPubKey.trim().length)
     return ERR_INVALID_MASTER_PUB_KEY;
   try {
-    const bs58check = bs58checkBase(_blake256x2);
-    bs58check.decode(masterPubKey, _blake256x2);
+    const bs58check = bs58checkBase(_sha256x2);
+    bs58check.decode(masterPubKey, _sha256x2);
   } catch (error) {
     return ERR_INVALID_MASTERPUB_CHECKSUM;
   }
@@ -65,9 +74,9 @@ export function isValidMasterPubKey(masterPubKey) {
   return null;
 }
 
-// checksum returns the first four bytes of BLAKE256(BLAKE256(input)).
+// checksum returns the first four bytes of SHA256(SHA256(input)).
 const checksum = (input) => {
-  const calculatedChecksum = _blake256x2(input);
+  const calculatedChecksum = _sha256x2(input);
   return calculatedChecksum.slice(0, 4);
 };
 
