@@ -381,24 +381,24 @@ export const locale = createSelector(
 
 export const txURLBuilder = createSelector([network], (network) => (txHash) =>
   `https://${
-    network !== TESTNET ? "dcrdata" : "testnet"
-  }.decred.org/tx/${txHash}`
+     network !== TESTNET ? "" : "testnet-"
+  }explorer.excc.co/tx/${txHash}`
 );
 
 export const blockURLBuilder = createSelector(
   [network],
   (network) => (txHash) =>
     `https://${
-      network !== TESTNET ? "dcrdata" : "testnet"
-    }.decred.org/block/${txHash}`
+      network !== TESTNET ? "" : "testnet-"
+    }explorer.excc.co/block/${txHash}`
 );
 
 export const txOutURLBuilder = createSelector(
   [network],
   (network) => (txHash, outputIdx) =>
     `https://${
-      network !== "testnet" ? "explorer" : network
-    }.dcrdata.org/tx/${txHash}/out/${outputIdx}`
+      network !== TESTNET ? "" : "testnet-"
+    }explorer.excc.co/tx/${txHash}/out/${outputIdx}`
 );
 
 export const decodedTransactions = get(["grpc", "decodedTransactions"]);

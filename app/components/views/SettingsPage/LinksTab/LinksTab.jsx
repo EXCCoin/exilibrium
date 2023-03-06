@@ -21,9 +21,9 @@ const LinksTab = () => (
       />
       <HelpLink
         icon="explorer"
-        href="https://dcrdata.decred.org"
+        href="https://explorer.excc.co"
         title={<T id="help.blockchain" m=" Blockchain Explorer" />}
-        subtitle={<T id="help.blockchain.subtitle" m="dcrdata.decred.org" />}
+        subtitle={<T id="help.blockchain.subtitle" m="explorer.excc.co" />}
       />
       <HelpLink
         icon="github"
