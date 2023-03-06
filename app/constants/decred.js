@@ -35,9 +35,6 @@ export const TestNetParams = {
   // DefaultWalletRPCListener is the default host and port that will be used
   // if the rpc server is started (currently only used when DEX is enabled).
   DefaultWalletRPCListener: "127.0.0.1:19110",
-  // Sanctioned Politeia keys.
-  // Only showing the first Pi trusted key for now.
-  PiKeys: [""]
 };
 
 export const MainNetParams = {
@@ -67,9 +64,6 @@ export const MainNetParams = {
   // DefaultWalletRPCListener is the default host and port that will be used
   // if the rpc server is started (currently only used when DEX is enabled).
   DefaultWalletRPCListener: "127.0.0.1:9110",
-  // Sanctioned Politeia keys.
-  // Only showing the first Pi trusted key for now.
-  PiKeys: [""]
 };
 
 // MAX_DCR_AMOUNT represents the maximum decred amount in atoms.
