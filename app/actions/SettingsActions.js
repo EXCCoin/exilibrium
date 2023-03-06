@@ -5,7 +5,6 @@ import * as sel from "selectors";
 import { closeWalletRequest } from "actions/WalletLoaderActions";
 import { closeDaemonRequest, backToCredentials } from "actions/DaemonActions";
 import {
-  getTreasuryBalance,
   resetTreasuryBalance
 } from "actions/ClientActions";
 import { EXTERNALREQUEST_DCRDATA } from "constants";
@@ -65,15 +64,6 @@ export const saveSettings = (settings) => async (dispatch, getState) => {
 
   if (locale != settings.locale) {
     wallet.changeMenuLocale(settings.locale);
-  }
-
-  const newDcrdataEnabled =
-    settings.allowedExternalRequests.indexOf(EXTERNALREQUEST_DCRDATA) > -1;
-  if (newDcrdataEnabled === true) {
-    dispatch(getTreasuryBalance());
-  }
-  if (newDcrdataEnabled === false) {
-    dispatch(resetTreasuryBalance());
   }
 
   dispatch({ settings, type: SETTINGS_SAVE });

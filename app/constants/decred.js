@@ -21,7 +21,6 @@ export const TestNetParams = {
   // types for the moment.
   HDCoinType: 0,
 
-  TreasuryAddress: "",
   trezorCoinName: "ExchangeCoin Testnet",
 
   // Address encoding magics
@@ -50,7 +49,6 @@ export const MainNetParams = {
   // types for the moment.
   HDCoinType: 0,
 
-  TreasuryAddress: "",
   trezorCoinName: "ExchangeCoin",
 
   // Address encoding magics

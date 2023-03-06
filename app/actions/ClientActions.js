@@ -158,7 +158,6 @@ export const getStartupWalletInfo = () => (dispatch) => {
         await dispatch(getStartupStats());
         await dispatch(publishUnminedTransactionsAttempt());
         if (dcrdataEnabled) {
-          dispatch(getTreasuryBalance());
           dispatch(getAllAgendasAttempt());
         }
         dispatch(checkLnWallet());
@@ -796,50 +795,6 @@ export const SEEDCOPIEDTOCLIPBOARD = "SEEDCOPIEDTOCLIPBOARD";
 export const copySeedToClipboard = (mnemonic) => (dispatch) => {
   wallet.copyToClipboard(mnemonic);
   dispatch({ type: SEEDCOPIEDTOCLIPBOARD });
-};
-
-export const GETTREASURY_BALANCE_SUCCESS = "GETTREASURY_BALANCE_SUCCESS";
-export const GETTREASURY_BALANCE_FAILED = "GETTREASURY_BALANCE_FAILED";
-export const getTreasuryBalance = () => async (dispatch, getState) => {
-  const treasuryAddress = sel.chainParams(getState()).TreasuryAddress;
-  const dURL = sel.dcrdataURL(getState());
-  try {
-    let legacyTreasuryBalance = 0;
-    await da
-      .getLegacyTreasuryInfo(dURL, treasuryAddress)
-      .then((legacyTreasuryInfo) => {
-        const unspentLegacyTreasury = legacyTreasuryInfo["data"]["dcr_unspent"];
-        if (!unspentLegacyTreasury) return;
-        // Manually convert DCR to atom amounts to avoid floating point multiplication errors (eg. 589926.57667882*1e8 => 58992657667881.99)
-        const splitedTreasuryInfo = unspentLegacyTreasury.toString().split(".");
-        const integerPart = splitedTreasuryInfo[0];
-        // dcrdata can send numbers with its decimal part less than 8 decimals, so we manually add it.
-        let decimalPart = splitedTreasuryInfo[1];
-        decimalPart += "0".repeat(8 - decimalPart.length);
-        legacyTreasuryBalance = integerPart + decimalPart;
-      });
-    let newTreasuryBalance = 0;
-    await da.getTreasuryInfo(dURL).then((treasuryInfo) => {
-      const unspentTreasury = treasuryInfo["data"]["balance"];
-      if (!unspentTreasury) return;
-      newTreasuryBalance = unspentTreasury;
-    });
-    dispatch({
-      treasuryBalance:
-        parseInt(legacyTreasuryBalance) + parseInt(newTreasuryBalance),
-      type: GETTREASURY_BALANCE_SUCCESS
-    });
-  } catch (error) {
-    dispatch({
-      error: error,
-      type: GETTREASURY_BALANCE_FAILED
-    });
-  }
-};
-
-export const RESET_TREASURY_BALANCE = "RESET_TREASURY_BALANCE";
-export const resetTreasuryBalance = () => (dispatch) => {
-  dispatch({ type: RESET_TREASURY_BALANCE });
 };
 
 export const ABANDONTRANSACTION_ATTEMPT = "ABANDONTRANSACTION_ATTEMPT";

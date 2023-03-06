@@ -54,8 +54,6 @@ import {
   STARTWALLETSERVICE_ATTEMPT,
   STARTWALLETSERVICE_FAILED,
   STARTWALLETSERVICE_SUCCESS,
-  GETTREASURY_BALANCE_SUCCESS,
-  RESET_TREASURY_BALANCE,
   GETALLAGENDAS_SUCCESS,
   GETALLAGENDAS_FAILED,
   ABANDONTRANSACTION_ATTEMPT,
@@ -172,16 +170,6 @@ export default function grpc(state = {}, action) {
       return {
         ...state,
         createMixerAccountAttempt: false
-      };
-    case GETTREASURY_BALANCE_SUCCESS:
-      return {
-        ...state,
-        treasuryBalance: action.treasuryBalance
-      };
-    case RESET_TREASURY_BALANCE:
-      return {
-        ...state,
-        treasuryBalance: null
       };
     case GETWALLETSERVICE_ATTEMPT:
       return {
