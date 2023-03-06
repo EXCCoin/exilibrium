@@ -171,7 +171,7 @@ export const OP_MAX = 0xa4; // 164
 export const OP_WITHIN = 0xa5; // 165
 export const OP_RIPEMD160 = 0xa6; // 166
 export const OP_SHA1 = 0xa7; // 167
-export const OP_BLAKE256 = 0xa8; // 168
+export const OP_SHA256 = 0xa8; // 168
 export const OP_HASH160 = 0xa9; // 169
 export const OP_HASH256 = 0xaa; // 170
 export const OP_CODESEPARATOR = 0xab; // 171
@@ -197,7 +197,7 @@ export const OP_SSRTX = 0xbc; // 188 DECRED
 export const OP_SSTXCHANGE = 0xbd; // 189 DECRED
 export const OP_CHECKSIGALT = 0xbe; // 190 DECRED
 export const OP_CHECKSIGALTVERIFY = 0xbf; // 191 DECRED
-export const OP_SHA256 = 0xc0; // 192
+export const OP_UNKNOWN192 = 0xc0; // 192
 export const OP_UNKNOWN193 = 0xc1; // 193
 export const OP_UNKNOWN194 = 0xc2; // 194
 export const OP_UNKNOWN195 = 0xc3; // 195
@@ -437,7 +437,7 @@ export const opcodeArray = [
   { value: OP_WITHIN, name: "OP_WITHIN", length: 1 },
   { value: OP_RIPEMD160, name: "OP_RIPEMD160", length: 1 },
   { value: OP_SHA1, name: "OP_SHA1", length: 1 },
-  { value: OP_BLAKE256, name: "OP_BLAKE256", length: 1 },
+  { value: OP_SHA256, name: "OP_SHA256", length: 1 },
   { value: OP_HASH160, name: "OP_HASH160", length: 1 },
   { value: OP_HASH256, name: "OP_HASH256", length: 1 },
   { value: OP_CODESEPARATOR, name: "OP_CODESEPARATOR", length: 1 },
@@ -461,7 +461,7 @@ export const opcodeArray = [
   { value: OP_SSTXCHANGE, name: "OP_SSTXCHANGE", length: 1 },
   { value: OP_CHECKSIGALT, name: "OP_CHECKSIGALT", length: 1 },
   { value: OP_CHECKSIGALTVERIFY, name: "OP_CHECKSIGALTVERIFY", length: 1 },
-  { value: OP_SHA256, name: "OP_SHA256", length: 1 },
+  { value: OP_UNKNOWN192, name: "OP_UNKNOWN192", length: 1 },
   { value: OP_UNKNOWN193, name: "OP_UNKNOWN193", length: 1 },
   { value: OP_UNKNOWN194, name: "OP_UNKNOWN194", length: 1 },
   { value: OP_UNKNOWN195, name: "OP_UNKNOWN195", length: 1 },
