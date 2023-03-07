@@ -1,7 +1,7 @@
 import { getJSON } from "helpers/fetch";
 
-export const DCRDATA_URL_TESTNET = "https://testnet.decred.org/api";
-export const DCRDATA_URL_MAINNET = "https://dcrdata.decred.org/api";
+export const DCRDATA_URL_TESTNET = "https://testnet-explorer.excc.co/api";
+export const DCRDATA_URL_MAINNET = "https://explorer.excc.co/api";
 
 const GET = (path) => getJSON(path);
 

@@ -154,15 +154,15 @@ export const allowExternalRequest = (externalReqType) => {
       addAllowedURL(`ws://${DEX_LOCALPAGE}`);
       break;
     case EXTERNALREQUEST_NETWORK_STATUS:
-      addAllowedURL("https://testnet.decred.org/api/status");
-      addAllowedURL("https://mainnet.decred.org/api/status");
+      addAllowedURL("https://testnet-explorer.excc.co/api/status");
+      addAllowedURL("https://explorer.excc.co/api/status");
       break;
     case EXTERNALREQUEST_STAKEPOOL_LISTING:
-      addAllowedURL(/^https:\/\/api\.decred\.org\/\?c=gsd$/);
-      addAllowedURL(/^https:\/\/api\.decred\.org\/\?c=vsp$/);
+      addAllowedURL(/^https:\/\/api\.excc\.co\/\?c=gsd$/);
+      addAllowedURL(/^https:\/\/api\.excc\.co\/\?c=vsp$/);
       break;
     case EXTERNALREQUEST_UPDATE_CHECK:
-      addAllowedURL("https://api.github.com/repos/decred/decrediton/releases");
+      addAllowedURL("https://api.github.com/repos/EXCCoin/exilibrium/releases");
       break;
     case EXTERNALREQUEST_DCRDATA:
       addAllowedURL(DCRDATA_URL_TESTNET);

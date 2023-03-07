@@ -1,7 +1,7 @@
 import { getJSON, postJSON } from "helpers/fetch";
 import querystring from "querystring";
 
-const URL_BASE = "https://api.decred.org";
+const URL_BASE = "https://api.excc.co";
 
 const LEGACY_GET = (path, apiToken) => {
   const config = {
