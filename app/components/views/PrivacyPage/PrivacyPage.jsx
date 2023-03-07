@@ -1,7 +1,8 @@
 import { TabbedPage, TitleHeader, DescriptionHeader } from "layout";
 import { FormattedMessage as T } from "react-intl";
 import SecurityTab from "./SecurityTab";
-import PrivacyTab from "./PrivacyTab";
+// TODO: enable when mixing service is ready
+// import PrivacyTab from "./PrivacyTab";
 import { usePrivacyPage } from "./hooks";
 import styles from "./PrivacyPage.module.css";
 import { SECURITY_ICON } from "constants";
@@ -44,15 +45,16 @@ const PrivacyPageHeader = () => (
 );
 
 const PrivacyPage = () => {
-  const { privacyEnabled } = usePrivacyPage();
+  // const { privacyEnabled } = usePrivacyPage();
   const tabs = [
-    {
-      path: "/privacy/mixing",
-      content: PrivacyTab,
-      header: PrivacyTabHeader,
-      label: <T id="privacy.tab.privacy" m="Privacy" />,
-      disabled: !privacyEnabled
-    },
+    // TODO: enable when mixing service is ready
+    // {
+    //   path: "/privacy/mixing",
+    //   content: PrivacyTab,
+    //   header: PrivacyTabHeader,
+    //   label: <T id="privacy.tab.privacy" m="Privacy" />,
+    //   disabled: !privacyEnabled
+    // },
     {
       path: "/privacy/security",
       content: SecurityTab,
