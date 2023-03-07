@@ -54,6 +54,7 @@ export function useMenuLinks() {
     if (isTrezor) {
       links = links.filter((l) => l.key !== DEX_KEY);
     }
+    links = links.filter((l) => l.key !== DEX_KEY); // TODO: remove when DEX is ready
     return links.map((link) => ({
       ...link,
       notifProp: link.notifProp?.reduce(
