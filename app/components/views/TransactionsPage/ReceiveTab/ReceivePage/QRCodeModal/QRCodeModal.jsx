@@ -22,7 +22,7 @@ const QRCodeModal = ({ nextAddress, amount, setModal }) => (
       <div className={style.decredLogo} />
       <div className={style.modalMain}>
         <div className={style.modalLabel}>
-          <T id="receive.modalLabel" m="This is My Decred (DCR) Address" />
+          <T id="receive.modalLabel" m="This is My ExchangeCoin (EXCC) Address" />
         </div>
         <TextHighlighted className={style.modalAddress}>
           {nextAddress}

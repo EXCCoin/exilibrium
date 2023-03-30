@@ -8,7 +8,7 @@ const ConfirmRestartModal = (props) => (
     modalContent={
       <T
         id="settings.resetNetworkContent"
-        m="The setting you have chosen to change requires Decrediton to be restarted.  Please confirm this action before proceeding."
+        m="The setting you have chosen to change requires Exilibrium to be restarted.  Please confirm this action before proceeding."
       />
     }
     size="large"

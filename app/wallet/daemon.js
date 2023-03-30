@@ -7,7 +7,7 @@ export const getHeightSynced = () => ipcRenderer.sendSync("get-height-synced");
 
 export const checkDecreditonVersion = log(
   () => Promise.resolve(ipcRenderer.sendSync("check-version")),
-  "Check Decrediton release version"
+  "Check EXCC release version"
 );
 
 export const startDaemon = log(
@@ -203,25 +203,25 @@ export const getPrivacyLogs = () =>
 export const getDcrdLogs = () =>
   Promise.resolve(ipcRenderer.sendSync("get-dcrd-logs")).then((logs) => {
     if (logs) return logs;
-    throw "Error getting dcrd logs";
+    throw "Error getting exccd logs";
   });
 
 export const getDcrwalletLogs = () =>
   Promise.resolve(ipcRenderer.sendSync("get-dcrwallet-logs")).then((logs) => {
     if (logs) return logs;
-    throw "Error getting dcrwallet logs";
+    throw "Error getting exccwallet logs";
   });
 
 export const getDcrlndLogs = () =>
   Promise.resolve(ipcRenderer.sendSync("get-dcrlnd-logs")).then((logs) => {
     if (logs) return logs;
-    throw "Error getting dcrlnd logs";
+    throw "Error getting excclnd logs";
   });
 
 export const getDecreditonLogs = () =>
   Promise.resolve(ipcRenderer.sendSync("get-decrediton-logs")).then((logs) => {
     if (logs) return logs;
-    throw "Error getting decrediton logs";
+    throw "Error getting Exilibrium logs";
   });
 
 export const getDexLogs = (walletPath) =>

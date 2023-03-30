@@ -40,7 +40,7 @@ const PrivacySettings = ({
           description={
             <T
               id="settings.privacy.networkStatus.description"
-              m="General network information (block height, etc) from decred.org"
+              m="General network information (block height, etc) from excc.co"
             />
           }
           checked={
@@ -55,13 +55,13 @@ const PrivacySettings = ({
         <Checkbox
           className={styles.privacyCheckbox}
           label={
-            <T id="settings.privacy.dcrdata.label" m="Decred Block Explorer" />
+            <T id="settings.privacy.dcrdata.label" m="ExchangeCoin Block Explorer" />
           }
           id="dcrdata"
           description={
             <T
               id="settings.privacy.dcrdata.description"
-              m="Access chain information from dcrdata.decred.org"
+              m="Access chain information from explorer.excc.co"
             />
           }
           checked={
@@ -82,7 +82,7 @@ const PrivacySettings = ({
           description={
             <T
               id="settings.privacy.stakepoolListing.description"
-              m="List of currently available VSPs from decred.org"
+              m="List of currently available VSPs from excc.co"
             />
           }
           checked={

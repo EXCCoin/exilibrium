@@ -23,13 +23,13 @@ const PurchaseTicketsAdvanced = ({ stakePool, ticketFee, txFee, expiry }) => (
       content={<T id="purchaseTickets.ticketFeeTip" m="Ticket Fee" />}
       className={styles.ticketFee}>
       <div className={classNames(styles.icon, styles.fee)}>
-        {ticketFee} DCR/KB
+        {ticketFee} EXCC/KB
       </div>
     </Tooltip>
     <Tooltip
       content={<T id="purchaseTickets.txFeeTip" m="Tx Fee" />}
       className={styles.ticketTxFee}>
-      <div className={classNames(styles.icon, styles.fee)}>{txFee} DCR/KB</div>
+      <div className={classNames(styles.icon, styles.fee)}>{txFee} EXCC/KB</div>
     </Tooltip>
     <Tooltip
       content={<T id="purchaseTickets.poolFee" m="VSP Fee" />}

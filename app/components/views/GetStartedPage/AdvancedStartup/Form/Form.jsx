@@ -46,7 +46,7 @@ const AdvancedBodyBase = ({
       <div className={styles.advancedDesc}>
         <T
           id="login.form.advanced.desc"
-          m="Complete one of the following forms to start Decrediton according to your local setup."
+          m="Complete one of the following forms to start Exilibrium according to your local setup."
         />
       </div>
       <div className={styles.toggleWrapper}>

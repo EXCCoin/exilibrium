@@ -2,4 +2,4 @@
 
 如果不这样做会导致**资金损失**。
 
-请注意，Decrediton仅支持恢复24字（256位）种子，并且trezor和dcrwallet导入的字*不一样*。
+请注意，Exilibrium仅支持恢复24字（256位）种子，并且trezor和exccwallet导入的字*不一样*。

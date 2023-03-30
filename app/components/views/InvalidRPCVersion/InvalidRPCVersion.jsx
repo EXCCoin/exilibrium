@@ -10,9 +10,9 @@ const InvalidRPCVersion = () => {
       <div className={styles.invalidRPC}>
         <T
           id="invalidRPCVersion.info"
-          m={`The API of the currently running wallet ({walletRPCVersion}) is not compatible with Decrediton (required version {requiredWalletRPCVersion}).
+          m={`The API of the currently running wallet ({walletRPCVersion}) is not compatible with Exilibrium (required version {requiredWalletRPCVersion}).
 
-        Please update the daemon (dcrd) and wallet (dcrwallet) to the latest version, then try again.`}
+        Please update the daemon (exccd) and wallet (exccwallet) to the latest version, then try again.`}
           values={{ walletRPCVersion, requiredWalletRPCVersion }}
         />
       </div>

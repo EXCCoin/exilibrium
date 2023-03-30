@@ -101,11 +101,11 @@
   },
   {
     "id": "appMenu.decrediton",
-    "defaultMessage": "Decrediton"
+    "defaultMessage": "Exilibrium"
   },
   {
     "id": "appMenu.aboutDecrediton",
-    "defaultMessage": "About Decrediton"
+    "defaultMessage": "About Exilibrium"
   },
   {
     "id": "appMenu.services",
@@ -113,7 +113,7 @@
   },
   {
     "id": "appMenu.hideDecrediton",
-    "defaultMessage": "Hide Decrediton"
+    "defaultMessage": "Hide Exilibrium"
   },
   {
     "id": "appMenu.hideOthers",

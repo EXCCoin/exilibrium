@@ -13,11 +13,11 @@ export default ({ toggleSpv }) => (
       <T
         id="spv.titleSub"
         m={
-          "Select how Decrediton should connect to the Decred network. You can change this in the application settings later. For more in-depth information about SPV and how it works, you can go {link}"
+          "Select how Exilibrium should connect to the ExchangeCoin network. You can change this in the application settings later. For more in-depth information about SPV and how it works, you can go {link}"
         }
         values={{
           link: (
-            <ExternalLink href={"https://docs.decred.org/wallets/spv/"}>
+            <ExternalLink href={"https://docs.excc.co/wallets/spv/"}>
               <T id="spv.titleSub.here" m="here" />
             </ExternalLink>
           )
@@ -42,7 +42,7 @@ export default ({ toggleSpv }) => (
         description={
           <T
             id="spv.options.disable.description"
-            m="This will use the regular Decred daemon and fully verify blocks.  This will take longer but is fully secure.  Any block or mined transaction can be fully trusted."
+            m="This will use the regular ExchangeCoin daemon and fully verify blocks.  This will take longer but is fully secure.  Any block or mined transaction can be fully trusted."
           />
         }
         onClick={() => toggleSpv(false)}

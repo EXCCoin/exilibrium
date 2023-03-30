@@ -1,1 +1,1 @@
-Decred holders can participate in the Proof-of-Stake (PoS) system by purchasing tickets.
+ExchangeCoin holders can participate in the Proof-of-Stake (PoS) system by purchasing tickets.

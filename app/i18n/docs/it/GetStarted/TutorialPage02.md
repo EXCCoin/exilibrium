@@ -1,8 +1,8 @@
 # Che cos'è il portafoglio?
 
 **Il portafoglio è lo strumento usato per interagire con la blockchain,
-utilizzando Decred come valuta**. Potete usarlo per inviare e ricevere fondi
-DCR, come un libro mastro personale per registrare le vostre transazioni e per
+utilizzando ExchangeCoin come valuta**. Potete usarlo per inviare e ricevere fondi
+EXCC, come un libro mastro personale per registrare le vostre transazioni e per
 partecipare allo staking (PoS).
 
 I portafogli sono generati in modo deterministico da una chiave seed. Il
@@ -13,7 +13,7 @@ scritte su un foglio di carta per il backup.
 necessarie per ricreare il portafoglio in qualsiasi momento, anche se la frase
 d'accesso cifrata viene dimenticata o se il portafoglio viene distrutto. Il
 seed può anche essere utilizzato per esportare il portafoglio ad altri clienti
-del portafoglio Decred.
+del portafoglio ExchangeCoin.
 
 **Il fallimento nel custodire privatamente la chiave del seed può comportare il
 furto dell'intero portafoglio. Non deve essere mai rivelato a qualcun altro, in

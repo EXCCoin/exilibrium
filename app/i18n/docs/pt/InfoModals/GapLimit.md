@@ -10,6 +10,6 @@ O limite de intervalo (gap limit) indica a quantidade de endereços que a cartei
 
 Só existem duas razões para você querer mudar esse valor:
 
-  1. Se a sua carteira foi criada e muito utilizada antes da versão 1.0 do software, ela pode ter intervalos grandes de endereços. Se você restaurar a partir da seed e notar que estão faltando fundos, você pode aumentar esse limite para 100 (ou para 1000 se isso não for suficiente) e então reiniciar o Decrediton. Após o seu saldo ficar correto, você pode reverter esse intervalo para 20.
+  1. Se a sua carteira foi criada e muito utilizada antes da versão 1.0 do software, ela pode ter intervalos grandes de endereços. Se você restaurar a partir da seed e notar que estão faltando fundos, você pode aumentar esse limite para 100 (ou para 1000 se isso não for suficiente) e então reiniciar o Exilibrium. Após o seu saldo ficar correto, você pode reverter esse intervalo para 20.
 
   2. Se você quiser gerar mais de 20 endereços de uma só vez sem repetição.

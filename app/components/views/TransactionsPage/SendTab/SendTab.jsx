@@ -17,14 +17,14 @@ export const SendTabHeader = () => {
           <T
             id="transactions.description.send.testnet"
             m={
-              "Testnet Decred addresses always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
+              "Testnet ExchangeCoin addresses always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
             }
           />
         ) : (
           <T
             id="transactions.description.send.mainnet"
             m={
-              "Mainnet Decred addresses always begin with letter D and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
+              "Mainnet ExchangeCoin addresses always begin with letter 2 and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
             }
           />
         )
@@ -41,7 +41,7 @@ const SendTab = () => {
   ) : (
     <>
       <Subtitle
-        title={<T id="send.subtitle" m="Send DCR" />}
+        title={<T id="send.subtitle" m="Send EXCC" />}
         className={"flex-row"}
         children={<ListUTXOsButton />}
       />

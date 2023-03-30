@@ -4,5 +4,5 @@ bien à ce portefeuille avant de procéder à l’effacement et à la récupéra
 
 Toute négligence en ce sens entraînera une **perte de fonds**.
 
-Notez également que Decrediton prend uniquement en charge la récupération
-de graines de 24 mots (256 bits) et que les mots utilisés pour trezor et pour l’importation de dcrwallet sont *différents*.
+Notez également que Exilibrium prend uniquement en charge la récupération
+de graines de 24 mots (256 bits) et que les mots utilisés pour trezor et pour l’importation de exccwallet sont *différents*.

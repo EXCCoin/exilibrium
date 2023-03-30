@@ -9,7 +9,7 @@ const CreateWalletPageHeader = () => (
       <T
         id="dex.createWallet.description"
         m={
-          "Complete the following steps to connect your DCR and BTC wallets to the DEX."
+          "Complete the following steps to connect your EXCC and BTC wallets to the DEX."
         }
       />
     }

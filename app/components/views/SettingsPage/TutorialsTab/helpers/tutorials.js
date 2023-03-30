@@ -10,11 +10,11 @@ tutorials.decredIntro = {
   slides: [
     {
       label: (
-        <T id="tutorials.decredIntro.label1" m="Why was Decred created?" />
+        <T id="tutorials.decredIntro.label1" m="Why was ExchangeCoin created?" />
       ), // TODO
       doc: "DecredIntoPage01",
       title: (
-        <T id="tutorials.decredIntro.title1" m="Why was Decred created?" />
+        <T id="tutorials.decredIntro.title1" m="Why was ExchangeCoin created?" />
       ),
       images: ["decredIntroSlideImage1"]
     },
@@ -55,7 +55,7 @@ tutorials.ln = {
       title: (
         <T
           id="tutorials.ln.title6"
-          m="Lightning Network is a layer 2 network on top of the Decred blockchain, designed to facilitate micropayments more efficiently."
+          m="Lightning Network is a layer 2 network on top of the ExchangeCoin blockchain, designed to facilitate micropayments more efficiently."
         />
       ),
       images: ["LNSlideImage2"]

@@ -86,7 +86,7 @@ export const useGetStarted = () => {
         } = event;
         if (!error) return;
         const { isAdvancedDaemon } = context;
-        // We send the user to the error page if decrediton is not in advanced mode.
+        // We send the user to the error page if Exilibrium is not in advanced mode.
         if (!isAdvancedDaemon) {
           // race because of react-router Redirect on /getStarted
           // this timeout solves it.
@@ -110,7 +110,7 @@ export const useGetStarted = () => {
               error = (
                 <T
                   id="getStarted.P_521_error"
-                  m="Connection error. Probably you got this error because Decrediton no longer supports the P-521 curve. To fix it, you need to remove the rpc.cert and rpc.key and restart dcrd with the --tlscurve=P-256 param to allow it to generate a cert and key with that supported curve."
+                  m="Connection error. Probably you got this error because Exilibrium no longer supports the P-521 curve. To fix it, you need to remove the rpc.cert and rpc.key and restart exccd with the --tlscurve=P-256 param to allow it to generate a cert and key with that supported curve."
                 />
               );
             }
@@ -200,7 +200,7 @@ export const useGetStarted = () => {
         }
 
         // if synced, it means that the wallet is finished to sync and we can
-        // push decrediton to home view.
+        // push Exilibrium to home view.
         if (synced === true) {
           send({ type: "SHOW_SETTING_UP_WALLET" });
         }
@@ -266,7 +266,7 @@ export const useGetStarted = () => {
     [state, getError]
   );
 
-  // preStartDaemon gets data from cli to connect with remote dcrd if rpc
+  // preStartDaemon gets data from cli to connect with remote exccd if rpc
   // connection data is inputed and sends the first interaction with the state
   // machine, so it can start. Only one of the choises is chosen.
   const preStartDaemon = useCallback(() => {

@@ -10,6 +10,6 @@ Gap limit sets the amount of addresses that the wallet will generate and look ah
 
 There are really only 2 reasons that you should be changing this value:
 
-  1. If your wallet was created and used heavily prior to roughly v1.0, it may have large address gaps.  If you restore from seed and notice that you are missing funds, you may increase this to 100 (then 1000 if not fixed) then restart decrediton.  Once your balance is resolved you can revert back to 20.
+  1. If your wallet was created and used heavily prior to roughly v1.0, it may have large address gaps.  If you restore from seed and notice that you are missing funds, you may increase this to 100 (then 1000 if not fixed) then restart Exilibrium.  Once your balance is resolved you can revert back to 20.
 
   2. If you would like to be able to generate more than 20 addresses at a time without wrapping around.

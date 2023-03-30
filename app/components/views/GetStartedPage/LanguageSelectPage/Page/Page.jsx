@@ -15,7 +15,7 @@ const LanguageSelectPage = ({
   <PageBody data-testid="getstarted-pagebody" getStarted isTestNet={isTestNet}>
     <Content>
       <Title>
-        <T id="selectLang.title" m="Welcome to Decrediton Wallet" />
+        <T id="selectLang.title" m="Welcome to Exilibrium Wallet" />
       </Title>
       <SubTitle>
         <T id="selectLang.titleSub" m="Choose your language" />

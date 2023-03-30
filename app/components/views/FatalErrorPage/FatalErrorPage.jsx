@@ -43,7 +43,7 @@ function FatalErrorPage() {
           <>
             <T
               id="fatal.suggestion.diffConnection"
-              m="This error typically means you have the testnet flag in your dcrd.conf file. You should check your dcrd.conf file and remove the testnet=1."
+              m="This error typically means you have the testnet flag in your exccd.conf file. You should check your exccd.conf file and remove the testnet=1."
             />
             <div>config files path:{wallet.getAppDataDirectory()}</div>
           </>
@@ -56,7 +56,7 @@ function FatalErrorPage() {
             <div className={styles.reset}>
               <T
                 id="fatal.suggestion.corrupted"
-                m="This error means your blockchain data has somehow become corrupted.  Typically, this is caused by a sector on the HDD/SDD that went bad and its built-in SMART didn't repair it, or the more likely case, there was a memory issue which corrupted the data.  To resolve, you must delete your blockchain data and re-download.  Press the button below to complete the process. When you restart Decrediton, it will automatically begin your blockchain download. Please come to our support channel on slack/matrix/discord to get advice about running disk utilities. "
+                m="This error means your blockchain data has somehow become corrupted.  Typically, this is caused by a sector on the HDD/SDD that went bad and its built-in SMART didn't repair it, or the more likely case, there was a memory issue which corrupted the data.  To resolve, you must delete your blockchain data and re-download.  Press the button below to complete the process. When you restart Exilibrium, it will automatically begin your blockchain download. Please come to our support channel on slack/matrix/discord to get advice about running disk utilities. "
               />
             </div>
             <RemoveDaemonButton
@@ -67,7 +67,7 @@ function FatalErrorPage() {
               modalContent={
                 <T
                   id="fatal.removeConfirmModal.content"
-                  m="Warning this action is permanent! Please make sure you want to remove your blockchain data before proceeding. Decrediton will automatically shutdown after deleting the folder. Please manually restart it afterwards."
+                  m="Warning this action is permanent! Please make sure you want to remove your blockchain data before proceeding. Exilibrium will automatically shutdown after deleting the folder. Please manually restart it afterwards."
                 />
               }
               onSubmit={deleteDaemonData}
@@ -82,12 +82,12 @@ function FatalErrorPage() {
         errorMessage = (
           <T
             id="fatal.suggestion.fallthrough"
-            m="Please note the error above and go to the support channel on matrix or some other preferred
+            m="Please note the error above and go to the support site some other preferred
             chat channel for help resolving the issue. {link}"
             values={{
               link: (
-                <ExternalLink href="https://decred.org/community">
-                  https://decred.org/community
+                <ExternalLink href="https://excc.co">
+                  https://excc.co
                 </ExternalLink>
               )
             }}
@@ -149,7 +149,7 @@ function FatalErrorPage() {
             </KeyBlueButton>
           )}
           <KeyBlueButton className={styles.button} onClick={shutdownApp}>
-            <T id="fatal.button" m="Close Decrediton" />
+            <T id="fatal.button" m="Close Exilibrium" />
           </KeyBlueButton>
         </div>
       </div>

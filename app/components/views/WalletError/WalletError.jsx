@@ -15,7 +15,7 @@ const WalletError = () => {
           <p>
             {" "}
             We have detected that your wallet has disconnected. Please reload
-            Decrediton to fix this problem.{" "}
+            ExchangeCoin to fix this problem.{" "}
           </p>
         )}
       </div>

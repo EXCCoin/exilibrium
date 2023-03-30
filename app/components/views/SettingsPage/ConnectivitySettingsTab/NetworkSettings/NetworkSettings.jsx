@@ -11,7 +11,7 @@ const SettingsInputWrapper = ({ isTooltipEnabled, children }) =>
       content={
         <T
           id="settings.alreadySetFromCli"
-          m="This was set as a command-line option when launching decrediton"
+          m="This was set as a command-line option when launching Exilibrium"
         />
       }
       className={styles.tooltip}>

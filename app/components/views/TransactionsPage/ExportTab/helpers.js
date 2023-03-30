@@ -183,7 +183,7 @@ export const messages = {
         description: (
           <T
             id="export.balances.fields.totalStake"
-            m="Total amount of DCR used on staking."
+            m="Total amount of EXCC used on staking."
           />
         )
       },
@@ -210,7 +210,7 @@ export const messages = {
         description: (
           <T
             id="export.dailyBalances.fields.voted"
-            m="Total amount, in DCR, of tickets voted"
+            m="Total amount, in EXCC, of tickets voted"
           />
         )
       },
@@ -219,7 +219,7 @@ export const messages = {
         description: (
           <T
             id="export.dailyBalances.fields.revoked"
-            m="Total amount, in DCR, of tickets revoked"
+            m="Total amount, in EXCC, of tickets revoked"
           />
         )
       },
@@ -228,7 +228,7 @@ export const messages = {
         description: (
           <T
             id="export.dailyBalances.fields.ticket"
-            m="Total amount, in DCR, spent in tickets"
+            m="Total amount, in EXCC, spent in tickets"
           />
         )
       }
@@ -323,7 +323,7 @@ export const messages = {
         description: (
           <T
             id="export.balances.fields.totalStake"
-            m="Total amount of DCR used on staking."
+            m="Total amount of EXCC used on staking."
           />
         )
       }

@@ -37,7 +37,7 @@ const TutorialsTab = () => {
   ) : (
     <>
       <Subtitle
-        title={<T id="tutorials.learnAboutDecred" m="Learn about decred" />}
+        title={<T id="tutorials.learnAboutDecred" m="Learn about ExchangeCoin" />}
       />
       {[
         "decredIntro",

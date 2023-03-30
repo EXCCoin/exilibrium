@@ -9,15 +9,15 @@ const LinksTab = () => (
     <div className={styles.list}>
       <HelpLink
         icon="docs"
-        href="https://docs.decred.org/"
+        href="https://docs.excc.co"
         title={<T id="help.documentation" m="Documentation" />}
-        subtitle={<T id="help.documentation.subtitle" m="docs.decred.org" />}
+        subtitle={<T id="help.documentation.subtitle" m="docs.excc.co" />}
       />
       <HelpLink
         icon="pools"
         href="https://decred.org/stakepools"
         title={<T id="help.stakepools" m=" VSPs" />}
-        subtitle={<T id="help.stakepools.subtitle" m="decred.org/vsp" />}
+        subtitle={<T id="help.stakepools.subtitle" m="excc.co/vsp" />}
       />
       <HelpLink
         icon="explorer"
@@ -27,10 +27,10 @@ const LinksTab = () => (
       />
       <HelpLink
         icon="github"
-        href="https://github.com/decred/decrediton"
+        href="https://github.com/EXCCoin/exilibrium"
         title={<T id="help.github.title" m="GitHub" />}
         subtitle={
-          <T id="help.github.subtitle" m="github.com/decred/decrediton" />
+          <T id="help.github.subtitle" m="github.com/EXCCoin/exilibrium" />
         }
       />
       <HelpLinkInfoModal
@@ -38,13 +38,13 @@ const LinksTab = () => (
         icon="constitution"
         title={<T id="help.constitution" m="Constitution" />}
         subtitle={
-          <T id="help.constitution.subtitle" m="Decred Project Constitution" />
+          <T id="help.constitution.subtitle" m="ExchangeCoin Project Constitution" />
         }
         double
       />
       <HelpLinkAboutModal
         icon="star"
-        title={<T id="help.about.decrediton" m="About Decrediton" />}
+        title={<T id="help.about.decrediton" m="About Exilibrium" />}
         subtitle={
           <T id="help.about.decrediton.subtitle" m="Software Summary" />
         }
@@ -56,15 +56,15 @@ const LinksTab = () => (
     <div className={styles.list}>
       <HelpLink
         icon="matrix"
-        href="https://chat.decred.org/"
-        title={<T id="help.matrix" m="Matrix Chat" />}
-        subtitle={<T id="help.matrix.subtitle" m="chat.decred.org" />}
+        href="https://support.excc.co"
+        title={<T id="help.matrix" m="ExchangeCoin Support" />}
+        subtitle={<T id="help.matrix.subtitle" m="support.excc.co" />}
       />
       <HelpLink
         icon="forum"
-        href="https://t.me/Decred"
+        href="https://t.me/ExchangeCoinChat"
         title={<T id="help.telegram" m="Telegram" />}
-        subtitle={<T id="help.telegram.subtitle" m="t.me/Decred" />}
+        subtitle={<T id="help.telegram.subtitle" m="https://t.me/ExchangeCoinChat" />}
       />
     </div>
   </>

@@ -98,7 +98,7 @@ const RegisterPage = () => {
               <div className="margin-top-m">
                 <T
                   id="dex.payDexFeeModalNote"
-                  m="Note: The DCR lot size for this DEX is: "
+                  m="Note: The EXCC lot size for this DEX is: "
                 />
                 <Balance
                   noSmallAmount
@@ -109,7 +109,7 @@ const RegisterPage = () => {
               <div className="margin-top-m margin-bottom-m">
                 <T
                   id="dex.paDexFeeModalNote2"
-                  m="All trades are in multiples of this lot size.  This is the minimum possible trade amount in DCR."
+                  m="All trades are in multiples of this lot size.  This is the minimum possible trade amount in EXCC."
                 />
               </div>
             </>

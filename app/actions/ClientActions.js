@@ -27,7 +27,7 @@ import { checkLnWallet } from "./LNActions";
 import { push as pushHistory, goBack } from "connected-react-router";
 import { getStartupStats } from "./StatisticsActions";
 import { discoverAvailableVSPs } from "./VSPActions";
-import * as da from "../middleware/dcrdataapi";
+import * as da from "../middleware/exccdataapi";
 import { EXTERNALREQUEST_DCRDATA } from "constants";
 import {
   TESTNET,

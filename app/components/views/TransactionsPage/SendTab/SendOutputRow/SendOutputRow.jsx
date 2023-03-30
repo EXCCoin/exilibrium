@@ -20,7 +20,7 @@ import styles from "./SendOutputRow.module.css";
 const messages = defineMessages({
   destinationAddrPlaceholder: {
     id: "sendtab.recipientsAddrPlaceholder",
-    defaultMessage: "Recipient’s DCR Address"
+    defaultMessage: "Recipient’s EXCC Address"
   },
   amountPlaceholder: {
     id: "sendtab.amountPlaceholder",

@@ -9,8 +9,8 @@ import styles from "./DcrInput.module.css";
 import { classNames } from "pi-ui";
 
 /**
- * DcrInput provides a way to receive decred amount inputs. Instead of the usual
- * value/onChange pair, it uses amount/onChangeAmount to track values in decred
+ * DcrInput provides a way to receive ExchangeCoin amount inputs. Instead of the usual
+ * value/onChange pair, it uses amount/onChangeAmount to track values in ExchangeCoin
  * atoms, correctly accounting for the currently used currencyDisplay, floating
  * conversions, etc.
  *
@@ -52,14 +52,14 @@ function DcrInput({ onChangeAmount, amount, ...props }) {
     const value = e.target.value;
     setValue(value);
 
-    // get atom value as in decrediton we make use atoms for requests.
+    // get atom value as in Exilibrium we make use atoms for requests.
     const atomValue = parseInput(value);
     if (atomValue > MAX_DCR_AMOUNT) return;
 
     if (onChangeAmount) onChangeAmount({ ...e, value, atomValue });
   };
 
-  // If UNIT_DIVISOR is 1 decrediton is being used in atoms.
+  // If UNIT_DIVISOR is 1 Exilibrium is being used in atoms.
   const Comp = currencyDisplay === ATOMS ? IntegerInput : FloatInput;
   return (
     <Comp

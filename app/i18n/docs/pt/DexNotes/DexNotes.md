@@ -1,6 +1,6 @@
-Bem Vindo a DCRDEX!
+Bem Vindo a EXCCDEX!
 
-Embora a DCRDEX se pareça com uma correta comum, existem diferenças significativas. Por favor veja notas importantes em https://github.com/decred/dcrdex/blob/master/docs/release-notes/release-notes-0.2.0.md.
+Embora a EXCCDEX se pareça com uma correta comum, existem diferenças significativas. Por favor veja notas importantes em https://github.com/decred/EXCCdex/blob/master/docs/release-notes/release-notes-0.2.0.md.
 
 Negociações não são finalizadas instantaneamente. A liquidação acontece on-chain e requer múltiplos blocos para confirmação. Dependendo das condições da rede, isso pode levar horas. O software da DEX e carteiras externas como o bitcoind PRECISAM ficar em execução até que a negociação tenha terminado completamente ou ela tenha sido reembolsada.
 

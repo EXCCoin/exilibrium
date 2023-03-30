@@ -317,7 +317,7 @@ const messages = defineMessages({
   },
   PUBLISHUNMINEDTRANSACTIONS_SUCCESS: {
     id: "send.publishUnminedTransactions.success",
-    defaultMessage: "Republished unmined transactions to the decred network."
+    defaultMessage: "Republished unmined transactions to the ExchangeCoin network."
   },
   EXPORT_COMPLETED: {
     id: "export.completed",
@@ -583,12 +583,12 @@ const messages = defineMessages({
   UPDATEVOTECHOICE_SUCCESS: {
     id: "governance.ntf.updateVoteChoiceSuccess",
     defaultMessage:
-      "Your vote has been cast!\nThanks for participating in Decred's governance"
+      "Your vote has been cast!\nThanks for participating in ExchangeCoin's governance"
   },
   SETTREASURY_POLICY_SUCCESS: {
     id: "setTreasuryPolicy.updateVoteChoiceSuccess",
     defaultMessage:
-      "Your treasury policy has been successfully updated! Thanks for participating in Decred's governance."
+      "Your treasury policy has been successfully updated! Thanks for participating in ExchangeCoin's governance."
   },
   SETTREASURY_POLICY_FAILED: {
     id: "setTreasuryPolicy.updateVoteChoiceFailed",
@@ -650,7 +650,7 @@ const messages = defineMessages({
   },
   DEX_CREATEWALLET_FAILED: {
     id: "dex.connectWallet.failed",
-    defaultMessage: "Connecting to DCR wallet Failed: {originalError}"
+    defaultMessage: "Connecting to EXCC wallet Failed: {originalError}"
   },
   DEX_REGISTER_FAILED: {
     id: "dex.register.failed",

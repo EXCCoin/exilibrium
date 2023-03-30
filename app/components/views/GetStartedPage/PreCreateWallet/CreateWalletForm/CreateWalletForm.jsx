@@ -20,7 +20,7 @@ const messages = defineMessages({
   messageWalletWatchOnlyDescription: {
     id: "createwallet.watchonly.description",
     defaultMessage:
-      "A watch-only wallet has limited functionality. It can only be used to view the balance and monitor transaction history. You won't be able to spend any DCR associated with this wallet."
+      "A watch-only wallet has limited functionality. It can only be used to view the balance and monitor transaction history. You won't be able to spend any EXCC associated with this wallet."
   },
   messageWalletTrezorDescription: {
     id: "createwallet.trezor.description",

@@ -4,5 +4,5 @@ dla tego portfela.
 
 Niedopełnienie powyższych czynności spowoduje **utratę środków**.
 
-Zwróć uwagę, że Decrediton obsługuje tylko odzyskanie ziaren złożonych z 24 słów (256 bitów)
-oraz że słowa do odzyskiwanych portfeli dla urządzenia Trezor i dcrwallet *różnią się* od siebie.
+Zwróć uwagę, że Exilibrium obsługuje tylko odzyskanie ziaren złożonych z 24 słów (256 bitów)
+oraz że słowa do odzyskiwanych portfeli dla urządzenia Trezor i exccwallet *różnią się* od siebie.

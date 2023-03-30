@@ -16,7 +16,7 @@ const TopLevelOptions = ({
     <SubTitle>
       <T
         id="privacy.titleSub"
-        m="Select how Decrediton should connect to external services. You can change this in the application settings later."
+        m="Select how Exilibrium should connect to external services. You can change this in the application settings later."
       />
     </SubTitle>
     <PrivacyOptions className={styles.wide}>
@@ -43,7 +43,7 @@ const TopLevelOptions = ({
         description={
           <T
             id="privacy.options.disabled.description"
-            m="Disables all connections to third party (non-dcrd/non-dcrwallet) services. This may prevent you from using certain features of the app. Recommended for advanced users."
+            m="Disables all connections to third party (non-exccd/non-exccwallet) services. This may prevent you from using certain features of the app. Recommended for advanced users."
           />
         }
         onClick={setupDisabledPrivacy}

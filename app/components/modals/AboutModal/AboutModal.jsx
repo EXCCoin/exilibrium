@@ -12,22 +12,22 @@ const AboutModal = ({ show, onCancelModal }) => {
       <div className={styles.icon} />
       <div className={styles.content}>
         <div className={styles.title}>
-          <T id="aboutModal.decrediton" m="Decrediton" />
+          <T id="aboutModal.decrediton" m="Exilibrium" />
         </div>
         <div className={styles.closeButtonTop} onClick={onCancelModal} />
         <p>
           <T
             id="aboutModal.paragraph1"
-            m="A cross platform GUI Wallet for Decred written in node.js using Electron"
+            m="A cross platform GUI Wallet for ExchangeCoin written in node.js using Electron"
           />
         </p>
         <p>
           <T
             id="aboutModal.paragraph2a"
-            m="Decrediton is free and open source software, developed and designed by the global team of"
+            m="Exilibrium is free and open source software, developed and designed by the global team of"
           />{" "}
-          <ExternalLink href="https://decred.org/contributors/">
-            <T id="aboutModal.paragraph2b" m="Decred contributors" />
+          <ExternalLink href="https://excc.co/contributors">
+            <T id="aboutModal.paragraph2b" m="ExchangeCoin contributors" />
           </ExternalLink>
         </p>
         <p>
@@ -35,8 +35,8 @@ const AboutModal = ({ show, onCancelModal }) => {
             id="aboutModal.paragraph3"
             m="Want to help or get involved, check out"
           />{" "}
-          <ExternalLink href="https://github.com/decred/decrediton">
-            github.com/decred/decrediton
+          <ExternalLink href="https://github.com/EXCCoin/exilibrium">
+            github.com/EXCCoin/exilibrium
           </ExternalLink>
         </p>
       </div>
@@ -46,13 +46,13 @@ const AboutModal = ({ show, onCancelModal }) => {
             <T id="aboutModal.version" m="Version" /> {version} -&nbsp;
             {updateAvailable ? (
               <ExternalLink
-                href="https://github.com/decred/decred-binaries/releases"
+                href="https://github.com/EXCCoin/excc-binaries/releases"
                 className={styles.upgrade}>
                 <T id="aboutModal.upgradeAvailable" m="Upgrade Available" />
               </ExternalLink>
             ) : (
               <ExternalLink
-                href={`https://github.com/decred/decred-binaries/releases/tag/v${version}`}
+                href={`https://github.com/EXCCoin/excc-binaries/releases/tag/v${version}`}
                 className={styles.upgrade}>
                 <T id="aboutModal.whatsNew" m="What's New?" />
               </ExternalLink>
@@ -60,10 +60,10 @@ const AboutModal = ({ show, onCancelModal }) => {
           </div>
           <div className={styles.bottomAreaMiddle}>
             Copyright &copy; 2020-2022{" "}
-            <ExternalLink href="https://decred.org">Decred</ExternalLink>
+            <ExternalLink href="https://excc.co">ExchangeCoin</ExternalLink>
           </div>
           <div className={styles.bottomAreaRight}>
-            <ExternalLink href="https://github.com/decred/decrediton/blob/master/LICENSE">
+            <ExternalLink href="https://github.com/EXCCoin/exilibrium/blob/master/LICENSE">
               <T id="aboutModal.licensing" m="Licensing information" />
             </ExternalLink>
           </div>

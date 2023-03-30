@@ -24,7 +24,7 @@ export const DiscoverLabelMsg = () => (
   <T id="getStarted.discover.label" m="Scan for accounts" />
 );
 export const LoaderTitleMsg = () => (
-  <T id="loader.title" m={"Welcome to Decrediton Wallet"} />
+  <T id="loader.title" m={"Welcome to Exilibrium Wallet"} />
 );
 export const DiscoverAccountsInfoMsg = () => (
   <T
@@ -32,7 +32,7 @@ export const DiscoverAccountsInfoMsg = () => (
     m={`
   Enter the passphrase you just created to scan the blockchain for additional accounts you may have previously created with your wallet.
 
-  Your account names aren't stored on the blockchain, so you will have to rename them after setting up Decrediton.
+  Your account names aren't stored on the blockchain, so you will have to rename them after setting up Exilibrium.
   `}
   />
 );
@@ -85,7 +85,7 @@ export const UpdateAvailableLink = ({
         values={{ version: updateAvailable }}
       />
     }>
-    <ExternalLink href="https://decred.org/downloads" className={className}>
+    <ExternalLink href="https://excc.co" className={className}>
       <T id="getStarted.updateAvailable" m="Update Available" />
     </ExternalLink>
   </Tooltip>
@@ -106,6 +106,6 @@ export const AboutModalButton = ({ appVersion, updateAvailable }) => (
     version={appVersion}
     updateAvailable={updateAvailable}
     className="about-modal-button"
-    buttonLabel={<T id="help.about" m="About Decrediton" />}
+    buttonLabel={<T id="help.about" m="About Exilibrium" />}
   />
 );

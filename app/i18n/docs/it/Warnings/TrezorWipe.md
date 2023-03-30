@@ -4,5 +4,5 @@ per questo portafoglio prima di eseguire un'operazione di cancellazione e recupe
 
 In caso contrario si provocherà una **perdita di fondi**.
 
-Notate inoltre che Decrediton supporta solo il recupero di seed da 24 parole (256 bit)
-e che le parole per le importazioni di Trezor e dcrwallet sono *diverse*.
+Notate inoltre che Exilibrium supporta solo il recupero di seed da 24 parole (256 bit)
+e che le parole per le importazioni di Trezor e exccwallet sono *diverse*.

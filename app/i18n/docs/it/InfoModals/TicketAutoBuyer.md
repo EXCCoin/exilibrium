@@ -16,7 +16,7 @@ disattiva questa opzione.
 l'acquisto di biglietti, in base al prezzo medio osservato moltiplicato per
 questo numero. Ad esempio, se il prezzo medio è 100 e questo è stato impostato
 a 1,25, allora il prezzo massimo per l'acquisto dei biglietti sarà di 125
-DCR.
+EXCC.
 
 **Massimo per blocco** Non acquistare più di questo numero di biglietti per
 blocco. Un numero negativo significa acquistare un biglietto ogni n blocchi: ad

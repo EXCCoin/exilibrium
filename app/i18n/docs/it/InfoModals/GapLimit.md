@@ -23,7 +23,7 @@ Ci sono in realtà solo 2 ragioni per cambiare questo valore:
    della v1.0 più o meno, potrebbe avere grandi intervalli di indirizzo. Se si
    ripristina dal seed e si nota che mancano dei fondi, si può aumentare questo
    valore fino a 100 (poi 1000 se non viene risolto) e poi riavviare
-   decrediton.  Una volta che il vostro saldo è stato risolto, potete
+   Exilibrium.  Una volta che il vostro saldo è stato risolto, potete
    reimpostare il limite a 20.
 
 2. Se volete essere in grado di generare più di 20 indirizzi alla volta senza

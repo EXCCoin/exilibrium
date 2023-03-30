@@ -144,7 +144,7 @@ export const WALLET_INITIAL_VALUE = {
 
 export const INITIAL_VALUES = {
   [DAEMON_ADVANCED]: false,
-  [THEME]: "light",
+  [THEME]: "dark",
   [LOCALE]: "",
   [NETWORK]: MAINNET,
   [SET_LANGUAGE]: true,

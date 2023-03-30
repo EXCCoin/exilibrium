@@ -33,7 +33,7 @@ const NoAvailableStakepools = React.memo(({ toggleIsLegacy }) => (
       values={{
         link: (
           <ExternalLink
-            href="https://api.decred.org/?c=gsd"
+            href="https://api.excc.co/?c=gsd"
             className={styles.stakepoolLink}>
             <T id="stake.discoverStakeOoolsAPILink" m="this link" />
           </ExternalLink>

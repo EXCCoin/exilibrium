@@ -1,6 +1,6 @@
 import Input from "./Input";
 
-// AddressInput is an input that restricts values to a decred address
+// AddressInput is an input that restricts values to a ExchangeCoin address
 const AddressInput = ({ ...props }) => {
   let value = props.value;
 

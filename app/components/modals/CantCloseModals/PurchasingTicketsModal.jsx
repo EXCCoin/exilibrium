@@ -13,7 +13,7 @@ const AutobuyerRunningModal = ({ show, onCancelModal, onSubmit }) => (
     <div>
       <T
         id="tickets.purchasing.message"
-        m="Decrediton is still finalizing ticket purchases. Tickets may not
+        m="Exilibrium is still finalizing ticket purchases. Tickets may not
             be registered with the VSP if you proceed now, which can
             result in missed votes."
       />

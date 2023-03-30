@@ -197,7 +197,7 @@ const CreateWalletsPage = () => {
                     />
                     <T
                       id="dex.neededFieldsInConfig"
-                      m="The following fields are required in the bitcoin.conf rpcuser, rpcpassword, rpcbind, rpcport. You must also set 'server=1' to start the wallet listening for connections.  If you have any trouble with these instructions, please go to the support channel on chat.decred.org for further assistance."
+                      m="The following fields are required in the bitcoin.conf rpcuser, rpcpassword, rpcbind, rpcport. You must also set 'server=1' to start the wallet listening for connections.  If you have any trouble with these instructions, please go to the support channel on Telegram for further assistance."
                     />
                   </div>
                   <KeyBlueButton
@@ -256,19 +256,19 @@ const CreateWalletsPage = () => {
         </div>
       )}
       <div className={classNames(styles.subtitle, "margin-top-m")}>
-        <T id="dex.subtitle.dcrWallet" m="DCR wallet" />
+        <T id="dex.subtitle.dcrWallet" m="EXCC wallet" />
       </div>
       {!dexDCRWalletRunning ? (
         <div className={classNames(styles.box, "justify-center")}>
           <AppPassAndPassphraseModalButton
             disabled={createWalletDexAttempt}
-            modalTitle={<T id="dex.createDCRWallet" m="Connect DCR Wallet" />}
+            modalTitle={<T id="dex.createDCRWallet" m="Connect EXCC Wallet" />}
             loading={createWalletDexAttempt}
             onSubmit={onCreateWallet}
             buttonLabel={
               <T
                 id="dex.createWalletDCRPassphraseButton"
-                m="Connect DCR Wallet"
+                m="Connect EXCC Wallet"
               />
             }
           />
@@ -278,7 +278,7 @@ const CreateWalletsPage = () => {
           <Message kind="success">
             <T
               id="dex.dcrWalletConnected"
-              m="DCR Wallet has been successfully connected!"
+              m="EXCC Wallet has been successfully connected!"
             />
           </Message>
         </div>

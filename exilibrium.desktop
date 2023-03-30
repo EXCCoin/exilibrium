@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Exilibrium
+Comment=Exilibrium the ExchangeCoin wallet
+Exec=exilibrium %U
+Terminal=false
+Type=Application
+Icon=exchangecoin
+MimeType=x-scheme-handler/exchangecoin;
+Categories=Office;Finance;

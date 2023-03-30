@@ -243,7 +243,7 @@ const TransactionContent = ({
               {nonWalletOutputs.length > MaxNonWalletOutputs ? (
                 <T
                   id="txDetails.tooManyNonWalletOutputsAddresses"
-                  m="Please use the txid link above to see all non-wallet addresses on dcrdata."
+                  m="Please use the txid link above to see all non-wallet addresses on exccdata."
                 />
               ) : (
                 nonWalletOutputs.map(({ address }, i) => (
@@ -427,7 +427,7 @@ const TransactionContent = ({
                 <div className={styles.row}>
                   <T
                     id="txDetails.tooManyNonWalletOutputs"
-                    m="Please use the txid link above to see all non-wallet outputs on dcrdata."
+                    m="Please use the txid link above to see all non-wallet outputs on exccdata."
                   />
                 </div>
               ) : (

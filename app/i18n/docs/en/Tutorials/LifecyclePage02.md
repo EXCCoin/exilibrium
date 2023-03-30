@@ -1,4 +1,4 @@
-A basic introduction to Decred’s PoS.
+A basic introduction to ExchangeCoin’s PoS.
 
 Abstract grid of the key ticket states to be explored in the section.
 

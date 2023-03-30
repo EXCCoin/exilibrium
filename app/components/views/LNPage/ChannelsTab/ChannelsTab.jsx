@@ -42,7 +42,7 @@ const messages = defineMessages({
   },
   localAmtInputPlaceholder: {
     id: "ln.channelsTab.localAmtPlaceholder",
-    defaultMessage: "Amount of DCR to commit to channel"
+    defaultMessage: "Amount of exccwallet to commit to channel"
   },
   pushAmountInputLabel: {
     id: "ln.channelsTab.pushAmount",
@@ -50,7 +50,7 @@ const messages = defineMessages({
   },
   pushAmountInputPlaceholder: {
     id: "ln.channelsTab.pushAmountPlaceholder",
-    defaultMessage: "Amount of DCR to push to channel"
+    defaultMessage: "Amount of exccwallet to push to channel"
   },
   nodeSuccessMsg: {
     id: "ln.channelsTab.nodeSuccessMsg",

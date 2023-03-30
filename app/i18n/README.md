@@ -1,6 +1,6 @@
-# Decrediton i18n & l12n
+# Exilibrium i18n & l12n
 
-This file explains the general layout of how internationalization (i18n) and localization (l12n) work in Decrediton. This file is intended for **developers**.
+This file explains the general layout of how internationalization (i18n) and localization (l12n) work in Exilibrium. This file is intended for **developers**.
 
 **Community translators** should read [community_translators.md](community_translators.md).
 
@@ -134,9 +134,9 @@ import { tsToDate } from "../../helpers/dateFormat";
 
 **:exclamation: Note**: Also note that due to this quirk, locales that use the original english strings but a different date/time format need to get the translated strings as well. To provide a localization using the english strings, create a new locale using the `original.json` message file, which is also automatically maintained by the scripts.
 
-### DCR Amount
+### EXCC Amount
 
-To display an amount of DCR, use the `Balance` component:
+To display an amount of EXCC, use the `Balance` component:
 
 ```javascript
 import Balance from "../../Balance";
@@ -145,7 +145,7 @@ import Balance from "../../Balance";
 
 ## Libraries
 
-Decrediton implements i18n by using the tools provided by the [react-intl](https://github.com/yahoo/react-intl) ecosystem.
+Exilibrium implements i18n by using the tools provided by the [react-intl](https://github.com/yahoo/react-intl) ecosystem.
 
 ## Filesystem Layout
 

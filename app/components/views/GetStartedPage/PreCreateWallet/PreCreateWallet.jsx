@@ -55,8 +55,8 @@ const PreCreateWallet = ({
       // are:
       //
       // Filesystem related chars: /\.:
-      // Escaped when stored in dcrwallet.conf ini files: ;#[]
-      // Specially handled by dcrwallet: $%~
+      // Escaped when stored in exccwallet.conf ini files: ;#[]
+      // Specially handled by exccwallet: $%~
       const replaceNameChars = /[/\\.:;#[\]$%~]/;
       newWalletName = newWalletName.replace(replaceNameChars, "");
       // Remove leading spaces.

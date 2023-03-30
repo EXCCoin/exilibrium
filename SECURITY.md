@@ -2,13 +2,10 @@
 
 ## Reporting a Vulnerability
 
-The Decred project runs a bug bounty program which is approved by the stakeholders and is funded by the Decred treasury.
+The Exchangecoin takes every single bug report seriously. None of the report, if reproducible and confirmed, will be left unpaid.
 
-Please refer to the bounty website to understand the [scope](https://bounty.decred.org/#Scope) and how to [submit](https://bounty.decred.org/#Submit%20Vulnerability) a vulnerability.
-
-https://bounty.decred.org/
+Please contact support@excc.co with any kind of reports.
 
 ## Supported Versions
 
 All bugs must be reproducible in the latest production release or the master branch of the code.
-

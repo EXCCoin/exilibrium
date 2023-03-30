@@ -4,7 +4,7 @@ Firmare un messaggio con la chiave privata di un indirizzo vi permette di
 dimostrare ad una possibile controparte di essere il proprietario di un certo
 indirizzo.
 
-Per esempio, diciamo che avete inviato **100 DCR** a un _commerciante_ e non
+Per esempio, diciamo che avete inviato **100 EXCC** a un _commerciante_ e non
 avete ancora ricevuto la vostra merce. Voi contattate il commerciante e
 spiegate la situazione, ma avete bisogno di un modo per dimostrare che siete in
 effetti il proprietario dell'indirizzo da cui sono stati inviati i fondi. Per

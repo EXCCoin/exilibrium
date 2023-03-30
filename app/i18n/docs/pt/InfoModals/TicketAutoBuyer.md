@@ -6,6 +6,6 @@
 
 **Preço Máximo Absoluto** Se o preço do ticket estiver acima desse valor, você não poderá comprar mais tickets. O valor padrão 0 desliga isso.
 
-**Preço Máximo Relativo** Esse número estabelece o preço máximo para comprar tickets baseado na observação do preço médio multiplicado por esse número. Ex: se o preço médio é 100 e esse número é 1.25, então o preço máximo para comprar tickets seria 125 DCR.
+**Preço Máximo Relativo** Esse número estabelece o preço máximo para comprar tickets baseado na observação do preço médio multiplicado por esse número. Ex: se o preço médio é 100 e esse número é 1.25, então o preço máximo para comprar tickets seria 125 EXCC.
 
 **Máx. por Bloco** Não comprar mais do que esse número de tickets por bloco. Um número negativo significa que comprar um ticket a cada n blocos. Ex: -2 significaria comprar um ticket bloco sim, bloco não.

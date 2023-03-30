@@ -10,6 +10,6 @@ Limit rozbieżności określa ilość adresów, które portfel wygeneruje i prze
 
 Tak naprawdę są tylko dwa przypadki w których należy zmienić tę wartość:
 
-1. Jeśli twój portfel został stworzony i używany intensywnie przed v1.0, może mieć duże luki adresowe. Jeśli przywracasz portfel z seeda i zauważysz, że brakuje funduszy, możesz zwiększyć ustawienie do 100 (następnie 1000 jeśli problem wciąż występuje), a następnie ponownie uruchom Decrediton. Po przywróceniu funduszy możesz powrócić do 20.
+1. Jeśli twój portfel został stworzony i używany intensywnie przed v1.0, może mieć duże luki adresowe. Jeśli przywracasz portfel z seeda i zauważysz, że brakuje funduszy, możesz zwiększyć ustawienie do 100 (następnie 1000 jeśli problem wciąż występuje), a następnie ponownie uruchom Exilibrium. Po przywróceniu funduszy możesz powrócić do 20.
 
 2. Jeśli chcesz być w stanie wygenerować więcej niż 20 adresów na raz, bez kolejkowania.

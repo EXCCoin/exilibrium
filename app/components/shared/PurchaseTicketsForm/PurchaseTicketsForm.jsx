@@ -205,9 +205,9 @@ const PurchaseTicketsForm = ({
                   link: (
                     <ExternalLink
                       href={
-                        "https://docs.decred.org/wallets/decrediton/using-decrediton/#backup-redeem-script"
+                        "https://docs.excc.co/wallets/exilibrium/using-exilibrium/#backup-redeem-script"
                       }>
-                      <T id="purchase.ticket.decred.docs" m="Decred docs" />
+                      <T id="purchase.ticket.decred.docs" m="ExchangeCoin docs" />
                     </ExternalLink>
                   )
                 }}

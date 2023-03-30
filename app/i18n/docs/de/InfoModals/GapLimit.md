@@ -10,6 +10,6 @@ Gap-Limit legt die Anzahl der Adressen fest die die Wallet generiert und vorauss
 
 Es gibt eigentlich nur 2 Gründe warum Sie diesen Wert ändern sollten:
 
-  1. Wenn Ihre Wallet vor v1.0 erstellt und intensiv genutzt wurde ist es möglich, dass es größere Adresslücken gibt.  Wenn Sie Ihr Wallet aus der Seed-Phrase wiederherstellen und feststellen, dass Ihnen Guthaben fehlt, können Sie das Gap Limit auf 100 erhöhen (dann 1000, wenn das Problem nicht behoben ist) und Decrediton neu starten. Sobald Ihr Guthaben bereinigt ist können Sie das Gap Limit wieder auf 20 zurücksetzen.
+  1. Wenn Ihre Wallet vor v1.0 erstellt und intensiv genutzt wurde ist es möglich, dass es größere Adresslücken gibt.  Wenn Sie Ihr Wallet aus der Seed-Phrase wiederherstellen und feststellen, dass Ihnen Guthaben fehlt, können Sie das Gap Limit auf 100 erhöhen (dann 1000, wenn das Problem nicht behoben ist) und Exilibrium neu starten. Sobald Ihr Guthaben bereinigt ist können Sie das Gap Limit wieder auf 20 zurücksetzen.
 
   2. Wenn Sie in der Lage sein möchten mehr als 20 Adressen auf einmal zu generieren ohne dass es zu einem Rundlauf der Adressen kommt.

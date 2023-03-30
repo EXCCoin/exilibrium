@@ -21,7 +21,7 @@ const Form = ({
       </BackButtonArea>
       <T
         id="getStarted.releaseNotesTitle"
-        m="Decrediton v{version} Released"
+        m="Exilibrium v{version} Released"
         values={{ version }}
       />
       <div className={styles.navigation}>

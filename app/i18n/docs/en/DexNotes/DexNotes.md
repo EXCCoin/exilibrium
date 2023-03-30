@@ -1,6 +1,6 @@
-Welcome to DCRDEX!
+Welcome to EXCCDEX!
 
-Although DCRDEX looks and feels like a regular exchange, there are important differences. Please read the Highlights and Important Notices at https://github.com/decred/dcrdex/blob/master/docs/release-notes/release-notes-0.2.0.md.
+Although EXCCDEX looks and feels like a regular exchange, there are important differences. Please read the Highlights and Important Notices at https://github.com/decred/dcrdex/blob/master/docs/release-notes/release-notes-0.2.0.md.
 
 Trades do not settle instantly. Settlement happens on-chain, and requires multiple block confirmations. Depending on network conditions, this can take hours. The DEX software and external wallets like bitcoind MUST stay running until your trades have fully settled or refunded.
 

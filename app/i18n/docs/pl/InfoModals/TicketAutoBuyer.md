@@ -6,6 +6,6 @@
 
 **Maksymalna cena absolutna** Jeśli cena biletu jest wyższa od tej wartości, nie kupisz więcej biletów. Domyślna wartość 0 wyłącza to ustawienie.
 
-**Maksymalna cena relatywna** Liczba ta określa maksymalną cenę zakupu biletów na podstawie obserwowanej średniej ceny pomnożonej przez tę liczbę, np. jeżeli średnia cena wynosi 100, a wartość ta została ustalona na 1,25, wówczas maksymalna cena zakupu biletów wynosiłaby 125 DCR.
+**Maksymalna cena relatywna** Liczba ta określa maksymalną cenę zakupu biletów na podstawie obserwowanej średniej ceny pomnożonej przez tę liczbę, np. jeżeli średnia cena wynosi 100, a wartość ta została ustalona na 1,25, wówczas maksymalna cena zakupu biletów wynosiłaby 125 EXCC.
 
 **Maksymalna liczba biletów na blok** Nie kupuj więcej biletów na blok, niż wynosi ta liczba. Ujemna liczba oznacza kupno jednego biletu co n bloków, np. -2 oznacza kupno jednego biletu co drugi blok.

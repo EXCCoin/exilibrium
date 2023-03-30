@@ -15,7 +15,7 @@ const ShutdownPage = () => {
     <PageBody getStarted>
       <DecredLoading />
       <div className={styles.shutdownText}>
-        <T id="shutdown.header.title" m="Shutting down Decrediton" />
+        <T id="shutdown.header.title" m="Shutting down Exilibrium" />
       </div>
     </PageBody>
   );

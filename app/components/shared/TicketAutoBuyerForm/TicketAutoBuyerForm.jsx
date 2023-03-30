@@ -70,7 +70,7 @@ const TicketAutoBuyerForm = ({
                 </span>
                 <T
                   id="vsp.tickets.startAutoBuyerConfirmation.description"
-                  m="Decrediton must remain running for tickets to be automatically purchased."
+                  m="ExchangeCoin must remain running for tickets to be automatically purchased."
                 />
                 <div>
                   <div className={styles.isRow}>

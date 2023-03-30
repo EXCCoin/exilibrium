@@ -40,7 +40,7 @@ export const ReceiveTabHeader = () => (
       <>
         <T
           id="ln.description.receive"
-          m="Generate a Lightning Invoice to receive DCR funds over the Lightning Network."
+          m="Generate a Lightning Invoice to receive exccwallet funds over the Lightning Network."
         />
         <BalancesHeader />
       </>

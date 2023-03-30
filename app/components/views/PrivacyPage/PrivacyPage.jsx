@@ -15,7 +15,7 @@ export const PrivacyTabHeader = () => {
       <T
         id="privacy.description"
         m={
-          "Improve the anonymity of your Decred.\nFunds in {unmixedAccount} are sent to {mixedAccount} once mixed."
+          "Improve the anonymity of your ExchangeCoin.\nFunds in {unmixedAccount} are sent to {mixedAccount} once mixed."
         }
         values={{
           unmixedAccount: (
@@ -30,7 +30,7 @@ export const PrivacyTabHeader = () => {
       <T
         id="privacy.description.brandnew.wallet"
         m={
-          "Improve the anonymity of your Decred.\nFunds in the unmixed account are sent to the mixed account once mixed."
+          "Improve the anonymity of your ExchangeCoin.\nFunds in the unmixed account are sent to the mixed account once mixed."
         }
       />
     );

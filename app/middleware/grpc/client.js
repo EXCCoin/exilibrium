@@ -21,7 +21,7 @@ const getServiceClient = (clientClass) => (
   if (cert == "") {
     return cb(
       null,
-      "Unable to load dcrwallet certificate.  dcrwallet not running?"
+      "Unable to load exccwallet certificate.  exccwallet not running?"
     );
   }
 

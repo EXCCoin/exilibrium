@@ -43,16 +43,16 @@ const RecentTransactions = ({
             <Link to="/transactions/receive" className={styles.receive}>
               <T
                 id="home.noTransactions.receiveLink"
-                m="Generate a DCR Address for receiving funds"
+                m="Generate a EXCC Address for receiving funds"
               />{" "}
               →
             </Link>
             <ExternalLink
-              href="https://decred.org/exchanges"
+              href="https://excc.co/exchanges"
               className={styles.buy}>
               <T
                 id="home.noTransactions.buyFromExchanges"
-                m="Buy Decred from Exchanges"
+                m="Buy ExchangeCoin from Exchanges"
               />{" "}
               →
             </ExternalLink>

@@ -14,7 +14,7 @@ const AutobuyerRunningModal = ({ show, onCancelModal, onSubmit }) => (
       <T
         id="account.mixer.running.message"
         m="Account mixer is currently running. Ongoing mixes will be
-            cancelled and no more Decred will be mixed if you proceed."
+            cancelled and no more ExchangeCoin will be mixed if you proceed."
       />
     </div>
     <div className={styles.toolbar}>

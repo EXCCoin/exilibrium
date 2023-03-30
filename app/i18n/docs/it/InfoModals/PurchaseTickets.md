@@ -4,7 +4,7 @@
 
 **Numero di biglietti** Il numero di biglietti si cui tentare l'acquisto.
 
-**Tariffa del biglietto (DCR/kB)** I biglietti vengono inseriti nel pool di
+**Tariffa del biglietto (EXCC/kB)** I biglietti vengono inseriti nel pool di
 voto in ordine di tariffa. Nei periodi di alta richiesta è necessario aumentare
 questo valore per far accettare i propri biglietti.
 
@@ -21,7 +21,7 @@ indicato vengono annullati, in modo da poter riprovare con tariffe più elevate
 se lo si desidera. Se questo campo è lasciato vuoto, essi non scadranno fino
 alla fine della finestra attiva.
 
-**Tariffa Tx (DCR/kB)** Decrediton usa una transazione "split" per evitare di
+**Tariffa Tx (EXCC/kB)** Exilibrium usa una transazione "split" per evitare di
 bloccare il tuo saldo, separando l'importo esatto necessario per il biglietto
 dal saldo nel vostro portafoglio. La transazione "split" deve essere confermata
 almeno una volta prima di poter riutilizzare il saldo. Questo può bloccare
@@ -30,7 +30,7 @@ dovreste attendere la conferma della transazione del biglietto, che potrebbe
 richiedere diverse ore. Può essere lasciata a 0,01. Questo non influisce sulle
 vostre possibilità di acquistare biglietti o di votare con loro.
 
-**Indirizzo di voto** L'indirizzo Decred che farà la votazione.
+**Indirizzo di voto** L'indirizzo ExchangeCoin che farà la votazione.
 
 **Indirizzo della tariffa VSP** L'indirizzo a cui sarà pagata la tariffa VSP.
 

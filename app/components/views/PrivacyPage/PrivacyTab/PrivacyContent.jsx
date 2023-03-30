@@ -136,7 +136,7 @@ const PrivacyContent = ({
                   <T
                     id="privacy.mixer.modal.description"
                     m={`Do you want to start the mixer?
-                Decrediton should not be closed while the mixer is running.`}
+                Exilibrium should not be closed while the mixer is running.`}
                   />
                 }
                 disabled={isMixerDisabled}

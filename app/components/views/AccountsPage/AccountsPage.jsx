@@ -15,7 +15,7 @@ const AccountsPageHeader = React.memo(
         <T
           id="accounts.description"
           m={
-            "Accounts allow you to keep separate records of your DCR funds.\nTransferring DCR across accounts will create a transaction on the blockchain."
+            "Accounts allow you to keep separate records of your EXCC funds.\nTransferring EXCC across accounts will create a transaction on the blockchain."
           }
         />
       }

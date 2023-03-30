@@ -153,16 +153,16 @@ export const useWalletSetup = (settingUpWalletRef) => {
             description: (
               <T
                 id="getstarted.setAccountsPass.description"
-                m={`Decrediton now uses per-account locking, which requires a one time migration.
+                m={`Exilibrium now uses per-account locking, which requires a one time migration.
                   Enter your current passphrase to perform this upgrade.
                   Visit {link} to know more.`}
                 values={{
                   link: (
                     <ExternalLink
                       href={
-                        "https://docs.decred.org/wallets/decrediton/migrations"
+                        "https://docs.excc.co/wallets/exilibrium/migrations"
                       }>
-                      <T id="getstarted.setAccountsPass.docs" m="Decred docs" />
+                      <T id="getstarted.setAccountsPass.docs" m="ExchangeCoin docs" />
                     </ExternalLink>
                   )
                 }}

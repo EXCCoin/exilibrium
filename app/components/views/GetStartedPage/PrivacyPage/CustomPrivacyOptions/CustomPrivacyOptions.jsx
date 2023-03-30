@@ -12,7 +12,7 @@ export default ({ toggleCustomPrivacy, acceptCustomPrivacy, ...props }) => (
     <SubTitle>
       <T
         id="privacy.custom.titleSub"
-        m="Select which external requests Decrediton is allowed to make. You can change this later on the app settings page."
+        m="Select which external requests Exilibrium is allowed to make. You can change this later on the app settings page."
       />
     </SubTitle>
     <div className={styles.customPrivacySettings}>
