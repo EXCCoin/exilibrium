@@ -1,13 +1,13 @@
 {
-  "name": "decrediton",
-  "productName": "decrediton",
+  "name": "exilibrium",
+  "productName": "exilibrium",
   "version": "1.7.6",
-  "description": "Cross-platform decred gui based on Electron and React",
+  "description": "Cross-platform ExchangeCoin gui based on Electron and React",
   "main": "./main.js",
   "author": {
-    "name": "Decred Team",
-    "email": "info@decred.org",
-    "url": "https://github.com/decred"
+    "name": "ExchangeCoin Team",
+    "email": "help@excc.co",
+    "url": "https://github.com/EXCCoin"
   },
   "license": "ISC"
 }

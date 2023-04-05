@@ -81,14 +81,14 @@ export const checkDecreditonVersion = () => (dispatch, getState) => {
     .then(function (response) {
       const currentVersion = response.data[0].tag_name.split("v")[1];
       if (semverCompatible(currentVersion, detectedVersion)) {
-        wallet.log("info", "Decrediton version up to date.");
+        wallet.log("info", "Exilibrium version up to date.");
       } else {
         dispatch({ type: DECREDITON_VERSION, msg: response.data[0].tag_name });
       }
     })
     .catch(function (error) {
       console.error(
-        "Unable to check latest decrediton release version.",
+        "Unable to check latest exilibrium release version.",
         error
       );
     });

@@ -1,8 +1,8 @@
 {
-  "name": "decrediton",
-  "productName": "Decrediton",
+  "name": "exilibrium",
+  "productName": "Exilibrium",
   "version": "1.7.6",
-  "description": "Decrediton based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "description": "Exilibrium based on React, React Router, Webpack, React Hot Loader for rapid application development",
   "main": "main.js",
   "scripts": {
     "test": "TZ=UTC cross-env NODE_ENV=test jest",
@@ -112,7 +112,7 @@
     ]
   },
   "build": {
-    "appId": "com.Electron.Decrediton",
+    "appId": "com.Electron.Exilibrium",
     "artifactName": "${productName}-v${version}.${ext}",
     "dmg": {
       "contents": [
@@ -158,9 +158,9 @@
     ],
     "mac": {
       "extendInfo": {
-        "CFBundleExecutable": "Decrediton",
-        "CFBundleDisplayName": "Decrediton",
-        "CFBundleName": "Decrediton"
+        "CFBundleExecutable": "Exilibrium",
+        "CFBundleDisplayName": "Exilibrium",
+        "CFBundleName": "Exilibrium"
       }
     },
     "win": {
@@ -183,20 +183,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/decred/decrediton.git"
+    "url": "git+https://github.com/EXCCoin/exilibrium.git"
   },
   "author": {
-    "name": "The Decred developers",
-    "email": "info@decred.org",
-    "url": "https://github.com/decred"
+    "name": "ExchangeCoin Team",
+    "email": "help@excc.co",
+    "url": "https://github.com/EXCCoin"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/decred/decrediton/issues"
+    "url": "https://github.com/EXCCoin/exilibrium/issues"
   },
   "keywords": [
-    "decred",
-    "decrediton",
+    "exchangecoin",
+    "exilibrium",
     "electron",
     "react",
     "react-router",
@@ -204,7 +204,7 @@
     "webpack",
     "react-hot"
   ],
-  "homepage": "https://github.com/decred/decrediton#readme",
+  "homepage": "https://github.com/EXCCoin/exilibrium/#readme",
   "devDependencies": {
     "@babel/core": "^7.12.0",
     "@babel/parser": "^7.12.0",

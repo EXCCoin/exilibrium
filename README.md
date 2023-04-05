@@ -157,7 +157,7 @@ macOS - ```$HOME/Library/Application\ Support/Exilibrium/config.json```
 
 Linux - ```~/.config/exilibrium/config.json```
 
-Run the following to start the Decred daemon in a standalone terminal window:
+Run the following to start the ExchangeCoin daemon in a standalone terminal window:
 
 Windows - ```exccd --testnet -u USER -P PASSWORD --rpclisten=127.0.0.1:19119 --rpccert=C:\Users\<username>\AppData\Local\Exccd\rpc.cert```
 
@@ -295,7 +295,7 @@ yarn package-dev-linux
 ## Contact
 
 If you have any further questions you can find us at:
-<https://decred.org/community/>
+<https://excc.co/>
 
 ## Issue Tracker
 

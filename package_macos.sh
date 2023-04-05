@@ -5,7 +5,7 @@
 notary_submit() {
 	xcrun altool -f release/decrediton-${VERSION}.zip \
 		--notarize-app \
-		--primary-bundle-id org.Electron.Decrediton \
+		--primary-bundle-id org.Electron.Exilibrium \
 		--asc-provider ${IDENTITY} \
 		-p @keychain:${KEYCHAIN} 2>&1 \
 	| perl -ne 'print if s/^RequestUUID = //'

@@ -809,7 +809,7 @@ app.on("ready", async () => {
     await installExtensions();
     await setupProxy(logger);
   }
-  windowOpts.title = "Decrediton - " + app.getVersion();
+  windowOpts.title = "Exilibrium - " + app.getVersion();
 
   mainWindow = new BrowserWindow(windowOpts);
   installSessionHandlers(logger);
