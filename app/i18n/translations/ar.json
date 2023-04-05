@@ -173,7 +173,7 @@
   "confirmSeed.errors.invalidHexSeed": "البذرة السداسية غير صحيحة. يجب أن يتراوح طول البذرة السداسية بين 32 و 128 حرفا.",
   "confirmSeed.label": "تأكيد مفتاح البذرة",
   "confirmSeed.title": "التحقق من عبارة البذرة",
-  "confirmSeed.warnings.pasteExistingError": "* يرجى لصق بذرة صالحة مكونة من 33 كلمة.",
+  "confirmSeed.warnings.pasteExistingError": "* يرجى لصق بذرة صالحة مكونة من 24 كلمة.",
   "confirmSeed.warnings.pasteExistingSeed": "*يرجى التأكد أيضًا من أن لديك نسخة مَلمُوسة، مكتوبة للبذرة الخاصة بك.",
   "confirmSeed.word.label": "الكلمة #{index}",
   "createWallet.continueBtn": "تابع",

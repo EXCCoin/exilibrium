@@ -152,7 +152,7 @@
   "confirmModal.btnCancel": "Anuluj",
   "confirmSeed.errors.hexNot32Bytes": "Błąd: ziarno nie ma 32 bajtów. Pochodzi z nie wspieranego oprogramowania i może mieć niezamierzone konsekwencje.",
   "confirmSeed.label": "Potwierdź klucz ziarna",
-  "confirmSeed.warnings.pasteExistingError": "* Wklej prawidłowe, składające się z 33 słów, ziarno portfela",
+  "confirmSeed.warnings.pasteExistingError": "* Wklej prawidłowe, składające się z 24 słów, ziarno portfela",
   "confirmSeed.warnings.pasteExistingSeed": "*Upewnij się, że masz też fizyczną, zapisaną na papierze kopię ziarna.",
   "createWallet.continueBtn": "Kontynuuj",
   "createWallet.copy": "Kopiuj słowa ziarna do schowka",

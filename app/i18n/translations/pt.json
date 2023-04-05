@@ -182,7 +182,7 @@
   "confirmSeed.errors.invalidHexSeed": "Seed hexadecimal inválida. Seeds hexadecimais precisam ter entre 32 e 128 caracteres.      ",
   "confirmSeed.label": "Confirmar Seed",
   "confirmSeed.title": "Verificação de seed   ",
-  "confirmSeed.warnings.pasteExistingError": "* Por favor cole uma seed válida de 33 palavras",
+  "confirmSeed.warnings.pasteExistingError": "* Por favor cole uma seed válida de 24 palavras",
   "confirmSeed.warnings.pasteExistingSeed": "*Por favor tenha certeza de que você também tem uma cópia física (escrita) da sua seed.",
   "confirmSeed.word.label": "Palavra #{index}",
   "createWallet.continueBtn": "Continuar",

@@ -152,7 +152,7 @@
   "confirmModal.btnCancel": "Cancelar",
   "confirmSeed.errors.hexNot32Bytes": "Error: La semilla no es de 32 bytes, procede de un software no compatible y podría acarrear consecuencias no deseadas.",
   "confirmSeed.label": "Confirmar Clave Semilla",
-  "confirmSeed.warnings.pasteExistingError": "* Pegue una semilla de 33 palabras válida.",
+  "confirmSeed.warnings.pasteExistingError": "* Pegue una semilla de 24 palabras válida.",
   "confirmSeed.warnings.pasteExistingSeed": "*Asegúrese de que dispone también de una copia física por escrito de su semilla.",
   "createWallet.continueBtn": "Continuar",
   "createWallet.copy": "Copiar palabras de la semilla en el portapapeles",

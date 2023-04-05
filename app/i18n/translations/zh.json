@@ -152,7 +152,7 @@
   "confirmModal.btnCancel": "取消",
   "confirmSeed.errors.hexNot32Bytes": "错误：种子不是32字节，该种子来自一个不支持的软件，可能会产生未知的后果。",
   "confirmSeed.label": "确认种子密钥",
-  "confirmSeed.warnings.pasteExistingError": "*请粘贴一个有效的33个单词的种子。",
+  "confirmSeed.warnings.pasteExistingError": "*请粘贴一个有效的24个单词的种子。",
   "confirmSeed.warnings.pasteExistingSeed": "*请确保您已在物理媒介上记录此种子。",
   "createWallet.continueBtn": "继续",
   "createWallet.copy": "将种子单词复制到剪贴板",

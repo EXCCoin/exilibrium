@@ -1,6 +1,6 @@
 # Informazioni sul seed
 
-Questo seed di 33 parole è usato per ricavare tutto ciò che riguarda il vostro particolare portafoglio.
+Questo seed di 24 parole è usato per ricavare tutto ciò che riguarda il vostro particolare portafoglio.
 
 Si può rigenerare l'intero portafoglio solamente utilizzando questo seed.
 Mentre ciò offre flessibilità e facilità di backup, significa anche che il seed

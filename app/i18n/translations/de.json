@@ -173,7 +173,7 @@
   "confirmSeed.errors.invalidHexSeed": "Ungültiger Hex-Seed. Hex-Seeds müssen zwischen 32 und 128 Zeichen lang sein.",
   "confirmSeed.label": "Seed-Schlüssel bestätigen",
   "confirmSeed.title": "Verifizierung deines Seeds",
-  "confirmSeed.warnings.pasteExistingError": "* Bitte fügen Sie einen gültigen 33-Wörter-Seed ein.",
+  "confirmSeed.warnings.pasteExistingError": "* Bitte fügen Sie einen gültigen 24-Wörter-Seed ein.",
   "confirmSeed.warnings.pasteExistingSeed": "*Bitte stell sicher, dass du dazu eine physische, niedergeschriebene Kopie deines Seeds angefertigt hast.",
   "confirmSeed.word.label": "Wort #{index}",
   "createWallet.continueBtn": "Fortfahren",

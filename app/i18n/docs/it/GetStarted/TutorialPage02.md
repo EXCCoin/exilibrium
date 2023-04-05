@@ -6,7 +6,7 @@ EXCC, come un libro mastro personale per registrare le vostre transazioni e per
 partecipare allo staking (PoS).
 
 I portafogli sono generati in modo deterministico da una chiave seed. Il
-seed mnemonico è un elenco di **33 parole** che possono essere facilmente
+seed mnemonico è un elenco di **24 parole** che possono essere facilmente
 scritte su un foglio di carta per il backup.
 
 **Il seed funziona come una chiave maestra** che contiene tutte le informazioni

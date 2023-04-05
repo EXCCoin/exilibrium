@@ -152,7 +152,7 @@
   "confirmModal.btnCancel": "キャンセル",
   "confirmSeed.errors.hexNot32Bytes": "エラー: シードが32バイトではなく、非対応ソフトウェアのものであるため、意図しない影響が出る可能性があります。",
   "confirmSeed.label": "",
-  "confirmSeed.warnings.pasteExistingError": "*有効な33語のシードを貼り付けてください。",
+  "confirmSeed.warnings.pasteExistingError": "*有効な24語のシードを貼り付けてください。",
   "confirmSeed.warnings.pasteExistingSeed": "*シードは、必ず紙などに記載した物理的コピーをお持ちください。",
   "createWallet.continueBtn": "続行",
   "createWallet.copy": "クリップボードにシードワードをコピー",

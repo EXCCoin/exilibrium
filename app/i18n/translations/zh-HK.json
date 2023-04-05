@@ -151,7 +151,7 @@
   "confirmModal.btnCancel": "取消",
   "confirmSeed.errors.hexNot32Bytes": "錯誤：種子不是32位元姐，該種子來自不受支援的軟件，而且可能有未知的後果。",
   "confirmSeed.label": "確認種子",
-  "confirmSeed.warnings.pasteExistingError": "* 請輸入有效的33字種子。",
+  "confirmSeed.warnings.pasteExistingError": "* 請輸入有效的24字種子。",
   "confirmSeed.warnings.pasteExistingSeed": "*請確保你有一份實體手寫的種子抄本。",
   "createWallet.continueBtn": "繼續",
   "createWallet.copy": "複製種子到剪貼簿",

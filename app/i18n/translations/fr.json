@@ -152,7 +152,7 @@
   "confirmModal.btnCancel": "Annuler",
   "confirmSeed.errors.hexNot32Bytes": "Erreur : la graine ne fait pas 32 octets, provient d'un logiciel non pris en charge et peut entraîner des conséquences imprévues.",
   "confirmSeed.label": "",
-  "confirmSeed.warnings.pasteExistingError": "* Veuillez coller une graine valide composée de 33 mots.",
+  "confirmSeed.warnings.pasteExistingError": "* Veuillez coller une graine valide composée de 24 mots.",
   "confirmSeed.warnings.pasteExistingSeed": "* Veuillez vous assurer d'avoir également une copie physique par écrit de votre graine.",
   "createWallet.continueBtn": "Continuer",
   "createWallet.copy": "Copier les mots de graine dans le presse-papiers",

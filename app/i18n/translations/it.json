@@ -182,7 +182,7 @@
   "confirmSeed.errors.invalidHexSeed": "Seme esadecimale non valido. I semi esadecimali devono avere una lunghezza compresa tra 32 e 128 caratteri.",
   "confirmSeed.label": "Conferma la Chiave del Seme",
   "confirmSeed.title": "Verifica della frase del seme",
-  "confirmSeed.warnings.pasteExistingError": "* Incolla un seme valido di 33 parole.",
+  "confirmSeed.warnings.pasteExistingError": "* Incolla un seme valido di 24 parole.",
   "confirmSeed.warnings.pasteExistingSeed": "*Assicurati di avere anche una copia fisica scritta del tuo seme.",
   "confirmSeed.word.label": "Parola n. {index}",
   "createWallet.continueBtn": "Continua",
