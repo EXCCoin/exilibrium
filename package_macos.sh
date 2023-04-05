@@ -3,7 +3,7 @@
 # submit a package to be notarized
 # returns: notarization uuid
 notary_submit() {
-	xcrun altool -f release/decrediton-${VERSION}.zip \
+	xcrun altool -f release/exilibrium-${VERSION}.zip \
 		--notarize-app \
 		--primary-bundle-id org.Electron.Exilibrium \
 		--asc-provider ${IDENTITY} \
