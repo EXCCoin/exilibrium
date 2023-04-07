@@ -59,8 +59,10 @@ const AboutModal = ({ show, onCancelModal }) => {
             )}
           </div>
           <div className={styles.bottomAreaMiddle}>
-            Copyright &copy; 2020-2022{" "}
-            <ExternalLink href="https://excc.co">ExchangeCoin</ExternalLink>
+            Copyright &copy; 2020-2023{" "}
+            <ExternalLink href="https://decred.org">Decred Developers</ExternalLink><br />
+            Copyright &copy; 2023{" "}
+            <ExternalLink href="https://excc.co">ExchangeCoin Team</ExternalLink>
           </div>
           <div className={styles.bottomAreaRight}>
             <ExternalLink href="https://github.com/EXCCoin/exilibrium/blob/master/LICENSE">
