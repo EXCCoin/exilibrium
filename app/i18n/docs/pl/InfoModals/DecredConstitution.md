@@ -1,42 +1,37 @@
-# Konstytucja Decred
+# ExchangeCoin Constitution
 
-Decred (/ˈdi:ˈkred/, /dɪˈkred/, dee-cred) jest bezpieczną, adaptowalną i samofinansującą się kryptowalutą z społecznym systemem zarządzania zintegrowanym z blockchainem. Misją projektu jest opracowanie technologi dla dobra publicznego, ze szczególną rolą kryptowalut. Konstytucja ta określa zbiór zasad, które kierują podejmowaniem decyzji przez interesariuszy projektu oraz opisuje procesy, za pomocą których zarządzany jest blockchain i budżet projektu. Dokument ten ma na celu zarządzanie oczekiwaniami potencjalnych i faktycznych użytkowników Decreda, tak aby lepiej rozumieli oni umowę społeczną między sobą a projektem. Niniejszy dokument nie ma mieć pierwszeństwa przed zasadami konsensusu sieci Decred w przypadku wystąpienia jakiegokolwiek konfliktu.
-
----
-
-### Zasady
-
-- _Wolne i otwarte oprogramowanie_ - Wszystkie programy opracowane w ramach projektu Dekret są i pozostaną wolne w oparciu o zasady wolnego oprogramowania (open source-software).
-- _Wolność słowa i rozważań_ - Każdy ma prawo do wyrażania opinii i idei bez obawy przed cenzurą. Należy brać pod uwagę wszystkie konstruktywne wypowiedzi, które oparte są o fakty i rozsądek.
-- _Integralność zainteresowanych stron_ - Systemem zapewnia integralność wszystkich zainteresowanych stron, podejmowany jest aktywny wysiłek na rzecz uwzględnienia zróżnicowanych użytkowników i poglądów.
-- _Stopniowalna ochrona prywatności i bezpieczeństwa_ - Prywatność i bezpieczeństwo są priorytetami i należy zrównoważyć złożoność ich realizacji. Dodatkowe technologie ochrony prywatności i bezpieczeństwa są wdrażane w sposób ciągły i stopniowy, zarówno aktywnie, jak i na żądanie, w odpowiedzi na ataki.
-- _Stały skończony podaż_ - Emisja jest ograniczona i nie przekroczy 20 999 999 99800912 DCR, z dotacją na każdy blok, która dostosowuje się co 6 144 bloki (około 21,33 dni) poprzez zmniejszenie w oparciu o współczynnik 100/101. Dotacje bloku genesis rozpoczyna się w 31.19582664 dniu DCR.
-- _Uniwersalna zamienność_ - Uniwersalna zamienność ma fundamentalne znaczenie dla Dekretu jako magazynu wartości, a ataki na nią są aktywnie monitorowane i w razie potrzeby podejmowane są środki zaradcze.
+The ExchangeCoin blockchain harnesses a hybrid consensus mechanism, combining Proof-of-Work (PoW) and Proof-of-Stake (PoS) to ensure optimal security and performance. With the Equihash (N=144, K=5) PoW algorithm, which is designed to be ASIC resistant, ExchangeCoin allows supporters to actively participate in securing transactions while preventing centralization of computational power by a single actor, an issue that has affected other blockchain networks. This document serves to clarify the expectations of prospective and current ExchangeCoin users, outlining the social contract between them and the project, without superseding the network's consensus rules in the event of a conflict.
 
 ---
 
-### Zarządzanie Blockchainem
+## Principles
 
-- [Zarządzanie](https://docs.decred.org/governance/overview/) siecią odbywa się bezpośrednio w blockchainie poprzez hybrydyzację bloków proof-of-work (&ldquo;PoW&rdquo;) z proof-of-stake (&ldquo;PoS&rdquo;). Wyborcy PoS, znani również jako interesariusze, mogą skutecznie unieważnić udziałowców PoW, znanych jako minerzy, jeśli 50% lub więcej interesariuszy zagłosuje przeciwko blokowi stworzonemu przez konkretnego minera.
-- Interesariusze to osoby, które kupują jeden lub więcej biletów, co wiąże się z zablokowaniem określonej ilości DCR. Kwota DCR, która musi być zablokowana, znana również jako cena biletu, zmienia się, ponieważ system celuje w obrót 40.960 biletami w puli.
-- W każdym bloku, 5 biletów jest powoływanych do głosowania, jest to wyznaczane przez loterię [system](https://docs.decred.org/proof-of-stake/overview/). Przy wyznaczaniu losu, nominowany portfel musi aktywnie odpowiedzieć głosem. Aby blok został przyjęty przez sieć, musi zawierać głosy z co najmniej 3 z 5 wywołanych losów. Blockchain nie może być rozbudowywany bez aktywnego udziału interesariuszy.
-- Interesariusze muszą czekać średnio 28 dni (8 192 bloki), aby zagłosować swoimi biletami, a w tym czasie DCR użyte do zakupu biletu pozostają zablokowane. Czas oczekiwania może być znacznie dłuższy lub krótszy niż średnia 28 dni, ponieważ proces selekcji biletów jest pseudolosowy. Bilety tracą ważność po 40.960 blokach (~142 dni), jeśli nie zostaną wezwane do głosowania.
-- Głosy interesariuszy zarejestrowane w blockchainie są nagradzane 6% wartości każdej dotacji blokowej, a każdy blok może mieć do 5 głosów o łącznej wartości 30% każdej dotacji blokowej.
-- PoW otrzymuje 60% dotacji za każdy blok, pod warunkiem, że jego dotacja skaluje się liniowo z uwzględnieniem liczby głosów PoS, np. włączenie 3 z 5 głosów zmniejsza dotację PoW do 60% z maksimum.
-- Głosy same decydują w oparciu o większość, o tym czy drzewo transakcji z poprzedniego bloku, w tym dotacja PoW, są ważne. Tak więc, jeżeli wyborcy PoS zagłosują przeciwko danemu blokowi PoW, unieważnia to nagrodę PoW (i nagrodę za udział w głosowaniu) oraz wszelkie transakcje w tym bloku.
-- Proces Decreda dla [zmiany zasad konsensusu](https://docs.decred.org/governance/consensus-rule-voting/overview/) jest również sterowany przez głosowanie zainteresowanych stron. Proces rozpoczyna się, gdy co najmniej 95% minerów z PoS i 75% wyborców z PoS zaktualizuje swoje oprogramowanie do nowej wersji z ukrytymi zmianami w zasadach. Po spełnieniu tych warunków, rozpoczyna się okres głosowania 8,064 bloków (~4 tygodnie), aby zdecydować, czy należy aktywować ukryte zmiany reguł.
-- Aby wniosek w sprawie zmiany zasad został zatwierdzony, co najmniej 75% biletów, które nie zostały wyłączone z głosowania, musi na Tak. Jeśli ten wymóg jest spełniony, a kworum 10% biletów głosujących Tak lub Nie zostanie osiągnięte, wówczas zmiana reguły zostanie aktywowana 8.064 bloków (~4 tygodnie) później.
+* *Free and Open-Source Software* - All software developed as part of ExchangeCoin will be free and open-source software.
+* *Free Speech and Consideration* - Every individual has the right to express opinions and ideas without fear of censorship. All constructive speech grounded in fact and reason will be given due consideration.
+* *Multi-Stakeholder Inclusivity* - Embracing inclusivity, ExchangeCoin actively endeavors to incorporate a diverse range of perspectives and users within a multi-stakeholder system.
+* *Incremental Privacy and Security* - Privacy and security are top priorities, balanced against the complexity of implementing them. ExchangeCoin will continuously and proactively integrate additional privacy and security measures, both in response to threats and as needed.
+* *Fixed Finite Supply* - With a finite issuance not exceeding 32,003,133.2 EXCC, ExchangeCoin maintains a per-block subsidy that adjusts every 6,144 blocks (approximately 21.33 days) by reducing by a factor of 100/101, starting with a genesis block subsidy of 38 EXCC.
+* *Universal Fungibility* -  As a fundamental aspect of ExchangeCoin's store-of-value proposition, universal fungibility will be protected, with ongoing monitoring of potential attacks and active pursuit of countermeasures as necessary.
 
 ---
 
-### Zarządzanie projektem i finansowanie
+## Blockchain Governance
 
-- Trwałość i długowieczność wymagają, aby 10% wszystkich nagród za bloki było przekazywane na fundusz finansowania projektu, administrowany przez organizację deweloperską.
-- Pierwotna organizacja deweloperska to _Decred Holdings Group_ LLC (&ldquo;DHG&rdquo;), Nevis LLC, która jest odpowiedzialna za finansowanie prac związanych z rozwojem projektu, takich jak rozwój oprogramowania, infrastruktury i świadomości. DHG stosuje się do wszystkich odpowiednich przepisów prawa w odpowiednich jurysdykcjach, takich jak embarga i inne sankcje handlowe.
-- Projekt ma na celu przejście na Zdecentralizowaną Organizację Autonomiczną - Decentralized Autonomous Organization (DAO), która kontroluje wydatkowanie środków pochodzących z budżetu projektu.
-- Tak długo, jak DHG jest odpowiedzialne za zarządzanie budżetem projektu (tzn. do czasu pełnej decentralizacji kontroli), posiada prawo weta, które może zostać wykorzystane, jeżeli uzna, że kontynuacja decyzji zagroziłaby realizacji projektu, spółce DHG lub osobom zarządzającym DHG.
-- [Politeia](https://docs.decred.org/governance/politeia/overview/) - propozycje w systemie Politeia są mechanizmem, za pomocą którego zainteresowane strony podejmują decyzje dotyczące polityki i zatwierdzają programy działań. Propozycje Politeia muszą być zatwierdzone przez co najmniej 60% głosujących, a co najmniej 20% kwalifikujących się biletów musi uczestniczyć w głosowaniu. Domyślny okres głosowania wynosi 2 016 bloków (~1 tydzień).
-- [Wykonawcy Decreda](https://docs.decred.org/contributing/overview/) to osoby fizyczne i korporacje, które pracują nad projektem, na podstawie umowy, że otrzymują wynagrodzenie za swoją pracę. Wykonawcy Decreda są autonomiczni, nie mogą być bezpośrednio zarządzani przez interesariuszy. Za pośrednictwem Politei, interesariusze mogą zatwierdzać lub odrzucać programy pracy wykonywane przez konkretnych wykonawców, ale nie mogą zlecać pracownikom podejmowania określonych działań.
-- Kolektyw wykonawców Decreda jest jednostką samoregulującą się, w której komórki pracujące nad konkretnymi aspektami rozwiązują spory i dodają nowych członków niezależnie. Jak opisano w zatwierdzonej [Propozycji rozliczenia wykonawców Decreda](https://proposals-archive.decred.org/proposals/fa38a3593d9a3f6cb2478a24c25114f5097c572f6dadf24c78bb521ed10992a4), spory, które nie mogą być zadowalająco rozwiązane w zespole, mogą być eskalowane do głosowania wszystkich wykonawców - po uruchomieniu systemu zarządzania wykonawcami, który ma za zadanie usprawnienie tego procesu. W razie potrzeby, nierozwiązane kwestie mogą być dalej eskalowane do głosowania zainteresowanych stron jako ostatecznego organu decyzyjnego.
-- Wola interesariuszy, wyrażona poprzez głosowanie z użyciem biletów Politea w sieci blockchain, jest ostateczną siłą decyzyjną projektu.
-- Ta konstytucja zostanie zatwierdzona w drodze głosowania w systemie Politeia zanim wejdzie w życie, może zostań zmieniona poprzez zatwierdzenie kolejnych wniosków z sysyemy Politea.
+* Governance within the network is achieved directly through the blockchain by integrating a block's proof-of-work (PoW) with its proof-of-stake (PoS). PoS voters, or stakeholders, have the power to override PoW miners if 50% or more stakeholders vote against a specific block created by a miner.
+* Stakeholders are individuals who purchase one or more tickets, which involves locking a certain amount of EXCC. The required amount of locked EXCC, known as the ticket price, varies as the system aims to maintain 40,960 tickets in the live pool.
+* In each block, a lottery system selects 5 tickets to vote. When a ticket is selected, a designated wallet must actively respond with a vote. For a block to be accepted by the network, it must include votes from at least 3 of the 5 selected tickets. The blockchain cannot progress without active stakeholder participation.
+* Stakeholders must wait an average of 28 days (8,192 blocks) for their tickets to be eligible to vote, during which the EXCC used to purchase the ticket remains locked. The actual waiting time may be longer or shorter than the average, as the ticket selection process is pseudorandom. Tickets that have not been selected to vote will expire after 40,960 blocks (~142 days).
+* Stakeholder votes recorded in the blockchain are rewarded with 6% of each block subsidy, with each block accommodating up to 5 votes for a total of 30% of each block subsidy.
+* PoW is allocated 70% of each block subsidy, provided that their subsidy scales linearly with the number of PoS votes included (e.g., including 3 of 5 votes reduces the PoW subsidy to 70% of the maximum).
+* The majority decision of the votes determines the validity of the regular transaction tree of the previous block, including the PoW subsidy. Consequently, if PoS voters vote against a particular PoW block, the PoW reward is invalidated, as are any regular transactions within that block.
+* ExchangeCoin's approach to amending the consensus rules is also driven by stakeholder voting. The process starts when at least 95% of PoW miners and 75% of PoS voters have updated their software to a new version containing latent rule changes. Upon meeting these conditions, an 8,064-block (~4 weeks) voting period commences to decide whether the latent rule changes should be activated.
+* For a rule change proposal to pass, at least 75% of the non-abstaining tickets must vote Yes. If this threshold is met, and a quorum of 10% of tickets voting Yes or No is reached, the rule change will be activated 8,064 blocks (~4 weeks) later.
+
+---
+
+## Project Governance and Funding
+
+* The initial development organization, PM Privacy Matters LTD, is responsible for financing work related to the project's development, including software development, infrastructure, and awareness initiatives. PM will adhere to all applicable laws in relevant jurisdictions, such as embargoes and other trade sanctions.
+* ExchangeCoin contractors consist of individuals and corporations working on the project under an agreement that provides compensation for their work. ExchangeCoin contractors operate independently and cannot be directly managed by stakeholders. Through Politeia, stakeholders can approve or reject work programs carried out by specific contractors, but they cannot mandate that workers take specific actions.
+* The ultimate decision-making authority for the project lies with the stakeholders, as expressed through their on-chain voting.
+
