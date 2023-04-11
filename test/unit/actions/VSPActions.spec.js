@@ -402,7 +402,7 @@ test("test getVSPTicketStatus", async () => {
   expect(res).toStrictEqual(mockVSPTicketInfoResponse.data);
   expect(res).toHaveProperty(
     "feetxUrl",
-    `https://dcrdata.decred.org/tx/${mockVSPTicketInfoResponse.data.feetxhash}`
+    `https://explorer.excc.co/tx/${mockVSPTicketInfoResponse.data.feetxhash}`
   );
 
   expect(mockSignMessageAttempt).toHaveBeenCalledWith(
@@ -432,7 +432,7 @@ test("test getVSPTicketStatus (immature ticket)", async () => {
   expect(res).toStrictEqual(mockVSPTicketInfoResponse.data);
   expect(res).toHaveProperty(
     "feetxUrl",
-    `https://dcrdata.decred.org/tx/${mockVSPTicketInfoResponse.data.feetxhash}`
+    `https://explorer.excc.co/tx/${mockVSPTicketInfoResponse.data.feetxhash}`
   );
 
   expect(mockSignMessageAttempt).toHaveBeenCalledWith(

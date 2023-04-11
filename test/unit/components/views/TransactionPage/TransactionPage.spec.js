@@ -179,7 +179,7 @@ test("regular sent pending tx from default account to an external address", asyn
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(getPending()).toBeInTheDocument();
   expect(getToAddressText()).toMatch(
-    "To address: TsacvMFSMWcmxT7dj5UHqgrxB3PP6uwnEtY  TsZJt5A55AcCMp8iBu1rkNCxqJ3Bf1MC8Zk"
+    "To address: TsacvMFSMWcmxT7dj5UHqgrxB3PP6uwnEtY  TsZJt5A55AcCMp8iBu1rkNCxqJ3Bf3yQYxr"
   );
   expect(getTransactionFeeText()).toMatch("Transaction fee:0.0000253 EXCC");
 
@@ -189,14 +189,14 @@ test("regular sent pending tx from default account to an external address", asyn
   user.click(getRebroadcastTransaction());
   expect(mockPublishUnminedTransactionsAttempt).toHaveBeenCalled();
 
-  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault17.9385434 DCR");
+  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault17.9385434 EXCC");
   // don't have any non wallet input
   expect(getNonWalletInputsText()).toMatch("Non Wallet Inputs");
 
-  expect(getWalletOutputs()).toMatch("Wallet Outputschange9.9385181 DCR");
+  expect(getWalletOutputs()).toMatch("Wallet Outputschange9.9385181 EXCC");
   // don't have any non wallet input
   expect(getNonWalletOutputs()).toMatch(
-    "Non Wallet Outputs TsZJt5A55AcCMp8iBu1rkNCxqJ3Bf1MC8Zk 8.00000 DCR"
+    "Non Wallet Outputs TsZJt5A55AcCMp8iBu1rkNCxqJ3Bf3yQYxr 8.00000 EXCC"
   );
 
   expect(screen.getByText(rawTx)).toBeInTheDocument();
@@ -233,13 +233,13 @@ test("regular received mined tx to the default account", async () => {
   await wait(() => getIODetails());
 
   expect(getHeaderTitleIconClassName()).toMatch("in");
-  expect(getTitleText()).toMatch("100.00000 DCR");
+  expect(getTitleText()).toMatch("100.00000 EXCC");
 
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(queryPending()).not.toBeInTheDocument();
   expect(getConfirmedText()).toMatch("Confirmed5,269 confirmations");
   expect(getToAddressText()).toMatch(
-    "To address: TsVzSRzExt1NRzGwTqu8qyY12t8NH8yiGzV  TsbvHMveM1bTK35aP5Dd2tmFppipvw2faWA"
+    "To address: TsVzSRzExt1NRzGwTqu8qyY12t8NH8yiGzV  TsbvHMveM1bTK35aP5Dd2tmFppipvt5jg9P"
   );
 
   expect(queryAbandonTransactionButton()).not.toBeInTheDocument();
@@ -248,12 +248,12 @@ test("regular received mined tx to the default account", async () => {
   // don't have any wallet input
   expect(getWalletInputsText()).toMatch("Wallet Inputs");
   expect(getNonWalletInputsText()).toMatch(
-    "Non Wallet Inputs 3e68d75f9c2dbdcc3dd3e68fca736835e8d802a732938e17c3dad6b58faa28bf:1 3.00000 DCR aed4058ec3b9849d58b032768b6bd78ffe635b35fe230d7022b6ee7af7f319db:0 1.20000 DCR 19d0afa8310eed1f3112e028c7bed798b7f1b9aff41f1e8eb76d37a86439f96b:1 1.00000 DCR 14b5c15ec10861110b6a45eeb5d392b11b41e389c557ef32568b4718c0152778:0 388.51673938 DCR"
+    "Non Wallet Inputs 3e68d75f9c2dbdcc3dd3e68fca736835e8d802a732938e17c3dad6b58faa28bf:1 3.00000 EXCC aed4058ec3b9849d58b032768b6bd78ffe635b35fe230d7022b6ee7af7f319db:0 1.20000 EXCC 19d0afa8310eed1f3112e028c7bed798b7f1b9aff41f1e8eb76d37a86439f96b:1 1.00000 EXCC 14b5c15ec10861110b6a45eeb5d392b11b41e389c557ef32568b4718c0152778:0 388.51673938 EXCC"
   );
 
-  expect(getWalletOutputs()).toMatch("Wallet Outputs default 100.00000 DCR");
+  expect(getWalletOutputs()).toMatch("Wallet Outputs default 100.00000 EXCC");
   expect(getNonWalletOutputs()).toMatch(
-    "Non Wallet Outputs TsbvHMveM1bTK35aP5Dd2tmFppipvw2faWA 293.71666428 DCR"
+    "Non Wallet Outputs TsbvHMveM1bTK35aP5Dd2tmFppipvt5jg9P 293.71666428 EXCC"
   );
 
   expect(screen.getByText(rawTx)).toBeInTheDocument();
@@ -294,7 +294,7 @@ test("regular self transfer tx to unmixed account", async () => {
   await wait(() => getIODetails());
 
   expect(getHeaderTitleIconClassName()).toMatch("self");
-  expect(getTitleText()).toMatch("-0.0000253 DCR");
+  expect(getTitleText()).toMatch("-0.0000253 EXCC");
 
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(queryPending()).not.toBeInTheDocument();
@@ -306,12 +306,12 @@ test("regular self transfer tx to unmixed account", async () => {
   expect(queryAbandonTransactionButton()).not.toBeInTheDocument();
   expect(queryRebroadcastTransaction()).not.toBeInTheDocument();
 
-  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault63.62443956 DCR");
+  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault63.62443956 EXCC");
   // don't have any non wallet input
   expect(getNonWalletInputsText()).toMatch("Non Wallet Inputs");
 
   expect(getWalletOutputs()).toMatch(
-    "Wallet Outputs unmixed 50.00000 DCR default 13.62441426 DCR"
+    "Wallet Outputs unmixed 50.00000 EXCC default 13.62441426 EXCC"
   );
   // don't have any non wallet input
   expect(getNonWalletOutputs()).toMatch("Non Wallet Outputs");
@@ -350,28 +350,28 @@ test("self coins from unmixed to mixed account", async () => {
   await wait(() => getIODetails());
 
   expect(getHeaderTitleIconClassName()).toMatch("mixed");
-  expect(getTitleText()).toMatch("-0.0000361 DCR");
+  expect(getTitleText()).toMatch("-0.0000361 EXCC");
 
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(queryPending()).not.toBeInTheDocument();
   expect(getConfirmedText()).toMatch("Confirmed11 confirmations");
   expect(getToAddressText()).toMatch(
-    "To address: TshTsuJmLsbpFCPgFYkeR4nmbRqiAAjGvAR  TsUNW19FJpNjkGrsi1tusvkHYNoZVbvzLTY  TsfhYupZxcqyHMLmJDUZ9qLJxbD6VQkpriC  TsXPm8qFAc1niDd654jaJnRsSSWjBTKGmP5  TsjBaeiu9ZZC2aZ5d4wHRH9H8KeG4szwkEs  TsjwBN1UELsLfV6BZynGfH21qhyBb5PtFaw  TsoPFWy8h8DFKiXXqYxWUaS9uguazs1bzva  TsVV7XBX2B8hj8c76FzWByoZ622DTiQxXUm  TsoQB5qSKdNXJEwr2X5YbUJnBhHaPYv2pA3"
+    "To address: TshTsuJmLsbpFCPgFYkeR4nmbRqiAAjGvAR  TsUNW19FJpNjkGrsi1tusvkHYNoZVbvzLTY  TsfhYupZxcqyHMLmJDUZ9qLJxbD6VQkpriC  TsXPm8qFAc1niDd654jaJnRsSSWjBTKGmP5  TsjBaeiu9ZZC2aZ5d4wHRH9H8KeG4szwkEs  TsjwBN1UELsLfV6BZynGfH21qhyBb2Q2KUA  TsoPFWy8h8DFKiXXqYxWUaS9uguazs2urrV  TsVV7XBX2B8hj8c76FzWByoZ622DTgzVHZL  TsoQB5qSKdNXJEwr2X5YbUJnBhHaPa1UW8F"
   );
 
   expect(queryAbandonTransactionButton()).not.toBeInTheDocument();
   expect(queryRebroadcastTransaction()).not.toBeInTheDocument();
 
-  expect(getWalletInputsText()).toMatch("Wallet Inputs50.00000 DCR");
+  expect(getWalletInputsText()).toMatch("Wallet Inputs50.00000 EXCC");
   expect(getNonWalletInputsText()).toMatch(
-    "Non Wallet Inputs 1fb0d31823836168b59ea0d52d301905aa8c64c694b528e22e901d5b3cac7377:6 14.04694804 DCR 1fb0d31823836168b59ea0d52d301905aa8c64c694b528e22e901d5b3cac7377:13 16.50200823 DCR"
+    "Non Wallet Inputs 1fb0d31823836168b59ea0d52d301905aa8c64c694b528e22e901d5b3cac7377:6 14.04694804 EXCC 1fb0d31823836168b59ea0d52d301905aa8c64c694b528e22e901d5b3cac7377:13 16.50200823 EXCC"
   );
 
   expect(getWalletOutputs()).toMatch(
-    "Wallet Outputschange7.05029094 DCRchange10.73741824 DCRchange10.73741824 DCRchange10.73741824 DCRchange10.73741824 DCR"
+    "Wallet Outputschange7.05029094 EXCCchange10.73741824 EXCCchange10.73741824 EXCCchange10.73741824 EXCCchange10.73741824 EXCC"
   );
   expect(getNonWalletOutputs()).toMatch(
-    "Non Wallet Outputs TsjwBN1UELsLfV6BZynGfH21qhyBb5PtFaw 5.76456469 DCR TsoPFWy8h8DFKiXXqYxWUaS9uguazs1bzva 10.73741824 DCR TsVV7XBX2B8hj8c76FzWByoZ622DTiQxXUm 3.3095045 DCR TsoQB5qSKdNXJEwr2X5YbUJnBhHaPYv2pA3 10.73741824 DCR"
+    "Non Wallet Outputs TsjwBN1UELsLfV6BZynGfH21qhyBb2Q2KUA 5.76456469 EXCC TsoPFWy8h8DFKiXXqYxWUaS9uguazs2urrV 10.73741824 EXCC TsVV7XBX2B8hj8c76FzWByoZ622DTgzVHZL 3.3095045 EXCC TsoQB5qSKdNXJEwr2X5YbUJnBhHaPa1UW8F 10.73741824 EXCC"
   );
 
   expect(screen.getByText(rawTx)).toBeInTheDocument();
@@ -414,8 +414,8 @@ test("voted ticket", async () => {
 
   expect(getHeaderTitleIconClassName()).toMatch("ticket");
   expect(getTitleText()).toMatch("Ticket, Voted");
-  expect(getTicketCostText()).toMatch("Ticket Cost122.71678363 DCR");
-  expect(getRewardText()).toMatch("Reward0.04586488 DCR");
+  expect(getTicketCostText()).toMatch("Ticket Cost122.71678363 EXCC");
+  expect(getRewardText()).toMatch("Reward0.04586488 EXCC");
 
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(queryUnconfirmed()).not.toBeInTheDocument();
@@ -424,14 +424,14 @@ test("voted ticket", async () => {
   expect(queryAbandonTransactionButton()).not.toBeInTheDocument();
   expect(queryRebroadcastTransaction()).not.toBeInTheDocument();
 
-  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault122.71678363 DCR");
+  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault122.71678363 EXCC");
   expect(getNonWalletInputsText()).toMatch(
-    "Non Wallet Inputs 92ce48f17cf6a507f401a45d60ecd819443c6246f2f0e366b5614631032e0fb5:0 122.71681343 DCR"
+    "Non Wallet Inputs 92ce48f17cf6a507f401a45d60ecd819443c6246f2f0e366b5614631032e0fb5:0 122.71681343 EXCC"
   );
 
-  expect(getWalletOutputs()).toMatch("Wallet Outputs default 122.76267831 DCR");
+  expect(getWalletOutputs()).toMatch("Wallet Outputs default 122.76267831 EXCC");
   expect(getNonWalletOutputs()).toMatch(
-    "Non Wallet Outputs TsZU4vitduHQ4JWY5hjXFpqWa4DmUsaLenU 122.71678363 DCR TsYefqPSd4tBj2MFBaFirMhPK8hUUhMfa4n 0.00000 DCR"
+    "Non Wallet Outputs TsZU4vitduHQ4JWY5hjXFpqWa4DmUqTC2ES 122.71678363 EXCC TsYefqPSd4tBj2MFBaFirMhPK8hUUddMjmd 0.00000 EXCC"
   );
 
   expect(screen.getByText(rawTx)).toBeInTheDocument();
@@ -476,8 +476,8 @@ test("vote tx", async () => {
 
   expect(getHeaderTitleIconClassName()).toMatch("vote");
   expect(getTitleText()).toMatch("Vote");
-  expect(getTicketCostText()).toMatch("Ticket Cost122.71678363 DCR");
-  expect(getRewardText()).toMatch("Reward0.04586488 DCR");
+  expect(getTicketCostText()).toMatch("Ticket Cost122.71678363 EXCC");
+  expect(getRewardText()).toMatch("Reward0.04586488 EXCC");
 
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(queryUnconfirmed()).not.toBeInTheDocument();
@@ -489,14 +489,14 @@ test("vote tx", async () => {
   expect(queryAbandonTransactionButton()).not.toBeInTheDocument();
   expect(queryRebroadcastTransaction()).not.toBeInTheDocument();
 
-  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault122.71678363 DCR");
+  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault122.71678363 EXCC");
   expect(getNonWalletInputsText()).toMatch(
-    "Non Wallet Inputs 0000000000000000000000000000000000000000000000000000000000000000:4294967295 0.04589468 DCR"
+    "Non Wallet Inputs 0000000000000000000000000000000000000000000000000000000000000000:4294967295 0.04589468 EXCC"
   );
 
-  expect(getWalletOutputs()).toMatch("Wallet Outputs default 122.76267831 DCR");
+  expect(getWalletOutputs()).toMatch("Wallet Outputs default 122.76267831 EXCC");
   expect(getNonWalletOutputs()).toMatch(
-    "Non Wallet Outputs [script] - OP_RETURN OP_DATA_36 32c8b01145a24d62ff8db613ca24a3b92e2472bac893ad0e864f1c8b00000000a8090e00 0.00000 DCR [script] - OP_RETURN OP_DATA_6 01000a000000 0.00000 DCR"
+    "Non Wallet Outputs [script] - OP_RETURN OP_DATA_36 32c8b01145a24d62ff8db613ca24a3b92e2472bac893ad0e864f1c8b00000000a8090e00 0.00000 EXCC [script] - OP_RETURN OP_DATA_6 01000a000000 0.00000 EXCC"
   );
 
   expect(screen.getByText(rawTx)).toBeInTheDocument();
@@ -585,25 +585,25 @@ test("missed ticket", async () => {
 
   expect(getHeaderTitleIconClassName()).toMatch("missed");
   expect(getTitleText()).toMatch("Missed");
-  expect(getTicketCostText()).toMatch("Ticket Cost96.63775267 DCR");
+  expect(getTicketCostText()).toMatch("Ticket Cost96.63775267 EXCC");
 
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(queryUnconfirmed()).not.toBeInTheDocument();
   expect(getConfirmedText()).toMatch("Confirmed5,271 confirmations");
   expect(getToAddressText()).toMatch(
-    "To address: TsZu7GLduXJKyD69vpuBrTj6Ja2sREAY1M1  TsTRP3GpMrtvRZ2XK5CopdZ9HhxsRJ75Cwn  TsR28UZRprhgQQhzWns2M6cAwchrNVvbYq2"
+    "To address: TsZu7GLduXJKyD69vpuBrTj6Ja2sREAY1M1  TsTRP3GpMrtvRZ2XK5CopdZ9HhxsRK3kZ52  TsR28UZRprhgQQhzWns2M6cAwchrNTGZrWw"
   );
 
   expect(queryAbandonTransactionButton()).not.toBeInTheDocument();
   expect(queryRebroadcastTransaction()).not.toBeInTheDocument();
 
-  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault96.63778247 DCR");
+  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault96.63778247 EXCC");
   // don't have non wallet input
   expect(getNonWalletInputsText()).toMatch("Non Wallet Inputs");
 
-  expect(getWalletOutputs()).toMatch("Wallet Outputs default 96.63775267 DCR");
+  expect(getWalletOutputs()).toMatch("Wallet Outputs default 96.63775267 EXCC");
   expect(getNonWalletOutputs()).toMatch(
-    "Non Wallet Outputs TsTRP3GpMrtvRZ2XK5CopdZ9HhxsRJ75Cwn 0.00000 DCR TsR28UZRprhgQQhzWns2M6cAwchrNVvbYq2 0.00000 DCR"
+    "Non Wallet Outputs TsTRP3GpMrtvRZ2XK5CopdZ9HhxsRK3kZ52 0.00000 EXCC TsR28UZRprhgQQhzWns2M6cAwchrNTGZrWw 0.00000 EXCC"
   );
 
   expect(screen.getByText(rawTx)).toBeInTheDocument();
@@ -644,8 +644,8 @@ test("revocation", async () => {
 
   expect(getHeaderTitleIconClassName()).toMatch("revocation");
   expect(getTitleText()).toMatch("Revocation");
-  expect(getTicketCostText()).toMatch("Ticket Cost64.75415536 DCR");
-  expect(getRewardText()).toMatch("Reward-0.0000518 DCR");
+  expect(getTicketCostText()).toMatch("Ticket Cost64.75415536 EXCC");
+  expect(getRewardText()).toMatch("Reward-0.0000518 EXCC");
 
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(queryUnconfirmed()).not.toBeInTheDocument();
@@ -657,11 +657,11 @@ test("revocation", async () => {
   expect(queryAbandonTransactionButton()).not.toBeInTheDocument();
   expect(queryRebroadcastTransaction()).not.toBeInTheDocument();
 
-  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault64.75415536 DCR");
+  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault64.75415536 EXCC");
   // don't have non wallet input
   expect(getNonWalletInputsText()).toMatch("Non Wallet Inputs");
 
-  expect(getWalletOutputs()).toMatch("Wallet Outputs default 64.75413336 DCR");
+  expect(getWalletOutputs()).toMatch("Wallet Outputs default 64.75413336 EXCC");
   // don't have non wallet output
   expect(getNonWalletOutputs()).toMatch("Non Wallet Outputs");
 
@@ -702,24 +702,24 @@ test("revoked ticket", async () => {
 
   expect(getHeaderTitleIconClassName()).toMatch("ticket");
   expect(getTitleText()).toMatch("Ticket, Revoked");
-  expect(getTicketCostText()).toMatch("Ticket Cost86.00218109 DCR");
-  expect(getRewardText()).toMatch("Reward-0.0000298 DCR");
+  expect(getTicketCostText()).toMatch("Ticket Cost86.00218109 EXCC");
+  expect(getRewardText()).toMatch("Reward-0.0000298 EXCC");
 
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(queryUnconfirmed()).not.toBeInTheDocument();
   expect(getConfirmedText()).toMatch("Confirmed109,009 confirmations");
   expect(getToAddressText()).toMatch(
-    "To address: Tse3z6zJhWhb5Eir4s7KjZRv4koC9fEkAYy  Tse3z6zJhWhb5Eir4s7KjZRv4koC9fEkAYy  TsR28UZRprhgQQhzWns2M6cAwchrNVvbYq2"
+    "To address: Tse3z6zJhWhb5Eir4s7KjZRv4koC9fEkAYy  Tse3z6zJhWhb5Eir4s7KjZRv4koC9e4kFqK  TsR28UZRprhgQQhzWns2M6cAwchrNTGZrWw"
   );
 
   expect(queryAbandonTransactionButton()).not.toBeInTheDocument();
   expect(queryRebroadcastTransaction()).not.toBeInTheDocument();
 
-  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault86.00218109 DCR");
+  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault86.00218109 EXCC");
   // don't have non wallet input
   expect(getNonWalletInputsText()).toMatch("Non Wallet Inputs");
 
-  expect(getWalletOutputs()).toMatch("Wallet Outputs default 86.00218109 DCR");
+  expect(getWalletOutputs()).toMatch("Wallet Outputs default 86.00218109 EXCC");
   // don't have non wallet output
   expect(getNonWalletOutputs()).toMatch("Non Wallet Outputs");
 
@@ -760,25 +760,25 @@ test("immature ticket", async () => {
 
   expect(getHeaderTitleIconClassName()).toMatch("immature");
   expect(getTitleText()).toMatch("Immature");
-  expect(getTicketCostText()).toMatch("Ticket Cost37.31114774 DCR");
+  expect(getTicketCostText()).toMatch("Ticket Cost37.31114774 EXCC");
 
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(queryUnconfirmed()).not.toBeInTheDocument();
   expect(getConfirmedText()).toMatch("Confirmed12 confirmations");
   expect(getToAddressText()).toMatch(
-    "To address: TscNc4DXrcuFgFJ6WyohhKaqvyDyJ8pksUU  TsVa9jpZGjAg1oqHBsUbrEtFbQjv9rUjVfj  TsR28UZRprhgQQhzWns2M6cAwchrNVvbYq2"
+    "To address: TscNc4DXrcuFgFJ6WyohhKaqvyDyJ8pksUU  TsVa9jpZGjAg1oqHBsUbrEtFbQjv9t59rTY  TsR28UZRprhgQQhzWns2M6cAwchrNTGZrWw"
   );
 
   expect(queryAbandonTransactionButton()).not.toBeInTheDocument();
   expect(queryRebroadcastTransaction()).not.toBeInTheDocument();
 
-  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault37.31117754 DCR");
+  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault37.31117754 EXCC");
   // don't have non wallet input
   expect(getNonWalletInputsText()).toMatch("Non Wallet Inputs");
 
-  expect(getWalletOutputs()).toMatch("Wallet Outputs default 37.31114774 DCR");
+  expect(getWalletOutputs()).toMatch("Wallet Outputs default 37.31114774 EXCC");
   expect(getNonWalletOutputs()).toMatch(
-    "Non Wallet Outputs TsVa9jpZGjAg1oqHBsUbrEtFbQjv9rUjVfj 0.00000 DCR TsR28UZRprhgQQhzWns2M6cAwchrNVvbYq2 0.00000 DCR"
+    "Non Wallet Outputs TsVa9jpZGjAg1oqHBsUbrEtFbQjv9t59rTY 0.00000 EXCC TsR28UZRprhgQQhzWns2M6cAwchrNTGZrWw 0.00000 EXCC"
   );
 
   expect(screen.getByText(rawTx)).toBeInTheDocument();
@@ -819,25 +819,25 @@ test("live ticket", async () => {
 
   expect(getHeaderTitleIconClassName()).toMatch("ticket");
   expect(getTitleText()).toMatch("Live");
-  expect(getTicketCostText()).toMatch("Ticket Cost37.31114774 DCR");
+  expect(getTicketCostText()).toMatch("Ticket Cost37.31114774 EXCC");
 
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(queryUnconfirmed()).not.toBeInTheDocument();
   expect(getConfirmedText()).toMatch("Confirmed12 confirmations");
   expect(getToAddressText()).toMatch(
-    "To address: TscNc4DXrcuFgFJ6WyohhKaqvyDyJ8pksUU  TsVa9jpZGjAg1oqHBsUbrEtFbQjv9rUjVfj  TsR28UZRprhgQQhzWns2M6cAwchrNVvbYq2"
+    "To address: TscNc4DXrcuFgFJ6WyohhKaqvyDyJ8pksUU  TsVa9jpZGjAg1oqHBsUbrEtFbQjv9t59rTY  TsR28UZRprhgQQhzWns2M6cAwchrNTGZrWw"
   );
 
   expect(queryAbandonTransactionButton()).not.toBeInTheDocument();
   expect(queryRebroadcastTransaction()).not.toBeInTheDocument();
 
-  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault37.31117754 DCR");
+  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault37.31117754 EXCC");
   // don't have non wallet input
   expect(getNonWalletInputsText()).toMatch("Non Wallet Inputs");
 
-  expect(getWalletOutputs()).toMatch("Wallet Outputs default 37.31114774 DCR");
+  expect(getWalletOutputs()).toMatch("Wallet Outputs default 37.31114774 EXCC");
   expect(getNonWalletOutputs()).toMatch(
-    "Non Wallet Outputs TsVa9jpZGjAg1oqHBsUbrEtFbQjv9rUjVfj 0.00000 DCR TsR28UZRprhgQQhzWns2M6cAwchrNVvbYq2 0.00000 DCR"
+    "Non Wallet Outputs TsVa9jpZGjAg1oqHBsUbrEtFbQjv9t59rTY 0.00000 EXCC TsR28UZRprhgQQhzWns2M6cAwchrNTGZrWw 0.00000 EXCC"
   );
 
   expect(screen.getByText(rawTx)).toBeInTheDocument();
@@ -907,11 +907,11 @@ test("unmined ticket", async () => {
   expect(getTitleText()).toMatch("Unmined");
   expect(getPending()).toBeInTheDocument();
   expect(getUnconfirmed()).toBeInTheDocument();
-  expect(getTicketCostText()).toMatch("Ticket Cost37.31114774 DCR");
+  expect(getTicketCostText()).toMatch("Ticket Cost37.31114774 EXCC");
 
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
   expect(getToAddressText()).toMatch(
-    "To address: TscNc4DXrcuFgFJ6WyohhKaqvyDyJ8pksUU  TsVa9jpZGjAg1oqHBsUbrEtFbQjv9rUjVfj  TsR28UZRprhgQQhzWns2M6cAwchrNVvbYq2"
+    "To address: TscNc4DXrcuFgFJ6WyohhKaqvyDyJ8pksUU  TsVa9jpZGjAg1oqHBsUbrEtFbQjv9t59rTY  TsR28UZRprhgQQhzWns2M6cAwchrNTGZrWw"
   );
 
   user.click(getAbandonTransactionButton());
@@ -920,13 +920,13 @@ test("unmined ticket", async () => {
   user.click(getRebroadcastTransaction());
   expect(mockPublishUnminedTransactionsAttempt).toHaveBeenCalled();
 
-  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault37.31117754 DCR");
+  expect(getWalletInputsText()).toMatch("Wallet Inputsdefault37.31117754 EXCC");
   // don't have non wallet input
   expect(getNonWalletInputsText()).toMatch("Non Wallet Inputs");
 
-  expect(getWalletOutputs()).toMatch("Wallet Outputs default 37.31114774 DCR");
+  expect(getWalletOutputs()).toMatch("Wallet Outputs default 37.31114774 EXCC");
   expect(getNonWalletOutputs()).toMatch(
-    "Non Wallet Outputs TsVa9jpZGjAg1oqHBsUbrEtFbQjv9rUjVfj 0.00000 DCR TsR28UZRprhgQQhzWns2M6cAwchrNVvbYq2 0.00000 DCR"
+    "Non Wallet Outputs TsVa9jpZGjAg1oqHBsUbrEtFbQjv9t59rTY 0.00000 EXCC TsR28UZRprhgQQhzWns2M6cAwchrNTGZrWw 0.00000 EXCC"
   );
 
   expect(screen.getByText(rawTx)).toBeInTheDocument();

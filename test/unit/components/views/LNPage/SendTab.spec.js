@@ -2,7 +2,7 @@ import { SendTab } from "components/views/LNPage/SendTab";
 import { render } from "test-utils.js";
 import user from "@testing-library/user-event";
 import { screen, wait } from "@testing-library/react";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 import * as sel from "selectors";
 import * as lna from "actions/LNActions";
 import * as wl from "wallet";
@@ -74,7 +74,7 @@ let mockDecodePayRequest;
 let mockSendPayment;
 
 beforeEach(() => {
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
   selectors.lnPendingChannels = jest.fn(() => mockPendingChannels);
   selectors.lnClosedChannels = jest.fn(() => mockClosedChannels);
   selectors.lnChannels = jest.fn(() => mockChannels);
@@ -214,9 +214,9 @@ test("test payment list and modal ", async () => {
       .getAllByText(/Sent payment/i)
       .map((node) => node.parentElement.textContent)
   ).toStrictEqual([
-    `Sent Payment 0.01000 DCR${mockOutstandingPayments["mock-outstanding-payment-hash-0"].decoded.paymentHash}`,
-    `Sent Payment 0.0000001 DCR${mockFailedPayment[0].decoded.paymentHash}`,
-    `Sent Payment 0.20000 DCR${mockPayments[0].paymentHash}`
+    `Sent Payment 0.01000 EXCC${mockOutstandingPayments["mock-outstanding-payment-hash-0"].decoded.paymentHash}`,
+    `Sent Payment 0.0000001 EXCC${mockFailedPayment[0].decoded.paymentHash}`,
+    `Sent Payment 0.20000 EXCC${mockPayments[0].paymentHash}`
   ]);
 
   // click on the first (outstanding) payment and check modal
@@ -253,9 +253,9 @@ test("test sort control", async () => {
       .getAllByText(/Sent Payment/i)
       .map((node) => node.parentElement.textContent)
   ).toStrictEqual([
-    `Sent Payment 0.01000 DCR${mockOutstandingPayments["mock-outstanding-payment-hash-0"].decoded.paymentHash}`,
-    `Sent Payment 0.0000001 DCR${mockFailedPayment[0].decoded.paymentHash}`,
-    `Sent Payment 0.20000 DCR${mockPayments[0].paymentHash}`
+    `Sent Payment 0.01000 EXCC${mockOutstandingPayments["mock-outstanding-payment-hash-0"].decoded.paymentHash}`,
+    `Sent Payment 0.0000001 EXCC${mockFailedPayment[0].decoded.paymentHash}`,
+    `Sent Payment 0.20000 EXCC${mockPayments[0].paymentHash}`
   ]);
 
   const sortMenuButton = screen.getAllByRole("button", {
@@ -271,9 +271,9 @@ test("test sort control", async () => {
         .getAllByText(/Sent Payment/i)
         .map((node) => node.parentElement.textContent)
     ).toStrictEqual([
-      `Sent Payment 0.20000 DCR${mockPayments[0].paymentHash}`,
-      `Sent Payment 0.0000001 DCR${mockFailedPayment[0].decoded.paymentHash}`,
-      `Sent Payment 0.01000 DCR${mockOutstandingPayments["mock-outstanding-payment-hash-0"].decoded.paymentHash}`
+      `Sent Payment 0.20000 EXCC${mockPayments[0].paymentHash}`,
+      `Sent Payment 0.0000001 EXCC${mockFailedPayment[0].decoded.paymentHash}`,
+      `Sent Payment 0.01000 EXCC${mockOutstandingPayments["mock-outstanding-payment-hash-0"].decoded.paymentHash}`
     ])
   );
 });
@@ -286,9 +286,9 @@ test("test search control", async () => {
       .getAllByText(/Sent Payment/i)
       .map((node) => node.parentElement.textContent)
   ).toStrictEqual([
-    `Sent Payment 0.01000 DCR${mockOutstandingPayments["mock-outstanding-payment-hash-0"].decoded.paymentHash}`,
-    `Sent Payment 0.0000001 DCR${mockFailedPayment[0].decoded.paymentHash}`,
-    `Sent Payment 0.20000 DCR${mockPayments[0].paymentHash}`
+    `Sent Payment 0.01000 EXCC${mockOutstandingPayments["mock-outstanding-payment-hash-0"].decoded.paymentHash}`,
+    `Sent Payment 0.0000001 EXCC${mockFailedPayment[0].decoded.paymentHash}`,
+    `Sent Payment 0.20000 EXCC${mockPayments[0].paymentHash}`
   ]);
 
   const searchInput = screen.getByPlaceholderText("Filter by Payment Hash");
@@ -300,8 +300,8 @@ test("test search control", async () => {
         .getAllByText(/Sent Payment/i)
         .map((node) => node.parentElement.textContent)
     ).toStrictEqual([
-      `Sent Payment 0.01000 DCR${mockOutstandingPayments["mock-outstanding-payment-hash-0"].decoded.paymentHash}`,
-      `Sent Payment 0.20000 DCR${mockPayments[0].paymentHash}`
+      `Sent Payment 0.01000 EXCC${mockOutstandingPayments["mock-outstanding-payment-hash-0"].decoded.paymentHash}`,
+      `Sent Payment 0.20000 EXCC${mockPayments[0].paymentHash}`
     ])
   );
 

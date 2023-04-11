@@ -55,7 +55,7 @@ test("render privacy page", () => {
   const standardLabel = screen.getByText(/standard/i);
   expect(standardLabel).toBeInTheDocument();
   expect(standardLabel.nextSibling.textContent).toMatchInlineSnapshot(
-    '"Enables connections to most services for a better user experience and full access to features (such as version update, VSP listing, Politeia, etc). Recommended for most users."'
+    '"Enables connections to most services for a better user experience and full access to features (such as version update, VSP listing, etc). Recommended for most users."'
   );
   user.click(standardLabel);
   expect(mockSetupStandardPrivacy).toHaveBeenCalledTimes(1);
@@ -67,7 +67,7 @@ test("render privacy page", () => {
   expect(
     noOutboundConnectionsLabel.nextSibling.textContent
   ).toMatchInlineSnapshot(
-    '"Disables all connections to third party (non-dcrd/non-dcrwallet) services. This may prevent you from using certain features of the app. Recommended for advanced users."'
+    '"Disables all connections to third party (non-exccd/non-exccwallet) services. This may prevent you from using certain features of the app. Recommended for advanced users."'
   );
   user.click(noOutboundConnectionsLabel);
   expect(mockSetupDisabledPrivacy).toHaveBeenCalledTimes(1);
@@ -110,35 +110,27 @@ test("test custom privacy options", () => {
   expect(
     networkInformationLabel.parentElement.nextSibling.textContent
   ).toMatchInlineSnapshot(
-    '"General network information (block height, etc) from decred.org"'
+    '"General network information (block height, etc) from excc.co"'
   );
   user.click(
     networkInformationLabel.parentElement.getElementsByTagName("input")[0]
   );
 
-  const politeiaLabel = screen.getByText(/politeia/i);
-  expect(
-    politeiaLabel.parentElement.nextSibling.textContent
-  ).toMatchInlineSnapshot(
-    '"List and vote on proposals on proposals.decred.org"'
-  );
-  user.click(politeiaLabel.parentElement.getElementsByTagName("input")[0]);
-
   const vspListingLabel = screen.getByText(/vsp listing/i);
   expect(
     vspListingLabel.parentElement.nextSibling.textContent
-  ).toMatchInlineSnapshot('"List of currently available VSPs from decred.org"');
+  ).toMatchInlineSnapshot('"List of currently available VSPs from excc.co"');
   user.click(vspListingLabel.parentElement.getElementsByTagName("input")[0]);
 
-  const decredBlockExplorerLabel = screen.getByText(/decred block explorer/i);
+  const decredBlockExplorerLabel = screen.getByText(/exchangecoin block explorer/i);
   expect(
     decredBlockExplorerLabel.parentElement.nextSibling.textContent
-  ).toMatchInlineSnapshot('"Access chain information from dcrdata.decred.org"');
+  ).toMatchInlineSnapshot('"Access chain information from explorer.excc.co"');
   user.click(
     decredBlockExplorerLabel.parentElement.getElementsByTagName("input")[0]
   );
 
-  expect(mockUpdateStateSettingsChanged).toHaveBeenCalledTimes(5);
+  expect(mockUpdateStateSettingsChanged).toHaveBeenCalledTimes(4);
 
   user.click(screen.getByText(/accept/i));
   expect(mockSaveSettings).toHaveBeenCalledTimes(1);

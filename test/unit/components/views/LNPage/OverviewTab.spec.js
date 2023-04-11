@@ -2,7 +2,7 @@ import { OverviewTab } from "components/views/LNPage/OverviewTab";
 import { render } from "test-utils.js";
 import user from "@testing-library/user-event";
 import { screen, wait, act } from "@testing-library/react";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 import * as sel from "selectors";
 import * as lna from "actions/LNActions";
 import {
@@ -44,7 +44,7 @@ const mockTransactions = [
 ];
 
 beforeEach(() => {
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
   selectors.lnPendingChannels = jest.fn(() => mockPendingChannels);
   selectors.lnClosedChannels = jest.fn(() => mockClosedChannels);
   selectors.lnChannels = jest.fn(() => mockChannels);
@@ -70,18 +70,18 @@ test("test account overview and net stats", () => {
   render(<OverviewTab />);
 
   expect(screen.getByText("Confirmed Balance").nextSibling.textContent).toBe(
-    "4.32DCR"
+    "432,619,804 excels"
   );
   expect(screen.getByText("Unconfirmed Balance").nextSibling.textContent).toBe(
-    "2.32DCR"
+    "2.32EXCC"
   );
   expect(
     screen.getByText("Total Account Balance").nextSibling.textContent
-  ).toBe("6.32DCR");
+  ).toBe("6.32EXCC");
   expect(screen.getByText("Open Channels").nextSibling.textContent).toBe(
     `${mockChannels.length}`
   );
-  expect(screen.getByText("Capacity").nextSibling.textContent).toBe("2.00DCR");
+  expect(screen.getByText("Capacity").nextSibling.textContent).toBe("2.00EXCC");
   expect(screen.getByText("Network Stats")).toBeInTheDocument();
   expect(screen.getByText("Nodes:").nextSibling.textContent).toBe(
     `${mockNetworkInfo.numNodes}`
@@ -90,7 +90,7 @@ test("test account overview and net stats", () => {
     `${mockNetworkInfo.numChannels}`
   );
   expect(screen.getByText("Capacity:").nextSibling.textContent).toBe(
-    "150.84830016 DCR"
+    "150.84830016 EXCC"
   );
 });
 
@@ -99,7 +99,7 @@ test("test recent activity list", async () => {
 
   // channel closed
   expect(screen.getByText("Channel Closed").parentElement.textContent).toBe(
-    "Channel Closed 0.47381162 DCRcpc-0"
+    "Channel Closed 47,381,162 excelscpc-0"
   );
   user.click(screen.getByText("Channel Closed"));
   expect(screen.getByText("Channel Created")).toBeInTheDocument();
@@ -107,7 +107,7 @@ test("test recent activity list", async () => {
 
   // channel funding
   expect(screen.getByText("Channel Funding").parentElement.textContent).toBe(
-    "Channel Funding 0.00000 DCRcpa-0"
+    "Channel Funding 0.00000 EXCCcpa-0"
   );
   user.click(screen.getByText("Channel Funding"));
   expect(screen.getByText("Channel Created")).toBeInTheDocument();
@@ -122,7 +122,7 @@ test("test recent activity list", async () => {
 
   // sent payment
   expect(screen.getByText("Sent Payment").parentElement.textContent).toBe(
-    "Sent Payment 0.20000 DCRmock-payment-hash-0"
+    "Sent Payment 0.20000 EXCCmock-payment-hash-0"
   );
   user.click(screen.getByText("Sent Payment"));
   expect(screen.getByText("Lightning Payment")).toBeInTheDocument();
@@ -130,7 +130,7 @@ test("test recent activity list", async () => {
 
   // invoice
   expect(screen.getAllByText("Invoice for")[0].parentElement.textContent).toBe(
-    "Invoice for 0.00001 DCRmock-rhash-hex-21"
+    "Invoice for 0.00001 EXCCmock-rhash-hex-21"
   );
   user.click(screen.getAllByText("Invoice for")[1]);
   expect(screen.getByText("Lightning Payment Request")).toBeInTheDocument();

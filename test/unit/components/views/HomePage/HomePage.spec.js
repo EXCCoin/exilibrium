@@ -116,7 +116,7 @@ test("test HomePage with an immature ticket", async () => {
   expect(
     screen.getByText(/Immature Rewards/i).parentNode.textContent
   ).toMatchInlineSnapshot(
-    '"Immature Rewards:3.00000 DCRLocked by tickets:60.62799897 DCRImmature Staking Rewards:4.00000 DCRUnconfirmed:2.00000 DCR"'
+    '"Immature Rewards:3.00000 EXCCLocked by tickets:60.62799897 EXCCImmature Staking Rewards:4.00000 EXCCUnconfirmed:2.00000 EXCC"'
   );
 
   // go to Tickets tab
@@ -125,12 +125,12 @@ test("test HomePage with an immature ticket", async () => {
   expect(
     screen.getByText(/active and locked ticket/i).parentNode.textContent
   ).toMatchInlineSnapshot(
-    '"1 active and locked ticketWith a total value of 60.62799897 DCR"'
+    '"1 active and locked ticketWith a total value of 60.62799897 EXCC"'
   );
   expect(
     screen.getByText(/voted tickets/i).parentNode.textContent
   ).toMatchInlineSnapshot(
-    '"6 voted ticketsEarned 0.26327053 DCR in staking rewards"'
+    '"6 voted ticketsEarned 0.26327053 EXCC in staking rewards"'
   );
 
   // go to Transactions tab
@@ -138,23 +138,23 @@ test("test HomePage with an immature ticket", async () => {
   await wait(() => screen.getByText(/sent/i));
   expect(
     screen.getAllByText(/received/i)[0].parentNode.textContent
-  ).toMatchInlineSnapshot('"3.00000 DCRReceived"');
+  ).toMatchInlineSnapshot('"3.00000 EXCCReceived"');
   expect(
     screen.getByText(/sent/i).parentNode.textContent
-  ).toMatchInlineSnapshot('"-2.0017449 DCRSent"');
+  ).toMatchInlineSnapshot('"-2.0017449 EXCCSent"');
 
   // check transactions
   expect(
     screen.getByText(/recent transactions/i).parentNode.textContent
   ).toMatchInlineSnapshot(
-    '"Recent TransactionsSee all →Received3.00000 DCRto unmixedNov 17, 2021, 13:51Mix-2.00000 DCRFrom mixedto mockO...put21Nov 17, 2021, 13:51"'
+    '"Recent TransactionsSee all →Received3.00000 EXCCto unmixedNov 17, 2021, 13:51Mix-2.00000 EXCCFrom mixedto mockO...put21Nov 17, 2021, 13:51"'
   );
 
   // check tickets
   expect(
     screen.getByText(/staking activity/i).parentNode.textContent
   ).toMatchInlineSnapshot(
-    '"Staking ActivitySee all →Ticket, LiveNov 17, 2021, 13:35Ticket Price: 60.62796917 DCR60.62796917 DCRFee StatusPaidTicket, VoteNov 3, 2021, 08:46Ticket Price: 69.25100364 DCR69.25100364 DCRTicket Reward: 0.03062042 DCR0.03DCRTicket Days To Vote: 22 daysmixed"'
+    '"Staking ActivitySee all →Ticket, LiveNov 17, 2021, 13:35Ticket Price: 60.62796917 EXCC60.62796917 EXCCFee StatusPaidTicket, VoteNov 3, 2021, 08:46Ticket Price: 69.25100364 EXCC69.25100364 EXCCTicket Reward: 0.03062042 EXCC0.03EXCCTicket Days To Vote: 22 daysmixed"'
   );
 
   // see all transactions
@@ -174,7 +174,7 @@ test("test HomePage with empty transaction and staking activity", () => {
   expect(
     screen.getByText(/no transactions yet/i).parentNode.textContent
   ).toMatchInlineSnapshot(
-    '"No transactions yetGenerate an EXCC Address for receiving funds →Buy EXCC from Exchanges →"'
+    '"No transactions yetGenerate a EXCC Address for receiving funds →Buy ExchangeCoin from Exchanges →"'
   );
 
   // check tickets

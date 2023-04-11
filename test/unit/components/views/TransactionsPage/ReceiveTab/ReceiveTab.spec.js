@@ -7,7 +7,7 @@ import * as sel from "selectors";
 import * as ca from "actions/ControlActions";
 import * as wl from "wallet";
 import * as ta from "actions/TransactionActions";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 import { fireEvent } from "@testing-library/react";
 import copy from "clipboard-copy";
 jest.mock("clipboard-copy");
@@ -44,10 +44,10 @@ const mockEmptyAccount = {
 };
 const mockMixedAccount = {
   hidden: false,
-  label: "mixed: 249.79547928 DCR",
+  label: "mixed: 249.79547928 EXCC",
   name: "mixed",
   spendable: 24979547928,
-  spendableAndUnit: "249.79547928 DCR",
+  spendableAndUnit: "249.79547928 EXCC",
   total: 24979547928,
   value: mockMixedAccountValue
 };
@@ -109,7 +109,7 @@ beforeEach(() => {
   selectors.getMixedAccount = jest.fn(() => mockMixedAccountValue);
   selectors.nextAddress = jest.fn(() => mockNextAddress);
   selectors.nextAddressAccount = jest.fn(() => mockDefaultAccount);
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
 
   transactionActions.listUnspentOutputs = jest.fn(() => () =>
     Promise.resolve(mockUnspentOutputs)

@@ -5,7 +5,7 @@ import user from "@testing-library/user-event";
 export const GETNEXTADDRESS_SUCCESS = "GETNEXTADDRESS_SUCCESS";
 import * as sel from "selectors";
 import * as ta from "actions/TransactionActions";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 import { mockStakeTransactions } from "../../TransactionPage/mocks";
 import { cloneDeep } from "fp";
 
@@ -102,7 +102,7 @@ beforeEach(() => {
   selectors.spendingAccounts = jest.fn(() => mockSpendingAccounts);
   selectors.isTrezor = jest.fn(() => false);
   selectors.isWatchingOnly = jest.fn(() => false);
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
   mockGetTransactions = transactionActions.getTransactions = jest.fn(
     () => () => {}
   );

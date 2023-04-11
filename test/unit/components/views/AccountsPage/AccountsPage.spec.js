@@ -5,7 +5,7 @@ import user from "@testing-library/user-event";
 import * as sel from "selectors";
 import * as ca from "actions/ControlActions";
 import * as cla from "actions/ClientActions";
-import { DCR } from "constants";
+import {DCR} from "constants";
 const selectors = sel;
 const controlActions = ca;
 const clientAction = cla;
@@ -149,14 +149,14 @@ test("test the Primary account", async () => {
   // default account
   const account = screen.getByText("Primary Account");
   expect(account.nextElementSibling.textContent).toMatchInlineSnapshot(
-    '"95.51454006 EXCCSpendable:95.51454006 DCR"'
+    '"95.51454006 EXCCSpendable:95.51454006 EXCC"'
   );
 
   // show account details
   user.click(account);
   await wait(() => expect(getBalances()).toBeInTheDocument());
   expect(getBalancesTextContent()).toMatchInlineSnapshot(
-    '"BalancesTotal95.51454006 DCRSpendable95.51454006 DCRImmature Rewards0.00000 DCRLocked By Tickets0.00000 DCRVoting Authority58.02257025 DCRImmature Staking Rewards0.00000 DCRUnconfirmed0.00000 DCR"'
+    '"BalancesTotal95.51454006 EXCCSpendable95.51454006 EXCCImmature Rewards0.00000 EXCCLocked By Tickets0.00000 EXCCVoting Authority58.02257025 EXCCImmature Staking Rewards0.00000 EXCCUnconfirmed0.00000 EXCC"'
   );
   expect(getPropertiesTextContent()).toMatchInlineSnapshot(
     "\"PropertiesAccount number0HD Pathm / 44' / 1' / 0'Keys418 external, 437 internal, 0 imported\""
@@ -215,14 +215,14 @@ test("test a common account", async () => {
 
   const commonAccount = screen.getByText(mockBalances[1].accountName);
   expect(commonAccount.nextElementSibling.textContent).toMatchInlineSnapshot(
-    '"481.25138665 DCRSpendable:350.74115317 DCR"'
+    '"481.25138665 EXCCSpendable:350.74115317 EXCC"'
   );
 
   // show account details
   user.click(commonAccount);
   await wait(() => expect(getBalances()).toBeInTheDocument());
   expect(getBalancesTextContent()).toMatchInlineSnapshot(
-    '"BalancesTotal481.25138665 DCRSpendable350.74115317 DCRImmature Rewards0.00000 DCRLocked By Tickets130.51023348 DCRVoting Authority130.51020368 DCRImmature Staking Rewards0.00000 DCRUnconfirmed0.00000 DCR"'
+    '"BalancesTotal481.25138665 EXCCSpendable350.74115317 EXCCImmature Rewards0.00000 EXCCLocked By Tickets130.51023348 EXCCVoting Authority130.51020368 EXCCImmature Staking Rewards0.00000 EXCCUnconfirmed0.00000 EXCC"'
   );
   expect(getPropertiesTextContent()).toMatchInlineSnapshot(
     "\"PropertiesAccount number1HD Pathm / 44' / 1' / 7'Keys188 external, 98 internal, 0 imported\""
@@ -241,14 +241,14 @@ test("test an empy account", async () => {
 
   const emtpyAccount = screen.getByText(mockBalances[2].accountName);
   expect(emtpyAccount.nextElementSibling.textContent).toMatchInlineSnapshot(
-    '"0.00000 DCRSpendable:0.00000 DCR"'
+    '"0.00000 EXCCSpendable:0.00000 EXCC"'
   );
 
   // show account details
   user.click(emtpyAccount);
   await wait(() => expect(getBalances()).toBeInTheDocument());
   expect(getBalancesTextContent()).toMatchInlineSnapshot(
-    '"BalancesTotal0.00000 DCRSpendable0.00000 DCRImmature Rewards0.00000 DCRLocked By Tickets0.00000 DCRVoting Authority0.00000 DCRImmature Staking Rewards0.00000 DCRUnconfirmed0.00000 DCR"'
+    '"BalancesTotal0.00000 EXCCSpendable0.00000 EXCCImmature Rewards0.00000 EXCCLocked By Tickets0.00000 EXCCVoting Authority0.00000 EXCCImmature Staking Rewards0.00000 EXCCUnconfirmed0.00000 EXCC"'
   );
   expect(getPropertiesTextContent()).toMatchInlineSnapshot(
     "\"PropertiesAccount number2HD Pathm / 44' / 1' / 3'Keys2 external, 0 internal, 0 imported\""
@@ -269,7 +269,7 @@ test("test imported account", () => {
   // default account
   const account = screen.getByText("imported");
   expect(account.nextElementSibling.textContent).toMatchInlineSnapshot(
-    '"0.00000 DCRSpendable:0.00000 DCR"'
+    '"0.00000 EXCCSpendable:0.00000 EXCC"'
   );
   user.click(account);
 

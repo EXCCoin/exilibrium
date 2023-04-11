@@ -6,7 +6,7 @@ import user from "@testing-library/user-event";
 export const GETNEXTADDRESS_SUCCESS = "GETNEXTADDRESS_SUCCESS";
 import * as sel from "selectors";
 import * as ta from "actions/TransactionActions";
-import { DCR, BATCH_TX_COUNT } from "constants";
+import { EXCC, BATCH_TX_COUNT } from "constants";
 import { mockRegularTransactions } from "../../TransactionPage/mocks";
 import { cloneDeep } from "fp";
 
@@ -129,7 +129,7 @@ beforeEach(() => {
   selectors.isConstructingTransaction = jest.fn(() => false);
   selectors.constructTxRequestAttempt = jest.fn(() => false);
   selectors.getRunningIndicator = jest.fn(() => false);
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
   transactionActions.listUnspentOutputs = jest.fn(() => () =>
     Promise.resolve([])
   );

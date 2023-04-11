@@ -3,43 +3,43 @@ import { render } from "test-utils.js";
 import user from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 import * as sel from "selectors";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 
 let mockMixedAccountValue = 6;
 
 const mockDefaultAccount = {
   hidden: false,
-  label: "default: 19 DCR",
+  label: "default: 19 EXCC",
   name: "default",
   spendable: 1900000000,
-  spendableAndUnit: "19 DCR",
+  spendableAndUnit: "19 EXCC",
   total: 1900000000,
   value: 0
 };
 const mockUnmixedAccount = {
   hidden: false,
-  label: "unmixed: 249.79547928 DCR",
+  label: "unmixed: 249.79547928 EXCC",
   name: "unmixed",
   spendable: 24979547928,
-  spendableAndUnit: "249.79547928 DCR",
+  spendableAndUnit: "249.79547928 EXCC",
   total: 24979547928,
   value: 1
 };
 const mockAccount2 = {
   hidden: false,
-  label: "account-2: 7.4998063 DCR",
+  label: "account-2: 7.4998063 EXCC",
   name: "account-2",
   spendable: 749980630,
-  spendableAndUnit: "7.4998063 DCR",
+  spendableAndUnit: "7.4998063 EXCC",
   total: 749980630,
   value: 2
 };
 const mockMixedAccount = {
   hidden: false,
-  label: "mixed: 0 DCR",
+  label: "mixed: 0 EXCC",
   name: "mixed",
   spendable: 0,
-  spendableAndUnit: "0 DCR",
+  spendableAndUnit: "0 EXCC",
   total: 0,
   value: mockMixedAccountValue
 };
@@ -60,7 +60,7 @@ const selectors = sel;
 selectors.spendingAccounts = jest.fn(() => mockSpendableAccounts);
 selectors.visibleAccounts = jest.fn(() => mockVisibleAccounts);
 selectors.getMixedAccount = jest.fn(() => mockMixedAccountValue);
-selectors.currencyDisplay = jest.fn(() => DCR);
+selectors.currencyDisplay = jest.fn(() => EXCC);
 const mockOnChange = jest.fn(() => {});
 const testClassName = "test-class-name";
 

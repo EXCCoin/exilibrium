@@ -5,7 +5,7 @@ import { screen, wait, fireEvent } from "@testing-library/react";
 import * as sel from "selectors";
 import * as lna from "actions/LNActions";
 import * as wl from "wallet";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 import {
   mockChannels,
   mockPendingChannels,
@@ -23,7 +23,7 @@ let mockCloseChannel;
 let mockModifyAutopilotStatus;
 
 beforeEach(() => {
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
   selectors.lnPendingChannels = jest.fn(() => mockPendingChannels);
   selectors.lnClosedChannels = jest.fn(() => mockClosedChannels);
   selectors.lnChannels = jest.fn(() => mockChannels);
@@ -55,7 +55,7 @@ test("test channel list", () => {
   expect(screen.getByText("Open").previousSibling.alt).toBe("greenCheck");
   expect(
     screen.getByText("Open").parentNode.parentNode.parentNode.textContent
-  ).toBe("2.00000 DCRcpa-0Open Local:0.7899636 DCR Remote:1.21000 DCRCapacity");
+  ).toBe("2.00000 EXCCcpa-0Open Local:0.7899636 EXCC Remote:1.21000 EXCCCapacity");
 
   // check pending card
   user.click(screen.getByText(mockPendingChannels[0].channelPoint));
@@ -66,7 +66,7 @@ test("test channel list", () => {
   expect(
     screen.getByText("Pending").parentNode.parentNode.parentNode.textContent
   ).toBe(
-    "2.00000 DCRcpp-0Pending Local:0.9999636 DCR Remote:1.00000 DCRCapacity"
+    "2.00000 EXCCcpp-0Pending Local:0.9999636 EXCC Remote:1.00000 EXCCCapacity"
   );
 
   // check closed card
@@ -76,10 +76,10 @@ test("test channel list", () => {
   );
   expect(screen.getByText("Closed").previousSibling.alt).toBe("grayNegative");
   expect(screen.getByText("Settled:").parentElement.textContent).toBe(
-    "Settled:0.47381162 DCR"
+    "Settled:0.47381162 EXCC"
   );
   expect(screen.getByText("Timelocked:").parentElement.textContent).toBe(
-    "Timelocked:0.00000 DCR"
+    "Timelocked:0.00000 EXCC"
   );
 });
 
@@ -196,7 +196,7 @@ test("test create form and receintly created modal", async () => {
 
   expect(
     screen.getAllByText("Open")[1].parentNode.parentNode.parentNode.textContent
-  ).toBe("2.00000 DCRcpa-0Open Local:0.7899636 DCR Remote:1.21000 DCRCapacity");
+  ).toBe("2.00000 EXCCcpa-0Open Local:0.7899636 EXCC Remote:1.21000 EXCCCapacity");
 
   expect(screen.getByText("Channel ID:").nextSibling.textContent).toBe(
     mockChannels[0].chanId
@@ -205,7 +205,7 @@ test("test create form and receintly created modal", async () => {
     mockChannels[0].channelPoint
   );
   expect(screen.getByText("Commit Fee:").nextSibling.textContent).toBe(
-    "0.0000364 DCR"
+    "0.0000364 EXCC"
   );
   expect(screen.getByText("CSV Delay:").nextSibling.textContent).toBe(
     `${mockChannels[0].csvDelay} Blocks`

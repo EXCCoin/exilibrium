@@ -5,7 +5,7 @@ import { screen, wait, fireEvent } from "@testing-library/react";
 import * as sel from "selectors";
 import * as lna from "actions/LNActions";
 import * as cli from "actions/ClientActions";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 import {
   mockChannels,
   mockPendingChannels,
@@ -23,7 +23,7 @@ let mockGoBackHistory;
 
 beforeEach(() => {
   selectors.lnChannelBalances = jest.fn(() => mockLnChannelBalance);
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
   selectors.lnPendingChannels = jest.fn(() => mockPendingChannels);
   selectors.lnClosedChannels = jest.fn(() => mockClosedChannels);
   selectors.lnChannels = jest.fn(() => mockChannels);
@@ -50,7 +50,7 @@ test("open channel details", async () => {
   expect(screen.getByText("Open").previousSibling.alt).toBe("greenCheck");
   expect(
     screen.getByText("Open").parentNode.parentNode.parentNode.textContent
-  ).toBe("2.00000 EXCCcpa-0Open Local:0.7899636 EXCC Remote:1.21000 DCRCapacity");
+  ).toBe("2.00000 EXCCcpa-0Open Local:0.7899636 EXCC Remote:1.21000 EXCCCapacity");
 
   expect(screen.getByText("Channel ID:").nextSibling.textContent).toBe(
     mockChannels[0].chanId
@@ -59,7 +59,7 @@ test("open channel details", async () => {
     mockChannels[0].channelPoint
   );
   expect(screen.getByText("Commit Fee:").nextSibling.textContent).toBe(
-    "0.0000364 DCR"
+    "0.0000364 EXCC"
   );
   expect(screen.getByText("CSV Delay:").nextSibling.textContent).toBe(
     `${mockChannels[0].csvDelay} Blocks`
@@ -71,19 +71,19 @@ test("open channel details", async () => {
     `${mockChannels[0].numUpdates}`
   );
   expect(screen.getByText("Local Reserve:").nextSibling.textContent).toBe(
-    "0.02000 DCR"
+    "0.02000 EXCC"
   );
   expect(screen.getByText("Remote Reserve:").nextSibling.textContent).toBe(
-    "0.02000 DCR"
+    "0.02000 EXCC"
   );
   expect(screen.getByText("Unsettled Balance:").nextSibling.textContent).toBe(
-    "0.00000 DCR"
+    "0.00000 EXCC"
   );
   expect(screen.getByText("Total Sent:").nextSibling.textContent).toBe(
-    "0.21000 DCR"
+    "0.21000 EXCC"
   );
   expect(screen.getByText("Total Received:").nextSibling.textContent).toBe(
-    "0.00000 DCR"
+    "0.00000 EXCC"
   );
 
   const cancelChannelBt = getCancelChannelButton();
@@ -117,7 +117,7 @@ test("pending channel details", () => {
   expect(
     screen.getByText("Pending").parentNode.parentNode.parentNode.textContent
   ).toBe(
-    "2.00000 DCRcpp-0Pending Local:0.9999636 DCR Remote:1.00000 DCRCapacity"
+    "2.00000 EXCCcpp-0Pending Local:0.9999636 EXCC Remote:1.00000 EXCCCapacity"
   );
 
   expect(screen.getByText("Type:").nextSibling.textContent).toBe("Open");
@@ -126,7 +126,7 @@ test("pending channel details", () => {
     mockPendingChannels[0].channelPoint
   );
   expect(screen.getByText("Commit Fee:").nextSibling.textContent).toBe(
-    "0.0000364 DCR"
+    "0.0000364 EXCC"
   );
   expect(screen.queryByText("CSV Delay:")).not.toBeInTheDocument();
   expect(screen.getByText("Remote PubKey:").nextSibling.textContent).toBe(
@@ -150,10 +150,10 @@ test("closed channel details", () => {
 
   expect(screen.getByText("Closed").previousSibling.alt).toBe("grayNegative");
   expect(screen.getByText("Settled:").parentElement.textContent).toBe(
-    "Settled:0.47381162 DCR"
+    "Settled:0.47381162 EXCC"
   );
   expect(screen.getByText("Timelocked:").parentElement.textContent).toBe(
-    "Timelocked:0.00000 DCR"
+    "Timelocked:0.00000 EXCC"
   );
 
   expect(screen.getByText("Channel ID:").nextSibling.textContent).toBe(
@@ -246,10 +246,10 @@ test("test force close pending status", () => {
     `${mockClosingTxid}mockC...gTxid`
   );
   expect(screen.getByText("Limbo Balance:").nextSibling.textContent).toBe(
-    "0.02000 DCR"
+    "0.02000 EXCC"
   );
   expect(screen.getByText("Recovered Balance:").nextSibling.textContent).toBe(
-    "0.01000 DCR"
+    "0.01000 EXCC"
   );
 });
 
@@ -270,7 +270,7 @@ test("test wait close pending status", () => {
   );
   expect(screen.queryByText("Commit Fee:")).not.toBeInTheDocument();
   expect(screen.getByText("Limbo Balance:").nextSibling.textContent).toBe(
-    "0.02000 DCR"
+    "0.02000 EXCC"
   );
   expect(screen.queryByText("Closing Tx:")).not.toBeInTheDocument();
   expect(screen.queryByText("Recovered Balance:")).not.toBeInTheDocument();

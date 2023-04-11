@@ -87,7 +87,7 @@ test("render empty wallet chooser view", async () => {
   ).toBeInTheDocument();
   expect(screen.getByText(/create a new wallet/i)).toBeInTheDocument();
   expect(screen.getByText(/restore existing wallet/i)).toBeInTheDocument();
-  expect(screen.getByText(/about decrediton/i)).toBeInTheDocument();
+  expect(screen.getByText(/about exilibrium/i)).toBeInTheDocument();
   expect(screen.getByText(/choose a wallet to open/i)).toBeInTheDocument();
   expect(screen.getByText(/learn the basics/i)).toBeInTheDocument();
   expect(screen.getByText(/edit wallets/i)).toBeInTheDocument();

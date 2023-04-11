@@ -41,22 +41,22 @@ const mockEmptyUnMixedAccount = {
 };
 const mockUnMixedAccount = {
   hidden: false,
-  label: "unmixed: 10.0000000 DCR",
+  label: "unmixed: 10.0000000 EXCC",
   name: "unmixed",
   accountName: "unmixed",
   spendable: 1000000000,
-  spendableAndUnit: "10.00000 DCR",
+  spendableAndUnit: "10.00000 EXCC",
   total: 0,
   value: 1,
   accountNumber: 1
 };
 const mockMixedAccount = {
   hidden: false,
-  label: "mixed: 249.79547928 DCR",
+  label: "mixed: 249.79547928 EXCC",
   name: "mixed",
   accountName: "mixed",
   spendable: 24979547928,
-  spendableAndUnit: "249.79547928 DCR",
+  spendableAndUnit: "249.79547928 EXCC",
   total: 24979547928,
   value: 2,
   accountNumber: 2
@@ -261,10 +261,10 @@ test("start coin mixer", async () => {
   expect(screen.getByText("Mixer is not running")).toBeInTheDocument();
   expect(
     screen.getByText("Unmixed Balance").parentNode.textContent
-  ).toMatchInlineSnapshot('"10.00000 DCRUnmixed Balance"');
+  ).toMatchInlineSnapshot('"10.00000 EXCCUnmixed Balance"');
   expect(
     screen.getByText("Mixed Balance").parentNode.textContent
-  ).toMatchInlineSnapshot('"249.79547928 DCRMixed Balance"');
+  ).toMatchInlineSnapshot('"249.79547928 EXCCMixed Balance"');
 
   const testPassphrase = "test-passphrase";
   user.click(startMixerButton);
@@ -356,7 +356,7 @@ test("Send to Unmixed Account form", async () => {
     screen.getByText("Send all funds from selected account").nextElementSibling
   );
   expect(screen.getByText("Amount:").nextElementSibling.textContent).toBe(
-    "19.00000 DCR"
+    "19.00000 EXCC"
   );
   user.click(screen.getByText("Cancel sending all funds").nextElementSibling);
   expect(screen.getByLabelText("Amount:").value).toBe("");

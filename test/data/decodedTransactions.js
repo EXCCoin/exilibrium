@@ -24,7 +24,7 @@ export const decodedPurchasedTicketTx = {
       "index": 0,
       "decodedScript": {
         "scriptClass": 6,
-        "address": "TsaqEon1LTaYNUC1yj4mL4rm5ps5UuqvrZN",
+        "address": "TsaqEon1LTaYNUC1yj4mL4rm5ps5UufoT2P",
         "requiredSig": 1,
         "asm": "OP_SSTX OP_DUP OP_HASH160 OP_DATA_20 6ba1f7a65b7f3a1db3455e17b11b48fc55df25b7 OP_EQUALVERIFY OP_CHECKSIG"
       }
@@ -34,7 +34,7 @@ export const decodedPurchasedTicketTx = {
       "version": 0,
       "script": Buffer.from([106, 30, 38, 123, 31, 26, 0, 92, 236, 51, 208, 51, 56, 230, 32, 14, 198, 230, 22, 237, 157, 136, 175, 143, 141, 66, 1, 0, 0, 0, 0, 88]),
       "index": 1,
-      "decodedScript": { "address": "TsUXbeUq2GBNkxFd3iYC8Qk9cjyRqJ86FCH", "scriptClass": 0, "requiredSig": 0 }
+      "decodedScript": { "address": "TsUXbeUq2GBNkxFd3iYC8Qk9cjyRqEb21nZ", "scriptClass": 0, "requiredSig": 0 }
     },
     {
       "value": 0,
@@ -43,7 +43,7 @@ export const decodedPurchasedTicketTx = {
       "index": 2,
       "decodedScript": {
         "scriptClass": 9,
-        "address": "TsR28UZRprhgQQhzWns2M6cAwchrNVvbYq2",
+        "address": "TsR28UZRprhgQQhzWns2M6cAwchrNTGZrWw",
         "requiredSig": 1,
         "asm": "OP_SSTXCHANGE OP_DUP OP_HASH160 OP_DATA_20 0000000000000000000000000000000000000000 OP_EQUALVERIFY OP_CHECKSIG"
       }
@@ -179,7 +179,7 @@ export const decodedVoteTx = {
         "asm": "OP_SSGEN OP_DUP OP_HASH160 OP_DATA_20 8ee140105be9cf877bc9d669b055c64f43931869 OP_EQUALVERIFY OP_CHECKSIG",
         "requiredSig": 1,
         "scriptClass": 7,
-        "address": "Tse3cGTiwBbZQYa3e4i4BiEdGQhSLpaaFvB"
+        "address": "Tse3cGTiwBbZQYa3e4i4BiEdGQhSLsi3hbh"
       }
     }
   ],

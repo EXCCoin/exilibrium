@@ -44,7 +44,7 @@ test("test click on atom balance", () => {
   expect(mockClick).toHaveBeenCalled();
 });
 
-test("test click on DCR balance", () => {
+test("test click on EXCC balance", () => {
   const mockClick = jest.fn(() => {});
   mockCurrencyDisplay = DCR;
   render(<Balance amount="420000001" onClick={mockClick} />);
@@ -80,7 +80,7 @@ test("test title balance format", () => {
   expect(screen.getByText(DCR).className).toMatch(/title/i);
 });
 
-test("test bold format on DCR balance", () => {
+test("test bold format on EXCC balance", () => {
   mockCurrencyDisplay = DCR;
   render(<Balance amount="420000001" bold />);
   expect(screen.getByText("4.20").className).toMatch(/bold/i);
@@ -93,8 +93,8 @@ test("test bold format on atoms balance", () => {
   expect(screen.getByText("42").className).toMatch(/bold/i);
 });
 
-test("test if the amount is prescaled on DCR balance", () => {
+test("test if the amount is prescaled on EXCC balance", () => {
   mockCurrencyDisplay = DCR;
   render(<Balance amount="42" preScaled />);
-  expect(screen.getByText(DCR).parentElement.textContent).toBe("42.00000 DCR");
+  expect(screen.getByText('EXCC').parentElement.textContent).toBe("42.00000 EXCC");
 });

@@ -2,7 +2,7 @@ import { ReceiveTab } from "components/views/LNPage/ReceiveTab";
 import { render } from "test-utils.js";
 import user from "@testing-library/user-event";
 import { screen, wait } from "@testing-library/react";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 import * as sel from "selectors";
 import * as lna from "actions/LNActions";
 import {
@@ -19,7 +19,7 @@ const lnActions = lna;
 let mockCancelInvoice;
 let mockAddInvoice;
 beforeEach(() => {
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
   selectors.lnPendingChannels = jest.fn(() => mockPendingChannels);
   selectors.lnClosedChannels = jest.fn(() => mockClosedChannels);
   selectors.lnChannels = jest.fn(() => mockChannels);
@@ -41,9 +41,9 @@ test("test invoice list and modal ", async () => {
       .getAllByText(/Invoice for/i)
       .map((node) => node.parentElement.textContent)
   ).toStrictEqual([
-    `Invoice for 0.10000 DCR${mockInvoices[0].rHashHex}`,
-    `Invoice for 0.00001 DCR${mockInvoices[1].rHashHex}`,
-    `Invoice for 0.00001 DCR${mockInvoices[2].rHashHex}`
+    `Invoice for 0.10000 EXCC${mockInvoices[0].rHashHex}`,
+    `Invoice for 0.00001 EXCC${mockInvoices[1].rHashHex}`,
+    `Invoice for 0.00001 EXCC${mockInvoices[2].rHashHex}`
   ]);
 
   // click on the first (open) invoice and check modal
@@ -149,9 +149,9 @@ test("test filter control", async () => {
       .getAllByText(/Invoice for/i)
       .map((node) => node.parentElement.textContent)
   ).toStrictEqual([
-    `Invoice for 0.10000 DCR${mockInvoices[0].rHashHex}`,
-    `Invoice for 0.00001 DCR${mockInvoices[1].rHashHex}`,
-    `Invoice for 0.00001 DCR${mockInvoices[2].rHashHex}`
+    `Invoice for 0.10000 EXCC${mockInvoices[0].rHashHex}`,
+    `Invoice for 0.00001 EXCC${mockInvoices[1].rHashHex}`,
+    `Invoice for 0.00001 EXCC${mockInvoices[2].rHashHex}`
   ]);
 
   const filterMenuButton = screen.getAllByRole("button", {
@@ -166,7 +166,7 @@ test("test filter control", async () => {
       screen
         .getAllByText(/Invoice for/i)
         .map((node) => node.parentElement.textContent)
-    ).toStrictEqual([`Invoice for 0.00001 DCR${mockInvoices[2].rHashHex}`])
+    ).toStrictEqual([`Invoice for 0.00001 EXCC${mockInvoices[2].rHashHex}`])
   );
 
   user.click(filterMenuButton);
@@ -186,9 +186,9 @@ test("test sort control", async () => {
       .getAllByText(/Invoice for/i)
       .map((node) => node.parentElement.textContent)
   ).toStrictEqual([
-    `Invoice for 0.10000 DCR${mockInvoices[0].rHashHex}`,
-    `Invoice for 0.00001 DCR${mockInvoices[1].rHashHex}`,
-    `Invoice for 0.00001 DCR${mockInvoices[2].rHashHex}`
+    `Invoice for 0.10000 EXCC${mockInvoices[0].rHashHex}`,
+    `Invoice for 0.00001 EXCC${mockInvoices[1].rHashHex}`,
+    `Invoice for 0.00001 EXCC${mockInvoices[2].rHashHex}`
   ]);
 
   const sortMenuButton = screen.getAllByRole("button", {
@@ -204,9 +204,9 @@ test("test sort control", async () => {
         .getAllByText(/Invoice for/i)
         .map((node) => node.parentElement.textContent)
     ).toStrictEqual([
-      `Invoice for 0.00001 DCR${mockInvoices[2].rHashHex}`,
-      `Invoice for 0.00001 DCR${mockInvoices[1].rHashHex}`,
-      `Invoice for 0.10000 DCR${mockInvoices[0].rHashHex}`
+      `Invoice for 0.00001 EXCC${mockInvoices[2].rHashHex}`,
+      `Invoice for 0.00001 EXCC${mockInvoices[1].rHashHex}`,
+      `Invoice for 0.10000 EXCC${mockInvoices[0].rHashHex}`
     ])
   );
 });
@@ -219,9 +219,9 @@ test("test search control", async () => {
       .getAllByText(/Invoice for/i)
       .map((node) => node.parentElement.textContent)
   ).toStrictEqual([
-    `Invoice for 0.10000 DCR${mockInvoices[0].rHashHex}`,
-    `Invoice for 0.00001 DCR${mockInvoices[1].rHashHex}`,
-    `Invoice for 0.00001 DCR${mockInvoices[2].rHashHex}`
+    `Invoice for 0.10000 EXCC${mockInvoices[0].rHashHex}`,
+    `Invoice for 0.00001 EXCC${mockInvoices[1].rHashHex}`,
+    `Invoice for 0.00001 EXCC${mockInvoices[2].rHashHex}`
   ]);
 
   const searchInput = screen.getByPlaceholderText("Filter by Payment Hash");
@@ -233,8 +233,8 @@ test("test search control", async () => {
         .getAllByText(/Invoice for/i)
         .map((node) => node.parentElement.textContent)
     ).toStrictEqual([
-      `Invoice for 0.00001 DCR${mockInvoices[1].rHashHex}`,
-      `Invoice for 0.00001 DCR${mockInvoices[2].rHashHex}`
+      `Invoice for 0.00001 EXCC${mockInvoices[1].rHashHex}`,
+      `Invoice for 0.00001 EXCC${mockInvoices[2].rHashHex}`
     ])
   );
 
@@ -245,7 +245,7 @@ test("test search control", async () => {
       screen
         .getAllByText(/Invoice for/i)
         .map((node) => node.parentElement.textContent)
-    ).toStrictEqual([`Invoice for 0.00001 DCR${mockInvoices[2].rHashHex}`])
+    ).toStrictEqual([`Invoice for 0.00001 EXCC${mockInvoices[2].rHashHex}`])
   );
 
   user.type(searchInput, "mock-rhash-22-12");

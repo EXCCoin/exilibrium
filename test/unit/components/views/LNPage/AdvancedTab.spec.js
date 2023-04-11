@@ -2,7 +2,7 @@ import { AdvancedTab } from "components/views/LNPage/AdvancedTab";
 import { render } from "test-utils.js";
 import user from "@testing-library/user-event";
 import { screen, wait } from "@testing-library/react";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 import * as sel from "selectors";
 import * as lna from "actions/LNActions";
 import * as wl from "wallet";
@@ -114,7 +114,7 @@ let mockAddWatchtower;
 let mockGetNodeInfo;
 
 beforeEach(() => {
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
   selectors.lnPendingChannels = jest.fn(() => mockPendingChannels);
   selectors.lnClosedChannels = jest.fn(() => mockClosedChannels);
   selectors.lnChannels = jest.fn(() => mockChannels);
@@ -213,7 +213,7 @@ test("test query node", () => {
   expect(
     screen.getByText(mockNodeInfo.node.alias).parentElement.textContent
   ).toMatchInlineSnapshot(
-    '"PubKey012121212121111111110101021001201201020120102102012010210201201201Aliasmock-node-aliasTotal Capacity107.8484888 DCRLast UpdateSep 8, 2021 11:16:37 PM"'
+    '"PubKey012121212121111111110101021001201201020120102102012010210201201201Aliasmock-node-aliasTotal Capacity107.8484888 EXCCLast UpdateSep 8, 2021 11:16:37 PM"'
   );
 
   // first channel
@@ -221,7 +221,7 @@ test("test query node", () => {
     screen.getByText(mockNodeInfo.channelsList[0].chanPoint).parentElement
       .parentElement.parentElement.parentElement.textContent
   ).toMatchInlineSnapshot(
-    '"Capacity10.00000 DCRChannel Pointmock-chanPoint-0Last UpdateSep 9, 2021 8:02:21 PMCounterpartymock-node-1-pub-1Copy to clipboardPolicyNodeCounterpartyChan DisabledfalsefalseTimelock Delta8080Min HTLC0.00001 DCR0.00001 DCRMax HTLC9.90000 DCR9.90000 DCRLast UpdateSep 7, 2021 3:16:37 PMSep 9, 2021 8:02:21 PM"'
+    '"Capacity10.00000 EXCCChannel Pointmock-chanPoint-0Last UpdateSep 9, 2021 8:02:21 PMCounterpartymock-node-1-pub-1Copy to clipboardPolicyNodeCounterpartyChan DisabledfalsefalseTimelock Delta8080Min HTLC0.00001 EXCC0.00001 EXCCMax HTLC9.90000 EXCC9.90000 EXCCLast UpdateSep 7, 2021 3:16:37 PMSep 9, 2021 8:02:21 PM"'
   );
 
   // second channel
@@ -229,6 +229,6 @@ test("test query node", () => {
     screen.getByText(mockNodeInfo.channelsList[1].chanPoint).parentElement
       .parentElement.parentElement.parentElement.textContent
   ).toMatchInlineSnapshot(
-    '"Capacity1.00000 DCRChannel Pointmock-chanPoint-1Last UpdateSep 7, 2021 3:16:37 PMCounterpartymock-node-2-pub-1Copy to clipboardPolicyNodeCounterpartyChan DisabledtruefalseTimelock Delta8080Min HTLC0.00001 DCR0.00001 DCRMax HTLC0.99000 DCR0.99000 DCRLast UpdateSep 7, 2021 3:16:37 PMMar 21, 2020 10:42:26 PM"'
+    '"Capacity1.00000 EXCCChannel Pointmock-chanPoint-1Last UpdateSep 7, 2021 3:16:37 PMCounterpartymock-node-2-pub-1Copy to clipboardPolicyNodeCounterpartyChan DisabledtruefalseTimelock Delta8080Min HTLC0.00001 EXCC0.00001 EXCCMax HTLC0.99000 EXCC0.99000 EXCCLast UpdateSep 7, 2021 3:16:37 PMMar 21, 2020 10:42:26 PM"'
   );
 });

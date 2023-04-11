@@ -43,7 +43,7 @@ export const MAINNET_scriptDataTest = [
     script: hexToBytes("76a914ad06dd6ddee55cbca9a9e3713bd" +
       "7587509a3056488ac"),
     expected: {
-      "address": "Dsgjncbv1fYMywusjnrSBrzvAde8APEPP1f",
+      "address": "22u1cAScEn6KAf7ktugU4NeqnWckRo2PanKU",
       "requiredSig": 1,
       "scriptClass": 2,
       "asm": "OP_DUP OP_HASH160 OP_DATA_20 ad06dd6ddee55cbca9a9e3713bd7587509a30564 OP_EQUALVERIFY OP_CHECKSIG"
@@ -56,7 +56,7 @@ export const MAINNET_scriptDataTest = [
     script: hexToBytes("a91463bcc565f9e68ee0189dd5cc67f1b" +
       "0e5f02f45cb87"),
     expected: {
-      "address": "DcgYx6SzsWsaTFYEHwZ83wyKntCMiJYrJ3M",
+      "address": "2ca3WVkZBkaznUNLBAY7r2V4SxCXnzBs4waF",
       "requiredSig": 1,
       "scriptClass": 3,
       "asm": "OP_HASH160 OP_DATA_20 63bcc565f9e68ee0189dd5cc67f1b0e5f02f45cb OP_EQUAL"

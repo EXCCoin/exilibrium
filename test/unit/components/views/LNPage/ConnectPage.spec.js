@@ -5,7 +5,7 @@ import { screen, wait } from "@testing-library/react";
 import * as sel from "selectors";
 import * as ca from "actions/ControlActions";
 import * as lna from "actions/LNActions";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 const GETNEXTADDRESS_SUCCESS = "GETNEXTADDRESS_SUCCESS";
 import { mockChannels, mockPendingChannels, mockClosedChannels } from "./mocks";
 
@@ -65,7 +65,7 @@ beforeEach(() => {
   selectors.visibleAccounts = jest.fn(() => mockVisibleAccounts);
   selectors.spendingAccounts = jest.fn(() => mockSpendingAccounts);
   selectors.getMixedAccount = jest.fn(() => mockMixedAccountValue);
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
   mockStartDcrlnd = lnActions.startDcrlnd = jest.fn(() => () => {});
   selectors.nextAddressAccount = jest.fn(() => mockDefaultAccount);
   selectors.nextAddress = jest.fn(() => "mock-next-address");

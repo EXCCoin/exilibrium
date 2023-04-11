@@ -3,12 +3,12 @@ import { useState } from "react";
 import { fireEvent, screen } from "@testing-library/react";
 import { render } from "test-utils.js";
 import * as sel from "selectors";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 
 const selectors = sel;
 
 describe("DcrInput in EXCC mode works", () => {
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
   const expectAfterChange = (targetValue, displayValue) => {
     const Wrapper = () => {
       const [amount, setAmount] = useState(0);

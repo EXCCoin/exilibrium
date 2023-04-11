@@ -121,7 +121,7 @@ const mockMixedAccount = {
   label: "mixed: 249.79547928 EXCC",
   name: "mixed",
   spendable: 24979547928,
-  spendableAndUnit: "249.79547928 DCR",
+  spendableAndUnit: "249.79547928 EXCC",
   total: 24979547928,
   value: mockMixedAccountValue
 };
@@ -208,7 +208,7 @@ test("render LEGACY_PurchasePage", () => {
     `${MIN_RELAY_FEE} EXCC/KB`
   );
   expect(screen.getByText("Tx Fee").nextElementSibling.textContent).toMatch(
-    `${MIN_RELAY_FEE} DCR/KB`
+    `${MIN_RELAY_FEE} EXCC/KB`
   );
   expect(screen.getByText("Expiry").nextElementSibling.textContent).toMatch(
     "16 Blocks"

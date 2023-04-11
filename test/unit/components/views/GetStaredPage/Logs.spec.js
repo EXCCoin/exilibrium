@@ -5,10 +5,10 @@ import user from "@testing-library/user-event";
 import * as wa from "wallet";
 import * as sel from "selectors";
 
-const testDcrdLogString = "test-dcrd-log";
-const testDcrwalletLogString = "test-dcrwallet-log";
-const testDcrDecreditonLogString = "test-dcrdecrediton-log";
-const testDcrlnLogString = "test-dcrln-log";
+const testDcrdLogString = "test-exccd-log";
+const testDcrwalletLogString = "test-exccwallet-log";
+const testDcrDecreditonLogString = "test-exccexilibrium-log";
+const testDcrlnLogString = "test-exccln-log";
 const wallet = wa;
 const selectors = sel;
 
@@ -67,11 +67,11 @@ const collapseLogs = async (linkText, expectedLogs) => {
 test("render default logs page", async () => {
   render(<Logs />);
 
-  expect(screen.queryByText(/dcrwallet/i)).not.toBeInTheDocument();
-  expect(screen.queryByText(/dcrlnd/i)).not.toBeInTheDocument();
+  expect(screen.queryByText(/exccwallet/i)).not.toBeInTheDocument();
+  expect(screen.queryByText(/excclnd/i)).not.toBeInTheDocument();
 
-  await expandLogs("decrediton", testDcrDecreditonLogString);
-  expect(screen.getByText("dcrd")).toBeInTheDocument();
+  await expandLogs("exilibrium", testDcrDecreditonLogString);
+  expect(screen.getByText("exccd")).toBeInTheDocument();
 
   expect(mockGetDcrdLogs).toHaveBeenCalled();
   expect(mockGetDcrwalletLogs).toHaveBeenCalled();
@@ -90,22 +90,22 @@ test("render all logs and test if auto refresh is working", async () => {
   expect(mockLnActive).toHaveBeenCalled();
 
   // test expand logs
-  await expandLogs("decrediton", testDcrDecreditonLogString);
-  await expandLogs("dcrd", testDcrdLogString);
-  await expandLogs("dcrwallet", testDcrwalletLogString);
-  await expandLogs("dcrlnd", testDcrlnLogString);
+  await expandLogs("exilibrium", testDcrDecreditonLogString);
+  await expandLogs("exccd", testDcrdLogString);
+  await expandLogs("exccwallet", testDcrwalletLogString);
+  await expandLogs("excclnd", testDcrlnLogString);
 
   // test collapse logs
-  await collapseLogs("decrediton", testDcrDecreditonLogString);
-  await collapseLogs("dcrd", testDcrdLogString);
-  await collapseLogs("dcrwallet", testDcrwalletLogString);
-  await collapseLogs("dcrlnd", testDcrlnLogString);
+  await collapseLogs("exilibrium", testDcrDecreditonLogString);
+  await collapseLogs("exccd", testDcrdLogString);
+  await collapseLogs("exccwallet", testDcrwalletLogString);
+  await collapseLogs("excclnd", testDcrlnLogString);
 
   // test reexpand logs
-  await expandLogs("decrediton", testDcrDecreditonLogString);
-  await expandLogs("dcrd", testDcrdLogString);
-  await expandLogs("dcrwallet", testDcrwalletLogString);
-  await expandLogs("dcrlnd", testDcrlnLogString);
+  await expandLogs("exilibrium", testDcrDecreditonLogString);
+  await expandLogs("exccd", testDcrdLogString);
+  await expandLogs("exccwallet", testDcrwalletLogString);
+  await expandLogs("excclnd", testDcrlnLogString);
 
   // test logs refresh
   mockGetDcrdLogs = wallet.getDcrdLogs = jest.fn(() =>
@@ -142,8 +142,8 @@ test("check ln logs if lnActive is true, but lnStartAttempt is false", async () 
   render(<Logs />);
   expect(mockLnActive).toHaveBeenCalled();
   expect(mockLnStartAttempt).toHaveBeenCalled();
-  await expandLogs("decrediton", testDcrDecreditonLogString);
-  expect(screen.getByText("dcrlnd")).toBeInTheDocument();
+  await expandLogs("exilibrium", testDcrDecreditonLogString);
+  expect(screen.getByText("excclnd")).toBeInTheDocument();
 });
 
 test("check ln logs if lnActive is false, but lnStartAttempt is true", async () => {
@@ -152,6 +152,6 @@ test("check ln logs if lnActive is false, but lnStartAttempt is true", async () 
   render(<Logs />);
   expect(mockLnActive).toHaveBeenCalled();
   expect(mockLnStartAttempt).toHaveBeenCalled();
-  await expandLogs("decrediton", testDcrDecreditonLogString);
-  expect(screen.getByText("dcrlnd")).toBeInTheDocument();
+  await expandLogs("exilibrium", testDcrDecreditonLogString);
+  expect(screen.getByText("excclnd")).toBeInTheDocument();
 });

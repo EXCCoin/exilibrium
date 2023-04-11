@@ -7,7 +7,7 @@ import * as sel from "selectors";
 import * as ta from "actions/TransactionActions";
 import * as wl from "wallet";
 import * as vspa from "actions/VSPActions";
-import { DCR } from "constants";
+import { EXCC } from "constants";
 import { mockStakeTransactions } from "../../TransactionPage/mocks";
 import { cloneDeep } from "fp";
 import {
@@ -112,10 +112,10 @@ const mockEmptyAccount = {
 };
 const mockMixedAccount = {
   hidden: false,
-  label: "mixed: 249.79547928 DCR",
+  label: "mixed: 249.79547928 EXCC",
   name: "mixed",
   spendable: 24979547928,
-  spendableAndUnit: "249.79547928 DCR",
+  spendableAndUnit: "249.79547928 EXCC",
   total: 24979547928,
   value: mockMixedAccountValue
 };
@@ -141,7 +141,7 @@ beforeEach(() => {
   selectors.spendingAccounts = jest.fn(() => mockSpendingAccounts);
   selectors.isTrezor = jest.fn(() => false);
   selectors.isWatchingOnly = jest.fn(() => false);
-  selectors.currencyDisplay = jest.fn(() => DCR);
+  selectors.currencyDisplay = jest.fn(() => EXCC);
   mockGetTransactions = transactionActions.getTransactions = jest.fn(
     () => () => {}
   );

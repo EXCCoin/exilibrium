@@ -22,37 +22,37 @@ const mockOutputs = [
 ];
 const mockDefaultAccount = {
   hidden: false,
-  label: "default: 19 DCR",
+  label: "default: 19 EXCC",
   name: "default",
   spendable: 1900000000,
-  spendableAndUnit: "19 DCR",
+  spendableAndUnit: "19 EXCC",
   total: 1900000000,
   value: 0
 };
 const mockAccount2 = {
   hidden: false,
-  label: "account-2: 7.4998063 DCR",
+  label: "account-2: 7.4998063 EXCC",
   name: "account-2",
   spendable: 749980630,
-  spendableAndUnit: "7.4998063 DCR",
+  spendableAndUnit: "7.4998063 EXCC",
   total: 749980630,
   value: 2
 };
 const mockEmptyAccount = {
   hidden: false,
-  label: "empty: 0.0000000 DCR",
+  label: "empty: 0.0000000 EXCC",
   name: "empty",
   spendable: 0,
-  spendableAndUnit: "0.00000 DCR",
+  spendableAndUnit: "0.00000 EXCC",
   total: 0,
   value: 3
 };
 const mockMixedAccount = {
   hidden: false,
-  label: "mixed: 249.79547928 DCR",
+  label: "mixed: 249.79547928 EXCC",
   name: "mixed",
   spendable: 24979547928,
-  spendableAndUnit: "249.79547928 DCR",
+  spendableAndUnit: "249.79547928 EXCC",
   total: 24979547928,
   value: mockMixedAccountValue
 };
@@ -226,7 +226,7 @@ test("render SendTab within its parent", () => {
     mockMixedAccount.spendableAndUnit
   );
   expect(detailsValueColumn.textContent).toMatch(
-    /0.00000 DCR0.00000 DCR0 Bytes/
+    /0.00000 EXCC0.00000 EXCC0 Bytes/
   ); // Total amount spending, Estimated Fee, Estimated Size
   expect(sendSelfButton.disabled).toBe(false);
   expect(sendAllButton.disabled).toBe(false);
@@ -235,9 +235,9 @@ test("render SendTab within its parent", () => {
     screen.queryByText(/Unsigned Raw Transaction:/)
   ).not.toBeInTheDocument();
 
-  expect(screen.getByText(/mainnet EXCC addresses/i).textContent)
+  expect(screen.getByText(/Mainnet ExchangeCoin addresses/i).textContent)
     .toMatchInlineSnapshot(`
-    "Mainnet EXCC addresses always begin with numbers 22 and contain 26-35 alphanumeric characters
+    "Mainnet ExchangeCoin addresses always begin with letter 2 and contain 26-35 alphanumeric characters
     (e.g. 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
   `);
 });
@@ -246,10 +246,10 @@ test("render SendTab within its parent in testnet mode", () => {
   mockIsTestNet = selectors.isTestNet = jest.fn(() => true);
   render(<TransactionsPage />);
 
-  expect(screen.getByText(/testnet EXCC addresses/i).textContent)
+  expect(screen.getByText(/testnet ExchangeCoin addresses/i).textContent)
     .toMatchInlineSnapshot(`
-    "Testnet EXCC addresses always begin with letters Ts and contain 26-35 alphanumeric characters
-    (e.g. TsxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
+    "Testnet ExchangeCoin addresses always begin with letter T and contain 26-35 alphanumeric characters
+    (e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
   `);
 });
 
@@ -402,7 +402,7 @@ test("construct a valid transaction", async () => {
   await fillOutputForm(0);
 
   expect(getDetailsValueColumn().textContent).toMatch(
-    /56.0000585 DCR0.0000585 DCR585 Bytes/
+    /56.0000585 EXCC0.0000585 EXCC585 Bytes/
   );
 
   const sendButton = getSendButton();
