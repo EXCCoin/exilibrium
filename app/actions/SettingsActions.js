@@ -4,10 +4,6 @@ import { wallet } from "wallet-preload-shim";
 import * as sel from "selectors";
 import { closeWalletRequest } from "actions/WalletLoaderActions";
 import { closeDaemonRequest, backToCredentials } from "actions/DaemonActions";
-import {
-  resetTreasuryBalance
-} from "actions/ClientActions";
-import { EXTERNALREQUEST_DCRDATA } from "constants";
 import * as configConstants from "constants/config";
 
 export const SETTINGS_SAVE = "SETTINGS_SAVE";
