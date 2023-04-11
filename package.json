@@ -16,7 +16,7 @@
     "build-renderer": "webpack --config webpack/ui.prod.js --progress=profile --color",
     "build-trezor": "webpack --config webpack/trezor.js --progress=profile --color",
     "build-preload": "webpack --config webpack/preload.prod.js --progress=profile --color",
-    "build": "yarn build-trezor && yarn build-preload &&  yarn build-main && yarn build-renderer",
+    "build": "yarn build-preload &&  yarn build-main && yarn build-renderer",
     "rebuild-natives": "node_modules/.bin/electron-rebuild",
     "rebuild-dexc": "cd modules/dex && npm run install",
     "start": "cross-env NODE_ENV=production electron ./app/ --debug --custombinpath=./bin",
@@ -107,7 +107,6 @@
       "<rootDir>/app/middleware/ln/google/",
       "<rootDir>/bin/",
       "<rootDir>/app/dist/",
-      "<rootDir>/app/dist-trezor/",
       "<rootDir>/app/i18n/lib/"
     ]
   },
