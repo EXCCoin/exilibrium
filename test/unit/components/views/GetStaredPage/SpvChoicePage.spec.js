@@ -27,7 +27,7 @@ test("render SPV choice page", () => {
   const spvLabel = screen.getByText(/simple payment verification \(spv\)/i);
   expect(spvLabel).toBeInTheDocument();
   expect(spvLabel.nextSibling.textContent).toMatchInlineSnapshot(
-    '"Select how Decrediton should connect to the Decred network. You can change this in the application settings later. For more in-depth information about SPV and how it works, you can go here"'
+    '"Select how Exilibrium should connect to the ExchangeCoin network. You can change this in the application settings later. For more in-depth information about SPV and how it works, you can go here"'
   );
 
   const enableSpvLabel = screen.getByText(/enable spv/i);
@@ -42,7 +42,7 @@ test("render SPV choice page", () => {
   const disableSpvLabel = screen.getByText(/disable spv/i);
   expect(disableSpvLabel).toBeInTheDocument();
   expect(disableSpvLabel.nextSibling.textContent).toMatchInlineSnapshot(
-    '"This will use the regular Decred daemon and fully verify blocks.  This will take longer but is fully secure.  Any block or mined transaction can be fully trusted."'
+    '"This will use the regular ExchangeCoin daemon and fully verify blocks.  This will take longer but is fully secure.  Any block or mined transaction can be fully trusted."'
   );
   user.click(disableSpvLabel);
   expect(mockToggleSpv).toHaveBeenCalledWith(false);

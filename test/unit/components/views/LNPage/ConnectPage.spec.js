@@ -12,28 +12,28 @@ import { mockChannels, mockPendingChannels, mockClosedChannels } from "./mocks";
 const mockMixedAccountValue = 6;
 const mockDefaultAccount = {
   hidden: false,
-  label: "default: 19 DCR",
+  label: "default: 19 EXCC",
   name: "default",
   spendable: 1900000000,
-  spendableAndUnit: "19 DCR",
+  spendableAndUnit: "19 EXCC",
   total: 1900000000,
   value: 0
 };
 const mockLnAccount = {
   hidden: false,
-  label: "ln account: 0.0000000 DCR",
+  label: "ln account: 0.0000000 EXCC",
   name: "ln account",
   spendable: 0,
-  spendableAndUnit: "0.00000 DCR",
+  spendableAndUnit: "0.00000 EXCC",
   total: 0,
   value: 3
 };
 const mockMixedAccount = {
   hidden: false,
-  label: "mixed: 249.79547928 DCR",
+  label: "mixed: 249.79547928 EXCC",
   name: "mixed",
   spendable: 24979547928,
-  spendableAndUnit: "249.79547928 DCR",
+  spendableAndUnit: "249.79547928 EXCC",
   total: 24979547928,
   value: mockMixedAccountValue
 };

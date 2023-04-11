@@ -464,7 +464,7 @@ test("test getVSPTicketStatus (in testnet mode the fee tx hash url should point 
   expect(res).toStrictEqual(mockVSPTicketInfoResponse.data);
   expect(res).toHaveProperty(
     "feetxUrl",
-    `https://testnet.decred.org/tx/${mockVSPTicketInfoResponse.data.feetxhash}`
+    `https://testnet-explorer.excc.co/tx/${mockVSPTicketInfoResponse.data.feetxhash}`
   );
 });
 

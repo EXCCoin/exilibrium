@@ -19,22 +19,22 @@ const snackbarActions = sa;
 
 const mockDefaultAccount = {
   hidden: false,
-  label: "default: 19 DCR",
+  label: "default: 19 EXCC",
   name: "default",
   accountName: "default",
   spendable: 1900000000,
-  spendableAndUnit: "19 DCR",
+  spendableAndUnit: "19 EXCC",
   total: 1900000000,
   value: 0,
   accountNumber: 0
 };
 const mockEmptyUnMixedAccount = {
   hidden: false,
-  label: "unmixed: 0.0000000 DCR",
+  label: "unmixed: 0.0000000 EXCC",
   name: "unmixed",
   accountName: "unmixed",
   spendable: 0,
-  spendableAndUnit: "0.00000 DCR",
+  spendableAndUnit: "0.00000 EXCC",
   total: 0,
   value: 1,
   accountNumber: 1

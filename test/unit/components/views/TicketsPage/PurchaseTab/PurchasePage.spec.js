@@ -56,7 +56,7 @@ const mockLiveTicketsCount = 7;
 const mockUnspentTicketsCount = 2;
 const mockTotalSubsidy = 400000000;
 const mockLastVotedTicket = null;
-const mockCurrencyDisplay = DCR;
+const mockCurrencyDisplay = EXCC;
 const mockTicketPrice = 6816662938;
 
 let mockPurchaseTicketsAttempt;

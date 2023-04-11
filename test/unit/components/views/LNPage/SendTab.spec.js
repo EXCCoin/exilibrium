@@ -108,7 +108,7 @@ test("test send form with valid lightning request", async () => {
   );
   expect(screen.getByText("Valid Lightning Request")).toBeInTheDocument();
   expect(screen.getByText("Amount").parentNode.textContent).toMatch(
-    "Amount0.01000 DCR"
+    "Amount0.01000 EXCC"
   );
   expect(screen.getByText("Destination").parentNode.textContent).toMatch(
     "Destinationmock-...ation"

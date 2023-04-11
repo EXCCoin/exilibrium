@@ -50,7 +50,7 @@ test("open channel details", async () => {
   expect(screen.getByText("Open").previousSibling.alt).toBe("greenCheck");
   expect(
     screen.getByText("Open").parentNode.parentNode.parentNode.textContent
-  ).toBe("2.00000 DCRcpa-0Open Local:0.7899636 DCR Remote:1.21000 DCRCapacity");
+  ).toBe("2.00000 EXCCcpa-0Open Local:0.7899636 EXCC Remote:1.21000 DCRCapacity");
 
   expect(screen.getByText("Channel ID:").nextSibling.textContent).toBe(
     mockChannels[0].chanId

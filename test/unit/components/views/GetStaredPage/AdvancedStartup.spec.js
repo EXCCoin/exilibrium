@@ -55,7 +55,7 @@ beforeEach(() => {
 
 test("test remote daemon form", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   expect(mockIsAdvancedDaemon).toHaveBeenCalled();
   expect(mockGetRemoteCredentials).toHaveBeenCalled();
@@ -66,7 +66,7 @@ test("test remote daemon form", async () => {
   expect(
     screen.getByText(/complete one of the following/i).textContent
   ).toMatchInlineSnapshot(
-    '"Complete one of the following forms to start Decrediton according to your local setup."'
+    '"Complete one of the following forms to start Exilibrium according to your local setup."'
   );
 
   //test toggle control
@@ -123,7 +123,7 @@ test("test remote daemon form", async () => {
 
 test("test local daemon form", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   user.click(screen.getByTestId("switch"));
   expect(screen.getByText("Daemon Data Directory:")).toBeInTheDocument();
@@ -146,7 +146,7 @@ test("test local daemon form", async () => {
 
 test("test skip link", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   user.click(screen.getByText(/skip/i));
   await wait(() => screen.getByText(testStartDaemonErrorMsg));

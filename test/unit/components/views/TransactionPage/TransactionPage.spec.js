@@ -173,7 +173,7 @@ test("regular sent pending tx from default account to an external address", asyn
   await wait(() => getIODetails());
 
   expect(getHeaderTitleIconClassName()).toMatch("out");
-  expect(getTitleText()).toMatch("-8.00000 DCR");
+  expect(getTitleText()).toMatch("-8.00000 EXCC");
 
   expect(getSentFromText()).toMatch("Sent FromdefaultUnconfirmed");
   expect(getTransactionText()).toMatch(`Transaction:${mockTxHash}`);
@@ -181,7 +181,7 @@ test("regular sent pending tx from default account to an external address", asyn
   expect(getToAddressText()).toMatch(
     "To address: TsacvMFSMWcmxT7dj5UHqgrxB3PP6uwnEtY  TsZJt5A55AcCMp8iBu1rkNCxqJ3Bf1MC8Zk"
   );
-  expect(getTransactionFeeText()).toMatch("Transaction fee:0.0000253 DCR");
+  expect(getTransactionFeeText()).toMatch("Transaction fee:0.0000253 EXCC");
 
   user.click(getAbandonTransactionButton());
   expect(mockAbandonTransactionAttempt).toHaveBeenCalledWith(mockTxHash);

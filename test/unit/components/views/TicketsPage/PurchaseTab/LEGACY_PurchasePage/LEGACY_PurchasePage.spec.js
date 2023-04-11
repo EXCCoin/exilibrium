@@ -118,7 +118,7 @@ const mockConfiguredStakePools = [
 const mockMixedAccountValue = 6;
 const mockMixedAccount = {
   hidden: false,
-  label: "mixed: 249.79547928 DCR",
+  label: "mixed: 249.79547928 EXCC",
   name: "mixed",
   spendable: 24979547928,
   spendableAndUnit: "249.79547928 DCR",
@@ -205,7 +205,7 @@ test("render LEGACY_PurchasePage", () => {
     screen.getByText("Current VSP").nextElementSibling.textContent
   ).toMatch(mockConfiguredStakePools[0].Host);
   expect(screen.getByText("Ticket Fee").nextElementSibling.textContent).toMatch(
-    `${MIN_RELAY_FEE} DCR/KB`
+    `${MIN_RELAY_FEE} EXCC/KB`
   );
   expect(screen.getByText("Tx Fee").nextElementSibling.textContent).toMatch(
     `${MIN_RELAY_FEE} DCR/KB`

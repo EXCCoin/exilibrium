@@ -235,10 +235,10 @@ test("render SendTab within its parent", () => {
     screen.queryByText(/Unsigned Raw Transaction:/)
   ).not.toBeInTheDocument();
 
-  expect(screen.getByText(/mainnet Decred addresses/i).textContent)
+  expect(screen.getByText(/mainnet EXCC addresses/i).textContent)
     .toMatchInlineSnapshot(`
-    "Mainnet Decred addresses always begin with letter D and contain 26-35 alphanumeric characters
-    (e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
+    "Mainnet EXCC addresses always begin with numbers 22 and contain 26-35 alphanumeric characters
+    (e.g. 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
   `);
 });
 
@@ -246,10 +246,10 @@ test("render SendTab within its parent in testnet mode", () => {
   mockIsTestNet = selectors.isTestNet = jest.fn(() => true);
   render(<TransactionsPage />);
 
-  expect(screen.getByText(/testnet Decred addresses/i).textContent)
+  expect(screen.getByText(/testnet EXCC addresses/i).textContent)
     .toMatchInlineSnapshot(`
-    "Testnet Decred addresses always begin with letter T and contain 26-35 alphanumeric characters
-    (e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
+    "Testnet EXCC addresses always begin with letters Ts and contain 26-35 alphanumeric characters
+    (e.g. TsxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
   `);
 });
 

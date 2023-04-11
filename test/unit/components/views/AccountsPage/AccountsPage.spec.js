@@ -149,7 +149,7 @@ test("test the Primary account", async () => {
   // default account
   const account = screen.getByText("Primary Account");
   expect(account.nextElementSibling.textContent).toMatchInlineSnapshot(
-    '"95.51454006 DCRSpendable:95.51454006 DCR"'
+    '"95.51454006 EXCCSpendable:95.51454006 DCR"'
   );
 
   // show account details

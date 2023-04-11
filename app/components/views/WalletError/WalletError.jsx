@@ -4,8 +4,8 @@ import styles from "./WalletError.module.css";
 const WalletError = () => {
   const { getNetworkError } = useWalletError();
   return (
-    <div>
-      <div>
+    <div className={styles.view}>
+      <div className={styles.content}>
         {getNetworkError ? (
           <p>
             {getNetworkError} Please verify that your exccd is configured

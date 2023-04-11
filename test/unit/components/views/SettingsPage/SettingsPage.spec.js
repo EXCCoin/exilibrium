@@ -278,7 +278,7 @@ test("test close wallet button (account mixer is running) ", async () => {
   await testConfirmModal(
     changeFn,
     "Account mixer is running",
-    "Account mixer is currently running. Ongoing mixes will be cancelled and no more Decred will be mixed if you proceed.",
+    "Account mixer is currently running. Ongoing mixes will be cancelled and no more ExchangeCoin will be mixed if you proceed.",
     "Close Anyway"
   );
 });
@@ -300,7 +300,7 @@ test("test close wallet button (still finalizing ticket purchases) ", async () =
   await testConfirmModal(
     changeFn,
     "Purchasing Tickets",
-    "Decrediton is still finalizing ticket purchases. Tickets may not be registered with the VSP if you proceed now, which can result in missed votes.",
+    "Exilibrium is still finalizing ticket purchases. Tickets may not be registered with the VSP if you proceed now, which can result in missed votes.",
     "Close Anyway"
   );
 });
@@ -592,8 +592,8 @@ test.each([
   ["Network Information", EXTERNALREQUEST_NETWORK_STATUS],
   ["VSP Listing", EXTERNALREQUEST_STAKEPOOL_LISTING],
   ["Update Check", EXTERNALREQUEST_UPDATE_CHECK],
-  ["Politeia", EXTERNALREQUEST_POLITEIA],
-  ["Decred Block Explorer", EXTERNALREQUEST_DCRDATA]
+  // ["Politeia", EXTERNALREQUEST_POLITEIA], Disabled
+  ["ExchangeCoin Block Explorer", EXTERNALREQUEST_DCRDATA]
 ])("test '%s' Checkbox", testCheckBoxInput);
 
 const getFieldRequiredErrorCount = () => {

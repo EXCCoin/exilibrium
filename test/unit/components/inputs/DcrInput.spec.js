@@ -7,7 +7,7 @@ import { DCR } from "constants";
 
 const selectors = sel;
 
-describe("DcrInput in DCR mode works", () => {
+describe("DcrInput in EXCC mode works", () => {
   selectors.currencyDisplay = jest.fn(() => DCR);
   const expectAfterChange = (targetValue, displayValue) => {
     const Wrapper = () => {

@@ -17,28 +17,28 @@ let mockCopy;
 const mockMixedAccountValue = 6;
 const mockDefaultAccount = {
   hidden: false,
-  label: "default: 19 DCR",
+  label: "default: 19 EXCC",
   name: "default",
   spendable: 1900000000,
-  spendableAndUnit: "19 DCR",
+  spendableAndUnit: "19 EXCC",
   total: 1900000000,
   value: 0
 };
 const mockAccount2 = {
   hidden: false,
-  label: "account-2: 7.4998063 DCR",
+  label: "account-2: 7.4998063 EXCC",
   name: "account-2",
   spendable: 749980630,
-  spendableAndUnit: "7.4998063 DCR",
+  spendableAndUnit: "7.4998063 EXCC",
   total: 749980630,
   value: 2
 };
 const mockEmptyAccount = {
   hidden: false,
-  label: "empty: 0.0000000 DCR",
+  label: "empty: 0.0000000 EXCC",
   name: "empty",
   spendable: 0,
-  spendableAndUnit: "0.00000 DCR",
+  spendableAndUnit: "0.00000 EXCC",
   total: 0,
   value: 3
 };

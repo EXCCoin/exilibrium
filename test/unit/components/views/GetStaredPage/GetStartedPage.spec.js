@@ -78,7 +78,7 @@ beforeEach(() => {
 
 test("render empty wallet chooser view", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   expect(screen.getByText(/logs/i)).toBeInTheDocument();
   expect(screen.getByText(/settings/i)).toBeInTheDocument();
@@ -110,7 +110,7 @@ test("render empty wallet chooser view in SPV mode", async () => {
   mockIsSPV = selectors.isSPV = jest.fn(() => true);
 
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   expect(
     screen.getByText(/choose a wallet to open in spv mode/i)
@@ -121,7 +121,7 @@ test("render empty wallet chooser view in testnet mode", async () => {
   mockIsTestNet = selectors.isTestNet = jest.fn(() => true);
 
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
   expect(screen.getByTestId("getstarted-pagebody").className).toMatch(
     /testnetBody/
   );
@@ -130,16 +130,16 @@ test("render empty wallet chooser view in testnet mode", async () => {
 
 test("render empty wallet chooser view and click-on&test release notes", async () => {
   const readRenderedVersionNumber = (headerText) => {
-    return /Decrediton v(.*) Released/i.exec(headerText)[1].replace(/\D/g, "");
+    return /Exilibrium v(.*) Released/i.exec(headerText)[1].replace(/\D/g, "");
   };
 
   const oldestVersionNumber = 130;
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   user.click(screen.getByText(/what's new in/i));
   await wait(() => screen.getByText(/newer version/i));
-  const header = screen.getByText(/Decrediton (.*) Released/i);
+  const header = screen.getByText(/Exilibrium (.*) Released/i);
   expect(header).toBeInTheDocument();
   const newestVersionNumber = readRenderedVersionNumber(header.textContent);
 
@@ -174,31 +174,31 @@ test("render empty wallet chooser view and click-on&test release notes", async (
 
   // go back to the wallet chooser view
   user.click(screen.getByText(/go back/i).nextElementSibling);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 });
 
 test("click on settings link and go back", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   user.click(screen.getByText(/settings/i));
   await wait(() => screen.getByText(/connectivity/i));
 
   // go back
   user.click(screen.getByText(/go back/i));
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 });
 
 test("click on logs view", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   user.click(screen.getByText(/logs/i));
   await wait(() => screen.queryByText(/system logs/i));
 
   // go back
   user.click(screen.getByText(/go back/i).nextElementSibling);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 });
 
 test("test if app receive daemon connection data from cli", async () => {
@@ -246,7 +246,7 @@ test("start regular daemon and not receive available wallet", async () => {
   mockIsSPV = selectors.isSPV = jest.fn(() => false);
 
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
   expect(mockStartDaemon).toHaveBeenCalled();
   expect(mockSyncDaemon).toHaveBeenCalled();
   expect(mockCheckNetworkMatch).toHaveBeenCalled();
@@ -268,7 +268,7 @@ test("start regular daemon and receive sync daemon error", async () => {
   mockIsSPV = selectors.isSPV = jest.fn(() => false);
 
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
   expect(mockStartDaemon).toHaveBeenCalled();
   expect(mockSyncDaemon).toHaveBeenCalled();
   expect(mockCheckNetworkMatch).not.toHaveBeenCalled();
@@ -289,7 +289,7 @@ test("start regular daemon and receive network match error", async () => {
   mockIsSPV = selectors.isSPV = jest.fn(() => false);
 
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
   expect(mockStartDaemon).toHaveBeenCalled();
   expect(mockSyncDaemon).toHaveBeenCalled();
   expect(mockCheckNetworkMatch).toHaveBeenCalled();

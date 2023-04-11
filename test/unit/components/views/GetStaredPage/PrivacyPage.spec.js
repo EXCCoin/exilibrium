@@ -49,7 +49,7 @@ test("render privacy page", () => {
   const privacyOptionsLabel = screen.getByText(/privacy options/i);
   expect(privacyOptionsLabel).toBeInTheDocument();
   expect(privacyOptionsLabel.nextSibling.textContent).toMatchInlineSnapshot(
-    '"Select how Decrediton should connect to external services. You can change this in the application settings later."'
+    '"Select how Exilibrium should connect to external services. You can change this in the application settings later."'
   );
 
   const standardLabel = screen.getByText(/standard/i);
@@ -97,7 +97,7 @@ test("test custom privacy options", () => {
   expect(
     customPrivacyOptionsLabel.nextSibling.textContent
   ).toMatchInlineSnapshot(
-    '"Select which external requests Decrediton is allowed to make. You can change this later on the app settings page."'
+    '"Select which external requests Exilibrium is allowed to make. You can change this later on the app settings page."'
   );
 
   const updateCheckLabel = screen.getByText(/update check/i);

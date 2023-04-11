@@ -108,7 +108,7 @@ beforeEach(() => {
 
 test("render wallet chooser view", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   expect(mockSortedAvailableWallets).toHaveBeenCalled();
   expect(mockGetSelectedWallet).toHaveBeenCalled();
@@ -164,7 +164,7 @@ test("render wallet chooser view", async () => {
 
 test("test editing wallets", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   user.click(screen.getByText(/edit wallets/i).nextElementSibling);
   expect(screen.getByText("Close")).toBeInTheDocument();
@@ -195,7 +195,7 @@ test("test editing wallets", async () => {
 
 test("launch a wallet", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   const wallet = screen.getByText(testAvailableWallets[1].value.wallet);
   user.click(wallet);
@@ -209,7 +209,7 @@ test("launch a wallet", async () => {
 
 test("launch an encrypted wallet", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   mockStartWallet = daemonActions.startWallet = jest.fn(() => () =>
     Promise.reject(OPENWALLET_INPUT)
@@ -279,7 +279,7 @@ test("launch an encrypted wallet", async () => {
 
 test("ask for passphrase if account discovery is needed", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   mockStartWallet = daemonActions.startWallet = jest.fn(() => () =>
     Promise.reject(OPENWALLET_INPUTPRIVPASS)
@@ -341,7 +341,7 @@ test("ask for passphrase if account discovery is needed", async () => {
 
 test("launch an encrypted wallet and ask private passphrase too if account discovery is needed", async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 
   mockStartWallet = daemonActions.startWallet = jest.fn(() => () =>
     Promise.reject(OPENWALLET_INPUT)
@@ -373,5 +373,5 @@ test("test isSyncingRPC in SPV mode and receive error from SPV sync", async () =
   selectors.isSPV = jest.fn(() => true);
   wlActions.spvSyncAttempt = jest.fn(() => () => Promise.reject());
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
 });

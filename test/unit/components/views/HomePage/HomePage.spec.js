@@ -109,10 +109,10 @@ test("test HomePage with an immature ticket", async () => {
 
   expect(
     screen.getByText("Current Total Balance").parentNode.textContent
-  ).toMatchInlineSnapshot('"132.95846896 DCRCurrent Total Balance"');
+  ).toMatchInlineSnapshot('"132.95846896 EXCCCurrent Total Balance"');
   expect(
     screen.getByText("Locked").parentNode.textContent
-  ).toMatchInlineSnapshot('"60.62799897 DCRLocked"');
+  ).toMatchInlineSnapshot('"60.62799897 EXCCLocked"');
   expect(
     screen.getByText(/Immature Rewards/i).parentNode.textContent
   ).toMatchInlineSnapshot(
@@ -174,7 +174,7 @@ test("test HomePage with empty transaction and staking activity", () => {
   expect(
     screen.getByText(/no transactions yet/i).parentNode.textContent
   ).toMatchInlineSnapshot(
-    '"No transactions yetGenerate a DCR Address for receiving funds →Buy Decred from Exchanges →"'
+    '"No transactions yetGenerate an EXCC Address for receiving funds →Buy EXCC from Exchanges →"'
   );
 
   // check tickets

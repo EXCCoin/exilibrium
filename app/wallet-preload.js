@@ -11,7 +11,7 @@ const api = {
   wallet: wallet,
   walletCrypto: walletCrypto,
   dex: dex,
-  ln: ln,
+  ln: ln
 };
 
 try {

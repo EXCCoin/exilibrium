@@ -93,7 +93,7 @@ beforeEach(() => {
 
 const goToCopySeedView = async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText(/welcome to decrediton wallet/i));
+  await wait(() => screen.getByText(/welcome to exilibrium wallet/i));
   user.click(screen.getByText(/create a new wallet/i));
   await wait(() => screen.getByText("Wallet Name"));
   user.type(screen.getByPlaceholderText(/choose a name/i), testWalletName);
@@ -110,7 +110,7 @@ const goToConfirmView = async () => {
 
 const goToRestoreView = async () => {
   render(<GetStartedPage />);
-  await wait(() => screen.getByText("Welcome to Decrediton Wallet"));
+  await wait(() => screen.getByText("Welcome to Exilibrium Wallet"));
   user.click(screen.getByText("Restore Existing Wallet"));
   await wait(() => screen.getByText("Wallet Name"));
   user.type(screen.getByPlaceholderText("Choose a Name"), testWalletName);

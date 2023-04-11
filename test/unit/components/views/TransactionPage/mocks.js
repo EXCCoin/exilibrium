@@ -687,7 +687,7 @@ const mockStakeTransactionList = [
         "4991d1568d01b57a63beb7544b6d258c9079c3d653d6e648887aeccdf5fdd855032101a01ea122bf76ae63687f52733bc5adce7014a0063dcf7934186571881dd266022002f620c022c825c52ba1ea8f759e397915676b76bad759a7479924f3569ce4f4d80021024530486bffffffff0000000000000002db72ff3f010000000000000000ac88000000000000000000000000000000000000000014a976bd1a000000000000000000004e0000000002db72ff3f99f2338b480e4d0ce14b0ba8dfab9f5f4908b2531e6a2000000000000000000000ac889b2fa19900414497f0fc0576af0bf8f8d9dba85c14a976ba1a000000000002db72f39b03ffffffff000000000092ce48f17cf6a507f401a45d60ecd819443c6246f2f0e366b5614631032e0fb50100000001",
       vspHost: "mockVspHost",
       txUrl:
-        "https://testnet.decred.org/tx/6085cffd75245c4d2ae51c8dbe4651e54addc30693b016e8e061720589714f57"
+        "https://testnet-explorer.excc.co/tx/6085cffd75245c4d2ae51c8dbe4651e54addc30693b016e8e061720589714f57"
     },
     spender: {
       timestamp: 1652874655,
@@ -808,7 +808,7 @@ const mockStakeTransactionList = [
       isMix: false,
       vspHost: "mockVspHost",
       txUrl:
-        "https://testnet.decred.org/tx/6085cffd75245c4d2ae51c8dbe4651e54addc30693b016e8e061720589714f57"
+        "https://testnet-explorer.excc.co/tx/6085cffd75245c4d2ae51c8dbe4651e54addc30693b016e8e061720589714f57"
     },
     spender: {
       timestamp: 1652874655,
@@ -1046,7 +1046,7 @@ const mockStakeTransactionList = [
       isMix: false,
       vspHost: "",
       txUrl:
-        "https://testnet.decred.org/tx/b04ee2e3309a85d0d147e942b8139c3d6f36daf086ce0fd4d53a9069dfa97f99"
+        "https://testnet-explorer.excc.co/tx/b04ee2e3309a85d0d147e942b8139c3d6f36daf086ce0fd4d53a9069dfa97f99"
     }
   },
   // revocation

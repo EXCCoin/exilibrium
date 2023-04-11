@@ -36,10 +36,10 @@ export const mockChangeAccountValue = 6;
 export const mockNumTicketsToBuy = 1;
 export const mockMixedAccount = {
   hidden: false,
-  label: "mixed: 249.79547928 DCR",
+  label: "mixed: 249.79547928 EXCC",
   name: "mixed",
   spendable: 24979547928,
-  spendableAndUnit: "249.79547928 DCR",
+  spendableAndUnit: "249.79547928 EXCC",
   total: 24979547928,
   value: mockMixedAccountValue
 };

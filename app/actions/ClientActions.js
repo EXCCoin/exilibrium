@@ -147,7 +147,6 @@ export const getStartupWalletInfo = () => (dispatch) => {
   const dcrdataEnabled =
     config.get("allowed_external_requests").indexOf(EXTERNALREQUEST_DCRDATA) >
     -1;
-  const politeiaEnabled = -1;
 
   return new Promise((resolve, reject) => {
     setTimeout(async () => {

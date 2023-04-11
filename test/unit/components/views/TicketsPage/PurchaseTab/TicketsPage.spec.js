@@ -21,7 +21,7 @@ const mockLiveTicketsCount = 7;
 const mockUnspentTicketsCount = 2;
 const mockTotalSubsidy = 400000000;
 const mockLastVotedTicket = null;
-const mockCurrencyDisplay = DCR;
+const mockCurrencyDisplay = EXCC;
 const mockTicketPrice = 10399550534;
 
 const selectors = sel;
@@ -88,7 +88,7 @@ const tabShouldBeChecked = (tab) =>
 test("render TicketsPage - show staking warning", async () => {
   render(<TicketsPage />, initialState);
   expect(screen.getByText(/Current Price:/i).textContent).toMatchInlineSnapshot(
-    '"Current Price: 103.99550534 DCR"'
+    '"Current Price: 103.99550534 EXCC"'
   );
 
   const understandButton = getUnderstandButton();
