@@ -1134,7 +1134,7 @@
   "transactions.description.export": "ウォレットから、さまざまなタイプの統計をエクスポート。",
   "transactions.description.history": "総合収支: {totalBalance}",
   "transactions.description.receive": "支払いリクエストの際は、プライバシー保護のため毎回新規アドレスを作成してください。",
-  "transactions.description.send.mainnet": "Mainnet ExchangeCoinのアドレスは常に文字2から始まり、26～35個の英数字を含みます。\n（例: DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X）",
+  "transactions.description.send.mainnet": "Mainnet ExchangeCoinのアドレスは常に文字2から始まり、26～35個の英数字を含みます。\n（例: 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X）",
   "transactions.description.send.testnet": "Testnet ExchangeCoinアドレスは常に文字Tから始まり、26～35個の英数字を含みます。\n（例: TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0）",
   "transactions.sortby.tooltip": "ソート",
   "transactions.tab.export": "エクスポート",

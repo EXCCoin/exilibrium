@@ -1443,7 +1443,7 @@
   "transactions.description.export": "Export different types of statistics from your wallet.",
   "transactions.description.history": "Total Balance: {totalBalance}",
   "transactions.description.receive": "Each time you request a payment, create a new address to protect your privacy.",
-  "transactions.description.send.mainnet": "Mainnet ExchangeCoin addresses always begin with letter 2 and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
+  "transactions.description.send.mainnet": "Mainnet ExchangeCoin addresses always begin with letter 2 and contain 26-35 alphanumeric characters\n(e.g. 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
   "transactions.description.send.testnet": "Testnet ExchangeCoin addresses always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).",
   "transactions.sortby.tooltip": "Sort By",
   "transactions.tab.export": "Export",

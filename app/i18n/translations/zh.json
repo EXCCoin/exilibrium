@@ -1134,7 +1134,7 @@
   "transactions.description.export": "从钱包导出不同类型的统计数据。",
   "transactions.description.history": "总余额： {totalBalance}",
   "transactions.description.receive": "每次您要求付款时，创建一个新的地址以保护您的隐私。",
-  "transactions.description.send.mainnet": "ExchangeCoin主网地址始终以字母D开头，包含26-35个字母数字字符\n（例如DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X）。",
+  "transactions.description.send.mainnet": "ExchangeCoin主网地址始终以字母D开头，包含26-35个字母数字字符\n（例如2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X）。",
   "transactions.description.send.testnet": "ExchangeCoin测试网地址总是以字母T开头，包含26-35个字母数字字符。\n\n（例如，TxxXXXXXxXXXxx0XxXXXxxXxXxXxX0）。",
   "transactions.sortby.tooltip": "分类",
   "transactions.tab.export": "导出",

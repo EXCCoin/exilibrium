@@ -1443,7 +1443,7 @@
   "transactions.description.export": "Exportiere verschiedene Statistiken aus deinem Wallet.",
   "transactions.description.history": "Gesamtguthaben: {totalBalance}",
   "transactions.description.receive": "Erstelle  zum Schutz deiner Privatsphäre bei jeder Zahlungsanfrage eine neue Adresse.",
-  "transactions.description.send.mainnet": "Mainnet-ExchangeCoin-Adressen beginnen immer mit dem Buchstaben 2 und umfassen 26-35 alphanumerische Zeichen\n(z. B. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
+  "transactions.description.send.mainnet": "Mainnet-ExchangeCoin-Adressen beginnen immer mit dem Buchstaben 2 und umfassen 26-35 alphanumerische Zeichen\n(z. B. 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
   "transactions.description.send.testnet": "Testnet-ExchangeCoin-Adressen beginnen immer mit dem Buchstaben T und umfassen 26-35 alphanumerische Zeichen\n(z. B. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).",
   "transactions.sortby.tooltip": "Sortieren nach",
   "transactions.tab.export": "Exportieren",

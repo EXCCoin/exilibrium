@@ -1567,7 +1567,7 @@
   "transactions.description.export": "Esporta diversi tipi di statistiche dal tuo portafoglio.",
   "transactions.description.history": "Saldo Totale: {totalBalance}",
   "transactions.description.receive": "Ogni volta che richiedi un pagamento, crea un nuovo indirizzo per proteggere la tua privacy.",
-  "transactions.description.send.mainnet": "Gli indirizzi mainnet di ExchangeCoin cominciano sempre con la lettera D e contengono 26-35 caratteri alfanumerici (p.e. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)",
+  "transactions.description.send.mainnet": "Gli indirizzi mainnet di ExchangeCoin cominciano sempre con la lettera D e contengono 26-35 caratteri alfanumerici (p.e. 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)",
   "transactions.description.send.testnet": "Gli indirizzi testnet ExchangeCoin iniziano sempre con la lettera T e contengono 26-35 caratteri alfanumerici (i.e TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).",
   "transactions.sortby.tooltip": "Ordina Per",
   "transactions.tab.export": "Esporta",

@@ -1443,7 +1443,7 @@
   "transactions.description.export": "تصدير أنواع مختلفة من الإحصاءات من محفظتك.",
   "transactions.description.history": "الرصيد الإجمالي: {totalBalance}",
   "transactions.description.receive": "في كل مرة تطلب فيها دفع، قم بإنشاء عنوان جديد لحماية خصوصيتك.",
-  "transactions.description.send.mainnet": "تبدأ عناوين الشبكة الرئيسية لديكريد دائمًا بالحرف D وتحتوي على 26-35 حرفًا أبجديًا رقميًا\n(مثل: DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
+  "transactions.description.send.mainnet": "تبدأ عناوين الشبكة الرئيسية لديكريد دائمًا بالحرف D وتحتوي على 26-35 حرفًا أبجديًا رقميًا\n(مثل: 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
   "transactions.description.send.testnet": "تبدأ عناوين شبكة إختبار ديكريد دائمًا بالحرف T وتحتوي على 26-35 حرفًا أبجديًا رقميًا\n(مثال: TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).",
   "transactions.sortby.tooltip": "التصنيف حسب",
   "transactions.tab.export": "التصدير",

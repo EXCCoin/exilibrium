@@ -1124,7 +1124,7 @@
   "transactions.description.export": "匯出各類的錢包統計資料。",
   "transactions.description.history": "總餘額：{totalBalance}",
   "transactions.description.receive": "每次要求付款時，你可以新增一個新地址以保障你的私隱。",
-  "transactions.description.send.mainnet": "ExchangeCoin主網絡(mainnet)的地址永遠都以2字母開頭並為26至35個英數字元\n（如：DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X）",
+  "transactions.description.send.mainnet": "ExchangeCoin主網絡(mainnet)的地址永遠都以2字母開頭並為26至35個英數字元\n（如：2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X）",
   "transactions.description.send.testnet": "ExchangeCoin測試網絡(testnet)的地址永遠都以T字母開頭並為26至35個英數字元\n（如：TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0）",
   "transactions.sortby.tooltip": "排序",
   "transactions.tab.export": "匯出",

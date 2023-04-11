@@ -1134,7 +1134,7 @@
   "transactions.description.export": "Exporte diferentes tipos de estadísticas desde su cartera.",
   "transactions.description.history": "Saldo total: {totalBalance}",
   "transactions.description.receive": "Cree una nueva dirección cada vez que solicite un pago para así proteger su privacidad.",
-  "transactions.description.send.mainnet": "Las direcciones de ExchangeCoin de la red principal (Mainnet) siempre comienzan con la letra 2 y contienen entre 26 y 35 caracteres alfanuméricos\n(por ej.: DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
+  "transactions.description.send.mainnet": "Las direcciones de ExchangeCoin de la red principal (Mainnet) siempre comienzan con la letra 2 y contienen entre 26 y 35 caracteres alfanuméricos\n(por ej.: 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
   "transactions.description.send.testnet": "Las direcciones de ExchangeCoin de la red de pruebas (Testnet) siempre comienzan con la letra T y contienen entre 26 y 35 caracteres alfanuméricos\n(por ej.: TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).",
   "transactions.sortby.tooltip": "Ordenar por",
   "transactions.tab.export": "Exportar",

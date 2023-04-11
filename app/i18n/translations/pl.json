@@ -1134,7 +1134,7 @@
   "transactions.description.export": "Eksportuj różne rodzaje statystyk z portfela.",
   "transactions.description.history": "Całkowite saldo: {totalBalance}",
   "transactions.description.receive": "Za każdym razem, gdy wysyłasz żądanie o płatność, utwórz nowy adres, aby chronić swoją prywatność.",
-  "transactions.description.send.mainnet": "Adresy w sieci głównej ExchangeCoin zawsze rozpoczynają się od litery 2 i zawierają 26-35 znaków alfanumerycznych.\n(np. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
+  "transactions.description.send.mainnet": "Adresy w sieci głównej ExchangeCoin zawsze rozpoczynają się od litery 2 i zawierają 26-35 znaków alfanumerycznych.\n(np. 2xxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
   "transactions.description.send.testnet": "Adresy w sieci testowej ExchangeCoin rozpoczynają się zawsze od litery T i zawierają 26-35 znaków alfanumerycznych.\n(np.  TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).",
   "transactions.sortby.tooltip": "Sortuj według",
   "transactions.tab.export": "Eksportuj",
