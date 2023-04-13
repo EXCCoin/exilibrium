@@ -85,7 +85,7 @@ const ExistingSeedForm = ({
       <SeedError>
         <T
           id="confirmSeed.warnings.pasteExistingError"
-          m="* Please paste a valid 33 word seed."
+          m="* Please paste a valid 24 word seed."
         />
       </SeedError>
     )}

@@ -6,7 +6,7 @@ import { WORDS, HEX, POSITION_ERROR, MISMATCH_ERROR } from "constants";
 import { usePrevious } from "hooks";
 
 const isEqualPreviousSeed = ({ prevSeedWords, seedWords }) => {
-  for (let i = 0; i < 33; i++) {
+  for (let i = 0; i < 24; i++) {
     if (prevSeedWords[i].word !== seedWords[i].word) {
       return false;
     }
@@ -16,7 +16,7 @@ const isEqualPreviousSeed = ({ prevSeedWords, seedWords }) => {
 
 const getEmptySeedWords = () => {
   const seedWords = [];
-  for (let i = 0; i < 33; i++) {
+  for (let i = 0; i < 24; i++) {
     seedWords.push({
       word: "",
       index: i,
@@ -81,7 +81,7 @@ const ExistingSeed = ({
       }
 
       if (seedErrorStr.includes(MISMATCH_ERROR)) {
-        if (populatedSeedWords.length == 33) {
+        if (populatedSeedWords.length == 24) {
           setError(
             <T
               id="existingSeed.errors.seedError"
@@ -183,7 +183,7 @@ const ExistingSeed = ({
       .filter((w) => lowercaseSeedWords.indexOf(w.toLowerCase()) > -1)
       .map((w, i) => ({ index: i, word: w }));
 
-    if (words.length === 33) {
+    if (words.length === 24) {
       setSeedWords(words);
       setShowPasteWarning(true);
       setShowPasteError(false);
