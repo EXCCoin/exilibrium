@@ -16,7 +16,7 @@ import {
   EXTERNALREQUEST_STAKEPOOL_LISTING,
   EXTERNALREQUEST_UPDATE_CHECK,
   EXTERNALREQUEST_POLITEIA,
-  EXTERNALREQUEST_EXCCDATA,
+  EXTERNALREQUEST_DCRDATA,
   VSP_FEE_PROCESS_ERRORED
 } from "constants";
 import { en as enLocale } from "i18n/locales";
@@ -593,7 +593,7 @@ test.each([
   ["VSP Listing", EXTERNALREQUEST_STAKEPOOL_LISTING],
   ["Update Check", EXTERNALREQUEST_UPDATE_CHECK],
   // ["Politeia", EXTERNALREQUEST_POLITEIA], Disabled
-  ["ExchangeCoin Block Explorer", EXTERNALREQUEST_EXCCDATA]
+  ["ExchangeCoin Block Explorer", EXTERNALREQUEST_DCRDATA]
 ])("test '%s' Checkbox", testCheckBoxInput);
 
 const getFieldRequiredErrorCount = () => {

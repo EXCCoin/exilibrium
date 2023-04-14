@@ -5,7 +5,7 @@ import user from "@testing-library/user-event";
 import * as sel from "selectors";
 import * as ca from "actions/ControlActions";
 import * as cla from "actions/ClientActions";
-import {DCR} from "constants";
+import { DCR } from "constants";
 const selectors = sel;
 const controlActions = ca;
 const clientAction = cla;

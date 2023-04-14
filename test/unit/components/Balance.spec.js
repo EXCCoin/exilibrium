@@ -96,5 +96,5 @@ test("test bold format on atoms balance", () => {
 test("test if the amount is prescaled on EXCC balance", () => {
   mockCurrencyDisplay = DCR;
   render(<Balance amount="42" preScaled />);
-  expect(screen.getByText('EXCC').parentElement.textContent).toBe("42.00000 EXCC");
+  expect(screen.getByText("EXCC").parentElement.textContent).toBe("42.00000 EXCC");
 });
