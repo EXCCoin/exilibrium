@@ -45,7 +45,7 @@ export function isValidAddress(addr, network) {
 
   if (network === TESTNET && addr[0] !== "T")
     return ERR_INVALID_ADDR_NETWORKPREFIX;
-  if (network === MAINNET && addr[0] !== "D")
+  if (network === MAINNET && addr[0] !== "2")
     return ERR_INVALID_ADDR_NETWORKPREFIX;
 
   try {
