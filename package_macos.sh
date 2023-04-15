@@ -45,6 +45,10 @@ yarn install --cache-folder ${YARNCACHE}
 yarn rebuild-natives
 yarn package-mac-${ARCH}
 
+if [ ${IDENTITY} == "false" ]; then
+	exit 0
+fi
+
 # submit notarization
 _uuid=$(notary_submit)
 
