@@ -76,7 +76,7 @@ export const CREATE_WALLET_ATTEMPT = "CREATE_WALLET_ATTEMPT";
 export const checkDecreditonVersion = () => (dispatch, getState) => {
   const detectedVersion = getState().daemon.appVersion;
   const releaseApiURL =
-    "https://api.github.com/repos/decred/decrediton/releases";
+    "https://api.github.com/repos/EXCCoin/exilibrium/releases";
   getJSON(releaseApiURL)
     .then(function (response) {
       const currentVersion = response.data[0].tag_name.split("v")[1];
