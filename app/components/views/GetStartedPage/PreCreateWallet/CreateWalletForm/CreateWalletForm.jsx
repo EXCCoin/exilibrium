@@ -167,6 +167,38 @@ const CreateWalletForm = ({
               <div className={styles.advancedOption}>
                 <Checkbox
                   label={
+                    <>
+                      <T id="createwallet.isTrezor.label" m="Trezor" />
+                      <span
+                        className={styles.trezorWallet}
+                        onClick={onShowTrezorConfig}>
+                        <T
+                          id="createWallet.isTrezor.setupLink"
+                          m="(setup device)"
+                        />
+                      </span>
+                    </>
+                  }
+                  id="trezor"
+                  description={intl.formatMessage(
+                    messages.messageWalletTrezorDescription,
+                    {
+                      link: (
+                        <ExternalLink
+                          className={styles.trezorDocs}
+                          href="https://docs.decred.org/wallets/decrediton/trezor/">
+                          docs.decred.org
+                        </ExternalLink>
+                      )
+                    }
+                  )}
+                  checked={isTrezor}
+                  onChange={toggleTrezor}
+                />
+              </div>
+              <div className={styles.advancedOption}>
+                <Checkbox
+                  label={
                     <T
                       id="createwallet.disableCoinTypeUpgrades.label"
                       m="Disable coin type upgrades"
