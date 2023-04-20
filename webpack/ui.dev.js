@@ -7,6 +7,7 @@ const webpack = require("webpack");
 const merge = require("webpack-merge").default;
 const baseConfig = require("./ui.base");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const port = process.env.PORT || 3000;
 
@@ -92,6 +93,13 @@ module.exports = merge(baseConfig, {
 
     new webpack.LoaderOptionsPlugin({
       debug: true
+    }),
+
+    new CopyWebpackPlugin({
+      patterns: [
+        // Copy the generated trezor iframe and code.
+        { from: "./app/dist-trezor", to: "" }
+      ]
     }),
 
     new HtmlWebpackPlugin({

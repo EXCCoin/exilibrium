@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const merge = require("webpack-merge").default;
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const baseConfig = require("./ui.base");
 const webpack = require("webpack");
 
@@ -44,6 +45,13 @@ module.exports = merge(baseConfig, {
 
   plugins: [
     new MiniCssExtractPlugin({ filename: "style.css" }),
+
+    new CopyWebpackPlugin({
+      patterns: [
+        // Copy the generated trezor iframe and code.
+        { from: "./app/dist-trezor", to: "" }
+      ]
+    }),
 
     new HtmlWebpackPlugin({
       filename: "app.html",
