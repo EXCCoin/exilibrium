@@ -2,7 +2,7 @@ import { FormattedMessage as T, defineMessages } from "react-intl";
 import { classNames, Checkbox, Tooltip } from "pi-ui";
 import { TextInput, IntegerInput } from "inputs";
 import { KeyBlueButton, InvisibleButton } from "buttons";
-import { Collapse } from "shared";
+import { Collapse, ExternalLink } from "shared";
 import { NewSeedTabMsg, RestoreTabMsg } from "../../messages";
 import { Label, Input, Row } from "../../helpers";
 import styles from "./CreateWalletForm.module.css";
@@ -64,6 +64,9 @@ const CreateWalletForm = ({
   toggleWatchOnly,
   onChangeCreateWalletMasterPubKey,
   masterPubKeyError,
+  isTrezor,
+  toggleTrezor,
+  onShowTrezorConfig,
   isCreateNewWallet,
   creatingWallet,
   disableCoinTypeUpgrades,
