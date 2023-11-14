@@ -1,6 +1,6 @@
 module github.com/decred/decrediton
 
-go 1.18
+go 1.19
 
 require (
 	decred.org/dcrdex v0.5.6
