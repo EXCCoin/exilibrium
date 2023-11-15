@@ -7,6 +7,7 @@ import * as sel from "selectors";
 import * as clia from "actions/ClientActions";
 import * as ca from "actions/ControlActions";
 import * as wl from "wallet";
+import * as ta from "actions/TransactionActions";
 import { cloneDeep } from "fp";
 import {
   mockRegularTransactions,
@@ -25,6 +26,7 @@ const selectors = sel;
 const clientActions = clia;
 const controlActions = ca;
 const wallet = wl;
+const transactionActions = ta;
 
 let mockTxHash = "";
 const testCurrentBlockHeight = 709245;
@@ -87,6 +89,7 @@ beforeEach(() => {
   wallet.getVSPTicketsByFeeStatus = jest.fn(() =>
     Promise.resolve({ ticketHashes: [] })
   );
+  transactionActions.getTransactions = jest.fn(() => () => {});
 });
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),

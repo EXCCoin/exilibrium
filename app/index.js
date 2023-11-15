@@ -102,7 +102,8 @@ const initialState = {
     trackedTickets: {},
     needsProcessManagedTickets: true,
     canDisableProcessManaged: true,
-    numVSPicketsToBuy: 1
+    numVSPicketsToBuy: 1,
+    usedVSPs: []
   },
   daemon: {
     networkMatch: false,
