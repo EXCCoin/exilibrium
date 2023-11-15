@@ -711,6 +711,8 @@ export default function grpc(state = {}, action) {
         },
         recentRegularTransactions: [],
         recentStakeTransactions: [],
+        regularTransactions: {},
+        stakeTransactions: {},
         ticketBuyerService: null,
         transactionsSinceLastOpened: null,
         votingService: null,
