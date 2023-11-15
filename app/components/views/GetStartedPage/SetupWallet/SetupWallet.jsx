@@ -13,9 +13,8 @@ const SetupWallet = ({
   onShowTutorial,
   onShowReleaseNotes
 }) => {
-  const { getStateComponent, StateComponent } = useWalletSetup(
-    settingUpWalletRef
-  );
+  const { getStateComponent, StateComponent } =
+    useWalletSetup(settingUpWalletRef);
 
   useEffect(() => {
     getStateComponent();

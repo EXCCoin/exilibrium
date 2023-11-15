@@ -38,10 +38,8 @@ const AccountsPageHeader = React.memo(
 );
 
 const AccountsPage = () => {
-  const {
-    isCreateAccountDisabled,
-    onGetNextAccountAttempt
-  } = useAccountsPage();
+  const { isCreateAccountDisabled, onGetNextAccountAttempt } =
+    useAccountsPage();
 
   return (
     <StandalonePage

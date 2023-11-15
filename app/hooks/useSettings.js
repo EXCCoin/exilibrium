@@ -60,9 +60,10 @@ const useSettings = () => {
     [dispatch, isVSPListingEnabled]
   );
 
-  const onCloseWallet = useCallback(() => dispatch(wla.closeWalletRequest()), [
-    dispatch
-  ]);
+  const onCloseWallet = useCallback(
+    () => dispatch(wla.closeWalletRequest()),
+    [dispatch]
+  );
 
   const onAddAllowedRequestType = useCallback(
     (requestType) => dispatch(sa.addAllowedExternalRequest(requestType)),
