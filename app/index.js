@@ -76,7 +76,8 @@ const currentSettings = {
   network: hasCliOption("network") || globalCfg.get(NETWORK),
   networkFromCli: !!hasCliOption("network"),
   theme: globalCfg.get(THEME),
-  uiAnimations: globalCfg.get(cfgConstants.UI_ANIMATIONS)
+  uiAnimations: globalCfg.get(cfgConstants.UI_ANIMATIONS),
+  autoWalletLaunching: globalCfg.get(cfgConstants.AUTO_WALLET_LAUNCHING)
 };
 const initialState = {
   settings: {
@@ -344,7 +345,8 @@ const initialState = {
     changeScriptByAccount: {},
     monitorLockableAccountsTimer: null,
     confirmationDialogModalVisible: false,
-    settingAccountsPassphrase: false
+    settingAccountsPassphrase: false,
+    locaAccountError: null
   },
   snackbar: {
     messages: Array()
@@ -395,6 +397,18 @@ const initialState = {
     pinMessage: null,
     passPhraseMessage: null,
     wordCallBack: null,
+    walletCreationMasterPubkeyAttempt: false,
+    pinProtection: undefined,
+    passphraseProtection: undefined,
+    passphraseOnDeviceProtection: undefined,
+    performingTogglePinProtection: false,
+    performingTogglePassphraseProtection: false,
+    performingTogglePassphraseOnDeviceProtection: false,
+    deviceLabel: undefined
+  },
+  ledger: {
+    enabled: false,
+    device: false,
     walletCreationMasterPubkeyAttempt: false
   },
   ln: {
@@ -462,8 +476,7 @@ const initialState = {
   },
   dex: {
     dexOrdersOpen: false,
-    loggedIn: false,
-    alreadyPaid: false
+    loggedIn: false
   },
   locales: locales
 };

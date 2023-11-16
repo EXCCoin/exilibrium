@@ -7,17 +7,11 @@ import {
   DEX_ENABLE_FAILED,
   DEX_INIT_FAILED,
   DEX_CREATEWALLET_FAILED,
-  DEX_REGISTER_FAILED,
-  DEX_GETCONFIG_FAILED,
-  BTC_CREATEWALLET_FAILED,
   DEX_CHECKINIT_FAILED,
   DEX_LAUNCH_WINDOW_FAILED,
-  CHECK_BTC_CONFIG_FAILED,
   CREATEDEXACCOUNT_FAILED,
   DEX_LOGOUT_FAILED,
   DEX_USER_FAILED,
-  NEW_BTC_CONFIG_FAILED,
-  NEW_BTC_CONFIG_SUCCESS,
   DEX_EXPORT_SEED_FAILED
 } from "actions/DexActions";
 import {
@@ -44,13 +38,16 @@ import {
   STARTTICKETBUYER_FAILED,
   SETACCOUNTSPASSPHRASE_FAILED,
   DISCOVERUSAGE_FAILED,
-  DISCOVERUSAGE_SUCCESS
+  DISCOVERUSAGE_SUCCESS,
+  LOCKACCOUNT_FAILED
 } from "actions/ControlActions";
 import {
   SYNCVSPTICKETS_SUCCESS,
   SYNCVSPTICKETS_FAILED,
   PROCESSMANAGEDTICKETS_FAILED,
   SETVSPDVOTECHOICE_FAILED,
+  SETVSPDVOTECHOICE_SINGLE_FAILED,
+  SETVSPDVOTECHOICE_PARTIAL_SUCCESS,
   GETVSP_TICKET_STATUS_FAILED
 } from "actions/VSPActions";
 import {
@@ -61,7 +58,9 @@ import {
   SETVOTECHOICES_FAILED,
   SETVOTECHOICES_SUCCESS,
   SETTREASURY_POLICY_SUCCESS,
-  SETTREASURY_POLICY_FAILED
+  SETTREASURY_POLICY_FAILED,
+  SETTSPEND_POLICY_SUCCESS,
+  SETTSPEND_POLICY_FAILED
 } from "actions/ClientActions";
 import {
   SNACKBAR_DISMISS_MESSAGES,
@@ -506,11 +505,6 @@ const messages = defineMessages({
     id: "ln.ntf.autopilotStatusModifyFailed",
     defaultMessage: "Failed to modify autopilot status: {originalError}"
   },
-  UPDATEVOTECHOICE_SUCCESS: {
-    id: "governance.ntf.updateVoteChoiceSuccess",
-    defaultMessage:
-      "Your vote has been cast!\nThanks for participating in ExchangeCoin's governance"
-  },
   SETTREASURY_POLICY_SUCCESS: {
     id: "setTreasuryPolicy.updateVoteChoiceSuccess",
     defaultMessage:
@@ -519,6 +513,15 @@ const messages = defineMessages({
   SETTREASURY_POLICY_FAILED: {
     id: "setTreasuryPolicy.updateVoteChoiceFailed",
     defaultMessage: "Set treasury policy failed: {originalError}"
+  },
+  SETTSPEND_POLICY_SUCCESS: {
+    id: "setTSpendPolicy.updateVoteChoiceSuccess",
+    defaultMessage:
+      "Your tspend policy has been successfully updated! Thanks for participating in Decred's governance."
+  },
+  SETTSPEND_POLICY_FAILED: {
+    id: "setTSpendPolicy.updateVoteChoiceFailed",
+    defaultMessage: "Set tspend policy failed: {originalError}"
   },
   CREATEMIXERACCOUNTS_SUCCESS: {
     id: "mixer.ntf.createdAcct",
@@ -548,11 +551,24 @@ const messages = defineMessages({
   SETVOTECHOICES_SUCCESS: {
     id: "set.vote.success",
     defaultMessage:
-      "You have successfully updated your wallet vote choices on any VSPs you may have had set up."
+      "You have successfully updated your wallet vote choices on any VSP you may have had set up."
+  },
+  SETVSPDVOTECHOICE_PARTIAL_SUCCESS: {
+    id: "set.vote.partial.success",
+    defaultMessage:
+      "You have partially updated your wallet vote choices on any VSP you may have had set up."
   },
   SETVSPDVOTECHOICE_FAILED: {
     id: "set.vspdvote.failed",
     defaultMessage: "Set vspd vote choices failed: {originalError}"
+  },
+  SETVSPDVOTECHOICE_SINGLE_FAILED: {
+    id: "set.vspdvote.single.failed",
+    defaultMessage: "Set vspd vote choice failed on {host}. {originalError}"
+  },
+  SETVSPDVOTECHOICE_TIMEOUT_FAILED: {
+    id: "set.vspdvote.timeout.failed",
+    defaultMessage: "Set vspd vote choice timeout exceded on {host}"
   },
   GETVSP_TICKET_STATUS_FAILED: {
     id: "set.getvspticketstatus.failed",
@@ -578,18 +594,6 @@ const messages = defineMessages({
     id: "dex.connectWallet.failed",
     defaultMessage: "Connecting to EXCC wallet Failed: {originalError}"
   },
-  DEX_REGISTER_FAILED: {
-    id: "dex.register.failed",
-    defaultMessage: "Paying DEX Fee Failed: {originalError}"
-  },
-  DEX_GETCONFIG_FAILED: {
-    id: "dex.getConfig.failed",
-    defaultMessage: "Getting DEX Config Failed: {originalError}"
-  },
-  BTC_CREATEWALLET_FAILED: {
-    id: "dex.connectBTCWallet.failed",
-    defaultMessage: "Connect to BTC wallet Failed: {originalError}"
-  },
   DEX_CHECKINIT_FAILED: {
     id: "dex.checkInit.failed",
     defaultMessage:
@@ -598,11 +602,6 @@ const messages = defineMessages({
   DEX_LAUNCH_WINDOW_FAILED: {
     id: "dex.launchWindow.failed",
     defaultMessage: "DEX Windows failed to be launched: {originalError}"
-  },
-  CHECK_BTC_CONFIG_FAILED: {
-    id: "dex.checkBTCConfig.failed",
-    defaultMessage:
-      "Failed to check an existing BTC Config file: {originalError}"
   },
   CREATEDEXACCOUNT_FAILED: {
     id: "dex.createDEXAccount.failed",
@@ -633,15 +632,6 @@ const messages = defineMessages({
     defaultMessage:
       "You have successfully discovered address usage.  Rescan now commencing."
   },
-  NEW_BTC_CONFIG_FAILED: {
-    id: "newBTCConfig.failed",
-    defaultMessage: "{originalError}"
-  },
-  NEW_BTC_CONFIG_SUCCESS: {
-    id: "newBTCConfig.success",
-    defaultMessage:
-      "You have successfully created a default bitcoin config.  Please restart your Bitcoin Core wallet for this config to be used as expected."
-  },
   DEX_EXPORT_SEED_FAILED: {
     id: "dex.export.seed.failed",
     defaultMessage: "{originalError}"
@@ -649,6 +639,10 @@ const messages = defineMessages({
   SETTINGS_SAVE: {
     id: "settings.saved",
     defaultMessage: "Settings saved successfully."
+  },
+  LOCKACCOUNT_FAILED: {
+    id: "accounts.lockFailed",
+    defaultMessage: "Failed to lock account: {originalError}"
   }
 });
 
@@ -684,7 +678,7 @@ export default function snackbar(state = {}, action) {
         break;
       }
 
-      type = tx.direction || TRANSACTION_TYPES[tx.type];
+      type = tx.txDirection || TRANSACTION_TYPES[tx.type];
       message = { ...tx, type };
       values = { message };
       break;
@@ -731,8 +725,9 @@ export default function snackbar(state = {}, action) {
     case SYNCVSPTICKETS_SUCCESS:
     case SETVOTECHOICES_SUCCESS:
     case SETTREASURY_POLICY_SUCCESS:
+    case SETTSPEND_POLICY_SUCCESS:
+    case SETVSPDVOTECHOICE_PARTIAL_SUCCESS:
     case DISCOVERUSAGE_SUCCESS:
-    case NEW_BTC_CONFIG_SUCCESS:
     case SETTINGS_SAVE:
       type = "Success";
       message = messages[action.type] || messages.defaultSuccessMessage;
@@ -812,6 +807,7 @@ export default function snackbar(state = {}, action) {
     case GETWALLETSEEDSVC_FAILED:
     case SPVSYNC_FAILED:
     case SETTREASURY_POLICY_FAILED:
+    case SETTSPEND_POLICY_FAILED:
     case GETACCOUNTEXTENDEDKEY_FAILED:
     case TRZ_TOGGLEPINPROTECTION_FAILED:
     case TRZ_TOGGLEPASSPHRASEPROTECTION_FAILED:
@@ -853,26 +849,23 @@ export default function snackbar(state = {}, action) {
     case PROCESSMANAGEDTICKETS_FAILED:
     case SETVOTECHOICES_FAILED:
     case SETVSPDVOTECHOICE_FAILED:
+    case SETVSPDVOTECHOICE_SINGLE_FAILED:
     case GETVSP_TICKET_STATUS_FAILED:
     case DEX_STARTUP_FAILED:
     case DEX_LOGIN_FAILED:
     case DEX_ENABLE_FAILED:
     case DEX_INIT_FAILED:
     case DEX_CREATEWALLET_FAILED:
-    case DEX_REGISTER_FAILED:
-    case DEX_GETCONFIG_FAILED:
-    case BTC_CREATEWALLET_FAILED:
     case CREATEDEXACCOUNT_FAILED:
     case DEX_CHECKINIT_FAILED:
     case DEX_LAUNCH_WINDOW_FAILED:
-    case CHECK_BTC_CONFIG_FAILED:
     case DEX_LOGOUT_FAILED:
     case DEX_USER_FAILED:
     case STARTTICKETBUYER_FAILED:
     case SETACCOUNTSPASSPHRASE_FAILED:
     case DISCOVERUSAGE_FAILED:
-    case NEW_BTC_CONFIG_FAILED:
     case DEX_EXPORT_SEED_FAILED:
+    case LOCKACCOUNT_FAILED:
       type = "Error";
       if (
         action.error &&
@@ -892,6 +885,12 @@ export default function snackbar(state = {}, action) {
       }
 
       values = { originalError: String(action.error) };
+
+      // custom values for some error messages
+      switch (action.type) {
+        case SETVSPDVOTECHOICE_SINGLE_FAILED:
+          values = { ...values, host: action.host };
+      }
 
       if (process.env.NODE_ENV === "development" && action.error) {
         // in development mode, log failures as errors in the console which helps
