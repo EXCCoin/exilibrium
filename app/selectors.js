@@ -1,7 +1,6 @@
 import {
   compose,
   reduce,
-  filter,
   get,
   not,
   or,
@@ -35,7 +34,7 @@ import {
   UNIT_DIVISOR,
   TESTNET,
   MAINNET,
-  VOTED
+  VOTED,
 } from "constants";
 import { isArray } from "lodash";
 
@@ -403,8 +402,6 @@ export const chainParams = compose(
   isTestNet
 );
 
-export const numTicketsToBuy = get(["control", "numTicketsToBuy"]);
-
 // ****** Transactions selectors ********
 
 // transactions selectors before normalized
@@ -483,14 +480,7 @@ export const canDisableProcessManaged = get([
 
 // ticket auto buyer
 export const getTicketAutoBuyerRunning = get(["vsp", "ticketAutoBuyerRunning"]);
-export const legacyBuyerVSP = get(["control", "legacyVsp"]);
-export const legacyBuyerBalanceToMaintain = get([
-  "control",
-  "legacyBalanceToMaintain"
-]);
-export const legacyBuyerAccount = get(["control", "legacyAccount"]);
 export const getHasVSPTicketsError = get(["vsp", "hasVSPTicketsError"]);
-export const getIsLegacy = () => false; // hide legacy purchase
 export const getRememberedVspHost = get(["vsp", "rememberedVspHost"]);
 
 export const getVSPTicketsHashes = get(["vsp", "vspTickets"]);
@@ -826,21 +816,11 @@ export const changePassphraseSuccess = get([
   "control",
   "changePassphraseSuccess"
 ]);
-export const updatedStakePoolList = get(["stakepool", "updatedStakePoolList"]);
 export const allowedExternalRequests = get([
   "settings",
   "currentSettings",
   "allowedExternalRequests"
 ]);
-export const stakePoolListingEnabled = compose(
-  (l) => l.indexOf(EXTERNALREQUEST_STAKEPOOL_LISTING) > -1,
-  allowedExternalRequests
-);
-export const dismissBackupRedeemScript = get([
-  "stakepool",
-  "dismissBackupRedeemScript"
-]);
-
 export const isSigningMessage = get(["grpc", "getSignMessageRequestAttempt"]);
 export const signMessageError = get(["grpc", "getSignMessageError"]);
 export const signMessageSignature = get(["grpc", "getSignMessageSignature"]);
@@ -912,9 +892,6 @@ export const totalSubsidy = compose(
 );
 
 export const ticketBuyerService = get(["grpc", "ticketBuyerService"]);
-export const ticketBuyerConfig = get(["control", "ticketBuyerConfig"]);
-
-export const balanceToMaintain = get(["control", "balanceToMaintain"]);
 
 const getTicketPriceResponse = get(["grpc", "getTicketPriceResponse"]);
 
@@ -923,27 +900,10 @@ export const ticketPrice = compose(
   getTicketPriceResponse
 );
 
-const requiredStakepoolAPIVersion = get([
-  "grpc",
-  "requiredStakepoolAPIVersion"
-]);
-
-export const currentStakePoolConfigError = get([
-  "stakepool",
-  "currentStakePoolConfigError"
-]);
-
-export const purchaseTicketsError = get(["control", "purchaseTicketsError"]);
 export const purchaseTicketsSuccess = get([
   "control",
   "purchaseTicketsSuccess"
 ]);
-export const importScriptSuccess = get(["control", "importScriptSuccess"]);
-export const importScriptError = get(["control", "importScriptError"]);
-export const startAutoBuyerError = get(["control", "startAutoBuyerError"]);
-export const startAutoBuyerSuccess = get(["control", "startAutoBuyerSuccess"]);
-export const stopAutoBuyerError = get(["control", "stopAutoBuyerError"]);
-export const stopAutoBuyerSuccess = get(["control", "stopAutoBuyerSuccess"]);
 
 const purchaseTicketsResponse = get(["control", "purchaseTicketsResponse"]);
 
@@ -957,88 +917,10 @@ export const ticketsList = createSelector(
   (res) => res && res.ticketsList.map((t) => Buffer.from(t).toString("hex"))
 );
 
-export const currentStakePoolConfig = get([
-  "stakepool",
-  "currentStakePoolConfig"
-]);
-
-const allStakePoolStats = get(["stakepool", "getStakePoolInfo"]);
-
-const allStakePoolStatsList = createSelector(
-  [allStakePoolStats, requiredStakepoolAPIVersion],
-  (pools, requiredVersion) =>
-    map(
-      (pool) => ({
-        ...pool,
-        label: pool.URL,
-        value: pool,
-        isVersionValid: pool.APIVersionsSupported[1] === requiredVersion
-      }),
-      pools
-    )
-);
-export const networkStakePoolStatsList = createSelector(
-  [allStakePoolStatsList, network],
-  (pools, network) => filter(compose(eq(network), get("Network")), pools)
-);
-
-const allStakePools = createSelector(
-  [currentStakePoolConfig, requiredStakepoolAPIVersion],
-  (pools, requiredVersion) =>
-    map(
-      (pool) => ({
-        ...pool,
-        label: pool.Host,
-        value: pool,
-        isVersionValid: pool.APIVersionsSupported[1] === requiredVersion
-      }),
-      pools
-    )
-);
-
-const networkStakePools = createSelector(
-  [allStakePools, network],
-  (pools, network) => filter(compose(eq(network), get("Network")), pools)
-);
-
-export const configuredStakePools = createSelector(
-  [networkStakePools],
-  filter(bool(get("ApiKey")))
-);
-
-export const unconfiguredStakePools = createSelector(
-  [networkStakePools],
-  filter(not(get("ApiKey")))
-);
-
-export const defaultStakePool = compose(get(0), configuredStakePools);
-export const selectedStakePool = get(["stakepool", "selectedStakePool"]);
-
-const currentStakePoolConfigRequest = get([
-  "stakepool",
-  "currentStakePoolConfigRequest"
-]);
-
 export const purchaseTicketsRequestAttempt = get([
   "control",
   "purchaseTicketsRequestAttempt"
 ]);
-
-const importScriptRequestAttempt = get([
-  "control",
-  "importScriptRequestAttempt"
-]);
-
-// LEGACY selectors.
-// Keep them while we still support old version of vsps.
-export const isSavingStakePoolConfig = bool(currentStakePoolConfigRequest);
-export const isAddingCustomStakePool = bool(
-  get(["stakePool", "addCustomStakePoolAttempt"])
-);
-export const isPurchasingTickets = bool(purchaseTicketsRequestAttempt);
-export const isImportingScript = bool(importScriptRequestAttempt);
-
-// end of LEGACY selectors
 
 export const newUnminedMessage = get(["notifications", "newUnminedMessage"]);
 
@@ -1373,18 +1255,12 @@ export const trezorWalletCreationMasterPubkeyAttempt = get([
 ]);
 
 // selectors for checking if decrediton can be closed.
-
-// TODO remove duplicated auto buyer running selector
-const startAutoBuyerResponse = get(["control", "startAutoBuyerResponse"]);
-export const isTicketAutoBuyerEnabled = bool(startAutoBuyerResponse);
-
 // getRunningIndicator is a indicator for indicate something is runnning on
 // decrediton, like the ticket auto buyer or the mixer.
 export const getRunningIndicator = or(
   getAccountMixerRunning,
   getTicketAutoBuyerRunning,
   purchaseTicketsRequestAttempt
-  // isTicketAutoBuyerEnabled  -- legacy autobuery is deprecated
 );
 
 export const restoredFromSeed = get(["dex", "restoredFromSeed"]);

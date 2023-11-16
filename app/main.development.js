@@ -31,7 +31,6 @@ import { getGlobalCfgPath, checkAndInitWalletCfg } from "./main_dev/paths";
 import {
   installSessionHandlers,
   reloadAllowedExternalRequests,
-  LEGACY_allowStakepoolRequests,
   allowVSPRequests,
   allowExternalRequest
 } from "./main_dev/externalRequests";
@@ -324,12 +323,6 @@ const handle = (channel, fn) =>
 
 ipcMain.on("reload-allowed-external-request", (event) => {
   reloadAllowedExternalRequests();
-  event.returnValue = true;
-});
-
-// LEGACY ipc request - REMOVE AFTER SUPPORTING VSP's API V1/V2
-ipcMain.on("allow-stakepool-host", (event, host) => {
-  LEGACY_allowStakepoolRequests(host);
   event.returnValue = true;
 });
 
