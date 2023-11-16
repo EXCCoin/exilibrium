@@ -1,5 +1,5 @@
 import { useLocation, NavLink } from "react-router-dom";
-import { Balance, ExternalLink } from "shared";
+import { Balance, ExternalLink, TruncatedText } from "shared";
 import {
   KeyBlueButton,
   CopyToClipboardButton,
@@ -71,7 +71,8 @@ const TransactionContent = ({
     rawTx,
     isPending,
     voteScript,
-    ticketTx
+    ticketTx,
+    spenderTx
   } = transactionDetails;
 
   const { theme } = useTheme();
@@ -107,6 +108,8 @@ const TransactionContent = ({
       .filter((v, i) => walletOutputIndices.indexOf(i) === -1)
       .map(mapNonWalletOutput);
   }
+
+  const truncateMax = 18;
 
   return (
     <>
@@ -157,6 +160,21 @@ const TransactionContent = ({
                 <NavLink
                   to={location.pathname.replace(txHash, ticketTx.txHash)}>
                   {ticketTx.txHash}
+                </NavLink>
+              </div>
+            </div>
+          </>
+        )}
+        {txType === TICKET && spenderTx && (
+          <>
+            <div className={styles.topRow}>
+              <div className={styles.name}>
+                <T id="txDetails.spendingTx" m="Spending Tx" />:
+              </div>
+              <div className={styles.value}>
+                <NavLink
+                  to={location.pathname.replace(txHash, spenderTx.txHash)}>
+                  {spenderTx.txHash}
                 </NavLink>
               </div>
             </div>
@@ -236,7 +254,14 @@ const TransactionContent = ({
         ) : (
           <div className={styles.topRow}>
             <div className={styles.name}>
-              <T id="txDetails.toAddress" m="To address" />:
+              <T
+                id="txDetails.toAddress"
+                m="{addressCount, plural, one {To address} other {To addresses} }"
+                values={{
+                  addressCount: txOutputs.length + nonWalletOutputs.length
+                }}
+              />
+              :
             </div>
             <div className={classNames(styles.value, styles.nonFlex)}>
               {txOutputs.map(({ address }, i) => (
