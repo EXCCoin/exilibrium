@@ -792,7 +792,8 @@ app.on("ready", async () => {
       contextIsolation: true,
       webSecurity: true,
       enableRemoteModule: false,
-      preload: preloadPath
+      preload: preloadPath,
+      sandbox: false
     },
     icon: __dirname + "/icon.png"
   };
