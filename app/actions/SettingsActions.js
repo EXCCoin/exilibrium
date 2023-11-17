@@ -68,8 +68,8 @@ export const saveSettings = (settings) => async (dispatch, getState) => {
     wallet.setupProxy();
   }
 
-  if (needNetworkReset) {
-    dispatch(closeWalletRequest());
+  if (needNetworkReset || updatedProxy) {
+    await dispatch(closeWalletRequest());
     await dispatch(closeDaemonRequest());
     dispatch(backToCredentials());
   }
@@ -121,7 +121,9 @@ export function updateStateSettingsChanged(settings, norestart) {
     const networkChange = {
       network: true,
       spvMode: true,
-      daemonStartAdvanced: true
+      daemonStartAdvanced: true,
+      proxyType: true,
+      proxyLocation: true
     };
 
     const newDiffersFromTemp = settingsFields.reduce(

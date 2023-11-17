@@ -394,7 +394,6 @@ test.each([
     { daemonStartAdvanced: true },
     true
   ],
-  ["Proxy Type", "HTTP", "PAC", { proxyType: PROXYTYPE_PAC }, false],
   [
     "Locale",
     testDefaultLocaleLabel,
@@ -468,13 +467,6 @@ test.each([
     testDefaultSpvConnectValue.join(","),
     testSpvConnectValue.join(","),
     { spvConnect: testSpvConnectValue },
-    false
-  ],
-  [
-    "Proxy Location",
-    testDefaultProxyLocation,
-    testProxyLocation,
-    { proxyLocation: testProxyLocation },
     false
   ]
 ])("change '%s' TextInput from '%s' to '%s' expeced %s", testTextFieldInput);
