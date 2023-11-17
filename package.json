@@ -1,7 +1,7 @@
 {
   "name": "exilibrium",
   "productName": "Exilibrium",
-  "version": "1.7.7",
+  "version": "1.8.0",
   "description": "Exilibrium based on React, React Router, Webpack, React Hot Loader for rapid application development",
   "main": "main.js",
   "scripts": {
