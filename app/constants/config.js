@@ -50,6 +50,7 @@ export const setDaemonRemoteCredentials = (
 
 // Wallet config constants
 export const ENABLE_TICKET_BUYER = "enableticketbuyer";
+export const BALANCE_TO_MAINTAIN = "balancetomaintain";
 export const CURRENCY_DISPLAY = "currency_display";
 export const HIDDEN_ACCOUNTS = "hiddenaccounts";
 export const DISCOVER_ACCOUNTS = "discoveraccounts";
@@ -79,16 +80,14 @@ export const DEX_READY = "dex_ready";
 export const DEXWALLET_RPCUSERNAME = "dexwallet_rpcuser";
 export const DEXWALLET_RPCPASSWORD = "dexwallet_rpcpass";
 export const DEXWALLET_HOSTPORT = "dexwallet_host";
-export const BTCWALLET_NAME = "btcwallet_name";
 export const NEEDS_VSPD_PROCESS_TICKETS = "needs_vspd_process_tickets";
-export const DEX_BTC_SPV = "dex_use_btc_spv";
-export const ASK_DEX_BTC_SPV = "ask_dex_use_btc_spv";
 export const CONFIRM_DEX_SEED = "confirm_dex_seed";
 export const WALLET_CREATED_AS_NEW = "wallet_created_as_new";
 export const SHOW_STAKING_WARNING = "show_staking_warning";
 
 export const WALLET_INITIAL_VALUE = {
   [ENABLE_TICKET_BUYER]: false,
+  [BALANCE_TO_MAINTAIN]: "0",
   [CURRENCY_DISPLAY]: DCR,
   [HIDDEN_ACCOUNTS]: [],
   [DISCOVER_ACCOUNTS]: true,
@@ -119,8 +118,6 @@ export const WALLET_INITIAL_VALUE = {
   [DEXWALLET_RPCPASSWORD]: "",
   [DEXWALLET_HOSTPORT]: "",
   [DEX_ACCOUNT]: null,
-  [DEX_BTC_SPV]: false,
-  [ASK_DEX_BTC_SPV]: false,
   [CONFIRM_DEX_SEED]: false,
   [AUTOBUYER_SETTINGS]: null,
   // Force as true to ensure wallets with tickets prior to when this config was
