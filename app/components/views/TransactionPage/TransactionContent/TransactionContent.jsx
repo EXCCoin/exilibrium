@@ -1,4 +1,5 @@
-import { Balance, ExternalLink } from "shared";
+import { useLocation, NavLink } from "react-router-dom";
+import { Balance, ExternalLink, TruncatedText } from "shared";
 import {
   KeyBlueButton,
   CopyToClipboardButton,
@@ -58,11 +59,11 @@ const TransactionContent = ({
   const {
     txHash,
     txUrl,
-    txHeight,
+    height,
     txType,
     txInputs,
     txOutputs,
-    txBlockHash,
+    blockHash,
     txBlockUrl,
     txFee,
     ticketTxFee,
@@ -70,9 +71,12 @@ const TransactionContent = ({
     rawTx,
     isPending,
     voteScript,
-    ticketTx
+    ticketTx,
+    spenderTx
   } = transactionDetails;
+
   const { theme } = useTheme();
+  const location = useLocation();
   const iconColor = getThemeProperty(theme, "color-orange");
   const iconBgColor = getThemeProperty(theme, "alert-icon-bg-color");
 
@@ -104,6 +108,8 @@ const TransactionContent = ({
       .filter((v, i) => walletOutputIndices.indexOf(i) === -1)
       .map(mapNonWalletOutput);
   }
+
+  const truncateMax = 18;
 
   return (
     <>
@@ -137,9 +143,7 @@ const TransactionContent = ({
                   id="transaction.confirmationHeight"
                   m="{confirmations, plural, =0 {Mined, block awaiting approval} one {# confirmation} other {# confirmations}}"
                   values={{
-                    confirmations: !isPending
-                      ? currentBlockHeight - txHeight
-                      : 0
+                    confirmations: !isPending ? currentBlockHeight - height : 0
                   }}
                 />
               </span>
@@ -153,9 +157,25 @@ const TransactionContent = ({
                 <T id="txDetails.ticketSpent" m="Ticket Spent" />:
               </div>
               <div className={styles.value}>
-                <ExternalLink className={styles.value} href={ticketTx.txUrl}>
+                <NavLink
+                  to={location.pathname.replace(txHash, ticketTx.txHash)}>
                   {ticketTx.txHash}
-                </ExternalLink>
+                </NavLink>
+              </div>
+            </div>
+          </>
+        )}
+        {txType === TICKET && spenderTx && (
+          <>
+            <div className={styles.topRow}>
+              <div className={styles.name}>
+                <T id="txDetails.spendingTx" m="Spending Tx" />:
+              </div>
+              <div className={styles.value}>
+                <NavLink
+                  to={location.pathname.replace(txHash, spenderTx.txHash)}>
+                  {spenderTx.txHash}
+                </NavLink>
               </div>
             </div>
           </>
@@ -234,7 +254,14 @@ const TransactionContent = ({
         ) : (
           <div className={styles.topRow}>
             <div className={styles.name}>
-              <T id="txDetails.toAddress" m="To address" />:
+              <T
+                id="txDetails.toAddress"
+                m="{addressCount, plural, one {To address} other {To addresses} }"
+                values={{
+                  addressCount: txOutputs.length + nonWalletOutputs.length
+                }}
+              />
+              :
             </div>
             <div className={classNames(styles.value, styles.nonFlex)}>
               {txOutputs.map(({ address }, i) => (
@@ -279,11 +306,13 @@ const TransactionContent = ({
                       <T id="txDetails.feeTxHashLabel" m="Fee tx hash" />:
                     </div>
                     <div className={styles.value}>
-                      <ExternalLink
-                        className={styles.value}
-                        href={VSPTicketStatus.feetxUrl}>
+                      <NavLink
+                        to={location.pathname.replace(
+                          txHash,
+                          VSPTicketStatus.feetxhash
+                        )}>
                         {VSPTicketStatus.feetxhash}
-                      </ExternalLink>
+                      </NavLink>
                     </div>
                   </div>
                   <div className={styles.topRow}>
@@ -457,7 +486,7 @@ const TransactionContent = ({
               </div>
               <div className={styles.value}>
                 <ExternalLink className={styles.value} href={txBlockUrl}>
-                  {txBlockHash}
+                  {blockHash}
                 </ExternalLink>
               </div>
             </div>
@@ -465,7 +494,7 @@ const TransactionContent = ({
               <div className={styles.name}>
                 <T id="txDetails.blockHeightLabel" m="Height" />
               </div>
-              <div className={styles.value}>{txHeight}</div>
+              <div className={styles.value}>{height}</div>
             </div>
           </>
         )}

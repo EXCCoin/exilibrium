@@ -27,8 +27,8 @@ beforeEach(() => {
   mockGetCoinjoinOutputspByAcct = amActions.getCoinjoinOutputspByAcct = jest.fn(
     () => () => Promise.resolve(testCoinjoinSumByAcct)
   );
-  mockSetCoinjoinCfg = amActions.setCoinjoinCfg = jest.fn(() => () =>
-    Promise.resolve(testCoinjoinSumByAcct)
+  mockSetCoinjoinCfg = amActions.setCoinjoinCfg = jest.fn(
+    () => () => Promise.resolve(testCoinjoinSumByAcct)
   );
   mockRenameAccountAttempt = controlActions.renameAccountAttempt = jest.fn(
     () => () => true
@@ -48,14 +48,13 @@ test("test SetMixedAcctPage", async () => {
                     possible to know which account was the mixed account. You can
                     set a mixed and unmixed account now or this can be done later on
                     the privacy page.
-                    
+
                     With this action the chosen accounts will be renamed."
   `);
 
   const mixedAccountCheckboxes = screen.getAllByLabelText(/set mixed account/i);
-  const unmixedAccountCheckboxes = screen.getAllByLabelText(
-    /set unmixed account/i
-  );
+  const unmixedAccountCheckboxes =
+    screen.getAllByLabelText(/set unmixed account/i);
 
   expect(mixedAccountCheckboxes.length).toBe(testCoinjoinSumByAcct.length - 1);
   expect(unmixedAccountCheckboxes.length).toBe(

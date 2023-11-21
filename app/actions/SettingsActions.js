@@ -68,52 +68,50 @@ export const saveSettings = (settings) => async (dispatch, getState) => {
     wallet.setupProxy();
   }
 
-  if (needNetworkReset) {
-    dispatch(closeWalletRequest());
+  if (needNetworkReset || updatedProxy) {
+    await dispatch(closeWalletRequest());
     await dispatch(closeDaemonRequest());
     dispatch(backToCredentials());
   }
 };
 
 export const ALLOWEDEXTERNALREQUESTS_ADDED = "ALLOWEDEXTERNALREQUESTS_ADDED";
-export const addAllowedExternalRequest = (requestType) => (
-  dispatch,
-  getState
-) =>
-  new Promise((resolve) => {
-    const config = wallet.getGlobalCfg();
-    const allowed = config.get(configConstants.ALLOWED_EXTERNAL_REQUESTS);
+export const addAllowedExternalRequest =
+  (requestType) => (dispatch, getState) =>
+    new Promise((resolve) => {
+      const config = wallet.getGlobalCfg();
+      const allowed = config.get(configConstants.ALLOWED_EXTERNAL_REQUESTS);
 
-    if (allowed.indexOf(requestType) > -1) return resolve(true);
+      if (allowed.indexOf(requestType) > -1) return resolve(true);
 
-    allowed.push(requestType);
-    config.set(configConstants.ALLOWED_EXTERNAL_REQUESTS, allowed);
-    wallet.allowExternalRequest(requestType);
+      allowed.push(requestType);
+      config.set(configConstants.ALLOWED_EXTERNAL_REQUESTS, allowed);
+      wallet.allowExternalRequest(requestType);
 
-    const {
-      settings: { currentSettings, tempSettings }
-    } = getState();
-    const newSettings = { ...currentSettings };
-    newSettings.allowedExternalRequests = allowed;
+      const {
+        settings: { currentSettings, tempSettings }
+      } = getState();
+      const newSettings = { ...currentSettings };
+      newSettings.allowedExternalRequests = allowed;
 
-    // Also modify temp settings, given that it may be different than the current
-    // settings.
-    const newTempSettings = { ...tempSettings };
-    newTempSettings.allowedExternalRequests = [
-      ...newTempSettings.allowedExternalRequests
-    ];
-    if (newTempSettings.allowedExternalRequests.indexOf(requestType) === -1) {
-      newTempSettings.allowedExternalRequests.push(requestType);
-    }
+      // Also modify temp settings, given that it may be different than the current
+      // settings.
+      const newTempSettings = { ...tempSettings };
+      newTempSettings.allowedExternalRequests = [
+        ...newTempSettings.allowedExternalRequests
+      ];
+      if (newTempSettings.allowedExternalRequests.indexOf(requestType) === -1) {
+        newTempSettings.allowedExternalRequests.push(requestType);
+      }
 
-    dispatch({
-      newSettings,
-      newTempSettings,
-      type: ALLOWEDEXTERNALREQUESTS_ADDED,
-      requestType
+      dispatch({
+        newSettings,
+        newTempSettings,
+        type: ALLOWEDEXTERNALREQUESTS_ADDED,
+        requestType
+      });
+      resolve(true);
     });
-    resolve(true);
-  });
 
 export function updateStateSettingsChanged(settings, norestart) {
   return (dispatch, getState) => {
@@ -123,7 +121,9 @@ export function updateStateSettingsChanged(settings, norestart) {
     const networkChange = {
       network: true,
       spvMode: true,
-      daemonStartAdvanced: true
+      daemonStartAdvanced: true,
+      proxyType: true,
+      proxyLocation: true
     };
 
     const newDiffersFromTemp = settingsFields.reduce(

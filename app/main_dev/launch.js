@@ -28,7 +28,8 @@ import {
   UPGD_ELECTRON8,
   CSPP_URL,
   CSPP_PORT_TESTNET,
-  CSPP_PORT_MAINNET
+  CSPP_PORT_MAINNET,
+  PROXYTYPE_SOCKS5
 } from "constants";
 import * as cfgConstants from "constants/config";
 import os from "os";
@@ -43,6 +44,7 @@ import ini from "ini";
 import { makeRandomString, isPlainString as isString } from "helpers/strings";
 import { makeFileBackup } from "helpers/files";
 import { DEX_LOCALPAGE } from "./externalRequests";
+import { getProxyTypeAndLocation } from "./proxy";
 
 const argv = parseArgs(process.argv.slice(1), OPTIONS);
 const debug = argv.debug || process.env.NODE_ENV === "development";
@@ -194,8 +196,8 @@ export function closeDCRD() {
     dcrdRequest = null;
   } else if (isRunning(dcrdPID)) {
     try {
-      const win32ipc = require("win32ipc/build/Release/win32ipc.node");
-      win32ipc.closePipe(dcrdPipeRx);
+      const dcrwin32ipc = require("dcrwin32ipc/build/Release/dcrwin32ipc.node");
+      dcrwin32ipc.closePipe(dcrdPipeRx);
       dcrdPID = null;
       dcrdRequest = null;
     } catch (e) {
@@ -221,10 +223,10 @@ export const closeDCRW = () => {
       process.kill(dcrwPID, "SIGINT");
     } else if (isRunning(dcrwPID)) {
       try {
-        const win32ipc = require("win32ipc/build/Release/win32ipc.node");
+        const dcrwin32ipc = require("dcrwin32ipc/build/Release/dcrwin32ipc.node");
         dcrwTxStream.close();
-        win32ipc.closePipe(dcrwPipeTx);
-        win32ipc.closePipe(dcrwPipeRx);
+        dcrwin32ipc.closePipe(dcrwPipeTx);
+        dcrwin32ipc.closePipe(dcrwPipeRx);
       } catch (e) {
         logger.log("error", "Error closing exccwallet piperx: " + e);
       }
@@ -249,8 +251,8 @@ export const closeDcrlnd = () => {
     dcrlndCreds = null;
   } else if (isRunning(dcrlndPID)) {
     try {
-      const win32ipc = require("win32ipc/build/Release/win32ipc.node");
-      win32ipc.closePipe(dcrlndPipeRx);
+      const dcrwin32ipc = require("dcrwin32ipc/build/Release/dcrwin32ipc.node");
+      dcrwin32ipc.closePipe(dcrlndPipeRx);
       dcrlndPID = null;
       dcrlndCreds = null;
     } catch (e) {
@@ -390,6 +392,15 @@ export const launchDCRD = (reactIPC, testnet, appdata) =>
       args.push("--testnet");
     }
 
+    const { proxyType, proxyLocation } = getProxyTypeAndLocation();
+    logger.log(
+      "info",
+      `ProxyType: ${proxyType}, ProxyLocation: ${proxyLocation}`
+    );
+    if (proxyType === PROXYTYPE_SOCKS5 && proxyLocation) {
+      args.push(`--proxy=${proxyLocation}`);
+    }
+
     rpcuser = rpc_user;
     rpcpass = rpc_pass;
     rpccert = rpc_cert;
@@ -398,8 +409,8 @@ export const launchDCRD = (reactIPC, testnet, appdata) =>
 
     if (os.platform() == "win32") {
       try {
-        const win32ipc = require("win32ipc/build/Release/win32ipc.node");
-        dcrdPipeRx = win32ipc.createPipe("out");
+        const dcrwin32ipc = require("dcrwin32ipc/build/Release/dcrwin32ipc.node");
+        dcrdPipeRx = dcrwin32ipc.createPipe("out");
         args.push(format("--piperx=%d", dcrdPipeRx.readEnd));
       } catch (e) {
         logger.log("error", "can't find proper module to launch exccd: " + e);
@@ -688,14 +699,14 @@ export const launchDCRWallet = async (
 
   if (os.platform() == "win32") {
     try {
-      const win32ipc = require("win32ipc/build/Release/win32ipc.node");
-      dcrwPipeRx = win32ipc.createPipe("out");
+      const dcrwin32ipc = require("dcrwin32ipc/build/Release/dcrwin32ipc.node");
+      dcrwPipeRx = dcrwin32ipc.createPipe("out");
       args.push(format("--piperx=%d", dcrwPipeRx.readEnd));
 
-      dcrwPipeTx = win32ipc.createPipe("in");
+      dcrwPipeTx = dcrwin32ipc.createPipe("in");
       args.push(format("--pipetx=%d", dcrwPipeTx.writeEnd));
       args.push("--rpclistenerevents");
-      const pipeTxReadFd = win32ipc.getPipeEndFd(dcrwPipeTx.readEnd);
+      const pipeTxReadFd = dcrwin32ipc.getPipeEndFd(dcrwPipeTx.readEnd);
       dcrwPipeTx.readEnd = -1; // -1 == INVALID_HANDLE_VALUE
 
       dcrwTxStream = fs.createReadStream("", { fd: pipeTxReadFd });
@@ -851,8 +862,8 @@ export const launchDCRLnd = (
 
     if (os.platform() == "win32") {
       try {
-        const win32ipc = require("win32ipc/build/Release/win32ipc.node");
-        dcrlndPipeRx = win32ipc.createPipe("out");
+        const dcrwin32ipc = require("dcrwin32ipc/build/Release/dcrwin32ipc.node");
+        dcrlndPipeRx = dcrwin32ipc.createPipe("out");
         args.push(format("--piperx=%d", dcrlndPipeRx.readEnd));
       } catch (e) {
         logger.log("error", "can't find proper module to launch excclnd: " + e);
@@ -1016,22 +1027,6 @@ export const createWalletDexCall = (
     throw error;
   }
 };
-
-export const getDexConfigCall = (addr) =>
-  !dex ? null : callDEX("DexConfig", { addr });
-
-export const preRegisterCall = (appPass, addr) =>
-  !dex ? null : callDEX("PreRegister", { appPass, addr });
-
-export const registerDexCall = (appPass, addr, fee) =>
-  !dex
-    ? null
-    : callDEX("Register", {
-        appPass,
-        url: addr,
-        fee: parseInt(fee),
-        cert: ""
-      });
 
 export const userDexCall = () => (!dex ? null : callDEX("User", {}));
 

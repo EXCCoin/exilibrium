@@ -175,31 +175,6 @@ test("render default FloatInput", () => {
   expect(inputTag.value).toBe("1.894");
 });
 
-test("render default BlocksInput", () => {
-  const { input, inputTag } = renderWrappedInput(BlocksInput);
-  checkDefaultInput(input, inputTag);
-  expect(input.className).toMatch("numericInput");
-  user.type(inputTag, "1.89a&%4234}");
-  expect(inputTag.value).toBe("1.894234");
-  expect(screen.getByText("blocks").className).toMatch("unitArea");
-  expect(screen.getByText("blocks").className).toMatch("numericInputUnitArea");
-});
-
-test("render default FeeInput", () => {
-  const { input, inputTag } = renderInput(FeeInput);
-  checkDefaultInput(input, inputTag);
-  expect(input.className).toMatch("numericInput");
-  expect(screen.getByText(`${testCurrency}/KB`));
-  expect(mockCurrencyDisplay).toHaveBeenCalled();
-});
-
-test("render default PercentInput", () => {
-  const { input, inputTag } = renderInput(PercentInput);
-  checkDefaultInput(input, inputTag);
-  expect(input.className).toMatch("numericInput");
-  expect(screen.getByText("%"));
-});
-
 test("render inlineField", () => {
   const testLabel = "test-label";
   render(

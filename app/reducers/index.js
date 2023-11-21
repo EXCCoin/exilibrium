@@ -5,7 +5,6 @@ import notifications from "./notifications";
 import control from "./control";
 import version from "./version";
 import settings from "./settings";
-import stakepool from "./stakepool";
 import daemon from "./daemon";
 import locales from "./locales";
 import sidebar from "./sidebar";
@@ -23,7 +22,6 @@ export default {
   control,
   version,
   settings,
-  stakepool,
   daemon,
   locales,
   sidebar,

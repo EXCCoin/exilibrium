@@ -1,7 +1,7 @@
 {
   "name": "exilibrium",
-  "productName": "exilibrium",
-  "version": "1.7.7",
+  "productName": "Exilibrium",
+  "version": "1.8.0",
   "description": "Cross-platform ExchangeCoin gui based on Electron and React",
   "main": "./main.js",
   "author": {

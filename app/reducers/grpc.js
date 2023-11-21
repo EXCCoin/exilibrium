@@ -104,8 +104,10 @@ import {
   NEW_TRANSACTIONS_RECEIVED,
   CHANGE_TRANSACTIONS_FILTER
 } from "actions/TransactionActions";
-import { GETVSPTICKETSTATUS_SUCCESS } from "actions/VSPActions";
-import { SETVSPDVOTECHOICE_FAILED } from "../actions/VSPActions";
+import {
+  GETVSPTICKETSTATUS_SUCCESS,
+  SETVSPDVOTECHOICE_FAILED
+} from "actions/VSPActions";
 
 export default function grpc(state = {}, action) {
   let newMaturingBlockHeights;
@@ -154,7 +156,8 @@ export default function grpc(state = {}, action) {
     case GETVSPTICKETSTATUS_SUCCESS:
       return {
         ...state,
-        stakeTransactions: action.stakeTransactions
+        stakeTransactions: action.stakeTransactions,
+        recentStakeTransactions: action.recentStakeTransactions
       };
     case CREATEMIXERACCOUNTS_ATTEMPT:
       return {
@@ -711,6 +714,8 @@ export default function grpc(state = {}, action) {
         },
         recentRegularTransactions: [],
         recentStakeTransactions: [],
+        regularTransactions: {},
+        stakeTransactions: {},
         ticketBuyerService: null,
         transactionsSinceLastOpened: null,
         votingService: null,
