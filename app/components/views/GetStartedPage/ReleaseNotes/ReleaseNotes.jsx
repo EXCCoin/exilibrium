@@ -7,36 +7,6 @@ const availableVersions = [
     version: "1.8.0",
     docName: "ReleaseNote1_8_0",
     imgClassName: "v180"
-  },
-  {
-    version: "1.7.0",
-    docName: "ReleaseNote1_7_0",
-    imgClassName: "v170"
-  },
-  {
-    version: "1.6.0",
-    docName: "ReleaseNote1_6_0",
-    imgClassName: "v160"
-  },
-  {
-    version: "1.5.0",
-    docName: "ReleaseNote1_5_0",
-    imgClassName: "v150"
-  },
-  {
-    version: "1.4.0",
-    docName: "ReleaseNote1_4_0",
-    imgClassName: "v140"
-  },
-  {
-    version: "1.3.1",
-    docName: "ReleaseNote1_3_1",
-    imgClassName: "v130"
-  },
-  {
-    version: "1.3.0",
-    docName: "ReleaseNote1_3_0",
-    imgClassName: "v130"
   }
 ];
 

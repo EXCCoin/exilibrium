@@ -64,28 +64,8 @@
   background-size: 590px;
 }
 
-.image.v130 {
-  background-image: var(--release-image-v130);
-}
-
-.image.v140 {
-  background-image: var(--release-image-v140);
-}
-
-.image.v150 {
-  background-image: var(--release-image-v150);
-}
-
-.image.v160 {
-  background-image: var(--release-image-v160);
-}
-
-.image.v170 {
-  background-image: var(--release-image-v170);
-}
-
 .image.v180 {
-  background-image: var(--release-image-v170);
+  background-image: var(--release-image-v180);
 }
 
 @media (--bg-viewport) {
